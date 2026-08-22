@@ -1,7 +1,26 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-08-22T21:15:00+09:00",
+  "updated_at": "2026-08-22T22:00:00+09:00",
   "items": [
+    {
+      "id": "2026-08-22-meishin-construction-delivery-risk",
+      "date": "2026-08-22",
+      "event_date": "2026-08-22/2026-09-12",
+      "headline": "名神集中工事が開始、東京・関東⇔関西を中心に全国的な配送遅延リスク",
+      "domain": "domestic_delivery",
+      "importance": "high",
+      "japan_relevance": "high",
+      "status": "reported",
+      "summary": "名神高速道路の集中工事が8月22日0時に開始。吹田IC～一宮JCTなどで昼夜連続車線規制、夜間通行止め、IC閉鎖が予定され、ヤマト運輸は東京・関東から関西を発着する荷物を中心に全国的な遅延が発生する可能性を案内している。",
+      "observed_impact": "現時点では工事開始と遅延可能性の公式案内を確認。実際の全国的な遅延発生までは未確認。",
+      "japan_implication": "東西幹線輸送に関係するため、関東⇔関西だけでなく迂回・幹線接続を通じて他地域にも遅延が波及し得る。",
+      "operational_implication": "9月12日までの期間は東京・関東⇔関西の宅配・路線便に通常より余裕を持たせ、着日指定・EC出荷・店舗向け緊急配送はcarrier別の最新遅延情報を確認する。",
+      "topic_ids": ["japan-domestic-delivery"],
+      "evidence": [
+        {"class":"primary_operational","source":"ヤマト運輸","date":"2026-08-17","url":"https://www.yamato-hd.co.jp/important/info_260817_1.html"},
+        {"class":"primary_operational","source":"NEXCO中日本 / NEXCO西日本","date":"2026-06-19","url":"https://www.c-nexco.co.jp/corporate/pressroom/news_release/6617.html"}
+      ]
+    },
     {
       "id": "2026-08-22-hormuz-low-traffic",
       "date": "2026-08-22",
