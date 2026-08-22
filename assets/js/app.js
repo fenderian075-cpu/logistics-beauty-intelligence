@@ -29,6 +29,29 @@ const PAGES = {
   "lens-history": () => import("./pages/lens-history.js")
 };
 
+function ensureProductionPolish() {
+  if (document.getElementById("lbi-v7-1-1-polish")) return;
+  const style = document.createElement("style");
+  style.id = "lbi-v7-1-1-polish";
+  style.textContent = `
+    .brand { align-items: center; white-space: nowrap; }
+    .brand__mark,
+    .brand__sub { line-height: 1.25; white-space: nowrap; }
+    .brand__mark { flex: 0 0 auto; }
+    .brand__sub { flex: 0 0 auto; }
+    .radar-row__head { grid-template-columns: 72px 48px 86px minmax(0,1fr) auto; }
+    .radar-row__state { min-width: 72px; overflow: visible; white-space: nowrap; }
+    .data-table th:first-child,
+    .data-table td:first-child { width: 88px; min-width: 88px; white-space: nowrap; }
+    .priority { min-width: 38px; white-space: nowrap; }
+    .report,
+    .wrap.report,
+    .wrap-read.report { width: 100%; max-width: var(--content-max); }
+    @media (max-width: 1080px) { .brand__sub { display: none; } }
+  `;
+  document.head.appendChild(style);
+}
+
 function detectPage() {
   const declared = document.body.getAttribute("data-page");
   if (declared && PAGES[declared]) return declared;
@@ -58,6 +81,7 @@ function boot() {
   if (window.__lbiBooted) return;     // legacy shims may load app.js twice
   window.__lbiBooted = true;
 
+  ensureProductionPolish();
   initPrint();
   initShell();
 
