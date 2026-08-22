@@ -27,6 +27,7 @@ import * as L from "../core/labels.js";
 import * as S from "../domain/signals.js";
 import { loadIntel } from "../data/intel.js";
 import { bindLatestReportNav, markCurrent } from "../core/nav.js";
+import { mountShell } from "../core/shell.js";
 import { emptyState, renderRows, statusPill } from "../render/primitives.js";
 import { metricList } from "../render/metrics.js";
 import { radarRowFull } from "../render/radar-row.js";
@@ -478,6 +479,7 @@ export function init() {
   return loadIntel().then((intel) => {
     bindLatestReportNav(intel.reports);
     markCurrent();
+    mountShell(intel);
 
     const id = new URLSearchParams(location.search).get("id");
     if (!id) return renderIndex(host, intel);

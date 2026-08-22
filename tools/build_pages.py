@@ -10,7 +10,16 @@ import pathlib
 
 REPO = pathlib.Path("/home/claude/lbi")
 
-CSS = ["tokens.css", "base.css", "components.css", "pages.css"]
+CSS = ["tokens.css", "base.css", "layout.css", "components.css", "pages.css"]
+
+# Applied before first paint so a dark-mode or compact-density user never sees
+# a flash of the default theme. Kept to two attributes and one try/catch.
+BOOT = (
+    '<script>try{var d=document.documentElement,'
+    't=localStorage.getItem("lbi:theme"),n=localStorage.getItem("lbi:density");'
+    'if(t==="dark"||t==="light")d.setAttribute("data-theme",t);'
+    'if(n==="compact")d.setAttribute("data-density","compact");}catch(e){}</script>'
+)
 
 
 def head(title, description, prefix=""):
@@ -24,43 +33,66 @@ def head(title, description, prefix=""):
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>{title}</title>{desc}
-  <meta name="color-scheme" content="light">
+  <meta name="color-scheme" content="light dark">
 {links}
+  {BOOT}
 </head>"""
 
 
-def header(prefix=""):
-    return f"""<header class="site-header site-header--minimal">
-  <div class="site-header__bar">
-    <a class="brand brand--minimal" href="{prefix}index.html" aria-label="ホーム"><span class="brand__mark">LBI</span></a>
-    <nav class="site-nav site-nav--reports" aria-label="ナビゲーション">
-      <a data-nav="radar" href="{prefix}radar.html">レーダー</a>
-      <a data-nav="topic" href="{prefix}topic.html">トピック</a>
-      <a id="nav-latest-daily" data-nav="daily" href="{prefix}archive.html?type=daily">日次</a>
-      <a id="nav-latest-weekly" data-nav="weekly" href="{prefix}archive.html?type=weekly">週次</a>
-      <a id="nav-latest-monthly" data-nav="monthly" href="{prefix}archive.html?type=monthly">月次</a>
-      <a data-nav="commerce" href="{prefix}commerce-calendar.html">EC予定</a>
-      <a data-nav="buzz" href="{prefix}buzz.html">Buzz</a>
-      <a data-nav="archive" href="{prefix}archive.html">過去</a>
-    </nav>
+def rail(prefix=""):
+    """Persistent navigation, grouped by the four intelligence layers."""
+    return f"""<nav class="app-rail" aria-label="メインナビゲーション">
+  <a class="brand" href="{prefix}index.html">
+    <span class="brand__mark">LBI</span>
+    <span class="brand__sub">Logistics &amp; Beauty Intelligence</span>
+  </a>
+
+  <div class="rail-group">
+    <p class="rail-group__label">現況</p>
+    <a class="rail-link" data-nav="home" href="{prefix}index.html">ダッシュボード</a>
+    <a class="rail-link" data-nav="radar" href="{prefix}radar.html">オペレーションレーダー<span class="rail-link__count" id="rail-count-radar"></span></a>
+    <a class="rail-link" data-nav="topic" href="{prefix}topic.html">トピック<span class="rail-link__count" id="rail-count-topic"></span></a>
   </div>
-</header>"""
+
+  <div class="rail-group">
+    <p class="rail-group__label">レポート</p>
+    <a class="rail-link" id="nav-latest-daily" data-nav="daily" href="{prefix}archive.html?type=daily">日次</a>
+    <a class="rail-link" id="nav-latest-weekly" data-nav="weekly" href="{prefix}archive.html?type=weekly">週次</a>
+    <a class="rail-link" id="nav-latest-monthly" data-nav="monthly" href="{prefix}archive.html?type=monthly">月次</a>
+    <a class="rail-link" data-nav="archive" href="{prefix}archive.html">過去のレポート</a>
+  </div>
+
+  <div class="rail-group">
+    <p class="rail-group__label">ビューティー</p>
+    <a class="rail-link" data-nav="commerce" href="{prefix}commerce-calendar.html">EC予定</a>
+    <a class="rail-link" data-nav="buzz" href="{prefix}buzz.html">Buzz</a>
+  </div>
+
+  <div class="rail-group">
+    <p class="rail-group__label">参照</p>
+    <a class="rail-link" data-nav="sources" href="{prefix}source-matrix.html">情報源</a>
+    <a class="rail-link" data-nav="status-history" href="{prefix}status-history.html">ステータス履歴</a>
+    <a class="rail-link" data-nav="lens-history" href="{prefix}lens-history.html">シグナル履歴</a>
+  </div>
+
+  <div class="shell-tools">
+    <button type="button" class="tool-btn" id="tool-theme" aria-pressed="false">自動</button>
+    <button type="button" class="tool-btn" id="tool-density" aria-pressed="false">標準</button>
+    <button type="button" class="tool-btn" id="tool-help" title="キーボードショートカット">?</button>
+  </div>
+</nav>"""
 
 
 def footer(prefix=""):
     return f"""<footer class="site-footer">
-  <div class="wrap">
-    <nav aria-label="フッター">
-      <a href="{prefix}index.html">ホーム</a>
-      <a href="{prefix}radar.html">レーダー</a>
-      <a href="{prefix}topic.html">トピック</a>
-      <a href="{prefix}commerce-calendar.html">EC予定</a>
-      <a href="{prefix}buzz.html">Buzz</a>
-      <a href="{prefix}archive.html">過去</a>
-      <a href="{prefix}source-matrix.html">情報源</a>
-    </nav>
-    <p class="footer-note">公開情報のみを扱います。数値・事実は必ず一次情報で確認してください。</p>
-  </div>
+  <nav aria-label="フッター">
+    <a href="{prefix}index.html">ダッシュボード</a>
+    <a href="{prefix}radar.html">レーダー</a>
+    <a href="{prefix}topic.html">トピック</a>
+    <a href="{prefix}archive.html">過去</a>
+    <a href="{prefix}source-matrix.html">情報源</a>
+  </nav>
+  <p class="footer-note">公開情報のみを扱います。数値・事実は必ず一次情報で確認してください。</p>
 </footer>"""
 
 
@@ -68,13 +100,18 @@ def page(*, path, title, description, body_attrs, main, prefix=""):
     html = f"""{head(title, description, prefix)}
 <body {body_attrs}>
 <a class="skip-link" href="#main">本文へスキップ</a>
-{header(prefix)}
-<main id="main">
+<div class="app-shell">
+{rail(prefix)}
+<div class="app-frame">
+  <div class="app-ribbon" id="app-ribbon" aria-label="現在のステータス" role="status"></div>
+  <main class="app-main" id="main">
 {main}
-</main>
+  </main>
 {footer(prefix)}
+</div>
+</div>
 <script type="module" src="{prefix}assets/js/app.js"></script>
-<noscript><p class="empty-state wrap">このページは data/*.json をJavaScriptで読み込みます。JavaScriptが無効な場合は、各レポートページを直接ご覧ください。</p></noscript>
+<noscript><p class="empty-state">このページは data/*.json をJavaScriptで読み込みます。各レポートページは直接ご覧いただけます。</p></noscript>
 </body>
 </html>
 """
@@ -106,7 +143,7 @@ page(
     <div class="callout callout--bottom-line" id="conclusion" hidden></div>
   </section>
 
-  <section class="section section--span" aria-labelledby="radar-title">
+  <section class="section section--span section--radar" aria-labelledby="radar-title">
     <div class="section__head">
       <div>
         <p class="eyebrow">OPERATIONS RADAR</p>
@@ -133,7 +170,7 @@ page(
     <div class="status-board" id="status-board"></div>
   </section>
 
-  <section class="section section--span section--compact-latest" aria-labelledby="latest-title">
+  <section class="section section--compact-latest" aria-labelledby="latest-title">
     <div class="section__head">
       <h2 class="section__title" id="latest-title">最新レポート</h2>
       <a class="section__link" href="archive.html">過去のレポート →</a>
@@ -177,7 +214,7 @@ page(
     <div class="lens-grid" id="lens-grid"></div>
   </section>
 
-  <section class="section section--span" aria-labelledby="topics-title">
+  <section class="section" aria-labelledby="topics-title">
     <div class="section__head">
       <div>
         <p class="eyebrow">TOPIC INTELLIGENCE</p>

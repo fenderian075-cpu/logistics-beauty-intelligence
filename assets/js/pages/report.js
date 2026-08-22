@@ -18,6 +18,7 @@ import * as L from "../core/labels.js";
 import { loadIntel } from "../data/intel.js";
 import * as S from "../domain/signals.js";
 import { bindLatestReportNav } from "../core/nav.js";
+import { mountShell } from "../core/shell.js";
 import { signalCard } from "../render/signal-card.js";
 import { marketRegimeSection } from "../render/market-regime.js";
 
@@ -166,6 +167,7 @@ export function init() {
 
   return loadIntel().then((intel) => {
     const reports = intel.reports;
+    mountShell(intel);
     const entry = reports.find((r) => r.date === selfDate && r.type === selfType) || null;
 
     bindLatestReportNav(reports);

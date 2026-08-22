@@ -77,7 +77,8 @@ async function renderPage({ html, pageModule, url = "https://example.test/", ove
   const g = globalThis;
   const saved = {};
   const names = ["window", "document", "location", "history", "fetch", "Option", "URLSearchParams",
-                 "Node", "HTMLElement", "Element", "CustomEvent", "Event", "getComputedStyle"];
+                 "Node", "HTMLElement", "Element", "CustomEvent", "Event", "getComputedStyle",
+                 "localStorage", "KeyboardEvent"];
   const apply = () => { names.forEach((n) => { saved[n] = g[n]; g[n] = window[n]; }); };
   const release = () => { names.forEach((n) => { g[n] = saved[n]; }); };
 
@@ -92,6 +93,9 @@ async function renderPage({ html, pageModule, url = "https://example.test/", ove
     // request cache has to be cleared between renders.
     const store = await import(pathToFileURL(path.join(REPO, "assets/js/data/store.js")).href);
     store.resetCache();
+    // app.js boots the console shell before the page module; do the same here.
+    const shell = await import(pathToFileURL(path.join(REPO, "assets/js/core/shell.js")).href);
+    shell.initShell();
     const mod = await import(pathToFileURL(path.join(REPO, "assets/js", pageModule)).href);
     await mod.init();
   } finally {
@@ -134,6 +138,72 @@ function syntheticReport(signalCount) {
 }
 
 /* ---- suites --------------------------------------------------------------- */
+
+async function testShell() {
+  console.log("\n[console] the persistent shell");
+  const r = await renderPage({ html: "index.html", pageModule: "pages/home.js" });
+  const d = r.document;
+
+  ok("ribbon renders overall state, action, six domains, radar and stamp",
+    !!d.querySelector(".ribbon-state") && !!d.querySelector(".ribbon-action") &&
+    d.querySelectorAll(".ribbon-domain").length === 6 &&
+    !!d.querySelector(".ribbon-radar") && !!d.querySelector(".ribbon-stamp"));
+  ok("ribbon state is a word, not just a colour",
+    d.querySelector(".ribbon-state").textContent.trim().length > 0);
+  ok("each ribbon domain links to its history",
+    Array.from(d.querySelectorAll(".ribbon-domain"))
+      .every((a) => a.getAttribute("href").includes("status-history.html?domain=")));
+  ok("rail carries live counts", d.getElementById("rail-count-radar").textContent === "6" &&
+    d.getElementById("rail-count-topic").textContent === "7");
+  ok("radar count flags observed impact",
+    d.getElementById("rail-count-radar").getAttribute("data-tone") === "alert");
+  ok("current page marked in the rail",
+    d.querySelector('.rail-link[data-nav="home"]').getAttribute("aria-current") === "page");
+
+  /* Preferences */
+  r.act(() => d.getElementById("tool-density").dispatchEvent(new r.window.Event("click")));
+  ok("density toggle sets the attribute and persists",
+    d.documentElement.getAttribute("data-density") === "compact" &&
+    r.window.localStorage.getItem("lbi:density") === "compact");
+  r.act(() => d.getElementById("tool-density").dispatchEvent(new r.window.Event("click")));
+  ok("density toggle clears cleanly", !d.documentElement.hasAttribute("data-density"));
+
+  r.act(() => d.getElementById("tool-theme").dispatchEvent(new r.window.Event("click")));
+  ok("theme cycles auto → light", d.documentElement.getAttribute("data-theme") === "light");
+  r.act(() => d.getElementById("tool-theme").dispatchEvent(new r.window.Event("click")));
+  ok("theme cycles light → dark", d.documentElement.getAttribute("data-theme") === "dark");
+  r.act(() => d.getElementById("tool-theme").dispatchEvent(new r.window.Event("click")));
+  ok("theme cycles dark → auto", !d.documentElement.hasAttribute("data-theme"));
+
+  /* Keyboard */
+  r.act(() => d.dispatchEvent(new r.window.KeyboardEvent("keydown", { key: "?", bubbles: true })));
+  ok("? opens the shortcut sheet", d.getElementById("help-sheet").hidden === false);
+  r.act(() => d.dispatchEvent(new r.window.KeyboardEvent("keydown", { key: "Escape", bubbles: true })));
+  ok("Esc closes it", d.getElementById("help-sheet").hidden === true);
+
+  const field = d.querySelector('input[type="search"]') || d.createElement("input");
+  r.act(() => {
+    const input = d.createElement("input");
+    input.type = "text";
+    d.body.appendChild(input);
+    input.dispatchEvent(new r.window.KeyboardEvent("keydown", { key: "?", bubbles: true }));
+  });
+  ok("shortcuts do not fire while typing in a field", d.getElementById("help-sheet").hidden === true);
+  r.release();
+
+  console.log("\n[console] ribbon on a report page (three clicks deep)");
+  const rep = await renderPage({
+    html: "reports/2026/08/2026-08-22-weekly.html",
+    pageModule: "pages/report.js",
+    url: "https://example.test/reports/2026/08/2026-08-22-weekly.html"
+  });
+  ok("the same ribbon renders inside a report",
+    rep.document.querySelectorAll(".ribbon-domain").length === 6);
+  ok("its domain links resolve from three levels down",
+    rep.document.querySelector(".ribbon-domain").getAttribute("href")
+      .startsWith("../../../status-history.html"));
+  rep.release();
+}
 
 async function testHome() {
   console.log("\n[home] index.html with live data");
@@ -582,6 +652,7 @@ async function testEmptyState() {
 }
 
 async function main() {
+  await testShell();
   await testHome();
   await testHomeStress();
   await testReport("reports/2026/08/2026-08-22-daily.html", "daily");

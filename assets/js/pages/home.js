@@ -35,6 +35,7 @@ import { loadIntel } from "../data/intel.js";
 import { previousOf, latestOf, statusDiff, direction, DOMAINS } from "../data/adapters.js";
 import * as S from "../domain/signals.js";
 import { bindLatestReportNav, markCurrent } from "../core/nav.js";
+import { mountShell } from "../core/shell.js";
 import { statusPill, emptyState, renderRows } from "../render/primitives.js";
 import { signalCard } from "../render/signal-card.js";
 import { radarRowCompact } from "../render/radar-row.js";
@@ -486,6 +487,7 @@ export function init() {
   return loadIntel().then((graph) => {
     intel = graph;
     reports = graph.reports;
+    mountShell(graph);
 
     bindLatestReportNav(reports);
     markCurrent();

@@ -17,6 +17,8 @@ import { formatPercent, formatTimestamp } from "../core/format.js";
 import * as L from "../core/labels.js";
 import { loadBuzz, loadReports } from "../data/store.js";
 import { bindLatestReportNav, markCurrent } from "../core/nav.js";
+import { mountShell } from "../core/shell.js";
+import { loadCriticalNews } from "../data/store.js";
 import { emptyState, renderRows } from "../render/primitives.js";
 
 const CATEGORY_JA = {
@@ -71,7 +73,9 @@ function observationRow(obs) {
 }
 
 export function init() {
-  return Promise.all([loadBuzz(), loadReports()]).then(([data, reportData]) => {
+  return Promise.all([loadBuzz(), loadReports(), loadCriticalNews()])
+    .then(([data, reportData, newsData]) => {
+    mountShell({ reports: reportData.reports, news: (newsData && newsData.items) || [] });
     const sources = byId("buzz-sources");
     const list = byId("buzz-list");
     const stamp = byId("buzz-stamp");

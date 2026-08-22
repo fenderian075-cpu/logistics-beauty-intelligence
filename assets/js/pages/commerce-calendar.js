@@ -11,6 +11,8 @@ import { localDate, dateKey, isoWeek } from "../core/format.js";
 import * as L from "../core/labels.js";
 import { loadCommerceCalendar, loadHolidays, loadReports } from "../data/store.js";
 import { bindLatestReportNav, markCurrent } from "../core/nav.js";
+import { mountShell } from "../core/shell.js";
+import { loadCriticalNews } from "../data/store.js";
 import { emptyState } from "../render/primitives.js";
 
 const ICONS = {
@@ -217,8 +219,9 @@ function renderBrandChannel(reports) {
 }
 
 export function init() {
-  return Promise.all([loadCommerceCalendar(), loadHolidays(), loadReports()])
-    .then(([calendar, holidayData, reportData]) => {
+  return Promise.all([loadCommerceCalendar(), loadHolidays(), loadReports(), loadCriticalNews()])
+    .then(([calendar, holidayData, reportData, newsData]) => {
+      mountShell({ reports: reportData.reports, news: (newsData && newsData.items) || [] });
       events = calendar.events || [];
       holidays = holidayData.holidays || {};
 

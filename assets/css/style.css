@@ -1,14 +1,11 @@
 /* =========================================================================
-   style.css — COMPATIBILITY SHIM (v5)
-   -------------------------------------------------------------------------
-   All rules now live in tokens.css / base.css / components.css / pages.css.
-   This file only forwards to them, so report pages published before v5 keep
-   rendering while the content pipeline catches up.
-
-   Do not add rules here. See docs/FRONTEND_MIGRATION.md for the removal
-   checklist.
+   style.css — COMPATIBILITY SHIM (v5–v7)
+   The stylesheet set is tokens / base / layout / components / pages.
+   Kept only so report pages published before the change keep rendering.
+   Do not add rules here — see docs/FRONTEND_MIGRATION.md.
    ========================================================================= */
 @import url("tokens.css");
 @import url("base.css");
+@import url("layout.css");
 @import url("components.css");
 @import url("pages.css");

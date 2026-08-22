@@ -14,6 +14,7 @@
 
 import { byId, qs } from "./core/dom.js";
 import { initPrint } from "./core/print.js";
+import { initShell } from "./core/shell.js";
 
 const PAGES = {
   home: () => import("./pages/home.js"),
@@ -58,6 +59,7 @@ function boot() {
   window.__lbiBooted = true;
 
   initPrint();
+  initShell();
 
   const page = detectPage();
   if (!page) return;

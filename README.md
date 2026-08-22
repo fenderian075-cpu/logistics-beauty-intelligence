@@ -8,7 +8,7 @@ GitHub Pages で運用します。ビルドツール・データベース・サ�
 - Repository: `fenderian075-cpu/logistics-beauty-intelligence`（**Public**）
 - Stack: HTML / CSS / vanilla JavaScript / JSON のみ
 - 正本言語: **日本語**（UI は日本語のみ。閲覧時の翻訳レイヤーは v5 で廃止）
-- Version: content **v2.1** / frontend **v6**（Operations Radar + Topic Intelligence Digest。→ `docs/INTELLIGENCE_EXPERIENCE.md`）
+- Version: content **v2.1** / frontend **v7**（LBI Console — 常設ステータスリボン + 左レール + ダークモード。→ `docs/DESIGN_SYSTEM.md`）
 - `data/reports.json` の `schema_version`: **`"2.1"`**
 
 ---
@@ -119,17 +119,18 @@ JavaScript が失敗しても、レポート本文・折りたたみ・印刷は
 | `archive.html` | 分析的検索（視点・変化・確度・トピック・期間） |
 | `status-history.html?domain=` | 運用ドメイン別の横断ビュー |
 | `lens-history.html?lens=` | 分析軸（5つの視点）別の横断ビュー |
-| `assets/css/{tokens,base,components,pages}.css` | デザイントークン / 基本レイアウト / 再利用コンポーネント / ページ固有レイアウト |
+| `assets/css/{tokens,base,layout,components,pages}.css` | トークン（色・タイポ・密度・ダークモード）/ リセットと日本語タイポグラフィ / アプリシェル（レール・リボン）/ 再利用コンポーネント / ページ固有レイアウト |
 | `assets/css/{style,portal-v22,ui-fixes-v26,intelligence-v3}.css` | 互換シム（中身なし）。公開済みレポート向け。新規ルールを書かないこと |
 | `assets/js/app.js` | 単一エントリ。`<body data-page>` からページモジュールを読み込む |
-| `assets/js/core/*.js` | dom / format / labels（日本語表示語彙）/ nav / print |
+| `assets/js/core/*.js` | dom / format / labels（日本語表示語彙）/ nav / print / shell（ステータスリボン・テーマ・密度・キーボード） |
 | `assets/js/data/store.js` | `data/*.json` を取得する唯一の場所。1ページ1ファイル1リクエスト |
 | `assets/js/data/intel.js` | 結合レイヤー。topic_id を軸に news / signal / report / market regime を1か所で紐付ける |
 | `assets/js/data/adapters.js` | スキーマ差異の吸収、並び替え、ステータス差分 |
 | `assets/js/domain/signals.js` | signal モデル。集計・ランク・lens 状態（表示専用） |
 | `assets/js/render/*.js` | 反復プリミティブ、signal カード、市場レジーム表 |
 | `assets/js/pages/*.js` | ページごとの描画（`init()` を export） |
-| `docs/INTELLIGENCE_EXPERIENCE.md` | 情報設計とデザイン原則（4層構造・報告/実影響・未確認の扱い・反復コンポーネントの上限） |
+| `docs/INTELLIGENCE_EXPERIENCE.md` | 情報設計（4層構造・報告/実影響・未確認の扱い・反復コンポーネントの上限） |
+| `docs/DESIGN_SYSTEM.md` | デザインシステム（配色・日本語タイポグラフィ・構成規則・密度・キーボード・印刷） |
 | `data/reports.json` | **structured memory**（索引・比較メタ・構造化シグナル） |
 | `data/signal-registry.json` | 永続 signal ID の正本。`name_ja` / `lens` / `polarity` を定義 |
 | `data/examples/intelligence-entry.example.json` | 記入例。サイトからは読まれません |

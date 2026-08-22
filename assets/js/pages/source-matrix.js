@@ -6,6 +6,8 @@ import { el, extLink, byId, clear } from "../core/dom.js";
 import * as L from "../core/labels.js";
 import { loadSourceMatrix, loadReports } from "../data/store.js";
 import { bindLatestReportNav, markCurrent } from "../core/nav.js";
+import { mountShell } from "../core/shell.js";
+import { loadCriticalNews } from "../data/store.js";
 
 let sources = [];
 
@@ -72,7 +74,9 @@ export function init() {
   const search = byId("f-q");
   if (search) search.addEventListener("input", render);
 
-  return Promise.all([loadSourceMatrix(), loadReports()]).then(([list, reportData]) => {
+  return Promise.all([loadSourceMatrix(), loadReports(), loadCriticalNews()])
+    .then(([list, reportData, newsData]) => {
+    mountShell({ reports: reportData.reports, news: (newsData && newsData.items) || [] });
     sources = list;
     render();
     bindLatestReportNav(reportData.reports);

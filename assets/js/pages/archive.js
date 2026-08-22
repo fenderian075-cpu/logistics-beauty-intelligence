@@ -18,6 +18,7 @@ import * as L from "../core/labels.js";
 import { loadIntel } from "../data/intel.js";
 import * as S from "../domain/signals.js";
 import { bindLatestReportNav, markCurrent } from "../core/nav.js";
+import { mountShell } from "../core/shell.js";
 import { statusPill } from "../render/primitives.js";
 import { filterBar, withinRange, monthsAgo } from "../render/filters.js";
 
@@ -168,6 +169,7 @@ export function init() {
     intel = graph;
     bindLatestReportNav(intel.reports);
     markCurrent();
+    mountShell(graph);
 
     const presetHost = byId("archive-presets");
     if (presetHost) presets(presetHost);

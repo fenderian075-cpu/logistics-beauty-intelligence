@@ -17,6 +17,7 @@ import { loadIntel } from "../data/intel.js";
 import * as S from "../domain/signals.js";
 import { DOMAINS } from "../data/adapters.js";
 import { bindLatestReportNav, markCurrent } from "../core/nav.js";
+import { mountShell } from "../core/shell.js";
 import { statusPill, emptyState, evidenceList, renderRows } from "../render/primitives.js";
 import { radarRowFull } from "../render/radar-row.js";
 
@@ -130,6 +131,7 @@ export function init() {
   return loadIntel().then((intel) => {
     bindLatestReportNav(intel.reports);
     markCurrent();
+    mountShell(intel);
 
     const head = byId("history-title");
     if (head && head.parentNode) {

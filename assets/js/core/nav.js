@@ -26,9 +26,9 @@ export function bindLatestReportNav(reports) {
   });
 }
 
-/** Mark the current page in the header for orientation and a11y. */
+/** Mark the current page in the navigation rail for orientation and a11y. */
 export function markCurrent() {
   const page = document.body.getAttribute("data-page");
   if (!page) return;
-  qsa(`.site-nav a[data-nav="${page}"]`).forEach((a) => a.setAttribute("aria-current", "page"));
+  qsa(`[data-nav="${page}"]`).forEach((a) => a.setAttribute("aria-current", "page"));
 }
