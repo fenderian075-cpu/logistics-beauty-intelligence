@@ -1,14 +1,25 @@
-/* report.js — report navigation, breadcrumb, grouped signal rendering */
-(function(){"use strict";var body=document.body,selfDate=body.getAttribute("data-report-date"),selfType=body.getAttribute("data-report-type");if(!selfDate||!selfType)return;var D=window.LBIData,el=D.el,neighbours={prev:null,next:null},allReports=[];if(!document.querySelector('link[href*="portal-v22.css"]')){var css=document.createElement("link");css.rel="stylesheet";css.href=D.root()+"assets/css/portal-v22.css";document.head.appendChild(css)}if(selfType==="weekly"||selfType==="monthly"){if(!document.querySelector('link[href*="intelligence-v3.css"]')){var v3css=document.createElement("link");v3css.rel="stylesheet";v3css.href=D.root()+"assets/css/intelligence-v3.css";document.head.appendChild(v3css)}if(!document.querySelector('script[src*="market-intelligence.js"]')){var v3js=document.createElement("script");v3js.src=D.root()+"assets/js/market-intelligence.js";v3js.defer=true;document.head.appendChild(v3js)}}
-function latestOf(type){return allReports.filter(function(r){return r.type===type&&r.path})[0]||null}
-function normalizeHeader(){var h=document.querySelector(".site-header");if(!h)return;var root=D.root(),d=latestOf("daily"),w=latestOf("weekly"),m=latestOf("monthly");h.className="site-header site-header--minimal";h.innerHTML="";var bar=el("div","site-header__bar"),brand=el("a","brand brand--minimal");brand.href=root+"index.html";brand.setAttribute("aria-label","ホーム");brand.appendChild(el("span","brand__mark","LBI"));bar.appendChild(brand);var nav=el("nav","site-nav site-nav--reports");nav.setAttribute("aria-label","ナビゲーション");[["日次",d,"daily"],["週次",w,"weekly"],["月次",m,"monthly"]].forEach(function(x){var a=el("a",null,x[0]);a.href=x[1]?root+x[1].path:root+"archive.html?type="+x[2];nav.appendChild(a)});var ec=el("a",null,"EC予定");ec.href=root+"commerce-calendar.html";nav.appendChild(ec);var bz=el("a",null,"Buzz");bz.href=root+"buzz.html";nav.appendChild(bz);var ar=el("a",null,"過去");ar.href=root+"archive.html";nav.appendChild(ar);bar.appendChild(nav);h.appendChild(bar);var notice=document.getElementById("lang-notice");if(notice)notice.remove()}
-function hideNonDailyStatus(){if(selfType==="daily")return;var h=document.getElementById("board-h");if(h&&h.closest("section"))h.closest("section").remove()}
-function findNeighbours(reports){var same=reports.filter(function(r){return r.type===selfType}),i=same.findIndex(function(r){return r.date===selfDate});if(i===-1)return;neighbours.next=i>0?same[i-1]:null;neighbours.prev=i<same.length-1?same[i+1]:null}
-function label(r){return r.type==="monthly"?D.formatMonth(r.period||r.date.slice(0,7)):D.formatDate(r.date)}
-function buildSlot(which,report,dirKey,emptyKey){var n=el(report?"a":"span","tl-"+which+(report?"":" is-disabled"));n.setAttribute("data-tl",which);if(report)n.href=D.root()+report.path;n.appendChild(el("span","tl-dir",LBI.t(dirKey)));n.appendChild(el("span","tl-title",report?label(report):LBI.t(emptyKey)));return n}
-function renderNav(){document.querySelectorAll(".timeline-nav").forEach(function(nav){var p=nav.querySelector('[data-tl="prev"]'),n=nav.querySelector('[data-tl="next"]'),c=nav.querySelector('[data-tl="center"]');if(p)p.replaceWith(buildSlot("prev",neighbours.prev,"report.prev","report.oldest"));if(n)n.replaceWith(buildSlot("next",neighbours.next,"report.next","report.none"));if(c){c.textContent="";var a=el("a",null,LBI.t("report.archive"));a.href=D.root()+"archive.html?type="+selfType;c.appendChild(a)}})}
-function renderBreadcrumb(){var y=selfDate.slice(0,4),m=selfDate.slice(5,7);document.querySelectorAll("[data-bc]").forEach(function(n){var k=n.getAttribute("data-bc");if(k==="year")n.textContent=y+"年";if(k==="month")n.textContent=Number(m)+"月";if(k==="self")n.textContent=(selfType==="monthly"?D.formatMonth(body.getAttribute("data-report-period")||y+"-"+m):D.formatDate(selfDate))+" "+LBI.typeLabel(selfType)})}
-function isTelemetryOnly(sig,entry){return !!(sig&&sig.id==="japan-customs-naccs"&&sig.change_status==="unchanged"&&sig.direction==="stable"&&entry&&entry.status_board&&entry.status_board.customs==="normal")}
-function renderSignals(){var box=document.getElementById("report-signals");if(!box||!window.LBISignals)return;var S=window.LBISignals,entry=allReports.filter(function(r){return r.date===selfDate&&r.type===selfType})[0],signals=entry?S.signalsOf(entry).filter(function(s){return !isTelemetryOnly(s,entry)}):[];box.innerHTML="";var section=box.closest("section");if(!signals.length){if(section)section.hidden=true;return}if(section)section.hidden=false;var names={disruption:"障害",cost_capacity:"コスト・キャパ",reliability:"定時性",demand_commerce:"需要・商流",regulatory_structural:"規制・構造"};S.LENSES.forEach(function(lens){var list=S.rank(signals.filter(function(s){return s.lens===lens}));if(!list.length)return;var group=el("section","signal-lens-group");group.setAttribute("data-lens",lens);group.appendChild(el("h3","signal-lens-group__title",names[lens]||lens));list.forEach(function(sig){group.appendChild(S.card(sig,{reports:allReports,rootPath:D.root(),compact:true}))});box.appendChild(group)})}
-function renderAll(){normalizeHeader();hideNonDailyStatus();renderNav();renderBreadcrumb();renderSignals();LBI.applyUIStrings()}
-normalizeHeader();hideNonDailyStatus();renderBreadcrumb();Promise.all([D.load(),window.LBISignals?window.LBISignals.loadRegistry(D.root()):Promise.resolve(null)]).then(function(results){allReports=results[0].reports;findNeighbours(allReports);renderAll()}).catch(function(err){console.warn("reports.json unavailable — keeping static navigation.",err);renderBreadcrumb()});})();
+/* Compatibility shim — report.js
+   -------------------------------------------------------------------------
+   This file no longer contains logic. The frontend is a single ES module
+   graph rooted at assets/js/app.js (see docs/FRONTEND_MIGRATION.md).
+
+   Why it still exists: the content pipeline publishes report pages as static
+   HTML. A report generated from the pre-v5 template still requests this
+   path, so the shim forwards to app.js. Dynamic import goes through the
+   module map, so however many shims a legacy page loads, app.js is fetched
+   and evaluated exactly once.
+
+   Note: this is a CLASSIC script, so a bare "./app.js" specifier would
+   resolve against the document URL (wrong for pages under reports/YYYY/MM/).
+   The URL is therefore resolved against this script's own src.
+
+   Safe to delete once no published page references it — see the migration
+   note for the checklist. */
+(function () {
+  "use strict";
+  var self = document.currentScript && document.currentScript.src;
+  var target = new URL("app.js", self || document.baseURI).href;
+  import(target).catch(function (err) {
+    console.error("LBI: failed to load app.js from " + target, err);
+  });
+})();

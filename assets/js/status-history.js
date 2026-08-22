@@ -1,1 +1,25 @@
-(function(){"use strict";var LABEL={domestic:"国内配送",weather:"気象・災害",customs:"通関・NACCS",ocean:"海上輸送",air:"航空貨物",global:"グローバルサプライチェーン"};var MAP={domestic:function(s){return /^japan-domestic-/.test(s.id||"")},weather:function(s){return /^japan-weather-/.test(s.id||"")},customs:function(s){return /^japan-customs-/.test(s.id||"")||s.lens==="regulatory_structural"},ocean:function(s){return /^ocean-/.test(s.id||"")||s.id==="middle-east-maritime-risk"},air:function(s){return /^air-/.test(s.id||"")},global:function(s){return s.id==="middle-east-maritime-risk"||s.lens==="disruption"}};function q(k){return new URLSearchParams(location.search).get(k)||""}function e(t,c,x){var n=document.createElement(t);if(c)n.className=c;if(x!=null)n.textContent=x;return n}function root(){return document.body.getAttribute("data-root")||""}var d=q("domain");if(!LABEL[d])d="domestic";document.title=LABEL[d]+"の履歴 | Logistics & Beauty Intelligence";document.getElementById("history-title").textContent=LABEL[d]+" — 時系列";document.getElementById("history-lead").textContent="Status Board、関連Signal、根拠記事を同じ時間軸で確認します。";Promise.all([fetch(root()+"data/reports.json",{cache:"no-cache"}).then(function(r){return r.json()}),window.LBISignals?LBISignals.loadRegistry(root()):Promise.resolve(null)]).then(function(x){var reports=(x[0].reports||[]).slice().sort(function(a,b){return a.date<b.date?1:a.date>b.date?-1:0}),box=document.getElementById("history-list");box.innerHTML="";reports.forEach(function(r){var st=(r.status_board&&r.status_board[d])||"unconfirmed",sigs=window.LBISignals?LBISignals.signalsOf(r).filter(MAP[d]):[],item=e("article","timeline-item");item.setAttribute("data-status",st);var meta=e("div","timeline-item__meta");meta.appendChild(e("span","timeline-item__date",r.date+" · "+String(r.type||"").toUpperCase()));var pill=e("span","status-pill");pill.setAttribute("data-status",st);pill.appendChild(e("span","dot"));pill.appendChild(document.createTextNode(window.LBI?LBI.statusLabel(st):st));meta.appendChild(pill);item.appendChild(meta);var h=e("h3"),a=e("a",null,r.title||r.id);a.href=root()+r.path;h.appendChild(a);item.appendChild(h);if(r.summary)item.appendChild(e("p",null,r.summary));sigs.forEach(function(s){var p=e("p","timeline-signal");p.appendChild(e("strong",null,(LBISignals.signalName?LBISignals.signalName(s):s.id)+": "));p.appendChild(document.createTextNode(s.signal||""));item.appendChild(p);(Array.isArray(s.evidence)?s.evidence:[]).forEach(function(ev){if(!ev||!ev.url)return;var row=e("div","timeline-evidence"),link=e("a",null,(ev.source||"出典")+(ev.date?" · "+ev.date:""));link.href=ev.url;link.target="_blank";link.rel="noopener";row.appendChild(link);item.appendChild(row)})});if(d==="ocean"&&r.signals&&r.signals.wci&&r.signals.wci.value!=null)item.appendChild(e("p","timeline-metric","WCI: "+r.signals.wci.value+" "+(r.signals.wci.unit||"")));if(d==="ocean"&&r.signals&&r.signals.scfi&&r.signals.scfi.value!=null)item.appendChild(e("p","timeline-metric","SCFI: "+r.signals.scfi.value+" "+(r.signals.scfi.unit||"")));box.appendChild(item)});if(!box.children.length)box.appendChild(e("p","empty-state","履歴はまだありません。"))}).catch(function(){document.getElementById("history-list").textContent="履歴データを読み込めませんでした。"})})();
+/* Compatibility shim — status-history.js
+   -------------------------------------------------------------------------
+   This file no longer contains logic. The frontend is a single ES module
+   graph rooted at assets/js/app.js (see docs/FRONTEND_MIGRATION.md).
+
+   Why it still exists: the content pipeline publishes report pages as static
+   HTML. A report generated from the pre-v5 template still requests this
+   path, so the shim forwards to app.js. Dynamic import goes through the
+   module map, so however many shims a legacy page loads, app.js is fetched
+   and evaluated exactly once.
+
+   Note: this is a CLASSIC script, so a bare "./app.js" specifier would
+   resolve against the document URL (wrong for pages under reports/YYYY/MM/).
+   The URL is therefore resolved against this script's own src.
+
+   Safe to delete once no published page references it — see the migration
+   note for the checklist. */
+(function () {
+  "use strict";
+  var self = document.currentScript && document.currentScript.src;
+  var target = new URL("app.js", self || document.baseURI).href;
+  import(target).catch(function (err) {
+    console.error("LBI: failed to load app.js from " + target, err);
+  });
+})();

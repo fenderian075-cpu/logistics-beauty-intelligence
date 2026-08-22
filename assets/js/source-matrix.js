@@ -1,1 +1,25 @@
-(function(){"use strict";function e(t,c,x){var n=document.createElement(t);if(c)n.className=c;if(x!=null)n.textContent=x;return n}var data=[];function render(){var dom=document.getElementById("f-domain").value,prio=document.getElementById("f-priority").value,cad=document.getElementById("f-cadence").value,q=document.getElementById("f-q").value.toLowerCase().trim();var rows=data.filter(function(s){if(dom&&s.domain!==dom)return false;if(prio&&s.priority!==prio)return false;if(cad&&(s.cadence||[]).indexOf(cad)<0)return false;if(q&&[s.name,s.layer,(s.extract||[]).join(" ")].join(" ").toLowerCase().indexOf(q)<0)return false;return true});document.getElementById("source-count").textContent=rows.length+" sources";var b=document.getElementById("source-body");b.innerHTML="";rows.forEach(function(s){var tr=e("tr"),p=e("td"),pb=e("span","priority",s.priority);pb.setAttribute("data-p",s.priority);p.appendChild(pb);tr.appendChild(p);tr.appendChild(e("td",null,s.domain+" / "+s.layer));var td=e("td"),a=e("a",null,s.name);a.href=s.url;a.target="_blank";a.rel="noopener";td.appendChild(a);tr.appendChild(td);tr.appendChild(e("td",null,(s.cadence||[]).join(" / ")));tr.appendChild(e("td",null,(s.extract||[]).join(" / ")));b.appendChild(tr)});if(!rows.length){var tr=e("tr"),td=e("td",null,"該当なし");td.colSpan=5;tr.appendChild(td);b.appendChild(tr)}}Promise.all([fetch("data/source-matrix.json",{cache:"no-cache"}).then(function(r){return r.json()}),fetch("data/source-matrix-extra.json",{cache:"no-cache"}).then(function(r){return r.json()}).catch(function(){return{sources:[]}})]).then(function(x){data=(x[0].sources||[]).concat(x[1].sources||[]);render()});["f-domain","f-priority","f-cadence"].forEach(function(id){document.getElementById(id).addEventListener("change",render)});document.getElementById("f-q").addEventListener("input",render)})();
+/* Compatibility shim — source-matrix.js
+   -------------------------------------------------------------------------
+   This file no longer contains logic. The frontend is a single ES module
+   graph rooted at assets/js/app.js (see docs/FRONTEND_MIGRATION.md).
+
+   Why it still exists: the content pipeline publishes report pages as static
+   HTML. A report generated from the pre-v5 template still requests this
+   path, so the shim forwards to app.js. Dynamic import goes through the
+   module map, so however many shims a legacy page loads, app.js is fetched
+   and evaluated exactly once.
+
+   Note: this is a CLASSIC script, so a bare "./app.js" specifier would
+   resolve against the document URL (wrong for pages under reports/YYYY/MM/).
+   The URL is therefore resolved against this script's own src.
+
+   Safe to delete once no published page references it — see the migration
+   note for the checklist. */
+(function () {
+  "use strict";
+  var self = document.currentScript && document.currentScript.src;
+  var target = new URL("app.js", self || document.baseURI).href;
+  import(target).catch(function (err) {
+    console.error("LBI: failed to load app.js from " + target, err);
+  });
+})();

@@ -1,1 +1,81 @@
-<!DOCTYPE html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>過去 | Logistics &amp; Beauty Intelligence</title><meta name="description" content="日次・週次・月次の過去レポート一覧。"><meta name="color-scheme" content="light"><link rel="stylesheet" href="assets/css/style.css"><link rel="stylesheet" href="assets/css/portal-v22.css"></head><body data-root=""><a class="skip-link" href="#main">本文へスキップ</a><header class="site-header site-header--minimal"><div class="site-header__bar"><a class="brand brand--minimal" href="index.html" aria-label="ホーム"><span class="brand__mark">LBI</span></a><nav class="site-nav site-nav--reports"><a id="nav-latest-daily" href="archive.html?type=daily">日次</a><a id="nav-latest-weekly" href="archive.html?type=weekly">週次</a><a id="nav-latest-monthly" href="archive.html?type=monthly">月次</a><a href="commerce-calendar.html">EC予定</a><a href="archive.html" aria-current="page">過去</a></nav></div></header><main id="main"><div class="wrap"><div class="section__head" style="margin-top:24px"><h1 class="section__title">過去のレポート</h1><p class="section__note" id="result-count">—</p></div><div class="archive-controls no-print"><div class="filter-grid"><div class="field"><label for="f-year">年</label><select id="f-year"><option value="">すべて</option></select></div><div class="field"><label for="f-month">月</label><select id="f-month"><option value="">すべて</option></select></div><div class="field"><label for="f-type">種別</label><select id="f-type"><option value="">すべて</option><option value="daily">日次</option><option value="weekly">週次</option><option value="monthly">月次</option></select></div><div class="field"><label for="f-status">総合ステータス</label><select id="f-status"><option value="">すべて</option><option value="normal">平常</option><option value="watch">監視</option><option value="disruption">障害</option><option value="unconfirmed">未確認</option></select></div><div class="field"><label for="f-q">キーワード</label><input id="f-q" type="search" autocomplete="off" placeholder="タイトル・要約・タグを検索"></div></div><div class="filter-grid filter-grid--structured" id="structured-filters" hidden><div class="field"><label for="f-lens">視点</label><select id="f-lens"><option value="">すべて</option><option value="disruption">障害</option><option value="cost_capacity">コスト・キャパ</option><option value="reliability">定時性</option><option value="demand_commerce">需要・商流</option><option value="regulatory_structural">規制・構造</option></select></div><div class="field"><label for="f-change">変化</label><select id="f-change"><option value="">すべて</option><option value="new">新規</option><option value="deteriorating">悪化</option><option value="improving">改善</option><option value="resolved">解消</option></select></div><div class="field"><label for="f-conf">確度</label><select id="f-conf"><option value="">すべて</option><option value="high">高</option><option value="medium">中</option><option value="low">低</option></select></div></div><div class="archive-actions"><button type="button" class="btn btn--quiet" id="f-reset">条件をクリア</button></div></div><p class="empty-state" id="archive-empty" hidden></p><ul class="archive-list" id="archive-list"></ul></div></main><footer class="site-footer"><div class="wrap"><nav><a href="index.html">ホーム</a><a href="commerce-calendar.html">EC予定</a><a href="source-matrix.html">情報源</a></nav></div></footer><script src="assets/js/header.js"></script><script src="assets/js/translation.js"></script><script src="assets/js/signals.js"></script><script src="assets/js/site.js"></script><script src="assets/js/archive.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>過去 | Logistics & Beauty Intelligence</title>
+  <meta name="description" content="日次・週次・月次の過去レポート一覧。">
+  <meta name="color-scheme" content="light">
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/pages.css">
+</head>
+<body data-root="" data-page="archive">
+<a class="skip-link" href="#main">本文へスキップ</a>
+<header class="site-header site-header--minimal">
+  <div class="site-header__bar">
+    <a class="brand brand--minimal" href="index.html" aria-label="ホーム"><span class="brand__mark">LBI</span></a>
+    <nav class="site-nav site-nav--reports" aria-label="ナビゲーション">
+      <a id="nav-latest-daily" data-nav="daily" href="archive.html?type=daily">日次</a>
+      <a id="nav-latest-weekly" data-nav="weekly" href="archive.html?type=weekly">週次</a>
+      <a id="nav-latest-monthly" data-nav="monthly" href="archive.html?type=monthly">月次</a>
+      <a data-nav="commerce" href="commerce-calendar.html">EC予定</a>
+      <a data-nav="buzz" href="buzz.html">Buzz</a>
+      <a data-nav="archive" href="archive.html">過去</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<div class="wrap">
+  <div class="section__head" style="margin-top:24px">
+    <h1 class="section__title">過去のレポート</h1>
+    <p class="section__note" id="result-count">—</p>
+  </div>
+
+  <div class="archive-controls no-print">
+    <div class="filter-grid">
+      <div class="field"><label for="f-year">年</label>
+        <select id="f-year"><option value="">すべて</option></select></div>
+      <div class="field"><label for="f-month">月</label>
+        <select id="f-month"><option value="">すべて</option></select></div>
+      <div class="field"><label for="f-type">種別</label>
+        <select id="f-type"><option value="">すべて</option><option value="daily">日次</option><option value="weekly">週次</option><option value="monthly">月次</option></select></div>
+      <div class="field"><label for="f-status">総合ステータス</label>
+        <select id="f-status"><option value="">すべて</option><option value="normal">平常</option><option value="watch">監視</option><option value="disruption">障害</option><option value="unconfirmed">未確認</option></select></div>
+      <div class="field"><label for="f-q">キーワード</label>
+        <input id="f-q" type="search" autocomplete="off" placeholder="タイトル・要約・タグを検索"></div>
+    </div>
+    <div class="filter-grid filter-grid--structured" id="structured-filters" hidden>
+      <div class="field"><label for="f-lens">視点</label>
+        <select id="f-lens"><option value="">すべて</option><option value="disruption">障害</option><option value="cost_capacity">コスト・キャパ</option><option value="reliability">定時性</option><option value="demand_commerce">需要・商流</option><option value="regulatory_structural">規制・構造</option></select></div>
+      <div class="field"><label for="f-change">変化</label>
+        <select id="f-change"><option value="">すべて</option><option value="new">新規</option><option value="deteriorating">悪化</option><option value="improving">改善</option><option value="resolved">解消</option></select></div>
+      <div class="field"><label for="f-conf">確度</label>
+        <select id="f-conf"><option value="">すべて</option><option value="high">高</option><option value="medium">中</option><option value="low">低</option></select></div>
+    </div>
+    <div class="archive-actions">
+      <button type="button" class="btn btn--quiet" id="f-reset">条件をクリア</button>
+    </div>
+  </div>
+
+  <p class="empty-state" id="archive-empty" hidden></p>
+  <ul class="archive-list" id="archive-list"></ul>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <nav aria-label="フッター">
+      <a href="index.html">ホーム</a>
+      <a href="commerce-calendar.html">EC予定</a>
+      <a href="buzz.html">Buzz</a>
+      <a href="archive.html">過去</a>
+      <a href="source-matrix.html">情報源</a>
+    </nav>
+    <p class="footer-note">公開情報のみを扱います。数値・事実は必ず一次情報で確認してください。</p>
+  </div>
+</footer>
+<script type="module" src="assets/js/app.js"></script>
+<noscript><p class="empty-state wrap">このページは data/*.json をJavaScriptで読み込みます。JavaScriptが無効な場合は、各レポートページを直接ご覧ください。</p></noscript>
+</body>
+</html>

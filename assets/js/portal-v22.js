@@ -1,20 +1,25 @@
-/* LBI portal v2.7 — quiet Japanese-first dashboard */
-(function(){"use strict";
-var DOMAINS=["domestic","weather","customs","ocean","air","global"],DOMAIN_LABELS={domestic:"国内配送",weather:"気象・災害",customs:"通関・NACCS",ocean:"海上輸送",air:"航空貨物",global:"グローバルSC"};
-var LENS_JA={disruption:"障害",cost_capacity:"コスト・キャパ",reliability:"定時性",demand_commerce:"需要・商流",regulatory_structural:"規制・構造"};
-var reportsPromise=null;
-function root(){return document.body.getAttribute("data-root")||""}function el(t,c,x){var n=document.createElement(t);if(c)n.className=c;if(x!=null)n.textContent=x;return n}
-function addStylesheet(){if(document.querySelector('link[href*="portal-v22.css"]'))return;var l=document.createElement("link");l.rel="stylesheet";l.href=root()+"assets/css/portal-v22.css";document.head.appendChild(l)}addStylesheet();
-function loadReports(){if(!window.LBIData)return Promise.reject();if(!reportsPromise)reportsPromise=LBIData.load();return reportsPromise}
-function latest(data,type){return(data.reports||[]).filter(function(x){return x.type===type})[0]||null}
-function cleanTopText(text){return String(text||"").replace(/(?:NACCS\s*(?:は|：|:)\s*)?(?:正常運転中|正常稼働中|通常運転中)[。．]?\s*/gi,"").replace(/^[、。\s]+|\s{2,}/g," ").trim()}
-function bindLatestReportNav(){loadReports().then(function(data){[["daily","nav-latest-daily","日次"],["weekly","nav-latest-weekly","週次"],["monthly","nav-latest-monthly","月次"]].forEach(function(p){var r=latest(data,p[0]),a=document.getElementById(p[1]);if(r&&a){a.href=root()+r.path;a.title="最新"+p[2]+" — "+r.date}})}).catch(function(){})}
-function compactLatest(){var g=document.getElementById("latest-grid");if(!g)return;loadReports().then(function(data){var signature=(data.reports||[]).slice(0,6).map(function(r){return r.id}).join("|");if(g.dataset.quietSignature===signature&&g.querySelector(".latest-summary-row"))return;g.innerHTML="";[["daily","日次"],["weekly","週次"],["monthly","月次"]].forEach(function(p){var r=latest(data,p[0]),a=el("a","latest-summary-row");if(!r){a.classList.add("is-empty");a.href=root()+"archive.html?type="+p[0];a.appendChild(el("strong","latest-summary-row__meta",p[1]+" —"));a.appendChild(el("span","muted","レポートなし"));g.appendChild(a);return}a.href=root()+r.path;a.appendChild(el("strong","latest-summary-row__meta",p[1]+" "+r.date.slice(5).replace("-","/")));a.appendChild(el("span","latest-summary-row__slash","/"));a.appendChild(el("span","latest-summary-row__summary",cleanTopText(r.summary)||r.bottom_line||"レポートを開く"));g.appendChild(a)});g.dataset.quietSignature=signature}).catch(function(){})}
-function cleanDecisionCopy(){var nodes=[document.querySelector("#overall .overall__body p:first-child"),document.querySelector("#conclusion p:last-child")];nodes.forEach(function(n){if(!n||n.dataset.quietCleaned)return;var t=cleanTopText(n.textContent);if(t)n.textContent=t;else n.hidden=true;n.dataset.quietCleaned="1"})}
-function localizeLenses(){document.querySelectorAll(".lens-card[data-lens]").forEach(function(c){var n=c.querySelector(".lens-card__name"),k=c.getAttribute("data-lens");if(n&&LENS_JA[k]&&n.textContent!==LENS_JA[k])n.textContent=LENS_JA[k]});document.querySelectorAll(".signal-lens-group[data-lens]").forEach(function(c){var n=c.querySelector(".signal-lens-group__title"),k=c.getAttribute("data-lens");if(n&&LENS_JA[k]&&n.textContent!==LENS_JA[k])n.textContent=LENS_JA[k]})}
-function quietSignalCards(){document.querySelectorAll("#key-signals .sig-card,#changed-list .sig-card").forEach(function(c){c.classList.add("sig-card--compact");var t=c.textContent||"",u=c.getAttribute("data-change")==="unchanged";if(u&&/正常運転|障害は確認されていない|通常運用/.test(t))c.hidden=true})}
-function makeStatusClickable(){var b=document.getElementById("status-board");if(!b)return;b.querySelectorAll(".status-cell").forEach(function(c,i){var k=DOMAINS[i];if(!k||c.dataset.drillReady)return;c.dataset.drillReady="1";c.classList.add("status-cell--link");c.tabIndex=0;c.setAttribute("role","link");c.setAttribute("aria-label",DOMAIN_LABELS[k]+"の履歴を表示");if(!c.querySelector(".status-cell__drill"))c.appendChild(el("span","status-cell__drill","時系列を見る →"));function go(){location.href=root()+"status-history.html?domain="+encodeURIComponent(k)}c.addEventListener("click",go);c.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();go()}})})}
-function makeLensesClickable(){var g=document.getElementById("lens-grid");if(!g)return;g.querySelectorAll(".lens-card[data-lens]").forEach(function(c){if(c.dataset.drillReady)return;var l=c.getAttribute("data-lens");c.dataset.drillReady="1";c.classList.add("lens-card--link");c.tabIndex=0;c.setAttribute("role","link");if(!c.querySelector(".lens-card__drill"))c.appendChild(el("span","lens-card__drill","シグナル履歴 →"));function go(){location.href=root()+"lens-history.html?lens="+encodeURIComponent(l)}c.addEventListener("click",go);c.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();go()}})})}
-function refresh(){compactLatest();cleanDecisionCopy();localizeLenses();quietSignalCards();makeStatusClickable();makeLensesClickable()}
-function boot(){bindLatestReportNav();var tries=0,t=setInterval(function(){tries++;refresh();if(tries>=30)clearInterval(t)},200)}
-if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",boot);else boot()})();
+/* Compatibility shim — portal-v22.js
+   -------------------------------------------------------------------------
+   This file no longer contains logic. The frontend is a single ES module
+   graph rooted at assets/js/app.js (see docs/FRONTEND_MIGRATION.md).
+
+   Why it still exists: the content pipeline publishes report pages as static
+   HTML. A report generated from the pre-v5 template still requests this
+   path, so the shim forwards to app.js. Dynamic import goes through the
+   module map, so however many shims a legacy page loads, app.js is fetched
+   and evaluated exactly once.
+
+   Note: this is a CLASSIC script, so a bare "./app.js" specifier would
+   resolve against the document URL (wrong for pages under reports/YYYY/MM/).
+   The URL is therefore resolved against this script's own src.
+
+   Safe to delete once no published page references it — see the migration
+   note for the checklist. */
+(function () {
+  "use strict";
+  var self = document.currentScript && document.currentScript.src;
+  var target = new URL("app.js", self || document.baseURI).href;
+  import(target).catch(function (err) {
+    console.error("LBI: failed to load app.js from " + target, err);
+  });
+})();

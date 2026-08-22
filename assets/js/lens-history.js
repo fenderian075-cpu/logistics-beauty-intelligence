@@ -1,12 +1,25 @@
-(function(){"use strict";
-var LABELS={disruption:"障害",cost_capacity:"コスト・キャパ",reliability:"定時性",demand_commerce:"需要・商流",regulatory_structural:"規制・構造"};
-var params=new URLSearchParams(location.search),lens=params.get("lens")||"disruption";if(!LABELS[lens])lens="disruption";
-function e(t,c,x){var n=document.createElement(t);if(c)n.className=c;if(x!=null)n.textContent=x;return n}
-function typeLabel(t){return t==="daily"?"日次":t==="weekly"?"週次":"月次"}
-function changeLabel(v){return {new:"新規",deteriorating:"悪化",improving:"改善",resolved:"解消",unchanged:"変化なし",unchanged_high_risk:"高リスク継続"}[v]||v||"—"}
-function dirLabel(v){return {rising:"上昇",falling:"低下",stable:"横ばい",volatile:"不安定",unknown:"不明"}[v]||v||"—"}
-function confLabel(v){return {high:"高",medium:"中",low:"低"}[v]||v||"—"}
-function evidenceLinks(sig){var wrap=e("div","lens-observation__links"),ev=Array.isArray(sig.evidence)?sig.evidence:[];ev.forEach(function(x){if(!x||!x.url)return;var a=e("a",null,(x.source||x.title||"出典")+(x.date?" · "+x.date:""));a.href=x.url;a.target="_blank";a.rel="noopener";wrap.appendChild(a)});return wrap}
-function render(reports){var title=document.getElementById("lens-history-title"),lead=document.getElementById("lens-history-lead"),box=document.getElementById("lens-history-list");title.textContent=LABELS[lens];var observations=[];reports.forEach(function(r){var intel=r.intelligence&&r.intelligence[lens];if(!Array.isArray(intel))return;intel.forEach(function(sig){if(!sig)return;observations.push({report:r,sig:sig})})});observations.sort(function(a,b){return a.report.date<b.report.date?1:a.report.date>b.report.date?-1:0});var ids={};observations.forEach(function(o){ids[o.sig.id]=true});lead.textContent=Object.keys(ids).length+" シグナル / "+observations.length+" 観測";box.innerHTML="";if(!observations.length){box.appendChild(e("p","empty-state","この視点の構造化シグナルはまだ蓄積されていません。"));return;}var groups={};observations.forEach(function(o){var id=o.sig.id||"unknown";groups[id]=groups[id]||[];groups[id].push(o)});Object.keys(groups).sort(function(a,b){return groups[b][0].report.date.localeCompare(groups[a][0].report.date)}).forEach(function(id){var list=groups[id],section=e("section","lens-history-group"),head=e("div","lens-history-group__head"),h=e("div"),name=(window.LBISignals&&LBISignals.signalName)?LBISignals.signalName(list[0].sig):id;h.appendChild(e("p","eyebrow",id));h.appendChild(e("h2",null,name));head.appendChild(h);head.appendChild(e("span","lens-history-group__meta",list.length+" 観測"));section.appendChild(head);list.slice(0,24).forEach(function(o){var sig=o.sig,r=o.report,row=e("article","lens-observation"),meta=e("div","lens-observation__meta");meta.appendChild(e("span",null,r.date));meta.appendChild(e("span",null,typeLabel(r.type)));meta.appendChild(e("span",null,"変化: "+changeLabel(sig.change_status)));meta.appendChild(e("span",null,"方向: "+dirLabel(sig.direction)));meta.appendChild(e("span",null,"確度: "+confLabel(sig.confidence)));row.appendChild(meta);if(sig.signal)row.appendChild(e("p","lens-observation__statement",sig.signal));if(sig.operational_implication)row.appendChild(e("p","lens-observation__statement","実務への含意: "+sig.operational_implication));var links=evidenceLinks(sig);if(links.children.length)row.appendChild(links);var report=e("a",null,"該当レポートを開く →");report.href=r.path;var rl=e("div","lens-observation__links");rl.appendChild(report);row.appendChild(rl);section.appendChild(row)});box.appendChild(section)})}
-Promise.all([LBISignals.loadRegistry(""),fetch("data/reports.json",{cache:"no-cache"}).then(function(r){return r.json()})]).then(function(x){var reports=(x[1].reports||[]).filter(function(r){return !r.sample});render(reports)}).catch(function(){document.getElementById("lens-history-list").textContent="データを読み込めませんでした。"});
+/* Compatibility shim — lens-history.js
+   -------------------------------------------------------------------------
+   This file no longer contains logic. The frontend is a single ES module
+   graph rooted at assets/js/app.js (see docs/FRONTEND_MIGRATION.md).
+
+   Why it still exists: the content pipeline publishes report pages as static
+   HTML. A report generated from the pre-v5 template still requests this
+   path, so the shim forwards to app.js. Dynamic import goes through the
+   module map, so however many shims a legacy page loads, app.js is fetched
+   and evaluated exactly once.
+
+   Note: this is a CLASSIC script, so a bare "./app.js" specifier would
+   resolve against the document URL (wrong for pages under reports/YYYY/MM/).
+   The URL is therefore resolved against this script's own src.
+
+   Safe to delete once no published page references it — see the migration
+   note for the checklist. */
+(function () {
+  "use strict";
+  var self = document.currentScript && document.currentScript.src;
+  var target = new URL("app.js", self || document.baseURI).href;
+  import(target).catch(function (err) {
+    console.error("LBI: failed to load app.js from " + target, err);
+  });
 })();

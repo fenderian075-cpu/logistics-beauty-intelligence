@@ -1,11 +1,105 @@
 <!DOCTYPE html>
-<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Logistics &amp; Beauty Intelligence</title><meta name="description" content="物流・通関・国際輸送・Beauty Commerceの意思決定ダッシュボード。"><meta name="color-scheme" content="light"><link rel="stylesheet" href="assets/css/style.css"><link rel="stylesheet" href="assets/css/portal-v22.css"><link rel="stylesheet" href="assets/css/ui-fixes-v26.css"><link rel="stylesheet" href="assets/css/intelligence-v3.css"></head>
-<body data-root=""><a class="skip-link" href="#main">本文へスキップ</a><header class="site-header site-header--minimal"><div class="site-header__bar"><a class="brand brand--minimal" href="index.html" aria-label="ホーム"><span class="brand__mark">LBI</span></a><nav class="site-nav site-nav--reports" aria-label="ナビゲーション"><a id="nav-latest-daily" href="archive.html?type=daily">日次</a><a id="nav-latest-weekly" href="archive.html?type=weekly">週次</a><a id="nav-latest-monthly" href="archive.html?type=monthly">月次</a><a href="commerce-calendar.html">EC予定</a><a href="buzz.html">Buzz</a><a href="archive.html">過去</a></nav></div></header>
-<main id="main"><div class="wrap" id="dashboard"><p class="empty-state" id="dashboard-error" hidden></p>
-<section class="section decision" aria-labelledby="decision-title"><div class="section__head"><h1 class="section__title" id="decision-title">本日の判断</h1><p class="section__note">最終更新: <span id="data-stamp">—</span></p></div><div class="decision-grid"><div class="overall" id="overall" data-status="unconfirmed" aria-live="polite"></div><div class="action-box" id="action-box" data-action="unknown" aria-live="polite"></div></div><div class="callout callout--bottom-line" id="conclusion" hidden></div><div class="status-title-row"><h2 class="subhead">日本物流ステータス</h2><div class="status-legend status-legend--inline"><span data-status="normal"><span class="dot"></span>平常</span><span data-status="watch"><span class="dot"></span>監視</span><span data-status="disruption"><span class="dot"></span>障害</span><span data-status="unconfirmed"><span class="dot dot--ring"></span>未確認</span></div></div><div class="status-board" id="status-board"></div></section>
-<section class="section section--latest-first section--compact-latest" aria-labelledby="latest-title"><div class="section__head"><h2 class="section__title" id="latest-title">最新レポート</h2></div><div class="latest-grid" id="latest-grid"><p class="empty-state">読み込み中…</p></div></section>
-<section class="section" aria-labelledby="changed-title"><div class="section__head"><h2 class="section__title" id="changed-title">前回からの変化</h2><p class="section__note" id="changed-base"></p></div><div id="changed-counts" class="change-counts"></div><div id="changed-list"></div></section>
-<section class="section" aria-labelledby="lenses-title"><div class="section__head"><h2 class="section__title" id="lenses-title">5つの視点</h2></div><p class="empty-state" id="lenses-note" hidden></p><div class="lens-grid" id="lens-grid"></div></section>
-<section class="section" aria-labelledby="key-title"><div class="section__head"><h2 class="section__title" id="key-title">主要シグナル</h2></div><div id="key-signals"></div></section>
-<noscript><p class="empty-state">このダッシュボードはJavaScriptで data/reports.json を読み込みます。</p></noscript></div></main>
-<footer class="site-footer"><div class="wrap"><nav><a href="index.html">ホーム</a><a href="commerce-calendar.html">EC予定</a><a href="buzz.html">Buzz</a><a href="archive.html">過去</a><a href="source-matrix.html">情報源</a></nav></div></footer><script src="assets/js/header.js"></script><script src="assets/js/translation.js"></script><script src="assets/js/signals.js"></script><script src="assets/js/site.js"></script><script src="assets/js/market-intelligence.js"></script><script src="assets/js/portal-v22.js"></script></body></html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Logistics & Beauty Intelligence</title>
+  <meta name="description" content="物流・通関・国際輸送・Beauty Commerceの意思決定ダッシュボード。">
+  <meta name="color-scheme" content="light">
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/pages.css">
+</head>
+<body data-root="" data-page="home">
+<a class="skip-link" href="#main">本文へスキップ</a>
+<header class="site-header site-header--minimal">
+  <div class="site-header__bar">
+    <a class="brand brand--minimal" href="index.html" aria-label="ホーム"><span class="brand__mark">LBI</span></a>
+    <nav class="site-nav site-nav--reports" aria-label="ナビゲーション">
+      <a id="nav-latest-daily" data-nav="daily" href="archive.html?type=daily">日次</a>
+      <a id="nav-latest-weekly" data-nav="weekly" href="archive.html?type=weekly">週次</a>
+      <a id="nav-latest-monthly" data-nav="monthly" href="archive.html?type=monthly">月次</a>
+      <a data-nav="commerce" href="commerce-calendar.html">EC予定</a>
+      <a data-nav="buzz" href="buzz.html">Buzz</a>
+      <a data-nav="archive" href="archive.html">過去</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<div class="wrap" id="dashboard">
+  <p class="empty-state" id="dashboard-error" hidden></p>
+
+  <section class="section decision" aria-labelledby="decision-title">
+    <div class="section__head">
+      <h1 class="section__title" id="decision-title">本日の判断</h1>
+      <p class="section__note">最終更新: <span id="data-stamp">—</span></p>
+    </div>
+    <div class="decision-grid">
+      <div class="overall" id="overall" data-status="unconfirmed" aria-live="polite"></div>
+      <div class="action-box" id="action-box" data-action="unknown" aria-live="polite"></div>
+    </div>
+    <div class="callout callout--bottom-line" id="conclusion" hidden></div>
+
+    <div class="status-title-row">
+      <h2 class="subhead">日本物流ステータス</h2>
+      <div class="status-legend status-legend--inline">
+        <span data-status="normal"><span class="dot"></span>平常</span>
+        <span data-status="watch"><span class="dot"></span>監視</span>
+        <span data-status="disruption"><span class="dot"></span>障害</span>
+        <span data-status="unconfirmed"><span class="dot dot--ring"></span>未確認</span>
+      </div>
+    </div>
+    <div class="status-board" id="status-board"></div>
+  </section>
+
+  <section class="section section--latest-first section--compact-latest" aria-labelledby="latest-title">
+    <div class="section__head">
+      <h2 class="section__title" id="latest-title">最新レポート</h2>
+    </div>
+    <div class="latest-grid" id="latest-grid">
+      <p class="empty-state">読み込み中…</p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="changed-title">
+    <div class="section__head">
+      <h2 class="section__title" id="changed-title">前回からの変化</h2>
+      <p class="section__note" id="changed-base"></p>
+    </div>
+    <div id="changed-counts" class="change-counts"></div>
+    <div id="changed-list"></div>
+  </section>
+
+  <section class="section" aria-labelledby="lenses-title">
+    <div class="section__head">
+      <h2 class="section__title" id="lenses-title">5つの視点</h2>
+    </div>
+    <p class="empty-state" id="lenses-note" hidden></p>
+    <div class="lens-grid" id="lens-grid"></div>
+  </section>
+
+  <section class="section" aria-labelledby="key-title">
+    <div class="section__head">
+      <h2 class="section__title" id="key-title">主要シグナル</h2>
+    </div>
+    <div id="key-signals"></div>
+  </section>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <nav aria-label="フッター">
+      <a href="index.html">ホーム</a>
+      <a href="commerce-calendar.html">EC予定</a>
+      <a href="buzz.html">Buzz</a>
+      <a href="archive.html">過去</a>
+      <a href="source-matrix.html">情報源</a>
+    </nav>
+    <p class="footer-note">公開情報のみを扱います。数値・事実は必ず一次情報で確認してください。</p>
+  </div>
+</footer>
+<script type="module" src="assets/js/app.js"></script>
+<noscript><p class="empty-state wrap">このページは data/*.json をJavaScriptで読み込みます。JavaScriptが無効な場合は、各レポートページを直接ご覧ください。</p></noscript>
+</body>
+</html>

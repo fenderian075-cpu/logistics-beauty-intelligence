@@ -1,1 +1,74 @@
-<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>情報源 | LBI</title><link rel="stylesheet" href="assets/css/style.css"><link rel="stylesheet" href="assets/css/portal-v22.css"></head><body data-root=""><header class="site-header site-header--minimal"><div class="site-header__bar"><a class="brand brand--minimal" href="index.html" aria-label="ホーム"><span class="brand__mark">LBI</span></a><nav class="site-nav site-nav--reports"><a id="nav-latest-daily" href="archive.html?type=daily">日次</a><a id="nav-latest-weekly" href="archive.html?type=weekly">週次</a><a id="nav-latest-monthly" href="archive.html?type=monthly">月次</a><a href="commerce-calendar.html">EC予定</a><a href="archive.html">過去</a></nav></div></header><main><div class="wrap"><section class="section"><div class="section__head"><div><p class="eyebrow">SOURCE MATRIX</p><h1 class="section__title">調査対象と役割</h1></div><p class="section__note" id="source-count">—</p></div><p class="muted">一次運用・規制 → 市場指数 → 専門情報 → Beauty Commerceの順に優先します。Source Matrixはニュース一覧ではなく、ChatGPTが定常的に何を見るかの台帳です。</p><div class="matrix-tabs"><select id="f-domain" class="matrix-chip"><option value="">Domain: すべて</option><option value="logistics">Logistics</option><option value="beauty">Beauty</option></select><select id="f-priority" class="matrix-chip"><option value="">Priority: すべて</option><option>P0</option><option>P1</option><option>P2</option></select><select id="f-cadence" class="matrix-chip"><option value="">Cadence: すべて</option><option value="daily">Daily</option><option value="weekly">Weekly</option><option value="monthly">Monthly</option></select><input id="f-q" class="matrix-chip" type="search" placeholder="Source / extract を検索"></div><div class="data-table-wrap"><table class="data-table"><thead><tr><th>Priority</th><th>Domain / Layer</th><th>Source</th><th>Cadence</th><th>What to extract</th></tr></thead><tbody id="source-body"></tbody></table></div></section></div></main><script src="assets/js/header.js"></script><script src="assets/js/source-matrix.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>情報源 | LBI</title>
+  <meta name="description" content="LBIが定常監視する情報源の一覧。">
+  <meta name="color-scheme" content="light">
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/pages.css">
+</head>
+<body data-root="" data-page="sources">
+<a class="skip-link" href="#main">本文へスキップ</a>
+<header class="site-header site-header--minimal">
+  <div class="site-header__bar">
+    <a class="brand brand--minimal" href="index.html" aria-label="ホーム"><span class="brand__mark">LBI</span></a>
+    <nav class="site-nav site-nav--reports" aria-label="ナビゲーション">
+      <a id="nav-latest-daily" data-nav="daily" href="archive.html?type=daily">日次</a>
+      <a id="nav-latest-weekly" data-nav="weekly" href="archive.html?type=weekly">週次</a>
+      <a id="nav-latest-monthly" data-nav="monthly" href="archive.html?type=monthly">月次</a>
+      <a data-nav="commerce" href="commerce-calendar.html">EC予定</a>
+      <a data-nav="buzz" href="buzz.html">Buzz</a>
+      <a data-nav="archive" href="archive.html">過去</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<div class="wrap">
+  <section class="section">
+    <div class="section__head">
+      <div>
+        <p class="eyebrow">SOURCE MATRIX</p>
+        <h1 class="section__title">調査対象と役割</h1>
+      </div>
+      <p class="section__note" id="source-count">—</p>
+    </div>
+    <p class="muted">一次運用・規制 → 公式統計 → 市場データ → 専門媒体 → Beauty Commerce の順に優先します。ニュース一覧ではなく、何を定常的に見ているかの台帳です。</p>
+    <div class="matrix-tabs">
+      <label class="sr-only" for="f-domain">領域</label>
+      <select id="f-domain" class="matrix-chip"><option value="">領域: すべて</option><option value="logistics">Logistics</option><option value="beauty">Beauty</option></select>
+      <label class="sr-only" for="f-priority">優先度</label>
+      <select id="f-priority" class="matrix-chip"><option value="">優先度: すべて</option><option>P0</option><option>P1</option><option>P2</option></select>
+      <label class="sr-only" for="f-cadence">頻度</label>
+      <select id="f-cadence" class="matrix-chip"><option value="">頻度: すべて</option><option value="daily">日次</option><option value="weekly">週次</option><option value="monthly">月次</option></select>
+      <label class="sr-only" for="f-q">検索</label>
+      <input id="f-q" class="matrix-chip" type="search" placeholder="情報源・取得項目を検索">
+    </div>
+    <div class="data-table-wrap">
+      <table class="data-table">
+        <thead><tr><th scope="col">優先度</th><th scope="col">領域 / レイヤ</th><th scope="col">情報源</th><th scope="col">頻度</th><th scope="col">取得する内容</th></tr></thead>
+        <tbody id="source-body"></tbody>
+      </table>
+    </div>
+  </section>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <nav aria-label="フッター">
+      <a href="index.html">ホーム</a>
+      <a href="commerce-calendar.html">EC予定</a>
+      <a href="buzz.html">Buzz</a>
+      <a href="archive.html">過去</a>
+      <a href="source-matrix.html">情報源</a>
+    </nav>
+    <p class="footer-note">公開情報のみを扱います。数値・事実は必ず一次情報で確認してください。</p>
+  </div>
+</footer>
+<script type="module" src="assets/js/app.js"></script>
+<noscript><p class="empty-state wrap">このページは data/*.json をJavaScriptで読み込みます。JavaScriptが無効な場合は、各レポートページを直接ご覧ください。</p></noscript>
+</body>
+</html>

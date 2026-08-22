@@ -1,1 +1,58 @@
-<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ステータス履歴 | LBI</title><link rel="stylesheet" href="assets/css/style.css"><link rel="stylesheet" href="assets/css/portal-v22.css"></head><body data-root=""><header class="site-header site-header--minimal"><div class="site-header__bar"><a class="brand brand--minimal" href="index.html" aria-label="ホーム"><span class="brand__mark">LBI</span></a><nav class="site-nav site-nav--reports"><a id="nav-latest-daily" href="archive.html?type=daily">日次</a><a id="nav-latest-weekly" href="archive.html?type=weekly">週次</a><a id="nav-latest-monthly" href="archive.html?type=monthly">月次</a><a href="commerce-calendar.html">EC予定</a><a href="archive.html">過去</a></nav></div></header><main><div class="wrap"><section class="section"><div class="section__head"><div><p class="eyebrow">STATUS HISTORY</p><h1 class="section__title" id="history-title">履歴</h1></div><p class="section__note" id="history-lead"></p></div><div id="history-list" class="timeline"><p class="empty-state">読み込み中…</p></div></section></div></main><script src="assets/js/header.js"></script><script src="assets/js/translation.js"></script><script src="assets/js/signals.js"></script><script src="assets/js/status-history.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ステータス履歴 | LBI</title>
+  <meta name="description" content="運用ドメイン別のステータス推移と関連シグナル。">
+  <meta name="color-scheme" content="light">
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/pages.css">
+</head>
+<body data-root="" data-page="status-history">
+<a class="skip-link" href="#main">本文へスキップ</a>
+<header class="site-header site-header--minimal">
+  <div class="site-header__bar">
+    <a class="brand brand--minimal" href="index.html" aria-label="ホーム"><span class="brand__mark">LBI</span></a>
+    <nav class="site-nav site-nav--reports" aria-label="ナビゲーション">
+      <a id="nav-latest-daily" data-nav="daily" href="archive.html?type=daily">日次</a>
+      <a id="nav-latest-weekly" data-nav="weekly" href="archive.html?type=weekly">週次</a>
+      <a id="nav-latest-monthly" data-nav="monthly" href="archive.html?type=monthly">月次</a>
+      <a data-nav="commerce" href="commerce-calendar.html">EC予定</a>
+      <a data-nav="buzz" href="buzz.html">Buzz</a>
+      <a data-nav="archive" href="archive.html">過去</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<div class="wrap">
+  <section class="section">
+    <div class="section__head">
+      <div>
+        <p class="eyebrow">STATUS HISTORY</p>
+        <h1 class="section__title" id="history-title">履歴</h1>
+      </div>
+      <p class="section__note" id="history-lead"></p>
+    </div>
+    <div id="history-list" class="timeline"><p class="empty-state">読み込み中…</p></div>
+  </section>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <nav aria-label="フッター">
+      <a href="index.html">ホーム</a>
+      <a href="commerce-calendar.html">EC予定</a>
+      <a href="buzz.html">Buzz</a>
+      <a href="archive.html">過去</a>
+      <a href="source-matrix.html">情報源</a>
+    </nav>
+    <p class="footer-note">公開情報のみを扱います。数値・事実は必ず一次情報で確認してください。</p>
+  </div>
+</footer>
+<script type="module" src="assets/js/app.js"></script>
+<noscript><p class="empty-state wrap">このページは data/*.json をJavaScriptで読み込みます。JavaScriptが無効な場合は、各レポートページを直接ご覧ください。</p></noscript>
+</body>
+</html>

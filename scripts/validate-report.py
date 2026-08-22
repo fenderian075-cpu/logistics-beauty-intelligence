@@ -46,11 +46,16 @@ DEMAND_DRIVERS = {"organic", "promotion", "launch", "buzz"}
 DURATIONS = {"temporary", "persistent", "unknown"}
 CHANGE_SUMMARY_V21_KEYS = ["new", "deteriorating", "improving", "resolved", "unchanged_high_risk"]
 
-REQUIRED_TRANSLATE_IDS = {
-    "daily": ["exec-h", "bl-h"],
-    "weekly": ["exec-h", "bl-h"],
-    "monthly": ["exec-h", "bl-h"],
-}
+# Frontend contract (v5). Report pages are static HTML published by the
+# content pipeline, so the validator is where the shared shell is enforced.
+V5_ENTRY = 'assets/js/app.js'
+V5_STYLESHEETS = ("tokens.css", "base.css", "components.css", "pages.css")
+LEGACY_ASSETS = (
+    "site.js", "report.js", "signals.js", "translation.js",
+    "portal-v22.js", "market-intelligence.js", "header.js",
+    "portal-v22.css", "ui-fixes-v26.css", "intelligence-v3.css",
+)
+NAV_IDS = ("nav-latest-daily", "nav-latest-weekly", "nav-latest-monthly")
 
 errors: list[str] = []
 warnings: list[str] = []
@@ -401,13 +406,32 @@ def check_html(entry: dict) -> None:
         if not os.path.exists(target):
             err(eid, f"broken relative link: {m}")
 
-    # translation coverage
-    if 'data-translate' not in html:
-        err(eid, "no data-translate anywhere — the English view would show nothing translated")
-    for sid in REQUIRED_TRANSLATE_IDS.get(entry.get("type", ""), []):
-        pattern = rf'<section[^>]*aria-labelledby="{sid}"[^>]*data-translate'
-        if not re.search(pattern, html):
-            err(eid, f'section "{sid}" is missing data-translate=""')
+    # frontend shell (v5). Japanese is the only UI language: the translation
+    # layer was retired, so its markup must not come back.
+    if 'data-i18n' in html or 'lang-switch' in html or 'data-translate' in html:
+        err(eid, "translation-layer markup found (data-i18n / data-translate / lang-switch) — "
+                 "the UI is Japanese-only, regenerate from templates/report-template.html")
+
+    if not re.search(r'<script type="module" src="[^"]*%s"' % re.escape(V5_ENTRY), html):
+        err(eid, f"no <script type=\"module\" src=\"…{V5_ENTRY}\"> — the page will not render signals")
+
+    for legacy in LEGACY_ASSETS:
+        if re.search(r'(?:src|href)="[^"]*assets/(?:js|css)/%s"' % re.escape(legacy), html):
+            warn(eid, f"references legacy asset {legacy} (compatibility shim still covers it; "
+                      f"regenerate from the current template to drop it)")
+
+    if not all(f"assets/css/{name}" in html for name in V5_STYLESHEETS):
+        if "assets/css/style.css" in html:
+            warn(eid, "still linking the style.css compatibility shim instead of the v5 stylesheet set")
+        else:
+            err(eid, "no LBI stylesheet linked")
+
+    for nav_id in NAV_IDS:
+        if nav_id not in html:
+            err(eid, f'header is missing id="{nav_id}" — 日次/週次/月次 would not resolve')
+
+    if 'data-page="report"' not in html:
+        warn(eid, 'body has no data-page="report" (the router falls back to sniffing)')
 
     # comparison component
     if 'id="chg-h"' not in html:

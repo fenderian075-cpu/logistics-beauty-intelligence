@@ -1,1 +1,69 @@
-<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Beauty Buzz | LBI</title><meta name="description" content="Google Trendsから化粧品の検索話題化を観測するBeauty Buzzページ。"><link rel="stylesheet" href="assets/css/style.css"><link rel="stylesheet" href="assets/css/portal-v22.css"></head><body data-root=""><header class="site-header site-header--minimal"><div class="site-header__bar"><a class="brand brand--minimal" href="index.html" aria-label="ホーム"><span class="brand__mark">LBI</span></a><nav class="site-nav site-nav--reports"><a id="nav-latest-daily" href="archive.html?type=daily">日次</a><a id="nav-latest-weekly" href="archive.html?type=weekly">週次</a><a id="nav-latest-monthly" href="archive.html?type=monthly">月次</a><a href="commerce-calendar.html">EC予定</a><a href="buzz.html" aria-current="page">Buzz</a><a href="archive.html">過去</a></nav></div></header><main><div class="wrap"><section class="section"><div class="section__head"><div><p class="eyebrow">BEAUTY BUZZ</p><h1 class="section__title">Google Trends モニター</h1></div><p class="section__note" id="buzz-stamp">—</p></div><p class="muted">日本のGoogle検索インタレストから、Makeup / Skincare / Fragrance / ブランドの話題化を先行シグナルとして観測します。検索インタレストは売上ではありません。</p><div class="buzz-grid" id="buzz-sources"></div></section><section class="section"><div class="section__head"><h2 class="section__title">上昇シグナル</h2></div><div class="buzz-list" id="buzz-list"><p class="empty-state">読み込み中…</p></div></section><section class="section"><div class="section__head"><h2 class="section__title">監視対象</h2></div><p class="muted">主要Beautyブランドに加え、香水、リップ、ファンデーション、クッションファンデ、美容液、日焼け止め、韓国コスメなどを定点観測します。監視語は data/buzz-watchlist.json で追加・削除できます。</p></section></div></main><footer class="site-footer"><div class="wrap"><nav><a href="index.html">ホーム</a><a href="commerce-calendar.html">EC予定</a><a href="source-matrix.html">情報源</a></nav></div></footer><script src="assets/js/header.js"></script><script src="assets/js/buzz.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Beauty Buzz | LBI</title>
+  <meta name="description" content="Google Trendsから化粧品の検索関心を観測するBeauty Buzzページ。">
+  <meta name="color-scheme" content="light">
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/pages.css">
+</head>
+<body data-root="" data-page="buzz">
+<a class="skip-link" href="#main">本文へスキップ</a>
+<header class="site-header site-header--minimal">
+  <div class="site-header__bar">
+    <a class="brand brand--minimal" href="index.html" aria-label="ホーム"><span class="brand__mark">LBI</span></a>
+    <nav class="site-nav site-nav--reports" aria-label="ナビゲーション">
+      <a id="nav-latest-daily" data-nav="daily" href="archive.html?type=daily">日次</a>
+      <a id="nav-latest-weekly" data-nav="weekly" href="archive.html?type=weekly">週次</a>
+      <a id="nav-latest-monthly" data-nav="monthly" href="archive.html?type=monthly">月次</a>
+      <a data-nav="commerce" href="commerce-calendar.html">EC予定</a>
+      <a data-nav="buzz" href="buzz.html">Buzz</a>
+      <a data-nav="archive" href="archive.html">過去</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<div class="wrap">
+  <section class="section">
+    <div class="section__head">
+      <div>
+        <p class="eyebrow">BEAUTY BUZZ</p>
+        <h1 class="section__title">Google Trends モニター</h1>
+      </div>
+      <p class="section__note" id="buzz-stamp">—</p>
+    </div>
+    <p class="muted">Google Trendsが示すのは<strong>検索関心</strong>であり、販売実績ではありません。指数は期間内の相対値で、母数が小さいほど変化率は大きく振れます。</p>
+    <div class="buzz-grid" id="buzz-sources"></div>
+  </section>
+
+  <section class="section">
+    <div class="section__head"><h2 class="section__title">観測</h2></div>
+    <div class="buzz-list" id="buzz-list"><p class="empty-state">読み込み中…</p></div>
+  </section>
+
+  <section class="section">
+    <div class="section__head"><h2 class="section__title">監視対象</h2></div>
+    <p class="muted">主要Beautyブランドに加え、フレグランス、リップ、ファンデーション、美容液、日焼け止めなどを定点観測します。監視語は data/buzz-watchlist.json で管理します。</p>
+  </section>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <nav aria-label="フッター">
+      <a href="index.html">ホーム</a>
+      <a href="commerce-calendar.html">EC予定</a>
+      <a href="buzz.html">Buzz</a>
+      <a href="archive.html">過去</a>
+      <a href="source-matrix.html">情報源</a>
+    </nav>
+    <p class="footer-note">公開情報のみを扱います。数値・事実は必ず一次情報で確認してください。</p>
+  </div>
+</footer>
+<script type="module" src="assets/js/app.js"></script>
+<noscript><p class="empty-state wrap">このページは data/*.json をJavaScriptで読み込みます。JavaScriptが無効な場合は、各レポートページを直接ご覧ください。</p></noscript>
+</body>
+</html>

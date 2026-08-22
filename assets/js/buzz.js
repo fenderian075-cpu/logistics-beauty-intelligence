@@ -1,1 +1,25 @@
-(function(){"use strict";function e(t,c,x){var n=document.createElement(t);if(c)n.className=c;if(x!=null)n.textContent=x;return n}function pct(v){if(v==null)return"—";return(v>0?"+":"")+Number(v).toFixed(1)+"%"}fetch("data/buzz.json",{cache:"no-cache"}).then(function(r){return r.json()}).then(function(d){var src=document.getElementById("buzz-sources"),list=document.getElementById("buzz-list"),stamp=document.getElementById("buzz-stamp");src.innerHTML="";var c=e("article","buzz-card");c.appendChild(e("h3",null,"Google Trends"));c.appendChild(e("p","buzz-source-state",d.collector_status==="ok"||d.collector_status==="partial"?"接続済み":"初回取得待ち"));c.appendChild(e("p","muted",d.source&&d.source.note?d.source.note:"日本の検索インタレストを監視します。"));src.appendChild(c);if(stamp)stamp.textContent=d.updated_at?"更新: "+new Date(d.updated_at).toLocaleString("ja-JP"):"初回取得待ち";list.innerHTML="";var sig=d.signals||[];if(!sig.length){list.appendChild(e("p","empty-state","Google Trendsの初回データ取得後、検索インタレストが基準期間より大きく上昇したブランド・カテゴリをここに表示します。"));return}sig.forEach(function(s){var a=e("article","buzz-item"),top=e("div","buzz-item__top");top.appendChild(e("strong",null,s.term||"—"));top.appendChild(e("span","buzz-item__delta",pct(s.change_pct)));a.appendChild(top);a.appendChild(e("p","muted",[s.category,s.brand,"直近7日: "+s.interest_7d,"前21日: "+s.interest_prev21d].filter(Boolean).join(" / ")));a.appendChild(e("p",null,"検索インタレストは直前21日平均比で "+pct(s.change_pct)+"。Google Trendsの相対指数であり、売上・検索件数そのものではありません。"));list.appendChild(a)})}).catch(function(){document.getElementById("buzz-list").textContent="Google Trendsデータを読み込めませんでした。"})})();
+/* Compatibility shim — buzz.js
+   -------------------------------------------------------------------------
+   This file no longer contains logic. The frontend is a single ES module
+   graph rooted at assets/js/app.js (see docs/FRONTEND_MIGRATION.md).
+
+   Why it still exists: the content pipeline publishes report pages as static
+   HTML. A report generated from the pre-v5 template still requests this
+   path, so the shim forwards to app.js. Dynamic import goes through the
+   module map, so however many shims a legacy page loads, app.js is fetched
+   and evaluated exactly once.
+
+   Note: this is a CLASSIC script, so a bare "./app.js" specifier would
+   resolve against the document URL (wrong for pages under reports/YYYY/MM/).
+   The URL is therefore resolved against this script's own src.
+
+   Safe to delete once no published page references it — see the migration
+   note for the checklist. */
+(function () {
+  "use strict";
+  var self = document.currentScript && document.currentScript.src;
+  var target = new URL("app.js", self || document.baseURI).href;
+  import(target).catch(function (err) {
+    console.error("LBI: failed to load app.js from " + target, err);
+  });
+})();
