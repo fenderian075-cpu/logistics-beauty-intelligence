@@ -1,26 +1,27 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-08-23T08:00:00+09:00",
+  "updated_at": "2026-08-23T08:12:00+09:00",
   "topics": [
     {
       "topic_id": "japan-weather-disruption",
       "title_ja": "気象・災害による輸送障害",
       "current_state": "disruption",
       "confidence": "high",
-      "summary": "台風18号の影響が奄美群島の輸送に実際に波及。ヤマト運輸は8月23日7時時点で奄美市・大島郡宛ての全商品を荷受停止としており、鹿児島～奄美～沖縄航路でも当日便の運航経路変更が発生している。",
-      "japan_implication": "奄美群島向けは通常の宅配・補充リードタイムを前提にできず、離島向け輸送は船便の運航状況に強く依存する。",
-      "operational_implication": "奄美市・大島郡向け出荷はヤマトで保留。受付再開または代替輸送を確認し、離島向け着日指定は再確認する。",
-      "outlook_7d": "台風通過後のcarrier受付再開と船便正常化を日次確認する。",
+      "summary": "台風18号の影響が奄美群島の輸送に実際に波及。ヤマト運輸は8月23日7時時点で奄美市・大島郡宛ての全商品を荷受停止としており、鹿児島～奄美～沖縄航路では8月23日便の経路変更に加え、8月25日那覇発上り便の欠航も決定している。",
+      "japan_implication": "奄美群島向けは通常の宅配・補充リードタイムを前提にできず、沖縄・奄美向け輸送は船便の運航状況と滞留解消ペースに強く依存する。",
+      "operational_implication": "奄美市・大島郡向け出荷はヤマトで保留。受付再開または代替輸送を確認し、沖縄・奄美向け着日指定は少なくとも8月25日まで船便接続を個別確認する。",
+      "outlook_7d": "台風通過後のcarrier受付再開、8月25日欠航後の船便正常化、滞留貨物の解消を日次確認する。",
       "outlook_30d": null,
       "outlook_90d": null,
       "developments": [
         {
           "date": "2026-08-23",
           "type": "observed_impact",
-          "headline": "台風18号で奄美向け全商品荷受停止",
-          "summary": "ヤマト運輸は奄美市・大島郡宛ての全商品の預かりを停止。マリックスラインの鹿児島発便も名瀬までに運航経路を短縮し、徳之島以南を抜港。",
+          "headline": "台風18号で奄美向け全商品荷受停止、フェリーは8月25日便も欠航",
+          "summary": "ヤマト運輸は奄美市・大島郡宛ての全商品の預かりを停止。マリックスラインの8月23日鹿児島発便は名瀬までに運航経路を短縮し徳之島以南を抜港、8月25日那覇発上り便も欠航予定となった。",
           "evidence": [
             {"class":"primary_operational","source":"ヤマト運輸","url":"https://www.kuronekoyamato.co.jp/ytc/chien/chien_hp.html"},
+            {"class":"primary_operational","source":"マリックスライン 運航状況","url":"https://marixline.com/service/2025/12/"},
             {"class":"professional_media","source":"九州のりものinfo / マリックスライン","url":"https://pop.kkb.co.jp/norimonoinfo/traffic.php?category_id=3"}
           ]
         }
@@ -33,14 +34,14 @@
       "title_ja": "国内配送オペレーション",
       "current_state": "watch",
       "confidence": "high",
-      "summary": "8月23日朝、台風18号で奄美市・大島郡宛てにヤマトの全商品荷受停止が発生。能登の一部荷受停止・局地遅延も継続する。一方、名神集中工事は継続中だが、今朝7時のヤマト現況では工事由来の全国的な実遅延はまだ確認できない。",
-      "japan_implication": "国内配送は全国一律の停止ではなく、奄美・能登の停止地域と、名神を通る東西幹線の予防的リードタイム管理を分ける必要がある。",
-      "operational_implication": "奄美市・大島郡向けは出荷保留。能登の停止地域はcarrier確認。9月12日まで東西幹線は着日余裕を持たせる。",
-      "outlook_7d": "台風18号後の奄美受付再開と、名神工事初週の実際の遅延発生状況を確認。",
+      "summary": "8月23日朝、台風18号で奄美市・大島郡宛てにヤマトの全商品荷受停止が発生し、鹿児島～奄美～沖縄航路では23日便の経路変更と25日那覇発便の欠航が決定。能登の一部荷受停止・局地遅延も継続する。一方、名神集中工事は継続中だが、今朝7時のヤマト現況では工事由来の全国的な実遅延はまだ確認できない。",
+      "japan_implication": "国内配送は全国一律の停止ではなく、奄美・沖縄方面の船便影響、能登の停止地域、名神を通る東西幹線の予防的リードタイム管理を分ける必要がある。",
+      "operational_implication": "奄美市・大島郡向けは出荷保留。沖縄・奄美向けは8月25日まで船便接続を確認。能登の停止地域はcarrier確認。9月12日まで東西幹線は着日余裕を持たせる。",
+      "outlook_7d": "台風18号後の奄美受付再開、8月25日欠航後の船便正常化、名神工事初週の実際の遅延発生状況を確認。",
       "outlook_30d": "名神集中工事は9月12日6時まで予定。",
       "outlook_90d": null,
       "developments": [
-        {"date":"2026-08-23","type":"observed_impact","headline":"台風18号で奄美向けヤマト荷受停止","summary":"奄美市・大島郡宛て全商品の荷受停止を確認。国内配送signalは前日より悪化。","evidence":[{"class":"primary_operational","source":"ヤマト運輸","url":"https://www.kuronekoyamato.co.jp/ytc/chien/chien_hp.html"}]},
+        {"date":"2026-08-23","type":"observed_impact","headline":"台風18号で奄美向けヤマト荷受停止、沖縄・奄美フェリーにも実運航影響","summary":"奄美市・大島郡宛て全商品の荷受停止を確認。フェリーは8月23日鹿児島発便が名瀬までに短縮され、8月25日那覇発上り便も欠航予定。国内配送signalは前日より悪化。","evidence":[{"class":"primary_operational","source":"ヤマト運輸","url":"https://www.kuronekoyamato.co.jp/ytc/chien/chien_hp.html"},{"class":"primary_operational","source":"マリックスライン 運航状況","url":"https://marixline.com/service/2025/12/"},{"class":"professional_media","source":"九州のりものinfo / マリックスライン","url":"https://pop.kkb.co.jp/norimonoinfo/traffic.php?category_id=3"}]},
         {"date":"2026-08-22","type":"reported_event","headline":"名神集中工事が8月22日0時に開始","summary":"吹田IC～一宮JCTなどで昼夜連続車線規制、夜間通行止め、IC/JCT等の閉鎖を実施。NEXCOは早朝から深夜の渋滞を予測している。","evidence":[{"class":"primary_operational","source":"NEXCO中日本 / NEXCO西日本","url":"https://www.c-nexco.co.jp/corporate/pressroom/news_release/6617.html"}]},
         {"date":"2026-08-17","type":"reported_event","headline":"ヤマト運輸が全国的な配送遅延の可能性を案内","summary":"東京・関東から関西を発着する荷物を中心に、全国的にお届け遅延が発生する可能性があるとして余裕を持った出荷を案内。","evidence":[{"class":"primary_operational","source":"ヤマト運輸","url":"https://www.yamato-hd.co.jp/important/info_260817_1.html"}]}
       ],

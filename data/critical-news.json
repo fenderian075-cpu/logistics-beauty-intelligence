@@ -1,23 +1,24 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-08-23T08:00:00+09:00",
+  "updated_at": "2026-08-23T08:12:00+09:00",
   "items": [
     {
       "id": "2026-08-23-typhoon18-amami-delivery-stop",
       "date": "2026-08-23",
-      "event_date": "2026-08-23",
-      "headline": "台風18号で奄美向け荷受停止、鹿児島発フェリーも運航経路変更",
+      "event_date": "2026-08-23/2026-08-25",
+      "headline": "台風18号で奄美向け荷受停止、鹿児島―奄美―沖縄フェリーは経路変更・欠航",
       "domain": "domestic_delivery",
       "importance": "high",
       "japan_relevance": "high",
       "status": "observed",
-      "summary": "ヤマト運輸は8月23日7時時点で、奄美市・大島郡宛ての全商品の荷受けを台風18号の影響で停止。鹿児島～奄美～沖縄航路でも本日の鹿児島発便が名瀬までに短縮され、徳之島以南を抜港する。",
-      "observed_impact": "carrier acceptance stopとフェリーの実際の運航経路変更を確認。予報段階ではなく輸送実行可否に直接影響する状態。",
-      "japan_implication": "奄美群島向けの宅配・補充・店舗配送は通常リードタイムでの実行ができず、周辺離島でも船便影響による遅延波及に注意が必要。",
-      "operational_implication": "奄美市・大島郡向けはヤマトで出荷保留とし、受付再開または代替輸送を確認する。離島向け着日指定はcarrier運航情報を再確認する。",
+      "summary": "ヤマト運輸は8月23日7時時点で、奄美市・大島郡宛ての全商品の荷受けを台風18号の影響で停止。鹿児島～奄美～沖縄航路では8月23日鹿児島発便が名瀬までに短縮され徳之島以南を抜港し、8月25日那覇発上り便も欠航予定となった。",
+      "observed_impact": "carrier acceptance stop、8月23日便の実際の航行経路変更に加え、8月25日那覇発便の欠航も決定。予報段階ではなく、少なくとも25日まで輸送実行可否に直接影響する状態。",
+      "japan_implication": "奄美群島向けの宅配・補充・店舗配送は通常リードタイムでの実行ができず、沖縄本島を含む鹿児島―奄美―沖縄の船便接続でも滞留・翌便繰越のリスクが高まる。",
+      "operational_implication": "奄美市・大島郡向けはヤマトで出荷保留とし受付再開または代替輸送を確認する。沖縄・奄美向け着日指定は少なくとも8月25日までcarrierの利用モードと船便接続を個別確認する。",
       "topic_ids": ["japan-weather-disruption", "japan-domestic-delivery"],
       "evidence": [
         {"class":"primary_operational","source":"ヤマト運輸","date":"2026-08-23","url":"https://www.kuronekoyamato.co.jp/ytc/chien/chien_hp.html"},
+        {"class":"primary_operational","source":"マリックスライン 運航状況","date":"2026-08-23","url":"https://marixline.com/service/2025/12/"},
         {"class":"professional_media","source":"九州のりものinfo / マリックスライン","date":"2026-08-23","url":"https://pop.kkb.co.jp/norimonoinfo/traffic.php?category_id=3"}
       ]
     },
