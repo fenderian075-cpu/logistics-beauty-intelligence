@@ -19,21 +19,24 @@
       "date": "2026-08-22",
       "type": "daily",
       "title": "Logistics & Beauty Intelligence Brief — DAILY",
-      "status": "unconfirmed",
+      "status": "watch",
       "as_of": "2026年8月22日 JST",
-      "summary": "必須の公開一次情報へ接続できず、国内配送、気象、通関、海上・航空を確認不能とした。本ブリーフ単独では業務判断を変更せず、各公式情報の個別確認が必要。",
+      "summary": "全国的な物流Disruptionは確認していないが、気象庁は8月13日〜22日の大気不安定に伴う大雨を継続中としており、ヤマト運輸でも一部地域への配送・荷受制限が確認された。通常地域では一律の対応変更は不要だが、大雨影響地域・能登・島しょ部向け配送は個別確認を推奨する。",
       "key_issues": [
-        "必須の公開一次情報を取得できず、全領域の運用状況が確認不能"
+        "大気不安定に伴う大雨が8月22日時点で継続中",
+        "ヤマト運輸で一部地域の配送・荷受制限を確認",
+        "佐川急便、日本郵便主要運行情報、NACCS最新運用状況は十分に確認できず"
       ],
       "tags": [
-        "Verification",
         "Japan",
         "Domestic Delivery",
-        "Customs"
+        "Weather",
+        "Heavy Rain",
+        "Verification"
       ],
       "status_board": {
-        "domestic": "unconfirmed",
-        "weather": "unconfirmed",
+        "domestic": "watch",
+        "weather": "watch",
         "customs": "unconfirmed",
         "ocean": "unconfirmed",
         "air": "unconfirmed",
@@ -54,13 +57,19 @@
         }
       },
       "change_summary": {
-        "compared_with": null,
-        "overall": "no_previous",
-        "changed_categories": [],
-        "new_risks": [],
+        "compared_with": "2026-08-22-daily",
+        "overall": "unconfirmed_to_watch",
+        "changed_categories": [
+          "domestic",
+          "weather"
+        ],
+        "new_risks": [
+          "大気不安定に伴う大雨の継続",
+          "一部地域の配送・荷受制限"
+        ],
         "improved_risks": [],
         "resolved_risks": [],
-        "note": "実運用上の比較対象なし。2026-08-21以前のDailyはサンプル／デモのため比較対象外。"
+        "note": "既存2026-08-22 DailyはCodex Cloudの接続制約により全項目をunconfirmedとした初回テスト版。本更新は承認済みの公開Web調査に基づく同日Production Updateであり、2026-08-21以前のsample:trueレポートは実績比較に使用していない。"
       },
       "path": "reports/2026/08/2026-08-22-daily.html",
       "sample": false
