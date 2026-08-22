@@ -1,0 +1,11 @@
+{
+  "schema_version": "1.0",
+  "updated_at": null,
+  "method": "Search/social signals are observations, not sales data. Do not infer demand from a single platform.",
+  "sources": [
+    {"id":"google-trends","name":"Google トレンド","availability":"available","note":"日本の検索インタレスト・急上昇を監視"},
+    {"id":"instagram","name":"Instagram","availability":"api_required","note":"公開投稿の安定した定量監視にはMeta側の認証済みAPI/ソーシャルリスニング基盤が必要"},
+    {"id":"x","name":"X","availability":"api_required","note":"リアルタイム/Recent Searchの継続取得にはX APIまたは認可済みリスニング基盤が必要"}
+  ],
+  "signals": []
+}
