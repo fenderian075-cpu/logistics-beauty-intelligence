@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>過去のレポート | Logistics &amp; Beauty Intelligence</title>
+<meta name="description" content="デイリー・ウィークリー・マンスリーの過去レポートを年・月・種別・ステータス・キーワードで検索します。">
+<meta name="color-scheme" content="light">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-root="">
+
+<a class="skip-link" href="#main">本文へスキップ</a>
+
+<header class="site-header">
+  <div class="site-header__bar">
+    <a class="brand" href="index.html">
+      <span class="brand__mark">LBI</span>
+      <span>
+        <span class="brand__name">Logistics &amp; Beauty Intelligence</span>
+        <span class="brand__sub" data-i18n="site.tagline">公開情報から作成する物流・ビューティー動向ブリーフ</span>
+      </span>
+    </a>
+    <nav class="site-nav" aria-label="サイト内ナビゲーション">
+      <a href="index.html" data-i18n="nav.home">ホーム</a>
+      <a href="archive.html" aria-current="page" data-i18n="nav.archive">過去のレポート</a>
+      <a href="index.html#about" data-i18n="nav.about">このサイトについて</a>
+    </nav>
+    <div class="lang-switch" role="group" aria-label="表示言語 / Language">
+      <button type="button" data-lang-btn="ja" aria-pressed="true" data-i18n="lang.ja">日本語</button>
+      <button type="button" data-lang-btn="en" aria-pressed="false" data-i18n="lang.en">English</button>
+    </div>
+  </div>
+</header>
+
+<div class="lang-notice" id="lang-notice" role="status" aria-live="polite" hidden></div>
+
+<main id="main">
+  <div class="wrap">
+
+    <nav class="breadcrumb" aria-label="パンくずリスト">
+      <ol>
+        <li><a href="index.html" data-i18n="nav.home">ホーム</a></li>
+        <li aria-current="page" data-i18n="archive.title">過去のレポート</li>
+      </ol>
+    </nav>
+
+    <div class="section__head" style="margin-top:14px">
+      <h1 class="section__title" data-i18n="archive.title">過去のレポート</h1>
+      <p class="section__note" id="result-count">—</p>
+    </div>
+
+    <div class="archive-controls no-print">
+      <div class="filter-grid">
+        <div class="field">
+          <label for="f-year" data-i18n="archive.year">年</label>
+          <select id="f-year"><option value="" data-i18n="archive.all">すべて</option></select>
+        </div>
+        <div class="field">
+          <label for="f-month" data-i18n="archive.month">月</label>
+          <select id="f-month"><option value="" data-i18n="archive.all">すべて</option></select>
+        </div>
+        <div class="field">
+          <label for="f-type" data-i18n="archive.type">種別</label>
+          <select id="f-type">
+            <option value="" data-i18n="archive.all">すべて</option>
+            <option value="daily" data-i18n="type.daily">デイリー</option>
+            <option value="weekly" data-i18n="type.weekly">ウィークリー</option>
+            <option value="monthly" data-i18n="type.monthly">マンスリー</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-status" data-i18n="archive.status">Overall Status</label>
+          <select id="f-status">
+            <option value="" data-i18n="archive.all">すべて</option>
+            <option value="normal" data-i18n="status.normal">Normal</option>
+            <option value="watch" data-i18n="status.watch">Watch</option>
+            <option value="disruption" data-i18n="status.disruption">Disruption</option>
+            <option value="unconfirmed" data-i18n="status.unconfirmed">Unconfirmed</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-q" data-i18n="archive.keyword">キーワード</label>
+          <input id="f-q" type="search" autocomplete="off"
+                 placeholder="タイトル・要約・タグを検索"
+                 data-i18n-attr="placeholder:archive.keywordHint">
+        </div>
+      </div>
+      <div class="archive-actions">
+        <button type="button" class="btn btn--quiet" id="f-reset" data-i18n="archive.reset">条件をクリア</button>
+      </div>
+    </div>
+
+    <p class="empty-state" id="archive-empty" hidden></p>
+    <ul class="archive-list" id="archive-list"></ul>
+
+    <noscript>
+      <p class="empty-state">絞り込みにはJavaScriptが必要です。無効の場合は <a href="data/reports.json">reports.json</a> から各レポートのパスを確認してください。</p>
+    </noscript>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="footer-note">
+      <span data-i18n="footer.policy">本サイトは公開情報のみを扱います。社内・機密情報は掲載しません。</span><br>
+      <span data-i18n="footer.source">正本は日本語です。英語は閲覧時の機械翻訳です。</span>
+    </p>
+    <nav aria-label="フッターナビゲーション">
+      <a href="index.html" data-i18n="nav.home">ホーム</a>
+      <a href="archive.html" data-i18n="nav.archive">過去のレポート</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="assets/js/translation.js"></script>
+<script src="assets/js/site.js"></script>
+<script src="assets/js/archive.js"></script>
+</body>
+</html>
