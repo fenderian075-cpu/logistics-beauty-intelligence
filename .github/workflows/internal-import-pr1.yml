@@ -1,0 +1,41 @@
+name: Internal import PR1
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  import:
+    if: github.event.issue.title == '[internal] import PR1 frontend foundation'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: transfer/frontend-foundation-v5
+          fetch-depth: 0
+      - name: Reconstruct reviewed PR1 payload
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat .transfer/pr1.part* > /tmp/pr1.b64
+          base64 -d /tmp/pr1.b64 > /tmp/pr1.tar.gz
+          tar -xzf /tmp/pr1.tar.gz -C .
+          rm -rf .transfer
+          rm -f .github/workflows/import-pr1.yml
+      - name: Commit and push reviewed foundation
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'LBI automation'
+          git config user.email 'noreply@github.com'
+          git add -A
+          git commit -m 'Frontend Foundation v5: ES modules and CSS consolidation'
+          git push origin HEAD:transfer/frontend-foundation-v5
+      - name: Close trigger issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh issue close ${{ github.event.issue.number }} --comment 'PR1 import completed.'
