@@ -32,6 +32,88 @@ import * as S from "../domain/signals.js";
 const THEME_KEY = "lbi:theme";
 const DENSITY_KEY = "lbi:density";
 
+
+/* ---- legacy published-report bridge --------------------------------------
+   Content automation may publish a report using a pre-v7 HTML shell while
+   frontend assets are already v7. Rather than letting that single report lose
+   the rail/ribbon, upgrade the surrounding shell at boot. The report body
+   itself is never rewritten. This is intentionally deterministic and runs
+   once — no observer, polling or post-render patch loop. */
+function ensureLayoutStylesheet() {
+  if (document.querySelector('link[href*="assets/css/layout.css"]')) return;
+  const href = `${root()}assets/css/layout.css`;
+  const linkEl = document.createElement("link");
+  linkEl.rel = "stylesheet";
+  linkEl.href = href;
+  document.head.appendChild(linkEl);
+}
+
+function railMarkup() {
+  const r = root();
+  return `
+    <a class="brand" href="${r}index.html"><span class="brand__mark">LBI</span><span class="brand__sub">Logistics &amp; Beauty Intelligence</span></a>
+    <div class="rail-group"><p class="rail-group__label">現況</p>
+      <a class="rail-link" data-nav="home" href="${r}index.html">ダッシュボード</a>
+      <a class="rail-link" data-nav="radar" href="${r}radar.html">オペレーションレーダー<span class="rail-link__count" id="rail-count-radar"></span></a>
+      <a class="rail-link" data-nav="topic" href="${r}topic.html">トピック<span class="rail-link__count" id="rail-count-topic"></span></a></div>
+    <div class="rail-group"><p class="rail-group__label">レポート</p>
+      <a class="rail-link" id="nav-latest-daily" data-nav="daily" href="${r}archive.html?type=daily">日次</a>
+      <a class="rail-link" id="nav-latest-weekly" data-nav="weekly" href="${r}archive.html?type=weekly">週次</a>
+      <a class="rail-link" id="nav-latest-monthly" data-nav="monthly" href="${r}archive.html?type=monthly">月次</a>
+      <a class="rail-link" data-nav="archive" href="${r}archive.html">過去のレポート</a></div>
+    <div class="rail-group"><p class="rail-group__label">ビューティー</p>
+      <a class="rail-link" data-nav="commerce" href="${r}commerce-calendar.html">EC予定</a>
+      <a class="rail-link" data-nav="buzz" href="${r}buzz.html">Buzz</a></div>
+    <div class="rail-group"><p class="rail-group__label">参照</p>
+      <a class="rail-link" data-nav="sources" href="${r}source-matrix.html">情報源</a>
+      <a class="rail-link" data-nav="status-history" href="${r}status-history.html">ステータス履歴</a>
+      <a class="rail-link" data-nav="lens-history" href="${r}lens-history.html">シグナル履歴</a></div>
+    <div class="shell-tools">
+      <button type="button" class="tool-btn" id="tool-theme" aria-pressed="false">自動</button>
+      <button type="button" class="tool-btn" id="tool-density" aria-pressed="false">標準</button>
+      <button type="button" class="tool-btn" id="tool-help" title="キーボードショートカット">?</button>
+    </div>`;
+}
+
+function upgradeLegacyReportShell() {
+  if (document.querySelector(".app-shell")) return;
+  if (!document.body.hasAttribute("data-report-date")) return;
+  const main = document.querySelector("main");
+  if (!main) return;
+
+  ensureLayoutStylesheet();
+  const oldHeader = document.querySelector(".site-header");
+  if (oldHeader) oldHeader.remove();
+
+  main.classList.add("app-main");
+  const reportWrap = main.querySelector(".wrap-read.report");
+  if (reportWrap) {
+    reportWrap.classList.remove("wrap-read");
+    reportWrap.classList.add("wrap");
+  }
+
+  const shell = document.createElement("div");
+  shell.className = "app-shell";
+  const rail = document.createElement("nav");
+  rail.className = "app-rail";
+  rail.setAttribute("aria-label", "メインナビゲーション");
+  rail.innerHTML = railMarkup();
+  const frame = document.createElement("div");
+  frame.className = "app-frame";
+  const ribbon = document.createElement("div");
+  ribbon.className = "app-ribbon";
+  ribbon.id = "app-ribbon";
+  ribbon.setAttribute("aria-label", "現在のステータス");
+  ribbon.setAttribute("role", "status");
+  main.parentNode.insertBefore(shell, main);
+  shell.appendChild(rail);
+  shell.appendChild(frame);
+  frame.appendChild(ribbon);
+  frame.appendChild(main);
+  const footer = document.querySelector("body > .site-footer");
+  if (footer) frame.appendChild(footer);
+}
+
 /* ---- preferences ---------------------------------------------------------- */
 
 function readPref(key) {
@@ -289,6 +371,7 @@ export function markRail() {
 
 /** Called once per page by app.js, before the page module renders. */
 export function initShell() {
+  upgradeLegacyReportShell();
   applyTheme(currentTheme());
   applyDensity(readPref(DENSITY_KEY));
   bindTools();

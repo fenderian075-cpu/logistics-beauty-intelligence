@@ -1,7 +1,7 @@
 /* =========================================================================
    market-regime.js — RATE / SUPPLY / DEMAND / RELIABILITY / RISK.
    -------------------------------------------------------------------------
-   The matrix answers 「市場はなぜ動いているか」 at a glance; the drill-down
+   The matrix summarizes 「運賃・需給・定時性・リスク」 at a glance; the drill-down
    underneath it answers 「なぜそう言えるのか」. Both matter: five arrows with
    no route to the evidence is a decoration, and a wall of evidence with no
    matrix is unreadable (spec §12, instruction G).
@@ -165,7 +165,7 @@ export function marketRegimeSection(report, intel) {
 
   const head = el("div", "section__head");
   const heading = el("div");
-  heading.appendChild(el("p", "eyebrow", "MARKET REGIME"));
+  heading.appendChild(el("p", "eyebrow", "物流市場"));
   heading.appendChild(el("h2", "section__title", "市場レジーム"));
   heading.id = "market-regime-title";
   head.appendChild(heading);

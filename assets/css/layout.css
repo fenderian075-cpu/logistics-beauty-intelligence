@@ -37,14 +37,14 @@
 }
 
 .brand {
-  display: flex; align-items: baseline; gap: var(--s2);
-  text-decoration: none; color: var(--ink);
+  display: flex; align-items: flex-start; gap: var(--s2); min-width: 0;
+  text-decoration: none; color: var(--ink); white-space: nowrap;
 }
 .brand__mark {
   font-family: var(--font-mono); font-size: 15px; font-weight: 700;
   letter-spacing: .06em; color: var(--accent);
 }
-.brand__sub { font-size: var(--t-micro); color: var(--ink-3); letter-spacing: .04em; }
+.brand__sub { min-width: 0; font-size: var(--t-micro); color: var(--ink-3); letter-spacing: .02em; line-height: 1.45; white-space: nowrap; }
 
 .rail-group { display: grid; gap: 1px; }
 .rail-group__label {

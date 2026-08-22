@@ -97,7 +97,7 @@
   --radius-pill: 999px;
   --hairline:    1px;
 
-  --rail-w:      196px;   /* desktop navigation rail */
+  --rail-w:      228px;   /* desktop navigation rail; keeps LBI wordmark on one line */
   --ribbon-h:    38px;    /* persistent status ribbon */
   --content-max: 1360px;
 

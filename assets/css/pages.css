@@ -46,7 +46,7 @@
 
 /* ---- report page -------------------------------------------------------------- */
 
-.report { max-width: 74ch; }
+.report { max-width: none; width: 100%; }
 .report-topics { margin-bottom: var(--s5); }
 
 @media (max-width: 1200px) {
