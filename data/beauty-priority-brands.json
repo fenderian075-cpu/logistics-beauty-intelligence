@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0",
+  "updated_at": "2026-08-22T21:15:00+09:00",
+  "priority_brands": [
+    {"id":"dior","name_ja":"Dior","name":"Dior Beauty","url":"https://www.dior.com/ja_jp/beauty","priority":"P0","categories":["makeup","skincare","fragrance"],"monitor":["launch","limited","GWP","PWP","gift","EC-exclusive"]},
+    {"id":"guerlain","name_ja":"ゲラン","name":"Guerlain","url":"https://www.guerlain.com/jp/ja-jp","priority":"P0","categories":["makeup","skincare","fragrance"],"monitor":["launch","limited","GWP","PWP","gift","EC-exclusive"]},
+    {"id":"givenchy-beauty","name_ja":"ジバンシイ","name":"Givenchy Beauty","url":"https://www.givenchybeauty.com/jp","priority":"P0","categories":["makeup","skincare","fragrance"],"monitor":["launch","limited","GWP","PWP","charm","pouch","key","gift","EC-exclusive"]},
+    {"id":"make-up-for-ever","name_ja":"MAKE UP FOR EVER","name":"MAKE UP FOR EVER","url":"https://www.makeupforever.com/jp/jp","priority":"P0","categories":["makeup"],"monitor":["launch","limited","set","gift","EC-exclusive"]},
+    {"id":"buly","name_ja":"Buly","name":"Officine Universelle Buly","url":"https://buly1803.com/ja-jp","priority":"P0","categories":["skincare","fragrance"],"monitor":["launch","limited","gift","set","EC-exclusive"]},
+    {"id":"diptyque","name_ja":"Diptyque","name":"Diptyque","url":"https://www.diptyqueparis.com/ja_jp","priority":"P0","categories":["fragrance","skincare"],"monitor":["launch","limited","gift","set","EC-exclusive"]},
+    {"id":"chanel","name_ja":"CHANEL","name":"CHANEL Beauty","url":"https://www.chanel.com/jp/fragrance-beauty/","priority":"P1","categories":["makeup","skincare","fragrance"]},
+    {"id":"ysl-beauty","name_ja":"YSL Beauty","name":"YSL Beauty","url":"https://www.yslb.jp/","priority":"P1","categories":["makeup","skincare","fragrance"]},
+    {"id":"lancome","name_ja":"Lancôme","name":"Lancôme","url":"https://www.lancome.jp/","priority":"P1","categories":["makeup","skincare","fragrance"]},
+    {"id":"sk-ii","name_ja":"SK-II","name":"SK-II","url":"https://www.sk-ii.jp/","priority":"P1","categories":["skincare"]},
+    {"id":"shiseido","name_ja":"資生堂","name":"Shiseido","url":"https://brand.shiseido.co.jp/","priority":"P1","categories":["makeup","skincare","fragrance"]},
+    {"id":"cle-de-peau","name_ja":"クレ・ド・ポー ボーテ","name":"Clé de Peau Beauté","url":"https://www.cledepeau-beaute.com/jp/","priority":"P1","categories":["makeup","skincare","fragrance"]},
+    {"id":"jo-malone","name_ja":"Jo Malone London","name":"Jo Malone London","url":"https://www.jomalone.jp/","priority":"P1","categories":["fragrance"]},
+    {"id":"la-mer","name_ja":"La Mer","name":"La Mer","url":"https://www.cremedelamer.jp/","priority":"P1","categories":["skincare"]},
+    {"id":"byredo","name_ja":"Byredo","name":"Byredo","url":"https://www.byredo.com/ja_jp/","priority":"P1","categories":["makeup","fragrance"]}
+  ],
+  "commercial_mechanics": ["GWP","PWP","charm","pouch","key","keychain","gift","limited-kit","set","coupon","points","EC-exclusive","preorder","early-access"],
+  "demand_drivers": ["organic","promotion","launch","buzz"]
+}

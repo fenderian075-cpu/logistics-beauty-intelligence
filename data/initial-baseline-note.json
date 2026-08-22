@@ -1,0 +1,10 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-08-22T21:15:00+09:00",
+  "purpose": "Real-data v4 baseline prepared before the frontend redesign so the UI can be evaluated against realistic production density rather than empty schemas or fake fixtures.",
+  "notes": [
+    "This file is informational only and is not intended as a frontend dependency.",
+    "Production data lives in reports.json, critical-news.json, topic-intelligence.json, commerce-calendar.json and related datasets.",
+    "All populated baseline items are based on publicly verified sources available at generation time; unavailable facts are not invented."
+  ]
+}

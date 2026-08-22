@@ -1,5 +1,192 @@
 {
   "schema_version": "1.0",
-  "updated_at": null,
-  "topics": []
+  "updated_at": "2026-08-22T21:15:00+09:00",
+  "topics": [
+    {
+      "topic_id": "middle-east-maritime-risk",
+      "title_ja": "中東海域の航行リスク",
+      "current_state": "watch",
+      "confidence": "high",
+      "summary": "ホルムズ海峡の通航は通常水準を大きく下回り、Red Sea/Suezでは一部サービスが段階的に戻る一方、中東港湾混雑とservice adjustmentが続く。全面正常化ではなく、routeごとの分断された回復局面。",
+      "japan_implication": "日本向け全体の一律停止ではないが、燃料・保険・船腹配分・中東接続・T/Sの不確実性が残る。",
+      "operational_implication": "Middle East/Europe関連貨物はcarrier/service単位でrouting・port call・surcharge・transit timeを確認する。",
+      "outlook_7d": "高い変動性が継続。個別通航許可や部分的Suez復帰を全面正常化と解釈しない。",
+      "outlook_30d": "安全保障条件次第でTrans-Suez復帰と再迂回が混在する可能性。",
+      "outlook_90d": null,
+      "developments": [
+        {
+          "date": "2026-08-22",
+          "type": "reported_event",
+          "headline": "イランが一部イラク石油タンカーのHormuz通航を許可",
+          "summary": "個別の通航緩和は確認されたが、海峡全体の正常化を示すものではない。",
+          "evidence": [{"class":"professional_media","source":"Reuters","url":"https://www.reuters.com/business/energy/iran-grants-permission-number-iraqi-oil-tankers-pass-through-hormuz-2026-08-22/"}]
+        },
+        {
+          "date": "2026-08-18",
+          "type": "observed_impact",
+          "headline": "Hormuz commodity vessel crossings remain in single digits",
+          "summary": "Kplerベースの報道では通航隻数は低水準で、VLCC/LNGの動きも限定的。",
+          "evidence": [{"class":"professional_media","source":"Reuters","url":"https://www.reuters.com/world/middle-east/hormuz-crossings-rise-slightly-weekend-remain-single-digits-data-shows-2026-08-18/"}]
+        },
+        {
+          "date": "2026-08-17",
+          "type": "observed_impact",
+          "headline": "Jeddah / Salalah congestion and SE4 service adjustment",
+          "summary": "Hapag-LloydはJeddah 71%、Salalah 79% yard density、Salalahで最大36時間のberthing delay、一部Jeddah omissionを公表。",
+          "evidence": [{"class":"primary_operational","source":"Hapag-Lloyd","url":"https://www.hapag-lloyd.com/en/services-information/operational-updates/updates/2026/08/ops-update-middle-east-week34.html"}]
+        },
+        {
+          "date": "2026-08-10",
+          "type": "reported_event",
+          "headline": "Gemini AE19 shifts structurally to Trans-Suez",
+          "summary": "Maersk/Hapag-LloydはAE19をCape経由からTrans-Suezへ変更。段階的復帰の一部。",
+          "evidence": [{"class":"primary_operational","source":"Maersk","url":"https://www.maersk.com/news/articles/2026/08/10/maersk-ae19-trans-suez-service-structural-change"}]
+        }
+      ],
+      "data_points": [
+        {"date":"2026-08-18","metric":"Hormuz commodity vessel crossings","value":6,"unit":"vessels/day","source":"Reuters / Kpler"},
+        {"date":"2026-08-17","metric":"Jeddah yard density","value":71,"unit":"%","source":"Hapag-Lloyd"},
+        {"date":"2026-08-17","metric":"Salalah yard density","value":79,"unit":"%","source":"Hapag-Lloyd"},
+        {"date":"2026-08-17","metric":"Salalah berthing delay","value":36,"unit":"hours max","source":"Hapag-Lloyd"}
+      ],
+      "related_report_ids": ["2026-08-22-daily","2026-08-22-weekly","2026-08-22-monthly"]
+    },
+    {
+      "topic_id": "ocean-global-price",
+      "title_ja": "海上運賃（グローバル）",
+      "current_state": "watch",
+      "confidence": "high",
+      "summary": "Drewry WCIは8月20日に4%上昇しUSD 4,526/40ft。3週連続上昇だが、上昇はTranspacific主導で、Asia-Europe/Medは軟調。",
+      "japan_implication": "日本発着契約への影響はlane・契約条件別。Global index上昇だけで一律cost escalationとはしない。",
+      "operational_implication": "spot/renewal条件はWCIだけでなく対象laneとcapacity/reliabilityを分けて確認する。",
+      "outlook_7d": "Transpacific主導の上昇が他laneへ波及するかを確認。",
+      "outlook_30d": "capacity adjustmentと需要差によりlane別分化が続く可能性。",
+      "outlook_90d": null,
+      "developments": [
+        {
+          "date": "2026-08-20",
+          "type": "market_data",
+          "headline": "WCI rises 4% to USD 4,526/40ft",
+          "summary": "3週連続上昇。Transpacificが主因。",
+          "evidence": [{"class":"market_data","source":"Drewry","url":"https://www.drewry.co.uk/maritime-research-opinion-browser/world-container-index-assessed-by-drewry"}]
+        }
+      ],
+      "data_points": [
+        {"date":"2026-08-20","metric":"WCI","value":4526,"unit":"USD/40ft","change":"+4% WoW","source":"Drewry"}
+      ],
+      "related_report_ids": ["2026-08-22-weekly","2026-08-22-monthly"]
+    },
+    {
+      "topic_id": "ocean-blank-sailing-pressure",
+      "title_ja": "Blank Sailing 圧力",
+      "current_state": "watch",
+      "confidence": "high",
+      "summary": "Drewryはweek35〜39の主要East-Westで49 blank sailings、6% cancellation rateを予測。94%は運航予定で、全面的なcapacity withdrawalではなく選択的調整。",
+      "japan_implication": "日本接続の欠便・port omissionリスクはglobal cancel rateより個別service確認が重要。",
+      "operational_implication": "booking時に該当service/voyageの欠便・T/S接続を確認する。",
+      "outlook_7d": "week35開始に伴う実際のcancellation/omissionを確認。",
+      "outlook_30d": "需要差に応じたselective blank sailingが継続する可能性。",
+      "outlook_90d": null,
+      "developments": [
+        {
+          "date": "2026-08-21",
+          "type": "market_data",
+          "headline": "49 blank sailings expected across major East-West trades",
+          "summary": "week35〜39、cancellation rate 6%、94% scheduled sailings expected to operate。",
+          "evidence": [{"class":"market_data","source":"Drewry Cancelled Sailings Tracker","url":"https://www.drewry.co.uk/supply-chain-advisors/supply-chain-expertise/cancelled-sailings-tracker"}]
+        }
+      ],
+      "data_points": [
+        {"date":"2026-08-21","metric":"Blank sailings","value":49,"unit":"sailings","period":"week35-week39","source":"Drewry"},
+        {"date":"2026-08-21","metric":"Cancellation rate","value":6,"unit":"%","source":"Drewry"}
+      ],
+      "related_report_ids": ["2026-08-22-weekly","2026-08-22-monthly"]
+    },
+    {
+      "topic_id": "ocean-schedule-reliability",
+      "title_ja": "海上スケジュール定時性",
+      "current_state": "watch",
+      "confidence": "high",
+      "summary": "Sea-Intelligenceの最新公開値では2026年6月のglobal schedule reliabilityは62.6%、前月比-1.9pp。late vessel average delayは5.31日で前月比0.34日改善。",
+      "japan_implication": "RateとReliabilityは別の計画変数。ETA confidenceはcarrier/lane単位の確認が必要。",
+      "operational_implication": "launchや在庫補充では平均transit timeだけでなくarrival varianceを織り込む。",
+      "outlook_7d": null,
+      "outlook_30d": "次回公表でJuneの悪化が一時的か確認。",
+      "outlook_90d": null,
+      "developments": [
+        {
+          "date": "2026-07-27",
+          "type": "market_data",
+          "headline": "Global schedule reliability falls to 62.6%",
+          "summary": "前月比-1.9pp、前年比-4.7pp。一方late vessel平均遅延は5.31日に改善。",
+          "evidence": [{"class":"market_data","source":"Sea-Intelligence","url":"https://sea-intelligence.com/press-room/400-global-schedule-reliability-drops-to-62-6-in-june-2026"}]
+        }
+      ],
+      "data_points": [
+        {"date":"2026-06","metric":"Global schedule reliability","value":62.6,"unit":"%","change":"-1.9pp MoM","source":"Sea-Intelligence"},
+        {"date":"2026-06","metric":"Average delay for late vessel arrivals","value":5.31,"unit":"days","change":"-0.34 day MoM","source":"Sea-Intelligence"}
+      ],
+      "related_report_ids": ["2026-08-22-weekly","2026-08-22-monthly"]
+    },
+    {
+      "topic_id": "beauty-japan-ec-promotion",
+      "title_ja": "日本Beauty EC・プロモーション需要",
+      "current_state": "watch",
+      "confidence": "high",
+      "summary": "Qoo10メガ割が8月28日17時から9月9日23:59まで予定。楽天LUXURY BEAUTYでは8月3日〜9月1日のポイント施策が継続し、次回9月1日10時開始も公式掲載。短期EC波動はorganic需要と分けて見る必要がある。",
+      "japan_implication": "8月末〜9月上旬はBeauty ECのpromotion-driven volume増加が重なりやすい。",
+      "operational_implication": "order volume、gift material、梱包資材、CS/cancel波動をpromotion起因として別管理する。",
+      "outlook_7d": "Qoo10開始前後のorder/search movementを監視。",
+      "outlook_30d": "9月上旬は複数EC施策の重なりによる短期波動を想定。",
+      "outlook_90d": null,
+      "developments": [
+        {
+          "date": "2026-08-22",
+          "type": "commerce_event",
+          "headline": "Qoo10 Q3メガ割 8/28 17:00開始予定",
+          "summary": "イベント期間は8/28 17:00〜9/9 23:59。",
+          "evidence": [{"class":"commerce_platform","source":"Qoo10","url":"https://www.qoo10.jp/gmkt.inc/Mobile/Special/Special.aspx?sid=220713"}]
+        },
+        {
+          "date": "2026-08-22",
+          "type": "commerce_event",
+          "headline": "楽天LUXURY BEAUTYポイント施策は9/1 09:59まで、次回9/1 10:00開始予定",
+          "summary": "対象ショップで1注文10,000円以上に300ポイント、最大3ショップ。",
+          "evidence": [{"class":"commerce_platform","source":"楽天市場 LUXURY BEAUTY","url":"https://event.rakuten.co.jp/beauty/brand/luxe/luxurybeauty/campaign/"}]
+        }
+      ],
+      "data_points": [],
+      "related_report_ids": ["2026-08-22-weekly","2026-08-22-monthly"]
+    },
+    {
+      "topic_id": "beauty-luxury-fragrance",
+      "title_ja": "ラグジュアリーBeauty需要",
+      "current_state": "watch",
+      "confidence": "medium",
+      "summary": "直近企業開示ではLuxury Fragranceが強く、Skincareも回復を示す一方、Makeupは相対的に緩やか。単一カテゴリではなくPrestige Beauty内のカテゴリ差として追跡する。",
+      "japan_implication": "日本の需要を直接示すものではないが、global allocation・launch priority・category mixの先行材料になる。",
+      "operational_implication": "Fragrance偏重で予測せず、Skincare/Makeupを含むカテゴリ別allocationとJapan sell-outを照合する。",
+      "outlook_7d": null,
+      "outlook_30d": "企業IR、Brand.com launch、EC rankingの複数チャネル一致を確認。",
+      "outlook_90d": null,
+      "developments": [
+        {
+          "date": "2026-08-19",
+          "type": "corporate_update",
+          "headline": "Estée Lauder Q4でFragranceが成長を牽引",
+          "summary": "ReutersはLuxury Fragranceの強い需要と中国市場改善を報道。Skincareも好調。",
+          "evidence": [{"class":"corporate_ir","source":"Estée Lauder / Reuters","url":"https://www.reuters.com/business/retail-consumer/estee-lauder-forecasts-annual-profit-above-estimates-strong-china-demand-2026-08-19/"}]
+        },
+        {
+          "date": "2026-04-20",
+          "type": "corporate_update",
+          "headline": "L'Oréal North Asiaは中国Selective回復を報告",
+          "summary": "中国はmid-to-high single digit growth、Luxeはskincareを含む全カテゴリでstrong momentumと説明。",
+          "evidence": [{"class":"corporate_ir","source":"L'Oréal","url":"https://www.loreal.com/-/media/project/loreal/brand-sites/corp/master/lcorp/press-releases/finance/2026/first-quarter-2026-sales/first-quarter-2026-sales.pdf"}]
+        }
+      ],
+      "data_points": [],
+      "related_report_ids": ["2026-08-22-weekly","2026-08-22-monthly"]
+    }
+  ]
 }
