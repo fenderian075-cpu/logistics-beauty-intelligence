@@ -2,28 +2,35 @@
 <html lang="ja">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Logistics &amp; Beauty Intelligence Portal</title>
-<meta name="description" content="公開情報から作成する物流・ビューティー動向のインテリジェンス・ブリーフ。">
+<title>Logistics &amp; Beauty Intelligence</title>
+<meta name="description" content="物流・通関・国際輸送・Beauty Commerceの意思決定ダッシュボード。">
 <meta name="color-scheme" content="light"><link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body data-root="">
 <a class="skip-link" href="#main">本文へスキップ</a>
-<header class="site-header"><div class="site-header__bar">
-<a class="brand" href="index.html"><span class="brand__mark">LBI</span><span><span class="brand__name">Logistics &amp; Beauty Intelligence</span><span class="brand__sub" data-i18n="site.tagline">公開情報から作成する物流・ビューティー動向ブリーフ</span></span></a>
-<nav class="site-nav" aria-label="サイト内ナビゲーション"><a href="index.html" aria-current="page" data-i18n="nav.home">ホーム</a><a href="archive.html" data-i18n="nav.archive">過去のレポート</a><a href="#about" data-i18n="nav.about">このサイトについて</a></nav>
-<div class="lang-switch" role="group" aria-label="表示言語" data-i18n-attr="aria-label:a11y.language"><button type="button" data-lang-btn="ja" aria-pressed="true" data-i18n="lang.ja">日本語</button><button type="button" data-lang-btn="en" aria-pressed="false" data-i18n="lang.en">English</button></div>
+<header class="site-header site-header--minimal"><div class="site-header__bar">
+<a class="brand brand--minimal" href="index.html"><span class="brand__mark">LBI</span><span class="brand__name">Logistics &amp; Beauty Intelligence</span></a>
+<nav class="site-nav site-nav--reports" aria-label="最新レポート"><a id="nav-latest-daily" href="archive.html?type=daily">日次</a><a id="nav-latest-weekly" href="archive.html?type=weekly">週次</a><a id="nav-latest-monthly" href="archive.html?type=monthly">月次</a></nav>
 </div></header>
-<div class="lang-notice" id="lang-notice" role="status" aria-live="polite" hidden></div>
 <main id="main"><div class="wrap" id="dashboard">
 <p class="empty-state" id="dashboard-error" hidden></p>
-<section class="section decision" aria-labelledby="decision-title"><div class="section__head"><h2 class="section__title" id="decision-title" data-i18n="home.decisionTitle">本日の判断</h2><p class="section__note"><span data-i18n="home.lastUpdated">最終更新</span>: <span id="data-stamp">—</span></p></div><div class="decision-grid"><div class="overall" id="overall" data-status="unconfirmed" aria-live="polite"></div><div class="action-box" id="action-box" data-action="unknown" aria-live="polite"></div></div><div class="callout callout--bottom-line" id="conclusion" data-translate="" hidden></div><h3 class="subhead" data-i18n="home.statusTitle">日本物流ステータス</h3><div class="status-board" id="status-board"></div><div class="status-legend"><span data-status="normal"><span class="dot"></span><span data-i18n="status.normal">平常</span></span><span data-status="watch"><span class="dot"></span><span data-i18n="status.watch">監視</span></span><span data-status="disruption"><span class="dot"></span><span data-i18n="status.disruption">障害</span></span><span data-status="unconfirmed"><span class="dot dot--ring"></span><span data-i18n="status.unconfirmed">未確認</span></span></div></section>
-<section class="section" aria-labelledby="changed-title"><div class="section__head"><h2 class="section__title" id="changed-title" data-i18n="home.whatChanged">前回からの変化</h2><p class="section__note" id="changed-base"></p></div><div id="changed-counts" class="change-counts"></div><div id="changed-list"></div></section>
-<section class="section" aria-labelledby="lenses-title"><div class="section__head"><h2 class="section__title" id="lenses-title" data-i18n="home.lensesTitle">5つの視点</h2><p class="section__note" data-i18n="home.lensesNote">最新レポートの構造化シグナルを集計した表示です。元データは変更しません。</p></div><p class="empty-state" id="lenses-note" hidden></p><div class="lens-grid" id="lens-grid"></div></section>
-<section class="section" aria-labelledby="key-title"><div class="section__head"><h2 class="section__title" id="key-title" data-i18n="home.keySignalsTitle">主要シグナル</h2><p class="section__note" data-i18n="home.keySignalsNote">判断への効きが大きい順。開くと推移が見られます。</p></div><div id="key-signals"></div></section>
-<section class="section" aria-labelledby="latest-title"><div class="section__head"><h2 class="section__title" id="latest-title" data-i18n="home.latestTitle">最新レポート</h2><p class="section__note"><a href="archive.html" data-i18n="home.showAll">すべて表示</a></p></div><div class="latest-grid" id="latest-grid"><p class="empty-state" data-i18n="home.loading">読み込み中…</p></div></section>
+
+<section class="section decision" aria-labelledby="decision-title"><div class="section__head"><h1 class="section__title" id="decision-title">本日の判断</h1><p class="section__note">最終更新: <span id="data-stamp">—</span></p></div><div class="decision-grid"><div class="overall" id="overall" data-status="unconfirmed" aria-live="polite"></div><div class="action-box" id="action-box" data-action="unknown" aria-live="polite"></div></div><div class="callout callout--bottom-line" id="conclusion" hidden></div><h2 class="subhead">日本物流ステータス</h2><div class="status-board" id="status-board"></div><div class="status-legend"><span data-status="normal"><span class="dot"></span>平常</span><span data-status="watch"><span class="dot"></span>監視</span><span data-status="disruption"><span class="dot"></span>障害</span><span data-status="unconfirmed"><span class="dot dot--ring"></span>未確認</span></div></section>
+
+<section class="section section--latest-first" aria-labelledby="latest-title"><div class="section__head"><h2 class="section__title" id="latest-title">最新レポート</h2><p class="section__note"><a href="archive.html">過去のレポート</a></p></div><div class="latest-grid" id="latest-grid"><p class="empty-state">読み込み中…</p></div></section>
+
+<section class="section" aria-labelledby="changed-title"><div class="section__head"><h2 class="section__title" id="changed-title">前回からの変化</h2><p class="section__note" id="changed-base"></p></div><div id="changed-counts" class="change-counts"></div><div id="changed-list"></div></section>
+
+<section class="section" aria-labelledby="lenses-title"><div class="section__head"><h2 class="section__title" id="lenses-title">5つの視点</h2><p class="section__note">各カードから、その視点のシグナルと記事を時系列で確認できます。</p></div><p class="empty-state" id="lenses-note" hidden></p><div class="lens-grid" id="lens-grid"></div></section>
+
+<section class="section" aria-labelledby="key-title"><div class="section__head"><h2 class="section__title" id="key-title">主要シグナル</h2><p class="section__note">判断への効きが大きい項目だけを表示。詳細を開くと根拠と推移を確認できます。</p></div><div id="key-signals"></div></section>
+
 <noscript><p class="empty-state">このダッシュボードはJavaScriptで data/reports.json を読み込みます。</p></noscript>
-<section class="section" id="about" aria-labelledby="about-title"><div class="section__head"><h2 class="section__title" id="about-title" data-i18n="home.aboutTitle">このサイトについて</h2></div><div class="panel"><div class="panel__body" data-translate=""><p>本ポータルは、公開情報のみを対象に作成した物流・ビューティー領域のインテリジェンス・ブリーフを蓄積し、日々の例外、市況・需要変化、構造変化を分けて見るための静的サイトです。</p><p>掲載するのは、報道・公的機関・キャリア公式発表・公開インデックス・公開EC/ブランド情報など、誰でも参照できる情報から作成した内容に限ります。</p><p>レポートの正本は日本語です。英語表示は閲覧時の機械翻訳です。</p></div></div></section>
+
+<section class="section portal-links" aria-labelledby="portal-links-title"><div class="section__head"><h2 class="section__title" id="portal-links-title">サイト案内</h2></div><div class="portal-link-grid"><a class="portal-link" href="commerce-calendar.html"><strong>Beauty Commerce</strong><span>Makeup / Skincare / Fragrance のセール、キャンペーン、Launch、Brand × Channel</span></a><a class="portal-link" href="source-matrix.html"><strong>情報源</strong><span>物流・Beautyで定常監視している公式サイトと専門情報源</span></a><a class="portal-link" href="archive.html"><strong>過去のレポート</strong><span>日次・週次・月次と構造化Signalを検索</span></a><a class="portal-link" href="#about"><strong>このサイトについて</strong><span>レポートの目的と公開情報ポリシー</span></a></div></section>
+
+<section class="section" id="about" aria-labelledby="about-title"><details class="about-details"><summary id="about-title">このサイトについて</summary><div class="panel__body"><p>物流・通関・国際輸送とBeauty Commerceを、日々の例外、市況・需要変化、構造変化に分けて継続観測するインテリジェンス・ポータルです。</p><p>Beautyはフレグランスだけでなく、<strong>Makeup / Skincare / Fragrance</strong> を主要カテゴリーとして、Amazon、楽天、ZOZOCOSME、Qoo10、@cosme、Brand.com、企業IRを横断して確認します。</p><p>掲載内容は公的機関、物流会社、企業公式発表、市場指数、公開EC・ブランド情報など公開情報に限定します。</p></div></details></section>
 </div></main>
-<footer class="site-footer"><div class="wrap"><p class="footer-note"><span data-i18n="footer.policy">本サイトは公開情報のみを扱います。社内・機密情報は掲載しません。</span><br><span data-i18n="footer.source">正本は日本語です。英語は閲覧時の機械翻訳です。</span></p><nav><a href="index.html">ホーム</a><a href="archive.html">過去のレポート</a><a href="commerce-calendar.html">Beauty Commerce</a><a href="source-matrix.html">情報源</a></nav></div></footer>
+<footer class="site-footer"><div class="wrap"><nav><a href="archive.html">過去のレポート</a><a href="commerce-calendar.html">Beauty Commerce</a><a href="source-matrix.html">情報源</a><a href="#about">このサイトについて</a></nav></div></footer>
 <script src="assets/js/translation.js"></script><script src="assets/js/signals.js"></script><script src="assets/js/site.js"></script><script src="assets/js/portal-v22.js"></script>
 </body></html>
