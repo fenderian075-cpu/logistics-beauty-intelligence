@@ -1,19 +1,29 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-08-23T02:00:00+09:00",
+  "updated_at": "2026-08-23T07:12:00+09:00",
   "topics": [
     {
       "topic_id": "japan-domestic-delivery",
       "title_ja": "国内配送オペレーション",
       "current_state": "watch",
       "confidence": "high",
-      "summary": "名神高速道路の集中工事に加え、8月22日に発生した台風20号の影響で先島諸島の大雨リスクが上昇。八重山では23日明け方から夕方にかけて線状降水帯発生の可能性が示され、宮古島では道路冠水などの局地影響が確認されている。",
-      "japan_implication": "東西幹線では名神工事、宮古・八重山では台風20号と大雨による局地的な集配・航空・船舶接続リスクを分けて管理する必要がある。全国一律の配送障害は確認していない。",
-      "operational_implication": "9月12日まで関東⇔関西の着日指定に余裕を持たせる。加えて23日の宮古・八重山向けはcarrierの地域別遅延情報と航空・船舶の運航状況を個別確認する。",
-      "outlook_7d": "名神集中工事の実遅延発生と、台風20号通過後の先島諸島の道路・集配・航空/船舶運航への実影響を確認する。",
-      "outlook_30d": "名神工事は9月12日6時まで予定。先島諸島の台風影響は短期事象とみられるが、復旧・滞留貨物の解消状況を確認する。",
+      "summary": "名神高速道路の集中工事と台風20号による先島の足元影響に加え、強い台風18号が25日ごろ大東島、26日ごろから沖縄本島・先島へ接近し暴風となる可能性がある。現在影響と今後のimminent disruptionを分けて管理する局面。",
+      "japan_implication": "東西幹線では名神工事、宮古・八重山では台風20号の局地影響、25〜27日は台風18号による大東・沖縄本島・先島の航空/船舶・集配リスクを別々に管理する必要がある。全国一律の配送障害は確認していない。",
+      "operational_implication": "9月12日まで関東⇔関西の着日指定に余裕を持たせる。沖縄向けは23日の台風20号対応に加え、25〜27日着の緊急出荷・EC着日指定・店舗補充について23〜24日のうちにcarrier/air/ferry運航計画を確認し、可能な前倒しを検討する。",
+      "outlook_7d": "台風20号通過後の先島の実影響と、台風18号の進路・勢力・大東/沖縄本島/先島での実際の欠航・集配停止・道路規制を確認する。名神工事の実遅延発生も継続監視。",
+      "outlook_30d": "名神工事は9月12日6時まで予定。台風18号は短期事象だが、沖縄の島嶼物流では欠航後の滞留貨物・復旧遅延が数日残る可能性を確認する。",
       "outlook_90d": null,
       "developments": [
+        {
+          "date": "2026-08-23",
+          "type": "reported_event",
+          "headline": "強い台風18号が25日大東、26日以降沖縄本島・先島へ接近見込み",
+          "summary": "23日3時時点で台風18号は小笠原近海を北西進。25日ごろ大東島地方、26日ごろから沖縄本島地方・先島諸島に接近し、暴風となる可能性がある。現時点で台風18号による広域的な宅配・航空・船舶の運休/遅延は未観測。",
+          "evidence": [
+            {"class":"primary_operational","source":"気象庁 台風情報（実況・予報）","url":"https://www.jma.go.jp/bosai/map.html#5/34.5/137/&elem=root&typhoon=all&contents=typhoon"},
+            {"class":"professional_media","source":"琉球新報","url":"https://ryukyushimpo.jp/national/entry-5477103.html"}
+          ]
+        },
         {
           "date": "2026-08-23",
           "type": "observed_impact",
@@ -29,21 +39,18 @@
           "type": "reported_event",
           "headline": "名神集中工事が8月22日0時に開始",
           "summary": "吹田IC～一宮JCTなどで昼夜連続車線規制、夜間通行止め、IC/JCT等の閉鎖を実施。NEXCOは早朝から深夜の渋滞を予測している。",
-          "evidence": [
-            {"class":"primary_operational","source":"NEXCO中日本 / NEXCO西日本","url":"https://www.c-nexco.co.jp/corporate/pressroom/news_release/6617.html"}
-          ]
+          "evidence": [{"class":"primary_operational","source":"NEXCO中日本 / NEXCO西日本","url":"https://www.c-nexco.co.jp/corporate/pressroom/news_release/6617.html"}]
         },
         {
           "date": "2026-08-17",
           "type": "reported_event",
           "headline": "ヤマト運輸が全国的な配送遅延の可能性を案内",
           "summary": "東京・関東から関西を発着する荷物を中心に、全国的にお届け遅延が発生する可能性があるとして余裕を持った出荷を案内。",
-          "evidence": [
-            {"class":"primary_operational","source":"ヤマト運輸","url":"https://www.yamato-hd.co.jp/important/info_260817_1.html"}
-          ]
+          "evidence": [{"class":"primary_operational","source":"ヤマト運輸","url":"https://www.yamato-hd.co.jp/important/info_260817_1.html"}]
         }
       ],
       "data_points": [
+        {"date":"2026-08-23","metric":"Typhoon 18 intensity at 03:00 JST","value":950,"unit":"hPa","source":"気象庁 / 琉球新報"},
         {"date":"2026-08-22","metric":"名神集中工事期間","value":21,"unit":"days approx.","period":"2026-08-22 00:00 to 2026-09-12 06:00","source":"NEXCO中日本 / NEXCO西日本"}
       ],
       "related_report_ids": ["2026-08-22-daily"]
@@ -84,9 +91,7 @@
       "outlook_7d": "Transpacific主導の上昇が他laneへ波及するかを確認。",
       "outlook_30d": "capacity adjustmentと需要差によりlane別分化が続く可能性。",
       "outlook_90d": null,
-      "developments": [
-        {"date":"2026-08-20","type":"market_data","headline":"WCI rises 4% to USD 4,526/40ft","summary":"3週連続上昇。Transpacificが主因。","evidence":[{"class":"market_data","source":"Drewry","url":"https://www.drewry.co.uk/maritime-research-opinion-browser/world-container-index-assessed-by-drewry"}]}
-      ],
+      "developments": [{"date":"2026-08-20","type":"market_data","headline":"WCI rises 4% to USD 4,526/40ft","summary":"3週連続上昇。Transpacificが主因。","evidence":[{"class":"market_data","source":"Drewry","url":"https://www.drewry.co.uk/maritime-research-opinion-browser/world-container-index-assessed-by-drewry"}]}],
       "data_points": [{"date":"2026-08-20","metric":"WCI","value":4526,"unit":"USD/40ft","change":"+4% WoW","source":"Drewry"}],
       "related_report_ids": ["2026-08-22-weekly","2026-08-22-monthly"]
     },
@@ -101,9 +106,7 @@
       "outlook_7d": "week35開始に伴う実際のcancellation/omissionを確認。",
       "outlook_30d": "需要差に応じたselective blank sailingが継続する可能性。",
       "outlook_90d": null,
-      "developments": [
-        {"date":"2026-08-21","type":"market_data","headline":"49 blank sailings expected across major East-West trades","summary":"week35〜39、cancellation rate 6%、94% scheduled sailings expected to operate。","evidence":[{"class":"market_data","source":"Drewry Cancelled Sailings Tracker","url":"https://www.drewry.co.uk/supply-chain-advisors/supply-chain-expertise/cancelled-sailings-tracker"}]}
-      ],
+      "developments": [{"date":"2026-08-21","type":"market_data","headline":"49 blank sailings expected across major East-West trades","summary":"week35〜39、cancellation rate 6%、94% scheduled sailings expected to operate。","evidence":[{"class":"market_data","source":"Drewry Cancelled Sailings Tracker","url":"https://www.drewry.co.uk/supply-chain-advisors/supply-chain-expertise/cancelled-sailings-tracker"}]}],
       "data_points": [
         {"date":"2026-08-21","metric":"Blank sailings","value":49,"unit":"sailings","period":"week35-week39","source":"Drewry"},
         {"date":"2026-08-21","metric":"Cancellation rate","value":6,"unit":"%","source":"Drewry"}
@@ -121,9 +124,7 @@
       "outlook_7d": null,
       "outlook_30d": "次回公表でJuneの悪化が一時的か確認。",
       "outlook_90d": null,
-      "developments": [
-        {"date":"2026-07-27","type":"market_data","headline":"Global schedule reliability falls to 62.6%","summary":"前月比-1.9pp、前年比-4.7pp。一方late vessel平均遅延は5.31日に改善。","evidence":[{"class":"market_data","source":"Sea-Intelligence","url":"https://sea-intelligence.com/press-room/400-global-schedule-reliability-drops-to-62-6-in-june-2026"}]}
-      ],
+      "developments": [{"date":"2026-07-27","type":"market_data","headline":"Global schedule reliability falls to 62.6%","summary":"前月比-1.9pp、前年比-4.7pp。一方late vessel平均遅延は5.31日に改善。","evidence":[{"class":"market_data","source":"Sea-Intelligence","url":"https://sea-intelligence.com/press-room/400-global-schedule-reliability-drops-to-62-6-in-june-2026"}]}],
       "data_points": [
         {"date":"2026-06","metric":"Global schedule reliability","value":62.6,"unit":"%","change":"-1.9pp MoM","source":"Sea-Intelligence"},
         {"date":"2026-06","metric":"Average delay for late vessel arrivals","value":5.31,"unit":"days","change":"-0.34 day MoM","source":"Sea-Intelligence"}
