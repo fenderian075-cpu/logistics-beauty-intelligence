@@ -20,6 +20,11 @@
     {"term":"クッションファンデ","category":"makeup"},
     {"term":"美容液","category":"skincare"},
     {"term":"日焼け止め","category":"skincare"},
-    {"term":"韓国コスメ","category":"market"}
+    {"term":"韓国コスメ","category":"market"},
+    {"term":"チャーム コスメ","category":"promotion"},
+    {"term":"ポーチ コスメ","category":"promotion"},
+    {"term":"キー コスメ","category":"promotion"},
+    {"term":"GWP コスメ","category":"promotion"},
+    {"term":"PWP コスメ","category":"promotion"}
   ]
 }
