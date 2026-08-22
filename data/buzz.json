@@ -1,11 +1,17 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "updated_at": null,
-  "method": "Search/social signals are observations, not sales data. Do not infer demand from a single platform.",
-  "sources": [
-    {"id":"google-trends","name":"Google トレンド","availability":"available","note":"日本の検索インタレスト・急上昇を監視"},
-    {"id":"instagram","name":"Instagram","availability":"api_required","note":"公開投稿の安定した定量監視にはMeta側の認証済みAPI/ソーシャルリスニング基盤が必要"},
-    {"id":"x","name":"X","availability":"api_required","note":"リアルタイム/Recent Searchの継続取得にはX APIまたは認可済みリスニング基盤が必要"}
-  ],
-  "signals": []
+  "collector_status": "waiting_first_run",
+  "source": {
+    "name": "Google Trends",
+    "method": "pytrends",
+    "official_api": false,
+    "geo": "JP",
+    "timeframe": "today 3-m",
+    "note": "Google Trendsの公開データを非公式クライアントpytrends経由で取得します。指数は相対値であり検索件数ではありません。"
+  },
+  "anchor": "化粧品",
+  "observations": [],
+  "signals": [],
+  "collector_errors": []
 }
