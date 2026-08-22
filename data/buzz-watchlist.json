@@ -1,0 +1,25 @@
+{
+  "anchor": "化粧品",
+  "terms": [
+    {"term":"Dior コスメ","category":"brand","brand":"Dior"},
+    {"term":"CHANEL コスメ","category":"brand","brand":"CHANEL"},
+    {"term":"YSL コスメ","category":"brand","brand":"YSL Beauty"},
+    {"term":"ランコム","category":"brand","brand":"Lancôme"},
+    {"term":"SK-II","category":"brand","brand":"SK-II"},
+    {"term":"資生堂","category":"brand","brand":"資生堂"},
+    {"term":"クレドポー ボーテ","category":"brand","brand":"Clé de Peau Beauté"},
+    {"term":"ジョーマローン","category":"brand","brand":"Jo Malone London"},
+    {"term":"バイレード","category":"brand","brand":"Byredo"},
+    {"term":"Rare Beauty","category":"brand","brand":"Rare Beauty"},
+    {"term":"Rhode beauty","category":"brand","brand":"Rhode"},
+    {"term":"Fenty Beauty","category":"brand","brand":"Fenty Beauty"},
+    {"term":"Charlotte Tilbury","category":"brand","brand":"Charlotte Tilbury"},
+    {"term":"香水","category":"fragrance"},
+    {"term":"リップ","category":"makeup"},
+    {"term":"ファンデーション","category":"makeup"},
+    {"term":"クッションファンデ","category":"makeup"},
+    {"term":"美容液","category":"skincare"},
+    {"term":"日焼け止め","category":"skincare"},
+    {"term":"韓国コスメ","category":"market"}
+  ]
+}
