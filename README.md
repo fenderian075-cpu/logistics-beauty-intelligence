@@ -172,3 +172,13 @@ Do not commit:
 - private documents or internal URLs
 
 Frontend code must not require secrets in the browser.
+
+## Intelligence Experience v6
+
+The frontend now consumes the v4 intelligence layer directly:
+
+- `data/critical-news.json` → Operations Radar (`radar.html`)
+- `data/topic-intelligence.json` → Topic Intelligence Digest (`topic.html?id=...`)
+- Dashboard → Radar → Topic → Report → Evidence
+
+The frontend remains a read-only consumer of `data/**`. ChatGPT's scheduled intelligence pipeline owns recurring research and publication.

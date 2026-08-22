@@ -23,7 +23,9 @@ const PAGES = {
   buzz: () => import("./pages/buzz.js"),
   sources: () => import("./pages/source-matrix.js"),
   "status-history": () => import("./pages/status-history.js"),
-  "lens-history": () => import("./pages/lens-history.js")
+  "lens-history": () => import("./pages/lens-history.js"),
+  radar: () => import("./pages/radar.js"),
+  topic: () => import("./pages/topic.js")
 };
 
 function detectPage() {
@@ -38,6 +40,8 @@ function detectPage() {
   if (byId("source-body")) return "sources";
   if (byId("history-list")) return "status-history";
   if (byId("lens-history-list")) return "lens-history";
+  if (byId("radar-list")) return "radar";
+  if (byId("topic-main") || byId("topic-title")) return "topic";
   return null;
 }
 

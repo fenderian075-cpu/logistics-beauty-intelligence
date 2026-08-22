@@ -37,6 +37,7 @@ def header(prefix=""):
       <a id="nav-latest-daily" data-nav="daily" href="{prefix}archive.html?type=daily">日次</a>
       <a id="nav-latest-weekly" data-nav="weekly" href="{prefix}archive.html?type=weekly">週次</a>
       <a id="nav-latest-monthly" data-nav="monthly" href="{prefix}archive.html?type=monthly">月次</a>
+      <a data-nav="topic" href="{prefix}topic.html">トピック</a>
       <a data-nav="commerce" href="{prefix}commerce-calendar.html">EC予定</a>
       <a data-nav="buzz" href="{prefix}buzz.html">Buzz</a>
       <a data-nav="archive" href="{prefix}archive.html">過去</a>

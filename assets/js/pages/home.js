@@ -17,7 +17,7 @@
 import { el, link, byId, clear, root } from "../core/dom.js";
 import { formatDate, formatMonth } from "../core/format.js";
 import * as L from "../core/labels.js";
-import { loadReports, loadRegistry } from "../data/store.js";
+import { loadReports, loadRegistry, loadCriticalNews, loadTopics } from "../data/store.js";
 import { previousOf, latestOf, statusDiff, direction, DOMAINS } from "../data/adapters.js";
 import * as S from "../domain/signals.js";
 import { bindLatestReportNav, markCurrent } from "../core/nav.js";
@@ -291,10 +291,54 @@ function renderKeySignals(digest) {
     { limit: 5 });
 }
 
+
+
+function radarRank(x) {
+  return (x.status === "observed" ? 300 : x.status === "reported" ? 200 : 100) +
+    (x.importance === "high" ? 30 : x.importance === "medium" ? 20 : 10) +
+    (x.japan_relevance === "high" ? 3 : x.japan_relevance === "medium" ? 2 : 1);
+}
+
+function renderRadar(data) {
+  const box = byId("operations-radar");
+  const meta = byId("operations-radar-meta");
+  if (!box) return;
+  clear(box);
+  const items = [...((data && data.items) || [])].sort((a,b)=>radarRank(b)-radarRank(a) || String(b.date).localeCompare(String(a.date)));
+  const observed = items.filter(x=>x.status === "observed").length;
+  const reported = items.filter(x=>x.status === "reported").length;
+  if (meta) meta.textContent = `実影響 ${observed} / 報告 ${reported}`;
+  if (!items.length) { box.appendChild(emptyState("重大な新規情報はありません。")); return; }
+  renderRows(box, items, (x) => {
+    const a = link(x.topic_ids && x.topic_ids[0] ? `${root()}topic.html?id=${encodeURIComponent(x.topic_ids[0])}` : `${root()}radar.html`, "radar-summary-row");
+    a.setAttribute("data-status", x.status || "reported");
+    a.appendChild(el("span", "radar-summary-row__state", x.status === "observed" ? "実影響" : x.status === "resolved" ? "解消" : "報告"));
+    a.appendChild(el("span", "radar-summary-row__date", (x.date || "").slice(5).replace("-","/")));
+    a.appendChild(el("span", "radar-summary-row__headline", x.headline || "更新"));
+    if (x.japan_relevance) a.appendChild(el("span", "radar-summary-row__jp", `日本 ${x.japan_relevance === "high" ? "高" : x.japan_relevance === "medium" ? "中" : "低"}`));
+    return a;
+  }, { limit: 4 });
+}
+
+function renderTopics(data) {
+  const box = byId("featured-topics");
+  if (!box) return;
+  clear(box);
+  const topics = ((data && data.topics) || []).slice(0, 7);
+  if (!topics.length) { box.appendChild(emptyState("トピックを蓄積中です。")); return; }
+  topics.forEach(t => {
+    const a = link(`${root()}topic.html?id=${encodeURIComponent(t.topic_id)}`, "topic-summary-row");
+    a.appendChild(el("span", "topic-summary-row__title", t.title_ja || t.topic_id));
+    a.appendChild(el("span", "topic-summary-row__state", t.current_state === "watch" ? "監視" : t.current_state === "disruption" ? "障害" : t.current_state === "normal" ? "平常" : "未確認"));
+    a.appendChild(el("span", "topic-summary-row__meta", `動向 ${(t.developments||[]).length} · 確度 ${t.confidence === "high" ? "高" : t.confidence === "medium" ? "中" : "低"}`));
+    box.appendChild(a);
+  });
+}
+
 /* ---- boot -------------------------------------------------------------------- */
 
 export function init() {
-  return Promise.all([loadReports(), loadRegistry()]).then(([data, registry]) => {
+  return Promise.all([loadReports(), loadRegistry(), loadCriticalNews(), loadTopics()]).then(([data, registry, criticalNews, topics]) => {
     S.useRegistry(registry);
     reports = data.reports;
 
@@ -309,10 +353,12 @@ export function init() {
     renderActionBox(digest);
     renderConclusion(daily);
     renderBoard(daily);
+    renderRadar(criticalNews);
     renderLatest();
     renderWhatChanged(daily, previous, digest);
     renderLenses(digest);
     renderKeySignals(digest);
+    renderTopics(topics);
 
     const stamp = byId("data-stamp");
     if (stamp && daily) {

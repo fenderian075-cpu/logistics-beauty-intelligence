@@ -1,43 +1,31 @@
-# GitHub upload
+# Upload
 
-This folder is the clean LBI Frontend Foundation v5 repository root.
+This folder is the repository root for the LBI Frontend Foundation + Intelligence Experience v6.
 
-## Recommended: replace the working tree of the existing repository
+Key additions over Foundation v5:
+- Operations Radar on the dashboard and `radar.html`
+- Topic Intelligence Digest via `topic.html?id=<topic_id>`
+- Dashboard IA rebuilt around decision -> radar -> status -> latest reports -> change/lenses/signals/topics
+- Real `critical-news.json` and `topic-intelligence.json` are consumed directly
+- Reported event and observed impact are visually distinguished
+- Responsive dense-row design, not repeated large cards
+
+## Replace an existing working tree
+
+Copy all files in this folder over your existing repository root, then:
 
 ```bash
-git clone https://github.com/fenderian075-cpu/logistics-beauty-intelligence.git
-cd logistics-beauty-intelligence
-
-# Copy all files from this package into this folder, replacing existing files.
-# Then remove old tracked files that are no longer present in the package:
 git add -A
-
-git status
-python3 scripts/validate-report.py
-node tests/static-audit.mjs
-
-git commit -m "Frontend Foundation v5"
+git commit -m "Add LBI Intelligence Experience v6"
 git push origin main
 ```
 
-Optional DOM smoke test:
+No changes are required to `data/**` before upload.
 
-```bash
-npm install jsdom
-node tests/dom-smoke.mjs
-```
+## Validation performed
 
-## Local preview
+- `python3 scripts/validate-report.py`: 0 errors / 7 existing data/content warnings
+- `node tests/static-audit.mjs`: 8 checks / 0 failures
+- JS syntax check passed for app/home/radar/topic modules
 
-```bash
-python3 -m http.server 8000
-```
-
-Open http://localhost:8000/ and check desktop/mobile before pushing if desired.
-
-## Notes
-
-- `data/**` contains the latest v4 production baseline available in this package.
-- Legacy asset filenames remain as compatibility shims; do not add new logic to them.
-- Current research/publishing contract: `docs/INTELLIGENCE_PIPELINE_V4.md`
-- Current report HTML contract: `templates/report-template.html`
+The 7 validator warnings are existing baseline/report-content warnings (comparison baseline / report HTML metadata), not frontend build failures.
