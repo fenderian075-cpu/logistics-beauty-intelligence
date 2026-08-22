@@ -1,0 +1,10 @@
+{
+  "schema_version": "1.0",
+  "meta": {
+    "purpose": "Verified future Beauty Commerce events. Weekly updates existing event IDs instead of duplicating them.",
+    "drivers": ["promotion", "launch", "organic", "buzz"],
+    "statuses": ["scheduled", "active", "ended", "cancelled"],
+    "rule": "Only events with a verified public source and date/period belong here. Unknown dates are not guessed."
+  },
+  "events": []
+}
