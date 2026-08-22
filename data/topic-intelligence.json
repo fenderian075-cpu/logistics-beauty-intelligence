@@ -1,42 +1,51 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-08-22T22:00:00+09:00",
+  "updated_at": "2026-08-23T08:00:00+09:00",
   "topics": [
+    {
+      "topic_id": "japan-weather-disruption",
+      "title_ja": "気象・災害による輸送障害",
+      "current_state": "disruption",
+      "confidence": "high",
+      "summary": "台風18号の影響が奄美群島の輸送に実際に波及。ヤマト運輸は8月23日7時時点で奄美市・大島郡宛ての全商品を荷受停止としており、鹿児島～奄美～沖縄航路でも当日便の運航経路変更が発生している。",
+      "japan_implication": "奄美群島向けは通常の宅配・補充リードタイムを前提にできず、離島向け輸送は船便の運航状況に強く依存する。",
+      "operational_implication": "奄美市・大島郡向け出荷はヤマトで保留。受付再開または代替輸送を確認し、離島向け着日指定は再確認する。",
+      "outlook_7d": "台風通過後のcarrier受付再開と船便正常化を日次確認する。",
+      "outlook_30d": null,
+      "outlook_90d": null,
+      "developments": [
+        {
+          "date": "2026-08-23",
+          "type": "observed_impact",
+          "headline": "台風18号で奄美向け全商品荷受停止",
+          "summary": "ヤマト運輸は奄美市・大島郡宛ての全商品の預かりを停止。マリックスラインの鹿児島発便も名瀬までに運航経路を短縮し、徳之島以南を抜港。",
+          "evidence": [
+            {"class":"primary_operational","source":"ヤマト運輸","url":"https://www.kuronekoyamato.co.jp/ytc/chien/chien_hp.html"},
+            {"class":"professional_media","source":"九州のりものinfo / マリックスライン","url":"https://pop.kkb.co.jp/norimonoinfo/traffic.php?category_id=3"}
+          ]
+        }
+      ],
+      "data_points": [],
+      "related_report_ids": ["2026-08-23-daily"]
+    },
     {
       "topic_id": "japan-domestic-delivery",
       "title_ja": "国内配送オペレーション",
       "current_state": "watch",
       "confidence": "high",
-      "summary": "8月22日0時から名神高速道路の集中工事が開始。吹田IC～一宮JCTなどで昼夜連続車線規制・夜間通行止め・IC閉鎖が予定され、ヤマト運輸は東京・関東から関西を発着する荷物を中心に全国的な配送遅延の可能性を案内している。",
-      "japan_implication": "東西幹線輸送への影響が中心で、迂回路混雑や幹線接続を通じて関東・関西以外にも遅延が波及し得る。",
-      "operational_implication": "9月12日まで着日指定、EC出荷、店舗向け緊急配送は通常より余裕を持ち、carrier別の最新遅延情報と実際の到着実績を確認する。",
-      "outlook_7d": "工事初週の実際の遅延発生状況と迂回路混雑を確認。現時点では遅延可能性の公式案内であり、全国的な実遅延発生は未確認。",
-      "outlook_30d": "工事は9月12日6時まで予定。規制内容や天候・工事進捗で影響時間帯が変動し得る。",
+      "summary": "8月23日朝、台風18号で奄美市・大島郡宛てにヤマトの全商品荷受停止が発生。能登の一部荷受停止・局地遅延も継続する。一方、名神集中工事は継続中だが、今朝7時のヤマト現況では工事由来の全国的な実遅延はまだ確認できない。",
+      "japan_implication": "国内配送は全国一律の停止ではなく、奄美・能登の停止地域と、名神を通る東西幹線の予防的リードタイム管理を分ける必要がある。",
+      "operational_implication": "奄美市・大島郡向けは出荷保留。能登の停止地域はcarrier確認。9月12日まで東西幹線は着日余裕を持たせる。",
+      "outlook_7d": "台風18号後の奄美受付再開と、名神工事初週の実際の遅延発生状況を確認。",
+      "outlook_30d": "名神集中工事は9月12日6時まで予定。",
       "outlook_90d": null,
       "developments": [
-        {
-          "date": "2026-08-22",
-          "type": "reported_event",
-          "headline": "名神集中工事が8月22日0時に開始",
-          "summary": "吹田IC～一宮JCTなどで昼夜連続車線規制、夜間通行止め、IC/JCT等の閉鎖を実施。NEXCOは早朝から深夜の渋滞を予測している。",
-          "evidence": [
-            {"class":"primary_operational","source":"NEXCO中日本 / NEXCO西日本","url":"https://www.c-nexco.co.jp/corporate/pressroom/news_release/6617.html"}
-          ]
-        },
-        {
-          "date": "2026-08-17",
-          "type": "reported_event",
-          "headline": "ヤマト運輸が全国的な配送遅延の可能性を案内",
-          "summary": "東京・関東から関西を発着する荷物を中心に、全国的にお届け遅延が発生する可能性があるとして余裕を持った出荷を案内。",
-          "evidence": [
-            {"class":"primary_operational","source":"ヤマト運輸","url":"https://www.yamato-hd.co.jp/important/info_260817_1.html"}
-          ]
-        }
+        {"date":"2026-08-23","type":"observed_impact","headline":"台風18号で奄美向けヤマト荷受停止","summary":"奄美市・大島郡宛て全商品の荷受停止を確認。国内配送signalは前日より悪化。","evidence":[{"class":"primary_operational","source":"ヤマト運輸","url":"https://www.kuronekoyamato.co.jp/ytc/chien/chien_hp.html"}]},
+        {"date":"2026-08-22","type":"reported_event","headline":"名神集中工事が8月22日0時に開始","summary":"吹田IC～一宮JCTなどで昼夜連続車線規制、夜間通行止め、IC/JCT等の閉鎖を実施。NEXCOは早朝から深夜の渋滞を予測している。","evidence":[{"class":"primary_operational","source":"NEXCO中日本 / NEXCO西日本","url":"https://www.c-nexco.co.jp/corporate/pressroom/news_release/6617.html"}]},
+        {"date":"2026-08-17","type":"reported_event","headline":"ヤマト運輸が全国的な配送遅延の可能性を案内","summary":"東京・関東から関西を発着する荷物を中心に、全国的にお届け遅延が発生する可能性があるとして余裕を持った出荷を案内。","evidence":[{"class":"primary_operational","source":"ヤマト運輸","url":"https://www.yamato-hd.co.jp/important/info_260817_1.html"}]}
       ],
-      "data_points": [
-        {"date":"2026-08-22","metric":"名神集中工事期間","value":21,"unit":"days approx.","period":"2026-08-22 00:00 to 2026-09-12 06:00","source":"NEXCO中日本 / NEXCO西日本"}
-      ],
-      "related_report_ids": ["2026-08-22-daily"]
+      "data_points": [{"date":"2026-08-22","metric":"名神集中工事期間","value":21,"unit":"days approx.","period":"2026-08-22 00:00 to 2026-09-12 06:00","source":"NEXCO中日本 / NEXCO西日本"}],
+      "related_report_ids": ["2026-08-23-daily","2026-08-22-daily"]
     },
     {
       "topic_id": "middle-east-maritime-risk",
@@ -61,7 +70,7 @@
         {"date":"2026-08-17","metric":"Salalah yard density","value":79,"unit":"%","source":"Hapag-Lloyd"},
         {"date":"2026-08-17","metric":"Salalah berthing delay","value":36,"unit":"hours max","source":"Hapag-Lloyd"}
       ],
-      "related_report_ids": ["2026-08-22-daily","2026-08-22-weekly","2026-08-22-monthly"]
+      "related_report_ids": ["2026-08-23-daily","2026-08-22-daily","2026-08-22-weekly","2026-08-22-monthly"]
     },
     {
       "topic_id": "ocean-global-price",
@@ -74,9 +83,7 @@
       "outlook_7d": "Transpacific主導の上昇が他laneへ波及するかを確認。",
       "outlook_30d": "capacity adjustmentと需要差によりlane別分化が続く可能性。",
       "outlook_90d": null,
-      "developments": [
-        {"date":"2026-08-20","type":"market_data","headline":"WCI rises 4% to USD 4,526/40ft","summary":"3週連続上昇。Transpacificが主因。","evidence":[{"class":"market_data","source":"Drewry","url":"https://www.drewry.co.uk/maritime-research-opinion-browser/world-container-index-assessed-by-drewry"}]}
-      ],
+      "developments": [{"date":"2026-08-20","type":"market_data","headline":"WCI rises 4% to USD 4,526/40ft","summary":"3週連続上昇。Transpacificが主因。","evidence":[{"class":"market_data","source":"Drewry","url":"https://www.drewry.co.uk/maritime-research-opinion-browser/world-container-index-assessed-by-drewry"}]}],
       "data_points": [{"date":"2026-08-20","metric":"WCI","value":4526,"unit":"USD/40ft","change":"+4% WoW","source":"Drewry"}],
       "related_report_ids": ["2026-08-22-weekly","2026-08-22-monthly"]
     },
@@ -91,13 +98,8 @@
       "outlook_7d": "week35開始に伴う実際のcancellation/omissionを確認。",
       "outlook_30d": "需要差に応じたselective blank sailingが継続する可能性。",
       "outlook_90d": null,
-      "developments": [
-        {"date":"2026-08-21","type":"market_data","headline":"49 blank sailings expected across major East-West trades","summary":"week35〜39、cancellation rate 6%、94% scheduled sailings expected to operate。","evidence":[{"class":"market_data","source":"Drewry Cancelled Sailings Tracker","url":"https://www.drewry.co.uk/supply-chain-advisors/supply-chain-expertise/cancelled-sailings-tracker"}]}
-      ],
-      "data_points": [
-        {"date":"2026-08-21","metric":"Blank sailings","value":49,"unit":"sailings","period":"week35-week39","source":"Drewry"},
-        {"date":"2026-08-21","metric":"Cancellation rate","value":6,"unit":"%","source":"Drewry"}
-      ],
+      "developments": [{"date":"2026-08-21","type":"market_data","headline":"49 blank sailings expected across major East-West trades","summary":"week35〜39、cancellation rate 6%、94% scheduled sailings expected to operate。","evidence":[{"class":"market_data","source":"Drewry Cancelled Sailings Tracker","url":"https://www.drewry.co.uk/supply-chain-advisors/supply-chain-expertise/cancelled-sailings-tracker"}]}],
+      "data_points": [{"date":"2026-08-21","metric":"Blank sailings","value":49,"unit":"sailings","period":"week35-week39","source":"Drewry"},{"date":"2026-08-21","metric":"Cancellation rate","value":6,"unit":"%","source":"Drewry"}],
       "related_report_ids": ["2026-08-22-weekly","2026-08-22-monthly"]
     },
     {
@@ -111,13 +113,8 @@
       "outlook_7d": null,
       "outlook_30d": "次回公表でJuneの悪化が一時的か確認。",
       "outlook_90d": null,
-      "developments": [
-        {"date":"2026-07-27","type":"market_data","headline":"Global schedule reliability falls to 62.6%","summary":"前月比-1.9pp、前年比-4.7pp。一方late vessel平均遅延は5.31日に改善。","evidence":[{"class":"market_data","source":"Sea-Intelligence","url":"https://sea-intelligence.com/press-room/400-global-schedule-reliability-drops-to-62-6-in-june-2026"}]}
-      ],
-      "data_points": [
-        {"date":"2026-06","metric":"Global schedule reliability","value":62.6,"unit":"%","change":"-1.9pp MoM","source":"Sea-Intelligence"},
-        {"date":"2026-06","metric":"Average delay for late vessel arrivals","value":5.31,"unit":"days","change":"-0.34 day MoM","source":"Sea-Intelligence"}
-      ],
+      "developments": [{"date":"2026-07-27","type":"market_data","headline":"Global schedule reliability falls to 62.6%","summary":"前月比-1.9pp、前年比-4.7pp。一方late vessel平均遅延は5.31日に改善。","evidence":[{"class":"market_data","source":"Sea-Intelligence","url":"https://sea-intelligence.com/press-room/400-global-schedule-reliability-drops-to-62-6-in-june-2026"}]}],
+      "data_points": [{"date":"2026-06","metric":"Global schedule reliability","value":62.6,"unit":"%","change":"-1.9pp MoM","source":"Sea-Intelligence"},{"date":"2026-06","metric":"Average delay for late vessel arrivals","value":5.31,"unit":"days","change":"-0.34 day MoM","source":"Sea-Intelligence"}],
       "related_report_ids": ["2026-08-22-weekly","2026-08-22-monthly"]
     },
     {
@@ -125,18 +122,19 @@
       "title_ja": "日本Beauty EC・プロモーション需要",
       "current_state": "watch",
       "confidence": "high",
-      "summary": "Qoo10メガ割が8月28日17時から9月9日23:59まで予定。楽天LUXURY BEAUTYでは8月3日〜9月1日のポイント施策が継続し、次回9月1日10時開始も公式掲載。短期EC波動はorganic需要と分けて見る必要がある。",
+      "summary": "Qoo10メガ割が8月28日17時から9月9日23:59まで予定。楽天LUXURY BEAUTYのポイント施策に加え、ゲラン公式オンラインでは8月25日まで購入特典施策を実施中。短期EC波動はorganic需要と分けて見る必要がある。",
       "japan_implication": "8月末〜9月上旬はBeauty ECのpromotion-driven volume増加が重なりやすい。",
       "operational_implication": "order volume、gift material、梱包資材、CS/cancel波動をpromotion起因として別管理する。",
-      "outlook_7d": "Qoo10開始前後のorder/search movementを監視。",
+      "outlook_7d": "ゲラン施策終了とQoo10開始前後のorder/search movementを監視。",
       "outlook_30d": "9月上旬は複数EC施策の重なりによる短期波動を想定。",
       "outlook_90d": null,
       "developments": [
+        {"date":"2026-08-23","type":"commerce_event","headline":"ゲラン公式オンラインでL’Art & La Matière購入特典を8/25まで実施","summary":"プロモコード利用の購入でネロリ ウートルノワ2mLを進呈。promotion-driven / temporaryとして扱い、売上実績とは区別する。","evidence":[{"class":"brand_official","source":"ゲラン","url":"https://www.guerlain.com/jp/ja-jp/c/generosity-page-jp.html"}]},
         {"date":"2026-08-22","type":"commerce_event","headline":"Qoo10 Q3メガ割 8/28 17:00開始予定","summary":"イベント期間は8/28 17:00〜9/9 23:59。","evidence":[{"class":"commerce_platform","source":"Qoo10","url":"https://www.qoo10.jp/gmkt.inc/Mobile/Special/Special.aspx?sid=220713"}]},
         {"date":"2026-08-22","type":"commerce_event","headline":"楽天LUXURY BEAUTYポイント施策は9/1 09:59まで、次回9/1 10:00開始予定","summary":"対象ショップで1注文10,000円以上に300ポイント、最大3ショップ。","evidence":[{"class":"commerce_platform","source":"楽天市場 LUXURY BEAUTY","url":"https://event.rakuten.co.jp/beauty/brand/luxe/luxurybeauty/campaign/"}]}
       ],
       "data_points": [],
-      "related_report_ids": ["2026-08-22-weekly","2026-08-22-monthly"]
+      "related_report_ids": ["2026-08-23-daily","2026-08-22-weekly","2026-08-22-monthly"]
     },
     {
       "topic_id": "beauty-luxury-fragrance",
