@@ -1,0 +1,58 @@
+name: Apply frontend foundation transfer
+
+on:
+  push:
+    branches:
+      - transfer/frontend-foundation-v5
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Reconstruct and apply reviewed frontend patch
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat tools/.frontend-foundation-patch.part* | base64 -d > /tmp/frontend.patch.xz
+          xz -d -c /tmp/frontend.patch.xz > /tmp/frontend.patch
+          git apply --check /tmp/frontend.patch
+          git apply /tmp/frontend.patch
+          cp tools/.README.v4.md README.md
+          rm -f tools/.frontend-foundation-patch.part* tools/.README.v4.md
+          rm -f .github/workflows/apply-frontend-foundation-transfer.yml
+
+      - name: Validate reports
+        run: python3 scripts/validate-report.py
+
+      - name: Static frontend audit
+        run: node tests/static-audit.mjs
+
+      - name: Verify no production data change
+        shell: bash
+        run: |
+          set -euo pipefail
+          if ! git diff --quiet HEAD -- data/; then
+            echo "Frontend foundation unexpectedly changes data/**"
+            git diff -- data/
+            exit 1
+          fi
+
+      - name: Verify whitespace
+        run: git diff --check
+
+      - name: Commit transferred foundation
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "LBI Frontend Transfer"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A
+          git commit -m "Frontend foundation v5"
+          git push origin HEAD:transfer/frontend-foundation-v5
