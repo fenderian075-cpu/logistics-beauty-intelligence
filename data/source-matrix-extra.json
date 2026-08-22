@@ -1,0 +1,13 @@
+{
+  "sources": [
+    {"priority":"P1","domain":"logistics","layer":"国内専門メディア","name":"LOGISTICS TODAY","url":"https://www.logi-today.com/","cadence":["daily","weekly"],"extract":["国内物流","3PL","倉庫","港湾","トラック","EC物流","貿易・税関","行政・規制","事故・障害"]},
+    {"priority":"P1","domain":"logistics","layer":"国内専門メディア","name":"日本物流新聞","url":"http://www.japanpress.co.jp/","cadence":["daily","weekly"],"extract":["物流政策","荷主","倉庫","輸配送","物流DX","設備"]},
+    {"priority":"P1","domain":"logistics","layer":"国際物流専門メディア","name":"Daily Cargo","url":"https://www.daily-cargo.com/","cadence":["daily","weekly"],"extract":["航空貨物","海上貨物","フォワーダー","国際物流","空港","運賃・需給"]},
+    {"priority":"P1","domain":"logistics","layer":"国内専門メディア","name":"カーゴニュース","url":"https://cargo-news.co.jp/","cadence":["daily","weekly"],"extract":["物流政策","トラック","倉庫","荷主","SCM"]},
+    {"priority":"P1","domain":"logistics","layer":"国際専門メディア","name":"The Loadstar","url":"https://theloadstar.com/","cadence":["daily","weekly"],"extract":["海運","航空貨物","フォワーディング","運賃","キャパシティ","混雑"]},
+    {"priority":"P1","domain":"logistics","layer":"国際専門メディア","name":"Air Cargo News","url":"https://www.aircargonews.net/","cadence":["daily","weekly"],"extract":["航空貨物","キャパシティ","航空会社","空港","運賃"]},
+    {"priority":"P1","domain":"beauty","layer":"Buzz / Search","name":"Google トレンド","url":"https://trends.google.co.jp/trends/?geo=JP","cadence":["daily","weekly"],"extract":["ブランド名","商品名","カテゴリ","急上昇検索","検索インタレスト"]},
+    {"priority":"P1","domain":"beauty","layer":"Buzz / Social","name":"Instagram","url":"https://www.instagram.com/","cadence":["daily","weekly"],"extract":["ブランド・商品言及","投稿増加","クリエイター起点","要API/認証済みリスニング基盤"]},
+    {"priority":"P1","domain":"beauty","layer":"Buzz / Social","name":"X","url":"https://x.com/","cadence":["daily","weekly"],"extract":["ブランド・商品言及","投稿速度","拡散","要API/認証済みリスニング基盤"]}
+  ]
+}
