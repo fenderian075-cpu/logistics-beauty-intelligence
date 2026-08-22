@@ -1,7 +1,26 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-08-22T22:00:00+09:00",
+  "updated_at": "2026-08-23T08:07:00+09:00",
   "items": [
+    {
+      "id": "2026-08-23-kagoshima-amami-okinawa-ferry-disruption",
+      "date": "2026-08-23",
+      "event_date": "2026-08-23/2026-08-25",
+      "headline": "台風影響で鹿児島―奄美―沖縄フェリーに経路変更・欠航",
+      "domain": "domestic_delivery",
+      "importance": "high",
+      "japan_relevance": "high",
+      "status": "observed",
+      "summary": "マリックスラインの鹿児島―奄美―沖縄航路で、8月23日鹿児島発のクイーンコーラルプラスは台風による荒天予想のため鹿児島→名瀬までに航行経路を変更し、徳之島・沖永良部島・与論島・本部港・那覇港には向かわない。8月25日那覇発上り便も欠航予定となった。",
+      "observed_impact": "8月23日便で沖縄本島を含む複数寄港地への運航取りやめが確定し、8月25日那覇発便の欠航も決定。単なる予報ではなく、実際の輸送ネットワーク変更が発生している。",
+      "japan_implication": "鹿児島―奄美―沖縄の海上幹線が部分的に途切れるため、沖縄・奄美向け荷物で船便利用やフェリー接続がある場合、滞留・翌便繰越・代替輸送による遅延が拡大し得る。",
+      "operational_implication": "沖縄・奄美向け出荷はcarrierごとの利用モードと到着見込みを確認し、着日指定・店舗補充・緊急配送は通常LTを前提にしない。特に8月23～25日は船便接続の有無を個別確認する。",
+      "topic_ids": ["japan-domestic-delivery"],
+      "evidence": [
+        {"class":"primary_operational","source":"マリックスライン 運航状況","date":"2026-08-23","url":"https://marixline.com/service/2025/12/"},
+        {"class":"primary_operational","source":"九州のりものinfo.com（運航事業者提供情報）","date":"2026-08-23","url":"https://pop.kkb.co.jp/norimonoinfo/traffic.php?category_id=3"}
+      ]
+    },
     {
       "id": "2026-08-22-meishin-construction-delivery-risk",
       "date": "2026-08-22",
