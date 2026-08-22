@@ -117,7 +117,12 @@ export function historyBlock(observations, rootPath) {
 
 /**
  * @param {object} sig
- * @param {{reports?: Array, rootPath?: string, open?: boolean, compact?: boolean}} opts
+ * @param {{reports?: Array, rootPath?: string, open?: boolean, compact?: boolean,
+ *          topicFor?: (sig) => ({topic_id: string, title_ja: string}|null)}} opts
+ *
+ * `topicFor` is how a signal reaches its Topic Digest. Signal ids and topic
+ * ids share one namespace, so most signals have a digest waiting for them;
+ * the ones that do not simply render without the link.
  */
 export function signalCard(sig, opts = {}) {
   const rootPath = opts.rootPath != null ? opts.rootPath : root();
@@ -164,6 +169,14 @@ export function signalCard(sig, opts = {}) {
 
   const ev = evidenceList(sig.evidence);
   if (ev) body.appendChild(ev);
+
+  const topic = opts.topicFor ? opts.topicFor(sig) : null;
+  if (topic) {
+    const nav = el("p", "sig-card__topic");
+    nav.appendChild(link(`${rootPath}topic.html?id=${encodeURIComponent(topic.topic_id)}`, "chip-link",
+      `${topic.title_ja || topic.topic_id} ${L.UI.viewTopic}`));
+    body.appendChild(nav);
+  }
 
   if (opts.reports) {
     body.appendChild(historyBlock(S.history(opts.reports, sig.id), rootPath));

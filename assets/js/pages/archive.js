@@ -1,178 +1,200 @@
 /* =========================================================================
-   archive.js — filter and search past reports.
-   Behaviour is unchanged from v2.x (PR2 adds topic and date-range filters);
-   the rewrite removes the translation dependency and the duplicate fetch.
+   archive.js — analytical retrieval, not chronological browsing.
+   -------------------------------------------------------------------------
+   The archive has to answer questions, not just list files. The reference
+   query from the spec (§39) is 「過去3か月 + 定時性 + 悪化」, so the filters
+   are: free period (from/to, not just year+month), lens, change status,
+   confidence, topic, report type, overall status and keywords — all held in
+   the URL so a query can be pasted into Slack and survive.
+
+   Presets exist because the useful queries are known in advance: what
+   deteriorated recently, what is high-confidence, what a given lens has been
+   saying. A filter set nobody assembles is a filter set nobody uses.
    ========================================================================= */
 
 import { el, link, byId, clear, root } from "../core/dom.js";
 import { formatDate, formatMonth } from "../core/format.js";
 import * as L from "../core/labels.js";
-import { loadReports, loadRegistry } from "../data/store.js";
+import { loadIntel } from "../data/intel.js";
 import * as S from "../domain/signals.js";
 import { bindLatestReportNav, markCurrent } from "../core/nav.js";
 import { statusPill } from "../render/primitives.js";
+import { filterBar, withinRange, monthsAgo } from "../render/filters.js";
 
-const controls = {};
-let all = [];
-let structuredAvailable = false;
+let intel = null;
+let bar = null;
 
-function readURL() {
-  const p = new URLSearchParams(location.search);
-  Object.keys(controls).forEach((k) => {
-    if (controls[k]) controls[k].value = p.get(k) || "";
-  });
-}
+function matches(report, state) {
+  if (state.type && report.type !== state.type) return false;
+  if (state.status && report.status !== state.status) return false;
+  if (!withinRange(report.date, state.from, state.to)) return false;
 
-function writeURL() {
-  const p = new URLSearchParams();
-  Object.keys(controls).forEach((k) => {
-    const input = controls[k];
-    if (!input) return;
-    const v = input.value.trim();
-    if (v) p.set(k, v);
-  });
-  const qs = p.toString();
-  history.replaceState(null, "", qs ? `?${qs}` : location.pathname);
-}
-
-function fillOptions() {
-  const years = [];
-  all.forEach((r) => {
-    const y = r.date.slice(0, 4);
-    if (years.indexOf(y) === -1) years.push(y);
-  });
-  years.sort().reverse();
-  years.forEach((y) => controls.year.appendChild(new Option(y, y)));
-  for (let m = 1; m <= 12; m++) {
-    const mm = String(m).padStart(2, "0");
-    controls.month.appendChild(new Option(mm, mm));
+  if (state.topic) {
+    const topic = intel.topic(state.topic);
+    const linked = topic && (topic.related_report_ids || []).indexOf(report.id) !== -1;
+    const viaSignal = S.signalsOf(report).some((sig) => sig.id === state.topic);
+    if (!linked && !viaSignal) return false;
   }
-}
 
-const val = (name) => (controls[name] ? controls[name].value : "");
-
-function matches(r) {
-  const f = {
-    year: val("year"), month: val("month"), type: val("type"), status: val("status"),
-    q: val("q").trim().toLowerCase(),
-    lens: val("lens"), change: val("change"), conf: val("conf")
-  };
-  if (f.year && r.date.slice(0, 4) !== f.year) return false;
-  if (f.month && r.date.slice(5, 7) !== f.month) return false;
-  if (f.type && r.type !== f.type) return false;
-  if (f.status && r.status !== f.status) return false;
-  if (f.q) {
-    const hay = [r.title, r.summary, r.tags.join(" "), r.date, r.type, r.key_issues.join(" ")]
-      .join(" ").toLowerCase();
-    if (!f.q.split(/\s+/).every((term) => hay.indexOf(term) !== -1)) return false;
-  }
-  if (f.lens || f.change || f.conf) {
-    const signals = S.signalsOf(r);
+  if (state.lens || state.change || state.conf) {
+    const signals = S.signalsOf(report);
     if (!signals.length) return false;
-    if (f.lens && !signals.some((x) => x.lens === f.lens)) return false;
-    if (f.change && !signals.some((x) => x.change_status === f.change)) return false;
-    if (f.conf && !signals.some((x) => x.confidence === f.conf)) return false;
+    if (state.lens && !signals.some((x) => x.lens === state.lens)) return false;
+    if (state.change && !signals.some((x) => x.change_status === state.change)) return false;
+    if (state.conf && !signals.some((x) => x.confidence === state.conf)) return false;
+  }
+
+  if (state.q) {
+    const hay = [report.title, report.summary, report.bottom_line, report.tags.join(" "),
+                 report.date, report.type, report.key_issues.join(" "),
+                 S.signalsOf(report).map((s) => `${s.id} ${s.signal || ""}`).join(" ")]
+      .join(" ").toLowerCase();
+    if (!state.q.toLowerCase().split(/\s+/).every((term) => hay.indexOf(term) !== -1)) return false;
   }
   return true;
 }
 
-function entry(r) {
+/** One row per report, with the signals that actually matched the query. */
+function entry(report, state) {
   const li = el("li", "archive-item");
-  li.setAttribute("data-status", r.status);
+  li.setAttribute("data-status", report.status);
 
   const meta = el("div", "archive-item__meta");
   meta.appendChild(el("span", "archive-item__date",
-    r.type === "monthly" ? formatMonth(r.period || r.date.slice(0, 7)) : formatDate(r.date)));
-  meta.appendChild(el("span", "archive-item__type", L.typeLabel(r.type)));
+    report.type === "monthly"
+      ? formatMonth(report.period || report.date.slice(0, 7))
+      : formatDate(report.date)));
+  meta.appendChild(el("span", "archive-item__type", L.typeLabel(report.type)));
   li.appendChild(meta);
 
   const main = el("div");
   const head = el("div", "archive-item__head");
   const h3 = el("h3", "archive-item__title");
-  h3.appendChild(link(root() + r.path, null, r.title));
+  h3.appendChild(link(root() + report.path, null, report.title));
   head.appendChild(h3);
-  head.appendChild(statusPill(r.status));
+  head.appendChild(statusPill(report.status));
 
-  const signalCount = S.signalsOf(r).length;
-  if (signalCount) {
-    head.appendChild(el("span", "archive-item__signals", L.UI.lensCount(signalCount)));
-  } else if (structuredAvailable) {
+  const signals = S.signalsOf(report);
+  if (signals.length) {
+    head.appendChild(el("span", "archive-item__signals", `シグナル ${signals.length}`));
+  } else {
     head.appendChild(el("span", "archive-item__legacy", L.UI.archiveLegacy));
   }
   main.appendChild(head);
-  main.appendChild(el("p", "archive-item__summary", r.summary));
+  main.appendChild(el("p", "archive-item__summary", report.summary));
 
-  if (r.tags.length) {
-    const tags = el("div", "tags");
-    r.tags.forEach((tagText) => {
-      tags.appendChild(link(`?q=${encodeURIComponent(tagText)}`, "tag", tagText));
+  /* When a structured filter is active, show which signals matched —
+     otherwise the result list is a claim the reader cannot check. */
+  const structured = state.lens || state.change || state.conf;
+  const hits = structured ? signals.filter((sig) =>
+    (!state.lens || sig.lens === state.lens) &&
+    (!state.change || sig.change_status === state.change) &&
+    (!state.conf || sig.confidence === state.conf)) : [];
+
+  if (hits.length) {
+    const box = el("ul", "archive-item__hits");
+    hits.slice(0, 4).forEach((sig) => {
+      const item = el("li");
+      item.appendChild(el("span", "archive-item__hit-lens", L.lensLabel(sig.lens)));
+      item.appendChild(el("span", "archive-item__hit-change", L.changeLabel(sig.change_status)));
+      const topic = intel.topicForSignal(sig);
+      if (topic) {
+        item.appendChild(link(`${root()}topic.html?id=${encodeURIComponent(topic.topic_id)}`,
+          "chip-link", S.signalName(sig)));
+      } else {
+        item.appendChild(el("span", null, S.signalName(sig)));
+      }
+      box.appendChild(item);
     });
+    if (hits.length > 4) box.appendChild(el("li", "muted", `ほか ${hits.length - 4} 件`));
+    main.appendChild(box);
+  }
+
+  if (report.tags.length) {
+    const tags = el("div", "tags");
+    report.tags.forEach((tag) => tags.appendChild(link(`?q=${encodeURIComponent(tag)}`, "tag", tag)));
     main.appendChild(tags);
   }
   li.appendChild(main);
   return li;
 }
 
-function render() {
+function render(state) {
   const listEl = byId("archive-list");
   const emptyEl = byId("archive-empty");
-  const countEl = byId("result-count");
-  const hits = all.filter(matches);
+  const hits = intel.reports.filter((r) => matches(r, state));
 
   clear(listEl);
+  if (bar) bar.setCount(hits.length);
+
   if (emptyEl) {
     emptyEl.hidden = hits.length > 0;
     emptyEl.textContent = L.UI.archiveEmpty;
   }
 
   let currentYear = null;
-  hits.forEach((r) => {
-    const y = r.date.slice(0, 4);
-    if (y !== currentYear) {
-      currentYear = y;
-      const heading = el("li", "year-group", `${y}年`);
+  hits.forEach((report) => {
+    const year = report.date.slice(0, 4);
+    if (year !== currentYear) {
+      currentYear = year;
+      const heading = el("li", "year-group", `${year}年`);
       heading.setAttribute("role", "presentation");
       listEl.appendChild(heading);
     }
-    listEl.appendChild(entry(r));
+    listEl.appendChild(entry(report, state));
   });
+}
 
-  if (countEl) countEl.textContent = L.UI.archiveCount(hits.length);
-  writeURL();
+function presets(host) {
+  const rows = [
+    ["直近3か月で悪化", { from: monthsAgo(3), change: "deteriorating" }],
+    ["定時性の悪化", { lens: "reliability", change: "deteriorating" }],
+    ["新規シグナル", { change: "new" }],
+    ["高確度のみ", { conf: "high" }]
+  ];
+  const box = el("div", "preset-row__inner");
+  box.appendChild(el("span", "preset-row__label", "よく使う条件"));
+  rows.forEach(([label, query]) => {
+    box.appendChild(link(`?${new URLSearchParams(query).toString()}`, "preset", label));
+  });
+  host.appendChild(box);
 }
 
 export function init() {
-  ["year", "month", "type", "status", "q", "lens", "change", "conf"].forEach((k) => {
-    controls[k] = byId(`f-${k}`);
-  });
+  const listEl = byId("archive-list");
+  if (!listEl) return Promise.resolve();
 
-  Object.keys(controls).forEach((k) => {
-    const input = controls[k];
-    if (!input) return;
-    input.addEventListener(input.tagName === "SELECT" ? "change" : "input", render);
-  });
-
-  const resetBtn = byId("f-reset");
-  if (resetBtn) {
-    resetBtn.addEventListener("click", () => {
-      Object.keys(controls).forEach((k) => { if (controls[k]) controls[k].value = ""; });
-      render();
-    });
-  }
-
-  return Promise.all([loadReports(), loadRegistry()]).then(([data, registry]) => {
-    S.useRegistry(registry);
-    all = data.reports;
-    structuredAvailable = S.anyIntelligence(all);
-
-    const panel = byId("structured-filters");
-    if (panel) panel.hidden = !structuredAvailable;
-
-    bindLatestReportNav(all);
+  return loadIntel().then((graph) => {
+    intel = graph;
+    bindLatestReportNav(intel.reports);
     markCurrent();
-    fillOptions();
-    readURL();
-    render();
+
+    const presetHost = byId("archive-presets");
+    if (presetHost) presets(presetHost);
+
+    const controls = byId("archive-filters");
+    if (controls) {
+      bar = filterBar(controls, [
+        { key: "type", label: "種別", type: "select",
+          options: [["", "すべて"], ["daily", "日次"], ["weekly", "週次"], ["monthly", "月次"]] },
+        { key: "lens", label: "視点", type: "select",
+          options: [["", "すべて"], ...S.LENSES.map((l) => [l, L.lensLabel(l)])] },
+        { key: "change", label: "変化", type: "select",
+          options: [["", "すべて"], ...S.CHANGE_PRIORITY.map((c) => [c, L.changeLabel(c)])] },
+        { key: "conf", label: "確度", type: "select",
+          options: [["", "すべて"], ["high", "高"], ["medium", "中"], ["low", "低"]] },
+        { key: "topic", label: "トピック", type: "select",
+          options: [["", "すべて"], ...intel.topics.map((t) => [t.topic_id, t.title_ja || t.topic_id])] },
+        { key: "status", label: "総合", type: "select",
+          options: [["", "すべて"], ["normal", "平常"], ["watch", "監視"],
+                    ["disruption", "障害"], ["unconfirmed", "未確認"]] },
+        { key: "from", label: "開始日", type: "date" },
+        { key: "to", label: "終了日", type: "date" },
+        { key: "q", label: "キーワード", type: "search", placeholder: "タイトル・要約・シグナル" }
+      ], render);
+    }
+
+    render(bar ? bar.state() : {});
   }).catch((err) => {
     console.error(err);
     const emptyEl = byId("archive-empty");

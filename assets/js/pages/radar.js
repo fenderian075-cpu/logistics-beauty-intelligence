@@ -1,14 +1,160 @@
-import { el, byId, clear, link, root } from '../core/dom.js';
-import { loadCriticalNews } from '../data/store.js';
-import { markCurrent } from '../core/nav.js';
+/* =========================================================================
+   radar.js — Operations Radar (the full critical-news view).
+   -------------------------------------------------------------------------
+   The dashboard shows the top of this list; here it is complete and
+   filterable. Two decisions worth stating:
 
-const statusLabel={observed:'実影響',reported:'報告',resolved:'解消'};
-const domainLabel={domestic_delivery:'国内配送',ocean:'海上',air:'航空',customs:'通関',weather:'気象',beauty_commerce:'Beauty EC',global:'Global'};
-function rank(x){return (x.status==='observed'?300:x.status==='reported'?200:100)+(x.importance==='high'?30:x.importance==='medium'?20:10)+(x.japan_relevance==='high'?3:x.japan_relevance==='medium'?2:1)}
-function topicHref(x){return x.topic_ids?.[0]?`${root()}topic.html?id=${encodeURIComponent(x.topic_ids[0])}`:'#';}
-function evidenceList(items=[]){const ul=el('ul','evidence-list'); items.forEach(e=>{const li=el('li'); const a=link(e.url,'evidence-link'); a.target='_blank'; a.rel='noopener'; a.textContent=`${e.source}${e.date?` · ${e.date}`:''}`; li.append(a); ul.append(li)}); return ul;}
-function row(x){const d=el('article','radar-row'); d.dataset.status=x.status||'reported'; d.dataset.domain=x.domain||''; d.dataset.importance=x.importance||''; d.dataset.relevance=x.japan_relevance||'';
- const top=el('div','radar-row__top'); top.append(el('span','radar-row__date',x.date||'—')); top.append(el('span','radar-row__state',statusLabel[x.status]||x.status||'—')); top.append(el('span','radar-row__domain',domainLabel[x.domain]||x.domain||'—')); const a=link(topicHref(x),'radar-row__headline',x.headline||'無題'); top.append(a); if(x.japan_relevance) top.append(el('span','radar-row__relevance',`日本 ${x.japan_relevance==='high'?'高':x.japan_relevance==='medium'?'中':'低'}`)); d.append(top);
- const details=el('details','radar-row__details'); details.append(el('summary',null,'詳細・根拠')); const body=el('div','radar-detail-grid'); if(x.summary) body.append(el('div','radar-detail-block',`概要\n${x.summary}`)); if(x.observed_impact) body.append(el('div','radar-detail-block',`実影響\n${x.observed_impact}`)); if(x.japan_implication) body.append(el('div','radar-detail-block',`日本への意味\n${x.japan_implication}`)); if(x.operational_implication) body.append(el('div','radar-detail-block',`業務への意味\n${x.operational_implication}`)); if(x.evidence?.length){const e=el('div','radar-detail-block'); e.append(el('strong',null,'根拠')); e.append(evidenceList(x.evidence)); body.append(e)} details.append(body); d.append(details); return d;}
-export async function init(){markCurrent('radar'); const data=await loadCriticalNews(); const items=[...(data.items||[])].sort((a,b)=>rank(b)-rank(a)||String(b.date).localeCompare(String(a.date))); const list=byId('radar-list'); clear(list); if(!items.length){list.append(el('p','empty-state','重大な新規情報はありません。')); return;} const counts={observed:0,reported:0,resolved:0}; items.forEach(x=>counts[x.status]=(counts[x.status]||0)+1); const summary=byId('radar-summary'); if(summary) summary.textContent=`実影響 ${counts.observed||0} / 報告 ${counts.reported||0} / 解消 ${counts.resolved||0}`;
- ['observed','reported','resolved'].forEach(s=>{const group=items.filter(x=>x.status===s); if(!group.length)return; list.append(el('h2','radar-group-title',s==='observed'?'実影響確認':s==='reported'?'報告・予告':'解消')); group.forEach(x=>list.append(row(x)));});}
+   1. Ordering is by state, not by clock. Active observed impact outranks a
+      high-relevance reported risk, which outranks everything else
+      (instruction D). A reverse-chronological feed would bury a confirmed
+      disruption under a newer announcement — exactly the failure mode the
+      Radar exists to prevent.
+
+   2. NEW is a summary line, not a badge on every row. The hourly Radar would
+      otherwise decorate the whole page permanently, which is alert fatigue by
+      construction (spec §8). "Last seen" is a localStorage timestamp; there
+      is no account and nothing leaves the browser.
+   ========================================================================= */
+
+import { el, byId, clear } from "../core/dom.js";
+import { formatDate } from "../core/format.js";
+import * as L from "../core/labels.js";
+import { loadIntel, readLastSeen, writeLastSeen, countNewSince } from "../data/intel.js";
+import { bindLatestReportNav, markCurrent } from "../core/nav.js";
+import { emptyState, renderRows } from "../render/primitives.js";
+import { radarRowFull } from "../render/radar-row.js";
+import { filterBar, withinRange } from "../render/filters.js";
+
+const GROUPS = ["observed", "reported", "resolved"];
+
+function matches(item, state) {
+  if (state.domain && item.domain !== state.domain) return false;
+  if (state.status && item.status !== state.status) return false;
+  if (state.importance && item.importance !== state.importance) return false;
+  if (state.jp && item.japan_relevance !== state.jp) return false;
+  if (!withinRange(item.date, state.from, state.to)) return false;
+  if (state.q) {
+    const hay = [item.headline, item.summary, item.observed_impact, item.japan_implication,
+                 item.operational_implication, (item.topic_ids || []).join(" ")]
+      .filter(Boolean).join(" ").toLowerCase();
+    if (!state.q.toLowerCase().split(/\s+/).every((term) => hay.indexOf(term) !== -1)) return false;
+  }
+  return true;
+}
+
+function domainOptions(items) {
+  const seen = [];
+  items.forEach((i) => { if (i.domain && seen.indexOf(i.domain) === -1) seen.push(i.domain); });
+  return [["", "すべて"], ...seen.map((d) => [d, L.newsDomainLabel(d)])];
+}
+
+function groupHead(status, count) {
+  const head = el("div", "radar-group__head");
+  head.setAttribute("data-status", status);
+  head.appendChild(el("h2", "radar-group__title", L.UI.radarGroups[status] || status));
+  head.appendChild(el("span", "radar-group__count", `${count} 件`));
+  head.appendChild(el("p", "radar-group__note", L.NEWS_STATUS_NOTE[status] || ""));
+  return head;
+}
+
+export function init() {
+  const list = byId("radar-list");
+  if (!list) return Promise.resolve();
+
+  return loadIntel().then((intel) => {
+    bindLatestReportNav(intel.reports);
+    markCurrent();
+
+    const items = intel.news;
+    const lastSeen = readLastSeen();
+    const newCount = countNewSince(items, lastSeen);
+
+    const banner = byId("radar-new");
+    if (banner) {
+      if (newCount) {
+        banner.hidden = false;
+        banner.textContent = `${L.UI.radarNewSince(newCount)}（前回 ${formatDate(lastSeen)}）`;
+      } else {
+        banner.hidden = true;
+      }
+    }
+    if (items.length) writeLastSeen(items.map((i) => i.date).sort().pop());
+
+    const controls = byId("radar-filters");
+    let bar = null;
+    const render = (state) => {
+      const hits = items.filter((item) => matches(item, state));
+      if (bar) bar.setCount(hits.length);
+
+      clear(list);
+      if (!hits.length) {
+        list.appendChild(emptyState("条件に一致する項目はありません。条件を減らしてお試しください。"));
+        return;
+      }
+
+      /* Grouped by state so the reading order is state-first even when a
+         filter is active; each group is capped and expandable so a busy day
+         (20 items) stays a page you can scan. */
+      GROUPS.forEach((status) => {
+        const group = hits.filter((item) => item.status === status);
+        if (!group.length) return;
+        const box = el("section", "radar-group");
+        box.setAttribute("data-status", status);
+        box.appendChild(groupHead(status, group.length));
+        const rows = el("div", "radar-list");
+        renderRows(rows, group, (item) => radarRowFull(item, intel), { limit: 6 });
+        box.appendChild(rows);
+        list.appendChild(box);
+      });
+
+      /* Anything with an unrecognised status still has to appear: the pipeline
+         may add states before the frontend knows about them. */
+      const other = hits.filter((item) => GROUPS.indexOf(item.status) === -1);
+      if (other.length) {
+        const box = el("section", "radar-group");
+        box.appendChild(groupHead(other[0].status || "other", other.length));
+        const rows = el("div", "radar-list");
+        renderRows(rows, other, (item) => radarRowFull(item, intel), { limit: 6 });
+        box.appendChild(rows);
+        list.appendChild(box);
+      }
+
+      if (location.hash) {
+        const target = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+        if (target) {
+          const details = target.querySelector("details");
+          if (details) details.open = true;
+          target.classList.add("is-targeted");
+        }
+      }
+    };
+
+    if (controls) {
+      bar = filterBar(controls, [
+        { key: "status", label: "状態", type: "select",
+          options: [["", "すべて"], ...GROUPS.map((s) => [s, L.newsStatusLabel(s)])] },
+        { key: "domain", label: "領域", type: "select", options: domainOptions(items) },
+        { key: "importance", label: "重要度", type: "select",
+          options: [["", "すべて"], ["high", "高"], ["medium", "中"], ["low", "低"]] },
+        { key: "jp", label: "日本関連度", type: "select",
+          options: [["", "すべて"], ["high", "高"], ["medium", "中"], ["low", "低"]] },
+        { key: "from", label: "開始日", type: "date" },
+        { key: "to", label: "終了日", type: "date" },
+        { key: "q", label: "キーワード", type: "search", placeholder: "見出し・要約を検索" }
+      ], render);
+    }
+
+    const summary = byId("radar-summary");
+    if (summary) {
+      const counts = GROUPS.map((s) => `${L.UI.radarGroups[s]} ${items.filter((i) => i.status === s).length}`);
+      summary.textContent = counts.join(" / ");
+    }
+
+    render(bar ? bar.state() : {});
+  }).catch((err) => {
+    console.error(err);
+    clear(list);
+    list.appendChild(emptyState(L.UI.loadError));
+    throw err;
+  });
+}

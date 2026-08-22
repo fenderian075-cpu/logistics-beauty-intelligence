@@ -15,7 +15,7 @@
 import { el, link, byId, qsa, clear, root } from "../core/dom.js";
 import { formatDate, formatMonth } from "../core/format.js";
 import * as L from "../core/labels.js";
-import { loadReports, loadRegistry } from "../data/store.js";
+import { loadIntel } from "../data/intel.js";
 import * as S from "../domain/signals.js";
 import { bindLatestReportNav } from "../core/nav.js";
 import { signalCard } from "../render/signal-card.js";
@@ -87,7 +87,7 @@ function hideNonDailyStatus() {
   if (section) section.remove();
 }
 
-function renderSignals(reports, entry) {
+function renderSignals(reports, entry, intel) {
   const box = byId("report-signals");
   if (!box) return;
   clear(box);
@@ -110,19 +110,51 @@ function renderSignals(reports, entry) {
     group.setAttribute("data-lens", lens);
     group.appendChild(el("h3", "signal-lens-group__title", L.lensLabel(lens)));
     list.forEach((sig) => {
-      group.appendChild(signalCard(sig, { reports, rootPath: root(), compact: true }));
+      group.appendChild(signalCard(sig, {
+        reports, rootPath: root(), compact: true, topicFor: intel.topicForSignal
+      }));
     });
     box.appendChild(group);
   });
 }
 
-function renderMarketRegime(entry) {
+function renderMarketRegime(entry, intel) {
   if (!entry || !entry.market_intelligence.length) return;
   const host = byId("market-regime-host") || byId("report-signals");
   if (!host) return;
   const anchor = host.closest("section") || host;
-  const section = marketRegimeSection(entry);
+  const section = marketRegimeSection(entry, intel);
   if (section) anchor.parentNode.insertBefore(section, anchor.nextSibling);
+}
+
+/** Topics this report feeds. The report is Layer 3; this is the way back up
+    to Layer 2 without going through the dashboard. */
+function renderTopicRail(entry, intel) {
+  if (!entry) return;
+  const ids = new Set();
+  intel.topics.forEach((topic) => {
+    if ((topic.related_report_ids || []).indexOf(entry.id) !== -1) ids.add(topic.topic_id);
+  });
+  S.signalsOf(entry).forEach((sig) => { if (intel.hasTopic(sig.id)) ids.add(sig.id); });
+  if (!ids.size) return;
+
+  const host = byId("report-signals");
+  const anchor = host ? (host.closest("section") || host) : null;
+  if (!anchor) return;
+
+  const section = el("section", "section report-topics");
+  const head = el("div", "section__head");
+  head.appendChild(el("h2", "section__title", "このレポートが扱うトピック"));
+  section.appendChild(head);
+
+  const row = el("div", "chip-links");
+  Array.from(ids).forEach((id) => {
+    const topic = intel.topic(id);
+    row.appendChild(link(`${root()}topic.html?id=${encodeURIComponent(id)}`, "chip-link",
+      topic.title_ja || id));
+  });
+  section.appendChild(row);
+  anchor.parentNode.insertBefore(section, anchor);
 }
 
 export function init() {
@@ -132,15 +164,15 @@ export function init() {
   renderBreadcrumb();
   hideNonDailyStatus();
 
-  return Promise.all([loadReports(), loadRegistry()]).then(([data, registry]) => {
-    S.useRegistry(registry);
-    const reports = data.reports;
+  return loadIntel().then((intel) => {
+    const reports = intel.reports;
     const entry = reports.find((r) => r.date === selfDate && r.type === selfType) || null;
 
     bindLatestReportNav(reports);
     renderNav(neighbours(reports));
-    renderSignals(reports, entry);
-    renderMarketRegime(entry);
+    renderSignals(reports, entry, intel);
+    renderMarketRegime(entry, intel);
+    renderTopicRail(entry, intel);
   }).catch((err) => {
     // The static report body is complete on its own; navigation degrades.
     console.warn("reports.json unavailable — keeping static report content.", err);

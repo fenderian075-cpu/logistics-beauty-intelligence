@@ -34,10 +34,11 @@ def header(prefix=""):
   <div class="site-header__bar">
     <a class="brand brand--minimal" href="{prefix}index.html" aria-label="ホーム"><span class="brand__mark">LBI</span></a>
     <nav class="site-nav site-nav--reports" aria-label="ナビゲーション">
+      <a data-nav="radar" href="{prefix}radar.html">レーダー</a>
+      <a data-nav="topic" href="{prefix}topic.html">トピック</a>
       <a id="nav-latest-daily" data-nav="daily" href="{prefix}archive.html?type=daily">日次</a>
       <a id="nav-latest-weekly" data-nav="weekly" href="{prefix}archive.html?type=weekly">週次</a>
       <a id="nav-latest-monthly" data-nav="monthly" href="{prefix}archive.html?type=monthly">月次</a>
-      <a data-nav="topic" href="{prefix}topic.html">トピック</a>
       <a data-nav="commerce" href="{prefix}commerce-calendar.html">EC予定</a>
       <a data-nav="buzz" href="{prefix}buzz.html">Buzz</a>
       <a data-nav="archive" href="{prefix}archive.html">過去</a>
@@ -51,6 +52,8 @@ def footer(prefix=""):
   <div class="wrap">
     <nav aria-label="フッター">
       <a href="{prefix}index.html">ホーム</a>
+      <a href="{prefix}radar.html">レーダー</a>
+      <a href="{prefix}topic.html">トピック</a>
       <a href="{prefix}commerce-calendar.html">EC予定</a>
       <a href="{prefix}buzz.html">Buzz</a>
       <a href="{prefix}archive.html">過去</a>
@@ -85,22 +88,41 @@ page(
     title="Logistics & Beauty Intelligence",
     description="物流・通関・国際輸送・Beauty Commerceの意思決定ダッシュボード。",
     body_attrs='data-root="" data-page="home"',
-    main="""<div class="wrap" id="dashboard">
+    main="""<div class="wrap dashboard" id="dashboard">
   <p class="empty-state" id="dashboard-error" hidden></p>
 
-  <section class="section decision" aria-labelledby="decision-title">
+  <section class="section section--decision" aria-labelledby="decision-title">
     <div class="section__head">
-      <h1 class="section__title" id="decision-title">本日の判断</h1>
-      <p class="section__note">最終更新: <span id="data-stamp">—</span></p>
+      <div>
+        <p class="eyebrow">TODAY</p>
+        <h1 class="section__title" id="decision-title">本日の判断</h1>
+      </div>
+      <p class="section__note">最終更新 <span id="data-stamp">—</span></p>
     </div>
     <div class="decision-grid">
       <div class="overall" id="overall" data-status="unconfirmed" aria-live="polite"></div>
       <div class="action-box" id="action-box" data-action="unknown" aria-live="polite"></div>
     </div>
     <div class="callout callout--bottom-line" id="conclusion" hidden></div>
+  </section>
 
+  <section class="section section--span" aria-labelledby="radar-title">
+    <div class="section__head">
+      <div>
+        <p class="eyebrow">OPERATIONS RADAR</p>
+        <h2 class="section__title" id="radar-title">見逃してはいけない動き</h2>
+      </div>
+      <div class="section__actions">
+        <span class="section__note" id="operations-radar-meta"></span>
+        <a class="section__link" href="radar.html">すべて表示 →</a>
+      </div>
+    </div>
+    <div class="radar-summary" id="operations-radar"></div>
+  </section>
+
+  <section class="section section--span" aria-labelledby="status-title">
     <div class="status-title-row">
-      <h2 class="subhead">日本物流ステータス</h2>
+      <h2 class="section__title" id="status-title">日本物流ステータス</h2>
       <div class="status-legend status-legend--inline">
         <span data-status="normal"><span class="dot"></span>平常</span>
         <span data-status="watch"><span class="dot"></span>監視</span>
@@ -111,13 +133,12 @@ page(
     <div class="status-board" id="status-board"></div>
   </section>
 
-  <section class="section section--latest-first section--compact-latest" aria-labelledby="latest-title">
+  <section class="section section--span section--compact-latest" aria-labelledby="latest-title">
     <div class="section__head">
       <h2 class="section__title" id="latest-title">最新レポート</h2>
+      <a class="section__link" href="archive.html">過去のレポート →</a>
     </div>
-    <div class="latest-grid" id="latest-grid">
-      <p class="empty-state">読み込み中…</p>
-    </div>
+    <div class="latest-grid" id="latest-grid"><p class="empty-state">読み込み中…</p></div>
   </section>
 
   <section class="section" aria-labelledby="changed-title">
@@ -125,16 +146,8 @@ page(
       <h2 class="section__title" id="changed-title">前回からの変化</h2>
       <p class="section__note" id="changed-base"></p>
     </div>
-    <div id="changed-counts" class="change-counts"></div>
+    <div class="change-counts" id="changed-counts"></div>
     <div id="changed-list"></div>
-  </section>
-
-  <section class="section" aria-labelledby="lenses-title">
-    <div class="section__head">
-      <h2 class="section__title" id="lenses-title">5つの視点</h2>
-    </div>
-    <p class="empty-state" id="lenses-note" hidden></p>
-    <div class="lens-grid" id="lens-grid"></div>
   </section>
 
   <section class="section" aria-labelledby="key-title">
@@ -143,6 +156,67 @@ page(
     </div>
     <div id="key-signals"></div>
   </section>
+
+  <section class="section section--span" aria-labelledby="regime-title">
+    <div class="section__head">
+      <div>
+        <p class="eyebrow">MARKET REGIME</p>
+        <h2 class="section__title" id="regime-title">市場はなぜ動いているか</h2>
+      </div>
+      <p class="section__note" id="market-regime-note"></p>
+    </div>
+    <div id="market-regime-strip"></div>
+    <p class="regime-note">運賃・供給・実需・定時性・リスクは独立した次元です。未確認は判断材料が揃っていないことを示します。</p>
+  </section>
+
+  <section class="section section--span" aria-labelledby="lenses-title">
+    <div class="section__head">
+      <h2 class="section__title" id="lenses-title">5つの視点</h2>
+    </div>
+    <p class="empty-state" id="lenses-note" hidden></p>
+    <div class="lens-grid" id="lens-grid"></div>
+  </section>
+
+  <section class="section section--span" aria-labelledby="topics-title">
+    <div class="section__head">
+      <div>
+        <p class="eyebrow">TOPIC INTELLIGENCE</p>
+        <h2 class="section__title" id="topics-title">注目トピック</h2>
+      </div>
+      <a class="section__link" href="topic.html">一覧 →</a>
+    </div>
+    <div class="topic-index" id="featured-topics"></div>
+  </section>
+</div>""",
+)
+
+# --------------------------------------------------------------------------- radar
+page(
+    path="radar.html",
+    title="オペレーションレーダー | LBI",
+    description="実影響が確認された事象と、報告段階のリスクを分けて追跡します。",
+    body_attrs='data-root="" data-page="radar"',
+    main="""<div class="wrap">
+  <header class="page-head">
+    <p class="eyebrow">OPERATIONS RADAR</p>
+    <h1 class="page-title">オペレーションレーダー</h1>
+    <p class="page-lead">見逃してはいけない動きだけを、実影響 → 報告 の順で表示します。並び順は日付ではなく状態が優先です。</p>
+    <p class="page-meta" id="radar-summary"></p>
+    <p class="notice" id="radar-new" hidden></p>
+  </header>
+  <div id="radar-filters"></div>
+  <div id="radar-list"><p class="empty-state">読み込み中…</p></div>
+</div>""",
+)
+
+# --------------------------------------------------------------------------- topic
+page(
+    path="topic.html",
+    title="トピック | LBI",
+    description="テーマごとに、いま何が起きているかを追跡するTopic Intelligence Digest。",
+    body_attrs='data-root="" data-page="topic"',
+    main="""<div class="wrap">
+  <div id="topic-root"><p class="empty-state">読み込み中…</p></div>
 </div>""",
 )
 
@@ -150,39 +224,17 @@ page(
 page(
     path="archive.html",
     title="過去 | Logistics & Beauty Intelligence",
-    description="日次・週次・月次の過去レポート一覧。",
+    description="日次・週次・月次レポートの分析的な検索。視点・変化・確度・期間で絞り込めます。",
     body_attrs='data-root="" data-page="archive"',
     main="""<div class="wrap">
-  <div class="section__head" style="margin-top:24px">
-    <h1 class="section__title">過去のレポート</h1>
-    <p class="section__note" id="result-count">—</p>
-  </div>
+  <header class="page-head">
+    <p class="eyebrow">ARCHIVE</p>
+    <h1 class="page-title">過去のレポート</h1>
+    <p class="page-lead">「過去3か月・定時性・悪化」のような条件で検索できます。条件はURLに保存されるため、そのまま共有できます。</p>
+  </header>
 
-  <div class="archive-controls no-print">
-    <div class="filter-grid">
-      <div class="field"><label for="f-year">年</label>
-        <select id="f-year"><option value="">すべて</option></select></div>
-      <div class="field"><label for="f-month">月</label>
-        <select id="f-month"><option value="">すべて</option></select></div>
-      <div class="field"><label for="f-type">種別</label>
-        <select id="f-type"><option value="">すべて</option><option value="daily">日次</option><option value="weekly">週次</option><option value="monthly">月次</option></select></div>
-      <div class="field"><label for="f-status">総合ステータス</label>
-        <select id="f-status"><option value="">すべて</option><option value="normal">平常</option><option value="watch">監視</option><option value="disruption">障害</option><option value="unconfirmed">未確認</option></select></div>
-      <div class="field"><label for="f-q">キーワード</label>
-        <input id="f-q" type="search" autocomplete="off" placeholder="タイトル・要約・タグを検索"></div>
-    </div>
-    <div class="filter-grid filter-grid--structured" id="structured-filters" hidden>
-      <div class="field"><label for="f-lens">視点</label>
-        <select id="f-lens"><option value="">すべて</option><option value="disruption">障害</option><option value="cost_capacity">コスト・キャパ</option><option value="reliability">定時性</option><option value="demand_commerce">需要・商流</option><option value="regulatory_structural">規制・構造</option></select></div>
-      <div class="field"><label for="f-change">変化</label>
-        <select id="f-change"><option value="">すべて</option><option value="new">新規</option><option value="deteriorating">悪化</option><option value="improving">改善</option><option value="resolved">解消</option></select></div>
-      <div class="field"><label for="f-conf">確度</label>
-        <select id="f-conf"><option value="">すべて</option><option value="high">高</option><option value="medium">中</option><option value="low">低</option></select></div>
-    </div>
-    <div class="archive-actions">
-      <button type="button" class="btn btn--quiet" id="f-reset">条件をクリア</button>
-    </div>
-  </div>
+  <div class="no-print" id="archive-filters"></div>
+  <div class="preset-row no-print" id="archive-presets"></div>
 
   <p class="empty-state" id="archive-empty" hidden></p>
   <ul class="archive-list" id="archive-list"></ul>
@@ -315,6 +367,18 @@ page(
       </div>
       <p class="section__note" id="history-lead"></p>
     </div>
+    <div class="history-context">
+      <section class="section">
+        <div class="section__head"><h2 class="section__title">このドメインのトピック</h2></div>
+        <div class="topic-index" id="status-topics"></div>
+      </section>
+      <section class="section">
+        <div class="section__head"><h2 class="section__title">関連レーダー</h2></div>
+        <div class="radar-list" id="status-radar"></div>
+      </section>
+    </div>
+
+    <div class="section__head"><h2 class="section__title">ステータス推移</h2></div>
     <div id="history-list" class="timeline"><p class="empty-state">読み込み中…</p></div>
   </section>
 </div>""",
@@ -335,7 +399,18 @@ page(
       </div>
       <p class="section__note" id="lens-history-lead"></p>
     </div>
-    <div id="lens-history-list"><p class="empty-state">読み込み中…</p></div>
+    <nav class="lens-switch" id="lens-switch" aria-label="視点の切り替え"></nav>
+    <div class="no-print" id="lens-filters"></div>
+
+    <div class="lens-layout">
+      <div id="lens-history-list"><p class="empty-state">読み込み中…</p></div>
+      <aside class="lens-side">
+        <section class="section">
+          <div class="section__head"><h2 class="section__title">この視点のトピック</h2></div>
+          <div class="topic-index" id="lens-topics"></div>
+        </section>
+      </aside>
+    </div>
   </section>
 </div>""",
 )

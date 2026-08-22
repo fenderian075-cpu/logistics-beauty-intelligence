@@ -1,0 +1,170 @@
+/* =========================================================================
+   intel.js — the join layer.
+   -------------------------------------------------------------------------
+   `topic_id` is the only key that actually ties this dataset together:
+   critical-news items carry `topic_ids`, topics carry `related_report_ids`,
+   and — the important part — signal ids and topic ids share one namespace
+   (ocean-global-price, middle-east-maritime-risk, beauty-japan-ec-promotion …
+   exist in both signal-registry.json and topic-intelligence.json).
+
+   Every cross-link in the UI is derived here, once, so no page invents its
+   own idea of what relates to what. Nothing is written back to the data.
+   ========================================================================= */
+
+import { loadReports, loadRegistry, loadCriticalNews, loadTopics } from "./store.js";
+import * as S from "../domain/signals.js";
+
+/* Market-regime rows have no topic_ids in the current schema. Prefer the data
+   when the pipeline starts emitting them; fall back to this display-side map,
+   which is the only hard-coded relationship in the frontend. */
+const REGIME_TOPICS = {
+  "east-west-container": ["ocean-global-price", "ocean-blank-sailing-pressure", "ocean-schedule-reliability"],
+  "intra-asia": ["ocean-intra-asia-capacity", "ocean-global-price"],
+  "middle-east-shipping": ["middle-east-maritime-risk", "ocean-schedule-reliability"]
+};
+
+/* Which topics a status-board domain is about. Same shape as the domain
+   matcher used by status-history, expressed over topic ids. */
+const DOMAIN_TOPICS = {
+  domestic: (id) => /^japan-domestic/.test(id),
+  weather: (id) => /^japan-weather/.test(id),
+  customs: (id) => /^japan-(customs|logistics-regulation)/.test(id),
+  ocean: (id) => /^ocean-/.test(id) || id === "middle-east-maritime-risk",
+  air: (id) => /^air-/.test(id),
+  global: (id) => id === "middle-east-maritime-risk" || /^ocean-/.test(id)
+};
+
+const NEWS_RANK = { observed: 300, reported: 200, resolved: 100 };
+const IMPORTANCE_RANK = { high: 30, medium: 20, low: 10 };
+const RELEVANCE_RANK = { high: 3, medium: 2, low: 1 };
+
+/**
+ * Radar ordering (spec §7 / instruction D):
+ *   active observed impact > high-relevance reported risk > everything else,
+ * with the date only breaking ties. A plain reverse-chronological feed would
+ * bury a confirmed disruption under a newer announcement.
+ */
+export function radarRank(item) {
+  return (NEWS_RANK[item.status] || 100) +
+         (IMPORTANCE_RANK[item.importance] || 10) +
+         (RELEVANCE_RANK[item.japan_relevance] || 1);
+}
+
+export function sortRadar(items) {
+  return items.slice().sort((a, b) =>
+    radarRank(b) - radarRank(a) || String(b.date).localeCompare(String(a.date)));
+}
+
+/**
+ * Load everything and build the graph.
+ * Each source file is still fetched exactly once (see data/store.js).
+ */
+export async function loadIntel() {
+  const [reportData, registry, newsData, topicData] = await Promise.all([
+    loadReports(), loadRegistry(), loadCriticalNews(), loadTopics()
+  ]);
+  S.useRegistry(registry);
+
+  const reports = reportData.reports;
+  const topics = (topicData && topicData.topics) || [];
+  const news = sortRadar((newsData && newsData.items) || []);
+
+  const topicById = new Map(topics.map((t) => [t.topic_id, t]));
+  const reportById = new Map(reports.map((r) => [r.id, r]));
+
+  /* topic id -> radar items mentioning it */
+  const newsByTopic = new Map();
+  news.forEach((item) => {
+    (item.topic_ids || []).forEach((id) => {
+      if (!newsByTopic.has(id)) newsByTopic.set(id, []);
+      newsByTopic.get(id).push(item);
+    });
+  });
+
+  /* topic id -> signal observations, newest first (ids share a namespace) */
+  const signalsByTopic = new Map();
+  reports.forEach((report) => {
+    S.signalsOf(report).forEach((sig) => {
+      if (!sig.id) return;
+      if (!signalsByTopic.has(sig.id)) signalsByTopic.set(sig.id, []);
+      signalsByTopic.get(sig.id).push({ report, sig });
+    });
+  });
+  signalsByTopic.forEach((list) => list.sort((a, b) => (a.report.date < b.report.date ? 1 : -1)));
+
+  /* topic id -> market-regime rows (weekly/monthly) */
+  const regimeByTopic = new Map();
+  reports.forEach((report) => {
+    (report.market_intelligence || []).forEach((row) => {
+      const ids = Array.isArray(row.topic_ids) ? row.topic_ids : (REGIME_TOPICS[row.id] || []);
+      ids.forEach((id) => {
+        if (!regimeByTopic.has(id)) regimeByTopic.set(id, []);
+        regimeByTopic.get(id).push({ report, row });
+      });
+    });
+  });
+
+  const api = {
+    reports, topics, news, reportData,
+
+    topic: (id) => topicById.get(id) || null,
+    /** A topic id is only a link when the topic actually exists: the data
+        legitimately references ids that have no digest yet. */
+    hasTopic: (id) => topicById.has(id),
+    report: (id) => reportById.get(id) || null,
+
+    newsFor: (id) => newsByTopic.get(id) || [],
+    signalsFor: (id) => signalsByTopic.get(id) || [],
+    regimeFor: (id) => regimeByTopic.get(id) || [],
+    reportsFor: (topic) => (topic.related_report_ids || []).map((id) => reportById.get(id)).filter(Boolean),
+
+    /** Topics linked from a signal (same id) or from a status-board domain. */
+    topicForSignal: (sig) => (sig && sig.id && topicById.has(sig.id) ? topicById.get(sig.id) : null),
+    topicsForDomain: (domain) => {
+      const match = DOMAIN_TOPICS[domain];
+      return match ? topics.filter((t) => match(t.topic_id)) : [];
+    },
+    topicsForRegime: (row) => {
+      const ids = Array.isArray(row.topic_ids) ? row.topic_ids : (REGIME_TOPICS[row.id] || []);
+      return ids.map((id) => topicById.get(id)).filter(Boolean);
+    },
+
+    /** Latest development date — used for "what changed" and for sorting. */
+    lastUpdated: (topic) => {
+      const dates = [
+        ...(topic.developments || []).map((d) => d.date),
+        ...(newsByTopic.get(topic.topic_id) || []).map((n) => n.date)
+      ].filter(Boolean).sort();
+      return dates.length ? dates[dates.length - 1] : null;
+    },
+
+    /** Activity used to order the topic index: recent movement first. */
+    topicWeight: (topic) => {
+      const news = newsByTopic.get(topic.topic_id) || [];
+      const observed = news.filter((n) => n.status === "observed").length;
+      const state = topic.current_state === "disruption" ? 3 : topic.current_state === "watch" ? 2 : 1;
+      return state * 100 + observed * 10 + (topic.developments || []).length;
+    }
+  };
+  return api;
+}
+
+/* ---- "new since last visit" -------------------------------------------------
+   One summary line, not a badge on every row: the radar updates hourly and
+   per-row NEW markers would be permanent noise (spec §8). localStorage only —
+   no account, no server. */
+
+const SEEN_KEY = "lbi:radar:lastSeen";
+
+export function readLastSeen() {
+  try { return window.localStorage.getItem(SEEN_KEY); } catch { return null; }
+}
+
+export function writeLastSeen(value) {
+  try { window.localStorage.setItem(SEEN_KEY, value); } catch { /* private mode */ }
+}
+
+export function countNewSince(items, lastSeen) {
+  if (!lastSeen) return 0;
+  return items.filter((item) => String(item.date || "") > lastSeen).length;
+}

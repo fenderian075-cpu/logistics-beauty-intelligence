@@ -17,15 +17,15 @@ import { initPrint } from "./core/print.js";
 
 const PAGES = {
   home: () => import("./pages/home.js"),
+  radar: () => import("./pages/radar.js"),
+  topic: () => import("./pages/topic.js"),
   report: () => import("./pages/report.js"),
   archive: () => import("./pages/archive.js"),
   commerce: () => import("./pages/commerce-calendar.js"),
   buzz: () => import("./pages/buzz.js"),
   sources: () => import("./pages/source-matrix.js"),
   "status-history": () => import("./pages/status-history.js"),
-  "lens-history": () => import("./pages/lens-history.js"),
-  radar: () => import("./pages/radar.js"),
-  topic: () => import("./pages/topic.js")
+  "lens-history": () => import("./pages/lens-history.js")
 };
 
 function detectPage() {
@@ -33,6 +33,8 @@ function detectPage() {
   if (declared && PAGES[declared]) return declared;
 
   if (byId("dashboard")) return "home";
+  if (byId("radar-list")) return "radar";
+  if (byId("topic-root")) return "topic";
   if (document.body.hasAttribute("data-report-date")) return "report";
   if (byId("archive-list")) return "archive";
   if (byId("month-calendar")) return "commerce";
@@ -40,8 +42,6 @@ function detectPage() {
   if (byId("source-body")) return "sources";
   if (byId("history-list")) return "status-history";
   if (byId("lens-history-list")) return "lens-history";
-  if (byId("radar-list")) return "radar";
-  if (byId("topic-main") || byId("topic-title")) return "topic";
   return null;
 }
 

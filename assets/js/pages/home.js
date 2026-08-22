@@ -1,9 +1,23 @@
 /* =========================================================================
    home.js — dashboard.
    -------------------------------------------------------------------------
-   v5 keeps the v2.x information structure (decision → status → latest →
-   changes → lenses → key signals); PR2 rebuilds the ordering around the
-   Operations Radar. What changed here is how it renders:
+   v6 order, top to bottom:
+
+     1. 本日の判断      what to do, in one strip
+     2. Operations Radar what must not be missed, observed impact first
+     3. 日本物流ステータス the六 operational domains, normal recedes
+     4. 最新レポート     the three analytical products, one short scroll in
+     5. 前回からの変化 ‖ 主要シグナル
+     6. 市場レジーム     why the market is moving, with a route into topics
+     7. 5つの視点
+     8. 注目トピック     the entry point to Layer 2
+
+   Everything above the fold answers 「今、何か問題がある？」 and
+   「何が変わった？」; everything below is the route into the depth. Every
+   block leads somewhere specific — a topic digest, a report, a history —
+   never to a generic page.
+
+   Rendering rules carried over from v5:
 
      - one pass, no polling, no post-hoc DOM rewriting;
      - status cells and lens cards are real <a href> elements, so they can be
@@ -15,16 +29,18 @@
    ========================================================================= */
 
 import { el, link, byId, clear, root } from "../core/dom.js";
-import { formatDate, formatMonth } from "../core/format.js";
+import { formatDate, formatMonth, formatShortDate } from "../core/format.js";
 import * as L from "../core/labels.js";
-import { loadReports, loadRegistry, loadCriticalNews, loadTopics } from "../data/store.js";
+import { loadIntel } from "../data/intel.js";
 import { previousOf, latestOf, statusDiff, direction, DOMAINS } from "../data/adapters.js";
 import * as S from "../domain/signals.js";
 import { bindLatestReportNav, markCurrent } from "../core/nav.js";
 import { statusPill, emptyState, renderRows } from "../render/primitives.js";
 import { signalCard } from "../render/signal-card.js";
+import { radarRowCompact } from "../render/radar-row.js";
 
 let reports = [];
+let intel = null;
 
 /* ---- decision header ------------------------------------------------------ */
 
@@ -217,26 +233,59 @@ function renderWhatChanged(daily, previous, digest) {
   }
 
   renderRows(listBox, digest.changed,
-    (sig) => signalCard(sig, { reports, rootPath: root(), compact: true }),
+    (sig) => signalCard(sig, { reports, rootPath: root(), compact: true, topicFor: intel.topicForSignal }),
     { limit: 5 });
 }
 
 /* ---- five lenses ------------------------------------------------------------ */
 
-function renderLenses(digest) {
+/* The daily is an exception report: on a normal day four of the five lenses
+   carry no signals, and a strip of four 未確認 tiles says nothing useful. So
+   each lens falls back to the most recent report that DID observe it, and
+   labels where the reading came from. Only a lens nobody has ever reported on
+   stays 未確認. */
+function lensBuckets(daily, digest) {
+  const buckets = {};
+  S.LENSES.forEach((lens) => {
+    const own = digest ? digest.byLens[lens] : null;
+    if (own && own.count) {
+      buckets[lens] = { ...own, source: daily };
+      return;
+    }
+    const source = reports.find((r) => S.signalsOf(r).some((s) => s.lens === lens));
+    if (!source) {
+      buckets[lens] = { status: "unconfirmed", count: 0, top: null, source: null };
+      return;
+    }
+    const list = S.signalsOf(source).filter((s) => s.lens === lens);
+    buckets[lens] = {
+      lens,
+      signals: list,
+      status: S.lensStatus(lens, list),
+      count: list.length,
+      top: S.rank(list, 1)[0],
+      source
+    };
+  });
+  return buckets;
+}
+
+function renderLenses(daily, digest) {
   const grid = byId("lens-grid");
   const note = byId("lenses-note");
   if (!grid) return;
   clear(grid);
 
+  const buckets = lensBuckets(daily, digest);
+
   if (note) {
-    const empty = !digest || !digest.signals.length;
+    const empty = S.LENSES.every((lens) => !buckets[lens].count);
     note.hidden = !empty;
     if (empty) note.textContent = L.UI.noIntelligence;
   }
 
   S.LENSES.forEach((lens) => {
-    const bucket = digest ? digest.byLens[lens] : { status: "unconfirmed", count: 0, top: null };
+    const bucket = buckets[lens];
     const card = link(`${root()}lens-history.html?lens=${encodeURIComponent(lens)}`, "lens-card");
     card.setAttribute("data-status", bucket.status);
     card.setAttribute("data-lens", lens);
@@ -251,15 +300,155 @@ function renderLenses(digest) {
     head.appendChild(pill);
     card.appendChild(head);
 
-    card.appendChild(el("p", "lens-card__count",
-      bucket.count ? L.UI.lensCount(bucket.count) : L.UI.lensEmpty));
+    const count = el("p", "lens-card__count");
+    count.appendChild(document.createTextNode(bucket.count ? L.UI.lensCount(bucket.count) : L.UI.lensEmpty));
+    if (bucket.source && daily && bucket.source.id !== daily.id) {
+      count.appendChild(el("span", "lens-card__source",
+        `${L.typeLabel(bucket.source.type)} ${formatShortDate(bucket.source.date)} 時点`));
+    }
+    card.appendChild(count);
 
     if (bucket.top) {
       card.appendChild(el("p", "lens-card__top", bucket.top.signal || S.signalName(bucket.top)));
     }
-    card.appendChild(el("span", "lens-card__drill", "シグナル履歴 →"));
+    const topic = bucket.top ? intel.topicForSignal(bucket.top) : null;
+    card.appendChild(el("span", "lens-card__drill",
+      topic ? `${topic.title_ja} →` : "シグナル履歴 →"));
     grid.appendChild(card);
   });
+}
+
+/* ---- operations radar --------------------------------------------------------- */
+
+function renderRadar() {
+  const box = byId("operations-radar");
+  const meta = byId("operations-radar-meta");
+  if (!box) return;
+  clear(box);
+
+  const items = intel.news;
+  if (meta) {
+    const observed = items.filter((i) => i.status === "observed").length;
+    const reported = items.filter((i) => i.status === "reported").length;
+    meta.textContent = `${L.UI.observedLabel} ${observed} / ${L.UI.reportedLabel} ${reported}`;
+  }
+
+  if (!items.length) {
+    box.appendChild(emptyState(L.UI.radarEmpty));
+    return;
+  }
+
+  /* The dashboard shows what changes a decision today. Everything observed
+     is worth the space; beyond that the list is capped, because the point of
+     the block is triage, not completeness — radar.html is completeness. */
+  const observed = items.filter((i) => i.status === "observed");
+  const limit = Math.min(Math.max(observed.length, 3) + 2, 6);
+  renderRows(box, items, (item) => radarRowCompact(item, intel), { limit });
+}
+
+/* ---- market regime ------------------------------------------------------------- */
+
+function regimeCell(dimension) {
+  const dir = (dimension && dimension.direction) || "unknown";
+  const td = el("td");
+  const span = el("span", `regime-value regime-value--${dir}`);
+  span.appendChild(el("span", "regime-value__arrow", L.arrow(dir)));
+  span.appendChild(document.createTextNode(L.directionLabel(dir)));
+  td.appendChild(span);
+  return td;
+}
+
+function renderRegime() {
+  const box = byId("market-regime-strip");
+  const note = byId("market-regime-note");
+  if (!box) return;
+  clear(box);
+
+  const source = latestOf(reports, "weekly") || latestOf(reports, "monthly");
+  const rows = (source && source.market_intelligence) || [];
+  if (!rows.length) {
+    box.appendChild(emptyState("市場レジームは週次・月次レポートから生成されます。"));
+    return;
+  }
+  if (note) {
+    note.textContent = `${L.typeLabel(source.type)} ${formatShortDate(source.date)} 時点`;
+  }
+
+  const table = el("table", "regime-strip");
+  const thead = el("thead");
+  const hr = el("tr");
+  ["対象", "運賃", "供給", "実需", "定時性", "リスク", ""].forEach((label) => {
+    const th = el("th", null, label);
+    th.setAttribute("scope", "col");
+    hr.appendChild(th);
+  });
+  thead.appendChild(hr);
+  table.appendChild(thead);
+
+  const tbody = el("tbody");
+  rows.forEach((row) => {
+    const tr = el("tr");
+    const scope = el("td", "regime-strip__scope");
+    scope.appendChild(el("strong", null, row.scope || row.id));
+    if (row.japan_implication) scope.appendChild(el("small", null, row.japan_implication));
+    tr.appendChild(scope);
+
+    ["rate", "supply", "demand", "reliability"].forEach((key) => tr.appendChild(regimeCell(row[key])));
+
+    const risk = row.risk || "unknown";
+    const riskTd = el("td");
+    riskTd.appendChild(el("span", `risk-pill risk-pill--${risk}`, L.riskLabel(risk)));
+    tr.appendChild(riskTd);
+
+    /* Each row leads somewhere: the topic that explains the movement, or the
+       report the row came from. A regime table that cannot be interrogated is
+       just five arrows. */
+    const drill = el("td", "regime-strip__drill");
+    const topics = intel.topicsForRegime(row);
+    if (topics.length) {
+      drill.appendChild(link(`${root()}topic.html?id=${encodeURIComponent(topics[0].topic_id)}`,
+        "chip-link", "背景を見る →"));
+    } else {
+      drill.appendChild(link(root() + source.path, "chip-link", "レポート →"));
+    }
+    tr.appendChild(drill);
+    tbody.appendChild(tr);
+  });
+  table.appendChild(tbody);
+
+  const wrap = el("div", "table-scroll");
+  wrap.appendChild(table);
+  box.appendChild(wrap);
+}
+
+/* ---- featured topics ------------------------------------------------------------ */
+
+function renderTopics() {
+  const box = byId("featured-topics");
+  if (!box) return;
+  clear(box);
+
+  const topics = intel.topics.slice().sort((a, b) => intel.topicWeight(b) - intel.topicWeight(a));
+  if (!topics.length) {
+    box.appendChild(emptyState("トピックを蓄積中です。"));
+    return;
+  }
+
+  renderRows(box, topics, (topic) => {
+    const a = link(`${root()}topic.html?id=${encodeURIComponent(topic.topic_id)}`, "topic-index-row");
+    a.setAttribute("data-state", topic.current_state || "unconfirmed");
+    a.appendChild(el("span", "topic-index-row__state", L.topicStateLabel(topic.current_state)));
+    a.appendChild(el("span", "topic-index-row__title", topic.title_ja || topic.topic_id));
+
+    const news = intel.newsFor(topic.topic_id);
+    const observed = news.filter((n) => n.status === "observed").length;
+    a.appendChild(el("span", "topic-index-row__meta",
+      observed ? `${L.UI.observedLabel} ${observed} 件` : `動向 ${(topic.developments || []).length} 件`));
+
+    const updated = intel.lastUpdated(topic);
+    a.appendChild(el("span", "topic-index-row__date", updated ? formatShortDate(updated) : "—"));
+    return a;
+  }, { limit: 5 });
 }
 
 /* ---- key signals ------------------------------------------------------------- */
@@ -287,60 +476,16 @@ function renderKeySignals(digest) {
     return;
   }
   renderRows(box, key,
-    (sig) => signalCard(sig, { reports, rootPath: root(), compact: true }),
+    (sig) => signalCard(sig, { reports, rootPath: root(), compact: true, topicFor: intel.topicForSignal }),
     { limit: 5 });
-}
-
-
-
-function radarRank(x) {
-  return (x.status === "observed" ? 300 : x.status === "reported" ? 200 : 100) +
-    (x.importance === "high" ? 30 : x.importance === "medium" ? 20 : 10) +
-    (x.japan_relevance === "high" ? 3 : x.japan_relevance === "medium" ? 2 : 1);
-}
-
-function renderRadar(data) {
-  const box = byId("operations-radar");
-  const meta = byId("operations-radar-meta");
-  if (!box) return;
-  clear(box);
-  const items = [...((data && data.items) || [])].sort((a,b)=>radarRank(b)-radarRank(a) || String(b.date).localeCompare(String(a.date)));
-  const observed = items.filter(x=>x.status === "observed").length;
-  const reported = items.filter(x=>x.status === "reported").length;
-  if (meta) meta.textContent = `実影響 ${observed} / 報告 ${reported}`;
-  if (!items.length) { box.appendChild(emptyState("重大な新規情報はありません。")); return; }
-  renderRows(box, items, (x) => {
-    const a = link(x.topic_ids && x.topic_ids[0] ? `${root()}topic.html?id=${encodeURIComponent(x.topic_ids[0])}` : `${root()}radar.html`, "radar-summary-row");
-    a.setAttribute("data-status", x.status || "reported");
-    a.appendChild(el("span", "radar-summary-row__state", x.status === "observed" ? "実影響" : x.status === "resolved" ? "解消" : "報告"));
-    a.appendChild(el("span", "radar-summary-row__date", (x.date || "").slice(5).replace("-","/")));
-    a.appendChild(el("span", "radar-summary-row__headline", x.headline || "更新"));
-    if (x.japan_relevance) a.appendChild(el("span", "radar-summary-row__jp", `日本 ${x.japan_relevance === "high" ? "高" : x.japan_relevance === "medium" ? "中" : "低"}`));
-    return a;
-  }, { limit: 4 });
-}
-
-function renderTopics(data) {
-  const box = byId("featured-topics");
-  if (!box) return;
-  clear(box);
-  const topics = ((data && data.topics) || []).slice(0, 7);
-  if (!topics.length) { box.appendChild(emptyState("トピックを蓄積中です。")); return; }
-  topics.forEach(t => {
-    const a = link(`${root()}topic.html?id=${encodeURIComponent(t.topic_id)}`, "topic-summary-row");
-    a.appendChild(el("span", "topic-summary-row__title", t.title_ja || t.topic_id));
-    a.appendChild(el("span", "topic-summary-row__state", t.current_state === "watch" ? "監視" : t.current_state === "disruption" ? "障害" : t.current_state === "normal" ? "平常" : "未確認"));
-    a.appendChild(el("span", "topic-summary-row__meta", `動向 ${(t.developments||[]).length} · 確度 ${t.confidence === "high" ? "高" : t.confidence === "medium" ? "中" : "低"}`));
-    box.appendChild(a);
-  });
 }
 
 /* ---- boot -------------------------------------------------------------------- */
 
 export function init() {
-  return Promise.all([loadReports(), loadRegistry(), loadCriticalNews(), loadTopics()]).then(([data, registry, criticalNews, topics]) => {
-    S.useRegistry(registry);
-    reports = data.reports;
+  return loadIntel().then((graph) => {
+    intel = graph;
+    reports = graph.reports;
 
     bindLatestReportNav(reports);
     markCurrent();
@@ -352,13 +497,14 @@ export function init() {
     renderOverall(daily);
     renderActionBox(digest);
     renderConclusion(daily);
+    renderRadar();
     renderBoard(daily);
-    renderRadar(criticalNews);
     renderLatest();
     renderWhatChanged(daily, previous, digest);
-    renderLenses(digest);
     renderKeySignals(digest);
-    renderTopics(topics);
+    renderRegime();
+    renderLenses(daily, digest);
+    renderTopics();
 
     const stamp = byId("data-stamp");
     if (stamp && daily) {

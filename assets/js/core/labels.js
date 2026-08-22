@@ -128,6 +128,67 @@ export function evidenceTier(cls) {
   return EVIDENCE_TIER[cls] || { tier: "media", label: cls ? String(cls) : "出典" };
 }
 
+
+/* ---- Operations Radar / Topic Intelligence (v6) --------------------------- */
+
+/** critical-news.json `domain` */
+export const NEWS_DOMAIN = {
+  domestic_delivery: "国内配送",
+  ocean: "海上",
+  air: "航空",
+  customs: "通関",
+  weather: "気象",
+  regulatory: "規制",
+  beauty_commerce: "Beauty商流",
+  global: "グローバル"
+};
+
+/** critical-news.json `status`. Reported ≠ observed: see pipeline docs §10. */
+export const NEWS_STATUS = {
+  observed: "実影響",
+  reported: "報告",
+  resolved: "解消"
+};
+
+export const NEWS_STATUS_NOTE = {
+  observed: "影響が実際に確認されています",
+  reported: "発表・予告の段階です（実影響は未確認）",
+  resolved: "解消済みとして記録されています"
+};
+
+/** topic-intelligence.json `developments[].type` */
+export const DEVELOPMENT_TYPE = {
+  reported_event: "報告",
+  observed_impact: "実影響",
+  market_data: "データ",
+  regulatory_update: "規制",
+  corporate_update: "企業",
+  commerce_event: "商流",
+  buzz_signal: "話題",
+  resolution: "解消"
+};
+
+/** topic-intelligence.json `current_state` — shares vocabulary with lens state. */
+export const TOPIC_STATE = {
+  normal: "平常",
+  watch: "監視",
+  disruption: "障害",
+  rising: "上昇",
+  falling: "低下",
+  stable: "横ばい",
+  improving: "改善",
+  deteriorating: "悪化",
+  unconfirmed: "未確認"
+};
+
+export const RELEVANCE = { high: "高", medium: "中", low: "低" };
+
+export const newsDomainLabel = (v) => pick(NEWS_DOMAIN, v);
+export const newsStatusLabel = (v) => pick(NEWS_STATUS, v, NEWS_STATUS.reported);
+export const developmentTypeLabel = (v) => pick(DEVELOPMENT_TYPE, v, "更新");
+export const topicStateLabel = (v) => pick(TOPIC_STATE, v, TOPIC_STATE.unconfirmed);
+export const relevanceLabel = (v) => pick(RELEVANCE, v, RELEVANCE.low);
+
 /** Longer UI copy. Kept together so wording stays consistent across pages. */
 export const UI = {
   overall: "総合ステータス",
@@ -182,6 +243,41 @@ export const UI = {
   reportNewest: "これが最新です",
   reportArchive: "過去のレポート",
   showMore: (n) => `さらに ${n} 件を表示`,
+  radarTitle: "オペレーションレーダー",
+  radarLead: "見逃してはいけない動きだけを、実影響 → 報告 の順で表示します。",
+  radarEmpty: "重大な新規情報はありません。",
+  radarAll: "すべて表示 →",
+  radarNewSince: (n) => `前回閲覧以降の更新 ${n} 件`,
+  radarGroups: { observed: "実影響を確認", reported: "報告・予告", resolved: "解消" },
+  topicIndexTitle: "トピック",
+  topicIndexLead: "テーマごとに、いま何が起きているかを追跡します。",
+  topicNotFound: "指定されたトピックが見つかりません。一覧から選択してください。",
+  topicSections: {
+    state: "現在の状態",
+    changed: "何が変わったか",
+    developments: "最新動向",
+    data: "データ",
+    implication: "含意",
+    outlook: "見通し",
+    related: "関連",
+    evidence: "根拠"
+  },
+  topicNoData: "定量データはまだ登録されていません。",
+  topicNoDevelopments: "動向はまだ記録されていません。",
+  topicNoOutlook: "見通しは登録されていません。",
+  topicNoNews: "関連するレーダー項目はありません。",
+  topicNoEvidence: "出典はまだ登録されていません。",
+  japanImplication: "日本への意味",
+  operationalImplication: "業務への意味",
+  reportedLabel: "報告",
+  observedLabel: "実影響",
+  relatedReports: "関連レポート",
+  relatedSignals: "関連シグナル",
+  relatedTopics: "関連トピック",
+  relatedRadar: "関連レーダー",
+  viewTopic: "トピックを開く →",
+  filterReset: "条件をクリア",
+  resultCount: (n) => `${n} 件`,
   typeQuestion: {
     daily: "今日、業務を変える必要があるか",
     weekly: "来週〜数週間の判断材料",

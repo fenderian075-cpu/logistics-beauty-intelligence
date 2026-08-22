@@ -331,12 +331,53 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
   .calendar-event { grid-template-columns: 1fr; }
 }
 
-/* =========================================================================
-   Intelligence Experience v6 — Operations Radar / Topic Digest / Home IA
-   ========================================================================= */
-.dashboard-v6{padding-top:22px;padding-bottom:36px}.decision-strip{margin-bottom:16px;padding:18px 20px;background:linear-gradient(180deg,var(--surface),var(--surface-alt));border:1px solid var(--rule);border-top:3px solid var(--accent);border-radius:var(--radius)}.decision-strip__title{display:flex;align-items:baseline;gap:12px;margin-bottom:12px}.decision-strip__title h1{font-size:22px;margin:0}.decision-strip__stamp{margin-left:auto;font-size:12px;color:var(--ink-3)}.section--radar{border-top:2px solid var(--ink)}.section__actions{display:flex;align-items:center;gap:12px;font-size:12px}.section__actions a{font-weight:700;text-decoration:none}.radar-summary{display:flex;flex-direction:column}.radar-summary-row{display:grid;grid-template-columns:54px 46px minmax(0,1fr) 58px;gap:10px;align-items:center;min-height:42px;padding:7px 4px;border-top:1px solid var(--rule);text-decoration:none;color:inherit}.radar-summary-row:first-child{border-top:0}.radar-summary-row:hover{background:var(--surface-alt)}.radar-summary-row__state{font-size:11px;font-weight:800}.radar-summary-row[data-status="observed"] .radar-summary-row__state{color:var(--st-disruption)}.radar-summary-row[data-status="reported"] .radar-summary-row__state{color:var(--st-watch)}.radar-summary-row__date,.radar-summary-row__jp{font-size:11.5px;color:var(--ink-3);font-variant-numeric:tabular-nums}.radar-summary-row__headline{font-size:13.5px;font-weight:650;line-height:1.45}.dashboard-two-col{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(320px,.92fr);gap:18px}.topic-summary-row{display:grid;grid-template-columns:minmax(0,1fr) 52px auto;gap:10px;align-items:center;padding:9px 2px;border-top:1px solid var(--rule);text-decoration:none;color:inherit}.topic-summary-row:first-child{border-top:0}.topic-summary-row:hover{background:var(--surface-alt)}.topic-summary-row__title{font-weight:650}.topic-summary-row__state{font-size:11px;color:var(--st-watch);text-align:center}.topic-summary-row__meta{font-size:11.5px;color:var(--ink-3)}
-.page-hero{display:flex;justify-content:space-between;gap:20px;align-items:flex-end;padding:24px 0 16px;border-bottom:2px solid var(--ink);margin-bottom:14px}.page-title{font-size:28px;line-height:1.2;margin:3px 0 8px}.page-lead{max-width:780px;margin:0;color:var(--ink-2);font-size:14px;line-height:1.7}.hero-stat{font-family:var(--font-mono);font-size:13px;color:var(--ink-3);white-space:nowrap}
-.radar-group-title{font-size:13px;letter-spacing:.04em;margin:20px 0 4px;padding-bottom:6px;border-bottom:2px solid var(--rule-strong)}.radar-row{border-bottom:1px solid var(--rule)}.radar-row__top{display:grid;grid-template-columns:76px 52px 62px minmax(0,1fr) 58px;gap:10px;align-items:center;min-height:46px;padding:6px 2px}.radar-row__date,.radar-row__domain,.radar-row__relevance{font-size:11.5px;color:var(--ink-3)}.radar-row__state{font-size:11px;font-weight:800}.radar-row[data-status="observed"] .radar-row__state{color:var(--st-disruption)}.radar-row[data-status="reported"] .radar-row__state{color:var(--st-watch)}.radar-row__headline{font-size:14px;font-weight:650;text-decoration:none;color:var(--ink)}.radar-row__headline:hover{color:var(--accent)}.radar-row__details{margin:0 0 7px 200px}.radar-row__details>summary{cursor:pointer;font-size:11px;color:var(--ink-3);padding:3px 0 7px}.radar-detail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 16px;background:var(--surface-alt);padding:12px;border-radius:var(--radius);margin-bottom:8px}.radar-detail-block{white-space:pre-line;font-size:12.5px;line-height:1.6;color:var(--ink-2)}.evidence-list{margin:6px 0 0;padding-left:18px}.evidence-link{font-size:12px}
-.topic-hero{padding:26px 0 18px;border-bottom:2px solid var(--ink);margin-bottom:16px}.topic-hero__meta{display:flex;gap:10px;align-items:center;margin:8px 0}.state-label{font-size:12px;font-weight:800;padding:2px 7px;border-left:3px solid var(--st-watch);background:var(--st-watch-bg)}.topic-layout{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(280px,.8fr);gap:18px;align-items:start}.topic-primary,.topic-side{min-width:0}.topic-side{position:sticky;top:10px}.topic-section h2,.topic-side .section h2{font-size:14px;margin:0 0 10px}.topic-section--action{border-left:4px solid var(--accent)}.topic-development{border-top:1px solid var(--rule)}.topic-development:first-child{border-top:0}.topic-development summary{display:grid;grid-template-columns:74px 52px minmax(0,1fr);gap:10px;align-items:center;padding:9px 2px;cursor:pointer;list-style:none}.topic-development summary::-webkit-details-marker{display:none}.topic-development__date{font-size:11.5px;color:var(--ink-3)}.topic-development__type{font-size:10.5px;font-weight:800;color:var(--accent-2)}.topic-development__headline{font-size:13.5px;font-weight:650}.topic-development__body{padding:0 0 12px 136px}.topic-development__body p{font-size:12.5px;color:var(--ink-2)}.topic-evidence{display:flex;flex-direction:column;gap:5px}.topic-evidence__item{display:grid;grid-template-columns:72px minmax(0,1fr);gap:7px;padding:6px 0;border-top:1px solid var(--rule);font-size:12px;text-decoration:none}.topic-evidence__item:first-child{border-top:0}.topic-evidence__class{color:var(--ink-3);font-size:10px;overflow:hidden;text-overflow:ellipsis}.topic-metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.topic-metric{padding:10px;background:var(--surface-alt);border:1px solid var(--rule);border-radius:var(--radius)}.topic-metric__label,.topic-metric__source,.topic-metric__change{display:block;font-size:10.5px;color:var(--ink-3)}.topic-metric__value{display:block;font-family:var(--font-mono);font-size:19px;margin:3px 0}.topic-outlook__item{padding:7px 0;border-top:1px solid var(--rule)}.topic-outlook__item:first-child{border-top:0}.topic-outlook__item strong{font-size:11px}.topic-outlook__item p{font-size:12px;margin:3px 0 0;color:var(--ink-2)}.topic-related,.topic-critical{display:flex;flex-direction:column}.topic-related__link,.topic-news-link{padding:6px 0;border-top:1px solid var(--rule);font-size:12px;text-decoration:none}.topic-related__link:first-child,.topic-news-link:first-child{border-top:0}.topic-index{border-top:2px solid var(--ink)}.topic-index__row{display:grid;grid-template-columns:minmax(0,1fr) 62px auto;gap:14px;padding:12px 2px;border-bottom:1px solid var(--rule);text-decoration:none;color:inherit}.topic-index__title{font-weight:700}.topic-index__state,.topic-index__meta{font-size:11.5px;color:var(--ink-3)}
-@media(max-width:900px){.dashboard-two-col,.topic-layout{grid-template-columns:1fr}.topic-side{position:static}.radar-summary-row{grid-template-columns:48px 42px minmax(0,1fr)}.radar-summary-row__jp{display:none}.radar-row__top{grid-template-columns:58px 48px minmax(0,1fr)}.radar-row__domain,.radar-row__relevance{display:none}.radar-row__details{margin-left:116px}.topic-metrics{grid-template-columns:1fr 1fr}}
-@media(max-width:600px){.decision-strip__title{display:block}.decision-strip__stamp{margin-top:4px}.section__head{align-items:flex-start}.section__actions{flex-direction:column;align-items:flex-end;gap:2px}.radar-summary-row{grid-template-columns:42px 38px minmax(0,1fr);gap:6px}.radar-summary-row__headline{font-size:12.5px}.radar-row__top{grid-template-columns:50px 42px minmax(0,1fr);gap:6px}.radar-row__details{margin-left:0}.radar-detail-grid{grid-template-columns:1fr}.page-hero{display:block}.hero-stat{margin-top:10px}.topic-development summary{grid-template-columns:56px 44px minmax(0,1fr);gap:6px}.topic-development__body{padding-left:0}.topic-metrics{grid-template-columns:1fr}.topic-index__row{grid-template-columns:minmax(0,1fr) 50px}.topic-index__meta{grid-column:1/-1}.site-nav{overflow-x:auto;white-space:nowrap}}
+/* ===== v6 page layouts ===== */
+/* ---- dashboard grid ---------------------------------------------------------------------- */
+
+.dashboard { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-5) var(--space-6); align-items: start; }
+.dashboard > .section--span,
+.dashboard > .section--decision,
+.dashboard > #dashboard-error { grid-column: 1 / -1; }
+
+@media (max-width: 1000px) {
+  .topic-layout { grid-template-columns: 1fr; gap: var(--space-5); }
+  .lens-layout { grid-template-columns: 1fr; }
+  .regime-dimensions { grid-template-columns: 1fr; }
+  .history-context { grid-template-columns: 1fr; }
+  .dashboard { grid-template-columns: 1fr; }
+  .dashboard > .section { grid-column: 1 / -1; }
+}
+
+@media (max-width: 760px) {
+  /* Mobile hierarchy, not a stack: the radar row drops its domain column and
+     wraps the headline onto its own line so the state stays scannable. */
+  .radar-row__head { grid-template-columns: 44px 40px minmax(0, 1fr); row-gap: 2px; }
+  .radar-row__domain { grid-row: 2; grid-column: 1 / 3; }
+  .radar-row__headline { grid-row: 2; grid-column: 3; }
+  .radar-row__jp { grid-row: 1; grid-column: 3; text-align: right; }
+  .radar-detail { grid-template-columns: 1fr; }
+  .radar-group__note { display: none; }
+
+  .topic-toc { gap: var(--space-2); overflow-x: auto; white-space: nowrap; flex-wrap: nowrap; }
+  .topic-title { font-size: 21px; }
+  .topic-meta__id { display: none; }
+  .development__body { padding-left: 0; }
+  .development__summary { grid-template-columns: 42px 52px; row-gap: 2px; }
+  .development__headline { grid-column: 1 / -1; }
+
+  .topic-index-row { grid-template-columns: 48px minmax(0, 1fr) 42px; row-gap: 2px; }
+  .topic-index-row__meta { grid-column: 1 / -1; }
+
+  .filter-bar { gap: var(--space-2) var(--space-3); }
+  .filter-bar__control { min-width: 104px; }
+  .filter-bar__count { margin-left: 0; }
+
+  .regime-events-grid { grid-template-columns: 1fr; }
+  .regime-notes { grid-template-columns: 1fr; gap: 2px; }
+  .regime-notes dd { margin-bottom: 6px; }
+}
+
+@media print {
+  .filter-bar, .preset-row, .topic-toc, .lens-switch, .notice { display: none; }
+  .radar-row__details[open] .radar-detail { display: block; }
+}

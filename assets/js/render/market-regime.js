@@ -1,18 +1,23 @@
 /* =========================================================================
-   market-regime.js — RATE / SUPPLY / DEMAND / RELIABILITY / RISK matrix.
+   market-regime.js — RATE / SUPPLY / DEMAND / RELIABILITY / RISK.
    -------------------------------------------------------------------------
-   Fixed in v5:
-     - the risk pill used to take its colour from `confidence` while showing
-       the value of `risk`, so a `risk: high / confidence: medium` row was
-       labelled 高 and coloured amber. Risk and confidence are now separate,
-       correctly-bound columns.
-     - `unknown` dimensions (intra-Asia has three of them in the current data)
-       render quietly as 未確認 instead of borrowing an alarming tone.
-     - reported events and observed impact are kept visually distinct, so an
-       announcement never reads as a confirmed disruption (spec §10).
+   The matrix answers 「市場はなぜ動いているか」 at a glance; the drill-down
+   underneath it answers 「なぜそう言えるのか」. Both matter: five arrows with
+   no route to the evidence is a decoration, and a wall of evidence with no
+   matrix is unreadable (spec §12, instruction G).
+
+   Structure per scope:
+     matrix row      direction per dimension, risk, confidence
+     drill-down      per-dimension evidence · reported vs observed ·
+                     structural drivers · outlook · risk scenario · topics
+
+   Fixed in v5 and kept: the risk pill used to take its colour from
+   `confidence` while showing the value of `risk`. They are separate columns.
+   Dimensions marked `unknown` — three of five on intra-Asia — render quietly
+   as 未確認 rather than borrowing an alarming tone.
    ========================================================================= */
 
-import { el } from "../core/dom.js";
+import { el, link, root } from "../core/dom.js";
 import * as L from "../core/labels.js";
 
 const DIMENSIONS = [
@@ -22,39 +27,110 @@ const DIMENSIONS = [
   ["reliability", "定時性"]
 ];
 
+function directionOf(value) {
+  if (typeof value === "string") return value || "unknown";
+  return (value && (value.direction || value.level || value.status)) || "unknown";
+}
+
 function dimensionValue(value) {
-  const key = typeof value === "string" ? value : (value && (value.direction || value.level || value.status));
-  const v = key || "unknown";
-  const span = el("span", `regime-value regime-value--${v}`);
-  span.appendChild(el("span", "regime-value__arrow", L.arrow(v)));
-  span.appendChild(document.createTextNode(L.directionLabel(v)));
+  const dir = directionOf(value);
+  const span = el("span", `regime-value regime-value--${dir}`);
+  span.appendChild(el("span", "regime-value__arrow", L.arrow(dir)));
+  span.appendChild(document.createTextNode(L.directionLabel(dir)));
   return span;
 }
 
-function eventLine(labelText, items) {
+function eventLines(labelText, items, variant) {
   if (!Array.isArray(items) || !items.length) return null;
-  const p = el("p", "regime-events");
-  p.appendChild(el("span", "sig-card__label", labelText));
-  p.appendChild(document.createTextNode(items.join(" / ")));
-  return p;
+  const box = el("div", `regime-events regime-events--${variant}`);
+  box.appendChild(el("p", "regime-events__label", labelText));
+  const ul = el("ul");
+  items.forEach((text) => ul.appendChild(el("li", null, text)));
+  box.appendChild(ul);
+  return box;
 }
 
-function scopeCell(item) {
-  const td = el("td", "regime-scope");
-  td.appendChild(el("strong", null, item.scope || item.id || "—"));
-  if (item.japan_implication) td.appendChild(el("small", null, item.japan_implication));
+/** One dimension's evidence. Empty arrays are stated, not hidden: an
+    unevidenced 未確認 is a different claim from an evidenced 横ばい. */
+function dimensionEvidence(key, label, value) {
+  const box = el("div", "regime-dimension");
+  const head = el("div", "regime-dimension__head");
+  head.appendChild(el("span", "regime-dimension__name", label));
+  head.appendChild(dimensionValue(value));
+  box.appendChild(head);
+
+  const evidence = (value && Array.isArray(value.evidence)) ? value.evidence : [];
+  if (evidence.length) {
+    const ul = el("ul", "regime-dimension__evidence");
+    evidence.forEach((text) => ul.appendChild(el("li", null, text)));
+    box.appendChild(ul);
+  } else {
+    box.appendChild(el("p", "regime-dimension__empty",
+      directionOf(value) === "unknown"
+        ? "判断できる公開データを確認できていません。"
+        : "根拠は登録されていません。"));
+  }
+  return box;
+}
+
+function drillDown(item, intel) {
+  const details = el("details", "regime-drill");
+  const summary = el("summary", "regime-drill__toggle");
+  summary.appendChild(el("span", null, `${item.scope || item.id} の根拠と含意`));
+  details.appendChild(summary);
+
+  const body = el("div", "regime-drill__body");
+
+  const dims = el("div", "regime-dimensions");
+  DIMENSIONS.forEach(([key, label]) => dims.appendChild(dimensionEvidence(key, label, item[key])));
+  body.appendChild(dims);
 
   const events = item.operational_events || {};
-  const reported = eventLine("報告", events.reported);
-  const observed = eventLine("実影響", events.observed_impact);
-  if (reported) td.appendChild(reported);
-  if (observed) td.appendChild(observed);
-  return td;
+  const reported = eventLines(L.UI.reportedLabel, events.reported, "reported");
+  const observed = eventLines(L.UI.observedLabel, events.observed_impact, "observed");
+  if (reported || observed) {
+    const wrap = el("div", "regime-events-grid");
+    if (reported) wrap.appendChild(reported);
+    if (observed) wrap.appendChild(observed);
+    body.appendChild(wrap);
+  }
+
+  const notes = el("dl", "regime-notes");
+  const add = (term, text) => {
+    if (!text) return;
+    notes.appendChild(el("dt", null, term));
+    notes.appendChild(el("dd", null, text));
+  };
+  add(L.UI.japanImplication, item.japan_implication);
+  add(L.UI.operationalImplication, item.operational_implication);
+  add("構造要因", (item.structural_drivers || []).join(" / "));
+  add("30日見通し", item.outlook_30d);
+  add("90日見通し", item.outlook_90d);
+  add("リスクシナリオ", item.risk_scenario);
+  if (notes.childNodes.length) body.appendChild(notes);
+
+  const topics = intel ? intel.topicsForRegime(item) : [];
+  if (topics.length) {
+    const row = el("div", "chip-links");
+    row.appendChild(el("span", "chip-links__label", L.UI.relatedTopics));
+    topics.forEach((topic) => {
+      row.appendChild(link(`${root()}topic.html?id=${encodeURIComponent(topic.topic_id)}`,
+        "chip-link", topic.title_ja || topic.topic_id));
+    });
+    body.appendChild(row);
+  }
+
+  details.appendChild(body);
+  return details;
 }
 
 function row(item) {
   const tr = el("tr");
-  tr.appendChild(scopeCell(item));
+
+  const scope = el("td", "regime-scope");
+  scope.appendChild(el("strong", null, item.scope || item.id || "—"));
+  if (item.japan_implication) scope.appendChild(el("small", null, item.japan_implication));
+  tr.appendChild(scope);
 
   DIMENSIONS.forEach(([key]) => {
     const td = el("td");
@@ -62,8 +138,8 @@ function row(item) {
     tr.appendChild(td);
   });
 
-  const riskTd = el("td");
   const risk = item.risk || item.risk_level || "unknown";
+  const riskTd = el("td");
   riskTd.appendChild(el("span", `risk-pill risk-pill--${risk}`, L.riskLabel(risk)));
   tr.appendChild(riskTd);
 
@@ -76,10 +152,10 @@ function row(item) {
 }
 
 /**
- * Build the market regime section for a weekly/monthly report.
- * @param {object} report normalised report with `market_intelligence`
+ * @param {object} report normalised report carrying `market_intelligence`
+ * @param {object} [intel] the join layer, for topic links
  */
-export function marketRegimeSection(report) {
+export function marketRegimeSection(report, intel) {
   const items = (report && report.market_intelligence) || [];
   if (!items.length) return null;
 
@@ -88,7 +164,11 @@ export function marketRegimeSection(report) {
   section.setAttribute("aria-labelledby", "market-regime-title");
 
   const head = el("div", "section__head");
-  head.appendChild(el("h2", "section__title", "市場レジーム"));
+  const heading = el("div");
+  heading.appendChild(el("p", "eyebrow", "MARKET REGIME"));
+  heading.appendChild(el("h2", "section__title", "市場レジーム"));
+  heading.id = "market-regime-title";
+  head.appendChild(heading);
   head.appendChild(el("p", "section__note", `${L.typeLabel(report.type)} / ${report.date}`));
   section.appendChild(head);
 
@@ -111,7 +191,13 @@ export function marketRegimeSection(report) {
 
   wrap.appendChild(table);
   section.appendChild(wrap);
+
   section.appendChild(el("p", "regime-note",
-    "価格・供給・実需・定時性・リスクは独立した次元です。未確認は判断材料が揃っていないことを示します。"));
+    "運賃・供給・実需・定時性・リスクは独立した次元です。未確認は判断材料が揃っていないことを示します。"));
+
+  const drills = el("div", "regime-drills");
+  items.forEach((item) => drills.appendChild(drillDown(item, intel)));
+  section.appendChild(drills);
+
   return section;
 }

@@ -1,22 +1,150 @@
-<!DOCTYPE html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Logistics & Beauty Intelligence</title><meta name="description" content="物流・通関・国際輸送・Beauty Commerceの意思決定ダッシュボード。"><meta name="color-scheme" content="light"><link rel="stylesheet" href="assets/css/style.css"></head>
-<body data-root="" data-page="home"><a class="skip-link" href="#main">本文へスキップ</a><header class="site-header site-header--minimal">
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Logistics & Beauty Intelligence</title>
+  <meta name="description" content="物流・通関・国際輸送・Beauty Commerceの意思決定ダッシュボード。">
+  <meta name="color-scheme" content="light">
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/pages.css">
+</head>
+<body data-root="" data-page="home">
+<a class="skip-link" href="#main">本文へスキップ</a>
+<header class="site-header site-header--minimal">
   <div class="site-header__bar">
     <a class="brand brand--minimal" href="index.html" aria-label="ホーム"><span class="brand__mark">LBI</span></a>
     <nav class="site-nav site-nav--reports" aria-label="ナビゲーション">
+      <a data-nav="radar" href="radar.html">レーダー</a>
+      <a data-nav="topic" href="topic.html">トピック</a>
       <a id="nav-latest-daily" data-nav="daily" href="archive.html?type=daily">日次</a>
       <a id="nav-latest-weekly" data-nav="weekly" href="archive.html?type=weekly">週次</a>
       <a id="nav-latest-monthly" data-nav="monthly" href="archive.html?type=monthly">月次</a>
-      <a data-nav="topic" href="topic.html">トピック</a>
       <a data-nav="commerce" href="commerce-calendar.html">EC予定</a>
       <a data-nav="buzz" href="buzz.html">Buzz</a>
       <a data-nav="archive" href="archive.html">過去</a>
     </nav>
   </div>
 </header>
-<main id="main"><div class="wrap dashboard-v6" id="dashboard"><p class="empty-state" id="dashboard-error" hidden></p>
-<section class="decision-strip" aria-labelledby="decision-title"><div class="decision-strip__title"><p class="eyebrow">TODAY</p><h1 id="decision-title">本日の判断</h1><p class="decision-strip__stamp">最終更新 <span id="data-stamp">—</span></p></div><div class="decision-grid"><div class="overall" id="overall" data-status="unconfirmed" aria-live="polite"></div><div class="action-box" id="action-box" data-action="unknown" aria-live="polite"></div></div><div class="callout callout--bottom-line" id="conclusion" hidden></div></section>
-<section class="section section--radar" aria-labelledby="radar-title"><div class="section__head"><div><p class="eyebrow">OPERATIONS RADAR</p><h2 class="section__title" id="radar-title">見逃してはいけない動き</h2></div><div class="section__actions"><span id="operations-radar-meta" class="section__note"></span><a href="radar.html">すべて表示 →</a></div></div><div id="operations-radar" class="radar-summary"></div></section>
-<section class="section section--status" aria-labelledby="status-title"><div class="status-title-row"><h2 class="section__title" id="status-title">日本物流ステータス</h2><div class="status-legend status-legend--inline"><span data-status="normal"><span class="dot"></span>平常</span><span data-status="watch"><span class="dot"></span>監視</span><span data-status="disruption"><span class="dot"></span>障害</span><span data-status="unconfirmed"><span class="dot dot--ring"></span>未確認</span></div></div><div class="status-board" id="status-board"></div></section>
-<section class="section section--latest-first section--compact-latest" aria-labelledby="latest-title"><div class="section__head"><h2 class="section__title" id="latest-title">最新レポート</h2></div><div class="latest-grid" id="latest-grid"><p class="empty-state">読み込み中…</p></div></section>
-<div class="dashboard-two-col"><div><section class="section" aria-labelledby="changed-title"><div class="section__head"><h2 class="section__title" id="changed-title">前回からの変化</h2><p class="section__note" id="changed-base"></p></div><div id="changed-counts" class="change-counts"></div><div id="changed-list"></div></section><section class="section" aria-labelledby="lenses-title"><div class="section__head"><h2 class="section__title" id="lenses-title">5つの視点</h2></div><p class="empty-state" id="lenses-note" hidden></p><div class="lens-grid" id="lens-grid"></div></section></div><div><section class="section" aria-labelledby="key-title"><div class="section__head"><h2 class="section__title" id="key-title">主要シグナル</h2></div><div id="key-signals"></div></section><section class="section" aria-labelledby="topics-title"><div class="section__head"><h2 class="section__title" id="topics-title">注目トピック</h2><a href="topic.html">一覧 →</a></div><div id="featured-topics"></div></section></div></div>
-<noscript><p class="empty-state">このダッシュボードはJavaScriptでデータを読み込みます。</p></noscript></div></main><footer class="site-footer"><div class="wrap"><nav><a href="index.html">ホーム</a><a href="radar.html">Radar</a><a href="topic.html">トピック</a><a href="commerce-calendar.html">EC予定</a><a href="buzz.html">Buzz</a><a href="archive.html">過去</a><a href="source-matrix.html">情報源</a></nav></div></footer><script type="module" src="assets/js/app.js"></script></body></html>
+<main id="main">
+<div class="wrap dashboard" id="dashboard">
+  <p class="empty-state" id="dashboard-error" hidden></p>
+
+  <section class="section section--decision" aria-labelledby="decision-title">
+    <div class="section__head">
+      <div>
+        <p class="eyebrow">TODAY</p>
+        <h1 class="section__title" id="decision-title">本日の判断</h1>
+      </div>
+      <p class="section__note">最終更新 <span id="data-stamp">—</span></p>
+    </div>
+    <div class="decision-grid">
+      <div class="overall" id="overall" data-status="unconfirmed" aria-live="polite"></div>
+      <div class="action-box" id="action-box" data-action="unknown" aria-live="polite"></div>
+    </div>
+    <div class="callout callout--bottom-line" id="conclusion" hidden></div>
+  </section>
+
+  <section class="section section--span" aria-labelledby="radar-title">
+    <div class="section__head">
+      <div>
+        <p class="eyebrow">OPERATIONS RADAR</p>
+        <h2 class="section__title" id="radar-title">見逃してはいけない動き</h2>
+      </div>
+      <div class="section__actions">
+        <span class="section__note" id="operations-radar-meta"></span>
+        <a class="section__link" href="radar.html">すべて表示 →</a>
+      </div>
+    </div>
+    <div class="radar-summary" id="operations-radar"></div>
+  </section>
+
+  <section class="section section--span" aria-labelledby="status-title">
+    <div class="status-title-row">
+      <h2 class="section__title" id="status-title">日本物流ステータス</h2>
+      <div class="status-legend status-legend--inline">
+        <span data-status="normal"><span class="dot"></span>平常</span>
+        <span data-status="watch"><span class="dot"></span>監視</span>
+        <span data-status="disruption"><span class="dot"></span>障害</span>
+        <span data-status="unconfirmed"><span class="dot dot--ring"></span>未確認</span>
+      </div>
+    </div>
+    <div class="status-board" id="status-board"></div>
+  </section>
+
+  <section class="section section--span section--compact-latest" aria-labelledby="latest-title">
+    <div class="section__head">
+      <h2 class="section__title" id="latest-title">最新レポート</h2>
+      <a class="section__link" href="archive.html">過去のレポート →</a>
+    </div>
+    <div class="latest-grid" id="latest-grid"><p class="empty-state">読み込み中…</p></div>
+  </section>
+
+  <section class="section" aria-labelledby="changed-title">
+    <div class="section__head">
+      <h2 class="section__title" id="changed-title">前回からの変化</h2>
+      <p class="section__note" id="changed-base"></p>
+    </div>
+    <div class="change-counts" id="changed-counts"></div>
+    <div id="changed-list"></div>
+  </section>
+
+  <section class="section" aria-labelledby="key-title">
+    <div class="section__head">
+      <h2 class="section__title" id="key-title">主要シグナル</h2>
+    </div>
+    <div id="key-signals"></div>
+  </section>
+
+  <section class="section section--span" aria-labelledby="regime-title">
+    <div class="section__head">
+      <div>
+        <p class="eyebrow">MARKET REGIME</p>
+        <h2 class="section__title" id="regime-title">市場はなぜ動いているか</h2>
+      </div>
+      <p class="section__note" id="market-regime-note"></p>
+    </div>
+    <div id="market-regime-strip"></div>
+    <p class="regime-note">運賃・供給・実需・定時性・リスクは独立した次元です。未確認は判断材料が揃っていないことを示します。</p>
+  </section>
+
+  <section class="section section--span" aria-labelledby="lenses-title">
+    <div class="section__head">
+      <h2 class="section__title" id="lenses-title">5つの視点</h2>
+    </div>
+    <p class="empty-state" id="lenses-note" hidden></p>
+    <div class="lens-grid" id="lens-grid"></div>
+  </section>
+
+  <section class="section section--span" aria-labelledby="topics-title">
+    <div class="section__head">
+      <div>
+        <p class="eyebrow">TOPIC INTELLIGENCE</p>
+        <h2 class="section__title" id="topics-title">注目トピック</h2>
+      </div>
+      <a class="section__link" href="topic.html">一覧 →</a>
+    </div>
+    <div class="topic-index" id="featured-topics"></div>
+  </section>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <nav aria-label="フッター">
+      <a href="index.html">ホーム</a>
+      <a href="radar.html">レーダー</a>
+      <a href="topic.html">トピック</a>
+      <a href="commerce-calendar.html">EC予定</a>
+      <a href="buzz.html">Buzz</a>
+      <a href="archive.html">過去</a>
+      <a href="source-matrix.html">情報源</a>
+    </nav>
+    <p class="footer-note">公開情報のみを扱います。数値・事実は必ず一次情報で確認してください。</p>
+  </div>
+</footer>
+<script type="module" src="assets/js/app.js"></script>
+<noscript><p class="empty-state wrap">このページは data/*.json をJavaScriptで読み込みます。JavaScriptが無効な場合は、各レポートページを直接ご覧ください。</p></noscript>
+</body>
+</html>

@@ -1,45 +1,7 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-08-23T07:12:00+09:00",
+  "updated_at": "2026-08-22T22:00:00+09:00",
   "items": [
-    {
-      "id": "2026-08-23-typhoon18-okinawa-imminent-risk",
-      "date": "2026-08-23",
-      "event_date": "2026-08-25/2026-08-27",
-      "headline": "強い台風18号が沖縄へ接近見込み、25日大東・26日以降本島/先島で暴風リスク",
-      "domain": "weather",
-      "importance": "high",
-      "japan_relevance": "high",
-      "status": "reported",
-      "summary": "強い台風18号は8月23日3時時点で小笠原近海を北西進。気象庁情報を基にした23日朝の報道では、25日ごろ大東島地方、26日ごろから沖縄本島地方・先島諸島へ接近し、暴風となる可能性がある。23日午後には非常に強い勢力へ発達する予想も示されている。",
-      "observed_impact": "現時点では沖縄本島・大東・先島で台風18号による宅配・航空・船舶の広域的な運休/遅延は未観測。これは予報段階のimminent disruptionであり、台風20号による先島の現在影響とは別事象。",
-      "japan_implication": "25〜27日は大東・沖縄本島・先島で航空/船舶欠航、集配停止、道路規制、島嶼向け滞留が発生するリスクが高まる。特に沖縄本島は暴風域に入る可能性が高く、影響が長引くシナリオも考慮が必要。",
-      "operational_implication": "25〜27日着を前提とする沖縄向け緊急出荷・EC着日指定・店舗補充は通常リードタイムを前提にせず、23〜24日のうちにcarrier/air/ferryの運航計画を確認する。可能な前倒し出荷と納期コミュニケーションを準備する。",
-      "topic_ids": ["japan-domestic-delivery"],
-      "evidence": [
-        {"class":"primary_operational","source":"気象庁 台風情報（実況・予報）","date":"2026-08-23","url":"https://www.jma.go.jp/bosai/map.html#5/34.5/137/&elem=root&typhoon=all&contents=typhoon"},
-        {"class":"professional_media","source":"琉球新報","date":"2026-08-23","url":"https://ryukyushimpo.jp/national/entry-5477103.html"}
-      ]
-    },
-    {
-      "id": "2026-08-23-typhoon20-yaeyama-heavy-rain",
-      "date": "2026-08-23",
-      "event_date": "2026-08-22/2026-08-23",
-      "headline": "台風20号で先島諸島の大雨リスク上昇、八重山は23日に線状降水帯のおそれ",
-      "domain": "weather",
-      "importance": "high",
-      "japan_relevance": "high",
-      "status": "observed",
-      "summary": "8月22日12時に宮古島の北北西で台風20号が発生。八重山地方では23日明け方から夕方にかけて線状降水帯が発生し、大雨災害の危険度が急激に高まる可能性が新たに示された。",
-      "observed_impact": "宮古島市では道路冠水や車両水没が報じられ、気象庁の観測でも22日18時までの72時間降水量は八重山の複数地点で100mmを超えた。現時点で宅配各社の広域的な台風起因遅延告知までは確認していない。",
-      "japan_implication": "宮古・八重山向けでは局地的な道路冠水、集配遅延、航空・船舶接続の乱れが発生するリスクが高まっている。一方、沖縄本島や全国配送への一律波及は確認していない。",
-      "operational_implication": "23日の宮古・八重山向け出荷や着日指定は通常リードタイムを前提にせず、carrierの地域別遅延情報と航空・船舶の運航状況を個別確認する。",
-      "topic_ids": ["japan-domestic-delivery"],
-      "evidence": [
-        {"class":"primary_operational","source":"気象庁 最新の気象データ","date":"2026-08-22","url":"https://www.data.jma.go.jp/stats/data/mdrr/periodstat/20260814a/20260822/24/pre72h_mx00.html"},
-        {"class":"professional_media","source":"琉球新報","date":"2026-08-22","url":"https://ryukyushimpo.jp/national/entry-5476724.html"}
-      ]
-    },
     {
       "id": "2026-08-22-meishin-construction-delivery-risk",
       "date": "2026-08-22",

@@ -17,10 +17,11 @@
   <div class="site-header__bar">
     <a class="brand brand--minimal" href="index.html" aria-label="ホーム"><span class="brand__mark">LBI</span></a>
     <nav class="site-nav site-nav--reports" aria-label="ナビゲーション">
+      <a data-nav="radar" href="radar.html">レーダー</a>
+      <a data-nav="topic" href="topic.html">トピック</a>
       <a id="nav-latest-daily" data-nav="daily" href="archive.html?type=daily">日次</a>
       <a id="nav-latest-weekly" data-nav="weekly" href="archive.html?type=weekly">週次</a>
       <a id="nav-latest-monthly" data-nav="monthly" href="archive.html?type=monthly">月次</a>
-      <a data-nav="topic" href="topic.html">トピック</a>
       <a data-nav="commerce" href="commerce-calendar.html">EC予定</a>
       <a data-nav="buzz" href="buzz.html">Buzz</a>
       <a data-nav="archive" href="archive.html">過去</a>
@@ -37,6 +38,18 @@
       </div>
       <p class="section__note" id="history-lead"></p>
     </div>
+    <div class="history-context">
+      <section class="section">
+        <div class="section__head"><h2 class="section__title">このドメインのトピック</h2></div>
+        <div class="topic-index" id="status-topics"></div>
+      </section>
+      <section class="section">
+        <div class="section__head"><h2 class="section__title">関連レーダー</h2></div>
+        <div class="radar-list" id="status-radar"></div>
+      </section>
+    </div>
+
+    <div class="section__head"><h2 class="section__title">ステータス推移</h2></div>
     <div id="history-list" class="timeline"><p class="empty-state">読み込み中…</p></div>
   </section>
 </div>
@@ -45,7 +58,9 @@
   <div class="wrap">
     <nav aria-label="フッター">
       <a href="index.html">ホーム</a>
-      <a href="topic.html">トピック</a><a href="commerce-calendar.html">EC予定</a>
+      <a href="radar.html">レーダー</a>
+      <a href="topic.html">トピック</a>
+      <a href="commerce-calendar.html">EC予定</a>
       <a href="buzz.html">Buzz</a>
       <a href="archive.html">過去</a>
       <a href="source-matrix.html">情報源</a>
