@@ -7,6 +7,11 @@
     {"priority":"P1","domain":"logistics","layer":"国際専門メディア","name":"The Loadstar","url":"https://theloadstar.com/","cadence":["daily","weekly"],"extract":["海運","航空貨物","フォワーディング","運賃","キャパシティ","混雑"]},
     {"priority":"P1","domain":"logistics","layer":"国際専門メディア","name":"Air Cargo News","url":"https://www.aircargonews.net/","cadence":["daily","weekly"],"extract":["航空貨物","キャパシティ","航空会社","空港","運賃"]},
 
+    {"priority":"P0","domain":"logistics","layer":"国内運用補完","name":"NEXCO各社","url":"https://www.e-nexco.co.jp/","cadence":["daily"],"extract":["通行止め","災害","大雪","工事による重大影響"]},
+    {"priority":"P0","domain":"logistics","layer":"国内運用補完","name":"首都高速道路","url":"https://www.shutoko.jp/","cadence":["daily"],"extract":["通行止め","大規模障害","災害影響"]},
+    {"priority":"P0","domain":"logistics","layer":"国内運用補完","name":"阪神高速道路","url":"https://www.hanshin-exp.co.jp/","cadence":["daily"],"extract":["通行止め","大規模障害","災害影響"]},
+    {"priority":"P0","domain":"logistics","layer":"国内運用補完","name":"JR貨物","url":"https://www.jrfreight.co.jp/","cadence":["daily","weekly"],"extract":["列車運休","輸送障害","災害影響","モーダルシフト"]},
+
     {"priority":"P0","domain":"logistics","layer":"実需・貿易統計","name":"日本海事センター","url":"https://www.jpmac.or.jp/","cadence":["weekly","monthly"],"extract":["アジア域内コンテナ貨物量","日本発着荷動き","航路別貨物量","前年比"]},
     {"priority":"P0","domain":"logistics","layer":"実需・貿易統計","name":"財務省 貿易統計","url":"https://www.customs.go.jp/toukei/info/","cadence":["weekly","monthly"],"extract":["輸出入金額","数量","国別","品目別","日本実需"]},
     {"priority":"P1","domain":"logistics","layer":"港湾・Reliability","name":"Linerlytica","url":"https://www.linerlytica.com/","cadence":["weekly","monthly"],"extract":["port congestion","vessel waiting","capacity deployment","schedule pressure"]},
@@ -21,7 +26,13 @@
 
     {"priority":"P2","domain":"logistics","layer":"Structural Outlook","name":"日本郵船 調査・レポート","url":"https://www.nyk.com/ir/library/","cadence":["monthly"],"extract":["船腹供給","海運需給","市場構造","中期見通し"]},
     {"priority":"P2","domain":"logistics","layer":"Structural Outlook","name":"みずほ銀行 産業調査","url":"https://www.mizuhobank.co.jp/corporate/industry/index.html","cadence":["monthly"],"extract":["中期需給","産業構造","地域別需要","向こう3-5年"]},
-    {"priority":"P2","domain":"logistics","layer":"Synthesis / Discovery","name":"Shippio Trade News / Logistics Insight Digest","url":"https://www.shippio.io/","cadence":["weekly","monthly"],"extract":["海運市況","Supply/Demand整理","サプライチェーンリスク","一次情報探索の起点" ]},
+    {"priority":"P2","domain":"logistics","layer":"Synthesis / Discovery","name":"Shippio Trade News / Logistics Insight Digest","url":"https://www.shippio.io/","cadence":["weekly","monthly"],"extract":["海運市況","Supply/Demand整理","サプライチェーンリスク","一次情報探索の起点"]},
+
+    {"priority":"P0","domain":"beauty","layer":"Priority Brand.com","name":"ゲラン","url":"https://www.guerlain.com/jp/ja-jp","cadence":["daily","weekly"],"extract":["Makeup","Skincare","Fragrance","新製品","限定","ギフト","GWP","セット","オンライン限定","先行販売"]},
+    {"priority":"P0","domain":"beauty","layer":"Priority Brand.com","name":"ジバンシイ ビューティー","url":"https://www.givenchybeauty.com/jp","cadence":["daily","weekly"],"extract":["Makeup","Skincare","Fragrance","新製品","限定","キャンペーン","Gift & Offers","オンライン限定","価格変更"]},
+    {"priority":"P0","domain":"beauty","layer":"Priority Brand.com","name":"MAKE UP FOR EVER","url":"https://www.makeupforever.com/jp/jp","cadence":["daily","weekly"],"extract":["Makeup","新製品","キャンペーン対象","限定セット","公式サイト限定","Foundation","Lip","Complexion"]},
+    {"priority":"P0","domain":"beauty","layer":"Priority Brand.com","name":"Officine Universelle Buly","url":"https://buly1803.jp/","cadence":["daily","weekly"],"extract":["Fragrance","Skincare","Body","新製品","ギフト","限定","店舗・EC施策"]},
+    {"priority":"P0","domain":"beauty","layer":"Priority Brand.com","name":"Diptyque","url":"https://www.diptyqueparis.com/ja_jp/home","cadence":["daily","weekly"],"extract":["Fragrance","Body","Home Fragrance","新製品","限定コレクション","ギフト","オンライン施策"]},
 
     {"priority":"P1","domain":"beauty","layer":"Buzz / Search","name":"Google トレンド","url":"https://trends.google.co.jp/trends/?geo=JP","cadence":["daily","weekly"],"extract":["ブランド名","商品名","Makeup","Skincare","Fragrance","GWP","PWP","チャーム","ポーチ","キー","急上昇検索","検索インタレスト"]}
   ]
