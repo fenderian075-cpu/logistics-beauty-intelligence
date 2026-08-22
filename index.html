@@ -40,17 +40,24 @@
 
     <p class="empty-state" id="dashboard-error" hidden></p>
 
-    <section class="section" aria-labelledby="status-title">
+    <!-- 1. DECISION HEADER — overall, action required, conclusion, timestamp -->
+    <section class="section decision" aria-labelledby="decision-title">
       <div class="section__head">
-        <h2 class="section__title" id="status-title" data-i18n="home.statusTitle">日本物流ステータス</h2>
-        <p class="section__note"><span data-i18n="home.asOf">基準時点</span>: <span id="data-stamp">—</span></p>
+        <h2 class="section__title" id="decision-title" data-i18n="home.decisionTitle">本日の判断</h2>
+        <p class="section__note"><span data-i18n="home.lastUpdated">最終更新</span>: <span id="data-stamp">—</span></p>
       </div>
 
-      <div class="overall" id="overall" data-status="unconfirmed" aria-live="polite"></div>
+      <div class="decision-grid">
+        <div class="overall" id="overall" data-status="unconfirmed" aria-live="polite"></div>
+        <div class="action-box" id="action-box" data-action="unknown" aria-live="polite"></div>
+      </div>
 
-      <div class="status-board" id="status-board" style="margin-top:14px"></div>
+      <div class="callout callout--bottom-line" id="conclusion" data-translate="" hidden></div>
 
-      <div class="status-legend" aria-hidden="false">
+      <h3 class="subhead" data-i18n="home.statusTitle">日本物流ステータス</h3>
+      <div class="status-board" id="status-board"></div>
+
+      <div class="status-legend">
         <span data-status="normal"><span class="dot"></span><span data-i18n="status.normal">平常</span></span>
         <span data-status="watch"><span class="dot"></span><span data-i18n="status.watch">監視</span></span>
         <span data-status="disruption"><span class="dot"></span><span data-i18n="status.disruption">障害</span></span>
@@ -58,6 +65,36 @@
       </div>
     </section>
 
+    <!-- 2. WHAT CHANGED -->
+    <section class="section" aria-labelledby="changed-title">
+      <div class="section__head">
+        <h2 class="section__title" id="changed-title" data-i18n="home.whatChanged">前回からの変化</h2>
+        <p class="section__note" id="changed-base"></p>
+      </div>
+      <div id="changed-counts" class="change-counts"></div>
+      <div id="changed-list"></div>
+    </section>
+
+    <!-- 3. FIVE INTELLIGENCE LENSES -->
+    <section class="section" aria-labelledby="lenses-title">
+      <div class="section__head">
+        <h2 class="section__title" id="lenses-title" data-i18n="home.lensesTitle">5つの視点</h2>
+        <p class="section__note" data-i18n="home.lensesNote">最新レポートの構造化シグナルを集計した表示です。元データは変更しません。</p>
+      </div>
+      <p class="empty-state" id="lenses-note" hidden></p>
+      <div class="lens-grid" id="lens-grid"></div>
+    </section>
+
+    <!-- 4. KEY SIGNALS -->
+    <section class="section" aria-labelledby="key-title">
+      <div class="section__head">
+        <h2 class="section__title" id="key-title" data-i18n="home.keySignalsTitle">主要シグナル</h2>
+        <p class="section__note" data-i18n="home.keySignalsNote">判断への効きが大きい順。開くと推移が見られます。</p>
+      </div>
+      <div id="key-signals"></div>
+    </section>
+
+    <!-- 5. LATEST REPORTS + report type explanation -->
     <section class="section" aria-labelledby="latest-title">
       <div class="section__head">
         <h2 class="section__title" id="latest-title" data-i18n="home.latestTitle">最新レポート</h2>
@@ -104,6 +141,7 @@
 </footer>
 
 <script src="assets/js/translation.js"></script>
+<script src="assets/js/signals.js"></script>
 <script src="assets/js/site.js"></script>
 </body>
 </html>

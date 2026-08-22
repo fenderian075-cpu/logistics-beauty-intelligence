@@ -1,0 +1,124 @@
+{
+  "schema_version": "2.1",
+  "meta": {
+    "note": "Structured memory for automated publishing. Order does not matter; the site sorts by date, newest first. One entry per report. Keep entries small: summary <= 3 sentences, each risk list <= 3 items. v2.1 adds the optional `intelligence` block and the signal-based `change_summary` keys; all v1.1 / v2 fields remain valid and legacy entries without them keep working.",
+    "signal_keys": [
+      "wci",
+      "scfi"
+    ],
+    "status_values": [
+      "normal",
+      "watch",
+      "disruption",
+      "unconfirmed"
+    ],
+    "registry": "data/signal-registry.json",
+    "lenses": [
+      "disruption",
+      "cost_capacity",
+      "reliability",
+      "demand_commerce",
+      "regulatory_structural"
+    ],
+    "enums": {
+      "direction": [
+        "rising",
+        "falling",
+        "stable",
+        "volatile",
+        "unknown"
+      ],
+      "impact": [
+        "high",
+        "medium",
+        "low"
+      ],
+      "confidence": [
+        "high",
+        "medium",
+        "low"
+      ],
+      "change_status": [
+        "new",
+        "deteriorating",
+        "improving",
+        "resolved",
+        "unchanged",
+        "unchanged_high_risk"
+      ],
+      "demand_driver": [
+        "organic",
+        "promotion",
+        "launch",
+        "buzz"
+      ],
+      "duration": [
+        "temporary",
+        "persistent",
+        "unknown"
+      ]
+    }
+  },
+  "reports": [
+    {
+      "id": "2026-08-22-daily",
+      "date": "2026-08-22",
+      "type": "daily",
+      "title": "Logistics & Beauty Intelligence Brief — DAILY",
+      "status": "watch",
+      "as_of": "2026年8月22日 JST",
+      "summary": "全国的な物流Disruptionは確認していないが、気象庁は8月13日〜22日の大気不安定に伴う大雨を継続中としており、ヤマト運輸でも一部地域への配送・荷受制限が確認された。通常地域では一律の対応変更は不要だが、大雨影響地域・能登・島しょ部向け配送は個別確認を推奨する。",
+      "key_issues": [
+        "大気不安定に伴う大雨が8月22日時点で継続中",
+        "ヤマト運輸で一部地域の配送・荷受制限を確認",
+        "佐川急便、日本郵便主要運行情報、NACCS最新運用状況は十分に確認できず"
+      ],
+      "tags": [
+        "Japan",
+        "Domestic Delivery",
+        "Weather",
+        "Heavy Rain",
+        "Verification"
+      ],
+      "status_board": {
+        "domestic": "watch",
+        "weather": "watch",
+        "customs": "unconfirmed",
+        "ocean": "unconfirmed",
+        "air": "unconfirmed",
+        "global": "unconfirmed"
+      },
+      "signals": {
+        "wci": {
+          "value": null,
+          "unit": null,
+          "data_date": null,
+          "source": null
+        },
+        "scfi": {
+          "value": null,
+          "unit": null,
+          "data_date": null,
+          "source": null
+        }
+      },
+      "change_summary": {
+        "compared_with": "2026-08-22-daily",
+        "overall": "unconfirmed_to_watch",
+        "changed_categories": [
+          "domestic",
+          "weather"
+        ],
+        "new_risks": [
+          "大気不安定に伴う大雨の継続",
+          "一部地域の配送・荷受制限"
+        ],
+        "improved_risks": [],
+        "resolved_risks": [],
+        "note": "同日初回版はWeb接続制約により全項目をunconfirmedとしていた。本更新は承認済みの公開Web調査に基づく同日Production Update。"
+      },
+      "path": "reports/2026/08/2026-08-22-daily.html",
+      "sample": false
+    }
+  ]
+}

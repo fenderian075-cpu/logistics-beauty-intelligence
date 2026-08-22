@@ -1,0 +1,155 @@
+{
+  "schema_version": "2.1",
+  "meta": {
+    "note": "Canonical registry of persistent signal IDs. A signal ID must exist here before it can be used in data/reports.json. IDs are never renamed or reused: history is derived by matching this ID across reports.",
+    "lenses": {
+      "disruption": { "name_ja": "Disruption（障害）", "name_en": "Disruption" },
+      "cost_capacity": { "name_ja": "Cost & Capacity（コスト・キャパシティ）", "name_en": "Cost & Capacity" },
+      "reliability": { "name_ja": "Reliability（定時性）", "name_en": "Reliability" },
+      "demand_commerce": { "name_ja": "Demand & Commerce（需要・商流）", "name_en": "Demand & Commerce" },
+      "regulatory_structural": { "name_ja": "Regulatory & Structural（規制・構造）", "name_en": "Regulatory & Structural" }
+    },
+    "polarity_note": "polarity tells the UI which direction is unfavourable for this signal. up_is_bad: rising is worse. down_is_bad: falling is worse. neutral: direction alone carries no judgement.",
+    "enums": {
+      "direction": ["rising", "falling", "stable", "volatile", "unknown"],
+      "impact": ["high", "medium", "low"],
+      "change_status": ["new", "deteriorating", "improving", "resolved", "unchanged", "unchanged_high_risk"],
+      "confidence": ["high", "medium", "low"],
+      "demand_driver": ["organic", "promotion", "launch", "buzz"],
+      "duration": ["temporary", "persistent", "unknown"]
+    }
+  },
+  "signals": {
+    "japan-domestic-delivery": {
+      "name_ja": "国内配送オペレーション",
+      "name_en": "Japan domestic delivery",
+      "lens": "disruption",
+      "polarity": "up_is_bad",
+      "description_ja": "宅配・路線便の集配停止、遅延告知、荷受制限など、国内配送の実行可否に関わる事象。"
+    },
+    "japan-weather-disruption": {
+      "name_ja": "気象・災害による輸送障害",
+      "name_en": "Weather and disaster disruption",
+      "lens": "disruption",
+      "polarity": "up_is_bad",
+      "description_ja": "台風・大雨・降雪・地震など、輸送網に直接影響する気象・災害事象。"
+    },
+    "japan-customs-naccs": {
+      "name_ja": "通関・NACCS 稼働",
+      "name_en": "Customs and NACCS availability",
+      "lens": "disruption",
+      "polarity": "up_is_bad",
+      "description_ja": "NACCS の計画停止・障害、税関の運用変更など、輸入手続きの停滞要因。"
+    },
+    "ocean-global-price": {
+      "name_ja": "海上運賃（グローバル水準）",
+      "name_en": "Ocean freight price, global",
+      "lens": "cost_capacity",
+      "polarity": "up_is_bad",
+      "description_ja": "WCI・SCFI など主要インデックスに表れる海上コンテナ運賃の水準とトレンド。"
+    },
+    "ocean-intra-asia-capacity": {
+      "name_ja": "アジア域内航路のキャパシティ",
+      "name_en": "Intra-Asia ocean capacity",
+      "lens": "cost_capacity",
+      "polarity": "down_is_bad",
+      "description_ja": "アジア域内サービスのスペース需給。日本向け補充輸送の確保しやすさ。"
+    },
+    "ocean-schedule-reliability": {
+      "name_ja": "海上スケジュール定時性",
+      "name_en": "Ocean schedule reliability",
+      "lens": "reliability",
+      "polarity": "down_is_bad",
+      "description_ja": "船社の定時到着率、寄港順変更、omission。ETA の信頼度に直結する。"
+    },
+    "ocean-blank-sailing-pressure": {
+      "name_ja": "Blank sailing 圧力",
+      "name_en": "Blank sailing pressure",
+      "lens": "cost_capacity",
+      "polarity": "up_is_bad",
+      "description_ja": "減便・欠便の発生状況。スペース確保とリードタイムの両方に効く。"
+    },
+    "air-global-capacity": {
+      "name_ja": "航空貨物キャパシティ",
+      "name_en": "Air cargo capacity",
+      "lens": "cost_capacity",
+      "polarity": "down_is_bad",
+      "description_ja": "主要路線のベリー・フレイター供給と運賃。海上遅延時の代替手段の確保余地。"
+    },
+    "middle-east-maritime-risk": {
+      "name_ja": "中東海域の航行リスク",
+      "name_en": "Middle East maritime risk",
+      "lens": "disruption",
+      "polarity": "up_is_bad",
+      "description_ja": "紅海・ホルムズ海峡など、迂回判断とトランジットタイムを左右する地政学リスク。"
+    },
+    "japan-logistics-regulation": {
+      "name_ja": "国内物流規制",
+      "name_en": "Japan logistics regulation",
+      "lens": "regulatory_structural",
+      "polarity": "neutral",
+      "description_ja": "労働時間規制、標準的運賃、荷主行動規範など、国内物流の前提を変える制度変更。"
+    },
+    "beauty-luxury-fragrance": {
+      "name_ja": "ラグジュアリー・フレグランス需要",
+      "name_en": "Luxury fragrance demand",
+      "lens": "demand_commerce",
+      "polarity": "down_is_bad",
+      "beauty": true,
+      "description_ja": "高価格帯フレグランスの需要動向。数量計画とアロケーションに影響する。"
+    },
+    "beauty-china-selective": {
+      "name_ja": "中国セレクティブ市場",
+      "name_en": "China selective beauty market",
+      "lens": "demand_commerce",
+      "polarity": "down_is_bad",
+      "beauty": true,
+      "description_ja": "中国の百貨店・セレクティブ流通の需要。域内アロケーションの前提となる。"
+    },
+    "beauty-japan-ec-promotion": {
+      "name_ja": "日本 EC・プロモーション需要",
+      "name_en": "Japan e-commerce and promotion demand",
+      "lens": "demand_commerce",
+      "polarity": "neutral",
+      "beauty": true,
+      "description_ja": "国内 EC セール・ポイント施策による短期の出荷波動。倉庫波動の主要因。"
+    },
+    "beauty-major-launch": {
+      "name_ja": "主要ローンチ",
+      "name_en": "Major product launch",
+      "lens": "demand_commerce",
+      "polarity": "neutral",
+      "beauty": true,
+      "description_ja": "大型ローンチの時期集中。店舗受入枠とピッキング波動の制約になる。"
+    },
+    "beauty-regulatory-risk": {
+      "name_ja": "化粧品規制リスク",
+      "name_en": "Cosmetics regulatory risk",
+      "lens": "regulatory_structural",
+      "polarity": "up_is_bad",
+      "beauty": true,
+      "description_ja": "成分規制、表示規制、輸入要件の変更。SKU 単位の供給可否に効く。"
+    },
+    "logistics-ai-exception-management": {
+      "name_ja": "AI による例外管理",
+      "name_en": "AI-driven exception management",
+      "lens": "regulatory_structural",
+      "polarity": "neutral",
+      "description_ja": "物流オペレーションにおける AI 活用の成熟度。例外処理の自動化水準。"
+    },
+    "logistics-transport-visibility": {
+      "name_ja": "輸送可視化",
+      "name_en": "Transport visibility",
+      "lens": "regulatory_structural",
+      "polarity": "neutral",
+      "description_ja": "リアルタイム可視化サービスの普及度と精度。ETA 管理の前提を変える。"
+    },
+    "logistics-warehouse-automation": {
+      "name_ja": "倉庫自動化",
+      "name_en": "Warehouse automation",
+      "lens": "regulatory_structural",
+      "polarity": "neutral",
+      "description_ja": "3PL・自社倉庫の自動化投資動向。処理能力と人員前提の中期的な変化。"
+    }
+  }
+}

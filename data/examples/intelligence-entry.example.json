@@ -1,0 +1,93 @@
+{
+  "_README": [
+    "EXAMPLE ONLY — this file is documentation, not data.",
+    "It is never fetched by the site and never validated as a production report.",
+    "It shows the shape of one v2.1 reports.json entry with a full `intelligence` block.",
+    "The wording below is illustrative structure, not an observation about the real world:",
+    "do not copy these statements into a published report."
+  ],
+  "example_entry": {
+    "id": "YYYY-MM-DD-daily",
+    "date": "YYYY-MM-DD",
+    "type": "daily",
+    "title": "Logistics & Beauty Intelligence Brief — DAILY",
+    "status": "watch",
+    "as_of": "YYYY年M月D日 JST",
+    "summary": "1〜3文。トップの結論として表示されます。",
+    "bottom_line": "任意。summary より短い一行結論。指定するとダッシュボードはこちらを優先します。",
+    "key_issues": ["最大3件"],
+    "tags": ["Japan", "Ocean Freight"],
+    "status_board": {
+      "domestic": "normal",
+      "weather": "watch",
+      "customs": "normal",
+      "ocean": "watch",
+      "air": "normal",
+      "global": "unconfirmed"
+    },
+    "signals": {
+      "wci": { "value": null, "unit": "USD/40ft", "data_date": null, "source": null },
+      "scfi": { "value": null, "unit": "index", "data_date": null, "source": null }
+    },
+    "intelligence": {
+      "disruption": [
+        {
+          "id": "japan-weather-disruption",
+          "signal": "＜観測した事象を1文で。事実のみ、解釈は入れない＞",
+          "lens": "disruption",
+          "direction": "rising",
+          "impact": "high",
+          "change_status": "deteriorating",
+          "confidence": "high",
+          "evidence": [
+            { "source": "＜一次情報の発表元＞", "url": "https://example.org/notice", "date": "YYYY-MM-DD" }
+          ],
+          "operational_implication": "＜自社オペレーションに何が起きるか＞",
+          "action_direction": "＜とるべき対応の方向。具体的な社内手順は書かない＞"
+        }
+      ],
+      "cost_capacity": [],
+      "reliability": [
+        {
+          "id": "ocean-schedule-reliability",
+          "signal": "＜定時性に関する観測＞",
+          "lens": "reliability",
+          "direction": "falling",
+          "impact": "medium",
+          "change_status": "unchanged_high_risk",
+          "confidence": "medium",
+          "evidence": [{ "source": "＜発表元＞", "url": "https://example.org/report", "date": "YYYY-MM-DD" }],
+          "operational_implication": "＜ETA の信頼度への影響＞",
+          "action_direction": "＜確認先と確認タイミング＞"
+        }
+      ],
+      "demand_commerce": [
+        {
+          "id": "beauty-japan-ec-promotion",
+          "signal": "＜需要側の観測＞",
+          "lens": "demand_commerce",
+          "direction": "rising",
+          "impact": "medium",
+          "change_status": "new",
+          "confidence": "medium",
+          "demand_driver": "promotion",
+          "duration": "temporary",
+          "evidence": [{ "source": "＜発表元＞", "url": "https://example.com/press", "date": "YYYY-MM-DD" }],
+          "operational_implication": "＜出荷波動への影響＞",
+          "action_direction": "＜倉庫・店舗との調整方向＞"
+        }
+      ],
+      "regulatory_structural": []
+    },
+    "change_summary": {
+      "comparison_base": "YYYY-MM-DD-daily",
+      "new": ["beauty-japan-ec-promotion"],
+      "deteriorating": ["japan-weather-disruption"],
+      "improving": [],
+      "resolved": [],
+      "unchanged_high_risk": ["ocean-schedule-reliability"]
+    },
+    "path": "reports/YYYY/MM/YYYY-MM-DD-daily.html",
+    "sample": false
+  }
+}
