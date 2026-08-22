@@ -65,7 +65,7 @@
       <a href="../../../archive.html" data-i18n="nav.archive">過去のレポート</a>
       <a href="../../../index.html#about" data-i18n="nav.about">このサイトについて</a>
     </nav>
-    <div class="lang-switch" role="group" aria-label="表示言語 / Language">
+    <div class="lang-switch" role="group" aria-label="表示言語" data-i18n-attr="aria-label:a11y.language">
       <button type="button" data-lang-btn="ja" aria-pressed="true" data-i18n="lang.ja">日本語</button>
       <button type="button" data-lang-btn="en" aria-pressed="false" data-i18n="lang.en">English</button>
     </div>
@@ -89,60 +89,55 @@
 
     <nav class="timeline-nav no-print" aria-label="レポート間の移動（上部）">
       <span class="tl-prev is-disabled" data-tl="prev"></span>
-      <span class="tl-center" data-tl="center"><a href="../../../archive.html">Archive</a></span>
+      <span class="tl-center" data-tl="center"><a href="../../../archive.html" data-i18n="report.archive">過去のレポート</a></span>
       <span class="tl-next is-disabled" data-tl="next"></span>
     </nav>
 
-    <!-- Delete this banner for real reports. -->
-    <div class="sample-banner">
-      <p><strong>サンプル / デモデータ</strong>：本ページは構造確認用のサンプルです。</p>
-    </div>
-
     <header class="report-head" data-status="{{STATUS}}">
-      <p class="eyebrow">{{TYPE}} brief</p>
+      <p class="eyebrow">{{TYPE_JA}}</p>
       <h1>{{DATE_JA}} {{TITLE}}</h1>
       <div class="chip-row">
-        <span class="status-pill" data-status="{{STATUS}}"><span class="dot"></span>Overall: {{STATUS_LABEL}}</span>
+        <span class="status-pill" data-status="{{STATUS}}"><span class="dot"></span><span data-i18n="home.overall">総合ステータス</span>: <span data-i18n="status.{{STATUS}}">{{STATUS_LABEL}}</span></span>
       </div>
       <div class="report-head__meta">
         <span><time datetime="{{DATE}}">{{DATE_JA}}</time></span>
         <span>基準時点: {{AS_OF}}</span>
         <span>出典: 公開情報のみ</span>
-        <span><a href="#" data-print>印刷 / PDF</a></span>
+        <span><a href="#" data-print data-i18n="report.print">印刷・PDF</a></span>
       </div>
     </header>
 
     <section aria-labelledby="board-h" data-translate="">
-      <h2 id="board-h">Status Board</h2>
+      <h2 id="board-h" data-i18n="report.statusBoard">物流ステータス</h2>
       <div class="status-board">
         <div class="status-cell" data-status="{{S_DOMESTIC}}">
-          <div class="status-cell__name">国内配送 / Domestic Delivery</div>
-          <div class="status-cell__value"><span class="dot"></span>{{S_DOMESTIC_LABEL}}</div>
+          <div class="status-cell__name" data-i18n="domain.domestic">国内配送</div>
+          <div class="status-cell__value"><span class="dot"></span><span data-i18n="status.{{S_DOMESTIC}}">{{S_DOMESTIC_LABEL}}</span></div>
           <p class="status-cell__note">{{S_DOMESTIC_NOTE}}</p>
         </div>
         <div class="status-cell" data-status="{{S_WEATHER}}">
-          <div class="status-cell__name">気象・災害 / Weather</div>
-          <div class="status-cell__value"><span class="dot"></span>{{S_WEATHER_LABEL}}</div>
+          <div class="status-cell__name" data-i18n="domain.weather">気象・災害</div>
+          <div class="status-cell__value"><span class="dot"></span><span data-i18n="status.{{S_WEATHER}}">{{S_WEATHER_LABEL}}</span></div>
           <p class="status-cell__note">{{S_WEATHER_NOTE}}</p>
         </div>
         <div class="status-cell" data-status="{{S_CUSTOMS}}">
-          <div class="status-cell__name">通関・NACCS / Customs</div>
-          <div class="status-cell__value"><span class="dot"></span>{{S_CUSTOMS_LABEL}}</div>
+          <div class="status-cell__name" data-i18n="domain.customs">通関・NACCS</div>
+          <div class="status-cell__value"><span class="dot"></span><span data-i18n="status.{{S_CUSTOMS}}">{{S_CUSTOMS_LABEL}}</span></div>
           <p class="status-cell__note">{{S_CUSTOMS_NOTE}}</p>
         </div>
         <div class="status-cell" data-status="{{S_OCEAN}}">
-          <div class="status-cell__name">Ocean Freight</div>
-          <div class="status-cell__value"><span class="dot"></span>{{S_OCEAN_LABEL}}</div>
+          <div class="status-cell__name" data-i18n="domain.ocean">海上輸送</div>
+          <div class="status-cell__value"><span class="dot"></span><span data-i18n="status.{{S_OCEAN}}">{{S_OCEAN_LABEL}}</span></div>
           <p class="status-cell__note">{{S_OCEAN_NOTE}}</p>
         </div>
         <div class="status-cell" data-status="{{S_AIR}}">
-          <div class="status-cell__name">Air Cargo</div>
-          <div class="status-cell__value"><span class="dot"></span>{{S_AIR_LABEL}}</div>
+          <div class="status-cell__name" data-i18n="domain.air">航空貨物</div>
+          <div class="status-cell__value"><span class="dot"></span><span data-i18n="status.{{S_AIR}}">{{S_AIR_LABEL}}</span></div>
           <p class="status-cell__note">{{S_AIR_NOTE}}</p>
         </div>
         <div class="status-cell" data-status="{{S_GLOBAL}}">
-          <div class="status-cell__name">Global Supply Chain</div>
-          <div class="status-cell__value"><span class="dot"></span>{{S_GLOBAL_LABEL}}</div>
+          <div class="status-cell__name" data-i18n="domain.global">グローバルサプライチェーン</div>
+          <div class="status-cell__value"><span class="dot"></span><span data-i18n="status.{{S_GLOBAL}}">{{S_GLOBAL_LABEL}}</span></div>
           <p class="status-cell__note">{{S_GLOBAL_NOTE}}</p>
         </div>
       </div>
@@ -167,10 +162,10 @@
              data-direction: worse (悪化) / better (改善) / side (横ばい) -->
         <ul class="change-list">
           <li class="change-row" data-direction="{{DIRECTION}}">
-            <span class="change-row__key">Overall</span>
-            <span class="change-row__from"><span class="status-pill" data-status="{{PREV_STATUS}}"><span class="dot"></span>{{PREV_STATUS_LABEL}}</span></span>
+            <span class="change-row__key" data-i18n="changes.overall">総合</span>
+            <span class="change-row__from"><span class="status-pill" data-status="{{PREV_STATUS}}"><span class="dot"></span><span data-i18n="status.{{PREV_STATUS}}">{{PREV_STATUS_LABEL}}</span></span></span>
             <span class="change-row__arrow" aria-hidden="true">&rarr;</span>
-            <span class="change-row__to"><span class="status-pill" data-status="{{STATUS}}"><span class="dot"></span>{{STATUS_LABEL}}</span></span>
+            <span class="change-row__to"><span class="status-pill" data-status="{{STATUS}}"><span class="dot"></span><span data-i18n="status.{{STATUS}}">{{STATUS_LABEL}}</span></span></span>
           </li>
           <li class="change-row" data-direction="{{DIRECTION_2}}">
             <span class="change-row__key">{{CHANGED_CATEGORY_JA}}</span>
@@ -203,12 +198,12 @@
     </section>
 
     <section aria-labelledby="exec-h" data-translate="">
-      <h2 id="exec-h">Executive Summary</h2>
+      <h2 id="exec-h" data-i18n="home.execSummary">概要</h2>
       <p>{{EXEC_SUMMARY}}</p>
     </section>
 
     <section aria-labelledby="bl-h" data-translate="">
-      <h2 id="bl-h">Bottom Line</h2>
+      <h2 id="bl-h" data-i18n="report.bottomLine">結論</h2>
       <div class="callout callout--bottom-line">
         <p class="eyebrow">今日とるべき対応</p>
         <p>{{BOTTOM_LINE}}</p>
@@ -216,14 +211,14 @@
     </section>
 
     <section aria-labelledby="issues-h" data-translate="">
-      <h2 id="issues-h">Key Issues</h2>
+      <h2 id="issues-h" data-i18n="home.keyIssues">主要ポイント</h2>
 
       <article class="item">
         <h3 class="item__title">{{ISSUE_TITLE}}</h3>
         <div class="chip-row">
-          <span class="chip-row__label">Importance</span>
+          <span class="chip-row__label" data-i18n="report.importance">重要度</span>
           <span class="chip" data-level="{{IMPORTANCE}}"><span class="dot"></span>{{IMPORTANCE_LABEL}}</span>
-          <span class="chip-row__label">Japan Relevance</span>
+          <span class="chip-row__label" data-i18n="report.relevance">日本への関連度</span>
           <span class="chip" data-level="{{RELEVANCE}}"><span class="dot"></span>{{RELEVANCE_LABEL}}</span>
         </div>
         <p class="fact"><span class="fact__label">Fact</span>{{FACT_TEXT}}</p>
@@ -236,41 +231,41 @@
     </section>
 
     <section aria-labelledby="detail-h" data-translate="">
-      <h2 id="detail-h">Detail</h2>
+      <h2 id="detail-h" data-i18n="report.detail">詳細</h2>
 
       <details class="fold">
-        <summary>Ports<span class="summary-note">港湾・ターミナル</span></summary>
+        <summary data-i18n="report.ports">港湾・ターミナル</summary>
         <div class="fold__body">{{PORTS}}</div>
       </details>
 
       <details class="fold">
-        <summary>Carrier details<span class="summary-note">船社・航空会社</span></summary>
+        <summary data-i18n="report.carriers">船社・航空会社</summary>
         <div class="fold__body">{{CARRIERS}}</div>
       </details>
 
       <details class="fold">
-        <summary>Regulations<span class="summary-note">規制・通関</span></summary>
+        <summary data-i18n="report.regulations">規制・通関</summary>
         <div class="fold__body">{{REGULATIONS}}</div>
       </details>
 
       <details class="fold">
-        <summary>Freight indices<span class="summary-note">WCI / SCFI ほか</span></summary>
+        <summary data-i18n="report.indices">運賃指標</summary>
         <div class="fold__body">{{INDICES}}</div>
       </details>
 
       <details class="fold">
-        <summary>Secondary indicators<span class="summary-note">株式・為替・燃料</span></summary>
+        <summary data-i18n="report.secondary">副次指標</summary>
         <div class="fold__body">{{SECONDARY}}</div>
       </details>
 
       <details class="fold">
-        <summary>Beauty<span class="summary-note">ビューティー業界動向</span></summary>
+        <summary data-i18n="report.beauty">ビューティー</summary>
         <div class="fold__body">{{BEAUTY}}</div>
       </details>
     </section>
 
     <section aria-labelledby="sig-h" data-translate="">
-      <h2 id="sig-h">Key Signals</h2>
+      <h2 id="sig-h" data-i18n="signals.title">主要指標</h2>
       <!-- Only indicators worth tracking over time. Mirror these values into
            the reports.json "signals" object so the dashboard can show deltas.
            Leave a row out entirely when there is no fresh figure. -->
@@ -289,7 +284,7 @@
     </section>
 
     <section aria-labelledby="src-h" data-translate="">
-      <h2 id="src-h">Sources</h2>
+      <h2 id="src-h" data-i18n="report.sources">出典</h2>
       <ul>
         <li>{{SOURCE_LIST}}</li>
       </ul>
@@ -297,7 +292,7 @@
 
     <nav class="timeline-nav timeline-nav--bottom no-print" aria-label="レポート間の移動（下部）">
       <span class="tl-prev is-disabled" data-tl="prev"></span>
-      <span class="tl-center" data-tl="center"><a href="../../../archive.html">Archive</a></span>
+      <span class="tl-center" data-tl="center"><a href="../../../archive.html" data-i18n="report.archive">過去のレポート</a></span>
       <span class="tl-next is-disabled" data-tl="next"></span>
     </nav>
 
