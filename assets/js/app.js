@@ -30,17 +30,51 @@ const PAGES = {
 };
 
 function ensureProductionPolish() {
-  if (document.getElementById("lbi-v7-1-1-polish")) return;
+  if (document.getElementById("lbi-v7-1-2-polish")) return;
   const style = document.createElement("style");
-  style.id = "lbi-v7-1-1-polish";
+  style.id = "lbi-v7-1-2-polish";
   style.textContent = `
     .brand { align-items: center; white-space: nowrap; }
     .brand__mark,
     .brand__sub { line-height: 1.25; white-space: nowrap; }
     .brand__mark { flex: 0 0 auto; }
     .brand__sub { flex: 0 0 auto; }
-    .radar-row__head { grid-template-columns: 72px 48px 86px minmax(0,1fr) auto; }
-    .radar-row__state { min-width: 72px; overflow: visible; white-space: nowrap; }
+
+    .radar-row__head {
+      grid-template-columns: 78px 48px 86px minmax(0,1fr) auto;
+      column-gap: var(--s2);
+    }
+    .radar-row__state {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      width: 64px;
+      min-width: 64px;
+      margin-left: 4px;
+      padding: 2px 6px;
+      border: 1px solid var(--rule-strong);
+      border-radius: var(--radius);
+      background: var(--surface);
+      overflow: visible;
+      white-space: nowrap;
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+    .radar-row[data-status="observed"] .radar-row__state {
+      border-color: var(--st-disruption);
+      background: var(--st-disruption-bg);
+      color: var(--st-disruption);
+    }
+    .radar-row[data-status="reported"] .radar-row__state {
+      border-style: dashed;
+      color: var(--ink-2);
+    }
+    .radar-row[data-status="resolved"] .radar-row__state {
+      border-color: var(--rule);
+      background: var(--surface-alt);
+    }
+
     .data-table th:first-child,
     .data-table td:first-child { width: 88px; min-width: 88px; white-space: nowrap; }
     .priority { min-width: 38px; white-space: nowrap; }
@@ -78,7 +112,7 @@ function showFatal(message) {
 }
 
 function boot() {
-  if (window.__lbiBooted) return;     // legacy shims may load app.js twice
+  if (window.__lbiBooted) return;
   window.__lbiBooted = true;
 
   ensureProductionPolish();
