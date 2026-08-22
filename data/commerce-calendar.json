@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "meta": {
+    "purpose": "Verified future Beauty Commerce events. Weekly updates existing event IDs instead of duplicating them.",
+    "drivers": ["promotion", "launch", "organic", "buzz"],
+    "statuses": ["scheduled", "active", "ended", "cancelled"],
+    "rule": "Only events with a verified public source and date/period belong here. Unknown dates are not guessed."
+  },
+  "events": [
+    {
+      "id": "qoo10-megawari-2026q3",
+      "start_date": "2026-08-28",
+      "end_date": "2026-09-09",
+      "channel": "Qoo10",
+      "event": "メガ割 2026 Q3",
+      "driver": "promotion",
+      "scope": "Beauty / marketplace",
+      "status": "scheduled",
+      "confidence": "high",
+      "expected_impact": "20%クーポンを中心とする大型販促。K-Beautyを含む短期EC需要集中を注視。",
+      "logistics_implication": "短期order spike、replenishment、packing workloadを監視。",
+      "source": "https://www.qoo10.jp/gmkt.inc/Mobile/Special/Special.aspx?sid=220713",
+      "last_verified": "2026-08-22"
+    },
+    {
+      "id": "rakuten-luxury-beauty-2026-08",
+      "start_date": "2026-08-03",
+      "end_date": "2026-09-01",
+      "channel": "Rakuten",
+      "event": "LUXURY BEAUTY 10,000円以上で300ポイント",
+      "driver": "promotion",
+      "scope": "Luxury Beauty official shops",
+      "status": "active",
+      "confidence": "high",
+      "expected_impact": "Luxury Beauty公式ショップで継続する販促需要。",
+      "logistics_implication": "月末・月初のLuxury EC需要とreplenishmentを注視。",
+      "source": "https://event.rakuten.co.jp/beauty/brand/luxe/luxurybeauty/campaign/",
+      "last_verified": "2026-08-22"
+    },
+    {
+      "id": "rakuten-luxury-beauty-2026-09",
+      "start_date": "2026-09-01",
+      "end_date": "2026-10-01",
+      "channel": "Rakuten",
+      "event": "LUXURY BEAUTY 次回キャンペーン",
+      "driver": "promotion",
+      "scope": "Luxury Beauty official shops",
+      "status": "scheduled",
+      "confidence": "high",
+      "expected_impact": "公式ページで次回開催期間まで確認済み。",
+      "logistics_implication": "9月月初から継続するLuxury EC施策としてcalendar管理。",
+      "source": "https://event.rakuten.co.jp/beauty/brand/luxe/luxurybeauty/campaign/",
+      "last_verified": "2026-08-22"
+    }
+  ]
+}
