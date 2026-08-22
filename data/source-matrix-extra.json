@@ -6,8 +6,23 @@
     {"priority":"P1","domain":"logistics","layer":"国内専門メディア","name":"カーゴニュース","url":"https://cargo-news.co.jp/","cadence":["daily","weekly"],"extract":["物流政策","トラック","倉庫","荷主","SCM"]},
     {"priority":"P1","domain":"logistics","layer":"国際専門メディア","name":"The Loadstar","url":"https://theloadstar.com/","cadence":["daily","weekly"],"extract":["海運","航空貨物","フォワーディング","運賃","キャパシティ","混雑"]},
     {"priority":"P1","domain":"logistics","layer":"国際専門メディア","name":"Air Cargo News","url":"https://www.aircargonews.net/","cadence":["daily","weekly"],"extract":["航空貨物","キャパシティ","航空会社","空港","運賃"]},
-    {"priority":"P1","domain":"beauty","layer":"Buzz / Search","name":"Google トレンド","url":"https://trends.google.co.jp/trends/?geo=JP","cadence":["daily","weekly"],"extract":["ブランド名","商品名","カテゴリ","急上昇検索","検索インタレスト"]},
-    {"priority":"P1","domain":"beauty","layer":"Buzz / Social","name":"Instagram","url":"https://www.instagram.com/","cadence":["daily","weekly"],"extract":["ブランド・商品言及","投稿増加","クリエイター起点","要API/認証済みリスニング基盤"]},
-    {"priority":"P1","domain":"beauty","layer":"Buzz / Social","name":"X","url":"https://x.com/","cadence":["daily","weekly"],"extract":["ブランド・商品言及","投稿速度","拡散","要API/認証済みリスニング基盤"]}
+
+    {"priority":"P0","domain":"logistics","layer":"実需・貿易統計","name":"日本海事センター","url":"https://www.jpmac.or.jp/","cadence":["weekly","monthly"],"extract":["アジア域内コンテナ貨物量","日本発着荷動き","航路別貨物量","前年比"]},
+    {"priority":"P0","domain":"logistics","layer":"実需・貿易統計","name":"財務省 貿易統計","url":"https://www.customs.go.jp/toukei/info/","cadence":["weekly","monthly"],"extract":["輸出入金額","数量","国別","品目別","日本実需"]},
+    {"priority":"P1","domain":"logistics","layer":"港湾・Reliability","name":"Linerlytica","url":"https://www.linerlytica.com/","cadence":["weekly","monthly"],"extract":["port congestion","vessel waiting","capacity deployment","schedule pressure"]},
+    {"priority":"P1","domain":"logistics","layer":"船腹・Supply","name":"Alphaliner","url":"https://alphaliner.axsmarine.com/PublicTop100/","cadence":["weekly","monthly"],"extract":["fleet capacity","newbuildings","demolition","charter market","carrier capacity"]},
+    {"priority":"P1","domain":"logistics","layer":"Reliability","name":"Sea-Intelligence","url":"https://www.sea-intelligence.com/","cadence":["monthly"],"extract":["schedule reliability","average delay","carrier reliability","公開範囲のみ"]},
+
+    {"priority":"P0","domain":"logistics","layer":"Carrier IR / Network","name":"Ocean Network Express","url":"https://www.one-line.com/en/investor-relations","cadence":["weekly","monthly"],"extract":["liftings","utilization","freight index","profitability","network strategy","Japan connectivity"]},
+    {"priority":"P0","domain":"logistics","layer":"Carrier IR / Network","name":"Maersk","url":"https://www.maersk.com/news","cadence":["daily","weekly"],"extract":["service change","Red Sea","Suez","capacity","port omission","surcharge"]},
+    {"priority":"P0","domain":"logistics","layer":"Carrier IR / Network","name":"Hapag-Lloyd","url":"https://www.hapag-lloyd.com/en/online-business/updates.html","cadence":["daily","weekly"],"extract":["service change","routing","blank sailing","port omission","surcharge"]},
+    {"priority":"P0","domain":"logistics","layer":"Carrier IR / Network","name":"CMA CGM","url":"https://www.cma-cgm.com/news","cadence":["daily","weekly"],"extract":["service change","Suez","Red Sea","capacity","routing"]},
+    {"priority":"P0","domain":"logistics","layer":"Carrier IR / Network","name":"MSC","url":"https://www.msc.com/en/newsroom","cadence":["daily","weekly"],"extract":["service change","network","routing","capacity","port omission"]},
+
+    {"priority":"P2","domain":"logistics","layer":"Structural Outlook","name":"日本郵船 調査・レポート","url":"https://www.nyk.com/ir/library/","cadence":["monthly"],"extract":["船腹供給","海運需給","市場構造","中期見通し"]},
+    {"priority":"P2","domain":"logistics","layer":"Structural Outlook","name":"みずほ銀行 産業調査","url":"https://www.mizuhobank.co.jp/corporate/industry/index.html","cadence":["monthly"],"extract":["中期需給","産業構造","地域別需要","向こう3-5年"]},
+    {"priority":"P2","domain":"logistics","layer":"Synthesis / Discovery","name":"Shippio Trade News / Logistics Insight Digest","url":"https://www.shippio.io/","cadence":["weekly","monthly"],"extract":["海運市況","Supply/Demand整理","サプライチェーンリスク","一次情報探索の起点" ]},
+
+    {"priority":"P1","domain":"beauty","layer":"Buzz / Search","name":"Google トレンド","url":"https://trends.google.co.jp/trends/?geo=JP","cadence":["daily","weekly"],"extract":["ブランド名","商品名","Makeup","Skincare","Fragrance","GWP","PWP","チャーム","ポーチ","キー","急上昇検索","検索インタレスト"]}
   ]
 }
