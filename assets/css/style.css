@@ -48,7 +48,7 @@
 
   /* Metrics */
   --wrap:       1160px;
-  --wrap-read:  860px;
+  --wrap-read:  var(--wrap);
   --radius:     3px;
   --gap:        16px;
 }
@@ -681,20 +681,6 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
 .timeline-nav .is-disabled { color: var(--ink-3); opacity: .55; }
 .timeline-nav .is-disabled .tl-title { color: var(--ink-3); font-weight: 400; }
 
-/* Sample-data banner */
-.sample-banner {
-  border: 1px solid #c9a227;
-  border-left: 4px solid #c9a227;
-  background: #fdf8e6;
-  color: #6b4f00;
-  font-size: 13px;
-  padding: 10px 14px;
-  border-radius: var(--radius);
-  margin-bottom: 16px;
-}
-.sample-banner strong { color: #5a4200; }
-.sample-banner p { margin: 0; }
-
 /* ---------- 9. Footer ----------------------------------------------------- */
 
 .site-footer {
@@ -799,7 +785,6 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
   a[href]::after { content: ""; }
 
   .analysis { border-left: 2pt solid #000; background: #f4f4f4 !important; }
-  .sample-banner { border: 1pt solid #000; background: #fff !important; color: #000; }
 
   @page { margin: 14mm 12mm; }
 }

@@ -3,6 +3,8 @@
 公開情報から作成した物流・ビューティー領域のインテリジェンス・ブリーフを蓄積・閲覧するための静的サイトです。
 GitHub Pages で運用します。ビルドツール・データベース・サーバーサイド処理はありません。
 
+このリポジトリは **本番レポート専用** です。デモ用データや架空のレポートは登録・公開しません。
+
 - Repository: `fenderian075-cpu/logistics-beauty-intelligence`（**Public**）
 - Stack: HTML / CSS / vanilla JavaScript / JSON のみ
 - 正本言語: **日本語**（English は閲覧時の翻訳レイヤー）
@@ -107,8 +109,7 @@ JavaScript が失敗しても、レポート本文・折りたたみ・印刷は
 │
 └── reports/
     └── 2026/
-        ├── 07/2026-07-31-monthly.html
-        └── 08/2026-08-{17-weekly,19-daily,20-daily,21-daily}.html
+        └── 08/2026-08-22-daily.html
 ```
 
 命名規則（例外なし）:
@@ -238,7 +239,7 @@ Weekly は `period` に `"2026-08-10/2026-08-16"` 形式、Monthly は `"2026-07
 | `highlights` | weekly 推奨 | object | `logistics_risk` / `freight_market` / `beauty_trend` |
 | `takeaways` | monthly 推奨 | string[] | Structural Takeaways |
 | `period` | 任意 | string | Weekly は `YYYY-MM-DD/YYYY-MM-DD`、Monthly は `YYYY-MM` |
-| `sample` | 任意 | boolean | サンプルデータの目印 |
+| `sample` | 任意 | boolean | 後方互換用。本番公開時は `false` とし、`true` のエントリは登録しない |
 
 `status_board` のキーは6つ固定です: `domestic` / `weather` / `customs` / `ocean` / `air` / `global`。
 省略したキーは `unconfirmed` として扱われます。
@@ -372,7 +373,7 @@ Repository が Public であるため、**この方針の遵守はより重要�
 - ヘッダー / フッター / パンくず / `.timeline-nav` のマークアップ
 - 各セクションの `data-translate=""`（英訳対象の指定に使われます）
 
-サンプルバナー（`.sample-banner`）は、実データのレポートでは **削除** します。
+本番テンプレートにデモ用バナーを追加しないでください。`reports.json` へは本番レポートのみを登録します。
 
 ### Fact と分析を必ず分ける
 
