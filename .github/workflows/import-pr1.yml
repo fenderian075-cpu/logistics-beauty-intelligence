@@ -1,0 +1,37 @@
+name: Import PR1 frontend foundation
+
+on:
+  push:
+    branches:
+      - transfer/frontend-foundation-v5
+    paths:
+      - '.transfer/READY'
+
+permissions:
+  contents: write
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Reconstruct payload
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat .transfer/pr1.part* > /tmp/pr1.b64
+          base64 -d /tmp/pr1.b64 > /tmp/pr1.tar.gz
+          tar -xzf /tmp/pr1.tar.gz -C .
+      - name: Commit imported frontend
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf .transfer
+          rm -f .github/workflows/import-pr1.yml
+          git config user.name 'ChatGPT automation'
+          git config user.email 'noreply@openai.com'
+          git add -A
+          git commit -m 'Frontend Foundation v5: ES modules and CSS consolidation'
+          git push origin HEAD:transfer/frontend-foundation-v5
