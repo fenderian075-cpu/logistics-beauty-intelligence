@@ -7,12 +7,15 @@
     {"priority":"P0","domain":"logistics","layer":"Weather","name":"気象庁 防災情報","url":"https://www.jma.go.jp/bosai/","cadence":["daily"],"extract":["警報","台風","大雨","大雪","地震","津波"]},
     {"priority":"P0","domain":"logistics","layer":"Roads","name":"JARTIC","url":"https://www.jartic.or.jp/","cadence":["daily"],"extract":["通行止め","大規模渋滞"]},
     {"priority":"P0","domain":"logistics","layer":"Customs","name":"NACCS掲示板","url":"https://bbs.naccscenter.com/","cadence":["daily"],"extract":["障害","復旧","メンテナンス","仕様変更"]},
-    {"priority":"P0","domain":"logistics","layer":"Customs","name":"Japan Customs 新着情報","url":"https://www.customs.go.jp/news/index.htm","cadence":["daily","weekly"],"extract":["HS","関税","EPA/FTA","予備審査","保税","制度変更"]},
+    {"priority":"P0","domain":"logistics","layer":"Customs","name":"税関 新着情報","url":"https://www.customs.go.jp/news/index.htm","cadence":["daily","weekly"],"extract":["HS","関税","EPA/FTA","予備審査","保税","制度変更"]},
     {"priority":"P1","domain":"logistics","layer":"Freight Market","name":"Drewry World Container Index","url":"https://www.drewry.co.uk/trackers-and-indices/latest-trackers-and-indices/world-container-index-assessed-by-drewry","cadence":["weekly","monthly"],"extract":["WCI","route rates","weekly change"]},
     {"priority":"P1","domain":"logistics","layer":"Freight Market","name":"Drewry Trackers & Indices","url":"https://www.drewry.co.uk/trackers-and-indices","cadence":["weekly","monthly"],"extract":["blank sailings","Intra-Asia"]},
     {"priority":"P1","domain":"logistics","layer":"Freight Market","name":"Freightos","url":"https://www.freightos.com/freight-resources/","cadence":["weekly","monthly"],"extract":["FBX","market commentary"]},
     {"priority":"P1","domain":"logistics","layer":"Air Cargo","name":"IATA Economics Library","url":"https://www.iata.org/en/publications/economics/economics-library/","cadence":["weekly","monthly"],"extract":["CTK","ACTK","load factor","capacity"]},
     {"priority":"P1","domain":"logistics","layer":"Professional Media","name":"日本海事新聞","url":"https://www.jmd.co.jp/","cadence":["weekly","monthly"],"extract":["海運","港湾","航空貨物","政策"]},
+    {"priority":"P1","domain":"logistics","layer":"Professional Media","name":"LOGISTICS TODAY","url":"https://www.logi-today.com/","cadence":["daily","weekly"],"extract":["3PL","倉庫","国内配送","港湾","EC物流","行政・規制","事故・障害"]},
+    {"priority":"P1","domain":"logistics","layer":"Professional Media","name":"日本物流新聞","url":"http://www.japanpress.co.jp/","cadence":["weekly","monthly"],"extract":["物流政策","荷主","運送","倉庫","物流DX","業界動向"]},
+    {"priority":"P1","domain":"logistics","layer":"Professional Media","name":"Daily Cargo","url":"https://www.daily-cargo.com/","cadence":["daily","weekly"],"extract":["航空貨物","海上貨物","フォワーダー","港湾","通関","国際物流"]},
     {"priority":"P2","domain":"logistics","layer":"Innovation","name":"DHL Logistics Trend Radar","url":"https://www.dhl.com/jp-en/home/innovation-in-logistics/logistics-trend-radar.html","cadence":["monthly"],"extract":["AI","robotics","computer vision","sustainability"]},
     {"priority":"P2","domain":"logistics","layer":"Innovation","name":"AWS Supply Chain Lens","url":"https://docs.aws.amazon.com/wellarchitected/latest/supply-chain-lens/supply-chain-lens.html","cadence":["monthly"],"extract":["visibility","warehouse automation","decision support"]},
     {"priority":"P1","domain":"beauty","layer":"Platform","name":"Amazon Japan Beauty","url":"https://www.amazon.co.jp/gp/bestsellers/beauty","cadence":["weekly"],"extract":["売れ筋","新規ランクイン","継続上昇"]},
@@ -27,11 +30,11 @@
     {"priority":"P1","domain":"beauty","layer":"Brand.com","name":"YSL Beauty","url":"https://www.yslb.jp/","cadence":["weekly"],"extract":["launch","limited","EC施策"]},
     {"priority":"P1","domain":"beauty","layer":"Brand.com","name":"Lancôme","url":"https://www.lancome.jp/","cadence":["weekly"],"extract":["launch","campaign","GWP"]},
     {"priority":"P1","domain":"beauty","layer":"Brand.com","name":"SK-II","url":"https://www.sk-ii.jp/","cadence":["weekly"],"extract":["campaign","limited","launch"]},
-    {"priority":"P1","domain":"beauty","layer":"Brand.com","name":"Shiseido","url":"https://brand.shiseido.co.jp/","cadence":["weekly"],"extract":["launch","campaign"]},
+    {"priority":"P1","domain":"beauty","layer":"Brand.com","name":"資生堂","url":"https://brand.shiseido.co.jp/","cadence":["weekly"],"extract":["launch","campaign"]},
     {"priority":"P1","domain":"beauty","layer":"Brand.com","name":"Clé de Peau Beauté","url":"https://www.cledepeau-beaute.com/jp/","cadence":["weekly"],"extract":["launch","limited","campaign"]},
     {"priority":"P1","domain":"beauty","layer":"Brand.com","name":"Jo Malone London","url":"https://www.jomalone.jp/","cadence":["weekly"],"extract":["fragrance launch","gift","limited"]},
     {"priority":"P1","domain":"beauty","layer":"Corporate","name":"L'Oréal Finance","url":"https://www.loreal-finance.com/eng","cadence":["weekly","monthly"],"extract":["sales","region","Luxe","China","e-commerce"]},
     {"priority":"P1","domain":"beauty","layer":"Corporate","name":"Estée Lauder Companies","url":"https://www.elcompanies.com/en/investors","cadence":["weekly","monthly"],"extract":["sales","fragrance","China","Japan"]},
-    {"priority":"P1","domain":"beauty","layer":"Corporate","name":"Shiseido IR","url":"https://corp.shiseido.com/en/ir/","cadence":["weekly","monthly"],"extract":["sales","Japan","China","Travel Retail"]}
+    {"priority":"P1","domain":"beauty","layer":"Corporate","name":"資生堂 IR","url":"https://corp.shiseido.com/en/ir/","cadence":["weekly","monthly"],"extract":["sales","Japan","China","Travel Retail"]}
   ]
 }
