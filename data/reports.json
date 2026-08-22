@@ -15,6 +15,57 @@
   },
   "reports": [
     {
+      "id": "2026-08-22-daily",
+      "date": "2026-08-22",
+      "type": "daily",
+      "title": "Logistics & Beauty Intelligence Brief — DAILY",
+      "status": "unconfirmed",
+      "as_of": "2026年8月22日 JST",
+      "summary": "必須の公開一次情報へ接続できず、国内配送、気象、通関、海上・航空を確認不能とした。本ブリーフ単独では業務判断を変更せず、各公式情報の個別確認が必要。",
+      "key_issues": [
+        "必須の公開一次情報を取得できず、全領域の運用状況が確認不能"
+      ],
+      "tags": [
+        "Verification",
+        "Japan",
+        "Domestic Delivery",
+        "Customs"
+      ],
+      "status_board": {
+        "domestic": "unconfirmed",
+        "weather": "unconfirmed",
+        "customs": "unconfirmed",
+        "ocean": "unconfirmed",
+        "air": "unconfirmed",
+        "global": "unconfirmed"
+      },
+      "signals": {
+        "wci": {
+          "value": null,
+          "unit": null,
+          "data_date": null,
+          "source": null
+        },
+        "scfi": {
+          "value": null,
+          "unit": null,
+          "data_date": null,
+          "source": null
+        }
+      },
+      "change_summary": {
+        "compared_with": null,
+        "overall": "no_previous",
+        "changed_categories": [],
+        "new_risks": [],
+        "improved_risks": [],
+        "resolved_risks": [],
+        "note": "実運用上の比較対象なし。2026-08-21以前のDailyはサンプル／デモのため比較対象外。"
+      },
+      "path": "reports/2026/08/2026-08-22-daily.html",
+      "sample": false
+    },
+    {
       "id": "2026-08-21-daily",
       "date": "2026-08-21",
       "type": "daily",
