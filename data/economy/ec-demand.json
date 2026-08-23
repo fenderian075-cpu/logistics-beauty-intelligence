@@ -1,0 +1,71 @@
+{
+  "schema_version": "1.0",
+  "dataset": "ec-demand",
+  "title_ja": "物販系BtoC-EC需要",
+  "frequency": "annual",
+  "sources": [
+    {
+      "name": "経済産業省 電子商取引に関する市場調査",
+      "url": "https://www.meti.go.jp/press/2025/08/20250826005/20250826005.html",
+      "note": "物販系分野BtoC-EC市場規模・EC化率の経年推移"
+    }
+  ],
+  "notes": [
+    "宅配需要との比較では、旅行・金融・デジタルコンテンツ等の非物販ECを除き、物販系BtoC-ECのみを使用する。",
+    "EC市場規模は取引金額であり、宅配便個数と一対一に対応しない。両者の2015=100指数を比較し、金額ベース需要と物量ベース需要の乖離を見る。",
+    "EC化率は経済産業省定義の物販系分野における商取引市場規模に対するEC市場規模の割合。"
+  ],
+  "series": [
+    {
+      "metric_id": "physical_btoc_ec_market",
+      "name_ja": "物販系BtoC-EC市場規模",
+      "unit": "trillion_jpy",
+      "observations": [
+        {"period":"2015","value":7.2398,"status":"official","source":"METI 電子商取引に関する市場調査"},
+        {"period":"2016","value":8.0043,"status":"official","source":"同上"},
+        {"period":"2017","value":8.6008,"status":"official","source":"同上"},
+        {"period":"2018","value":9.2992,"status":"official","source":"同上"},
+        {"period":"2019","value":10.0515,"status":"official","source":"同上"},
+        {"period":"2020","value":12.2333,"status":"official","source":"同上"},
+        {"period":"2021","value":13.2865,"status":"official","source":"同上"},
+        {"period":"2022","value":13.9997,"status":"official","source":"同上"},
+        {"period":"2023","value":14.6760,"status":"official","source":"同上"},
+        {"period":"2024","value":15.2194,"status":"official","source":"同上"}
+      ]
+    },
+    {
+      "metric_id": "physical_btoc_ec_rate",
+      "name_ja": "物販系BtoC-EC化率",
+      "unit": "pct",
+      "observations": [
+        {"period":"2015","value":4.75,"status":"official","source":"METI 電子商取引に関する市場調査"},
+        {"period":"2016","value":5.43,"status":"official","source":"同上"},
+        {"period":"2017","value":5.79,"status":"official","source":"同上"},
+        {"period":"2018","value":6.22,"status":"official","source":"同上"},
+        {"period":"2019","value":6.76,"status":"official","source":"同上"},
+        {"period":"2020","value":8.08,"status":"official","source":"同上"},
+        {"period":"2021","value":8.78,"status":"official","source":"同上"},
+        {"period":"2022","value":9.13,"status":"official","source":"同上"},
+        {"period":"2023","value":9.38,"status":"official","source":"同上"},
+        {"period":"2024","value":9.78,"status":"official","source":"同上"}
+      ]
+    },
+    {
+      "metric_id": "physical_btoc_ec_index_2015",
+      "name_ja": "物販系BtoC-EC市場規模指数（2015=100）",
+      "unit": "index_2015_100",
+      "observations": [
+        {"period":"2015","value":100.0,"status":"derived","source":"physical_btoc_ec_marketを2015=100に指数化"},
+        {"period":"2016","value":110.6,"status":"derived","source":"同上"},
+        {"period":"2017","value":118.8,"status":"derived","source":"同上"},
+        {"period":"2018","value":128.4,"status":"derived","source":"同上"},
+        {"period":"2019","value":138.8,"status":"derived","source":"同上"},
+        {"period":"2020","value":169.0,"status":"derived","source":"同上"},
+        {"period":"2021","value":183.5,"status":"derived","source":"同上"},
+        {"period":"2022","value":193.4,"status":"derived","source":"同上"},
+        {"period":"2023","value":202.7,"status":"derived","source":"同上"},
+        {"period":"2024","value":210.2,"status":"derived","source":"同上"}
+      ]
+    }
+  ]
+}
