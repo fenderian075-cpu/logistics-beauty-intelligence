@@ -6,6 +6,7 @@ on:
     branches: [main]
     paths:
       - "scripts/sanitize_public_content.py"
+      - "scripts/sanitize_brand_aliases.py"
       - "scripts/localize_source_matrices.py"
       - "scripts/localize_public_ui.py"
       - "scripts/audit_public_content.py"
@@ -30,21 +31,27 @@ jobs:
         continue-on-error: true
         run: python scripts/sanitize_public_content.py
 
+      - name: Sanitize Japanese beauty-brand aliases
+        id: sanitize_aliases
+        if: steps.sanitize_data.outcome == 'success'
+        continue-on-error: true
+        run: python scripts/sanitize_brand_aliases.py
+
       - name: Localize extended source matrices
         id: localize_sources
-        if: steps.sanitize_data.outcome == 'success'
+        if: steps.sanitize_data.outcome == 'success' && steps.sanitize_aliases.outcome == 'success'
         continue-on-error: true
         run: python scripts/localize_source_matrices.py
 
       - name: Localize selected public UI literals
         id: localize_ui
-        if: steps.sanitize_data.outcome == 'success' && steps.localize_sources.outcome == 'success'
+        if: steps.localize_sources.outcome == 'success'
         continue-on-error: true
         run: python scripts/localize_public_ui.py
 
       - name: Audit public privacy and Japanese UI
         id: audit
-        if: steps.sanitize_data.outcome == 'success' && steps.localize_sources.outcome == 'success' && steps.localize_ui.outcome == 'success'
+        if: steps.localize_ui.outcome == 'success'
         continue-on-error: true
         shell: bash
         run: |
@@ -72,6 +79,7 @@ jobs:
         if: always()
         env:
           SANITIZE: ${{ steps.sanitize_data.outcome }}
+          ALIASES: ${{ steps.sanitize_aliases.outcome }}
           SOURCES: ${{ steps.localize_sources.outcome }}
           UI: ${{ steps.localize_ui.outcome }}
           AUDIT: ${{ steps.audit.outcome }}
@@ -85,6 +93,7 @@ jobs:
           from pathlib import Path
           stages = {
               "sanitize_data": os.environ.get("SANITIZE") or "not_run",
+              "sanitize_aliases": os.environ.get("ALIASES") or "not_run",
               "localize_sources": os.environ.get("SOURCES") or "not_run",
               "localize_ui": os.environ.get("UI") or "not_run",
               "audit": os.environ.get("AUDIT") or "not_run",
@@ -96,12 +105,9 @@ jobs:
           customs_log = Path('/tmp/customs-audit.log').read_text(encoding='utf-8', errors='replace') if Path('/tmp/customs-audit.log').exists() else ''
           diagnostic = audit_log if stages['audit'] == 'failure' else customs_log if stages['customs_validation'] == 'failure' else ''
           status = {
-              "schema_version": "1.1",
-              "dataset": "public-sanitize-status",
-              "status": "success" if ok else "failure",
-              "stage": "success" if ok else failed_stage,
-              "updated_at": datetime.now(timezone.utc).isoformat(),
-              "stages": stages,
+              "schema_version": "1.1", "dataset": "public-sanitize-status",
+              "status": "success" if ok else "failure", "stage": "success" if ok else failed_stage,
+              "updated_at": datetime.now(timezone.utc).isoformat(), "stages": stages,
               "audit_exit_code": os.environ.get("AUDIT_EXIT") or None,
               "customs_exit_code": os.environ.get("CUSTOMS_EXIT") or None,
               "diagnostic_tail": diagnostic[-8000:] if diagnostic else None,
@@ -116,6 +122,7 @@ jobs:
         shell: bash
         env:
           SANITIZE: ${{ steps.sanitize_data.outcome }}
+          ALIASES: ${{ steps.sanitize_aliases.outcome }}
           SOURCES: ${{ steps.localize_sources.outcome }}
           UI: ${{ steps.localize_ui.outcome }}
           AUDIT: ${{ steps.audit.outcome }}
@@ -123,7 +130,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if [[ "$SANITIZE" == "success" && "$SOURCES" == "success" && "$UI" == "success" && "$AUDIT" == "success" && "$CUSTOMS" == "success" ]]; then
+          if [[ "$SANITIZE" == "success" && "$ALIASES" == "success" && "$SOURCES" == "success" && "$UI" == "success" && "$AUDIT" == "success" && "$CUSTOMS" == "success" ]]; then
             git add -A
             MESSAGE="data: sanitize public Japanese and brand privacy"
           else
