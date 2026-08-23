@@ -72,8 +72,8 @@ async function mount(){
   if(commercialTonnageShare?.observations?.length&&commercialTonKmShare?.observations?.length){
     root.appendChild(el("h3","flow-block__sub","Commercial vs own-account — post-2020 only"));
     const businessRow=el("div","value-row");
-    businessRow.appendChild(card("営業用シェア（輸送トン数）",commercialTonnageShare,(v)=>`${jp(v,1)}%`,"2020年方法変更後"));
-    businessRow.appendChild(card("営業用シェア（ton-km）",commercialTonKmShare,(v)=>`${jp(v,1)}%`,"2020年方法変更後"));
+    businessRow.appendChild(card("営業用シェア（輸送トン数）",commercialTonnageShare,(v)=>`${jp(v,1)}%`,"年度 · 2020年方法変更後"));
+    businessRow.appendChild(card("営業用シェア（ton-km）",commercialTonKmShare,(v)=>`${jp(v,1)}%`,"年度 · 2020年方法変更後"));
     root.appendChild(businessRow);
     const c=chart({kind:"line",unitLabel:"%",series:[
       {name:"営業用シェア・輸送トン数",unitLabel:"%",points:points(commercialTonnageShare)},
