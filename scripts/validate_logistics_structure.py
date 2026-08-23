@@ -34,8 +34,27 @@ def main():
     expected_age_ids={'transport_postal_age_15_24','transport_postal_age_25_34','transport_postal_age_35_44','transport_postal_age_45_54','transport_postal_age_55_64','transport_postal_age_65_plus','transport_postal_age_55_plus_share','transport_postal_young_share','road_freight_employment','road_freight_age_55_plus_share','road_freight_young_share','road_freight_female_share','warehousing_employment','warehousing_age_55_plus_share','warehousing_young_share','warehousing_female_share'}
     actual_age_ids={s.get('metric_id') for s in age_contract.get('series',[])};assert expected_age_ids<=actual_age_ids
     assert age_contract.get('status')=='source_verified_schema_ready';assert all(not s.get('observations') for s in age_contract.get('series',[])), 'age contract must stay empty until official workbook columns are verified'
+
     census=one(jp_demo,'population_total_census_preliminary');assert census['period']=='2025-10-01' and abs(float(census['value'])-123.05)<0.001 and census.get('status')=='official_preliminary'
-    for mid in ['population_male','population_female','working_age_population_15_64','population_age_65_plus']:
-        assert series(jp_demo,mid).get('observations')==[],f'{mid}: do not backfill without official population-estimate series'
-    print(json.dumps({'status':'success','latest_load_index':idx[periods[-1]],'driver_age_2025':current_age['value'],'truck_driver_vacancy_2025fy':vacancy['value'],'age_contract_metrics':len(actual_age_ids),'census_2025_million':census['value']},ensure_ascii=False,indent=2))
+    pop=by_period(observations(jp_demo,'population_total'));pm=by_period(observations(jp_demo,'population_male'));pf=by_period(observations(jp_demo,'population_female'))
+    young=by_period(observations(jp_demo,'population_age_0_14'));working=by_period(observations(jp_demo,'working_age_population_15_64'));old=by_period(observations(jp_demo,'population_age_65_plus'));working_share=by_period(observations(jp_demo,'working_age_share'))
+    expected_years=[str(y) for y in range(2015,2026)]
+    for name,values in [('total',pop),('male',pm),('female',pf),('0-14',young),('15-64',working),('65+',old),('working_share',working_share)]:
+        assert list(values)==expected_years,(name,list(values))
+    for y in expected_years:
+        assert abs((pm[y]+pf[y])-pop[y])<=0.002,(y,pm[y],pf[y],pop[y])
+        assert abs((young[y]+working[y]+old[y])-pop[y])<=0.003,(y,young[y],working[y],old[y],pop[y])
+        expected=round(working[y]/pop[y]*100,1)
+        assert abs(working_share[y]-expected)<=0.1,(y,working_share[y],expected)
+    assert pop['2025']<pop['2015'] and working['2025']<working['2015'] and old['2025']>old['2015']
+    assert abs(pm['2024']-60.233)<0.001 and abs(pf['2024']-63.569)<0.001
+    assert abs(working['2024']-73.728)<0.001 and abs(old['2024']-36.243)<0.001
+    foreign=by_period(observations(jp_demo,'foreign_population'))
+    assert abs(foreign['2024-10-01']-3.506)<0.001 and abs(foreign['2025-10-01']-3.839)<0.001 and abs(foreign['2026-01-01']-3.730)<0.001
+    snap_total=one(jp_demo,'population_snapshot_2026_01_total');snap_male=one(jp_demo,'population_snapshot_2026_01_male');snap_female=one(jp_demo,'population_snapshot_2026_01_female');snap_work=one(jp_demo,'working_age_population_snapshot_2026_01')
+    assert abs(float(snap_total['value'])-122.980)<0.001
+    assert abs(float(snap_male['value'])+float(snap_female['value'])-float(snap_total['value']))<0.002
+    assert abs(float(snap_work['value'])-73.409)<0.001
+
+    print(json.dumps({'status':'success','latest_load_index':idx[periods[-1]],'driver_age_2025':current_age['value'],'truck_driver_vacancy_2025fy':vacancy['value'],'age_contract_metrics':len(actual_age_ids),'population_2015_million':pop['2015'],'population_2025_million':pop['2025'],'working_age_2015_million':working['2015'],'working_age_2025_million':working['2025'],'census_2025_million':census['value']},ensure_ascii=False,indent=2))
 if __name__=='__main__':main()
