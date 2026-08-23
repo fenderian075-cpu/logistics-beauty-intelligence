@@ -12,7 +12,11 @@ ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/'data'/'economy'/'logistics-workforce-age.json'
 STATS_DATA_ID='0003007108'
 INDUSTRIES={'transport_postal':'42','road_freight':'45','warehousing':'48'}
-AGES={'total':'00','15_19':'02','20_24':'05','25_29':'07','30_34':'08','35_39':'10','40_44':'11','45_49':'13','50_54':'14','55_64':'15','65_plus':'18'}
+AGES={
+    'total':'00','15_19':'02','20_24':'05','25_29':'07','30_34':'08',
+    '35_39':'10','40_44':'11','45_49':'13','50_54':'14',
+    '55_59':'16','60_64':'17','65_plus':'18'
+}
 YEARS=[str(y) for y in range(2015,2026)]
 API='https://api.e-stat.go.jp/rest/3.0/app/json/getStatsData'
 
@@ -72,7 +76,7 @@ def main():
             '25_34':obs(total,['25_29','30_34'],source),
             '35_44':obs(total,['35_39','40_44'],source),
             '45_54':obs(total,['45_49','50_54'],source),
-            '55_64':obs(total,['55_64'],source),
+            '55_64':obs(total,['55_59','60_64'],source),
             '65_plus':obs(total,['65_plus'],source),
         }
         if key!='transport_postal': set_series(data,f'{key}_employment',total_rows)
@@ -81,7 +85,7 @@ def main():
         d55={r['period']:r['value'] for r in bands['55_64']}; d65={r['period']:r['value'] for r in bands['65_plus']}
         d15={r['period']:r['value'] for r in bands['15_24']}; d25={r['period']:r['value'] for r in bands['25_34']}
         for y in YEARS:
-            if y in d55 and y in d65: older.append({'period':y,'value':round(d55[y]+d65[y],1),'status':'derived','source':'55-64 + 65+'})
+            if y in d55 and y in d65: older.append({'period':y,'value':round(d55[y]+d65[y],1),'status':'derived','source':'55-59 + 60-64 + 65+'})
             if y in d15 and y in d25: young.append({'period':y,'value':round(d15[y]+d25[y],1),'status':'derived','source':'15-24 + 25-34'})
         set_series(data,f'{key}_age_55_plus_share',derived_share(older,total_rows,'LBI: 55+ / total'))
         set_series(data,f'{key}_young_share',derived_share(young,total_rows,'LBI: <=34 / total'))
