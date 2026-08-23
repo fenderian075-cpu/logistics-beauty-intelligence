@@ -81,6 +81,14 @@ function ensureCanonicalRail() {
     </div>`;
 }
 
+function normalizeEconomyOverviewIds() {
+  const overview = document.getElementById("flow-overview");
+  if (!overview) return;
+  overview.querySelectorAll("[id]").forEach((node) => {
+    if (!node.id.startsWith("overview-")) node.id = `overview-${node.id}`;
+  });
+}
+
 function detectPage() {
   const declared = document.body.getAttribute("data-page");
   if (declared && PAGES[declared]) return declared;
@@ -112,7 +120,9 @@ function boot() {
   initShell();
   const page = detectPage();
   if (!page) return;
-  PAGES[page]().then((mod) => mod.init()).catch((err) => {
+  PAGES[page]().then((mod) => mod.init()).then(() => {
+    if (page === "economy") normalizeEconomyOverviewIds();
+  }).catch((err) => {
     console.error(`LBI: ${page} failed to initialise.`, err);
     showFatal("データを読み込めませんでした。ページを再読み込みしてください。");
   });
