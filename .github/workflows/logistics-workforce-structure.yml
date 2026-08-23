@@ -14,16 +14,18 @@ on:
       - "scripts/validate_household_demand.py"
       - "scripts/validate_foreign_workforce.py"
       - "scripts/validate_trucking_physical_capacity.py"
+      - "scripts/validate_driver_labor_history.py"
       - "data/economy/logistics-workforce-age.json"
       - "data/economy/logistics-capacity.json"
       - "data/economy/ec-demand.json"
       - "data/economy/household-demand.json"
       - "data/economy/logistics-foreign-workforce.json"
       - "data/economy/trucking-physical-capacity.json"
+      - "data/economy/driver-labor-history.json"
       - ".github/workflows/logistics-workforce-structure.yml"
   pull_request:
     paths:
-      - "scripts/update_logistics_workforce_age.py"
+      - "scripts/update_logistics-workforce-age.py"
       - "scripts/update_logistics_productivity.py"
       - "scripts/update_household_demand.py"
       - "scripts/update_trucking_physical_capacity.py"
@@ -31,12 +33,14 @@ on:
       - "scripts/validate_household_demand.py"
       - "scripts/validate_foreign_workforce.py"
       - "scripts/validate_trucking_physical_capacity.py"
+      - "scripts/validate_driver_labor_history.py"
       - "data/economy/logistics-workforce-age.json"
       - "data/economy/logistics-capacity.json"
       - "data/economy/ec-demand.json"
       - "data/economy/household-demand.json"
       - "data/economy/logistics-foreign-workforce.json"
       - "data/economy/trucking-physical-capacity.json"
+      - "data/economy/driver-labor-history.json"
       - ".github/workflows/logistics-workforce-structure.yml"
 
 permissions:
@@ -58,7 +62,7 @@ jobs:
         run: python -m pip install --disable-pip-version-check openpyxl xlrd requests
 
       - name: Compile collectors
-        run: python -m py_compile scripts/update_logistics_workforce_age.py scripts/update_logistics_productivity.py scripts/update_household_demand.py scripts/update_trucking_physical_capacity.py scripts/validate_logistics_structure.py scripts/validate_household_demand.py scripts/validate_foreign_workforce.py scripts/validate_trucking_physical_capacity.py
+        run: python -m py_compile scripts/update_logistics_workforce_age.py scripts/update_logistics_productivity.py scripts/update_household_demand.py scripts/update_trucking_physical_capacity.py scripts/validate_logistics_structure.py scripts/validate_household_demand.py scripts/validate_foreign_workforce.py scripts/validate_trucking_physical_capacity.py scripts/validate_driver_labor_history.py
 
       - name: Refresh official age and industry structure
         shell: bash
@@ -90,6 +94,9 @@ jobs:
       - name: Validate trucking physical capacity
         run: python scripts/validate_trucking_physical_capacity.py
 
+      - name: Validate driver labor history
+        run: python scripts/validate_driver_labor_history.py
+
       - name: Report structural state
         shell: bash
         run: |
@@ -101,6 +108,7 @@ jobs:
           hh=json.load(open('data/economy/household-demand.json', encoding='utf-8'))
           foreign=json.load(open('data/economy/logistics-foreign-workforce.json', encoding='utf-8'))
           physical=json.load(open('data/economy/trucking-physical-capacity.json', encoding='utf-8'))
+          labor=json.load(open('data/economy/driver-labor-history.json', encoding='utf-8'))
           print('workforce age status:', age.get('status'))
           print('populated age series:', sum(bool(s.get('observations')) for s in age.get('series',[])), '/', len(age.get('series',[])))
           for mid in ('freight_labor_productivity','warehouse_labor_productivity'):
@@ -109,10 +117,10 @@ jobs:
               s=next(x for x in ec['series'] if x['metric_id']==mid); print(mid, 'latest:', (s.get('observations') or [None])[-1])
           for mid in ('resident_register_households','parcel_per_household'):
               s=next(x for x in hh['series'] if x['metric_id']==mid); print(mid, 'latest:', (s.get('observations') or [None])[-1])
-          s=next(x for x in foreign['series'] if x['metric_id']=='transport_postal_foreign_workers')
-          print('transport_postal_foreign_workers latest:', s['observations'][-1])
+          s=next(x for x in foreign['series'] if x['metric_id']=='transport_postal_foreign_workers'); print('transport_postal_foreign_workers latest:', s['observations'][-1])
           for mid in ('truck_operators','commercial_truck_vehicles','vehicles_per_operator','ton_km_per_vehicle'):
               s=next(x for x in physical['series'] if x['metric_id']==mid); print(mid, 'latest:', (s.get('observations') or [None])[-1])
+          s=next(x for x in labor['series'] if x['metric_id']=='large_truck_driver_annual_work_hours'); print('large truck annual hours latest:', s['observations'][-1])
           PY
 
       - name: Commit refreshed structural data on source branch
