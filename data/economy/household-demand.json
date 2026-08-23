@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0",
+  "dataset": "household-demand",
+  "title_ja": "世帯ベースの宅配需要",
+  "frequency": "annual",
+  "sources": [
+    {
+      "name": "総務省 住民基本台帳に基づく人口、人口動態及び世帯数調査",
+      "url": "https://www.e-stat.go.jp/stat-search?toukei=00200241",
+      "table": "各年 YY-01 〖総計〗都道府県別人口、人口動態及び世帯数"
+    },
+    {
+      "name": "国土交通省 宅配便等取扱個数の調査",
+      "url": "https://www.mlit.go.jp/statistics/details/jidosha_list.html"
+    }
+  ],
+  "notes": [
+    "世帯数は各年1月1日現在の住民基本台帳総計。日本人住民のみ・外国人住民のみの表は使用しない。",
+    "宅配便は年度統計、世帯数は暦年1月1日スナップショットのため、1世帯当たり宅配便個数は厳密な同時点比率ではなく年間需要密度のproxyとして扱う。",
+    "e-Statの年次一覧からYY-01総計ファイルを自動発見し、全国合計の世帯数を抽出する。推計・補間は行わない。"
+  ],
+  "status": "collector_ready",
+  "series": [
+    {
+      "metric_id": "resident_register_households",
+      "name_ja": "住民基本台帳 世帯数（総計）",
+      "unit": "million_households",
+      "observations": []
+    },
+    {
+      "metric_id": "parcel_per_household",
+      "name_ja": "1世帯あたり宅配便個数",
+      "unit": "parcels_per_household_year",
+      "observations": []
+    }
+  ]
+}
