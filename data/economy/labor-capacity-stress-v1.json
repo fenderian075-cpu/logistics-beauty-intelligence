@@ -70,6 +70,12 @@
           "value": 113.9,
           "status": "derived",
           "source": "LBI transparent normalization; 2018=100"
+        },
+        {
+          "period": "2024",
+          "value": 115.8,
+          "status": "derived",
+          "source": "LBI transparent normalization; 2018=100"
         }
       ]
     },
@@ -111,6 +117,12 @@
         {
           "period": "2023",
           "value": 77.0,
+          "status": "derived",
+          "source": "LBI transparent normalization; 2018=100"
+        },
+        {
+          "period": "2024",
+          "value": 83.7,
           "status": "derived",
           "source": "LBI transparent normalization; 2018=100"
         }
@@ -156,6 +168,12 @@
           "value": 117.8,
           "status": "derived",
           "source": "LBI transparent normalization; 2018=100"
+        },
+        {
+          "period": "2024",
+          "value": 123.2,
+          "status": "derived",
+          "source": "LBI transparent normalization; 2018=100"
         }
       ]
     },
@@ -197,6 +215,12 @@
         {
           "period": "2023",
           "value": 121.6,
+          "status": "derived",
+          "source": "LBI transparent normalization; 2018=100"
+        },
+        {
+          "period": "2024",
+          "value": 134.8,
           "status": "derived",
           "source": "LBI transparent normalization; 2018=100"
         }
@@ -242,6 +266,12 @@
           "value": 102.5,
           "status": "derived",
           "source": "LBI transparent normalization; 2018=100"
+        },
+        {
+          "period": "2024",
+          "value": 102.8,
+          "status": "derived",
+          "source": "LBI transparent normalization; 2018=100"
         }
       ]
     },
@@ -285,9 +315,15 @@
           "value": 106.6,
           "status": "derived",
           "source": "Arithmetic mean of five disclosed 2018=100 pressure components"
+        },
+        {
+          "period": "2024",
+          "value": 112.1,
+          "status": "derived",
+          "source": "Arithmetic mean of five disclosed 2018=100 pressure components"
         }
       ]
     }
   ],
-  "latest_common_year": "2023"
+  "latest_common_year": "2024"
 }
