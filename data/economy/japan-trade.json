@@ -1,0 +1,16 @@
+{
+  "schema_version":"1.0",
+  "dataset":"japan-trade",
+  "title_ja":"日本貿易",
+  "frequency":"monthly+10day+20day",
+  "source":{"name":"財務省 貿易統計","url":"https://www.customs.go.jp/toukei/info/"},
+  "series":[
+    {"metric_id":"exports_total","unit":"JPY trillion","observations":[{"period":"2026-06","value":10.9290,"yoy":19.3,"status":"provisional","published_at":"2026-07-22"}]},
+    {"metric_id":"imports_total","unit":"JPY trillion","observations":[{"period":"2026-06","value":11.3359,"yoy":25.4,"status":"provisional","published_at":"2026-07-22"}]},
+    {"metric_id":"trade_balance","unit":"JPY trillion","observations":[{"period":"2026-06","value":-0.4069,"status":"provisional","published_at":"2026-07-22"}]},
+    {"metric_id":"exports_h1","unit":"JPY trillion","observations":[{"period":"2026-H1","value":60.6606,"yoy":13.7,"status":"provisional","published_at":"2026-07-22"}]},
+    {"metric_id":"imports_h1","unit":"JPY trillion","observations":[{"period":"2026-H1","value":61.6750,"yoy":10.7,"status":"provisional","published_at":"2026-07-22"}]}
+  ],
+  "priority_drilldowns":["France→Japan","Italy→Japan","China→Japan","Korea→Japan","cosmetics-related HS","fragrance-related HS","ocean-container vs air"],
+  "next_release_watch":{"latest_interim_available":"2026-07 first 20 days","published_at":"2026-08-07"}
+}
