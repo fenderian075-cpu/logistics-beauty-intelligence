@@ -11,15 +11,16 @@ ROOT = Path(__file__).resolve().parents[1]
 PUBLIC_FILES = [
     ROOT / "data/beauty-priority-brands.json",
     ROOT / "data/buzz-watchlist.json",
-    ROOT / "data/source-matrix.json",
     ROOT / "data/reports.json",
     ROOT / "data/topic-intelligence.json",
     ROOT / "data/critical-news.json",
     ROOT / "data/buzz.json",
     ROOT / "assets/js/core/labels.js",
+    ROOT / "assets/js/pages/source-matrix.js",
     ROOT / "index.html", ROOT / "radar.html", ROOT / "topic.html", ROOT / "economic-flow.html",
     ROOT / "source-matrix.html", ROOT / "status-history.html", ROOT / "lens-history.html",
 ]
+PUBLIC_FILES.extend(sorted((ROOT / "data").glob("source-matrix*.json")))
 PUBLIC_FILES.extend((ROOT / "reports").glob("**/*.html"))
 
 BANNED_BRAND_PATTERNS = [
@@ -33,16 +34,24 @@ BANNED_BRAND_PATTERNS = [
     r"cremedelamer\.jp", r"byredo\.com", r"loreal-finance\.com", r"elcompanies\.com",
 ]
 
-# These are presentation phrases, not source proper nouns or standard acronyms.
+# Presentation vocabulary that should be Japanese in the public UI/data layer.
+# Proper source names and established technical acronyms are intentionally allowed.
 BANNED_UI_TERMS = [
     "Economic & Physical Flow", "Economic Flow", "Critical Radar", "Source Matrix", "Status History",
     "Topic Intelligence", "Beauty Demand", "Beauty商流", "Beauty需要", "通関・NACCS", "この signal の推移",
+    "Retail / Department Store", "Industry Statistics", "Production / Shipment", "Retail / Commerce",
+    "Market Research", "Industry Media", "Trade / Physical Flow", "Warehouse / Physical Flow",
+    "Port / Physical Flow", "Truck / Physical Flow", "Air / Physical Flow", "Logistics Cost",
+    "Inbound Demand", "Corporate / Market", "Corporate / IR", "Warehouse / IR", "Port / IR",
+    "Integrated Logistics / IR", "Carrier IR / Network", "Structural Outlook", "Synthesis / Discovery",
+    "Buzz / Search", "港湾・Reliability", "船腹・Supply",
 ]
 
 
 def main() -> None:
     errors = []
-    for path in PUBLIC_FILES:
+    unique_files = list(dict.fromkeys(PUBLIC_FILES))
+    for path in unique_files:
         if not path.exists():
             continue
         text = path.read_text(encoding="utf-8", errors="replace")
@@ -56,7 +65,7 @@ def main() -> None:
     if errors:
         print("\n".join(f"[ERROR] {e}" for e in errors), file=sys.stderr)
         raise SystemExit(1)
-    print(f"public-content audit passed: {len(PUBLIC_FILES)} files checked")
+    print(f"public-content audit passed: {len(unique_files)} files checked")
 
 
 if __name__ == "__main__":
