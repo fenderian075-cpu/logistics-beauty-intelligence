@@ -30,7 +30,6 @@ def era_to_year(era_year: int) -> int:
 def discover_latest_table3() -> str:
     r = requests.get(LANDING, headers={"User-Agent": UA}, timeout=30)
     r.raise_for_status()
-    # MOJ currently serves UTF-8 without a reliable charset header.
     r.encoding = "utf-8"
     soup = BeautifulSoup(r.text, "html.parser")
     pdfs = []
@@ -42,7 +41,6 @@ def discover_latest_table3() -> str:
         own = norm(a.get_text(" ", strip=True))
         parent = norm(a.parent.get_text(" ", strip=True)) if a.parent else own
         pdfs.append((url, own, parent))
-        # Current ISA markup labels the combined table PDF itself as 第1表、第2表、第3表(PDF).
         if "第3表" in own:
             return url
     excluded = ("概要版", "詳細版", "ポイント", "運用状況")
@@ -72,26 +70,15 @@ def parse_period(text: str) -> str:
 
 
 def join_japanese_labels(text: str) -> str:
-    """Remove whitespace inserted by PDF extraction only between Japanese label characters."""
     return re.sub(r"(?<=[\u3040-\u30ff\u3400-\u9fff])\s+(?=[\u3040-\u30ff\u3400-\u9fff])", "", text)
 
 
 def parse_auto_transport(text: str) -> tuple[int, int, int, int]:
     raw = unicodedata.normalize("NFKC", text)
     t = norm(join_japanese_labels(raw))
-
-    # ISA Table 3 currently extracts this block as:
-    # 自動車運送業分野 151  鉄道分野 54
-    # トラック運転者 タクシー運転者 バス運転者 軌道整備 ... 運輸係員
-    # 123 16 12 14 8 6 26 0
-    # Parse the field total independently, then the first three values after the complete header row.
-    total_match = re.search(
-        r"自動車運送業(?:分野)?\s*([\d,]+)\s*鉄道(?:分野)?\s*[\d,]+",
-        t,
-    )
+    total_match = re.search(r"自動車運送業(?:分野)?\s*([\d,]+)\s*鉄道(?:分野)?\s*[\d,]+", t)
     parts_match = re.search(
-        r"トラック運転者\s*タクシー運転者\s*バス運転者"
-        r".*?運輸係員\s*([\d,]+)\s+([\d,]+)\s+([\d,]+)",
+        r"トラック運転者\s*タクシー運転者\s*バス運転者.*?運輸係員\s*([\d,]+)\s+([\d,]+)\s+([\d,]+)",
         t,
     )
     if total_match and parts_match:
@@ -100,8 +87,6 @@ def parse_auto_transport(text: str) -> tuple[int, int, int, int]:
         if total > 0 and total == truck + taxi + bus:
             return total, truck, taxi, bus
 
-    # Future-layout fallback: after the truck/taxi/bus header, find the first three adjacent numeric
-    # values whose sum equals an auto-transport field total found shortly before the header.
     label_pos = t.find("トラック運転者")
     field_pos = t.rfind("自動車運送業", 0, label_pos if label_pos >= 0 else len(t))
     if label_pos >= 0 and field_pos >= 0:
@@ -109,7 +94,6 @@ def parse_auto_transport(text: str) -> tuple[int, int, int, int]:
         totals = [int(x.replace(",", "")) for x in re.findall(r"(?<!\d)(\d[\d,]*)(?!\d)", before)]
         totals = [x for x in totals if 0 < x < 100000]
         after = t[label_pos:label_pos + 5000]
-        # Skip numeric values that may occur inside the header itself by starting after 運輸係員 if present.
         end_header = after.find("運輸係員")
         if end_header >= 0:
             after = after[end_header + len("運輸係員"):]
@@ -124,12 +108,7 @@ def parse_auto_transport(text: str) -> tuple[int, int, int, int]:
     keywords = {k: (k in joined) for k in ["自動車運送業", "トラック", "タクシー", "バス"]}
     context_start = max(0, field_pos) if field_pos >= 0 else 0
     context = norm(join_japanese_labels(raw))[context_start:context_start + 6000]
-    raise RuntimeError(
-        "Could not confidently parse auto-transport split; keywords="
-        + json.dumps(keywords, ensure_ascii=False)
-        + "; context="
-        + context
-    )
+    raise RuntimeError("Could not confidently parse auto-transport split; keywords=" + json.dumps(keywords, ensure_ascii=False) + "; context=" + context)
 
 
 def get_series(data: dict, metric_id: str) -> dict:
@@ -163,15 +142,7 @@ def main() -> None:
     data["latest_snapshot"] = period
     data["latest_source_url"] = pdf_url
     DATA.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(json.dumps({
-        "status": "success",
-        "period": period,
-        "source": pdf_url,
-        "auto_transport": total,
-        "truck": truck,
-        "taxi": taxi,
-        "bus": bus,
-    }, ensure_ascii=False, indent=2))
+    print(json.dumps({"status":"success","period":period,"source":pdf_url,"auto_transport":total,"truck":truck,"taxi":taxi,"bus":bus}, ensure_ascii=False, indent=2))
 
 
 if __name__ == "__main__":
