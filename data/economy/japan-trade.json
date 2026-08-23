@@ -1,16 +1,43 @@
 {
-  "schema_version":"1.0",
+  "schema_version":"1.2",
   "dataset":"japan-trade",
   "title_ja":"日本貿易",
-  "frequency":"monthly+10day+20day",
+  "frequency":"monthly+annual+10day+20day",
+  "baseline_updated_at":"2026-08-23T11:36:00+09:00",
   "source":{"name":"財務省 貿易統計","url":"https://www.customs.go.jp/toukei/info/"},
+  "historical_source":{"name":"財務省貿易統計 年別輸出入総額の推移表","url":"https://www.customs.go.jp/toukei/suii/html/nenbet.htm","basis":"calendar_year_final"},
   "series":[
-    {"metric_id":"exports_total","unit":"JPY trillion","observations":[{"period":"2026-06","value":10.9290,"yoy":19.3,"status":"provisional","published_at":"2026-07-22"}]},
-    {"metric_id":"imports_total","unit":"JPY trillion","observations":[{"period":"2026-06","value":11.3359,"yoy":25.4,"status":"provisional","published_at":"2026-07-22"}]},
-    {"metric_id":"trade_balance","unit":"JPY trillion","observations":[{"period":"2026-06","value":-0.4069,"status":"provisional","published_at":"2026-07-22"}]},
-    {"metric_id":"exports_h1","unit":"JPY trillion","observations":[{"period":"2026-H1","value":60.6606,"yoy":13.7,"status":"provisional","published_at":"2026-07-22"}]},
-    {"metric_id":"imports_h1","unit":"JPY trillion","observations":[{"period":"2026-H1","value":61.6750,"yoy":10.7,"status":"provisional","published_at":"2026-07-22"}]}
+    {"metric_id":"exports_total","unit":"JPY_trillion","observations":[{"period":"2026-06","value":10.9290,"yoy_pct":19.3,"status":"provisional","published_at":"2026-07-22"}]},
+    {"metric_id":"imports_total","unit":"JPY_trillion","observations":[{"period":"2026-06","value":11.3359,"yoy_pct":25.4,"status":"provisional","published_at":"2026-07-22"}]},
+    {"metric_id":"trade_balance","unit":"JPY_trillion","observations":[{"period":"2026-06","value":-0.4069,"status":"provisional","published_at":"2026-07-22"}]},
+    {"metric_id":"exports_h1","unit":"JPY_trillion","observations":[{"period":"2026-H1","value":60.6606,"yoy_pct":13.7,"status":"provisional","published_at":"2026-07-22"}]},
+    {"metric_id":"imports_h1","unit":"JPY_trillion","observations":[{"period":"2026-H1","value":61.6750,"yoy_pct":10.7,"status":"provisional","published_at":"2026-07-22"}]},
+    {
+      "metric_id":"exports_total_annual",
+      "unit":"JPY_trillion",
+      "basis":"calendar_year_final",
+      "observations":[
+        {"period":"2015","value":75.613929,"status":"final"},{"period":"2016","value":70.035770,"status":"final"},{"period":"2017","value":78.286457,"status":"final"},{"period":"2018","value":81.478753,"status":"final"},{"period":"2019","value":76.931665,"status":"final"},{"period":"2020","value":68.399121,"status":"final"},{"period":"2021","value":83.091420,"status":"final"},{"period":"2022","value":98.173612,"status":"final"},{"period":"2023","value":100.873049,"status":"final"},{"period":"2024","value":107.087511,"status":"final"}
+      ]
+    },
+    {
+      "metric_id":"imports_total_annual",
+      "unit":"JPY_trillion",
+      "basis":"calendar_year_final",
+      "observations":[
+        {"period":"2015","value":78.405536,"status":"final"},{"period":"2016","value":66.041974,"status":"final"},{"period":"2017","value":75.379231,"status":"final"},{"period":"2018","value":82.703304,"status":"final"},{"period":"2019","value":78.599510,"status":"final"},{"period":"2020","value":68.010832,"status":"final"},{"period":"2021","value":84.875045,"status":"final"},{"period":"2022","value":118.503153,"status":"final"},{"period":"2023","value":110.395119,"status":"final"},{"period":"2024","value":112.715961,"status":"final"}
+      ]
+    },
+    {
+      "metric_id":"trade_balance_annual",
+      "unit":"JPY_trillion",
+      "basis":"calendar_year_final_exports_minus_imports",
+      "observations":[
+        {"period":"2015","value":-2.791607,"status":"derived_from_official_totals"},{"period":"2016","value":3.993796,"status":"derived_from_official_totals"},{"period":"2017","value":2.907226,"status":"derived_from_official_totals"},{"period":"2018","value":-1.224552,"status":"derived_from_official_totals"},{"period":"2019","value":-1.667845,"status":"derived_from_official_totals"},{"period":"2020","value":0.388289,"status":"derived_from_official_totals"},{"period":"2021","value":-1.783624,"status":"derived_from_official_totals"},{"period":"2022","value":-20.329541,"status":"derived_from_official_totals"},{"period":"2023","value":-9.522070,"status":"derived_from_official_totals"},{"period":"2024","value":-5.628450,"status":"derived_from_official_totals"}
+      ]
+    }
   ],
   "priority_drilldowns":["France→Japan","Italy→Japan","China→Japan","Korea→Japan","cosmetics-related HS","fragrance-related HS","ocean-container vs air"],
+  "public_privacy_rule":"Public history stores national aggregates. Priority origin-country, port and lane interpretation remains generalized in public output.",
   "next_release_watch":{"latest_interim_available":"2026-07 first 20 days","published_at":"2026-08-07"}
 }

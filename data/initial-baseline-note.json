@@ -1,10 +1,36 @@
 {
-  "schema_version": "1.0",
-  "generated_at": "2026-08-22T21:15:00+09:00",
-  "purpose": "Real-data v4 baseline prepared before the frontend redesign so the UI can be evaluated against realistic production density rather than empty schemas or fake fixtures.",
+  "schema_version": "1.1",
+  "generated_at": "2026-08-23T11:36:00+09:00",
+  "purpose": "Real-data v4 baseline prepared so LBI can evaluate current conditions against quantitative history rather than isolated current prints.",
+  "quantitative_history": {
+    "macro": [
+      "Japan nominal GDP fiscal-year level: 2005FY-2025FY (2025FY preliminary)",
+      "Japan nominal GDP fiscal-year growth: 2005FY-2025FY",
+      "Japan real GDP fiscal-year growth: 2005FY-2025FY",
+      "2026-Q2 real/nominal GDP QoQ and seasonally adjusted annual-rate levels"
+    ],
+    "beauty_retail": [
+      "Department-store total sales: calendar-year 2021-2025 and monthly 2026-01 to 2026-06",
+      "Department-store cosmetics sales: calendar-year 2021-2025 and monthly 2026-01 to 2026-06",
+      "Drugstore total and Beauty Care sales: calendar-year 2022-2025",
+      "Existing cosmetics shipment, household spend and category structure observations retained"
+    ],
+    "trade": [
+      "Japan total exports/imports/trade balance: calendar-year 2015-2024",
+      "Existing 2026 monthly and H1 provisional trade observations retained"
+    ]
+  },
+  "data_rules": [
+    "Every percentage field states or implies an explicit comparison basis in the metric or field name; naked deltas are not used.",
+    "JDSA store-count-adjusted YoY is stored separately as yoy_store_adjusted_pct and is not reconstructed from raw sales values.",
+    "GDP observations retain source vintage because GDP is revised retrospectively; a vintage change is not interpreted as an economic event.",
+    "Derived values such as annual trade balance are explicitly marked derived_from_official_totals.",
+    "Historical baseline observations are context and confirmation layers, not Critical Radar events by themselves."
+  ],
   "notes": [
     "This file is informational only and is not intended as a frontend dependency.",
-    "Production data lives in reports.json, critical-news.json, topic-intelligence.json, commerce-calendar.json and related datasets.",
-    "All populated baseline items are based on publicly verified sources available at generation time; unavailable facts are not invented."
+    "Production data lives in reports.json, critical-news.json, topic-intelligence.json, commerce-calendar.json and data/economy datasets.",
+    "All populated baseline items are based on publicly verified sources available at generation time; unavailable facts are not invented.",
+    "Empty series remain explicit backlog targets for future collectors rather than being filled with estimates."
   ]
 }
