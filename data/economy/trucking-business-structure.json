@@ -3,7 +3,7 @@
   "dataset": "trucking-business-structure",
   "title_ja": "営業用・自家用トラック輸送構造",
   "frequency": "fiscal_annual",
-  "status": "schema_ready",
+  "status": "populated_post2020_official_api",
   "sources": [
     {
       "name": "国土交通省 自動車輸送統計年報 貨物輸送3-1（2020年度～）",
@@ -21,11 +21,245 @@
     "営業用シェアは輸送トン数と輸送トンキロを分けて算出する。前者は物量、後者は輸送距離を加味した輸送仕事量の構成を示す。"
   ],
   "series": [
-    {"metric_id":"commercial_tonnage_post2020","name_ja":"営業用 輸送トン数","unit":"million_tonnes","observations":[]},
-    {"metric_id":"own_account_tonnage_post2020","name_ja":"自家用 輸送トン数","unit":"million_tonnes","observations":[]},
-    {"metric_id":"commercial_tonnage_share_post2020","name_ja":"営業用 輸送トン数シェア","unit":"pct","observations":[]},
-    {"metric_id":"commercial_ton_km_post2020","name_ja":"営業用 輸送トンキロ","unit":"billion_tonne_km","observations":[]},
-    {"metric_id":"own_account_ton_km_post2020","name_ja":"自家用 輸送トンキロ","unit":"billion_tonne_km","observations":[]},
-    {"metric_id":"commercial_ton_km_share_post2020","name_ja":"営業用 輸送トンキロシェア","unit":"pct","observations":[]}
-  ]
+    {
+      "metric_id": "commercial_tonnage_post2020",
+      "name_ja": "営業用 輸送トン数",
+      "unit": "million_tonnes",
+      "observations": [
+        {
+          "period": "2020",
+          "value": 2550.515,
+          "status": "official_api",
+          "source": "e-Stat Auto Transport Statistics 3-1 statsDataId=0003442538 post-2020 methodology"
+        },
+        {
+          "period": "2021",
+          "value": 2602.052,
+          "status": "official_api",
+          "source": "e-Stat Auto Transport Statistics 3-1 statsDataId=0003442538 post-2020 methodology"
+        },
+        {
+          "period": "2022",
+          "value": 2557.548,
+          "status": "official_api",
+          "source": "e-Stat Auto Transport Statistics 3-1 statsDataId=0003442538 post-2020 methodology"
+        },
+        {
+          "period": "2023",
+          "value": 2512.059,
+          "status": "official_api",
+          "source": "e-Stat Auto Transport Statistics 3-1 statsDataId=0003442538 post-2020 methodology"
+        },
+        {
+          "period": "2024",
+          "value": 2509.475,
+          "status": "official_api",
+          "source": "e-Stat Auto Transport Statistics 3-1 statsDataId=0003442538 post-2020 methodology"
+        }
+      ]
+    },
+    {
+      "metric_id": "own_account_tonnage_post2020",
+      "name_ja": "自家用 輸送トン数",
+      "unit": "million_tonnes",
+      "observations": [
+        {
+          "period": "2020",
+          "value": 1236.483,
+          "status": "official_api",
+          "source": "e-Stat Auto Transport Statistics 3-1 statsDataId=0003442538 post-2020 methodology"
+        },
+        {
+          "period": "2021",
+          "value": 1286.344,
+          "status": "official_api",
+          "source": "e-Stat Auto Transport Statistics 3-1 statsDataId=0003442538 post-2020 methodology"
+        },
+        {
+          "period": "2022",
+          "value": 1268.451,
+          "status": "official_api",
+          "source": "e-Stat Auto Transport Statistics 3-1 statsDataId=0003442538 post-2020 methodology"
+        },
+        {
+          "period": "2023",
+          "value": 1268.446,
+          "status": "official_api",
+          "source": "e-Stat Auto Transport Statistics 3-1 statsDataId=0003442538 post-2020 methodology"
+        },
+        {
+          "period": "2024",
+          "value": 1215.322,
+          "status": "official_api",
+          "source": "e-Stat Auto Transport Statistics 3-1 statsDataId=0003442538 post-2020 methodology"
+        }
+      ]
+    },
+    {
+      "metric_id": "commercial_tonnage_share_post2020",
+      "name_ja": "営業用 輸送トン数シェア",
+      "unit": "pct",
+      "observations": [
+        {
+          "period": "2020",
+          "value": 67.349,
+          "status": "derived",
+          "source": "LBI: commercial / (commercial + own-account)"
+        },
+        {
+          "period": "2021",
+          "value": 66.918,
+          "status": "derived",
+          "source": "LBI: commercial / (commercial + own-account)"
+        },
+        {
+          "period": "2022",
+          "value": 66.847,
+          "status": "derived",
+          "source": "LBI: commercial / (commercial + own-account)"
+        },
+        {
+          "period": "2023",
+          "value": 66.448,
+          "status": "derived",
+          "source": "LBI: commercial / (commercial + own-account)"
+        },
+        {
+          "period": "2024",
+          "value": 67.372,
+          "status": "derived",
+          "source": "LBI: commercial / (commercial + own-account)"
+        }
+      ]
+    },
+    {
+      "metric_id": "commercial_ton_km_post2020",
+      "name_ja": "営業用 輸送トンキロ",
+      "unit": "billion_tonne_km",
+      "observations": [
+        {
+          "period": "2020",
+          "value": 186.999,
+          "status": "official_api",
+          "source": "e-Stat Auto Transport Statistics 3-1 statsDataId=0003442538 post-2020 methodology"
+        },
+        {
+          "period": "2021",
+          "value": 196.439,
+          "status": "official_api",
+          "source": "e-Stat Auto Transport Statistics 3-1 statsDataId=0003442538 post-2020 methodology"
+        },
+        {
+          "period": "2022",
+          "value": 199.149,
+          "status": "official_api",
+          "source": "e-Stat Auto Transport Statistics 3-1 statsDataId=0003442538 post-2020 methodology"
+        },
+        {
+          "period": "2023",
+          "value": 202.143,
+          "status": "official_api",
+          "source": "e-Stat Auto Transport Statistics 3-1 statsDataId=0003442538 post-2020 methodology"
+        },
+        {
+          "period": "2024",
+          "value": 203.796,
+          "status": "official_api",
+          "source": "e-Stat Auto Transport Statistics 3-1 statsDataId=0003442538 post-2020 methodology"
+        }
+      ]
+    },
+    {
+      "metric_id": "own_account_ton_km_post2020",
+      "name_ja": "自家用 輸送トンキロ",
+      "unit": "billion_tonne_km",
+      "observations": [
+        {
+          "period": "2020",
+          "value": 26.421,
+          "status": "official_api",
+          "source": "e-Stat Auto Transport Statistics 3-1 statsDataId=0003442538 post-2020 methodology"
+        },
+        {
+          "period": "2021",
+          "value": 27.656,
+          "status": "official_api",
+          "source": "e-Stat Auto Transport Statistics 3-1 statsDataId=0003442538 post-2020 methodology"
+        },
+        {
+          "period": "2022",
+          "value": 27.737,
+          "status": "official_api",
+          "source": "e-Stat Auto Transport Statistics 3-1 statsDataId=0003442538 post-2020 methodology"
+        },
+        {
+          "period": "2023",
+          "value": 27.037,
+          "status": "official_api",
+          "source": "e-Stat Auto Transport Statistics 3-1 statsDataId=0003442538 post-2020 methodology"
+        },
+        {
+          "period": "2024",
+          "value": 27.851,
+          "status": "official_api",
+          "source": "e-Stat Auto Transport Statistics 3-1 statsDataId=0003442538 post-2020 methodology"
+        }
+      ]
+    },
+    {
+      "metric_id": "commercial_ton_km_share_post2020",
+      "name_ja": "営業用 輸送トンキロシェア",
+      "unit": "pct",
+      "observations": [
+        {
+          "period": "2020",
+          "value": 87.62,
+          "status": "derived",
+          "source": "LBI: commercial / (commercial + own-account)"
+        },
+        {
+          "period": "2021",
+          "value": 87.659,
+          "status": "derived",
+          "source": "LBI: commercial / (commercial + own-account)"
+        },
+        {
+          "period": "2022",
+          "value": 87.775,
+          "status": "derived",
+          "source": "LBI: commercial / (commercial + own-account)"
+        },
+        {
+          "period": "2023",
+          "value": 88.203,
+          "status": "derived",
+          "source": "LBI: commercial / (commercial + own-account)"
+        },
+        {
+          "period": "2024",
+          "value": 87.977,
+          "status": "derived",
+          "source": "LBI: commercial / (commercial + own-account)"
+        }
+      ]
+    }
+  ],
+  "resolved_metadata": {
+    "tab_obj": "tab",
+    "vehicle_obj": "cat01",
+    "codes": {
+      "tonnage": "00010",
+      "ton_km": "00020",
+      "commercial": "00030",
+      "own_account": "00140"
+    },
+    "normalization": {
+      "tonnage_factor": 0.001,
+      "ton_km_factor": 1e-06,
+      "commercial_baseline_error": {
+        "tonnage": 0.0,
+        "ton_km": 2e-06
+      }
+    }
+  }
 }
