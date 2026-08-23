@@ -15,6 +15,7 @@ function displayValue(unit, value) {
   if (unit === "million items") return `${jp(v / 100, 2)}億冊`;
   if (unit === "ten_thousand_persons") return `${jp(v, 0)}万人`;
   if (unit === "pct") return `${jp(v, 1)}%`;
+  if (unit === "years") return `${jp(v, 1)}歳`;
   if (unit === "parcels_per_worker_year") return `${jp(v, 0)}個/人・年`;
   if (unit === "index_2015_100") return jp(v, 1);
   return jp(v, 1);
@@ -38,10 +39,11 @@ function sourceNote(text) { return el("p", "flow-block__reading", text); }
 async function mount() {
   const root = byId("logistics-structure");
   if (!root) return;
-  const [parcel, workforce, capacity] = await Promise.all([
+  const [parcel, workforce, capacity, demography] = await Promise.all([
     loadOptionalJSON("data/economy/parcel-demand.json", {}),
     loadOptionalJSON("data/economy/logistics-workforce.json", {}),
-    loadOptionalJSON("data/economy/logistics-capacity.json", {})
+    loadOptionalJSON("data/economy/logistics-capacity.json", {}),
+    loadOptionalJSON("data/economy/driver-demography.json", {})
   ]);
   clear(root);
 
@@ -51,11 +53,15 @@ async function mount() {
   const femaleShare = series(workforce, "transport_postal_female_share");
   const parcelPerWorker = series(capacity, "parcel_per_transport_worker");
   const loadIndex = series(capacity, "parcel_load_index_2015");
+  const allAge = series(demography, "all_industries_average_age");
+  const largeDriverAge = series(demography, "commercial_large_truck_driver_average_age");
+  const smallDriverAge = series(demography, "commercial_small_truck_driver_average_age");
 
   const pulse = el("div", "value-row");
   pulse.appendChild(card("宅配便取扱個数", parcelVolume, "B2C需要proxy"));
   pulse.appendChild(card("運輸業・郵便業 就業者", employment, "年平均"));
   pulse.appendChild(card("宅配需要/労働力", loadIndex, "2015=100"));
+  pulse.appendChild(card("大型トラック平均年齢", largeDriverAge, "全国・公式再集計"));
   pulse.appendChild(card("女性就業者比率", femaleShare, "月次スナップショット"));
   root.appendChild(pulse);
 
@@ -76,9 +82,24 @@ async function mount() {
     kind: "line",
     unitLabel: "万人",
     series: [{ name: "運輸業・郵便業 就業者", unitLabel: "万人", points: points(employment) }],
-    note: "産業大分類の基準系列。次段で道路貨物運送業・倉庫業と年齢構成を接続します。"
+    note: "産業大分類の基準系列。道路貨物運送業・倉庫業の細分系列を次に接続します。"
   });
   if (workforceChart) root.appendChild(workforceChart);
+
+  root.appendChild(el("h3", "flow-block__sub", "Driver aging"));
+  const ageChart = chart({
+    kind: "line",
+    unitLabel: "歳",
+    series: [
+      { name: "営業用大型", unitLabel: "歳", points: points(largeDriverAge) },
+      { name: "営業用普通・小型", unitLabel: "歳", points: points(smallDriverAge) },
+      { name: "全産業", unitLabel: "歳", points: points(allAge) }
+    ],
+    note: "経済産業省が賃金構造基本統計調査から作成。2019年以前は2020年と同じ推計方法による遡及集計。"
+  });
+  if (ageChart) root.appendChild(ageChart);
+  const largeLatest = latest(largeDriverAge), allLatest = latest(allAge);
+  if (largeLatest && allLatest) root.appendChild(sourceNote(`2020年時点で営業用大型トラック運転者の平均年齢は${jp(largeLatest.value,1)}歳。全産業${jp(allLatest.value,1)}歳より${jp(largeLatest.value-allLatest.value,1)}歳高く、2010年から${jp(largeLatest.value-(largeDriverAge.observations?.[0]?.value||largeLatest.value),1)}歳上昇しています。`));
 
   root.appendChild(el("h3", "flow-block__sub", "Demand / capacity pressure"));
   const capacityChart = chart({
@@ -91,7 +112,7 @@ async function mount() {
   const loadObs = latest(parcelPerWorker);
   if (loadObs) root.appendChild(sourceNote(`2024年のproxyは物流就業者1人あたり約${jp(loadObs.value, 0)}個/年。2015年比では需要/労働力の負荷指数が約30.8%上昇しています。`));
 
-  root.appendChild(sourceNote("次段: 55歳以上比率・若年比率・道路貨物/倉庫の産業細分・賃金・求人倍率を公式系列で追加し、それらが揃った段階で複合的なLabor Capacity Stressを構築します。"));
+  root.appendChild(sourceNote("次段: 55歳以上比率・若年比率を労働力調査の年齢階級×産業系列から追加し、道路貨物/倉庫の産業細分、賃金、求人倍率へ接続します。複合Labor Capacity Stressは全構成要素が揃ってから算出します。"));
 }
 
 mount().catch((err) => console.error("logistics structure mount failed", err));
