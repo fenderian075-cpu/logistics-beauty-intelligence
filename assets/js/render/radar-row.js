@@ -13,6 +13,47 @@ const SCOPE_LABELS = {
   regional: "地域",
   shipment: "個別出荷"
 };
+const DIMENSION_LABELS = {
+  rate: "運賃",
+  supply: "供給",
+  demand: "需要",
+  reliability: "信頼性",
+  risk: "リスク",
+  mixed: "複合"
+};
+const MATERIALITY_LABELS = {
+  structural: "構造変化",
+  material: "重要",
+  notable: "注目",
+  routine: "通常"
+};
+const CHANGE_LABELS = {
+  regime_shift: "レジーム転換",
+  acceleration: "加速",
+  deterioration: "悪化",
+  improvement: "改善",
+  normalization: "正常化",
+  no_material_change: "重要変化なし"
+};
+const HORIZON_LABELS = {
+  immediate: "即時",
+  "7d": "7日",
+  "30d": "30日",
+  "90d": "90日"
+};
+const CONFIDENCE_LABELS = {
+  high: "高",
+  medium: "中",
+  low: "低"
+};
+const DEMAND_DRIVER_LABELS = {
+  organic: "オーガニック",
+  promotion: "プロモーション",
+  launch: "ローンチ",
+  buzz: "バズ",
+  mixed: "複合",
+  unknown: "不明"
+};
 
 function emphasis(item) {
   if (item.status === "observed" && item.importance === "high") return "high";
@@ -59,6 +100,17 @@ function block(labelText, text, className) {
   return box;
 }
 
+function marketIntelText(item) {
+  const parts = [];
+  if (item.market_dimension) parts.push(`軸: ${DIMENSION_LABELS[item.market_dimension] || item.market_dimension}`);
+  if (item.market_materiality) parts.push(`重要度: ${MATERIALITY_LABELS[item.market_materiality] || item.market_materiality}`);
+  if (item.market_change) parts.push(`変化: ${CHANGE_LABELS[item.market_change] || item.market_change}`);
+  if (item.time_horizon) parts.push(`時間軸: ${HORIZON_LABELS[item.time_horizon] || item.time_horizon}`);
+  if (item.confidence) parts.push(`確度: ${CONFIDENCE_LABELS[item.confidence] || item.confidence}`);
+  if (item.demand_driver) parts.push(`需要要因: ${DEMAND_DRIVER_LABELS[item.demand_driver] || item.demand_driver}`);
+  return parts.join(" / ");
+}
+
 function evidenceBlock(evidence) {
   const items = Array.isArray(evidence) ? evidence : [];
   if (!items.length) return null;
@@ -100,7 +152,12 @@ export function radarRowCompact(item, intel) {
   row.setAttribute("data-status", item.status || "reported");
   row.setAttribute("data-emphasis", emphasis(item));
   row.setAttribute("data-scope", item.operational_scope || "");
-  if (item.operational_scope) row.title = `影響範囲: ${SCOPE_LABELS[item.operational_scope] || item.operational_scope}`;
+  row.setAttribute("data-market-dimension", item.market_dimension || "");
+  row.setAttribute("data-market-materiality", item.market_materiality || "");
+  const tip = [];
+  if (item.operational_scope) tip.push(`影響範囲: ${SCOPE_LABELS[item.operational_scope] || item.operational_scope}`);
+  if (marketIntelText(item)) tip.push(marketIntelText(item));
+  if (tip.length) row.title = tip.join(" | ");
   return row;
 }
 
@@ -113,6 +170,9 @@ export function radarRowFull(item, intel) {
   wrap.setAttribute("data-importance", item.importance || "");
   wrap.setAttribute("data-relevance", item.japan_relevance || "");
   wrap.setAttribute("data-scope", item.operational_scope || "");
+  wrap.setAttribute("data-market-dimension", item.market_dimension || "");
+  wrap.setAttribute("data-market-materiality", item.market_materiality || "");
+  wrap.setAttribute("data-market-change", item.market_change || "");
 
   wrap.appendChild(headLine(item, intel, { asLink: false }));
 
@@ -132,9 +192,11 @@ export function radarRowFull(item, intel) {
 
   const right = el("div", "radar-detail__col");
   const scope = block("影響範囲", SCOPE_LABELS[item.operational_scope] || item.operational_scope);
+  const market = block("市場インテリジェンス", marketIntelText(item));
   const japan = block(L.UI.japanImplication, item.japan_implication);
   const ops = block(L.UI.operationalImplication, item.operational_implication);
   if (scope) right.appendChild(scope);
+  if (market) right.appendChild(market);
   if (japan) right.appendChild(japan);
   if (ops) right.appendChild(ops);
 
