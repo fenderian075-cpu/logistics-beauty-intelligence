@@ -1,19 +1,5 @@
 /* =========================================================================
    radar.js — Operations Radar (the full critical-news view).
-   -------------------------------------------------------------------------
-   The dashboard shows the top of this list; here it is complete and
-   filterable. Two decisions worth stating:
-
-   1. Ordering is by state, not by clock. Active observed impact outranks a
-      high-relevance reported risk, which outranks everything else
-      (instruction D). A reverse-chronological feed would bury a confirmed
-      disruption under a newer announcement — exactly the failure mode the
-      Radar exists to prevent.
-
-   2. NEW is a summary line, not a badge on every row. The hourly Radar would
-      otherwise decorate the whole page permanently, which is alert fatigue by
-      construction (spec §8). "Last seen" is a localStorage timestamp; there
-      is no account and nothing leaves the browser.
    ========================================================================= */
 
 import { el, byId, clear } from "../core/dom.js";
@@ -27,16 +13,24 @@ import { radarRowFull } from "../render/radar-row.js";
 import { filterBar, withinRange } from "../render/filters.js";
 
 const GROUPS = ["observed", "reported", "resolved"];
+const SCOPE_LABELS = {
+  global: "グローバル",
+  network: "幹線・ネットワーク",
+  market: "市場・需要波動",
+  regional: "地域",
+  shipment: "個別出荷"
+};
 
 function matches(item, state) {
   if (state.domain && item.domain !== state.domain) return false;
   if (state.status && item.status !== state.status) return false;
   if (state.importance && item.importance !== state.importance) return false;
   if (state.jp && item.japan_relevance !== state.jp) return false;
+  if (state.scope && item.operational_scope !== state.scope) return false;
   if (!withinRange(item.date, state.from, state.to)) return false;
   if (state.q) {
     const hay = [item.headline, item.summary, item.observed_impact, item.japan_implication,
-                 item.operational_implication, (item.topic_ids || []).join(" ")]
+                 item.operational_implication, item.operational_scope, (item.topic_ids || []).join(" ")]
       .filter(Boolean).join(" ").toLowerCase();
     if (!state.q.toLowerCase().split(/\s+/).every((term) => hay.indexOf(term) !== -1)) return false;
   }
@@ -47,6 +41,12 @@ function domainOptions(items) {
   const seen = [];
   items.forEach((i) => { if (i.domain && seen.indexOf(i.domain) === -1) seen.push(i.domain); });
   return [["", "すべて"], ...seen.map((d) => [d, L.newsDomainLabel(d)])];
+}
+
+function scopeOptions(items) {
+  const order = ["network", "global", "market", "regional", "shipment"];
+  const seen = new Set(items.map((i) => i.operational_scope).filter(Boolean));
+  return [["", "すべて"], ...order.filter((s) => seen.has(s)).map((s) => [s, SCOPE_LABELS[s] || s])];
 }
 
 function groupHead(status, count) {
@@ -94,9 +94,6 @@ export function init() {
         return;
       }
 
-      /* Grouped by state so the reading order is state-first even when a
-         filter is active; each group is capped and expandable so a busy day
-         (20 items) stays a page you can scan. */
       GROUPS.forEach((status) => {
         const group = hits.filter((item) => item.status === status);
         if (!group.length) return;
@@ -109,8 +106,6 @@ export function init() {
         list.appendChild(box);
       });
 
-      /* Anything with an unrecognised status still has to appear: the pipeline
-         may add states before the frontend knows about them. */
       const other = hits.filter((item) => GROUPS.indexOf(item.status) === -1);
       if (other.length) {
         const box = el("section", "radar-group");
@@ -135,6 +130,7 @@ export function init() {
       bar = filterBar(controls, [
         { key: "status", label: "状態", type: "select",
           options: [["", "すべて"], ...GROUPS.map((s) => [s, L.newsStatusLabel(s)])] },
+        { key: "scope", label: "影響範囲", type: "select", options: scopeOptions(items) },
         { key: "domain", label: "領域", type: "select", options: domainOptions(items) },
         { key: "importance", label: "重要度", type: "select",
           options: [["", "すべて"], ["high", "高"], ["medium", "中"], ["low", "低"]] },

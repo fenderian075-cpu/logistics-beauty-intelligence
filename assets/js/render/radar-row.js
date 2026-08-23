@@ -1,24 +1,18 @@
 /* =========================================================================
    radar-row.js — one Operations Radar item.
-   -------------------------------------------------------------------------
-   Two variants of the same row, so the dashboard and radar.html never drift:
-
-     compact  — one line, used on the dashboard. Links straight to the topic.
-     full     — the same line plus a disclosure holding 概要 / 実影響 /
-                日本への意味 / 業務への意味 / 根拠.
-
-   Design rules this component exists to enforce:
-     - reported ≠ observed, and the difference is carried by a text label and
-       the left rule style, never by colour alone (spec §10, §42);
-     - one emphasis channel per row: only an observed, high-importance item
-       with high Japan relevance gets the solid accent rule (§35);
-     - the row is a row. Twenty of them in one list must still read as a list,
-       so there is no card chrome, no shadow, no radius (§33, §36).
    ========================================================================= */
 
 import { el, link, extLink, root } from "../core/dom.js";
 import { formatShortDate } from "../core/format.js";
 import * as L from "../core/labels.js";
+
+const SCOPE_LABELS = {
+  global: "グローバル",
+  network: "幹線・ネットワーク",
+  market: "市場・需要波動",
+  regional: "地域",
+  shipment: "個別出荷"
+};
 
 function emphasis(item) {
   if (item.status === "observed" && item.importance === "high") return "high";
@@ -38,7 +32,6 @@ function stateCell(item) {
   return span;
 }
 
-/** The single line. Shared by both variants. */
 function headLine(item, intel, { asLink }) {
   const target = headlineTarget(item, intel);
   const node = asLink ? link(target, "radar-row__head") : el("div", "radar-row__head");
@@ -101,16 +94,16 @@ function topicLinks(item, intel) {
   return box;
 }
 
-/** Dashboard variant: one line, whole row is the link. */
 export function radarRowCompact(item, intel) {
   const row = headLine(item, intel, { asLink: true });
   row.classList.add("radar-row", "radar-row--compact");
   row.setAttribute("data-status", item.status || "reported");
   row.setAttribute("data-emphasis", emphasis(item));
+  row.setAttribute("data-scope", item.operational_scope || "");
+  if (item.operational_scope) row.title = `影響範囲: ${SCOPE_LABELS[item.operational_scope] || item.operational_scope}`;
   return row;
 }
 
-/** Radar page variant: line + disclosure. */
 export function radarRowFull(item, intel) {
   const wrap = el("article", "radar-row radar-row--full");
   wrap.id = item.id || "";
@@ -119,6 +112,7 @@ export function radarRowFull(item, intel) {
   wrap.setAttribute("data-domain", item.domain || "");
   wrap.setAttribute("data-importance", item.importance || "");
   wrap.setAttribute("data-relevance", item.japan_relevance || "");
+  wrap.setAttribute("data-scope", item.operational_scope || "");
 
   wrap.appendChild(headLine(item, intel, { asLink: false }));
 
@@ -128,9 +122,6 @@ export function radarRowFull(item, intel) {
   details.appendChild(summary);
 
   const body = el("div", "radar-detail");
-
-  /* Reported vs observed, kept apart on purpose: an announcement is not a
-     confirmed impact, and the layout should not let one read as the other. */
   const left = el("div", "radar-detail__col");
   const reported = block(L.UI.reportedLabel, item.summary, "radar-block--reported");
   const observed = block(L.UI.observedLabel,
@@ -140,8 +131,10 @@ export function radarRowFull(item, intel) {
   if (observed) left.appendChild(observed);
 
   const right = el("div", "radar-detail__col");
+  const scope = block("影響範囲", SCOPE_LABELS[item.operational_scope] || item.operational_scope);
   const japan = block(L.UI.japanImplication, item.japan_implication);
   const ops = block(L.UI.operationalImplication, item.operational_implication);
+  if (scope) right.appendChild(scope);
   if (japan) right.appendChild(japan);
   if (ops) right.appendChild(ops);
 
