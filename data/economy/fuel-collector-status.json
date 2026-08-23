@@ -1,0 +1,10 @@
+{
+  "schema_version": "1.0",
+  "dataset": "fuel-collector-status",
+  "status": "failure",
+  "stage": "collector",
+  "updated_at": "2026-08-23T05:01:08.004411+00:00",
+  "weekly_workbook_url": "https://www.enecho.meti.go.jp/statistics/petroleum_and_lpgas/pl007/xlsx/260819.xlsx",
+  "error": "could not identify national fuel-price columns",
+  "diagnostic_tail": "Traceback (most recent call last):\n  File \"/home/runner/work/logistics-beauty-intelligence/logistics-beauty-intelligence/scripts/update_japan_fuel_prices.py\", line 138, in main\n    raise RuntimeError(\"could not identify national fuel-price columns\")\nRuntimeError: could not identify national fuel-price columns\n"
+}
