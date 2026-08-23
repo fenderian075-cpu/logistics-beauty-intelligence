@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Localize final display-only terms and normalize public report shell details.
 
-Only presentation fields and an obsolete app.js cache-buster are changed. Stable
-JSON enums, IDs, URLs to external sources and HTML data attributes are untouched.
+Only presentation text and an obsolete app.js cache-buster are changed. Stable
+JSON enums, IDs, external-source URLs and HTML data attributes are untouched.
 """
 from __future__ import annotations
 
@@ -21,8 +21,34 @@ EXTRACT_REPLACEMENTS = {
     "Beauty施策": "化粧品施策",
 }
 HTML_REPLACEMENTS = {
+    "Logistics &amp; Beauty Intelligence": "物流・化粧品インテリジェンス",
     "Corporate / Market": "企業・市場",
     "Beauty需要": "化粧品需要",
+    "Beauty — ブランド公式サイト / Commerce": "化粧品 — ブランド公式サイト / 商流",
+    "ECONOMIC &amp; PHYSICAL FLOW": "実体経済・物流フロー",
+    "海上 — Rate / Supply / Reliability": "海上 — 運賃 / 供給 / 定時性",
+    "<h3>Rate:": "<h3>運賃:",
+    "<h3>Reliability:": "<h3>定時性:",
+    '<span class="fact__label">Fact</span>': '<span class="fact__label">事実</span>',
+    "コストSignal": "コスト指標",
+    "space shortage": "船腹不足",
+    "booking状況": "予約状況",
+    "connectionを別確認": "接続状況を別確認",
+    "effective supply": "実効供給力",
+    "fleet supply": "船腹供給",
+    "delay absorption": "遅延による供給力吸収",
+    "Trade → Port/Air/Truck → Warehouse → Cost → Corporate": "貿易 → 港湾・航空・トラック → 倉庫 → コスト → 企業",
+    "inventory build": "在庫積み上がり",
+    "capacity逼迫": "供給力逼迫",
+    "幹線capacity": "幹線輸送力",
+    "余裕capacity": "余剰輸送力",
+    "volume、pricing、profitability、capacity investment": "取扱量、価格設定、収益性、輸送力・設備投資",
+    "launch、限定、GWP/PWP、ギフト、EC限定、価格変更": "新製品投入、限定、GWP/PWP、ギフト、EC限定、価格変更",
+    "promotion/launch": "販促・新製品投入",
+    "organic demand": "自然需要",
+    "Daily監視": "日次監視",
+    "Weekly": "週次",
+    "Monthly": "月次",
     'assets/js/app.js?v=8.0.0': 'assets/js/app.js',
 }
 

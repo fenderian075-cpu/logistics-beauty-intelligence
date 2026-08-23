@@ -30,8 +30,13 @@ BANNED_BRAND_PATTERNS = [
 ]
 
 BANNED_UI_TERMS = [
-    "Economic & Physical Flow", "Economic Flow", "Critical Radar", "Source Matrix", "Status History",
-    "Topic Intelligence", "Beauty Demand", "Beauty商流", "Beauty需要", "通関・NACCS", "この signal の推移",
+    "Economic & Physical Flow", "ECONOMIC &amp; PHYSICAL FLOW", "Economic Flow", "Critical Radar", "Source Matrix", "Status History",
+    "Topic Intelligence", "Beauty Demand", "Beauty商流", "Beauty需要", "Beauty — ブランド公式サイト / Commerce",
+    "通関・NACCS", "この signal の推移", "Rate / Supply / Reliability", "<h3>Rate:", "<h3>Reliability:",
+    '<span class="fact__label">Fact</span>', "コストSignal", "space shortage", "inventory build",
+    "effective supply", "fleet supply", "delay absorption", "capacity逼迫", "幹線capacity", "余裕capacity",
+    "volume、pricing、profitability、capacity investment", "promotion/launch", "organic demand",
+    "Trade → Port/Air/Truck → Warehouse → Cost → Corporate",
     "Retail / Department Store", "Industry Statistics", "Production / Shipment", "Retail / Commerce",
     "Market Research", "Industry Media", "Trade / Physical Flow", "Warehouse / Physical Flow",
     "Port / Physical Flow", "Truck / Physical Flow", "Air / Physical Flow", "Logistics Cost",
