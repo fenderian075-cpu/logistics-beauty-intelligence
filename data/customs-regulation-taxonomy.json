@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0",
+  "signal_id": "japan-customs-naccs",
+  "display_name_ja": "通関・法令",
+  "display_name_en": "Customs & Trade Regulation",
+  "principle": "NACCS is one operational source within the broader customs and trade-regulation signal. Classify each development by whether it changes immediate customs execution or the legal/regulatory basis of import/export operations.",
+  "subtypes": {
+    "operational": {
+      "name_ja": "通関オペレーション",
+      "name_en": "Customs Operations",
+      "default_lens": "disruption",
+      "description_ja": "NACCS障害・停止・復旧、税関システム障害、港湾・税関の臨時運用変更など、今日の申告・許可・搬出入可否に直接影響する事象。",
+      "examples": [
+        "NACCS障害・計画外停止",
+        "NACCS復旧",
+        "税関システム障害",
+        "申告受付・審査・許可の一時停止",
+        "災害等による税関官署の臨時運用変更"
+      ],
+      "decision_rule": "If the event can stop or delay today's declaration, clearance, release, bonded movement or cargo handoff, classify as operational."
+    },
+    "regulatory": {
+      "name_ja": "法令・制度",
+      "name_en": "Trade Regulation",
+      "default_lens": "regulatory_structural",
+      "description_ja": "HS、関税、EPA/FTA、原産地、保税、輸出入規制、税関手続制度など、輸出入実務のルール・コスト・必要書類を変える変更。",
+      "examples": [
+        "HS分類・関税率変更",
+        "EPA/FTA適用条件変更",
+        "原産地規則変更",
+        "保税制度・予備審査制度変更",
+        "輸入申告要件・必要書類変更",
+        "関税法・関連通達の改正"
+      ],
+      "decision_rule": "If the event changes the rule, eligibility, tariff, required data/documentation or standard procedure rather than system availability, classify as regulatory."
+    },
+    "mixed": {
+      "name_ja": "運用・制度複合",
+      "name_en": "Operational + Regulatory",
+      "default_lens": "regulatory_structural",
+      "description_ja": "制度変更の施行に伴ってNACCS仕様や申告手順も同時に変わるなど、運用影響と制度変更が不可分の事象。",
+      "decision_rule": "Use only when both immediate execution and the governing rule materially change in the same development."
+    }
+  },
+  "reporting_rule": "For signal id japan-customs-naccs, add customs_subtype = operational | regulatory | mixed. Operational events may be placed in the disruption lens; regulatory and mixed events normally use regulatory_structural. The persistent signal id remains unchanged for history continuity.",
+  "source_mapping": {
+    "NACCS掲示板": "operational",
+    "税関 新着情報": "regulatory"
+  }
+}
