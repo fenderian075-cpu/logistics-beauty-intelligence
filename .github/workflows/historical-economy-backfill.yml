@@ -54,6 +54,8 @@ jobs:
       - name: Refresh fuel long history
         continue-on-error: true
         run: python scripts/update_japan_fuel_prices_v2.py
+      - name: Reset derived backfill diagnostics
+        run: rm -f data/economy/historical-backfill-status.json data/economy/historical-coverage.json
       - name: Backfill official macro, CPI, trade and discovery history
         run: python scripts/backfill_official_economy_history.py
       - name: Harden CPI publication-layout parsing
