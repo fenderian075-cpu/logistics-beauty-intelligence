@@ -34,8 +34,18 @@
       "name_ja": "特定技能 自動車運送業 在留者数",
       "unit": "persons",
       "observations": [
-        {"period":"2025-06","value":10,"status":"official_preliminary","source":"MLIT / Immigration Services Agency"},
-        {"period":"2025-12","value":151,"status":"official_preliminary","source":"Immigration Services Agency SSW Table 3 (2025-12); https://www.moj.go.jp/isa/content/001459471.pdf"}
+        {
+          "period": "2025-06",
+          "value": 10,
+          "status": "official_preliminary",
+          "source": "MLIT / Immigration Services Agency"
+        },
+        {
+          "period": "2025-12",
+          "value": 151,
+          "status": "official_preliminary",
+          "source": "Immigration Services Agency SSW Table 3 (2025-12); https://www.moj.go.jp/isa/content/001459471.pdf"
+        }
       ]
     },
     {
@@ -43,7 +53,12 @@
       "name_ja": "特定技能 自動車運送業 トラック運転者",
       "unit": "persons",
       "observations": [
-        {"period":"2025-12","value":123,"status":"official_preliminary","source":"Immigration Services Agency SSW Table 3 (2025-12); https://www.moj.go.jp/isa/content/001459471.pdf"}
+        {
+          "period": "2025-12",
+          "value": 123,
+          "status": "official_preliminary",
+          "source": "Immigration Services Agency SSW Table 3 (2025-12); https://www.moj.go.jp/isa/content/001459471.pdf"
+        }
       ]
     },
     {
@@ -51,7 +66,12 @@
       "name_ja": "特定技能 自動車運送業 タクシー運転者",
       "unit": "persons",
       "observations": [
-        {"period":"2025-12","value":16,"status":"official_preliminary","source":"Immigration Services Agency SSW Table 3 (2025-12); https://www.moj.go.jp/isa/content/001459471.pdf"}
+        {
+          "period": "2025-12",
+          "value": 16,
+          "status": "official_preliminary",
+          "source": "Immigration Services Agency SSW Table 3 (2025-12); https://www.moj.go.jp/isa/content/001459471.pdf"
+        }
       ]
     },
     {
@@ -59,7 +79,12 @@
       "name_ja": "特定技能 自動車運送業 バス運転者",
       "unit": "persons",
       "observations": [
-        {"period":"2025-12","value":12,"status":"official_preliminary","source":"Immigration Services Agency SSW Table 3 (2025-12); https://www.moj.go.jp/isa/content/001459471.pdf"}
+        {
+          "period": "2025-12",
+          "value": 12,
+          "status": "official_preliminary",
+          "source": "Immigration Services Agency SSW Table 3 (2025-12); https://www.moj.go.jp/isa/content/001459471.pdf"
+        }
       ]
     },
     {
@@ -67,7 +92,12 @@
       "name_ja": "特定技能 自動車運送業 受入れ見込数",
       "unit": "persons",
       "observations": [
-        {"period":"2029-03","value":22100,"status":"official_policy_capacity","source":"MLIT revised field intake outlook"}
+        {
+          "period": "2029-03",
+          "value": 22100,
+          "status": "official_policy_capacity",
+          "source": "MLIT revised field intake outlook"
+        }
       ]
     },
     {
@@ -75,7 +105,12 @@
       "name_ja": "特定技能 物流倉庫 受入れ見込数",
       "unit": "persons",
       "observations": [
-        {"period":"2029-03","value":11400,"status":"official_policy_capacity","source":"MLIT revised field intake outlook"}
+        {
+          "period": "2029-03",
+          "value": 11400,
+          "status": "official_policy_capacity",
+          "source": "MLIT revised field intake outlook"
+        }
       ]
     }
   ],
