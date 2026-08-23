@@ -9,6 +9,7 @@ on:
       - "scripts/safe_public_sanitize.py"
       - "scripts/restore_pre_sanitize_public_files.sh"
       - "scripts/localize_public_ui.py"
+      - "scripts/finalize_public_display_terms.py"
       - "scripts/audit_public_content.py"
       - "scripts/validate_public_schema_integrity.py"
       - ".github/workflows/public-content-sanitize.yml"
@@ -44,9 +45,15 @@ jobs:
         continue-on-error: true
         run: python scripts/localize_public_ui.py
 
+      - name: Finalize display-only terms
+        id: finalize_display
+        if: steps.localize_ui.outcome == 'success'
+        continue-on-error: true
+        run: python scripts/finalize_public_display_terms.py
+
       - name: Audit public privacy and Japanese UI
         id: audit
-        if: steps.localize_ui.outcome == 'success'
+        if: steps.finalize_display.outcome == 'success'
         continue-on-error: true
         shell: bash
         run: |
@@ -102,6 +109,7 @@ jobs:
           RESTORE: ${{ steps.restore.outcome }}
           SANITIZE: ${{ steps.sanitize.outcome }}
           UI: ${{ steps.localize_ui.outcome }}
+          DISPLAY: ${{ steps.finalize_display.outcome }}
           AUDIT: ${{ steps.audit.outcome }}
           SCHEMA: ${{ steps.schema.outcome }}
           REPORTS: ${{ steps.reports.outcome }}
@@ -120,6 +128,7 @@ jobs:
               "restore": os.environ.get("RESTORE") or "not_run",
               "sanitize": os.environ.get("SANITIZE") or "not_run",
               "localize_ui": os.environ.get("UI") or "not_run",
+              "finalize_display": os.environ.get("DISPLAY") or "not_run",
               "audit": os.environ.get("AUDIT") or "not_run",
               "schema_integrity": os.environ.get("SCHEMA") or "not_run",
               "report_validation": os.environ.get("REPORTS") or "not_run",
@@ -137,7 +146,7 @@ jobs:
           if failed_stage in logs and Path(logs[failed_stage]).exists():
               diagnostic = Path(logs[failed_stage]).read_text(encoding="utf-8", errors="replace")
           status = {
-              "schema_version": "2.0",
+              "schema_version": "2.1",
               "dataset": "public-sanitize-status",
               "status": "success" if ok else "failure",
               "stage": "success" if ok else failed_stage,
@@ -165,6 +174,7 @@ jobs:
           RESTORE: ${{ steps.restore.outcome }}
           SANITIZE: ${{ steps.sanitize.outcome }}
           UI: ${{ steps.localize_ui.outcome }}
+          DISPLAY: ${{ steps.finalize_display.outcome }}
           AUDIT: ${{ steps.audit.outcome }}
           SCHEMA: ${{ steps.schema.outcome }}
           REPORTS: ${{ steps.reports.outcome }}
@@ -172,7 +182,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if [[ "$RESTORE" == "success" && "$SANITIZE" == "success" && "$UI" == "success" && "$AUDIT" == "success" && "$SCHEMA" == "success" && "$REPORTS" == "success" && "$CUSTOMS" == "success" ]]; then
+          if [[ "$RESTORE" == "success" && "$SANITIZE" == "success" && "$UI" == "success" && "$DISPLAY" == "success" && "$AUDIT" == "success" && "$SCHEMA" == "success" && "$REPORTS" == "success" && "$CUSTOMS" == "success" ]]; then
             git add -A
             MESSAGE="data: repair public Japanese and brand privacy"
           else
