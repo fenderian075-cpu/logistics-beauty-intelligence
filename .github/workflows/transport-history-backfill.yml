@@ -54,7 +54,14 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/economy
+          # Never stage all data/economy: concurrent collectors may have refreshed
+          # trade/SNA/fuel after this runner checked out. Stage only transport outputs.
+          git add \
+            data/economy/freight-cost.json \
+            data/economy/port-throughput.json \
+            data/economy/trucking.json \
+            data/economy/air-cargo.json \
+            data/economy/air-cargo-history-status.json
           if git diff --cached --quiet; then
             echo "No transport history change."
             exit 0
