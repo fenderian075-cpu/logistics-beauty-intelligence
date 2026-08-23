@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "dataset": "air-cargo-release",
+  "period": "2026-05",
+  "published_at": "2026-07-29",
+  "status": "official",
+  "source": {
+    "name": "国土交通省 航空輸送統計速報（令和8年5月分）",
+    "url": "https://www.mlit.go.jp/report/press/joho05_hh_000913.html"
+  },
+  "observations": [
+    {
+      "metric_id": "international_air_cargo_tonnes",
+      "value": 141409,
+      "unit": "tonnes",
+      "yoy_pct": 9.0,
+      "comparison": {"type": "yoy", "base_period": "2025-05"}
+    },
+    {
+      "metric_id": "international_air_cargo_ton_km",
+      "value": 799412,
+      "unit": "thousand_ton_km",
+      "yoy_pct": 11.1,
+      "comparison": {"type": "yoy", "base_period": "2025-05"}
+    },
+    {
+      "metric_id": "international_air_cargo_load_factor",
+      "value": 72.0,
+      "unit": "pct"
+    },
+    {
+      "metric_id": "domestic_air_cargo_tonnes",
+      "value": 45461,
+      "unit": "tonnes",
+      "yoy_pct": -7.2,
+      "comparison": {"type": "yoy", "base_period": "2025-05"}
+    }
+  ]
+}
