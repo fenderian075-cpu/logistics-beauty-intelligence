@@ -21,7 +21,7 @@ def validate(d,version,status,years,score_id,base_year):
 
 v0=load('labor-capacity-stress.json'); v1=load('labor-capacity-stress-v1.json')
 _,_,score0=validate(v0,'v0-equal-weight-diagnostic','derived_equal_weight_v0',[str(y) for y in range(2015,2023)],'labor_capacity_stress_equal_weight','2015')
-components1,data1,score1=validate(v1,'v1-freight-specific-vacancy','derived_freight_specific_equal_weight_v1',[str(y) for y in range(2018,2024)],'labor_capacity_stress_v1','2018')
-assert v1.get('latest_common_year')=='2023'
+components1,data1,score1=validate(v1,'v1-freight-specific-vacancy','derived_freight_specific_equal_weight_v1',[str(y) for y in range(2018,2025)],'labor_capacity_stress_v1','2018')
+assert v1.get('latest_common_year')=='2024'
 assert 'freight_driver_vacancy_pressure_v1' in components1
-print(json.dumps({'status':'success','v0_2022':score0['2022'],'v1_2018':score1['2018'],'v1_2023':score1['2023'],'v1_components_2023':{m:data1[m]['2023'] for m in components1}},ensure_ascii=False))
+print(json.dumps({'status':'success','v0_2022':score0['2022'],'v1_2018':score1['2018'],'v1_2024':score1['2024'],'v1_components_2024':{m:data1[m]['2024'] for m in components1}},ensure_ascii=False))
