@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.0",
+  "dataset": "driver-demography",
+  "title_ja": "トラックドライバー年齢構造",
+  "frequency": "annual",
+  "sources": [
+    {
+      "name": "経済産業省 物流分野の人手不足",
+      "url": "https://www.meti.go.jp/policy/economy/distribution/deliveryrobot/01_meti.pdf",
+      "underlying_source": "厚生労働省 賃金構造基本統計調査"
+    }
+  ],
+  "notes": [
+    "経済産業省が賃金構造基本統計調査を基に作成した全国系列。",
+    "2020年に賃金構造基本統計調査の調査項目・方法が見直されたため、2019年以前は2020年調査と同じ推計方法による遡及集計値を使用。",
+    "平均年齢は公式資料に直接掲載された値のみ保持し、年齢階級からの擬似平均は作らない。"
+  ],
+  "series": [
+    {
+      "metric_id": "all_industries_average_age",
+      "name_ja": "全産業 平均年齢",
+      "unit": "years",
+      "observations": [
+        {"period":"2010","value":41.2,"status":"official_secondary","source":"経済産業省（賃金構造基本統計調査より作成）"},
+        {"period":"2011","value":41.4,"status":"official_secondary","source":"経済産業省（賃金構造基本統計調査より作成）"},
+        {"period":"2012","value":41.6,"status":"official_secondary","source":"経済産業省（賃金構造基本統計調査より作成）"},
+        {"period":"2013","value":42.0,"status":"official_secondary","source":"経済産業省（賃金構造基本統計調査より作成）"},
+        {"period":"2014","value":42.1,"status":"official_secondary","source":"経済産業省（賃金構造基本統計調査より作成）"},
+        {"period":"2015","value":42.2,"status":"official_secondary","source":"経済産業省（賃金構造基本統計調査より作成）"},
+        {"period":"2016","value":42.2,"status":"official_secondary","source":"経済産業省（賃金構造基本統計調査より作成）"},
+        {"period":"2017","value":42.5,"status":"official_secondary","source":"経済産業省（賃金構造基本統計調査より作成）"},
+        {"period":"2018","value":42.8,"status":"official_secondary","source":"経済産業省（賃金構造基本統計調査より作成）"},
+        {"period":"2019","value":43.1,"status":"official_secondary","source":"経済産業省（賃金構造基本統計調査より作成）"},
+        {"period":"2020","value":43.2,"status":"official_secondary","source":"経済産業省（賃金構造基本統計調査より作成）"}
+      ]
+    },
+    {
+      "metric_id": "commercial_large_truck_driver_average_age",
+      "name_ja": "営業用大型トラック運転者 平均年齢",
+      "unit": "years",
+      "observations": [
+        {"period":"2010","value":45.6,"status":"official_secondary","source":"経済産業省（賃金構造基本統計調査より作成）"},
+        {"period":"2011","value":45.9,"status":"official_secondary","source":"経済産業省（賃金構造基本統計調査より作成）"},
+        {"period":"2012","value":46.6,"status":"official_secondary","source":"経済産業省（賃金構造基本統計調査より作成）"},
+        {"period":"2013","value":46.3,"status":"official_secondary","source":"経済産業省（賃金構造基本統計調査より作成）"},
+        {"period":"2014","value":46.5,"status":"official_secondary","source":"経済産業省（賃金構造基本統計調査より作成）"},
+        {"period":"2015","value":47.2,"status":"official_secondary","source":"経済産業省（賃金構造基本統計調査より作成）"},
+        {"period":"2016","value":47.4,"status":"official_secondary","source":"経済産業省（賃金構造基本統計調査より作成）"},
+        {"period":"2017","value":47.7,"status":"official_secondary","source":"経済産業省（賃金構造基本統計調査より作成）"},
+        {"period":"2018","value":48.5,"status":"official_secondary","source":"経済産業省（賃金構造基本統計調査より作成）"},
+        {"period":"2019","value":48.5,"status":"official_secondary","source":"経済産業省（賃金構造基本統計調査より作成）"},
+        {"period":"2020","value":49.4,"status":"official_secondary","source":"経済産業省（賃金構造基本統計調査より作成）"}
+      ]
+    },
+    {
+      "metric_id": "commercial_small_truck_driver_average_age",
+      "name_ja": "営業用普通・小型トラック運転者 平均年齢",
+      "unit": "years",
+      "observations": [
+        {"period":"2010","value":42.7,"status":"official_secondary","source":"経済産業省（賃金構造基本統計調査より作成）"},
+        {"period":"2011","value":44.0,"status":"official_secondary","source":"経済産業省（賃金構造基本統計調査より作成）"},
+        {"period":"2012","value":44.0,"status":"official_secondary","source":"経済産業省（賃金構造基本統計調査より作成）"},
+        {"period":"2013","value":44.8,"status":"official_secondary","source":"経済産業省（賃金構造基本統計調査より作成）"},
+        {"period":"2014","value":44.8,"status":"official_secondary","source":"経済産業省（賃金構造基本統計調査より作成）"},
+        {"period":"2015","value":43.6,"status":"official_secondary","source":"経済産業省（賃金構造基本統計調査より作成）"},
+        {"period":"2016","value":45.3,"status":"official_secondary","source":"経済産業省（賃金構造基本統計調査より作成）"},
+        {"period":"2017","value":46.0,"status":"official_secondary","source":"経済産業省（賃金構造基本統計調査より作成）"},
+        {"period":"2018","value":45.9,"status":"official_secondary","source":"経済産業省（賃金構造基本統計調査より作成）"},
+        {"period":"2019","value":46.5,"status":"official_secondary","source":"経済産業省（賃金構造基本統計調査より作成）"},
+        {"period":"2020","value":46.4,"status":"official_secondary","source":"経済産業省（賃金構造基本統計調査より作成）"}
+      ]
+    }
+  ]
+}
