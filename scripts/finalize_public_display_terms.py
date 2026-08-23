@@ -20,6 +20,10 @@ EXTRACT_REPLACEMENTS = {
     "K-Beauty demand": "K-Beauty関連需要",
     "Beauty施策": "化粧品施策",
 }
+REPORT_JSON_REPLACEMENTS = {
+    "effective supply": "実効供給力",
+    "delay absorption": "遅延による供給力吸収",
+}
 HTML_REPLACEMENTS = {
     "Logistics &amp; Beauty Intelligence": "物流・化粧品インテリジェンス",
     "Corporate / Market": "企業・市場",
@@ -53,6 +57,19 @@ HTML_REPLACEMENTS = {
 }
 
 
+def replace_strings(value, replacements):
+    if isinstance(value, str):
+        out = value
+        for old, new in replacements.items():
+            out = out.replace(old, new)
+        return out
+    if isinstance(value, list):
+        return [replace_strings(v, replacements) for v in value]
+    if isinstance(value, dict):
+        return {k: replace_strings(v, replacements) for k, v in value.items()}
+    return value
+
+
 def fix_source_display_fields() -> None:
     for path in sorted((ROOT / "data").glob("source-matrix*.json")):
         data = json.loads(path.read_text(encoding="utf-8"))
@@ -76,6 +93,16 @@ def fix_source_display_fields() -> None:
             path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
+def fix_report_json() -> None:
+    path = ROOT / "data/reports.json"
+    if not path.exists():
+        return
+    data = json.loads(path.read_text(encoding="utf-8"))
+    updated = replace_strings(data, REPORT_JSON_REPLACEMENTS)
+    if updated != data:
+        path.write_text(json.dumps(updated, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
 def fix_report_html() -> None:
     for path in (ROOT / "reports").glob("**/*.html"):
         text = path.read_text(encoding="utf-8")
@@ -88,6 +115,7 @@ def fix_report_html() -> None:
 
 def main() -> None:
     fix_source_display_fields()
+    fix_report_json()
     fix_report_html()
     print("Final public display/shell terms normalized; machine values untouched.")
 
