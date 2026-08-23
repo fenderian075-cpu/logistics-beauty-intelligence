@@ -41,11 +41,8 @@ def discover_latest_table3() -> str:
         own = norm(a.get_text(" ", strip=True))
         parent = norm(a.parent.get_text(" ", strip=True)) if a.parent else own
         pdfs.append((url, own, parent))
-        # Current ISA markup labels the desired link itself as 第1表、第2表、第3表(PDF).
         if "第3表" in own:
             return url
-    # Fallback for a future layout where the anchor says only PDF. Keep this immediate-parent only
-    # and exclude overview/detail/point links so a whole section wrapper cannot cause a false match.
     excluded = ("概要版", "詳細版", "ポイント", "運用状況")
     for url, own, parent in pdfs:
         if "第3表" in parent and not any(x in own or x in parent[:80] for x in excluded):
@@ -72,6 +69,24 @@ def parse_period(text: str) -> str:
     return f"{era_to_year(int(m.group(1))):04d}-{int(m.group(2)):02d}"
 
 
+def numeric_tokens(s: str) -> list[int]:
+    return [int(x.replace(",", "")) for x in re.findall(r"(?<!\d)(\d[\d,]*)(?!\d)", s)]
+
+
+def reconciled_quad(nums: list[int]) -> tuple[int, int, int, int] | None:
+    """Find a contiguous [total,truck,taxi,bus] or [truck,taxi,bus,total] block."""
+    for i in range(max(0, len(nums) - 3)):
+        a, b, c, d = nums[i:i + 4]
+        # Exclude obvious years/page numbers while preserving plausible small field counts.
+        if max(a, b, c, d) >= 1_000_000:
+            continue
+        if a > 0 and a == b + c + d:
+            return a, b, c, d
+        if d > 0 and d == a + b + c:
+            return d, a, b, c
+    return None
+
+
 def parse_auto_transport(text: str) -> tuple[int, int, int, int]:
     raw = unicodedata.normalize("NFKC", text)
     label_joined = re.sub(r"(?<=[\u3040-\u30ff\u3400-\u9fff])\s+(?=[\u3040-\u30ff\u3400-\u9fff])", "", raw)
@@ -80,10 +95,11 @@ def parse_auto_transport(text: str) -> tuple[int, int, int, int]:
     truck_label = r"トラック(?:運転者)?"
     taxi_label = r"タクシー(?:運転者)?"
     bus_label = r"バス(?:運転者)?"
+
+    # First support layouts where labels and values are interleaved in extraction order.
     patterns = [
         field + r"\s*([\d,]+).*?" + truck_label + r"\s*([\d,]+).*?" + taxi_label + r"\s*([\d,]+).*?" + bus_label + r"\s*([\d,]+)",
         field + r".*?" + truck_label + r"\s*([\d,]+).*?" + taxi_label + r"\s*([\d,]+).*?" + bus_label + r"\s*([\d,]+).*?(?:計|総数)\s*([\d,]+)",
-        field + r".*?([\d,]+)\s*" + truck_label + r".*?([\d,]+)\s*" + taxi_label + r".*?([\d,]+)\s*" + bus_label + r".*?([\d,]+)",
     ]
     for i, p in enumerate(patterns):
         m = re.search(p, t)
@@ -97,10 +113,48 @@ def parse_auto_transport(text: str) -> tuple[int, int, int, int]:
         if total == truck + taxi + bus and total >= 0:
             return total, truck, taxi, bus
 
-    compact = re.sub(r"\s+", "", raw)
-    keywords = {k: (k in compact) for k in ["自動車運送業", "トラック", "タクシー", "バス"]}
-    snippets = [norm(line)[:500] for line in raw.splitlines() if any(k in line for k in ["自動車", "トラック", "タクシー", "バス"])][:30]
-    raise RuntimeError("Could not confidently parse auto-transport split; keywords=" + json.dumps(keywords, ensure_ascii=False) + "; snippets=" + json.dumps(snippets, ensure_ascii=False) + "; prefix=" + norm(raw)[:3000])
+    # Actual ISA Table 3 currently extracts column labels first and the numeric row later.
+    # Restrict the search to the real Table 3 section (not the TOC occurrence), then look shortly
+    # after the truck/taxi/bus header for a reconciled four-number block.
+    compact_labels = re.sub(r"(?<=[\u3040-\u30ff\u3400-\u9fff])\s+(?=[\u3040-\u30ff\u3400-\u9fff])", "", raw)
+    table3_markers = [m.start() for m in re.finditer(r"【第3表】|第3表", compact_labels)]
+    section = compact_labels[table3_markers[-1]:] if table3_markers else compact_labels
+    label_pos = section.find("トラック運転者")
+    if label_pos < 0:
+        label_pos = section.find("トラック")
+    if label_pos >= 0:
+        after = section[label_pos: label_pos + 12000]
+        nums = numeric_tokens(after)[:160]
+        quad = reconciled_quad(nums)
+        if quad:
+            return quad
+
+    # A second guard uses the known field total exposed in Table 1/2. For the latest field-total
+    # value, find the auto-transport column around '総数', then require a Table-3 three-part block
+    # that sums to it. This makes accidental arithmetic matches much less likely.
+    joined = re.sub(r"\s+", "", raw)
+    field_pos = joined.find("自動車運送業分野")
+    field_total = None
+    if field_pos >= 0:
+        # The first national '総数' row follows the industry headers. Extract a moderate window and
+        # identify plausible current auto-transport total by matching a Table-3 candidate later.
+        table1_window = joined[field_pos: field_pos + 1200]
+        table1_nums = numeric_tokens(table1_window)
+        if table1_nums:
+            # 151 is currently in this set; future values remain candidates rather than hard-coded.
+            candidate_totals = {n for n in table1_nums if 0 < n < 100000}
+            if label_pos >= 0:
+                part_nums = numeric_tokens(section[label_pos: label_pos + 12000])[:200]
+                for i in range(max(0, len(part_nums) - 2)):
+                    truck, taxi, bus = part_nums[i:i + 3]
+                    total = truck + taxi + bus
+                    if total in candidate_totals and total > 0:
+                        field_total = total
+                        return field_total, truck, taxi, bus
+
+    keywords = {k: (k in joined) for k in ["自動車運送業", "トラック", "タクシー", "バス"]}
+    context = norm(section[label_pos:label_pos + 6000] if label_pos >= 0 else section[:6000])
+    raise RuntimeError("Could not confidently parse auto-transport split; keywords=" + json.dumps(keywords, ensure_ascii=False) + "; table3_context=" + context)
 
 
 def get_series(data: dict, metric_id: str) -> dict:
