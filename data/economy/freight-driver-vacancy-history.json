@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "dataset": "freight-driver-vacancy-history",
+  "title_ja": "貨物自動車運転者の求人需給",
+  "frequency": "annual",
+  "sources": [
+    {
+      "name": "国土交通省 交通政策白書・トラック運転者の労働環境をめぐる現状",
+      "url": "https://www.mlit.go.jp/sogoseisaku/transport/content/001748051.pdf",
+      "underlying_source": "厚生労働省 一般職業紹介状況"
+    },
+    {
+      "name": "国土交通省 自動車運送業を取り巻く現状と課題",
+      "url": "https://www.mlit.go.jp/policy/shingikai/content/001894724.pdf",
+      "underlying_source": "厚生労働省 一般職業紹介状況"
+    }
+  ],
+  "notes": [
+    "貨物自動車運転者（パート含む）の有効求人倍率を使用し、バス・タクシー等を含む『自動車運転の職業』長期系列とは分ける。",
+    "2023年まで同一定義で接続。2025年度job tagの2.94倍は処理済み職業統計のため、この系列には直接接続しない。",
+    "倍率は有効求人数÷有効求職者数。高いほど採用需給が逼迫している。"
+  ],
+  "series": [
+    {
+      "metric_id": "freight_driver_job_openings_ratio",
+      "name_ja": "貨物自動車運転者 有効求人倍率",
+      "unit": "ratio",
+      "observations": [
+        {"period":"2018","value":2.83,"status":"official_secondary","source":"MLIT from MHLW General Employment Placement Situation"},
+        {"period":"2019","value":2.82,"status":"official_secondary","source":"同上"},
+        {"period":"2020","value":1.94,"status":"official_secondary","source":"同上"},
+        {"period":"2021","value":1.96,"status":"official_secondary","source":"同上"},
+        {"period":"2022","value":2.14,"status":"official_secondary","source":"同上"},
+        {"period":"2023","value":2.18,"status":"official_secondary","source":"同上"}
+      ]
+    },
+    {
+      "metric_id": "all_occupations_job_openings_ratio_comparable",
+      "name_ja": "全職業 有効求人倍率（貨物比較用）",
+      "unit": "ratio",
+      "observations": [
+        {"period":"2018","value":1.46,"status":"official_secondary","source":"MLIT from MHLW General Employment Placement Situation"},
+        {"period":"2019","value":1.41,"status":"official_secondary","source":"同上"},
+        {"period":"2020","value":1.01,"status":"official_secondary","source":"同上"},
+        {"period":"2021","value":1.05,"status":"official_secondary","source":"同上"},
+        {"period":"2022","value":1.19,"status":"official_secondary","source":"同上"},
+        {"period":"2023","value":1.17,"status":"official_secondary","source":"同上"}
+      ]
+    },
+    {
+      "metric_id": "freight_driver_vacancy_multiple_vs_all",
+      "name_ja": "貨物自動車運転者 求人倍率倍率差",
+      "unit": "multiple",
+      "observations": [
+        {"period":"2018","value":1.94,"status":"derived","source":"freight_driver_job_openings_ratio / all_occupations_job_openings_ratio_comparable"},
+        {"period":"2019","value":2.00,"status":"derived","source":"同上"},
+        {"period":"2020","value":1.92,"status":"derived","source":"同上"},
+        {"period":"2021","value":1.87,"status":"derived","source":"同上"},
+        {"period":"2022","value":1.80,"status":"derived","source":"同上"},
+        {"period":"2023","value":1.86,"status":"derived","source":"同上"}
+      ]
+    }
+  ]
+}
