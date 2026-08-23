@@ -1,25 +1,25 @@
 {
   "schema_version": "2.1",
   "dataset": "public-sanitize-status",
-  "status": "failure",
-  "stage": "audit",
-  "updated_at": "2026-08-23T04:34:57.735949+00:00",
+  "status": "success",
+  "stage": "success",
+  "updated_at": "2026-08-23T04:36:30.602112+00:00",
   "stages": {
     "restore": "success",
     "sanitize": "success",
     "localize_ui": "success",
     "finalize_display": "success",
-    "audit": "failure",
-    "schema_integrity": "skipped",
-    "report_validation": "skipped",
-    "customs_validation": "skipped"
+    "audit": "success",
+    "schema_integrity": "success",
+    "report_validation": "success",
+    "customs_validation": "success"
   },
   "exit_codes": {
-    "audit": "1",
-    "schema_integrity": null,
-    "report_validation": null,
-    "customs_validation": null
+    "audit": "0",
+    "schema_integrity": "0",
+    "report_validation": "0",
+    "customs_validation": "0"
   },
-  "diagnostic_tail": "[ERROR] data/reports.json: untranslated public UI term 'effective supply'\n[ERROR] data/reports.json: untranslated public UI term 'delay absorption'\n",
+  "diagnostic_tail": null,
   "note": "Public sanitizer health only; stable machine keys and non-brand URLs must remain unchanged."
 }
