@@ -59,8 +59,10 @@ def validate_age_structure(age_data, transport_workers, expected_years):
         "road_freight": "45",
         "warehousing": "48",
     }
-    assert api.get("age", {}).get("55_64") == "15"
-    assert api.get("age", {}).get("65_plus") == "18"
+    age_codes = api.get("age", {})
+    assert age_codes.get("55_59") == "16"
+    assert age_codes.get("60_64") == "17"
+    assert age_codes.get("65_plus") == "18"
 
     status = age_data.get("status")
     assert status in {"source_verified_api_ready", "populated_from_estat_api"}
@@ -70,17 +72,13 @@ def validate_age_structure(age_data, transport_workers, expected_years):
         )
         return status, actual_ids
 
-    # Populated data must be complete and internally coherent for every year.
     for key in ["transport_postal", "road_freight", "warehousing"]:
         band_values = {b: by_period(observations(age_data, f"{key}_age_{b}")) for b in bands}
         for b, values in band_values.items():
             assert list(values) == expected_years, (key, b, list(values))
             assert all(v >= 0 for v in values.values())
 
-        total_from_bands = {
-            y: sum(band_values[b][y] for b in bands)
-            for y in expected_years
-        }
+        total_from_bands = {y: sum(band_values[b][y] for b in bands) for y in expected_years}
         if key == "transport_postal":
             total = transport_workers
         else:
@@ -95,10 +93,7 @@ def validate_age_structure(age_data, transport_workers, expected_years):
         assert list(replacement) == expected_years
 
         for y in expected_years:
-            # e-Stat rounded age cells can differ from the published total by a small amount.
-            assert abs(total_from_bands[y] - total[y]) <= 3.0, (
-                key, y, total_from_bands[y], total[y]
-            )
+            assert abs(total_from_bands[y] - total[y]) <= 3.0, (key, y, total_from_bands[y], total[y])
             old = band_values["55_64"][y] + band_values["65_plus"][y]
             young = band_values["15_24"][y] + band_values["25_34"][y]
             assert abs(old_share[y] - round(old / total[y] * 100, 2)) <= 0.02
