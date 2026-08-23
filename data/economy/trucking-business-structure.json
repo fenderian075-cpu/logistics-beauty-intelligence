@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0",
+  "dataset": "trucking-business-structure",
+  "title_ja": "営業用・自家用トラック輸送構造",
+  "frequency": "fiscal_annual",
+  "status": "schema_ready",
+  "sources": [
+    {
+      "name": "国土交通省 自動車輸送統計年報 貨物輸送3-1（2020年度～）",
+      "url": "https://www.e-stat.go.jp/dbview?sid=0003442538",
+      "stats_data_id": "0003442538"
+    },
+    {
+      "name": "国土交通省 自動車輸送統計を利用するにあたっての参考情報",
+      "url": "https://www.mlit.go.jp/k-toukei/jidousya_03.html"
+    }
+  ],
+  "notes": [
+    "令和2年4月（2020年4月）に調査方法・集計方法が変更され、国土交通省は変更前後の公表値について時系列上の連続性を保証していない。",
+    "そのため本データセットは2020年度以降のみを連続系列として扱い、2019年度以前と単純接続しない。",
+    "営業用シェアは輸送トン数と輸送トンキロを分けて算出する。前者は物量、後者は輸送距離を加味した輸送仕事量の構成を示す。"
+  ],
+  "series": [
+    {"metric_id":"commercial_tonnage_post2020","name_ja":"営業用 輸送トン数","unit":"million_tonnes","observations":[]},
+    {"metric_id":"own_account_tonnage_post2020","name_ja":"自家用 輸送トン数","unit":"million_tonnes","observations":[]},
+    {"metric_id":"commercial_tonnage_share_post2020","name_ja":"営業用 輸送トン数シェア","unit":"pct","observations":[]},
+    {"metric_id":"commercial_ton_km_post2020","name_ja":"営業用 輸送トンキロ","unit":"billion_tonne_km","observations":[]},
+    {"metric_id":"own_account_ton_km_post2020","name_ja":"自家用 輸送トンキロ","unit":"billion_tonne_km","observations":[]},
+    {"metric_id":"commercial_ton_km_share_post2020","name_ja":"営業用 輸送トンキロシェア","unit":"pct","observations":[]}
+  ]
+}
