@@ -1,0 +1,12 @@
+{
+  "cost_snapshot": {
+    "as_of": "2026-08-24T08:00:00+09:00",
+    "metrics": {
+      "regular_gasoline_national": {"value": 169.8, "unit": "円/L", "data_date": "2026-08-17", "source": "資源エネルギー庁 石油製品価格調査"},
+      "diesel_national": {"value": 159.3, "unit": "円/L", "data_date": "2026-08-17", "source": "資源エネルギー庁 石油製品価格調査"},
+      "drewry_wci": {"value": 4526, "unit": "USD/40ft", "data_date": "2026-08-20", "source": "Drewry 世界コンテナ運賃指数（WCI）"},
+      "drewry_iaci": {"value": 1091, "unit": "USD/40ft", "data_date": "2026-08-20", "source": "Drewry アジア域内コンテナ運賃指数（IACI）"}
+    },
+    "interpretation_ja": "燃料価格は国内配送コスト、WCI/IACIは海上スポット価格として確認。価格上昇を輸送能力不足と同義には扱わない。"
+  }
+}
