@@ -1,26 +1,24 @@
 #!/usr/bin/env python3
-import io
 import requests
-from openpyxl import load_workbook
-
-URLS={
- 'port_2025':'https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000040251292',
- 'port_2020':'https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000031917650',
- 'truck_recent':'https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000040390331',
- 'truck_older':'https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000031894228',
-}
+from bs4 import BeautifulSoup
 H={'User-Agent':'Mozilla/5.0 LBI-Transport-History/1.0','Referer':'https://www.e-stat.go.jp/'}
-for name,url in URLS.items():
-    r=requests.get(url,headers=H,timeout=90)
-    print('\n===',name,r.status_code,len(r.content),r.headers.get('content-type'))
-    if r.status_code!=200 or not r.content.startswith(b'PK'):
-        print(repr(r.content[:300]));continue
-    wb=load_workbook(io.BytesIO(r.content),read_only=True,data_only=True)
-    print('sheets',wb.sheetnames)
-    for ws in wb.worksheets[:8]:
-        print('SHEET',ws.title,'rows',ws.max_row,'cols',ws.max_column)
-        for i,row in enumerate(ws.iter_rows(values_only=True)):
-            vals=tuple(row[:24])
-            if any(v not in (None,'') for v in vals):print(i+1,repr(vals))
-            if i>=22:break
-    wb.close()
+LISTS={
+ 'port':'https://www.e-stat.go.jp/stat-search/files?cycle=0&layout=dataset&page=1&tclass1val=0&toukei=00600280&tstat=000001135203',
+ 'truck':'https://www.e-stat.go.jp/stat-search/files?cycle=1&layout=dataset&page=1&tclass1val=0&toukei=00600330&tstat=000001017236',
+ 'air':'https://www.e-stat.go.jp/stat-search/files?cycle=1&layout=dataset&page=1&tclass1val=0&toukei=00600360',
+}
+for key,url in LISTS.items():
+    r=requests.get(url,headers=H,timeout=90);print('\nLIST',key,r.status_code,len(r.content),r.url);r.raise_for_status()
+    soup=BeautifulSoup(r.content,'html.parser')
+    seen=set()
+    for a in soup.find_all('a',href=True):
+        txt=' '.join(a.stripped_strings);href=a['href']
+        parent=' '.join(a.parent.stripped_strings) if a.parent else txt
+        context=(txt+' '+parent)
+        if key=='port' and not ('港別集計値' in context or 'stat_infid' in href or 'file-download' in href):continue
+        if key=='truck' and not ('貨物輸送量' in context or '３－１' in context or '3-1' in context or 'stat_infid' in href or 'file-download' in href):continue
+        if key=='air' and not ('航空' in context or '国際' in context or 'stat_infid' in href or 'file-download' in href):continue
+        pair=(txt,href,parent[:300])
+        if pair in seen:continue
+        seen.add(pair);print('LINK',repr(pair))
+    print('TOTAL LINKS',len(seen))
