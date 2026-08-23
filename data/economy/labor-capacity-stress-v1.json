@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0",
+  "dataset": "labor-capacity-stress-v1",
+  "title_ja": "物流労働キャパシティ・ストレス v1",
+  "frequency": "annual",
+  "status": "schema_ready",
+  "methodology": {
+    "version": "v1-freight-specific-vacancy",
+    "common_period": "2018-2023",
+    "base_year": "2018",
+    "components": [
+      "parcel_labor_load_pressure_v1",
+      "freight_driver_vacancy_pressure_v1",
+      "road_freight_aging_pressure_v1",
+      "road_freight_replacement_pressure_v1",
+      "working_age_supply_pressure_v1"
+    ],
+    "weights": {
+      "parcel_labor_load_pressure_v1": 0.2,
+      "freight_driver_vacancy_pressure_v1": 0.2,
+      "road_freight_aging_pressure_v1": 0.2,
+      "road_freight_replacement_pressure_v1": 0.2,
+      "working_age_supply_pressure_v1": 0.2
+    }
+  },
+  "notes": [
+    "v1は求人需給を『自動車運転の職業』から『貨物自動車運転者』へ限定し、道路貨物の年齢構造との対象整合性を改善する。",
+    "2018年を100とし、5要素を各20%で単純平均する透明な診断指数。公的指数ではない。",
+    "年間所得額は採用競争力の重要な文脈だが、大型・中小型の集約ウェイトを恣意的に置かないためv1スコアには含めない。",
+    "2024年以降は貨物自動車運転者の同一定義求人系列が確認できた時点で延長する。"
+  ],
+  "series": [
+    {"metric_id":"parcel_labor_load_pressure_v1","name_ja":"宅配需要/物流労働力圧力 v1","unit":"index_2018_100","observations":[]},
+    {"metric_id":"freight_driver_vacancy_pressure_v1","name_ja":"貨物自動車運転者 求人需給圧力 v1","unit":"index_2018_100","observations":[]},
+    {"metric_id":"road_freight_aging_pressure_v1","name_ja":"道路貨物 高齢化圧力 v1","unit":"index_2018_100","observations":[]},
+    {"metric_id":"road_freight_replacement_pressure_v1","name_ja":"道路貨物 世代交代圧力 v1","unit":"index_2018_100","observations":[]},
+    {"metric_id":"working_age_supply_pressure_v1","name_ja":"生産年齢人口供給圧力 v1","unit":"index_2018_100","observations":[]},
+    {"metric_id":"labor_capacity_stress_v1","name_ja":"物流労働キャパシティ・ストレス v1","unit":"index_2018_100","observations":[]}
+  ]
+}
