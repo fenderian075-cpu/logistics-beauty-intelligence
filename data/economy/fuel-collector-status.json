@@ -3,7 +3,7 @@
   "dataset": "fuel-collector-status",
   "status": "success",
   "stage": "success",
-  "updated_at": "2026-08-23T07:55:15.709530+00:00",
+  "updated_at": "2026-08-23T09:45:28.509807+00:00",
   "weekly_workbook_url": "https://www.enecho.meti.go.jp/statistics/petroleum_and_lpgas/pl007/xlsx/260819s5.xlsx",
   "workbook_format": "xlsx",
   "parsed_sheets": [

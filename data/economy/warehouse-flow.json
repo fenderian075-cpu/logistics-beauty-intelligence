@@ -1,23 +1,6600 @@
 {
-  "schema_version":"1.0",
-  "dataset":"warehouse-flow",
-  "title_ja":"倉庫荷動き",
-  "frequency":"monthly+quarterly",
-  "sources":[
-    {"name":"国土交通省 営業普通倉庫の実績（主要21社）","url":"https://www.mlit.go.jp/seisakutokatsu/freight/seisakutokatsu_freight_mn2_000009.html","frequency":"monthly"},
-    {"name":"国土交通省 倉庫統計季報","url":"https://www.mlit.go.jp/seisakutokatsu/freight/butsuryu06000.html","frequency":"quarterly"}
+  "schema_version": "1.1",
+  "dataset": "warehouse-flow",
+  "title_ja": "倉庫荷動き",
+  "frequency": "monthly",
+  "sources": [
+    {
+      "name": "国土交通省 営業普通倉庫の実績（主要21社）",
+      "url": "https://www.mlit.go.jp/seisakutokatsu/freight/seisakutokatsu_freight_mn2_000009.html",
+      "frequency": "monthly"
+    }
   ],
-  "series":[
-    {"metric_id":"inbound_volume","unit":"tonnes","observations":[]},
-    {"metric_id":"outbound_volume","unit":"tonnes","observations":[]},
-    {"metric_id":"inventory_balance","unit":"tonnes","observations":[]},
-    {"metric_id":"warehouse_turnover","unit":"index","observations":[]},
-    {"metric_id":"storage_revenue","unit":"JPY","observations":[]}
+  "series": [
+    {
+      "metric_id": "inbound_volume",
+      "unit": "tonnes",
+      "observations": [
+        {
+          "period": "2015-01",
+          "value": 2195600.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）"
+        },
+        {
+          "period": "2015-02",
+          "value": 2170100.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -1.16
+        },
+        {
+          "period": "2015-03",
+          "value": 2304800.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 6.21
+        },
+        {
+          "period": "2015-04",
+          "value": 2360600.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 2.42
+        },
+        {
+          "period": "2015-05",
+          "value": 2146600.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -9.07
+        },
+        {
+          "period": "2015-06",
+          "value": 2314900.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 7.84
+        },
+        {
+          "period": "2015-07",
+          "value": 2416600.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 4.39
+        },
+        {
+          "period": "2015-08",
+          "value": 2190700.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -9.35
+        },
+        {
+          "period": "2015-09",
+          "value": 2161700.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -1.32
+        },
+        {
+          "period": "2015-10",
+          "value": 2316400.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 7.16
+        },
+        {
+          "period": "2015-11",
+          "value": 2159200.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -6.79
+        },
+        {
+          "period": "2015-12",
+          "value": 2353200.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 8.98
+        },
+        {
+          "period": "2016-01",
+          "value": 1956700.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -16.85,
+          "yoy": -10.88
+        },
+        {
+          "period": "2016-02",
+          "value": 2147200.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 9.74,
+          "yoy": -1.06
+        },
+        {
+          "period": "2016-03",
+          "value": 2327800.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 8.41,
+          "yoy": 1.0
+        },
+        {
+          "period": "2016-04",
+          "value": 2313400.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.62,
+          "yoy": -2.0
+        },
+        {
+          "period": "2016-05",
+          "value": 2200700.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -4.87,
+          "yoy": 2.52
+        },
+        {
+          "period": "2016-06",
+          "value": 2330300.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 5.89,
+          "yoy": 0.67
+        },
+        {
+          "period": "2016-07",
+          "value": 2212900.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -5.04,
+          "yoy": -8.43
+        },
+        {
+          "period": "2016-08",
+          "value": 2170400.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -1.92,
+          "yoy": -0.93
+        },
+        {
+          "period": "2016-09",
+          "value": 2180500.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.47,
+          "yoy": 0.87
+        },
+        {
+          "period": "2016-10",
+          "value": 2308100.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 5.85,
+          "yoy": -0.36
+        },
+        {
+          "period": "2016-11",
+          "value": 2305400.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.12,
+          "yoy": 6.77
+        },
+        {
+          "period": "2016-12",
+          "value": 2304100.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.06,
+          "yoy": -2.09
+        },
+        {
+          "period": "2017-01",
+          "value": 2030100.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -11.89,
+          "yoy": 3.75
+        },
+        {
+          "period": "2017-02",
+          "value": 2079900.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 2.45,
+          "yoy": -3.13
+        },
+        {
+          "period": "2017-03",
+          "value": 2433400.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 17.0,
+          "yoy": 4.54
+        },
+        {
+          "period": "2017-04",
+          "value": 2287100.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -6.01,
+          "yoy": -1.14
+        },
+        {
+          "period": "2017-05",
+          "value": 2315200.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 1.23,
+          "yoy": 5.2
+        },
+        {
+          "period": "2017-06",
+          "value": 2567500.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 10.9,
+          "yoy": 10.18
+        },
+        {
+          "period": "2017-07",
+          "value": 2479300.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -3.44,
+          "yoy": 12.04
+        },
+        {
+          "period": "2017-08",
+          "value": 2357800.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -4.9,
+          "yoy": 8.63
+        },
+        {
+          "period": "2017-09",
+          "value": 2351900.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.25,
+          "yoy": 7.86
+        },
+        {
+          "period": "2017-10",
+          "value": 2295300.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -2.41,
+          "yoy": -0.55
+        },
+        {
+          "period": "2017-11",
+          "value": 2359100.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 2.78,
+          "yoy": 2.33
+        },
+        {
+          "period": "2017-12",
+          "value": 2400100.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 1.74,
+          "yoy": 4.17
+        },
+        {
+          "period": "2018-01",
+          "value": 2160100.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -10.0,
+          "yoy": 6.4
+        },
+        {
+          "period": "2018-02",
+          "value": 2216600.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 2.62,
+          "yoy": 6.57
+        },
+        {
+          "period": "2018-03",
+          "value": 2454900.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 10.75,
+          "yoy": 0.88
+        },
+        {
+          "period": "2018-04",
+          "value": 2422300.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -1.33,
+          "yoy": 5.91
+        },
+        {
+          "period": "2018-05",
+          "value": 2381000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -1.7,
+          "yoy": 2.84
+        },
+        {
+          "period": "2018-06",
+          "value": 2380700.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.01,
+          "yoy": -7.28
+        },
+        {
+          "period": "2018-07",
+          "value": 2460200.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 3.34,
+          "yoy": -0.77
+        },
+        {
+          "period": "2018-08",
+          "value": 2400000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -2.45,
+          "yoy": 1.79
+        },
+        {
+          "period": "2018-09",
+          "value": 2227800.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -7.17,
+          "yoy": -5.28
+        },
+        {
+          "period": "2018-10",
+          "value": 2536400.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 13.85,
+          "yoy": 10.5
+        },
+        {
+          "period": "2018-11",
+          "value": 2777900.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 9.52,
+          "yoy": 17.75
+        },
+        {
+          "period": "2018-12",
+          "value": 2470100.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -11.08,
+          "yoy": 2.92
+        },
+        {
+          "period": "2019-01",
+          "value": 2318700.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -6.13,
+          "yoy": 7.34
+        },
+        {
+          "period": "2019-02",
+          "value": 2194500.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -5.36,
+          "yoy": -1.0
+        },
+        {
+          "period": "2019-03",
+          "value": 2355400.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 7.33,
+          "yoy": -4.05
+        },
+        {
+          "period": "2019-04",
+          "value": 2565200.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 8.91,
+          "yoy": 5.9
+        },
+        {
+          "period": "2019-05",
+          "value": 2404000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -6.28,
+          "yoy": 0.97
+        },
+        {
+          "period": "2019-06",
+          "value": 2777400.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 15.53,
+          "yoy": 16.66
+        },
+        {
+          "period": "2019-07",
+          "value": 2637700.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -5.03,
+          "yoy": 7.21
+        },
+        {
+          "period": "2019-08",
+          "value": 2328000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -11.74,
+          "yoy": -3.0
+        },
+        {
+          "period": "2019-09",
+          "value": 2420800.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 3.99,
+          "yoy": 8.66
+        },
+        {
+          "period": "2019-10",
+          "value": 2728600.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 12.71,
+          "yoy": 7.58
+        },
+        {
+          "period": "2019-11",
+          "value": 2607200.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -4.45,
+          "yoy": -6.14
+        },
+        {
+          "period": "2019-12",
+          "value": 2655900.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 1.87,
+          "yoy": 7.52
+        },
+        {
+          "period": "2020-01",
+          "value": 2429800.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -8.51,
+          "yoy": 4.79
+        },
+        {
+          "period": "2020-02",
+          "value": 2243200.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -7.68,
+          "yoy": 2.22
+        },
+        {
+          "period": "2020-03",
+          "value": 2520200.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 12.35,
+          "yoy": 7.0
+        },
+        {
+          "period": "2020-04",
+          "value": 2455200.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -2.58,
+          "yoy": -4.29
+        },
+        {
+          "period": "2020-05",
+          "value": 2150300.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -12.42,
+          "yoy": -10.55
+        },
+        {
+          "period": "2020-06",
+          "value": 2365000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 9.98,
+          "yoy": -14.85
+        },
+        {
+          "period": "2020-07",
+          "value": 2475900.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 4.69,
+          "yoy": -6.13
+        },
+        {
+          "period": "2020-08",
+          "value": 2253200.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -8.99,
+          "yoy": -3.21
+        },
+        {
+          "period": "2020-09",
+          "value": 2509700.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 11.38,
+          "yoy": 3.67
+        },
+        {
+          "period": "2020-10",
+          "value": 2579600.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 2.79,
+          "yoy": -5.46
+        },
+        {
+          "period": "2020-11",
+          "value": 2318000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -10.14,
+          "yoy": -11.09
+        },
+        {
+          "period": "2020-12",
+          "value": 2553100.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 10.14,
+          "yoy": -3.87
+        },
+        {
+          "period": "2021-01",
+          "value": 2200300.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -13.82,
+          "yoy": -9.45
+        },
+        {
+          "period": "2021-02",
+          "value": 2200900.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.03,
+          "yoy": -1.89
+        },
+        {
+          "period": "2021-03",
+          "value": 2577000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 17.09,
+          "yoy": 2.25
+        },
+        {
+          "period": "2021-04",
+          "value": 2459200.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -4.57,
+          "yoy": 0.16
+        },
+        {
+          "period": "2021-05",
+          "value": 2266300.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -7.84,
+          "yoy": 5.39
+        },
+        {
+          "period": "2021-06",
+          "value": 2534000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 11.81,
+          "yoy": 7.15
+        },
+        {
+          "period": "2021-07",
+          "value": 2488606.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -1.79,
+          "yoy": 0.51
+        },
+        {
+          "period": "2021-08",
+          "value": 2281300.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -8.33,
+          "yoy": 1.25
+        },
+        {
+          "period": "2021-09",
+          "value": 2341500.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 2.64,
+          "yoy": -6.7
+        },
+        {
+          "period": "2021-10",
+          "value": 2298300.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -1.84,
+          "yoy": -10.9
+        },
+        {
+          "period": "2021-11",
+          "value": 2440500.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 6.19,
+          "yoy": 5.28
+        },
+        {
+          "period": "2021-12",
+          "value": 2484800.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 1.82,
+          "yoy": -2.68
+        },
+        {
+          "period": "2022-01",
+          "value": 2158000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -13.15,
+          "yoy": -1.92
+        },
+        {
+          "period": "2022-02",
+          "value": 2119600.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -1.78,
+          "yoy": -3.69
+        },
+        {
+          "period": "2022-03",
+          "value": 2489400.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 17.45,
+          "yoy": -3.4
+        },
+        {
+          "period": "2022-04",
+          "value": 2417300.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -2.9,
+          "yoy": -1.7
+        },
+        {
+          "period": "2022-05",
+          "value": 2197000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -9.11,
+          "yoy": -3.06
+        },
+        {
+          "period": "2022-06",
+          "value": 2486600.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 13.18,
+          "yoy": -1.87
+        },
+        {
+          "period": "2022-07",
+          "value": 2592400.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 4.25,
+          "yoy": 4.17
+        },
+        {
+          "period": "2022-08",
+          "value": 2468600.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -4.78,
+          "yoy": 8.21
+        },
+        {
+          "period": "2022-09",
+          "value": 2395800.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -2.95,
+          "yoy": 2.32
+        },
+        {
+          "period": "2022-10",
+          "value": 2311200.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -3.53,
+          "yoy": 0.56
+        },
+        {
+          "period": "2022-11",
+          "value": 2324600.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.58,
+          "yoy": -4.75
+        },
+        {
+          "period": "2022-12",
+          "value": 2358100.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 1.44,
+          "yoy": -5.1
+        },
+        {
+          "period": "2023-01",
+          "value": 2000000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -15.19,
+          "yoy": -7.32
+        },
+        {
+          "period": "2023-02",
+          "value": 2139100.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 6.96,
+          "yoy": 0.92
+        },
+        {
+          "period": "2023-03",
+          "value": 2429800.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 13.59,
+          "yoy": -2.39
+        },
+        {
+          "period": "2023-04",
+          "value": 2285700.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -5.93,
+          "yoy": -5.44
+        },
+        {
+          "period": "2023-05",
+          "value": 2200100.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -3.75,
+          "yoy": 0.14
+        },
+        {
+          "period": "2023-06",
+          "value": 2374300.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 7.92,
+          "yoy": -4.52
+        },
+        {
+          "period": "2023-07",
+          "value": 2560400.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 7.84,
+          "yoy": -1.23
+        },
+        {
+          "period": "2023-08",
+          "value": 2224600.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -13.12,
+          "yoy": -9.88
+        },
+        {
+          "period": "2023-09",
+          "value": 2292900.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 3.07,
+          "yoy": -4.3
+        },
+        {
+          "period": "2023-10",
+          "value": 2353000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 2.62,
+          "yoy": 1.81
+        },
+        {
+          "period": "2023-11",
+          "value": 2361500.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.36,
+          "yoy": 1.59
+        },
+        {
+          "period": "2023-12",
+          "value": 2402800.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 1.75,
+          "yoy": 1.9
+        },
+        {
+          "period": "2024-01",
+          "value": 1958500.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -18.49,
+          "yoy": -2.08
+        },
+        {
+          "period": "2024-02",
+          "value": 2152600.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 9.91,
+          "yoy": 0.63
+        },
+        {
+          "period": "2024-03",
+          "value": 2289500.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 6.36,
+          "yoy": -5.77
+        },
+        {
+          "period": "2024-04",
+          "value": 2414100.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 5.44,
+          "yoy": 5.62
+        },
+        {
+          "period": "2024-05",
+          "value": 2393100.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.87,
+          "yoy": 8.77
+        },
+        {
+          "period": "2024-06",
+          "value": 2399800.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.28,
+          "yoy": 1.07
+        },
+        {
+          "period": "2024-07",
+          "value": 2338000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -2.58,
+          "yoy": -8.69
+        },
+        {
+          "period": "2024-08",
+          "value": 2212700.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -5.36,
+          "yoy": -0.53
+        },
+        {
+          "period": "2024-09",
+          "value": 2435200.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 10.06,
+          "yoy": 6.21
+        },
+        {
+          "period": "2024-10",
+          "value": 2519300.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 3.45,
+          "yoy": 7.07
+        },
+        {
+          "period": "2024-11",
+          "value": 2632000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 4.47,
+          "yoy": 11.45
+        },
+        {
+          "period": "2024-12",
+          "value": 2469700.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -6.17,
+          "yoy": 2.78
+        },
+        {
+          "period": "2025-01",
+          "value": 2216000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -10.27,
+          "yoy": 13.15
+        },
+        {
+          "period": "2025-02",
+          "value": 2101100.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -5.19,
+          "yoy": -2.39
+        },
+        {
+          "period": "2025-03",
+          "value": 3085300.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 46.84,
+          "yoy": 34.76
+        },
+        {
+          "period": "2025-04",
+          "value": 2503600.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -18.85,
+          "yoy": 3.71
+        },
+        {
+          "period": "2025-05",
+          "value": 2334800.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -6.74,
+          "yoy": -2.44
+        },
+        {
+          "period": "2025-06",
+          "value": 2471700.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 5.86,
+          "yoy": 3.0
+        },
+        {
+          "period": "2025-07",
+          "value": 2537100.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 2.65,
+          "yoy": 8.52
+        },
+        {
+          "period": "2025-08",
+          "value": 2417600.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -4.71,
+          "yoy": 9.26
+        },
+        {
+          "period": "2025-09",
+          "value": 2393900.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.98,
+          "yoy": -1.7
+        },
+        {
+          "period": "2025-10",
+          "value": 2547700.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 6.42,
+          "yoy": 1.13
+        },
+        {
+          "period": "2025-11",
+          "value": 2200200.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -13.64,
+          "yoy": -16.41
+        },
+        {
+          "period": "2025-12",
+          "value": 2534700.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 15.2,
+          "yoy": 2.63
+        }
+      ],
+      "name_ja": "入庫量"
+    },
+    {
+      "metric_id": "outbound_volume",
+      "unit": "tonnes",
+      "observations": [
+        {
+          "period": "2015-02",
+          "value": 2127945.6,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。"
+        },
+        {
+          "period": "2015-03",
+          "value": 2435250.0,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 14.44
+        },
+        {
+          "period": "2015-04",
+          "value": 2439784.9,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 0.19
+        },
+        {
+          "period": "2015-05",
+          "value": 2105160.6,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": -13.72
+        },
+        {
+          "period": "2015-06",
+          "value": 2496958.4,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 18.61
+        },
+        {
+          "period": "2015-07",
+          "value": 2498143.4,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 0.05
+        },
+        {
+          "period": "2015-08",
+          "value": 2269724.0,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": -9.14
+        },
+        {
+          "period": "2015-09",
+          "value": 2385965.2,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 5.12
+        },
+        {
+          "period": "2015-10",
+          "value": 2372435.2,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": -0.57
+        },
+        {
+          "period": "2015-11",
+          "value": 2192633.0,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": -7.58
+        },
+        {
+          "period": "2015-12",
+          "value": 2429189.1,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 10.79
+        },
+        {
+          "period": "2016-01",
+          "value": 1927501.4,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": -20.65
+        },
+        {
+          "period": "2016-02",
+          "value": 2118412.9,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 9.9,
+          "yoy": -0.45
+        },
+        {
+          "period": "2016-03",
+          "value": 2396956.8,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 13.15,
+          "yoy": -1.57
+        },
+        {
+          "period": "2016-04",
+          "value": 2284313.6,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": -4.7,
+          "yoy": -6.37
+        },
+        {
+          "period": "2016-05",
+          "value": 2191133.6,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": -4.08,
+          "yoy": 4.08
+        },
+        {
+          "period": "2016-06",
+          "value": 2318202.1,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 5.8,
+          "yoy": -7.16
+        },
+        {
+          "period": "2016-07",
+          "value": 2246061.0,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": -3.11,
+          "yoy": -10.09
+        },
+        {
+          "period": "2016-08",
+          "value": 2216958.6,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": -1.3,
+          "yoy": -2.32
+        },
+        {
+          "period": "2016-09",
+          "value": 2300116.0,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 3.75,
+          "yoy": -3.6
+        },
+        {
+          "period": "2016-10",
+          "value": 2248540.8,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": -2.24,
+          "yoy": -5.22
+        },
+        {
+          "period": "2016-11",
+          "value": 2385958.0,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 6.11,
+          "yoy": 8.82
+        },
+        {
+          "period": "2016-12",
+          "value": 2403384.6,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 0.73,
+          "yoy": -1.06
+        },
+        {
+          "period": "2017-01",
+          "value": 1909619.5,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": -20.54,
+          "yoy": -0.93
+        },
+        {
+          "period": "2017-02",
+          "value": 2074168.8,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 8.62,
+          "yoy": -2.09
+        },
+        {
+          "period": "2017-03",
+          "value": 2497392.8,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 20.4,
+          "yoy": 4.19
+        },
+        {
+          "period": "2017-04",
+          "value": 2343128.2,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": -6.18,
+          "yoy": 2.57
+        },
+        {
+          "period": "2017-05",
+          "value": 2167620.0,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": -7.49,
+          "yoy": -1.07
+        },
+        {
+          "period": "2017-06",
+          "value": 2444308.4,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 12.76,
+          "yoy": 5.44
+        },
+        {
+          "period": "2017-07",
+          "value": 2474887.8,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 1.25,
+          "yoy": 10.19
+        },
+        {
+          "period": "2017-08",
+          "value": 2417868.1,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": -2.3,
+          "yoy": 9.06
+        },
+        {
+          "period": "2017-09",
+          "value": 2331988.0,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": -3.55,
+          "yoy": 1.39
+        },
+        {
+          "period": "2017-10",
+          "value": 2369341.8,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 1.6,
+          "yoy": 5.37
+        },
+        {
+          "period": "2017-11",
+          "value": 2304394.6,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": -2.74,
+          "yoy": -3.42
+        },
+        {
+          "period": "2017-12",
+          "value": 2533272.0,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 9.93,
+          "yoy": 5.4
+        },
+        {
+          "period": "2018-01",
+          "value": 1924691.2,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": -24.02,
+          "yoy": 0.79
+        },
+        {
+          "period": "2018-02",
+          "value": 2128796.9,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 10.6,
+          "yoy": 2.63
+        },
+        {
+          "period": "2018-03",
+          "value": 2544276.0,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 19.52,
+          "yoy": 1.88
+        },
+        {
+          "period": "2018-04",
+          "value": 2409238.4,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": -5.31,
+          "yoy": 2.82
+        },
+        {
+          "period": "2018-05",
+          "value": 2256212.6,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": -6.35,
+          "yoy": 4.09
+        },
+        {
+          "period": "2018-06",
+          "value": 2424196.9,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 7.45,
+          "yoy": -0.82
+        },
+        {
+          "period": "2018-07",
+          "value": 2512675.9,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 3.65,
+          "yoy": 1.53
+        },
+        {
+          "period": "2018-08",
+          "value": 2448266.4,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": -2.56,
+          "yoy": 1.26
+        },
+        {
+          "period": "2018-09",
+          "value": 2337072.0,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": -4.54,
+          "yoy": 0.22
+        },
+        {
+          "period": "2018-10",
+          "value": 2490162.4,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 6.55,
+          "yoy": 5.1
+        },
+        {
+          "period": "2018-11",
+          "value": 2750274.6,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 10.45,
+          "yoy": 19.35
+        },
+        {
+          "period": "2018-12",
+          "value": 2593807.8,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": -5.69,
+          "yoy": 2.39
+        },
+        {
+          "period": "2019-01",
+          "value": 2114784.0,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": -18.47,
+          "yoy": 9.88
+        },
+        {
+          "period": "2019-02",
+          "value": 2194578.4,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 3.77,
+          "yoy": 3.09
+        },
+        {
+          "period": "2019-03",
+          "value": 2876710.4,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 31.08,
+          "yoy": 13.07
+        },
+        {
+          "period": "2019-04",
+          "value": 2242771.6,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": -22.04,
+          "yoy": -6.91
+        },
+        {
+          "period": "2019-05",
+          "value": 2296297.7,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 2.39,
+          "yoy": 1.78
+        },
+        {
+          "period": "2019-06",
+          "value": 2807416.6,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 22.26,
+          "yoy": 15.81
+        },
+        {
+          "period": "2019-07",
+          "value": 2711723.6,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": -3.41,
+          "yoy": 7.92
+        },
+        {
+          "period": "2019-08",
+          "value": 2297730.5,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": -15.27,
+          "yoy": -6.15
+        },
+        {
+          "period": "2019-09",
+          "value": 2471194.4,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 7.55,
+          "yoy": 5.74
+        },
+        {
+          "period": "2019-10",
+          "value": 2765683.2,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 11.92,
+          "yoy": 11.06
+        },
+        {
+          "period": "2019-11",
+          "value": 2579106.6,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": -6.75,
+          "yoy": -6.22
+        },
+        {
+          "period": "2019-12",
+          "value": 2771699.4,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 7.47,
+          "yoy": 6.86
+        },
+        {
+          "period": "2020-01",
+          "value": 2387381.6,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": -13.87,
+          "yoy": 12.89
+        },
+        {
+          "period": "2020-02",
+          "value": 2298523.2,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": -3.72,
+          "yoy": 4.74
+        },
+        {
+          "period": "2020-03",
+          "value": 2602135.4,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 13.21,
+          "yoy": -9.54
+        },
+        {
+          "period": "2020-04",
+          "value": 2385868.5,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": -8.31,
+          "yoy": 6.38
+        },
+        {
+          "period": "2020-05",
+          "value": 1915241.2,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": -19.73,
+          "yoy": -16.59
+        },
+        {
+          "period": "2020-06",
+          "value": 2434265.1,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 27.1,
+          "yoy": -13.29
+        },
+        {
+          "period": "2020-07",
+          "value": 2608358.4,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 7.15,
+          "yoy": -3.81
+        },
+        {
+          "period": "2020-08",
+          "value": 2348382.7,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": -9.97,
+          "yoy": 2.2
+        },
+        {
+          "period": "2020-09",
+          "value": 2578792.9,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 9.81,
+          "yoy": 4.35
+        },
+        {
+          "period": "2020-10",
+          "value": 2601208.6,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 0.87,
+          "yoy": -5.95
+        },
+        {
+          "period": "2020-11",
+          "value": 2457073.0,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": -5.54,
+          "yoy": -4.73
+        },
+        {
+          "period": "2020-12",
+          "value": 2630546.6,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 7.06,
+          "yoy": -5.09
+        },
+        {
+          "period": "2021-01",
+          "value": 2070301.0,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": -21.3,
+          "yoy": -13.28
+        },
+        {
+          "period": "2021-02",
+          "value": 2292746.3,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 10.74,
+          "yoy": -0.25
+        },
+        {
+          "period": "2021-03",
+          "value": 2635761.4,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 14.96,
+          "yoy": 1.29
+        },
+        {
+          "period": "2021-04",
+          "value": 2503905.5,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": -5.0,
+          "yoy": 4.95
+        },
+        {
+          "period": "2021-05",
+          "value": 2165204.0,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": -13.53,
+          "yoy": 13.05
+        },
+        {
+          "period": "2021-06",
+          "value": 2527326.4,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 16.72,
+          "yoy": 3.82
+        },
+        {
+          "period": "2021-07",
+          "value": 2513482.018,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": -0.55,
+          "yoy": -3.64
+        },
+        {
+          "period": "2021-08",
+          "value": 2192900.7,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": -12.75,
+          "yoy": -6.62
+        },
+        {
+          "period": "2021-09",
+          "value": 2286500.0,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 4.27,
+          "yoy": -11.33
+        },
+        {
+          "period": "2021-10",
+          "value": 2342419.2,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 2.45,
+          "yoy": -9.95
+        },
+        {
+          "period": "2021-11",
+          "value": 2429040.0,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 3.7,
+          "yoy": -1.14
+        },
+        {
+          "period": "2021-12",
+          "value": 2629876.7,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 8.27,
+          "yoy": -0.03
+        },
+        {
+          "period": "2022-01",
+          "value": 2049543.0,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": -22.07,
+          "yoy": -1.0
+        },
+        {
+          "period": "2022-02",
+          "value": 2079780.9,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 1.48,
+          "yoy": -9.29
+        },
+        {
+          "period": "2022-03",
+          "value": 2528776.8,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 21.59,
+          "yoy": -4.06
+        },
+        {
+          "period": "2022-04",
+          "value": 2493338.7,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": -1.4,
+          "yoy": -0.42
+        },
+        {
+          "period": "2022-05",
+          "value": 2179748.3,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": -12.58,
+          "yoy": 0.67
+        },
+        {
+          "period": "2022-06",
+          "value": 2503100.8,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 14.83,
+          "yoy": -0.96
+        },
+        {
+          "period": "2022-07",
+          "value": 2513243.6,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 0.41,
+          "yoy": -0.01
+        },
+        {
+          "period": "2022-08",
+          "value": 2494992.8,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": -0.73,
+          "yoy": 13.78
+        },
+        {
+          "period": "2022-09",
+          "value": 2489338.2,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": -0.23,
+          "yoy": 8.87
+        },
+        {
+          "period": "2022-10",
+          "value": 2351021.4,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": -5.56,
+          "yoy": 0.37
+        },
+        {
+          "period": "2022-11",
+          "value": 2382818.8,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 1.35,
+          "yoy": -1.9
+        },
+        {
+          "period": "2022-12",
+          "value": 2471855.0,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 3.74,
+          "yoy": -6.01
+        },
+        {
+          "period": "2023-01",
+          "value": 1924444.4,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": -22.15,
+          "yoy": -6.1
+        },
+        {
+          "period": "2023-02",
+          "value": 2156043.5,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 12.03,
+          "yoy": 3.67
+        },
+        {
+          "period": "2023-03",
+          "value": 2533476.4,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 17.51,
+          "yoy": 0.19
+        },
+        {
+          "period": "2023-04",
+          "value": 2369936.7,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": -6.46,
+          "yoy": -4.95
+        },
+        {
+          "period": "2023-05",
+          "value": 2136660.0,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": -9.84,
+          "yoy": -1.98
+        },
+        {
+          "period": "2023-06",
+          "value": 2474810.2,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 15.83,
+          "yoy": -1.13
+        },
+        {
+          "period": "2023-07",
+          "value": 2587221.4,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 4.54,
+          "yoy": 2.94
+        },
+        {
+          "period": "2023-08",
+          "value": 2359222.1,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": -8.81,
+          "yoy": -5.44
+        },
+        {
+          "period": "2023-09",
+          "value": 2374415.1,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 0.64,
+          "yoy": -4.62
+        },
+        {
+          "period": "2023-10",
+          "value": 2388666.8,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 0.6,
+          "yoy": 1.6
+        },
+        {
+          "period": "2023-11",
+          "value": 2346203.0,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": -1.78,
+          "yoy": -1.54
+        },
+        {
+          "period": "2023-12",
+          "value": 2464192.5,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 5.03,
+          "yoy": -0.31
+        },
+        {
+          "period": "2024-01",
+          "value": 1871314.8,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": -24.06,
+          "yoy": -2.76
+        },
+        {
+          "period": "2024-02",
+          "value": 2131927.4,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 13.93,
+          "yoy": -1.12
+        },
+        {
+          "period": "2024-03",
+          "value": 2233431.0,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 4.76,
+          "yoy": -11.84
+        },
+        {
+          "period": "2024-04",
+          "value": 2626489.2,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 17.6,
+          "yoy": 10.83
+        },
+        {
+          "period": "2024-05",
+          "value": 2369983.8,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": -9.77,
+          "yoy": 10.92
+        },
+        {
+          "period": "2024-06",
+          "value": 2378635.2,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 0.37,
+          "yoy": -3.89
+        },
+        {
+          "period": "2024-07",
+          "value": 2676985.4,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 12.54,
+          "yoy": 3.47
+        },
+        {
+          "period": "2024-08",
+          "value": 1953026.6,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": -27.04,
+          "yoy": -17.22
+        },
+        {
+          "period": "2024-09",
+          "value": 2535837.5,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 29.84,
+          "yoy": 6.8
+        },
+        {
+          "period": "2024-10",
+          "value": 2473981.6,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": -2.44,
+          "yoy": 3.57
+        },
+        {
+          "period": "2024-11",
+          "value": 2762165.0,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 11.65,
+          "yoy": 17.73
+        },
+        {
+          "period": "2024-12",
+          "value": 2561717.3,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": -7.26,
+          "yoy": 3.96
+        },
+        {
+          "period": "2025-01",
+          "value": 2156641.6,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": -15.81,
+          "yoy": 15.25
+        },
+        {
+          "period": "2025-02",
+          "value": 2158107.2,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 0.07,
+          "yoy": 1.23
+        },
+        {
+          "period": "2025-03",
+          "value": 2463620.0,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 14.16,
+          "yoy": 10.31
+        },
+        {
+          "period": "2025-04",
+          "value": 2798205.6,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 13.58,
+          "yoy": 6.54
+        },
+        {
+          "period": "2025-05",
+          "value": 2271533.6,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": -18.82,
+          "yoy": -4.15
+        },
+        {
+          "period": "2025-06",
+          "value": 2467987.5,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 8.65,
+          "yoy": 3.76
+        },
+        {
+          "period": "2025-07",
+          "value": 2879802.0,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 16.69,
+          "yoy": 7.58
+        },
+        {
+          "period": "2025-08",
+          "value": 2078858.0,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": -27.81,
+          "yoy": 6.44
+        },
+        {
+          "period": "2025-09",
+          "value": 2615228.5,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 25.8,
+          "yoy": 3.13
+        },
+        {
+          "period": "2025-10",
+          "value": 2510909.4,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": -3.99,
+          "yoy": 1.49
+        },
+        {
+          "period": "2025-11",
+          "value": 2222092.0,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": -11.5,
+          "yoy": -19.55
+        },
+        {
+          "period": "2025-12",
+          "value": 2606110.9,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": 17.28,
+          "yoy": 1.73
+        }
+      ],
+      "name_ja": "出庫量（回転率からの推計）"
+    },
+    {
+      "metric_id": "inventory_balance",
+      "unit": "tonnes",
+      "observations": [
+        {
+          "period": "2015-01",
+          "value": 5023000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）"
+        },
+        {
+          "period": "2015-02",
+          "value": 5113900.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 1.81
+        },
+        {
+          "period": "2015-03",
+          "value": 5036100.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -1.52
+        },
+        {
+          "period": "2015-04",
+          "value": 5027600.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.17
+        },
+        {
+          "period": "2015-05",
+          "value": 5119800.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 1.83
+        },
+        {
+          "period": "2015-06",
+          "value": 5031800.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -1.72
+        },
+        {
+          "period": "2015-07",
+          "value": 5018800.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.26
+        },
+        {
+          "period": "2015-08",
+          "value": 5027200.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.17
+        },
+        {
+          "period": "2015-09",
+          "value": 4902200.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -2.49
+        },
+        {
+          "period": "2015-10",
+          "value": 4886600.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.32
+        },
+        {
+          "period": "2015-11",
+          "value": 4892800.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.13
+        },
+        {
+          "period": "2015-12",
+          "value": 4847300.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.93
+        },
+        {
+          "period": "2016-01",
+          "value": 4912000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 1.33,
+          "yoy": -2.21
+        },
+        {
+          "period": "2016-02",
+          "value": 4939300.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.56,
+          "yoy": -3.41
+        },
+        {
+          "period": "2016-03",
+          "value": 4863100.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -1.54,
+          "yoy": -3.44
+        },
+        {
+          "period": "2016-04",
+          "value": 4898500.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.73,
+          "yoy": -2.57
+        },
+        {
+          "period": "2016-05",
+          "value": 4904700.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.13,
+          "yoy": -4.2
+        },
+        {
+          "period": "2016-06",
+          "value": 4923000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.37,
+          "yoy": -2.16
+        },
+        {
+          "period": "2016-07",
+          "value": 4898500.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.5,
+          "yoy": -2.4
+        },
+        {
+          "period": "2016-08",
+          "value": 4872900.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.52,
+          "yoy": -3.07
+        },
+        {
+          "period": "2016-09",
+          "value": 4783600.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -1.83,
+          "yoy": -2.42
+        },
+        {
+          "period": "2016-10",
+          "value": 4870300.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 1.81,
+          "yoy": -0.33
+        },
+        {
+          "period": "2016-11",
+          "value": 4782700.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -1.8,
+          "yoy": -2.25
+        },
+        {
+          "period": "2016-12",
+          "value": 4689100.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -1.96,
+          "yoy": -3.26
+        },
+        {
+          "period": "2017-01",
+          "value": 4804200.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 2.45,
+          "yoy": -2.19
+        },
+        {
+          "period": "2017-02",
+          "value": 4811700.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.16,
+          "yoy": -2.58
+        },
+        {
+          "period": "2017-03",
+          "value": 4744100.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -1.4,
+          "yoy": -2.45
+        },
+        {
+          "period": "2017-04",
+          "value": 4686100.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -1.22,
+          "yoy": -4.34
+        },
+        {
+          "period": "2017-05",
+          "value": 4811400.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 2.67,
+          "yoy": -1.9
+        },
+        {
+          "period": "2017-06",
+          "value": 4939200.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 2.66,
+          "yoy": 0.33
+        },
+        {
+          "period": "2017-07",
+          "value": 4929700.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.19,
+          "yoy": 0.64
+        },
+        {
+          "period": "2017-08",
+          "value": 4876600.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -1.08,
+          "yoy": 0.08
+        },
+        {
+          "period": "2017-09",
+          "value": 4881500.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.1,
+          "yoy": 2.05
+        },
+        {
+          "period": "2017-10",
+          "value": 4816300.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -1.34,
+          "yoy": -1.11
+        },
+        {
+          "period": "2017-11",
+          "value": 4859000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.89,
+          "yoy": 1.6
+        },
+        {
+          "period": "2017-12",
+          "value": 4739000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -2.47,
+          "yoy": 1.06
+        },
+        {
+          "period": "2018-01",
+          "value": 4940600.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 4.25,
+          "yoy": 2.84
+        },
+        {
+          "period": "2018-02",
+          "value": 5003100.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 1.27,
+          "yoy": 3.98
+        },
+        {
+          "period": "2018-03",
+          "value": 4915900.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -1.74,
+          "yoy": 3.62
+        },
+        {
+          "period": "2018-04",
+          "value": 4904300.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.24,
+          "yoy": 4.66
+        },
+        {
+          "period": "2018-05",
+          "value": 5046800.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 2.91,
+          "yoy": 4.89
+        },
+        {
+          "period": "2018-06",
+          "value": 4984300.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -1.24,
+          "yoy": 0.91
+        },
+        {
+          "period": "2018-07",
+          "value": 4941600.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.86,
+          "yoy": 0.24
+        },
+        {
+          "period": "2018-08",
+          "value": 4912600.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.59,
+          "yoy": 0.74
+        },
+        {
+          "period": "2018-09",
+          "value": 4841400.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -1.45,
+          "yoy": -0.82
+        },
+        {
+          "period": "2018-10",
+          "value": 4900000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 1.21,
+          "yoy": 1.74
+        },
+        {
+          "period": "2018-11",
+          "value": 4989400.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 1.82,
+          "yoy": 2.68
+        },
+        {
+          "period": "2018-12",
+          "value": 4920400.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -1.38,
+          "yoy": 3.83
+        },
+        {
+          "period": "2019-01",
+          "value": 5155700.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 4.78,
+          "yoy": 4.35
+        },
+        {
+          "period": "2019-02",
+          "value": 5195900.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.78,
+          "yoy": 3.85
+        },
+        {
+          "period": "2019-03",
+          "value": 4713400.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -9.29,
+          "yoy": -4.12
+        },
+        {
+          "period": "2019-04",
+          "value": 5058900.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 7.33,
+          "yoy": 3.15
+        },
+        {
+          "period": "2019-05",
+          "value": 5181400.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 2.42,
+          "yoy": 2.67
+        },
+        {
+          "period": "2019-06",
+          "value": 5199300.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.35,
+          "yoy": 4.31
+        },
+        {
+          "period": "2019-07",
+          "value": 5167800.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.61,
+          "yoy": 4.58
+        },
+        {
+          "period": "2019-08",
+          "value": 5227100.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 1.15,
+          "yoy": 6.4
+        },
+        {
+          "period": "2019-09",
+          "value": 5159300.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -1.3,
+          "yoy": 6.57
+        },
+        {
+          "period": "2019-10",
+          "value": 5168300.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.17,
+          "yoy": 5.48
+        },
+        {
+          "period": "2019-11",
+          "value": 5225100.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 1.1,
+          "yoy": 4.72
+        },
+        {
+          "period": "2019-12",
+          "value": 5172600.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -1.0,
+          "yoy": 5.13
+        },
+        {
+          "period": "2020-01",
+          "value": 5254200.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 1.58,
+          "yoy": 1.91
+        },
+        {
+          "period": "2020-02",
+          "value": 5210600.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.83,
+          "yoy": 0.28
+        },
+        {
+          "period": "2020-03",
+          "value": 5158500.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -1.0,
+          "yoy": 9.44
+        },
+        {
+          "period": "2020-04",
+          "value": 5252400.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 1.82,
+          "yoy": 3.82
+        },
+        {
+          "period": "2020-05",
+          "value": 5503000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 4.77,
+          "yoy": 6.21
+        },
+        {
+          "period": "2020-06",
+          "value": 5479300.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.43,
+          "yoy": 5.39
+        },
+        {
+          "period": "2020-07",
+          "value": 5384500.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -1.73,
+          "yoy": 4.19
+        },
+        {
+          "period": "2020-08",
+          "value": 5341800.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.79,
+          "yoy": 2.19
+        },
+        {
+          "period": "2020-09",
+          "value": 5325900.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.3,
+          "yoy": 3.23
+        },
+        {
+          "period": "2020-10",
+          "value": 5334200.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.16,
+          "yoy": 3.21
+        },
+        {
+          "period": "2020-11",
+          "value": 5206800.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -2.39,
+          "yoy": -0.35
+        },
+        {
+          "period": "2020-12",
+          "value": 5139800.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -1.29,
+          "yoy": -0.63
+        },
+        {
+          "period": "2021-01",
+          "value": 5276300.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 2.66,
+          "yoy": 0.42
+        },
+        {
+          "period": "2021-02",
+          "value": 5198400.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -1.48,
+          "yoy": -0.23
+        },
+        {
+          "period": "2021-03",
+          "value": 5103500.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -1.83,
+          "yoy": -1.07
+        },
+        {
+          "period": "2021-04",
+          "value": 5046000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -1.13,
+          "yoy": -3.93
+        },
+        {
+          "period": "2021-05",
+          "value": 5118000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 1.43,
+          "yoy": -7.0
+        },
+        {
+          "period": "2021-06",
+          "value": 5127600.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.19,
+          "yoy": -6.42
+        },
+        {
+          "period": "2021-07",
+          "value": 5101618.85,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.51,
+          "yoy": -5.25
+        },
+        {
+          "period": "2021-08",
+          "value": 5183900.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 1.61,
+          "yoy": -2.96
+        },
+        {
+          "period": "2021-09",
+          "value": 5216100.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.62,
+          "yoy": -2.06
+        },
+        {
+          "period": "2021-10",
+          "value": 5189100.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.52,
+          "yoy": -2.72
+        },
+        {
+          "period": "2021-11",
+          "value": 5215900.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.52,
+          "yoy": 0.17
+        },
+        {
+          "period": "2021-12",
+          "value": 5075200.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -2.7,
+          "yoy": -1.26
+        },
+        {
+          "period": "2022-01",
+          "value": 5187100.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 2.2,
+          "yoy": -1.69
+        },
+        {
+          "period": "2022-02",
+          "value": 5233200.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.89,
+          "yoy": 0.67
+        },
+        {
+          "period": "2022-03",
+          "value": 5199600.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.64,
+          "yoy": 1.88
+        },
+        {
+          "period": "2022-04",
+          "value": 5182300.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.33,
+          "yoy": 2.7
+        },
+        {
+          "period": "2022-05",
+          "value": 5263400.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 1.56,
+          "yoy": 2.84
+        },
+        {
+          "period": "2022-06",
+          "value": 5308000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.85,
+          "yoy": 3.52
+        },
+        {
+          "period": "2022-07",
+          "value": 5463400.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 2.93,
+          "yoy": 7.09
+        },
+        {
+          "period": "2022-08",
+          "value": 5518000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 1.0,
+          "yoy": 6.44
+        },
+        {
+          "period": "2022-09",
+          "value": 5509400.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.16,
+          "yoy": 5.62
+        },
+        {
+          "period": "2022-10",
+          "value": 5512400.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.05,
+          "yoy": 6.23
+        },
+        {
+          "period": "2022-11",
+          "value": 5512000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.01,
+          "yoy": 5.68
+        },
+        {
+          "period": "2022-12",
+          "value": 5415500.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -1.75,
+          "yoy": 6.71
+        },
+        {
+          "period": "2023-01",
+          "value": 5516100.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 1.86,
+          "yoy": 6.34
+        },
+        {
+          "period": "2023-02",
+          "value": 5525400.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.17,
+          "yoy": 5.58
+        },
+        {
+          "period": "2023-03",
+          "value": 5455300.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -1.27,
+          "yoy": 4.92
+        },
+        {
+          "period": "2023-04",
+          "value": 5397000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -1.07,
+          "yoy": 4.14
+        },
+        {
+          "period": "2023-05",
+          "value": 5444900.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.89,
+          "yoy": 3.45
+        },
+        {
+          "period": "2023-06",
+          "value": 5354900.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -1.65,
+          "yoy": 0.88
+        },
+        {
+          "period": "2023-07",
+          "value": 5391700.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.69,
+          "yoy": -1.31
+        },
+        {
+          "period": "2023-08",
+          "value": 5293200.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -1.83,
+          "yoy": -4.07
+        },
+        {
+          "period": "2023-09",
+          "value": 5242500.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.96,
+          "yoy": -4.84
+        },
+        {
+          "period": "2023-10",
+          "value": 5201700.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.78,
+          "yoy": -5.64
+        },
+        {
+          "period": "2023-11",
+          "value": 5144900.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -1.09,
+          "yoy": -6.66
+        },
+        {
+          "period": "2023-12",
+          "value": 5101400.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.85,
+          "yoy": -5.8
+        },
+        {
+          "period": "2024-01",
+          "value": 5166200.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 1.27,
+          "yoy": -6.34
+        },
+        {
+          "period": "2024-02",
+          "value": 5182900.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.32,
+          "yoy": -6.2
+        },
+        {
+          "period": "2024-03",
+          "value": 5238600.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 1.07,
+          "yoy": -3.97
+        },
+        {
+          "period": "2024-04",
+          "value": 5006500.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -4.43,
+          "yoy": -7.24
+        },
+        {
+          "period": "2024-05",
+          "value": 5042200.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.71,
+          "yoy": -7.4
+        },
+        {
+          "period": "2024-06",
+          "value": 5060200.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.36,
+          "yoy": -5.5
+        },
+        {
+          "period": "2024-07",
+          "value": 4715600.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -6.81,
+          "yoy": -12.54
+        },
+        {
+          "period": "2024-08",
+          "value": 5040200.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 6.88,
+          "yoy": -4.78
+        },
+        {
+          "period": "2024-09",
+          "value": 5002300.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.75,
+          "yoy": -4.58
+        },
+        {
+          "period": "2024-10",
+          "value": 5064800.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 1.25,
+          "yoy": -2.63
+        },
+        {
+          "period": "2024-11",
+          "value": 4980200.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -1.67,
+          "yoy": -3.2
+        },
+        {
+          "period": "2024-12",
+          "value": 4943700.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.73,
+          "yoy": -3.09
+        },
+        {
+          "period": "2025-01",
+          "value": 5039500.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 1.94,
+          "yoy": -2.45
+        },
+        {
+          "period": "2025-02",
+          "value": 5005800.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.67,
+          "yoy": -3.42
+        },
+        {
+          "period": "2025-03",
+          "value": 5665200.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 13.17,
+          "yoy": 8.14
+        },
+        {
+          "period": "2025-04",
+          "value": 5067200.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -10.56,
+          "yoy": 1.21
+        },
+        {
+          "period": "2025-05",
+          "value": 5146400.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 1.56,
+          "yoy": 2.07
+        },
+        {
+          "period": "2025-06",
+          "value": 5166100.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.38,
+          "yoy": 2.09
+        },
+        {
+          "period": "2025-07",
+          "value": 4865200.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -5.82,
+          "yoy": 3.17
+        },
+        {
+          "period": "2025-08",
+          "value": 5239200.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 7.69,
+          "yoy": 3.95
+        },
+        {
+          "period": "2025-09",
+          "value": 5088900.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -2.87,
+          "yoy": 1.73
+        },
+        {
+          "period": "2025-10",
+          "value": 5151200.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 1.22,
+          "yoy": 1.71
+        },
+        {
+          "period": "2025-11",
+          "value": 5133200.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.35,
+          "yoy": 3.07
+        },
+        {
+          "period": "2025-12",
+          "value": 5087100.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.9,
+          "yoy": 2.9
+        }
+      ],
+      "name_ja": "保管残高"
+    },
+    {
+      "metric_id": "warehouse_turnover",
+      "unit": "pct",
+      "observations": [
+        {
+          "period": "2015-01",
+          "value": 43.3,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）"
+        },
+        {
+          "period": "2015-02",
+          "value": 42.4,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -2.08
+        },
+        {
+          "period": "2015-03",
+          "value": 46.7,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 10.14
+        },
+        {
+          "period": "2015-04",
+          "value": 47.7,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 2.14
+        },
+        {
+          "period": "2015-05",
+          "value": 41.9,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -12.16
+        },
+        {
+          "period": "2015-06",
+          "value": 47.4,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 13.13
+        },
+        {
+          "period": "2015-07",
+          "value": 48.9,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 3.16
+        },
+        {
+          "period": "2015-08",
+          "value": 44.4,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -9.2
+        },
+        {
+          "period": "2015-09",
+          "value": 45.8,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 3.15
+        },
+        {
+          "period": "2015-10",
+          "value": 47.9,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 4.59
+        },
+        {
+          "period": "2015-11",
+          "value": 44.5,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -7.1
+        },
+        {
+          "period": "2015-12",
+          "value": 49.1,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 10.34
+        },
+        {
+          "period": "2016-01",
+          "value": 39.8,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -18.94,
+          "yoy": -8.08
+        },
+        {
+          "period": "2016-02",
+          "value": 43.3,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 8.79,
+          "yoy": 2.12
+        },
+        {
+          "period": "2016-03",
+          "value": 48.2,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 11.32,
+          "yoy": 3.21
+        },
+        {
+          "period": "2016-04",
+          "value": 47.1,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -2.28,
+          "yoy": -1.26
+        },
+        {
+          "period": "2016-05",
+          "value": 44.8,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -4.88,
+          "yoy": 6.92
+        },
+        {
+          "period": "2016-06",
+          "value": 47.3,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 5.58,
+          "yoy": -0.21
+        },
+        {
+          "period": "2016-07",
+          "value": 45.4,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -4.02,
+          "yoy": -7.16
+        },
+        {
+          "period": "2016-08",
+          "value": 44.9,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -1.1,
+          "yoy": 1.13
+        },
+        {
+          "period": "2016-09",
+          "value": 46.4,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 3.34,
+          "yoy": 1.31
+        },
+        {
+          "period": "2016-10",
+          "value": 47.2,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 1.72,
+          "yoy": -1.46
+        },
+        {
+          "period": "2016-11",
+          "value": 48.6,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 2.97,
+          "yoy": 9.21
+        },
+        {
+          "period": "2016-12",
+          "value": 49.7,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 2.26,
+          "yoy": 1.22
+        },
+        {
+          "period": "2017-01",
+          "value": 41.5,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -16.5,
+          "yoy": 4.27
+        },
+        {
+          "period": "2017-02",
+          "value": 43.2,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 4.1,
+          "yoy": -0.23
+        },
+        {
+          "period": "2017-03",
+          "value": 51.6,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 19.44,
+          "yoy": 7.05
+        },
+        {
+          "period": "2017-04",
+          "value": 49.1,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -4.84,
+          "yoy": 4.25
+        },
+        {
+          "period": "2017-05",
+          "value": 47.2,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -3.87,
+          "yoy": 5.36
+        },
+        {
+          "period": "2017-06",
+          "value": 51.4,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 8.9,
+          "yoy": 8.67
+        },
+        {
+          "period": "2017-07",
+          "value": 50.2,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -2.33,
+          "yoy": 10.57
+        },
+        {
+          "period": "2017-08",
+          "value": 48.7,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -2.99,
+          "yoy": 8.46
+        },
+        {
+          "period": "2017-09",
+          "value": 48.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -1.44,
+          "yoy": 3.45
+        },
+        {
+          "period": "2017-10",
+          "value": 48.1,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.21,
+          "yoy": 1.91
+        },
+        {
+          "period": "2017-11",
+          "value": 48.2,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.21,
+          "yoy": -0.82
+        },
+        {
+          "period": "2017-12",
+          "value": 51.4,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 6.64,
+          "yoy": 3.42
+        },
+        {
+          "period": "2018-01",
+          "value": 42.2,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -17.9,
+          "yoy": 1.69
+        },
+        {
+          "period": "2018-02",
+          "value": 43.7,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 3.55,
+          "yoy": 1.16
+        },
+        {
+          "period": "2018-03",
+          "value": 50.4,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 15.33,
+          "yoy": -2.33
+        },
+        {
+          "period": "2018-04",
+          "value": 49.2,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -2.38,
+          "yoy": 0.2
+        },
+        {
+          "period": "2018-05",
+          "value": 46.6,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -5.28,
+          "yoy": -1.27
+        },
+        {
+          "period": "2018-06",
+          "value": 47.9,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 2.79,
+          "yoy": -6.81
+        },
+        {
+          "period": "2018-07",
+          "value": 50.1,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 4.59,
+          "yoy": -0.2
+        },
+        {
+          "period": "2018-08",
+          "value": 49.2,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -1.8,
+          "yoy": 1.03
+        },
+        {
+          "period": "2018-09",
+          "value": 46.8,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -4.88,
+          "yoy": -2.5
+        },
+        {
+          "period": "2018-10",
+          "value": 51.6,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 10.26,
+          "yoy": 7.28
+        },
+        {
+          "period": "2018-11",
+          "value": 55.9,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 8.33,
+          "yoy": 15.98
+        },
+        {
+          "period": "2018-12",
+          "value": 51.1,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -8.59,
+          "yoy": -0.58
+        },
+        {
+          "period": "2019-01",
+          "value": 44.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -13.89,
+          "yoy": 4.27
+        },
+        {
+          "period": "2019-02",
+          "value": 42.4,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -3.64,
+          "yoy": -2.97
+        },
+        {
+          "period": "2019-03",
+          "value": 52.8,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 24.53,
+          "yoy": 4.76
+        },
+        {
+          "period": "2019-04",
+          "value": 49.2,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -6.82,
+          "yoy": 0.0
+        },
+        {
+          "period": "2019-05",
+          "value": 45.9,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -6.71,
+          "yoy": -1.5
+        },
+        {
+          "period": "2019-06",
+          "value": 53.8,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 17.21,
+          "yoy": 12.32
+        },
+        {
+          "period": "2019-07",
+          "value": 51.6,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -4.09,
+          "yoy": 2.99
+        },
+        {
+          "period": "2019-08",
+          "value": 44.5,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -13.76,
+          "yoy": -9.55
+        },
+        {
+          "period": "2019-09",
+          "value": 47.1,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 5.84,
+          "yoy": 0.64
+        },
+        {
+          "period": "2019-10",
+          "value": 53.2,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 12.95,
+          "yoy": 3.1
+        },
+        {
+          "period": "2019-11",
+          "value": 49.9,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -6.2,
+          "yoy": -10.73
+        },
+        {
+          "period": "2019-12",
+          "value": 52.2,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 4.61,
+          "yoy": 2.15
+        },
+        {
+          "period": "2020-01",
+          "value": 46.2,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -11.49,
+          "yoy": 5.0
+        },
+        {
+          "period": "2020-02",
+          "value": 43.4,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -6.06,
+          "yoy": 2.36
+        },
+        {
+          "period": "2020-03",
+          "value": 49.4,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 13.82,
+          "yoy": -6.44
+        },
+        {
+          "period": "2020-04",
+          "value": 46.5,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -5.87,
+          "yoy": -5.49
+        },
+        {
+          "period": "2020-05",
+          "value": 37.8,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -18.71,
+          "yoy": -17.65
+        },
+        {
+          "period": "2020-06",
+          "value": 43.7,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 15.61,
+          "yoy": -18.77
+        },
+        {
+          "period": "2020-07",
+          "value": 46.8,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 7.09,
+          "yoy": -9.3
+        },
+        {
+          "period": "2020-08",
+          "value": 42.9,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -8.33,
+          "yoy": -3.6
+        },
+        {
+          "period": "2020-09",
+          "value": 47.7,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 11.19,
+          "yoy": 1.27
+        },
+        {
+          "period": "2020-10",
+          "value": 48.6,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 1.89,
+          "yoy": -8.65
+        },
+        {
+          "period": "2020-11",
+          "value": 45.3,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -6.79,
+          "yoy": -9.22
+        },
+        {
+          "period": "2020-12",
+          "value": 50.1,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 10.6,
+          "yoy": -4.02
+        },
+        {
+          "period": "2021-01",
+          "value": 41.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -18.16,
+          "yoy": -11.26
+        },
+        {
+          "period": "2021-02",
+          "value": 42.9,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 4.63,
+          "yoy": -1.15
+        },
+        {
+          "period": "2021-03",
+          "value": 50.6,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 17.95,
+          "yoy": 2.43
+        },
+        {
+          "period": "2021-04",
+          "value": 48.9,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -3.36,
+          "yoy": 5.16
+        },
+        {
+          "period": "2021-05",
+          "value": 43.6,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -10.84,
+          "yoy": 15.34
+        },
+        {
+          "period": "2021-06",
+          "value": 49.4,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 13.3,
+          "yoy": 13.04
+        },
+        {
+          "period": "2021-07",
+          "value": 48.9,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -1.01,
+          "yoy": 4.49
+        },
+        {
+          "period": "2021-08",
+          "value": 43.5,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -11.04,
+          "yoy": 1.4
+        },
+        {
+          "period": "2021-09",
+          "value": 44.5,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 2.3,
+          "yoy": -6.71
+        },
+        {
+          "period": "2021-10",
+          "value": 44.6,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.22,
+          "yoy": -8.23
+        },
+        {
+          "period": "2021-11",
+          "value": 46.8,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 4.93,
+          "yoy": 3.31
+        },
+        {
+          "period": "2021-12",
+          "value": 49.7,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 6.2,
+          "yoy": -0.8
+        },
+        {
+          "period": "2022-01",
+          "value": 41.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -17.51,
+          "yoy": 0.0
+        },
+        {
+          "period": "2022-02",
+          "value": 40.3,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -1.71,
+          "yoy": -6.06
+        },
+        {
+          "period": "2022-03",
+          "value": 48.1,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 19.35,
+          "yoy": -4.94
+        },
+        {
+          "period": "2022-04",
+          "value": 47.3,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -1.66,
+          "yoy": -3.27
+        },
+        {
+          "period": "2022-05",
+          "value": 41.9,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -11.42,
+          "yoy": -3.9
+        },
+        {
+          "period": "2022-06",
+          "value": 47.2,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 12.65,
+          "yoy": -4.45
+        },
+        {
+          "period": "2022-07",
+          "value": 47.4,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.42,
+          "yoy": -3.07
+        },
+        {
+          "period": "2022-08",
+          "value": 45.2,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -4.64,
+          "yoy": 3.91
+        },
+        {
+          "period": "2022-09",
+          "value": 44.3,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -1.99,
+          "yoy": -0.45
+        },
+        {
+          "period": "2022-10",
+          "value": 42.3,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -4.51,
+          "yoy": -5.16
+        },
+        {
+          "period": "2022-11",
+          "value": 42.7,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.95,
+          "yoy": -8.76
+        },
+        {
+          "period": "2022-12",
+          "value": 44.2,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 3.51,
+          "yoy": -11.07
+        },
+        {
+          "period": "2023-01",
+          "value": 35.9,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -18.78,
+          "yoy": -12.44
+        },
+        {
+          "period": "2023-02",
+          "value": 38.9,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 8.36,
+          "yoy": -3.47
+        },
+        {
+          "period": "2023-03",
+          "value": 45.2,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 16.2,
+          "yoy": -6.03
+        },
+        {
+          "period": "2023-04",
+          "value": 42.9,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -5.09,
+          "yoy": -9.3
+        },
+        {
+          "period": "2023-05",
+          "value": 40.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -6.76,
+          "yoy": -4.53
+        },
+        {
+          "period": "2023-06",
+          "value": 44.9,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 12.25,
+          "yoy": -4.87
+        },
+        {
+          "period": "2023-07",
+          "value": 47.9,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 6.68,
+          "yoy": 1.05
+        },
+        {
+          "period": "2023-08",
+          "value": 42.9,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -10.44,
+          "yoy": -5.09
+        },
+        {
+          "period": "2023-09",
+          "value": 44.3,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 3.26,
+          "yoy": 0.0
+        },
+        {
+          "period": "2023-10",
+          "value": 45.4,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 2.48,
+          "yoy": 7.33
+        },
+        {
+          "period": "2023-11",
+          "value": 45.5,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.22,
+          "yoy": 6.56
+        },
+        {
+          "period": "2023-12",
+          "value": 47.5,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 4.4,
+          "yoy": 7.47
+        },
+        {
+          "period": "2024-01",
+          "value": 37.3,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -21.47,
+          "yoy": 3.9
+        },
+        {
+          "period": "2024-02",
+          "value": 41.4,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 10.99,
+          "yoy": 6.43
+        },
+        {
+          "period": "2024-03",
+          "value": 43.4,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 4.83,
+          "yoy": -3.98
+        },
+        {
+          "period": "2024-04",
+          "value": 49.2,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 13.36,
+          "yoy": 14.69
+        },
+        {
+          "period": "2024-05",
+          "value": 47.4,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -3.66,
+          "yoy": 18.5
+        },
+        {
+          "period": "2024-06",
+          "value": 47.3,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.21,
+          "yoy": 5.35
+        },
+        {
+          "period": "2024-07",
+          "value": 51.3,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 8.46,
+          "yoy": 7.1
+        },
+        {
+          "period": "2024-08",
+          "value": 42.7,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -16.76,
+          "yoy": -0.47
+        },
+        {
+          "period": "2024-09",
+          "value": 49.5,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 15.93,
+          "yoy": 11.74
+        },
+        {
+          "period": "2024-10",
+          "value": 49.6,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.2,
+          "yoy": 9.25
+        },
+        {
+          "period": "2024-11",
+          "value": 53.7,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 8.27,
+          "yoy": 18.02
+        },
+        {
+          "period": "2024-12",
+          "value": 50.7,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -5.59,
+          "yoy": 6.74
+        },
+        {
+          "period": "2025-01",
+          "value": 43.8,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -13.61,
+          "yoy": 17.43
+        },
+        {
+          "period": "2025-02",
+          "value": 42.4,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -3.2,
+          "yoy": 2.42
+        },
+        {
+          "period": "2025-03",
+          "value": 52.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 22.64,
+          "yoy": 19.82
+        },
+        {
+          "period": "2025-04",
+          "value": 49.4,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -5.0,
+          "yoy": 0.41
+        },
+        {
+          "period": "2025-05",
+          "value": 45.1,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -8.7,
+          "yoy": -4.85
+        },
+        {
+          "period": "2025-06",
+          "value": 47.9,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 6.21,
+          "yoy": 1.27
+        },
+        {
+          "period": "2025-07",
+          "value": 54.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 12.73,
+          "yoy": 5.26
+        },
+        {
+          "period": "2025-08",
+          "value": 44.5,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -17.59,
+          "yoy": 4.22
+        },
+        {
+          "period": "2025-09",
+          "value": 48.5,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 8.99,
+          "yoy": -2.02
+        },
+        {
+          "period": "2025-10",
+          "value": 49.4,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 1.86,
+          "yoy": -0.4
+        },
+        {
+          "period": "2025-11",
+          "value": 43.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -12.96,
+          "yoy": -19.93
+        },
+        {
+          "period": "2025-12",
+          "value": 50.3,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 16.98,
+          "yoy": -0.79
+        }
+      ],
+      "name_ja": "貨物回転率"
+    },
+    {
+      "metric_id": "warehouse_utilization",
+      "name_ja": "倉庫利用率",
+      "unit": "pct",
+      "observations": [
+        {
+          "period": "2015-01",
+          "value": 79.6,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）"
+        },
+        {
+          "period": "2015-02",
+          "value": 79.9,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.38
+        },
+        {
+          "period": "2015-03",
+          "value": 80.1,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.25
+        },
+        {
+          "period": "2015-04",
+          "value": 79.8,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.37
+        },
+        {
+          "period": "2015-05",
+          "value": 79.9,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.13
+        },
+        {
+          "period": "2015-06",
+          "value": 80.3,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.5
+        },
+        {
+          "period": "2015-07",
+          "value": 80.2,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.12
+        },
+        {
+          "period": "2015-08",
+          "value": 80.2,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.0
+        },
+        {
+          "period": "2015-09",
+          "value": 79.7,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.62
+        },
+        {
+          "period": "2015-10",
+          "value": 80.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.38
+        },
+        {
+          "period": "2015-11",
+          "value": 80.1,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.12
+        },
+        {
+          "period": "2015-12",
+          "value": 79.8,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.37
+        },
+        {
+          "period": "2016-01",
+          "value": 79.8,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.0,
+          "yoy": 0.25
+        },
+        {
+          "period": "2016-02",
+          "value": 80.2,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.5,
+          "yoy": 0.38
+        },
+        {
+          "period": "2016-03",
+          "value": 80.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.25,
+          "yoy": -0.12
+        },
+        {
+          "period": "2016-04",
+          "value": 80.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.0,
+          "yoy": 0.25
+        },
+        {
+          "period": "2016-05",
+          "value": 80.2,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.25,
+          "yoy": 0.38
+        },
+        {
+          "period": "2016-06",
+          "value": 80.3,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.12,
+          "yoy": 0.0
+        },
+        {
+          "period": "2016-07",
+          "value": 80.1,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.25,
+          "yoy": -0.12
+        },
+        {
+          "period": "2016-08",
+          "value": 80.2,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.12,
+          "yoy": 0.0
+        },
+        {
+          "period": "2016-09",
+          "value": 80.1,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.12,
+          "yoy": 0.5
+        },
+        {
+          "period": "2016-10",
+          "value": 79.9,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.25,
+          "yoy": -0.12
+        },
+        {
+          "period": "2016-11",
+          "value": 80.3,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.5,
+          "yoy": 0.25
+        },
+        {
+          "period": "2016-12",
+          "value": 80.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.37,
+          "yoy": 0.25
+        },
+        {
+          "period": "2017-01",
+          "value": 80.1,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.12,
+          "yoy": 0.38
+        },
+        {
+          "period": "2017-02",
+          "value": 80.3,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.25,
+          "yoy": 0.12
+        },
+        {
+          "period": "2017-03",
+          "value": 80.1,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.25,
+          "yoy": 0.12
+        },
+        {
+          "period": "2017-04",
+          "value": 80.1,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.0,
+          "yoy": 0.12
+        },
+        {
+          "period": "2017-05",
+          "value": 80.6,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.62,
+          "yoy": 0.5
+        },
+        {
+          "period": "2017-06",
+          "value": 80.5,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.12,
+          "yoy": 0.25
+        },
+        {
+          "period": "2017-07",
+          "value": 80.5,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.0,
+          "yoy": 0.5
+        },
+        {
+          "period": "2017-08",
+          "value": 80.8,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.37,
+          "yoy": 0.75
+        },
+        {
+          "period": "2017-09",
+          "value": 81.5,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.87,
+          "yoy": 1.75
+        },
+        {
+          "period": "2017-10",
+          "value": 80.2,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -1.6,
+          "yoy": 0.38
+        },
+        {
+          "period": "2017-11",
+          "value": 80.3,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.12,
+          "yoy": 0.0
+        },
+        {
+          "period": "2017-12",
+          "value": 80.6,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.37,
+          "yoy": 0.75
+        },
+        {
+          "period": "2018-01",
+          "value": 80.9,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.37,
+          "yoy": 1.0
+        },
+        {
+          "period": "2018-02",
+          "value": 81.3,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.49,
+          "yoy": 1.25
+        },
+        {
+          "period": "2018-03",
+          "value": 80.8,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.62,
+          "yoy": 0.87
+        },
+        {
+          "period": "2018-04",
+          "value": 80.5,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.37,
+          "yoy": 0.5
+        },
+        {
+          "period": "2018-05",
+          "value": 80.7,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.25,
+          "yoy": 0.12
+        },
+        {
+          "period": "2018-06",
+          "value": 80.8,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.12,
+          "yoy": 0.37
+        },
+        {
+          "period": "2018-07",
+          "value": 80.5,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.37,
+          "yoy": 0.0
+        },
+        {
+          "period": "2018-08",
+          "value": 80.8,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.37,
+          "yoy": 0.0
+        },
+        {
+          "period": "2018-09",
+          "value": 81.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.25,
+          "yoy": -0.61
+        },
+        {
+          "period": "2018-10",
+          "value": 81.3,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.37,
+          "yoy": 1.37
+        },
+        {
+          "period": "2018-11",
+          "value": 81.4,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.12,
+          "yoy": 1.37
+        },
+        {
+          "period": "2018-12",
+          "value": 81.4,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.0,
+          "yoy": 0.99
+        },
+        {
+          "period": "2019-01",
+          "value": 82.1,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.86,
+          "yoy": 1.48
+        },
+        {
+          "period": "2019-02",
+          "value": 82.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.12,
+          "yoy": 0.86
+        },
+        {
+          "period": "2019-03",
+          "value": 79.3,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -3.29,
+          "yoy": -1.86
+        },
+        {
+          "period": "2019-04",
+          "value": 80.5,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 1.51,
+          "yoy": 0.0
+        },
+        {
+          "period": "2019-05",
+          "value": 82.6,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 2.61,
+          "yoy": 2.35
+        },
+        {
+          "period": "2019-06",
+          "value": 82.6,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.0,
+          "yoy": 2.23
+        },
+        {
+          "period": "2019-07",
+          "value": 81.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -1.94,
+          "yoy": 0.62
+        },
+        {
+          "period": "2019-08",
+          "value": 83.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 2.47,
+          "yoy": 2.72
+        },
+        {
+          "period": "2019-09",
+          "value": 82.2,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.96,
+          "yoy": 1.48
+        },
+        {
+          "period": "2019-10",
+          "value": 82.3,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.12,
+          "yoy": 1.23
+        },
+        {
+          "period": "2019-11",
+          "value": 82.2,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.12,
+          "yoy": 0.98
+        },
+        {
+          "period": "2019-12",
+          "value": 81.7,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.61,
+          "yoy": 0.37
+        },
+        {
+          "period": "2020-01",
+          "value": 82.2,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.61,
+          "yoy": 0.12
+        },
+        {
+          "period": "2020-02",
+          "value": 81.8,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.49,
+          "yoy": -0.24
+        },
+        {
+          "period": "2020-03",
+          "value": 81.5,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.37,
+          "yoy": 2.77
+        },
+        {
+          "period": "2020-04",
+          "value": 82.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.61,
+          "yoy": 1.86
+        },
+        {
+          "period": "2020-05",
+          "value": 82.5,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.61,
+          "yoy": -0.12
+        },
+        {
+          "period": "2020-06",
+          "value": 82.5,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.0,
+          "yoy": -0.12
+        },
+        {
+          "period": "2020-07",
+          "value": 86.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 4.24,
+          "yoy": 6.17
+        },
+        {
+          "period": "2020-08",
+          "value": 82.2,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -4.42,
+          "yoy": -0.96
+        },
+        {
+          "period": "2020-09",
+          "value": 82.1,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.12,
+          "yoy": -0.12
+        },
+        {
+          "period": "2020-10",
+          "value": 81.8,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.37,
+          "yoy": -0.61
+        },
+        {
+          "period": "2020-11",
+          "value": 81.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.98,
+          "yoy": -1.46
+        },
+        {
+          "period": "2020-12",
+          "value": 77.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -4.94,
+          "yoy": -5.75
+        },
+        {
+          "period": "2021-01",
+          "value": 76.7,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.39,
+          "yoy": -6.69
+        },
+        {
+          "period": "2021-02",
+          "value": 77.8,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 1.43,
+          "yoy": -4.89
+        },
+        {
+          "period": "2021-03",
+          "value": 77.2,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.77,
+          "yoy": -5.28
+        },
+        {
+          "period": "2021-04",
+          "value": 79.9,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 3.5,
+          "yoy": -2.56
+        },
+        {
+          "period": "2021-05",
+          "value": 78.1,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -2.25,
+          "yoy": -5.33
+        },
+        {
+          "period": "2021-06",
+          "value": 78.1,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.0,
+          "yoy": -5.33
+        },
+        {
+          "period": "2021-07",
+          "value": 81.3,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 4.1,
+          "yoy": -5.47
+        },
+        {
+          "period": "2021-08",
+          "value": 77.6,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -4.55,
+          "yoy": -5.6
+        },
+        {
+          "period": "2021-09",
+          "value": 77.1,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.64,
+          "yoy": -6.09
+        },
+        {
+          "period": "2021-10",
+          "value": 77.5,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.52,
+          "yoy": -5.26
+        },
+        {
+          "period": "2021-11",
+          "value": 77.7,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.26,
+          "yoy": -4.07
+        },
+        {
+          "period": "2021-12",
+          "value": 77.5,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.26,
+          "yoy": 0.65
+        },
+        {
+          "period": "2022-01",
+          "value": 82.9,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 6.97,
+          "yoy": 8.08
+        },
+        {
+          "period": "2022-02",
+          "value": 81.7,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -1.45,
+          "yoy": 5.01
+        },
+        {
+          "period": "2022-03",
+          "value": 82.2,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.61,
+          "yoy": 6.48
+        },
+        {
+          "period": "2022-04",
+          "value": 82.3,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.12,
+          "yoy": 3.0
+        },
+        {
+          "period": "2022-05",
+          "value": 82.8,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.61,
+          "yoy": 6.02
+        },
+        {
+          "period": "2022-06",
+          "value": 82.1,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.85,
+          "yoy": 5.12
+        },
+        {
+          "period": "2022-07",
+          "value": 82.8,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.85,
+          "yoy": 1.85
+        },
+        {
+          "period": "2022-08",
+          "value": 82.6,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.24,
+          "yoy": 6.44
+        },
+        {
+          "period": "2022-09",
+          "value": 80.8,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -2.18,
+          "yoy": 4.8
+        },
+        {
+          "period": "2022-10",
+          "value": 82.5,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 2.1,
+          "yoy": 6.45
+        },
+        {
+          "period": "2022-11",
+          "value": 83.2,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.85,
+          "yoy": 7.08
+        },
+        {
+          "period": "2022-12",
+          "value": 82.4,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.96,
+          "yoy": 6.32
+        },
+        {
+          "period": "2023-01",
+          "value": 83.2,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.97,
+          "yoy": 0.36
+        },
+        {
+          "period": "2023-02",
+          "value": 83.5,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.36,
+          "yoy": 2.2
+        },
+        {
+          "period": "2023-03",
+          "value": 82.3,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -1.44,
+          "yoy": 0.12
+        },
+        {
+          "period": "2023-04",
+          "value": 82.4,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.12,
+          "yoy": 0.12
+        },
+        {
+          "period": "2023-05",
+          "value": 83.2,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.97,
+          "yoy": 0.48
+        },
+        {
+          "period": "2023-06",
+          "value": 82.9,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.36,
+          "yoy": 0.97
+        },
+        {
+          "period": "2023-07",
+          "value": 82.7,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.24,
+          "yoy": -0.12
+        },
+        {
+          "period": "2023-08",
+          "value": 82.7,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.0,
+          "yoy": 0.12
+        },
+        {
+          "period": "2023-09",
+          "value": 82.6,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.12,
+          "yoy": 2.23
+        },
+        {
+          "period": "2023-10",
+          "value": 82.9,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.36,
+          "yoy": 0.48
+        },
+        {
+          "period": "2023-11",
+          "value": 82.7,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.24,
+          "yoy": -0.6
+        },
+        {
+          "period": "2023-12",
+          "value": 82.2,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.6,
+          "yoy": -0.24
+        },
+        {
+          "period": "2024-01",
+          "value": 82.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.24,
+          "yoy": -1.44
+        },
+        {
+          "period": "2024-02",
+          "value": 82.5,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.61,
+          "yoy": -1.2
+        },
+        {
+          "period": "2024-03",
+          "value": 82.7,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.24,
+          "yoy": 0.49
+        },
+        {
+          "period": "2024-04",
+          "value": 82.1,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.73,
+          "yoy": -0.36
+        },
+        {
+          "period": "2024-05",
+          "value": 81.7,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.49,
+          "yoy": -1.8
+        },
+        {
+          "period": "2024-06",
+          "value": 81.7,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.0,
+          "yoy": -1.45
+        },
+        {
+          "period": "2024-07",
+          "value": 81.9,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.24,
+          "yoy": -0.97
+        },
+        {
+          "period": "2024-08",
+          "value": 81.3,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.73,
+          "yoy": -1.69
+        },
+        {
+          "period": "2024-09",
+          "value": 80.9,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.49,
+          "yoy": -2.06
+        },
+        {
+          "period": "2024-10",
+          "value": 81.9,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 1.24,
+          "yoy": -1.21
+        },
+        {
+          "period": "2024-11",
+          "value": 80.8,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -1.34,
+          "yoy": -2.3
+        },
+        {
+          "period": "2024-12",
+          "value": 81.6,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.99,
+          "yoy": -0.73
+        },
+        {
+          "period": "2025-01",
+          "value": 81.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.74,
+          "yoy": -1.22
+        },
+        {
+          "period": "2025-02",
+          "value": 79.7,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -1.6,
+          "yoy": -3.39
+        },
+        {
+          "period": "2025-03",
+          "value": 81.4,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 2.13,
+          "yoy": -1.57
+        },
+        {
+          "period": "2025-04",
+          "value": 81.4,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.0,
+          "yoy": -0.85
+        },
+        {
+          "period": "2025-05",
+          "value": 81.5,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.12,
+          "yoy": -0.24
+        },
+        {
+          "period": "2025-06",
+          "value": 81.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.61,
+          "yoy": -0.86
+        },
+        {
+          "period": "2025-07",
+          "value": 81.3,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.37,
+          "yoy": -0.73
+        },
+        {
+          "period": "2025-08",
+          "value": 81.7,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.49,
+          "yoy": 0.49
+        },
+        {
+          "period": "2025-09",
+          "value": 80.3,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -1.71,
+          "yoy": -0.74
+        },
+        {
+          "period": "2025-10",
+          "value": 81.2,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 1.12,
+          "yoy": -0.85
+        },
+        {
+          "period": "2025-11",
+          "value": 81.2,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.0,
+          "yoy": 0.5
+        },
+        {
+          "period": "2025-12",
+          "value": 82.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.99,
+          "yoy": 0.49
+        }
+      ]
+    },
+    {
+      "metric_id": "inventory_value",
+      "name_ja": "保管残高金額",
+      "unit": "JPY",
+      "observations": [
+        {
+          "period": "2015-01",
+          "value": 2228941400000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）"
+        },
+        {
+          "period": "2015-02",
+          "value": 2243586600000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.66
+        },
+        {
+          "period": "2015-03",
+          "value": 2104326900000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -6.21
+        },
+        {
+          "period": "2015-04",
+          "value": 2099823600000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.21
+        },
+        {
+          "period": "2015-05",
+          "value": 2135666600000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 1.71
+        },
+        {
+          "period": "2015-06",
+          "value": 2179521800000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 2.05
+        },
+        {
+          "period": "2015-07",
+          "value": 2242680900000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 2.9
+        },
+        {
+          "period": "2015-08",
+          "value": 2232606100000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.45
+        },
+        {
+          "period": "2015-09",
+          "value": 2199019200000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -1.5
+        },
+        {
+          "period": "2015-10",
+          "value": 2190518600000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.39
+        },
+        {
+          "period": "2015-11",
+          "value": 2227421800000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 1.68
+        },
+        {
+          "period": "2015-12",
+          "value": 2188779400000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -1.73
+        },
+        {
+          "period": "2016-01",
+          "value": 2204263000000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.71,
+          "yoy": -1.11
+        },
+        {
+          "period": "2016-02",
+          "value": 2227504900000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 1.05,
+          "yoy": -0.72
+        },
+        {
+          "period": "2016-03",
+          "value": 2179741000000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -2.14,
+          "yoy": 3.58
+        },
+        {
+          "period": "2016-04",
+          "value": 2186291900000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.3,
+          "yoy": 4.12
+        },
+        {
+          "period": "2016-05",
+          "value": 2232087100000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 2.09,
+          "yoy": 4.51
+        },
+        {
+          "period": "2016-06",
+          "value": 2267573500000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 1.59,
+          "yoy": 4.04
+        },
+        {
+          "period": "2016-07",
+          "value": 2339929100000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 3.19,
+          "yoy": 4.34
+        },
+        {
+          "period": "2016-08",
+          "value": 2279966800000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -2.56,
+          "yoy": 2.12
+        },
+        {
+          "period": "2016-09",
+          "value": 2235572700000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -1.95,
+          "yoy": 1.66
+        },
+        {
+          "period": "2016-10",
+          "value": 2232261700000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.15,
+          "yoy": 1.91
+        },
+        {
+          "period": "2016-11",
+          "value": 2222269500000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.45,
+          "yoy": -0.23
+        },
+        {
+          "period": "2016-12",
+          "value": 2208373600000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.63,
+          "yoy": 0.9
+        },
+        {
+          "period": "2017-01",
+          "value": 2252951600000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 2.02,
+          "yoy": 2.21
+        },
+        {
+          "period": "2017-02",
+          "value": 2268703900000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.7,
+          "yoy": 1.85
+        },
+        {
+          "period": "2017-03",
+          "value": 2225015000000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -1.93,
+          "yoy": 2.08
+        },
+        {
+          "period": "2017-04",
+          "value": 2217144800000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.35,
+          "yoy": 1.41
+        },
+        {
+          "period": "2017-05",
+          "value": 2269107900000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 2.34,
+          "yoy": 1.66
+        },
+        {
+          "period": "2017-06",
+          "value": 2293883100000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 1.09,
+          "yoy": 1.16
+        },
+        {
+          "period": "2017-07",
+          "value": 2406364600000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 4.9,
+          "yoy": 2.84
+        },
+        {
+          "period": "2017-08",
+          "value": 2416947300000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.44,
+          "yoy": 6.01
+        },
+        {
+          "period": "2017-09",
+          "value": 2442424800000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 1.05,
+          "yoy": 9.25
+        },
+        {
+          "period": "2017-10",
+          "value": 2330608400000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -4.58,
+          "yoy": 4.41
+        },
+        {
+          "period": "2017-11",
+          "value": 2326379700000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.18,
+          "yoy": 4.68
+        },
+        {
+          "period": "2017-12",
+          "value": 2280785400000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -1.96,
+          "yoy": 3.28
+        },
+        {
+          "period": "2018-01",
+          "value": 2348866000000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 2.98,
+          "yoy": 4.26
+        },
+        {
+          "period": "2018-02",
+          "value": 2353316700000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.19,
+          "yoy": 3.73
+        },
+        {
+          "period": "2018-03",
+          "value": 2294288500000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -2.51,
+          "yoy": 3.11
+        },
+        {
+          "period": "2018-04",
+          "value": 2302506800000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.36,
+          "yoy": 3.85
+        },
+        {
+          "period": "2018-05",
+          "value": 2344650500000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 1.83,
+          "yoy": 3.33
+        },
+        {
+          "period": "2018-06",
+          "value": 2397207900000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 2.24,
+          "yoy": 4.5
+        },
+        {
+          "period": "2018-07",
+          "value": 2396223800000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.04,
+          "yoy": -0.42
+        },
+        {
+          "period": "2018-08",
+          "value": 2404893500000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.36,
+          "yoy": -0.5
+        },
+        {
+          "period": "2018-09",
+          "value": 2388810600000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.67,
+          "yoy": -2.2
+        },
+        {
+          "period": "2018-10",
+          "value": 2407671000000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.79,
+          "yoy": 3.31
+        },
+        {
+          "period": "2018-11",
+          "value": 2412677000000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.21,
+          "yoy": 3.71
+        },
+        {
+          "period": "2018-12",
+          "value": 2387476300000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -1.04,
+          "yoy": 4.68
+        },
+        {
+          "period": "2019-01",
+          "value": 2459421300000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 3.01,
+          "yoy": 4.71
+        },
+        {
+          "period": "2019-02",
+          "value": 2486393700000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 1.1,
+          "yoy": 5.65
+        },
+        {
+          "period": "2019-03",
+          "value": 2330693200000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -6.26,
+          "yoy": 1.59
+        },
+        {
+          "period": "2019-04",
+          "value": 2791705100000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 19.78,
+          "yoy": 21.25
+        },
+        {
+          "period": "2019-05",
+          "value": 2513977000000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -9.95,
+          "yoy": 7.22
+        },
+        {
+          "period": "2019-06",
+          "value": 2520101100000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.24,
+          "yoy": 5.13
+        },
+        {
+          "period": "2019-07",
+          "value": 2500035900000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.8,
+          "yoy": 4.33
+        },
+        {
+          "period": "2019-08",
+          "value": 2578251100000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 3.13,
+          "yoy": 7.21
+        },
+        {
+          "period": "2019-09",
+          "value": 2529312400000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -1.9,
+          "yoy": 5.88
+        },
+        {
+          "period": "2019-10",
+          "value": 2313401800000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -8.54,
+          "yoy": -3.92
+        },
+        {
+          "period": "2019-11",
+          "value": 2318696900000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.23,
+          "yoy": -3.9
+        },
+        {
+          "period": "2019-12",
+          "value": 2289228500000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -1.27,
+          "yoy": -4.12
+        },
+        {
+          "period": "2020-01",
+          "value": 2323589700000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 1.5,
+          "yoy": -5.52
+        },
+        {
+          "period": "2020-02",
+          "value": 2332677500000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.39,
+          "yoy": -6.18
+        },
+        {
+          "period": "2020-03",
+          "value": 2304132500000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -1.22,
+          "yoy": -1.14
+        },
+        {
+          "period": "2020-04",
+          "value": 2446309700000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 6.17,
+          "yoy": -12.37
+        },
+        {
+          "period": "2020-05",
+          "value": 2654523000000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 8.51,
+          "yoy": 5.59
+        },
+        {
+          "period": "2020-06",
+          "value": 2610752800000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -1.65,
+          "yoy": 3.6
+        },
+        {
+          "period": "2020-07",
+          "value": 2587394000000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.89,
+          "yoy": 3.49
+        },
+        {
+          "period": "2020-08",
+          "value": 2486472300000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -3.9,
+          "yoy": -3.56
+        },
+        {
+          "period": "2020-09",
+          "value": 2422589400000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -2.57,
+          "yoy": -4.22
+        },
+        {
+          "period": "2020-10",
+          "value": 2415864600000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.28,
+          "yoy": 4.43
+        },
+        {
+          "period": "2020-11",
+          "value": 2399314600000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.69,
+          "yoy": 3.48
+        },
+        {
+          "period": "2020-12",
+          "value": 2381784200000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.73,
+          "yoy": 4.04
+        },
+        {
+          "period": "2021-01",
+          "value": 2411572000000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 1.25,
+          "yoy": 3.79
+        },
+        {
+          "period": "2021-02",
+          "value": 2451777200000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 1.67,
+          "yoy": 5.11
+        },
+        {
+          "period": "2021-03",
+          "value": 2531341000000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 3.25,
+          "yoy": 9.86
+        },
+        {
+          "period": "2021-04",
+          "value": 2567226000000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 1.42,
+          "yoy": 4.94
+        },
+        {
+          "period": "2021-05",
+          "value": 2601335300000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 1.33,
+          "yoy": -2.0
+        },
+        {
+          "period": "2021-06",
+          "value": 2645458000000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 1.7,
+          "yoy": 1.33
+        },
+        {
+          "period": "2021-07",
+          "value": 2656053301000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.4,
+          "yoy": 2.65
+        },
+        {
+          "period": "2021-08",
+          "value": 2685194500000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 1.1,
+          "yoy": 7.99
+        },
+        {
+          "period": "2021-09",
+          "value": 2686077500000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.03,
+          "yoy": 10.88
+        },
+        {
+          "period": "2021-10",
+          "value": 2663758000000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.83,
+          "yoy": 10.26
+        },
+        {
+          "period": "2021-11",
+          "value": 2657631600000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.23,
+          "yoy": 10.77
+        },
+        {
+          "period": "2021-12",
+          "value": 2686367200000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 1.08,
+          "yoy": 12.79
+        },
+        {
+          "period": "2022-01",
+          "value": 2697646200000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.42,
+          "yoy": 11.86
+        },
+        {
+          "period": "2022-02",
+          "value": 2740095000000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 1.57,
+          "yoy": 11.76
+        },
+        {
+          "period": "2022-03",
+          "value": 2695411100000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -1.63,
+          "yoy": 6.48
+        },
+        {
+          "period": "2022-04",
+          "value": 2718162600000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.84,
+          "yoy": 5.88
+        },
+        {
+          "period": "2022-05",
+          "value": 2705974300000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.45,
+          "yoy": 4.02
+        },
+        {
+          "period": "2022-06",
+          "value": 2793382400000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 3.23,
+          "yoy": 5.59
+        },
+        {
+          "period": "2022-07",
+          "value": 2797242500000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.14,
+          "yoy": 5.32
+        },
+        {
+          "period": "2022-08",
+          "value": 2896582100000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 3.55,
+          "yoy": 7.87
+        },
+        {
+          "period": "2022-09",
+          "value": 2880412800000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.56,
+          "yoy": 7.23
+        },
+        {
+          "period": "2022-10",
+          "value": 2865115400000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.53,
+          "yoy": 7.56
+        },
+        {
+          "period": "2022-11",
+          "value": 2865688700000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.02,
+          "yoy": 7.83
+        },
+        {
+          "period": "2022-12",
+          "value": 2870485600000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.17,
+          "yoy": 6.85
+        },
+        {
+          "period": "2023-01",
+          "value": 2893391800000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.8,
+          "yoy": 7.26
+        },
+        {
+          "period": "2023-02",
+          "value": 2908251900000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.51,
+          "yoy": 6.14
+        },
+        {
+          "period": "2023-03",
+          "value": 2872383900000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -1.23,
+          "yoy": 6.57
+        },
+        {
+          "period": "2023-04",
+          "value": 2830145000000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -1.47,
+          "yoy": 4.12
+        },
+        {
+          "period": "2023-05",
+          "value": 2811507900000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.66,
+          "yoy": 3.9
+        },
+        {
+          "period": "2023-06",
+          "value": 2846006100000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 1.23,
+          "yoy": 1.88
+        },
+        {
+          "period": "2023-07",
+          "value": 2918740900000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 2.56,
+          "yoy": 4.34
+        },
+        {
+          "period": "2023-08",
+          "value": 2884054400000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -1.19,
+          "yoy": -0.43
+        },
+        {
+          "period": "2023-09",
+          "value": 2925403200000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 1.43,
+          "yoy": 1.56
+        },
+        {
+          "period": "2023-10",
+          "value": 2949918900000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.84,
+          "yoy": 2.96
+        },
+        {
+          "period": "2023-11",
+          "value": 2881983300000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -2.3,
+          "yoy": 0.57
+        },
+        {
+          "period": "2023-12",
+          "value": 2833831400000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -1.67,
+          "yoy": -1.28
+        },
+        {
+          "period": "2024-01",
+          "value": 2866921900000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 1.17,
+          "yoy": -0.91
+        },
+        {
+          "period": "2024-02",
+          "value": 2869793100000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.1,
+          "yoy": -1.32
+        },
+        {
+          "period": "2024-03",
+          "value": 2864516700000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.18,
+          "yoy": -0.27
+        },
+        {
+          "period": "2024-04",
+          "value": 2792483000000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -2.51,
+          "yoy": -1.33
+        },
+        {
+          "period": "2024-05",
+          "value": 2815881300000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.84,
+          "yoy": 0.16
+        },
+        {
+          "period": "2024-06",
+          "value": 2887288700000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 2.54,
+          "yoy": 1.45
+        },
+        {
+          "period": "2024-07",
+          "value": 2750052000000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -4.75,
+          "yoy": -5.78
+        },
+        {
+          "period": "2024-08",
+          "value": 2919521200000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 6.16,
+          "yoy": 1.23
+        },
+        {
+          "period": "2024-09",
+          "value": 2941981800000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.77,
+          "yoy": 0.57
+        },
+        {
+          "period": "2024-10",
+          "value": 2746321500000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -6.65,
+          "yoy": -6.9
+        },
+        {
+          "period": "2024-11",
+          "value": 2951970700000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 7.49,
+          "yoy": 2.43
+        },
+        {
+          "period": "2024-12",
+          "value": 2930402800000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.73,
+          "yoy": 3.41
+        },
+        {
+          "period": "2025-01",
+          "value": 2969445400000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 1.33,
+          "yoy": 3.58
+        },
+        {
+          "period": "2025-02",
+          "value": 2959654700000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.33,
+          "yoy": 3.13
+        },
+        {
+          "period": "2025-03",
+          "value": 2977061300000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.59,
+          "yoy": 3.93
+        },
+        {
+          "period": "2025-04",
+          "value": 2986050800000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.3,
+          "yoy": 6.93
+        },
+        {
+          "period": "2025-05",
+          "value": 3071153600000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 2.85,
+          "yoy": 9.07
+        },
+        {
+          "period": "2025-06",
+          "value": 3080255800000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.3,
+          "yoy": 6.68
+        },
+        {
+          "period": "2025-07",
+          "value": 2967141000000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -3.67,
+          "yoy": 7.89
+        },
+        {
+          "period": "2025-08",
+          "value": 3122568700000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 5.24,
+          "yoy": 6.95
+        },
+        {
+          "period": "2025-09",
+          "value": 3111016600000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -0.37,
+          "yoy": 5.75
+        },
+        {
+          "period": "2025-10",
+          "value": 3477832100000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 11.79,
+          "yoy": 26.64
+        },
+        {
+          "period": "2025-11",
+          "value": 3484779100000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.2,
+          "yoy": 18.05
+        },
+        {
+          "period": "2025-12",
+          "value": 3525536600000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 1.17,
+          "yoy": 20.31
+        }
+      ]
+    },
+    {
+      "metric_id": "storage_revenue",
+      "unit": "JPY",
+      "observations": [],
+      "availability_note_ja": "主要21社統計に倉庫サービス売上高はないため未取得。保管残高金額とは別概念。"
+    }
   ],
-  "interpretation_rules":[
-    {"pattern":"inbound_up,outbound_flat,inventory_up","meaning":"在庫積み上がり"},
-    {"pattern":"inbound_up,outbound_up,inventory_flat","meaning":"荷動き活発化"},
-    {"pattern":"outbound_up,inventory_down","meaning":"在庫取り崩し"}
+  "interpretation_rules": [
+    {
+      "pattern": "inbound_up,outbound_flat,inventory_up",
+      "meaning": "在庫積み上がり"
+    },
+    {
+      "pattern": "inbound_up,outbound_up,inventory_flat",
+      "meaning": "荷動き活発化"
+    },
+    {
+      "pattern": "outbound_up,inventory_down",
+      "meaning": "在庫取り崩し"
+    }
   ],
-  "availability":{"latest_period_visible_on_current_source_page":"2025-12","note":"2026 observations are not inserted until verified from the published workbook or e-Stat."}
+  "availability": {
+    "latest_period_visible_on_current_source_page": "2025-12",
+    "note": "2026 observations are not inserted until verified from the published workbook or e-Stat."
+  },
+  "coverage": {
+    "start": "2015-01",
+    "end": "2025-12",
+    "observations": 132,
+    "workbook": "https://www.mlit.go.jp/seisakutokatsu/freight/content/002011937.xls"
+  },
+  "method_note_ja": "入庫・保管残高・利用率・貨物回転率・保管残高金額は公式推移表。出庫量のみ公表回転率算式からの概算派生値。"
 }

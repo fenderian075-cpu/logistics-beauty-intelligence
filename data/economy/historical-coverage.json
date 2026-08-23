@@ -1,0 +1,1015 @@
+{
+  "schema_version": "1.0",
+  "dataset": "historical-coverage",
+  "updated_at": "2026-08-23T18:45:43+09:00",
+  "stages": {
+    "trade": {
+      "status": "success",
+      "annual_rows": 75,
+      "annual_start": "1950",
+      "annual_end": "2024",
+      "monthly_rows": 570
+    },
+    "gdp": {
+      "status": "success",
+      "series": {
+        "real_gdp_qoq_pct": 32,
+        "nominal_gdp_qoq_pct": 32,
+        "real_gdp_quarterly_level_saar": 33,
+        "nominal_gdp_quarterly_level_saar": 33,
+        "real_gdp_fy_level": 32,
+        "nominal_gdp_fy_level": 32
+      },
+      "urls": {
+        "real_gdp_qoq_pct": "https://www.esri.cao.go.jp/jp/sna/data/data_list/sokuhou/files/2026/qe262/tables/ritu-jk2621.csv",
+        "nominal_gdp_qoq_pct": "https://www.esri.cao.go.jp/jp/sna/data/data_list/sokuhou/files/2026/qe262/tables/ritu-mk2621.csv",
+        "real_gdp_quarterly_level_saar": "https://www.esri.cao.go.jp/jp/sna/data/data_list/sokuhou/files/2026/qe262/tables/gaku-jk2621.csv",
+        "nominal_gdp_quarterly_level_saar": "https://www.esri.cao.go.jp/jp/sna/data/data_list/sokuhou/files/2026/qe262/tables/gaku-mk2621.csv",
+        "real_gdp_fy_level": "https://www.esri.cao.go.jp/jp/sna/data/data_list/sokuhou/files/2026/qe262/tables/gaku-jfy2621.csv",
+        "nominal_gdp_fy_level": "https://www.esri.cao.go.jp/jp/sna/data/data_list/sokuhou/files/2026/qe262/tables/gaku-mfy2621.csv"
+      }
+    },
+    "cpi": {
+      "status": "success",
+      "series": {
+        "cpi_all_items": 679,
+        "cpi_food": 679,
+        "cpi_housing": 679,
+        "cpi_fuel_light_water": 679,
+        "cpi_furniture_household": 679,
+        "cpi_clothes_footwear": 679,
+        "cpi_medical": 679,
+        "cpi_transport_communication": 679,
+        "cpi_education": 635,
+        "cpi_culture_recreation": 679,
+        "cpi_miscellaneous": 679,
+        "cpi_cosmetics": 679
+      },
+      "middle_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=1&statInfId=000032103842",
+      "item_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=1&statInfId=000032103844"
+    },
+    "iip": {
+      "status": "success",
+      "series": {
+        "industrial_production": 102,
+        "manufacturing_shipments": 102,
+        "industrial_inventories": 102,
+        "industrial_inventory_ratio": 102
+      },
+      "current_source": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000040172363",
+      "current_official_start": "2018-01",
+      "connected_official_target": "1978-01",
+      "connected_status": "official METI connected index exists; GitHub direct-download route still pending"
+    },
+    "sna_industry": {
+      "status": "delegated",
+      "collector": "scripts/update_sna_industry_deflators.py"
+    },
+    "fuel": {
+      "status": "delegated",
+      "collector": "scripts/update_japan_fuel_prices_v2.py"
+    }
+  },
+  "series": [
+    {
+      "file": "data/economy/air-cargo.json",
+      "dataset": "air-cargo",
+      "metric_id": "international_air_cargo_tonnes",
+      "name_ja": "国際航空貨物輸送量（月次）",
+      "unit": "tonnes",
+      "observations": 25,
+      "start": "2024-01",
+      "end": "2026-04"
+    },
+    {
+      "file": "data/economy/air-cargo.json",
+      "dataset": "air-cargo",
+      "metric_id": "international_air_cargo_ton_km",
+      "name_ja": "国際航空貨物輸送トンキロ（月次）",
+      "unit": "thousand ton-km",
+      "observations": 25,
+      "start": "2024-01",
+      "end": "2026-04"
+    },
+    {
+      "file": "data/economy/air-cargo.json",
+      "dataset": "air-cargo",
+      "metric_id": "international_weight_load_factor",
+      "name_ja": null,
+      "unit": "%",
+      "observations": 1,
+      "start": "2026-04",
+      "end": "2026-04"
+    },
+    {
+      "file": "data/economy/air-cargo.json",
+      "dataset": "air-cargo",
+      "metric_id": "domestic_air_cargo_tonnes",
+      "name_ja": "国内航空貨物輸送量（月次）",
+      "unit": "tonnes",
+      "observations": 25,
+      "start": "2024-01",
+      "end": "2026-04"
+    },
+    {
+      "file": "data/economy/air-cargo.json",
+      "dataset": "air-cargo",
+      "metric_id": "domestic_air_cargo_ton_km",
+      "name_ja": "国内航空貨物輸送トンキロ（月次）",
+      "unit": "thousand ton-km",
+      "observations": 24,
+      "start": "2024-01",
+      "end": "2025-12"
+    },
+    {
+      "file": "data/economy/air-cargo.json",
+      "dataset": "air-cargo",
+      "metric_id": "domestic_air_cargo_tonnes_annual",
+      "name_ja": "国内航空貨物輸送量（年次）",
+      "unit": "tonnes",
+      "observations": 11,
+      "start": "2015",
+      "end": "2025"
+    },
+    {
+      "file": "data/economy/air-cargo.json",
+      "dataset": "air-cargo",
+      "metric_id": "domestic_air_cargo_ton_km_annual",
+      "name_ja": "国内航空貨物輸送トンキロ（年次）",
+      "unit": "thousand ton-km",
+      "observations": 11,
+      "start": "2015",
+      "end": "2025"
+    },
+    {
+      "file": "data/economy/air-cargo.json",
+      "dataset": "air-cargo",
+      "metric_id": "international_air_cargo_tonnes_annual",
+      "name_ja": "国際航空貨物輸送量（年次）",
+      "unit": "tonnes",
+      "observations": 11,
+      "start": "2015",
+      "end": "2025"
+    },
+    {
+      "file": "data/economy/air-cargo.json",
+      "dataset": "air-cargo",
+      "metric_id": "international_air_cargo_ton_km_annual",
+      "name_ja": "国際航空貨物輸送トンキロ（年次）",
+      "unit": "thousand ton-km",
+      "observations": 11,
+      "start": "2015",
+      "end": "2025"
+    },
+    {
+      "file": "data/economy/freight-cost.json",
+      "dataset": "freight-cost",
+      "metric_id": "road_freight",
+      "name_ja": "道路貨物輸送",
+      "unit": "index",
+      "observations": 498,
+      "start": "1985-01",
+      "end": "2026-06"
+    },
+    {
+      "file": "data/economy/freight-cost.json",
+      "dataset": "freight-cost",
+      "metric_id": "ocean_freight",
+      "name_ja": "外航貨物輸送",
+      "unit": "index",
+      "observations": 498,
+      "start": "1985-01",
+      "end": "2026-06"
+    },
+    {
+      "file": "data/economy/freight-cost.json",
+      "dataset": "freight-cost",
+      "metric_id": "coastal_freight",
+      "name_ja": "内航貨物輸送",
+      "unit": "index",
+      "observations": 498,
+      "start": "1985-01",
+      "end": "2026-06"
+    },
+    {
+      "file": "data/economy/freight-cost.json",
+      "dataset": "freight-cost",
+      "metric_id": "port_transport",
+      "name_ja": "港湾運送",
+      "unit": "index",
+      "observations": 498,
+      "start": "1985-01",
+      "end": "2026-06"
+    },
+    {
+      "file": "data/economy/freight-cost.json",
+      "dataset": "freight-cost",
+      "metric_id": "international_air_freight",
+      "name_ja": "国際航空貨物輸送",
+      "unit": "index",
+      "observations": 498,
+      "start": "1985-01",
+      "end": "2026-06"
+    },
+    {
+      "file": "data/economy/freight-cost.json",
+      "dataset": "freight-cost",
+      "metric_id": "warehouse_service",
+      "name_ja": "倉庫",
+      "unit": "index",
+      "observations": 498,
+      "start": "1985-01",
+      "end": "2026-06"
+    },
+    {
+      "file": "data/economy/freight-cost.json",
+      "dataset": "freight-cost",
+      "metric_id": "third_party_logistics",
+      "name_ja": "3PL",
+      "unit": "index",
+      "observations": 78,
+      "start": "2020-01",
+      "end": "2026-06"
+    },
+    {
+      "file": "data/economy/fuel-prices.json",
+      "dataset": "fuel-prices",
+      "metric_id": "regular_gasoline_national",
+      "name_ja": "レギュラーガソリン 全国平均",
+      "unit": "円/L",
+      "observations": 1834,
+      "start": "1990-08-27",
+      "end": "2026-08-17"
+    },
+    {
+      "file": "data/economy/fuel-prices.json",
+      "dataset": "fuel-prices",
+      "metric_id": "diesel_national",
+      "name_ja": "軽油 全国平均",
+      "unit": "円/L",
+      "observations": 1834,
+      "start": "1990-08-27",
+      "end": "2026-08-17"
+    },
+    {
+      "file": "data/economy/fuel-prices.json",
+      "dataset": "fuel-prices",
+      "metric_id": "kerosene_national",
+      "name_ja": "灯油 全国平均（店頭）",
+      "unit": "円/18L",
+      "observations": 1834,
+      "start": "1990-08-27",
+      "end": "2026-08-17"
+    },
+    {
+      "file": "data/economy/japan-trade.json",
+      "dataset": "japan-trade",
+      "metric_id": "exports_total",
+      "name_ja": "輸出額",
+      "unit": "JPY_trillion",
+      "observations": 570,
+      "start": "1979-01",
+      "end": "2026-06"
+    },
+    {
+      "file": "data/economy/japan-trade.json",
+      "dataset": "japan-trade",
+      "metric_id": "imports_total",
+      "name_ja": "輸入額",
+      "unit": "JPY_trillion",
+      "observations": 570,
+      "start": "1979-01",
+      "end": "2026-06"
+    },
+    {
+      "file": "data/economy/japan-trade.json",
+      "dataset": "japan-trade",
+      "metric_id": "trade_balance",
+      "name_ja": "貿易収支",
+      "unit": "JPY_trillion",
+      "observations": 570,
+      "start": "1979-01",
+      "end": "2026-06"
+    },
+    {
+      "file": "data/economy/japan-trade.json",
+      "dataset": "japan-trade",
+      "metric_id": "exports_h1",
+      "name_ja": null,
+      "unit": "JPY_trillion",
+      "observations": 1,
+      "start": "2026-H1",
+      "end": "2026-H1"
+    },
+    {
+      "file": "data/economy/japan-trade.json",
+      "dataset": "japan-trade",
+      "metric_id": "imports_h1",
+      "name_ja": null,
+      "unit": "JPY_trillion",
+      "observations": 1,
+      "start": "2026-H1",
+      "end": "2026-H1"
+    },
+    {
+      "file": "data/economy/japan-trade.json",
+      "dataset": "japan-trade",
+      "metric_id": "exports_total_annual",
+      "name_ja": "輸出額（年次）",
+      "unit": "JPY_trillion",
+      "observations": 75,
+      "start": "1950",
+      "end": "2024"
+    },
+    {
+      "file": "data/economy/japan-trade.json",
+      "dataset": "japan-trade",
+      "metric_id": "imports_total_annual",
+      "name_ja": "輸入額（年次）",
+      "unit": "JPY_trillion",
+      "observations": 75,
+      "start": "1950",
+      "end": "2024"
+    },
+    {
+      "file": "data/economy/japan-trade.json",
+      "dataset": "japan-trade",
+      "metric_id": "trade_balance_annual",
+      "name_ja": "貿易収支（年次）",
+      "unit": "JPY_trillion",
+      "observations": 75,
+      "start": "1950",
+      "end": "2024"
+    },
+    {
+      "file": "data/economy/macro.json",
+      "dataset": "macro",
+      "metric_id": "nominal_gdp_fy_level",
+      "name_ja": "名目GDP（年度）",
+      "unit": "JPY_trillion",
+      "observations": 53,
+      "start": "1994-04",
+      "end": "2025FY"
+    },
+    {
+      "file": "data/economy/macro.json",
+      "dataset": "macro",
+      "metric_id": "nominal_gdp_fy_growth_pct",
+      "name_ja": "名目GDP成長率（年度）",
+      "unit": "pct",
+      "observations": 21,
+      "start": "2005FY",
+      "end": "2025FY"
+    },
+    {
+      "file": "data/economy/macro.json",
+      "dataset": "macro",
+      "metric_id": "real_gdp_fy_growth_pct",
+      "name_ja": "実質GDP成長率（年度）",
+      "unit": "pct",
+      "observations": 21,
+      "start": "2005FY",
+      "end": "2025FY"
+    },
+    {
+      "file": "data/economy/macro.json",
+      "dataset": "macro",
+      "metric_id": "real_gdp_fy_level",
+      "name_ja": "実質GDP（年度）",
+      "unit": "JPY_trillion",
+      "observations": 33,
+      "start": "1994-04",
+      "end": "2025FY"
+    },
+    {
+      "file": "data/economy/macro.json",
+      "dataset": "macro",
+      "metric_id": "real_gdp_qoq_pct",
+      "name_ja": "実質GDP 前期比",
+      "unit": "pct",
+      "observations": 33,
+      "start": "1995-01",
+      "end": "2026-Q2"
+    },
+    {
+      "file": "data/economy/macro.json",
+      "dataset": "macro",
+      "metric_id": "nominal_gdp_qoq_pct",
+      "name_ja": "名目GDP 前期比",
+      "unit": "pct",
+      "observations": 33,
+      "start": "1995-01",
+      "end": "2026-Q2"
+    },
+    {
+      "file": "data/economy/macro.json",
+      "dataset": "macro",
+      "metric_id": "real_gdp_quarterly_level_saar",
+      "name_ja": "実質GDP 季節調整済年率",
+      "unit": "JPY_trillion",
+      "observations": 34,
+      "start": "1994-01",
+      "end": "2026-Q2"
+    },
+    {
+      "file": "data/economy/macro.json",
+      "dataset": "macro",
+      "metric_id": "nominal_gdp_quarterly_level_saar",
+      "name_ja": "名目GDP 季節調整済年率",
+      "unit": "JPY_trillion",
+      "observations": 34,
+      "start": "1994-01",
+      "end": "2026-Q2"
+    },
+    {
+      "file": "data/economy/macro.json",
+      "dataset": "macro",
+      "metric_id": "industrial_production",
+      "name_ja": "鉱工業生産指数",
+      "unit": "2020=100",
+      "observations": 102,
+      "start": "2018-01",
+      "end": "2026-06"
+    },
+    {
+      "file": "data/economy/macro.json",
+      "dataset": "macro",
+      "metric_id": "manufacturing_shipments",
+      "name_ja": "製造工業出荷指数",
+      "unit": "2020=100",
+      "observations": 102,
+      "start": "2018-01",
+      "end": "2026-06"
+    },
+    {
+      "file": "data/economy/macro.json",
+      "dataset": "macro",
+      "metric_id": "eur_jpy",
+      "name_ja": "ユーロ円相場",
+      "unit": "JPY/EUR",
+      "observations": 0,
+      "start": null,
+      "end": null
+    },
+    {
+      "file": "data/economy/macro.json",
+      "dataset": "macro",
+      "metric_id": "usd_jpy",
+      "name_ja": "ドル円相場",
+      "unit": "JPY/USD",
+      "observations": 0,
+      "start": null,
+      "end": null
+    },
+    {
+      "file": "data/economy/macro.json",
+      "dataset": "macro",
+      "metric_id": "crude_oil_import_cost",
+      "name_ja": "原油輸入価格",
+      "unit": "JPY",
+      "observations": 0,
+      "start": null,
+      "end": null
+    },
+    {
+      "file": "data/economy/macro.json",
+      "dataset": "macro",
+      "metric_id": "industrial_inventories",
+      "name_ja": "鉱工業在庫指数",
+      "unit": "2020=100",
+      "observations": 102,
+      "start": "2018-01",
+      "end": "2026-06"
+    },
+    {
+      "file": "data/economy/macro.json",
+      "dataset": "macro",
+      "metric_id": "industrial_inventory_ratio",
+      "name_ja": "鉱工業在庫率指数",
+      "unit": "2020=100",
+      "observations": 102,
+      "start": "2018-01",
+      "end": "2026-06"
+    },
+    {
+      "file": "data/economy/ocean-freight-market.json",
+      "dataset": "ocean-freight-market",
+      "metric_id": "drewry_wci",
+      "name_ja": "Drewry 世界コンテナ運賃指数（WCI）",
+      "unit": "USD/40ft",
+      "observations": 5,
+      "start": "2025-12-18",
+      "end": "2026-08-20"
+    },
+    {
+      "file": "data/economy/ocean-freight-market.json",
+      "dataset": "ocean-freight-market",
+      "metric_id": "drewry_iaci",
+      "name_ja": "Drewry アジア域内コンテナ運賃指数（IACI）",
+      "unit": "USD/40ft",
+      "observations": 4,
+      "start": "2026-07-23",
+      "end": "2026-08-20"
+    },
+    {
+      "file": "data/economy/port-throughput.json",
+      "dataset": "port-throughput",
+      "metric_id": "japan_total_container",
+      "name_ja": "全国コンテナ取扱量（年次）",
+      "unit": "million TEU",
+      "observations": 16,
+      "start": "2010",
+      "end": "2025"
+    },
+    {
+      "file": "data/economy/port-throughput.json",
+      "dataset": "port-throughput",
+      "metric_id": "japan_foreign_trade_container",
+      "name_ja": "全国外貿コンテナ取扱量（年次）",
+      "unit": "million TEU",
+      "observations": 16,
+      "start": "2010",
+      "end": "2025"
+    },
+    {
+      "file": "data/economy/port-throughput.json",
+      "dataset": "port-throughput",
+      "metric_id": "japan_domestic_container",
+      "name_ja": "全国内貿コンテナ取扱量（年次）",
+      "unit": "million TEU",
+      "observations": 16,
+      "start": "2010",
+      "end": "2025"
+    },
+    {
+      "file": "data/economy/port-throughput.json",
+      "dataset": "port-throughput",
+      "metric_id": "japan_total_container_monthly",
+      "name_ja": "全国コンテナ取扱量（月次）",
+      "unit": "TEU",
+      "observations": 197,
+      "start": "2010-01",
+      "end": "2026-05"
+    },
+    {
+      "file": "data/economy/port-throughput.json",
+      "dataset": "port-throughput",
+      "metric_id": "japan_foreign_trade_container_monthly",
+      "name_ja": "全国外貿コンテナ取扱量（月次）",
+      "unit": "TEU",
+      "observations": 197,
+      "start": "2010-01",
+      "end": "2026-05"
+    },
+    {
+      "file": "data/economy/port-throughput.json",
+      "dataset": "port-throughput",
+      "metric_id": "japan_domestic_container_monthly",
+      "name_ja": "全国内貿コンテナ取扱量（月次）",
+      "unit": "TEU",
+      "observations": 197,
+      "start": "2010-01",
+      "end": "2026-05"
+    },
+    {
+      "file": "data/economy/port-throughput.json",
+      "dataset": "port-throughput",
+      "metric_id": "japan_export_container_monthly",
+      "name_ja": "全国輸出コンテナ取扱量（月次）",
+      "unit": "TEU",
+      "observations": 197,
+      "start": "2010-01",
+      "end": "2026-05"
+    },
+    {
+      "file": "data/economy/port-throughput.json",
+      "dataset": "port-throughput",
+      "metric_id": "japan_import_container_monthly",
+      "name_ja": "全国輸入コンテナ取扱量（月次）",
+      "unit": "TEU",
+      "observations": 197,
+      "start": "2010-01",
+      "end": "2026-05"
+    },
+    {
+      "file": "data/economy/prices.json",
+      "dataset": "prices",
+      "metric_id": "cpi_all_items",
+      "name_ja": "CPI 総合",
+      "unit": "2020=100",
+      "observations": 681,
+      "start": "1970-01",
+      "end": "2026-07"
+    },
+    {
+      "file": "data/economy/prices.json",
+      "dataset": "prices",
+      "metric_id": "cpi_food",
+      "name_ja": "CPI 食料",
+      "unit": "2020=100",
+      "observations": 681,
+      "start": "1970-01",
+      "end": "2026-07"
+    },
+    {
+      "file": "data/economy/prices.json",
+      "dataset": "prices",
+      "metric_id": "cpi_housing",
+      "name_ja": "CPI 住居",
+      "unit": "2020=100",
+      "observations": 681,
+      "start": "1970-01",
+      "end": "2026-07"
+    },
+    {
+      "file": "data/economy/prices.json",
+      "dataset": "prices",
+      "metric_id": "cpi_fuel_light_water",
+      "name_ja": "CPI 光熱・水道",
+      "unit": "2020=100",
+      "observations": 681,
+      "start": "1970-01",
+      "end": "2026-07"
+    },
+    {
+      "file": "data/economy/prices.json",
+      "dataset": "prices",
+      "metric_id": "cpi_furniture_household",
+      "name_ja": "CPI 家具・家事用品",
+      "unit": "2020=100",
+      "observations": 681,
+      "start": "1970-01",
+      "end": "2026-07"
+    },
+    {
+      "file": "data/economy/prices.json",
+      "dataset": "prices",
+      "metric_id": "cpi_clothes_footwear",
+      "name_ja": "CPI 被服・履物",
+      "unit": "2020=100",
+      "observations": 681,
+      "start": "1970-01",
+      "end": "2026-07"
+    },
+    {
+      "file": "data/economy/prices.json",
+      "dataset": "prices",
+      "metric_id": "cpi_medical",
+      "name_ja": "CPI 保健医療",
+      "unit": "2020=100",
+      "observations": 681,
+      "start": "1970-01",
+      "end": "2026-07"
+    },
+    {
+      "file": "data/economy/prices.json",
+      "dataset": "prices",
+      "metric_id": "cpi_transport_communication",
+      "name_ja": "CPI 交通・通信",
+      "unit": "2020=100",
+      "observations": 681,
+      "start": "1970-01",
+      "end": "2026-07"
+    },
+    {
+      "file": "data/economy/prices.json",
+      "dataset": "prices",
+      "metric_id": "cpi_education",
+      "name_ja": "CPI 教育",
+      "unit": "2020=100",
+      "observations": 637,
+      "start": "1973-09",
+      "end": "2026-07"
+    },
+    {
+      "file": "data/economy/prices.json",
+      "dataset": "prices",
+      "metric_id": "cpi_culture_recreation",
+      "name_ja": "CPI 教養娯楽",
+      "unit": "2020=100",
+      "observations": 681,
+      "start": "1970-01",
+      "end": "2026-07"
+    },
+    {
+      "file": "data/economy/prices.json",
+      "dataset": "prices",
+      "metric_id": "cpi_miscellaneous",
+      "name_ja": "CPI 諸雑費",
+      "unit": "2020=100",
+      "observations": 681,
+      "start": "1970-01",
+      "end": "2026-07"
+    },
+    {
+      "file": "data/economy/prices.json",
+      "dataset": "prices",
+      "metric_id": "cpi_cosmetics",
+      "name_ja": "CPI 化粧品",
+      "unit": "2020=100",
+      "observations": 679,
+      "start": "1970-01",
+      "end": "2026-07"
+    },
+    {
+      "file": "data/economy/prices.json",
+      "dataset": "prices",
+      "metric_id": "sppi_all_services",
+      "name_ja": "SPPI 全サービス",
+      "unit": "2020=100",
+      "observations": 3,
+      "start": "2023",
+      "end": "2025"
+    },
+    {
+      "file": "data/economy/prices.json",
+      "dataset": "prices",
+      "metric_id": "sppi_transport_postal",
+      "name_ja": "SPPI 運輸・郵便",
+      "unit": "2020=100",
+      "observations": 2,
+      "start": "2024FY",
+      "end": "2026-01"
+    },
+    {
+      "file": "data/economy/prices.json",
+      "dataset": "prices",
+      "metric_id": "sppi_road_freight",
+      "name_ja": "SPPI 道路貨物輸送",
+      "unit": "2020=100",
+      "observations": 1,
+      "start": "2026-01",
+      "end": "2026-01"
+    },
+    {
+      "file": "data/economy/prices.json",
+      "dataset": "prices",
+      "metric_id": "sppi_ocean_freight",
+      "name_ja": "SPPI 外洋貨物輸送",
+      "unit": "2020=100",
+      "observations": 1,
+      "start": "2026-01",
+      "end": "2026-01"
+    },
+    {
+      "file": "data/economy/prices.json",
+      "dataset": "prices",
+      "metric_id": "sppi_international_air_freight",
+      "name_ja": "SPPI 国際航空貨物輸送",
+      "unit": "2020=100",
+      "observations": 1,
+      "start": "2026-01",
+      "end": "2026-01"
+    },
+    {
+      "file": "data/economy/prices.json",
+      "dataset": "prices",
+      "metric_id": "sppi_warehousing",
+      "name_ja": "SPPI 倉庫",
+      "unit": "2020=100",
+      "observations": 1,
+      "start": "2026-01",
+      "end": "2026-01"
+    },
+    {
+      "file": "data/economy/prices.json",
+      "dataset": "prices",
+      "metric_id": "sppi_3pl",
+      "name_ja": "SPPI 3PL",
+      "unit": "2020=100",
+      "observations": 1,
+      "start": "2026-01",
+      "end": "2026-01"
+    },
+    {
+      "file": "data/economy/retail-beauty.json",
+      "dataset": "retail-beauty",
+      "metric_id": "department_store_total_sales",
+      "name_ja": null,
+      "unit": "JPY",
+      "observations": 6,
+      "start": "2026-01",
+      "end": "2026-06"
+    },
+    {
+      "file": "data/economy/retail-beauty.json",
+      "dataset": "retail-beauty",
+      "metric_id": "department_store_cosmetics_sales",
+      "name_ja": null,
+      "unit": "JPY",
+      "observations": 6,
+      "start": "2026-01",
+      "end": "2026-06"
+    },
+    {
+      "file": "data/economy/retail-beauty.json",
+      "dataset": "retail-beauty",
+      "metric_id": "department_store_total_sales_annual",
+      "name_ja": null,
+      "unit": "JPY",
+      "observations": 5,
+      "start": "2021",
+      "end": "2025"
+    },
+    {
+      "file": "data/economy/retail-beauty.json",
+      "dataset": "retail-beauty",
+      "metric_id": "department_store_cosmetics_sales_annual",
+      "name_ja": null,
+      "unit": "JPY",
+      "observations": 5,
+      "start": "2021",
+      "end": "2025"
+    },
+    {
+      "file": "data/economy/retail-beauty.json",
+      "dataset": "retail-beauty",
+      "metric_id": "drugstore_beauty_sales",
+      "name_ja": null,
+      "unit": "JPY",
+      "observations": 4,
+      "start": "2022",
+      "end": "2025"
+    },
+    {
+      "file": "data/economy/retail-beauty.json",
+      "dataset": "retail-beauty",
+      "metric_id": "drugstore_total_sales",
+      "name_ja": null,
+      "unit": "JPY",
+      "observations": 4,
+      "start": "2022",
+      "end": "2025"
+    },
+    {
+      "file": "data/economy/retail-beauty.json",
+      "dataset": "retail-beauty",
+      "metric_id": "beauty_import_value",
+      "name_ja": null,
+      "unit": "JPY",
+      "observations": 0,
+      "start": null,
+      "end": null
+    },
+    {
+      "file": "data/economy/retail-beauty.json",
+      "dataset": "retail-beauty",
+      "metric_id": "beauty_import_volume",
+      "name_ja": null,
+      "unit": "quantity",
+      "observations": 0,
+      "start": null,
+      "end": null
+    },
+    {
+      "file": "data/economy/retail-beauty.json",
+      "dataset": "retail-beauty",
+      "metric_id": "cosmetics_domestic_shipments",
+      "name_ja": null,
+      "unit": "JPY",
+      "observations": 1,
+      "start": "2024",
+      "end": "2024"
+    },
+    {
+      "file": "data/economy/retail-beauty.json",
+      "dataset": "retail-beauty",
+      "metric_id": "cosmetics_household_spend_two_plus_person_household",
+      "name_ja": null,
+      "unit": "JPY_per_household_year",
+      "observations": 1,
+      "start": "2024",
+      "end": "2024"
+    },
+    {
+      "file": "data/economy/trucking.json",
+      "dataset": "trucking",
+      "metric_id": "average_duty_time_per_run",
+      "name_ja": null,
+      "unit": "hours",
+      "observations": 1,
+      "start": "2025-survey",
+      "end": "2025-survey"
+    },
+    {
+      "file": "data/economy/trucking.json",
+      "dataset": "trucking",
+      "metric_id": "waiting_and_handling_per_run",
+      "name_ja": null,
+      "unit": "hours",
+      "observations": 1,
+      "start": "2025-survey",
+      "end": "2025-survey"
+    },
+    {
+      "file": "data/economy/trucking.json",
+      "dataset": "trucking",
+      "metric_id": "freight_transport_volume",
+      "name_ja": null,
+      "unit": "tonnes",
+      "observations": 0,
+      "start": null,
+      "end": null
+    },
+    {
+      "file": "data/economy/trucking.json",
+      "dataset": "trucking",
+      "metric_id": "freight_transport_ton_km",
+      "name_ja": null,
+      "unit": "ton-km",
+      "observations": 0,
+      "start": null,
+      "end": null
+    },
+    {
+      "file": "data/economy/trucking.json",
+      "dataset": "trucking",
+      "metric_id": "commercial_truck_tonnage",
+      "name_ja": "営業用トラック貨物輸送量（月次）",
+      "unit": "million tonnes",
+      "observations": 13,
+      "start": "2025-01",
+      "end": "2026-01"
+    },
+    {
+      "file": "data/economy/trucking.json",
+      "dataset": "trucking",
+      "metric_id": "commercial_truck_ton_km",
+      "name_ja": "営業用トラック貨物輸送トンキロ（月次）",
+      "unit": "billion tonne-km",
+      "observations": 13,
+      "start": "2025-01",
+      "end": "2026-01"
+    },
+    {
+      "file": "data/economy/trucking.json",
+      "dataset": "trucking",
+      "metric_id": "commercial_truck_tonnage_annual",
+      "name_ja": "営業用トラック貨物輸送量（年次）",
+      "unit": "million tonnes",
+      "observations": 10,
+      "start": "2015",
+      "end": "2024"
+    },
+    {
+      "file": "data/economy/trucking.json",
+      "dataset": "trucking",
+      "metric_id": "commercial_truck_ton_km_annual",
+      "name_ja": "営業用トラック貨物輸送トンキロ（年次）",
+      "unit": "billion tonne-km",
+      "observations": 10,
+      "start": "2015",
+      "end": "2024"
+    },
+    {
+      "file": "data/economy/warehouse-flow.json",
+      "dataset": "warehouse-flow",
+      "metric_id": "inbound_volume",
+      "name_ja": null,
+      "unit": "tonnes",
+      "observations": 0,
+      "start": null,
+      "end": null
+    },
+    {
+      "file": "data/economy/warehouse-flow.json",
+      "dataset": "warehouse-flow",
+      "metric_id": "outbound_volume",
+      "name_ja": null,
+      "unit": "tonnes",
+      "observations": 0,
+      "start": null,
+      "end": null
+    },
+    {
+      "file": "data/economy/warehouse-flow.json",
+      "dataset": "warehouse-flow",
+      "metric_id": "inventory_balance",
+      "name_ja": null,
+      "unit": "tonnes",
+      "observations": 0,
+      "start": null,
+      "end": null
+    },
+    {
+      "file": "data/economy/warehouse-flow.json",
+      "dataset": "warehouse-flow",
+      "metric_id": "warehouse_turnover",
+      "name_ja": null,
+      "unit": "index",
+      "observations": 0,
+      "start": null,
+      "end": null
+    },
+    {
+      "file": "data/economy/warehouse-flow.json",
+      "dataset": "warehouse-flow",
+      "metric_id": "storage_revenue",
+      "name_ja": null,
+      "unit": "JPY",
+      "observations": 0,
+      "start": null,
+      "end": null
+    }
+  ]
+}

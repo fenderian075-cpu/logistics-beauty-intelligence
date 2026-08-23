@@ -27550,5 +27550,5 @@
   ],
   "collection_status": "official_weekly_history_ingested",
   "collection_note_ja": "直近週次は資源エネルギー庁公表値を転載する公開時系列で照合して初期投入。正式な長期履歴は公式週次Excel collectorをprimaryとして取り込む。欠損値は推測で補完しない。",
-  "last_collected_at": "2026-08-23T07:55:15.689426+00:00"
+  "last_collected_at": "2026-08-23T09:45:28.489311+00:00"
 }
