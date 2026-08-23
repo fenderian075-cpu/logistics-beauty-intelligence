@@ -117,6 +117,7 @@ def main():
     labor = read("logistics-labor-market.json")
     age_contract = read("logistics-workforce-age.json")
     jp_demo = read("japan-demography.json")
+    ec = read("ec-demand.json")
 
     parcels = by_period(observations(parcel, "parcel_delivery_volume"))
     workers = by_period(observations(workforce, "transport_postal_employment"))
@@ -146,6 +147,21 @@ def main():
     idx = by_period(index)
     for p, v in recomputed.items():
         assert abs(idx[p] - round(v / base * 100, 1)) <= 0.11
+
+    ec_market = by_period(observations(ec, "physical_btoc_ec_market"))
+    ec_rate = by_period(observations(ec, "physical_btoc_ec_rate"))
+    ec_index = by_period(observations(ec, "physical_btoc_ec_index_2015"))
+    assert list(ec_market) == periods
+    assert list(ec_rate) == periods
+    assert list(ec_index) == periods
+    assert abs(ec_market["2015"] - 7.2398) < 0.0001
+    assert abs(ec_market["2024"] - 15.2194) < 0.0001
+    assert abs(ec_rate["2015"] - 4.75) < 0.001
+    assert abs(ec_rate["2024"] - 9.78) < 0.001
+    ec_base = ec_market["2015"]
+    for p in periods:
+        assert abs(ec_index[p] - round(ec_market[p] / ec_base * 100, 1)) <= 0.11
+    assert ec_index["2024"] > 200
 
     female = by_period(observations(workforce, "transport_postal_employment_female"))
     male = by_period(observations(workforce, "transport_postal_employment_male"))
@@ -202,6 +218,9 @@ def main():
         "latest_load_index": idx[periods[-1]],
         "parcel_per_capita_2015": parcel_capita["2015"],
         "parcel_per_capita_2024": parcel_capita["2024"],
+        "physical_ec_2015_trillion_jpy": ec_market["2015"],
+        "physical_ec_2024_trillion_jpy": ec_market["2024"],
+        "physical_ec_index_2024": ec_index["2024"],
         "employment_share_2015": worker_share["2015"],
         "employment_share_2025": worker_share["2025"],
         "age_api_status": age_status,
