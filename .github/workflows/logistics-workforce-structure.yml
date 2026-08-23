@@ -61,8 +61,8 @@ jobs:
           print('populated series:', populated, '/', len(d.get('series',[])))
           PY
 
-      - name: Commit refreshed workforce data on main
-        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+      - name: Commit refreshed workforce data on source branch
+        if: github.event_name != 'pull_request'
         shell: bash
         run: |
           if [ -z "$ESTAT_APP_ID" ]; then
@@ -77,5 +77,5 @@ jobs:
             exit 0
           fi
           git commit -m "data: refresh logistics workforce structure"
-          git pull --rebase origin main
-          git push
+          git pull --rebase origin "${GITHUB_REF_NAME}"
+          git push origin HEAD:"${GITHUB_REF_NAME}"
