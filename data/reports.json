@@ -61,6 +61,141 @@
   },
   "reports": [
     {
+      "date": "2026-08-24",
+      "status": "watch",
+      "as_of": "2026年8月24日 08:00 JST",
+      "sample": false,
+      "id": "2026-08-24-daily",
+      "type": "daily",
+      "title": "物流・化粧品インテリジェンス・ブリーフ — DAILY",
+      "summary": "全国一律の運用変更は不要。ただしJR貨物は8月24日0時時点で九州・近畿・関東・中部地区の輸送障害に伴う列車遅延・運休を掲示しており、鉄道貨物・インターモーダル利用は本日個別確認が必要。名神集中工事は本日から吹田IC～瀬田東JCTの夜間通行止めフェーズに入り、夜間の東西幹線は迂回・cutoff・着日余裕を確認する。奄美方面は局地例外、中東海域は高リスク継続。Beautyは既存promotion継続で、新たな有機需要増の証拠とは扱わない。",
+      "bottom_line": "鉄道貨物を使う出荷はdispatch前に列車・ターミナルの運行状況を確認し、SLAが厳しい貨物はトラック等の代替可否を準備する。今夜の東西幹線は名神の通行止め・迂回とcarrier cutoffを確認する。トラックのみの国内出荷を全国一律で迂回・停止する必要はない。",
+      "key_issues": [
+        "JR貨物が8月24日0時時点で九州・近畿・関東・中部地区の列車遅延・運休を掲示",
+        "8月23日14時詳細では22日発5053列車（東京貨物ターミナル→福岡貨物ターミナル）に4時間48分の終着遅延見込み",
+        "名神は8月24日から吹田IC～瀬田東JCTの夜間通行止めフェーズ",
+        "奄美方面の船便例外は継続、中東海域は高リスク継続",
+        "Brand.com監視群の8月promotionは継続するが有機需要増とは判定しない"
+      ],
+      "tags": [
+        "JR貨物",
+        "名神",
+        "国内幹線",
+        "中東",
+        "Beauty promotion"
+      ],
+      "status_board": {
+        "domestic": "watch",
+        "weather": "watch",
+        "customs": "normal",
+        "ocean": "watch",
+        "air": "unconfirmed",
+        "global": "watch"
+      },
+      "signals": {
+        "wci": {
+          "value": null,
+          "unit": null,
+          "data_date": null,
+          "source": null
+        },
+        "scfi": {
+          "value": null,
+          "unit": null,
+          "data_date": null,
+          "source": null
+        }
+      },
+      "intelligence": {
+        "disruption": [
+          {
+            "id": "japan-domestic-delivery",
+            "signal": "JR貨物は8月24日0時時点で九州・近畿・関東・中部地区の輸送障害に伴う列車遅延・運休を掲示。名神は本日から夜間通行止めフェーズに入り、鉄道貨物と夜間東西幹線は個別確認が必要。",
+            "lens": "disruption",
+            "direction": "rising",
+            "impact": "high",
+            "change_status": "deteriorating",
+            "confidence": "high",
+            "evidence": [
+              {
+                "source": "JR貨物",
+                "date": "2026-08-24",
+                "url": "https://www.jrfreight.co.jp/"
+              },
+              {
+                "source": "JR貨物 現在の輸送状況",
+                "date": "2026-08-23",
+                "url": "https://www.jrfreight.co.jp/i_daiya"
+              },
+              {
+                "source": "NEXCO西日本",
+                "date": "2026-08-24",
+                "url": "https://search.w-nexco.co.jp/"
+              }
+            ],
+            "operational_implication": "鉄道コンテナ・インターモーダル利用貨物は列車・ターミナル単位で確認し、夜間の東西道路幹線は迂回・cutoff・着日bufferを確認する。",
+            "action_direction": "鉄道貨物はdispatch前確認、SLAが厳しい貨物は代替輸送を準備。トラックのみの貨物へ一律に一般化しない。"
+          },
+          {
+            "id": "middle-east-maritime-risk",
+            "signal": "中東海域の通航制約とサービス不確実性は高リスク継続。部分的通航を全面正常化とはみなさない。",
+            "lens": "disruption",
+            "direction": "volatile",
+            "impact": "high",
+            "change_status": "unchanged_high_risk",
+            "confidence": "high",
+            "evidence": [
+              {
+                "source": "Reuters",
+                "date": "2026-08-23",
+                "url": "https://www.reuters.com/world/asia-pacific/iran-says-new-sanctions-threatened-by-desperate-us-will-fail-2026-08-23/"
+              }
+            ],
+            "operational_implication": "重点輸入レーンを含む関係サービスはrouting・寄港・surcharge・輸送日数を輸送会社・サービス単位で確認する。",
+            "action_direction": "全面正常化を前提にせず個別サービス確認を継続する。"
+          }
+        ],
+        "cost_capacity": [],
+        "reliability": [],
+        "demand_commerce": [
+          {
+            "id": "beauty-japan-ec-promotion",
+            "signal": "Brand.com監視群で取得できた公式ページでは既存の8月promotionが継続。新たな有機需要増の証拠とは扱わない。",
+            "lens": "demand_commerce",
+            "direction": "volatile",
+            "impact": "medium",
+            "change_status": "unchanged",
+            "confidence": "high",
+            "demand_driver": "promotion",
+            "duration": "temporary",
+            "evidence": [
+              {
+                "source": "ブランド公式サイト監視群",
+                "date": "2026-08-24",
+                "url": null
+              }
+            ],
+            "operational_implication": "8月末の短期倉庫波動を基礎需要から分離して管理する。",
+            "action_direction": "campaign日程とcapacityを確認し、取得不能サイトを変化なしと推定しない。"
+          }
+        ],
+        "regulatory_structural": []
+      },
+      "change_summary": {
+        "comparison_base": "2026-08-23-daily",
+        "new": [],
+        "deteriorating": [
+          "japan-domestic-delivery"
+        ],
+        "improving": [],
+        "resolved": [],
+        "unchanged_high_risk": [
+          "middle-east-maritime-risk"
+        ]
+      },
+      "path": "reports/2026/08/2026-08-24-daily.html"
+    },
+    {
       "date": "2026-08-23",
       "status": "watch",
       "as_of": "2026年8月23日 09:16 JST",
