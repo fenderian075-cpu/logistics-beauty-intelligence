@@ -23,7 +23,10 @@ function card(label, s, formatter, note = "") {
 async function mount() {
   const root = byId("foreign-workforce");
   if (!root) return;
-  const data = await loadOptionalJSON("data/economy/logistics-foreign-workforce.json", {});
+  const [data, pipeline] = await Promise.all([
+    loadOptionalJSON("data/economy/logistics-foreign-workforce.json", {}),
+    loadOptionalJSON("data/economy/logistics-foreign-capacity-pipeline.json", {})
+  ]);
   clear(root);
 
   const all = series(data, "foreign_workers_all_industries");
@@ -50,7 +53,31 @@ async function mount() {
   const now = latest(transport);
   if (first && now) {
     const growth = (Number(now.value) / Number(first.value) - 1) * 100;
-    root.appendChild(el("p", "flow-block__reading", `2023年10月の${jp(first.value / 10000,1)}万人から2025年10月の${jp(now.value / 10000,1)}万人へ約${jp(growth,1)}%増加。外国人雇用は物流労働供給の補完要素として拡大していますが、道路貨物・倉庫への内訳はこの大分類統計からは判別できません。`));
+    root.appendChild(el("p", "flow-block__reading", `2023年10月の${jp(first.value / 10000,1)}万人から2025年10月の${jp(now.value / 10000,1)}万人へ約${jp(growth,1)}%増加。外国人雇用は物流労働供給の補完要素として拡大していますが、MHLWの公開集計は大分類Hまでで、道路貨物・倉庫への内訳は判別できません。`));
+  }
+
+  const sswTotal = series(pipeline, "ssw_auto_transport_residents");
+  const sswTruck = series(pipeline, "ssw_auto_transport_truck_drivers");
+  const autoCapacity = series(pipeline, "ssw_auto_transport_intake_capacity_to_2029_03");
+  const warehouseCapacity = series(pipeline, "ssw_logistics_warehouse_intake_capacity_to_2029_03");
+  if (sswTotal?.observations?.length) {
+    root.appendChild(el("h3", "flow-block__sub", "Foreign capacity pipeline — Specified Skilled Worker"));
+    const pipelineRow = el("div", "value-row");
+    pipelineRow.appendChild(card("特定技能 自動車運送業", sswTotal, (v) => `${jp(v,0)}人`, "トラック・タクシー・バス計"));
+    pipelineRow.appendChild(card("うちトラック運転者", sswTruck, (v) => `${jp(v,0)}人`, "業務区分別速報"));
+    pipelineRow.appendChild(card("自動車運送業 受入れ見込", autoCapacity, (v) => `${jp(v,0)}人`, "2029年3月まで・政策容量"));
+    pipelineRow.appendChild(card("物流倉庫 受入れ見込", warehouseCapacity, (v) => `${jp(v,0)}人`, "2029年3月まで・政策容量"));
+    root.appendChild(pipelineRow);
+
+    const pipelineChart = chart({
+      kind: "line",
+      unitLabel: "人",
+      series: [{ name: "特定技能 自動車運送業 在留者", unitLabel: "人", points: points(sswTotal) }],
+      note: "2025年6月末10人から12月末151人へ増加。12月末はトラック123人、タクシー16人、バス12人。これは外国人労働者総数ではなく、特定技能という新しい供給チャネルの立ち上がりを追う先行指標です。"
+    });
+    if (pipelineChart) root.appendChild(pipelineChart);
+
+    root.appendChild(el("p", "flow-block__reading", "自動車運送業22,100人・物流倉庫11,400人は実績ではなく、2029年3月までの政策上の受入れ見込数です。現在の道路貨物・倉庫業の外国人就業者数へ置き換えたり、MHLWの運輸・郵便85,477人へ加算したりしません。"));
   }
 }
 
