@@ -22,9 +22,9 @@ const PAGES = {
 };
 
 function ensureProductionPolish() {
-  if (document.getElementById("lbi-v8-polish")) return;
+  if (document.getElementById("lbi-v8-2-polish")) return;
   const style = document.createElement("style");
-  style.id = "lbi-v8-polish";
+  style.id = "lbi-v8-2-polish";
   style.textContent = `
     .brand { align-items:center; white-space:nowrap; }
     .brand__mark,.brand__sub { line-height:1.25; white-space:nowrap; flex:0 0 auto; }
@@ -36,6 +36,34 @@ function ensureProductionPolish() {
     .data-table th:first-child,.data-table td:first-child { min-width:88px; white-space:nowrap; }
     .priority { min-width:38px; white-space:nowrap; }
     .report,.wrap.report,.wrap-read.report { width:100%; max-width:var(--content-max); }
+
+    /* The dashboard's right-hand change column can be much narrower than a
+       full report. Long signal names must own the first row; badges wrap on a
+       second row instead of squeezing Japanese text into a vertical column. */
+    #changed-list .sig-card--compact .sig-card__summary {
+      grid-template-columns:minmax(0,1fr);
+      gap:6px;
+      align-items:start;
+    }
+    #changed-list .sig-card--compact .sig-card__head {
+      width:100%;
+      min-width:0;
+      align-items:flex-start;
+    }
+    #changed-list .sig-card--compact .sig-card__name {
+      min-width:0;
+      overflow-wrap:normal;
+      word-break:normal;
+      line-break:strict;
+      white-space:normal;
+      line-height:1.55;
+    }
+    #changed-list .sig-card--compact .sig-card__badges {
+      width:100%;
+      justify-content:flex-start;
+      align-items:center;
+      gap:4px;
+    }
 
     .economy-thesis { margin:0 0 var(--s4); color:var(--ink-2); }
     .economy-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:var(--s3); }

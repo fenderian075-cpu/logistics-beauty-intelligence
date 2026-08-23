@@ -1,21 +1,18 @@
 /* =========================================================================
    source-matrix.js — the monitoring ledger (what the pipeline watches).
+   Public ledger intentionally aggregates individual Brand.com sources.
    ========================================================================= */
 
 import { el, extLink, byId, clear } from "../core/dom.js";
 import * as L from "../core/labels.js";
-import { loadSourceMatrix, loadReports } from "../data/store.js";
+import { loadSourceMatrix, loadReports, loadCriticalNews } from "../data/store.js";
 import { bindLatestReportNav, markCurrent } from "../core/nav.js";
 import { mountShell } from "../core/shell.js";
-import { loadCriticalNews } from "../data/store.js";
 
 let sources = [];
 
 const PRIORITY_ORDER = new Map([
-  ["P0", 0],
-  ["P1", 1],
-  ["P2", 2],
-  ["P3", 3]
+  ["P0", 0], ["P1", 1], ["P2", 2], ["P3", 3]
 ]);
 
 function priorityRank(value) {
@@ -25,14 +22,29 @@ function priorityRank(value) {
 function stableSourceSort(a, b) {
   const byPriority = priorityRank(a.priority) - priorityRank(b.priority);
   if (byPriority) return byPriority;
-
   const byDomain = String(a.domain || "").localeCompare(String(b.domain || ""), "ja");
   if (byDomain) return byDomain;
-
   const byLayer = String(a.layer || "").localeCompare(String(b.layer || ""), "ja");
   if (byLayer) return byLayer;
-
   return String(a.name || "").localeCompare(String(b.name || ""), "ja");
+}
+
+function publicSourceList(list) {
+  const brandSources = list.filter((s) => String(s.layer || "").toLowerCase().includes("brand.com"));
+  const visible = list.filter((s) => !String(s.layer || "").toLowerCase().includes("brand.com"));
+
+  if (brandSources.length) {
+    visible.push({
+      priority: "P1",
+      domain: "beauty",
+      layer: "Brand.com",
+      name: "Brand.com監視群",
+      url: null,
+      cadence: ["daily"],
+      extract: ["新製品", "限定", "GWP/PWP", "ギフト", "EC限定", "先行販売", "キャンペーン", "在庫・販売条件の重要変更"]
+    });
+  }
+  return visible;
 }
 
 function value(id) {
@@ -73,7 +85,8 @@ function render() {
     tr.appendChild(el("td", null, `${s.domain} / ${s.layer}`));
 
     const nameTd = el("td");
-    nameTd.appendChild(extLink(s.url, s.name));
+    if (s.url) nameTd.appendChild(extLink(s.url, s.name));
+    else nameTd.appendChild(el("span", null, s.name));
     tr.appendChild(nameTd);
 
     tr.appendChild(el("td", null, (s.cadence || []).join(" / ")));
@@ -100,15 +113,15 @@ export function init() {
 
   return Promise.all([loadSourceMatrix(), loadReports(), loadCriticalNews()])
     .then(([list, reportData, newsData]) => {
-    mountShell({ reports: reportData.reports, news: (newsData && newsData.items) || [] });
-    sources = list;
-    render();
-    bindLatestReportNav(reportData.reports);
-    markCurrent();
-  }).catch((err) => {
-    console.error(err);
-    const count = byId("source-count");
-    if (count) count.textContent = L.UI.loadError;
-    throw err;
-  });
+      mountShell({ reports: reportData.reports, news: (newsData && newsData.items) || [] });
+      sources = publicSourceList(list);
+      render();
+      bindLatestReportNav(reportData.reports);
+      markCurrent();
+    }).catch((err) => {
+      console.error(err);
+      const count = byId("source-count");
+      if (count) count.textContent = L.UI.loadError;
+      throw err;
+    });
 }
