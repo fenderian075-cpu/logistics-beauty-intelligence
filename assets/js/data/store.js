@@ -59,11 +59,29 @@ export const loadHolidays = () =>
 
 export const loadBuzz = () => loadJSON("data/buzz.json");
 
+function normalizeMonitoringSource(source) {
+  const s = { ...source };
+  const cadence = Array.isArray(s.cadence) ? s.cadence.slice() : [];
+
+  /* Product rule: every configured Brand.com is checked every Daily run,
+     regardless of whether it originated in the base or extra matrix. */
+  if (String(s.layer || "").toLowerCase().includes("brand.com") && !cadence.includes("daily")) {
+    cadence.unshift("daily");
+  }
+
+  s.cadence = Array.from(new Set(cadence));
+  return s;
+}
+
 export const loadSourceMatrix = () =>
   Promise.all([
     loadJSON("data/source-matrix.json"),
-    loadOptionalJSON("data/source-matrix-extra.json", { sources: [] })
-  ]).then(([base, extra]) => (base.sources || []).concat(extra.sources || []));
+    loadOptionalJSON("data/source-matrix-extra.json", { sources: [] }),
+    loadOptionalJSON("data/source-matrix-economics.json", { sources: [] })
+  ]).then(([base, extra, economics]) =>
+    (base.sources || [])
+      .concat(extra.sources || [], economics.sources || [])
+      .map(normalizeMonitoringSource));
 
 /* Layer-2 feeds. Consumed by the Intelligence Experience work (PR2); exposed
    here so there is exactly one loading path when those pages land. */
