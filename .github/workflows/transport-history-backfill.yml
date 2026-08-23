@@ -6,10 +6,6 @@ on:
     - cron: "40 3 3 * *"
   push:
     paths:
-      - "scripts/inspect_boj_sppi.py"
-      - "scripts/inspect_estat_transport_files.py"
-      - "scripts/inspect_air_cumulative.py"
-      - "scripts/inspect_truck_current.py"
       - "scripts/backfill_transport_history.py"
       - "scripts/backfill_port_history.py"
       - "scripts/backfill_trucking_history.py"
@@ -17,10 +13,6 @@ on:
       - ".github/workflows/transport-history-backfill.yml"
   pull_request:
     paths:
-      - "scripts/inspect_boj_sppi.py"
-      - "scripts/inspect_estat_transport_files.py"
-      - "scripts/inspect_air_cumulative.py"
-      - "scripts/inspect_truck_current.py"
       - "scripts/backfill_transport_history.py"
       - "scripts/backfill_port_history.py"
       - "scripts/backfill_trucking_history.py"
@@ -39,14 +31,6 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install requests openpyxl beautifulsoup4
-      - name: Inspect BOJ SPPI publication layout
-        run: python scripts/inspect_boj_sppi.py
-      - name: Inspect e-Stat transport workbooks
-        run: python scripts/inspect_estat_transport_files.py
-      - name: Inspect annual aviation history workbook
-        run: python scripts/inspect_air_cumulative.py
-      - name: Inspect current trucking trend workbooks
-        run: python scripts/inspect_truck_current.py
       - name: Backfill transport price history
         run: python scripts/backfill_transport_history.py
       - name: Backfill port container history
