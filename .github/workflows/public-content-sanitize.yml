@@ -6,6 +6,7 @@ on:
     branches: [main]
     paths:
       - "scripts/sanitize_public_content.py"
+      - "scripts/localize_source_matrices.py"
       - "scripts/audit_public_content.py"
       - ".github/workflows/public-content-sanitize.yml"
 
@@ -27,8 +28,14 @@ jobs:
       - name: Sanitize public data and UI vocabulary
         run: python scripts/sanitize_public_content.py
 
+      - name: Localize extended source matrices
+        run: python scripts/localize_source_matrices.py
+
       - name: Audit public privacy and Japanese UI
         run: python scripts/audit_public_content.py
+
+      - name: Validate customs taxonomy after localization
+        run: python scripts/validate-customs-taxonomy.py
 
       - name: Commit sanitized public output
         shell: bash
