@@ -12,6 +12,10 @@ const PAGES = {
   radar: () => import("./pages/radar.js"),
   topic: () => import("./pages/topic.js"),
   economy: () => import("./pages/economic-flow-v4.js"),
+  demand: () => import("./pages/logistics-demand.js"),
+  workforce: () => import("./pages/logistics-workforce.js"),
+  capacity: () => import("./pages/logistics-capacity.js"),
+  risk: () => import("./pages/structural-risk.js"),
   report: () => import("./pages/report.js"),
   archive: () => import("./pages/archive.js"),
   commerce: () => import("./pages/commerce-calendar.js"),
@@ -42,43 +46,48 @@ function ensureCanonicalRail() {
   const href = (path) => `${r}${path}`;
   rail.setAttribute("aria-label", "メインナビゲーション");
   rail.innerHTML = `
-    <a class="brand" href="${href("index.html")}">
-      <span class="brand__mark">LBI</span>
-      <span class="brand__sub">物流・化粧品インテリジェンス</span>
-    </a>
-    <div class="rail-group">
-      <p class="rail-group__label">現況</p>
-      <a class="rail-link" data-nav="home" href="${href("index.html")}">ダッシュボード</a>
-      <a class="rail-link" data-nav="radar" href="${href("radar.html")}">オペレーションレーダー<span class="rail-link__count" id="rail-count-radar"></span></a>
-      <a class="rail-link" data-nav="topic" href="${href("topic.html")}">トピック<span class="rail-link__count" id="rail-count-topic"></span></a>
-    </div>
-    <div class="rail-group">
-      <p class="rail-group__label">レポート</p>
-      <a class="rail-link" id="nav-latest-daily" data-nav="daily" href="${href("archive.html?type=daily")}">日次</a>
-      <a class="rail-link" id="nav-latest-weekly" data-nav="weekly" href="${href("archive.html?type=weekly")}">週次</a>
-      <a class="rail-link" id="nav-latest-monthly" data-nav="monthly" href="${href("archive.html?type=monthly")}">月次</a>
-      <a class="rail-link" data-nav="archive" href="${href("archive.html")}">過去のレポート</a>
-    </div>
-    <div class="rail-group">
-      <p class="rail-group__label">分析</p>
-      <a class="rail-link" data-nav="economy" href="${href("economic-flow.html")}">実体経済と物流</a>
-    </div>
-    <div class="rail-group">
-      <p class="rail-group__label">ビューティー</p>
-      <a class="rail-link" data-nav="commerce" href="${href("commerce-calendar.html")}">EC予定</a>
-      <a class="rail-link" data-nav="buzz" href="${href("buzz.html")}">バズ</a>
-    </div>
-    <div class="rail-group">
-      <p class="rail-group__label">参照</p>
-      <a class="rail-link" data-nav="sources" href="${href("source-matrix.html")}">情報源</a>
-      <a class="rail-link" data-nav="status-history" href="${href("status-history.html")}">ステータス履歴</a>
-      <a class="rail-link" data-nav="lens-history" href="${href("lens-history.html")}">シグナル履歴</a>
-    </div>
-    <div class="shell-tools">
-      <button type="button" class="tool-btn" id="tool-theme" aria-pressed="false">自動</button>
-      <button type="button" class="tool-btn" id="tool-density" aria-pressed="false">標準</button>
-      <button type="button" class="tool-btn" id="tool-help" title="キーボードショートカット">?</button>
-    </div>`;
+  <a class="brand" href="${r}index.html">
+    <span class="brand__mark">LBI</span>
+    <span class="brand__sub">物流・化粧品インテリジェンス</span>
+  </a>
+  <div class="rail-group">
+    <p class="rail-group__label">現況</p>
+    <a class="rail-link" data-nav="home" href="${r}index.html">ダッシュボード</a>
+    <a class="rail-link" data-nav="radar" href="${r}radar.html">オペレーションレーダー<span class="rail-link__count" id="rail-count-radar"></span></a>
+    <a class="rail-link" data-nav="topic" href="${r}topic.html">トピック<span class="rail-link__count" id="rail-count-topic"></span></a>
+  </div>
+  <div class="rail-group">
+    <p class="rail-group__label">実体経済と物流</p>
+    <a class="rail-link" data-nav="economy" href="${r}economic-flow.html">経済と物流コスト</a>
+    <a class="rail-link" data-nav="demand" href="${r}logistics-demand.html">物流需要</a>
+    <a class="rail-link" data-nav="capacity" href="${r}logistics-capacity.html">輸送キャパシティ</a>
+    <a class="rail-link" data-nav="workforce" href="${r}logistics-workforce.html">物流労働力</a>
+    <a class="rail-link" data-nav="risk" href="${r}structural-risk.html">構造リスク</a>
+  </div>
+  <div class="rail-group">
+    <p class="rail-group__label">レポート</p>
+    <a class="rail-link" id="nav-latest-daily" data-nav="daily" href="${r}archive.html?type=daily">日次</a>
+    <a class="rail-link" id="nav-latest-weekly" data-nav="weekly" href="${r}archive.html?type=weekly">週次</a>
+    <a class="rail-link" id="nav-latest-monthly" data-nav="monthly" href="${r}archive.html?type=monthly">月次</a>
+    <a class="rail-link" data-nav="archive" href="${r}archive.html">過去のレポート</a>
+  </div>
+  <div class="rail-group">
+    <p class="rail-group__label">ビューティー</p>
+    <a class="rail-link" data-nav="commerce" href="${r}commerce-calendar.html">EC予定</a>
+    <a class="rail-link" data-nav="buzz" href="${r}buzz.html">バズ</a>
+  </div>
+  <div class="rail-group">
+    <p class="rail-group__label">参照</p>
+    <a class="rail-link" data-nav="sources" href="${r}source-matrix.html">情報源</a>
+    <a class="rail-link" data-nav="status-history" href="${r}status-history.html">ステータス履歴</a>
+    <a class="rail-link" data-nav="lens-history" href="${r}lens-history.html">シグナル履歴</a>
+  </div>
+  <div class="shell-tools">
+    <button type="button" class="tool-btn" id="tool-theme" aria-pressed="false">自動</button>
+    <button type="button" class="tool-btn" id="tool-density" aria-pressed="false">標準</button>
+    <button type="button" class="tool-btn" id="tool-help" title="キーボードショートカット">?</button>
+  </div>
+`;
 }
 
 function normalizeEconomyOverviewIds() {

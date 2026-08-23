@@ -226,3 +226,11 @@
 [data-status="unconfirmed"], [data-state="unconfirmed"], [data-lens-state="unconfirmed"] {
   --state: var(--st-unconfirmed); --state-bg: var(--st-unconfirmed-bg);
 }
+
+/* Two more series colours for cohort charts (6 age bands). Ordered by
+   lightness so the stack reads as a gradient in greyscale too. */
+:root { --series-5: #6d8ea8; --series-6: #a98f6b; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --series-5: #9dc0d4; --series-6: #d8bd90; }
+}
+[data-theme="dark"] { --series-5: #9dc0d4; --series-6: #d8bd90; }

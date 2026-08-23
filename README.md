@@ -750,7 +750,7 @@ lens 名は英語併記をやめ、**障害 / コスト・キャパ / 定時性 
 ```bash
 python3 scripts/validate-report.py     # データ ↔ HTML の契約
 node tests/static-audit.mjs            # リンク・ヘッダー・import・CSS・a11y（依存なし）
-npm install jsdom && node tests/dom-smoke.mjs   # 実データで全ページを描画
+npm install && npm test   # static + DOM regression（実データ）
 ```
 
 ---
@@ -785,3 +785,31 @@ npm install jsdom && node tests/dom-smoke.mjs   # 実データで全ページを
 
 - 本リポジトリは業務外の個人プロジェクトとして運用します。
 - レポート本文の著作権・引用の扱いは出典元の規約に従ってください。全文転載はせず、要約と出典リンクにとどめます。
+
+
+---
+
+## 実体経済と物流のページ構成（v9）
+
+| ページ | 何を見るページか |
+|---|---|
+| `economic-flow.html` | 経済と物流コスト（マクロ・貿易・物量・燃料・海上運賃・国内物流価格） |
+| `logistics-demand.html` | 物流需要（宅配便・メール便・物販EC・1人/1世帯あたり） |
+| `logistics-capacity.html` | 輸送キャパシティ（事業者・車両・営業用/自家用・1台/1人あたり仕事量・倉庫） |
+| `logistics-workforce.html` | 物流労働力（就業者・年齢構成・ドライバー処遇・求人・外国人材） |
+| `structural-risk.html` | 構造リスク（Labor Capacity Stress v1・要素分解・感度分析・人口） |
+
+設計の意図・図表選択の理由・維持したデータ定義は `UI_REDESIGN_REPORT.md` に記載しています。
+
+表示の階層は OFFICIAL（公式統計）／DERIVED（LBIの派生計算）／DIAGNOSTIC（LBI独自の診断指数）の
+3種類のバッジで区別します。DERIVED・DIAGNOSTIC は公式統計ではありません。
+
+検証:
+
+```bash
+node tests/static-audit.mjs                      # 13 checks
+npm install && npm test                           # static + 235 DOM checks
+python3 scripts/validate-report.py
+python3 scripts/validate_public_schema_integrity.py
+python3 scripts/audit_public_content.py
+```

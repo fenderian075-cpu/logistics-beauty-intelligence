@@ -167,7 +167,24 @@ function renderEntry(entry, shell, windowKey) {
 function enhanceTargets(registry) {
   document.querySelectorAll("[data-history-metric]").forEach((node) => {
     if (!registry.has(node.getAttribute("data-history-metric"))) return;
-    node.classList.add("history-trigger"); if (!node.hasAttribute("tabindex")) node.tabIndex = 0; if (!node.hasAttribute("role")) node.setAttribute("role", "button"); node.setAttribute("aria-haspopup", "dialog"); if (!node.title) node.title = "クリックして長期推移を分析";
+    /* A real button rather than role="button" + scripted tabindex: it gets
+       keyboard activation, focus order and screen-reader semantics for free,
+       and the audit can then assert that nothing fakes interactivity. */
+    node.classList.add("history-trigger");
+    if (node.querySelector(".history-trigger__button")) return;
+    const trigger = document.createElement("button");
+    trigger.type = "button";
+    trigger.className = "history-trigger__button";
+    trigger.setAttribute("aria-haspopup", "dialog");
+    trigger.title = "長期推移を分析";
+    trigger.setAttribute("aria-label", `${node.textContent.trim().slice(0, 40)} の長期推移を分析`);
+    trigger.textContent = "推移";
+    trigger.addEventListener("click", (event) => {
+      event.stopPropagation();
+      node.dispatchEvent(new CustomEvent("lbi:history-open", { bubbles: true }));
+      node.click();
+    });
+    node.appendChild(trigger);
   });
 }
 

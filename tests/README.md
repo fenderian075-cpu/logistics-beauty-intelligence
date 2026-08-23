@@ -16,8 +16,8 @@ translation markup · `!important` only inside `@media print` /
 ## `dom-smoke.mjs` — needs jsdom
 
 ```bash
-npm install jsdom      # dev only; the site itself has no dependencies
-node tests/dom-smoke.mjs
+npm install            # dev only; the site itself has no runtime dependencies
+npm test               # static + DOM regression
 ```
 
 Renders every page in jsdom against the **real** `data/**` and asserts, among

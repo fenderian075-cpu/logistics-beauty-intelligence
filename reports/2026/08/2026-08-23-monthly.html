@@ -9,7 +9,50 @@
 <script>try{var d=document.documentElement,t=localStorage.getItem("lbi:theme"),n=localStorage.getItem("lbi:density");if(t==="dark"||t==="light")d.setAttribute("data-theme",t);if(n==="compact")d.setAttribute("data-density","compact");}catch(e){}</script>
 </head>
 <body data-root="../../../" data-page="report" data-report-date="2026-08-23" data-report-type="monthly">
-<a class="skip-link" href="#main">本文へスキップ</a><div class="app-shell"><nav class="app-rail" aria-label="メインナビゲーション"><a class="brand" href="../../../index.html"><span class="brand__mark">LBI</span><span class="brand__sub">物流・化粧品インテリジェンス</span></a><div class="rail-group"><p class="rail-group__label">現況</p><a class="rail-link" data-nav="home" href="../../../index.html">ダッシュボード</a><a class="rail-link" data-nav="radar" href="../../../radar.html">オペレーションレーダー<span class="rail-link__count" id="rail-count-radar"></span></a><a class="rail-link" data-nav="topic" href="../../../topic.html">トピック<span class="rail-link__count" id="rail-count-topic"></span></a></div><div class="rail-group"><p class="rail-group__label">レポート</p><a class="rail-link" id="nav-latest-daily" data-nav="daily" href="../../../archive.html?type=daily">日次</a><a class="rail-link" id="nav-latest-weekly" data-nav="weekly" href="../../../archive.html?type=weekly">週次</a><a class="rail-link" id="nav-latest-monthly" data-nav="monthly" href="../../../archive.html?type=monthly">月次</a><a class="rail-link" data-nav="archive" href="../../../archive.html">過去のレポート</a></div><div class="rail-group"><p class="rail-group__label">ビューティー</p><a class="rail-link" data-nav="commerce" href="../../../commerce-calendar.html">EC予定</a><a class="rail-link" data-nav="buzz" href="../../../buzz.html">バズ</a></div><div class="rail-group"><p class="rail-group__label">参照</p><a class="rail-link" data-nav="economy" href="../../../economic-flow.html">実体経済と物流</a><a class="rail-link" data-nav="sources" href="../../../source-matrix.html">情報源</a><a class="rail-link" data-nav="status-history" href="../../../status-history.html">ステータス履歴</a><a class="rail-link" data-nav="lens-history" href="../../../lens-history.html">シグナル履歴</a></div><div class="shell-tools"><button type="button" class="tool-btn" id="tool-theme">自動</button><button type="button" class="tool-btn" id="tool-density">標準</button><button type="button" class="tool-btn" id="tool-help">?</button></div></nav><div class="app-frame"><div class="app-ribbon" id="app-ribbon" role="status"></div><main class="app-main" id="main"><div class="wrap report">
+<a class="skip-link" href="#main">本文へスキップ</a><div class="app-shell"><nav class="app-rail" aria-label="メインナビゲーション">
+  <a class="brand" href="../../../index.html">
+    <span class="brand__mark">LBI</span>
+    <span class="brand__sub">物流・化粧品インテリジェンス</span>
+  </a>
+  <div class="rail-group">
+    <p class="rail-group__label">現況</p>
+    <a class="rail-link" data-nav="home" href="../../../index.html">ダッシュボード</a>
+    <a class="rail-link" data-nav="radar" href="../../../radar.html">オペレーションレーダー<span class="rail-link__count" id="rail-count-radar"></span></a>
+    <a class="rail-link" data-nav="topic" href="../../../topic.html">トピック<span class="rail-link__count" id="rail-count-topic"></span></a>
+  </div>
+  <div class="rail-group">
+    <p class="rail-group__label">実体経済と物流</p>
+    <a class="rail-link" data-nav="economy" href="../../../economic-flow.html">経済と物流コスト</a>
+    <a class="rail-link" data-nav="demand" href="../../../logistics-demand.html">物流需要</a>
+    <a class="rail-link" data-nav="capacity" href="../../../logistics-capacity.html">輸送キャパシティ</a>
+    <a class="rail-link" data-nav="workforce" href="../../../logistics-workforce.html">物流労働力</a>
+    <a class="rail-link" data-nav="risk" href="../../../structural-risk.html">構造リスク</a>
+  </div>
+  <div class="rail-group">
+    <p class="rail-group__label">レポート</p>
+    <a class="rail-link" id="nav-latest-daily" data-nav="daily" href="../../../archive.html?type=daily">日次</a>
+    <a class="rail-link" id="nav-latest-weekly" data-nav="weekly" href="../../../archive.html?type=weekly">週次</a>
+    <a class="rail-link" id="nav-latest-monthly" data-nav="monthly" href="../../../archive.html?type=monthly">月次</a>
+    <a class="rail-link" data-nav="archive" href="../../../archive.html">過去のレポート</a>
+  </div>
+  <div class="rail-group">
+    <p class="rail-group__label">ビューティー</p>
+    <a class="rail-link" data-nav="commerce" href="../../../commerce-calendar.html">EC予定</a>
+    <a class="rail-link" data-nav="buzz" href="../../../buzz.html">バズ</a>
+  </div>
+  <div class="rail-group">
+    <p class="rail-group__label">参照</p>
+    <a class="rail-link" data-nav="sources" href="../../../source-matrix.html">情報源</a>
+    <a class="rail-link" data-nav="status-history" href="../../../status-history.html">ステータス履歴</a>
+    <a class="rail-link" data-nav="lens-history" href="../../../lens-history.html">シグナル履歴</a>
+  </div>
+  <div class="shell-tools">
+    <button type="button" class="tool-btn" id="tool-theme" aria-pressed="false">自動</button>
+    <button type="button" class="tool-btn" id="tool-density" aria-pressed="false">標準</button>
+    <button type="button" class="tool-btn" id="tool-help" title="キーボードショートカット">?</button>
+  </div>
+</nav>
+<div class="app-frame"><div class="app-ribbon" id="app-ribbon" role="status"></div><main class="app-main" id="main"><div class="wrap report">
 <nav class="breadcrumb" aria-label="パンくず"><ol><li><a href="../../../index.html">ホーム</a></li><li><a href="../../../archive.html">過去のレポート</a></li><li aria-current="page">2026年8月23日 月次</li></ol></nav>
 <header class="report-head" data-status="watch"><p class="eyebrow">月次</p><h1>2026年8月23日 月次</h1><div class="report-head__meta"><span>対象: 2026年8月</span><span>基準時点: 2026年8月23日 09:37 JST</span><span>公開情報のみ</span><span><a href="#" data-print>印刷・PDF</a></span></div></header>
 <section><h2>概要</h2><p>8月からLBIの構造判断を、物流市場だけでなく実体経済へ接続する。海上は名目船腹ではなくeffective capacityで見る。日本国内は荷待ち・荷役と物流効率化法のKPIを追う。さらに、貿易 → 港湾/航空/トラック → 倉庫・在庫 → 物流コスト → 物流企業収益・投資というTransmissionを常設し、物流量増加が需要増なのか在庫積み増しなのかを検証する。Beautyもブランド公式サイトのattention/promotionから小売・輸入・倉庫へ接続していく。</p></section>

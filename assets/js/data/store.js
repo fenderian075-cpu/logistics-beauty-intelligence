@@ -89,3 +89,35 @@ export const loadEconomyBundle = () => Promise.all([
   trade, warehouse, port, cost, trucking, air, beauty, beautyMarket, macro, companies,
   prices, industry, decomposition, fuel, ocean, fuelStatus, deflators
 }));
+
+/* ---- logistics structure bundle (demand / workforce / capacity / risk) ----
+   The demand, workforce, capacity and risk pages read from one loader so the
+   four of them cannot disagree about a number, and each JSON is still fetched
+   exactly once per page. */
+export const loadLogisticsBundle = () => Promise.all([
+  loadOptionalJSON("data/economy/parcel-demand.json", {}),
+  loadOptionalJSON("data/economy/ec-demand.json", {}),
+  loadOptionalJSON("data/economy/household-demand.json", {}),
+  loadOptionalJSON("data/economy/logistics-capacity.json", {}),
+  loadOptionalJSON("data/economy/logistics-workforce.json", {}),
+  loadOptionalJSON("data/economy/logistics-workforce-age.json", {}),
+  loadOptionalJSON("data/economy/logistics-labor-market.json", {}),
+  loadOptionalJSON("data/economy/driver-demography.json", {}),
+  loadOptionalJSON("data/economy/driver-labor-history.json", {}),
+  loadOptionalJSON("data/economy/road-freight-driver-capacity.json", {}),
+  loadOptionalJSON("data/economy/trucking-physical-capacity.json", {}),
+  loadOptionalJSON("data/economy/trucking-business-structure.json", {}),
+  loadOptionalJSON("data/economy/japan-demography.json", {}),
+  loadOptionalJSON("data/economy/logistics-foreign-workforce.json", {}),
+  loadOptionalJSON("data/economy/logistics-foreign-capacity-pipeline.json", {}),
+  loadOptionalJSON("data/economy/labor-capacity-stress-v1.json", {}),
+  loadOptionalJSON("data/economy/labor-capacity-stress-sensitivity.json", {}),
+  loadOptionalJSON("data/economy/warehouse-flow.json", {}),
+  loadOptionalJSON("data/economy/trucking.json", {})
+]).then(([parcel, ec, household, capacity, workforce, workforceAge, laborMarket, driverAge,
+          driverLabor, roadFreightDrivers, physicalCapacity, businessStructure, demography, foreignWorkforce,
+          foreignPipeline, stress, sensitivity, warehouse, trucking]) => ({
+  parcel, ec, household, capacity, workforce, workforceAge, laborMarket, driverAge,
+  driverLabor, roadFreightDrivers, physicalCapacity, businessStructure, demography, foreignWorkforce,
+  foreignPipeline, stress, sensitivity, warehouse, trucking
+}));
