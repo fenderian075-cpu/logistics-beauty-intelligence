@@ -3,7 +3,8 @@
 
 This intentionally recomputes derived parcel/worker observations from their
 canonical source stores so the frontend cannot silently drift from source data.
-No interpolation is permitted.
+No interpolation is permitted. Published age series are also guarded against
+coverage collapse and pseudo-derived averages.
 """
 from __future__ import annotations
 
@@ -37,6 +38,7 @@ def main():
     parcel = read("parcel-demand.json")
     workforce = read("logistics-workforce.json")
     capacity = read("logistics-capacity.json")
+    demography = read("driver-demography.json")
 
     parcels = by_period(observations(parcel, "parcel_delivery_volume"))
     workers = by_period(observations(workforce, "transport_postal_employment"))
@@ -75,12 +77,29 @@ def main():
         expected = round(female[period] / (female[period] + male[period]) * 100, 2)
         assert abs(female_share[period] - expected) <= 0.02, (period, female_share[period], expected)
 
+    age_ids = [
+        "all_industries_average_age",
+        "commercial_large_truck_driver_average_age",
+        "commercial_small_truck_driver_average_age",
+    ]
+    age = {mid: observations(demography, mid) for mid in age_ids}
+    for mid, rows in age.items():
+        periods = [str(r["period"]) for r in rows]
+        assert len(rows) == 11 and periods[0] == "2010" and periods[-1] == "2020", (mid, periods)
+        assert all(r.get("status") == "official_secondary" for r in rows), f"{mid}: average age must be published, not pseudo-derived"
+    large = by_period(age["commercial_large_truck_driver_average_age"])
+    all_industry = by_period(age["all_industries_average_age"])
+    assert large["2020"] == 49.4 and all_industry["2020"] == 43.2
+    assert large["2020"] > all_industry["2020"]
+
     print(json.dumps({
         "status": "success",
         "parcel_coverage": [min(parcels), max(parcels), len(parcels)],
         "workforce_coverage": [min(workers), max(workers), len(workers)],
         "derived_coverage": [actual_periods[0], actual_periods[-1], len(actual_periods)],
         "latest_load_index": idx[actual_periods[-1]],
+        "driver_age_coverage": ["2010", "2020", len(age["commercial_large_truck_driver_average_age"])],
+        "large_driver_age_2020": large["2020"],
     }, ensure_ascii=False, indent=2))
 
 
