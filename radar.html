@@ -63,10 +63,18 @@
   <header class="page-head">
     <p class="eyebrow">OPERATIONS RADAR</p>
     <h1 class="page-title">オペレーションレーダー</h1>
-    <p class="page-lead">見逃してはいけない動きだけを、実影響 → 報告 の順で表示します。並び順は日付ではなく状態が優先です。</p>
+    <p class="page-lead">見逃してはいけない動きだけを、実影響 → 報告 の順で表示します。Market Regimeは複数ソースを横断し、単一指標の動きと実際の需給変化を分けて判定します。</p>
     <p class="page-meta" id="radar-summary"></p>
     <p class="notice" id="radar-new" hidden></p>
   </header>
+
+  <section aria-labelledby="market-regime-title">
+    <p class="eyebrow">MARKET REGIME</p>
+    <h2 id="market-regime-title">クロスソース市場判定</h2>
+    <p class="page-meta">Rate ≠ Supply ≠ Demand ≠ Reliability ≠ Risk。Beautyは販促・Buzzと実需を分離して判定します。</p>
+    <div id="market-regime-panel" class="radar-list"><p class="empty-state">市場レジームを判定中…</p></div>
+  </section>
+
   <div id="radar-filters"></div>
   <div id="radar-list"><p class="empty-state">読み込み中…</p></div>
 </div>
@@ -84,6 +92,14 @@
 </div>
 </div>
 <script type="module" src="assets/js/app.js"></script>
+<script type="module">
+  import { mountMarketRegimePanel } from "./assets/js/render/market-regime-panel.js";
+  const target = document.getElementById("market-regime-panel");
+  mountMarketRegimePanel(target).catch((err) => {
+    console.error(err);
+    if (target) target.textContent = "市場レジームを読み込めませんでした。";
+  });
+</script>
 <noscript><p class="empty-state">このページは data/*.json をJavaScriptで読み込みます。各レポートページは直接ご覧いただけます。</p></noscript>
 </body>
 </html>
