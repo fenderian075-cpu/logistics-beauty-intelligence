@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0",
+  "sources": [
+    {
+      "priority": "P0",
+      "domain": "logistics",
+      "layer": "Corporate / Market",
+      "name": "JPX TDnet 適時開示",
+      "url": "https://www.jpx.co.jp/equities/listing/disclosure/tdnet/",
+      "cadence": ["daily", "weekly", "monthly"],
+      "extract": ["決算", "業績予想修正", "M&A", "TOB", "資本提携", "事業再編", "大型投資", "撤退", "自己株式", "重要事実"]
+    },
+    {
+      "priority": "P1",
+      "domain": "logistics",
+      "layer": "Corporate / IR",
+      "name": "ヤマトホールディングス IR",
+      "url": "https://www.yamato-hd.co.jp/investors/",
+      "cadence": ["daily", "weekly", "monthly"],
+      "extract": ["IRニュース", "決算", "取扱個数", "株価", "事業再編", "M&A", "資本政策"]
+    },
+    {
+      "priority": "P1",
+      "domain": "logistics",
+      "layer": "Corporate / IR",
+      "name": "SGホールディングス IR",
+      "url": "https://www.sg-hldgs.co.jp/ir/",
+      "cadence": ["daily", "weekly", "monthly"],
+      "extract": ["IRニュース", "決算", "宅配便取扱個数", "株価", "M&A", "資本政策", "事業戦略"]
+    },
+    {
+      "priority": "P1",
+      "domain": "logistics",
+      "layer": "Corporate / IR",
+      "name": "NIPPON EXPRESSホールディングス IR",
+      "url": "https://www.nipponexpress-holdings.com/ja/ir/",
+      "cadence": ["daily", "weekly", "monthly"],
+      "extract": ["IRニュース", "株価", "決算", "国際航空貨物取扱実績", "国際海上輸送取扱実績", "M&A", "事業再編"]
+    },
+    {
+      "priority": "P1",
+      "domain": "logistics",
+      "layer": "Corporate / IR",
+      "name": "セイノーホールディングス IR",
+      "url": "https://www.seino.co.jp/seino/shd/ir/",
+      "cadence": ["daily", "weekly", "monthly"],
+      "extract": ["決算", "株価", "パートナーシップ", "M&A", "物流2024年問題", "資本政策", "事業戦略"]
+    },
+    {
+      "priority": "P1",
+      "domain": "logistics",
+      "layer": "Corporate / IR",
+      "name": "センコーグループホールディングス IR",
+      "url": "https://www.senkogrouphd.co.jp/ir/",
+      "cadence": ["daily", "weekly", "monthly"],
+      "extract": ["IRニュース", "決算", "株価", "M&A", "物流施設投資", "資本政策", "事業再編"]
+    },
+    {
+      "priority": "P1",
+      "domain": "logistics",
+      "layer": "Corporate / IR",
+      "name": "SBSホールディングス IR",
+      "url": "https://www.sbs-group.co.jp/sbshlds/ir/",
+      "cadence": ["daily", "weekly", "monthly"],
+      "extract": ["IRニュース", "決算", "業績予想修正", "株価", "M&A", "物流施設", "事業再編"]
+    },
+    {
+      "priority": "P1",
+      "domain": "logistics",
+      "layer": "Corporate / IR",
+      "name": "AZ-COM丸和ホールディングス IR",
+      "url": "https://www.az-com-maruwa-hd.co.jp/ir/",
+      "cadence": ["daily", "weekly", "monthly"],
+      "extract": ["IRニュース", "決算", "株価", "M&A", "TOB", "3PL", "EC物流", "資本政策"]
+    }
+  ]
+}
