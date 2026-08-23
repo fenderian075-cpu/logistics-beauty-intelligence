@@ -4,9 +4,9 @@ on:
   workflow_dispatch:
     inputs:
       vintage:
-        description: "SNA annual vintage year"
+        description: "SNA annual vintage year (blank = current year - 2)"
         required: false
-        default: "2024"
+        default: ""
   push:
     branches: [main]
     paths:
@@ -40,10 +40,12 @@ jobs:
         shell: bash
         run: |
           if [[ "${{ github.event_name }}" == "workflow_dispatch" && -n "${{ inputs.vintage }}" ]]; then
-            echo "year=${{ inputs.vintage }}" >> "$GITHUB_OUTPUT"
+            VINTAGE="${{ inputs.vintage }}"
           else
-            echo "year=2024" >> "$GITHUB_OUTPUT"
+            VINTAGE="$(( $(date -u +%Y) - 2 ))"
           fi
+          echo "year=$VINTAGE" >> "$GITHUB_OUTPUT"
+          echo "Using SNA vintage $VINTAGE"
 
       - name: Collect official ESRI SNA tables
         run: |
@@ -59,10 +61,15 @@ jobs:
           d = json.load(open(p, encoding="utf-8"))
           assert d["dataset"] == "industry-deflators"
           assert len(d["industries"]) >= 14
-          assert int(d["coverage"]["end_year"]) >= 2024
+          assert int(d["coverage"]["end_year"]) == int(d["source_vintage"])
           for row in d["industries"]:
               assert row["observations"], row["id"]
-          print("validated", d["coverage"])
+          # Exact-identity gaps should be small after rounding; large gaps indicate
+          # the parser selected the wrong matrix or basis.
+          latest = [r["observations"][-1] for r in d["industries"] if r["observations"]]
+          gaps = [abs(float(o["identity_gap_pctpt"])) for o in latest if o.get("identity_gap_pctpt") is not None]
+          assert gaps and max(gaps) <= 1.0, max(gaps) if gaps else None
+          print("validated", d["coverage"], "max_identity_gap", max(gaps))
           PY
 
       - name: Commit refreshed dataset
