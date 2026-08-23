@@ -1,0 +1,56 @@
+{
+  "schema_version":"1.0",
+  "dataset":"deflator-decomposition",
+  "title_ja":"名目・実質・価格分解",
+  "frequency":"annual+monthly",
+  "updated_at":"2026-08-23T12:10:00+09:00",
+  "principle":"Nominal growth is decomposed only when nominal and price series share the same comparison period. For Beauty, CPI cosmetics is used as a consumer-price deflator proxy for retail demand, not as an SNA industry GDP deflator. For SNA industries, only the official industry GDP deflator should be used.",
+  "sources":[
+    {"name":"総務省統計局 2025年基準CPI 品目別価格指数","url":"https://www.stat.go.jp/data/cpi/2025/youshiki/index.html","note":"Official item-level history includes code 0150 Cosmetics; 2025-base connected series published 2026-08-07."},
+    {"name":"e-Stat CPI 0150 化粧品","url":"https://www.e-stat.go.jp/index.php/stat-search/database?alpha=17&layout=dataset&statdisp_id=0003427113"},
+    {"name":"内閣府 2024年度国民経済計算 経済活動別GDPデフレーター","url":"https://www.esri.cao.go.jp/jp/sna/data/data_list/kakuhou/files/2024/2024_kaku_top.html"},
+    {"name":"e-Stat 経済活動別国内総生産デフレーター","url":"https://www.e-stat.go.jp/dbview?sid=0004049765"}
+  ],
+  "beauty_cpi": {
+    "metric_id":"cpi_cosmetics",
+    "name_ja":"CPI 化粧品",
+    "classification_code":"0150",
+    "unit":"2020=100 connected index",
+    "annual":[
+      {"period":"2015","value":99.3,"yoy_pct":0.7},
+      {"period":"2016","value":99.3,"yoy_pct":-0.1},
+      {"period":"2017","value":98.4,"yoy_pct":-0.9},
+      {"period":"2018","value":98.1,"yoy_pct":-0.3},
+      {"period":"2019","value":98.6,"yoy_pct":0.5},
+      {"period":"2020","value":100.0,"yoy_pct":1.4},
+      {"period":"2021","value":99.7,"yoy_pct":-0.3},
+      {"period":"2022","value":100.1,"yoy_pct":0.3},
+      {"period":"2023","value":100.0,"yoy_pct":-0.1},
+      {"period":"2024","value":100.5,"yoy_pct":0.4},
+      {"period":"2025","value":101.1,"yoy_pct":0.7}
+    ],
+    "monthly":[
+      {"period":"2024-04","value":100.3,"yoy_pct":0.2},{"period":"2024-05","value":100.3,"yoy_pct":0.3},{"period":"2024-06","value":100.4,"yoy_pct":0.6},{"period":"2024-07","value":100.3,"yoy_pct":0.4},{"period":"2024-08","value":100.5,"yoy_pct":0.5},{"period":"2024-09","value":100.8,"yoy_pct":0.7},{"period":"2024-10","value":101.1,"yoy_pct":1.1},{"period":"2024-11","value":100.9,"yoy_pct":1.2},{"period":"2024-12","value":100.6,"yoy_pct":0.7},
+      {"period":"2025-01","value":101.0,"yoy_pct":0.9},{"period":"2025-02","value":100.8,"yoy_pct":0.9},{"period":"2025-03","value":100.9,"yoy_pct":0.6},{"period":"2025-04","value":100.8,"yoy_pct":0.5},{"period":"2025-05","value":100.9,"yoy_pct":0.6},{"period":"2025-06","value":100.8,"yoy_pct":0.3},{"period":"2025-07","value":100.8,"yoy_pct":0.5},{"period":"2025-08","value":100.8,"yoy_pct":0.4},{"period":"2025-09","value":101.7,"yoy_pct":0.9},{"period":"2025-10","value":101.7,"yoy_pct":0.6},{"period":"2025-11","value":101.8,"yoy_pct":0.9},{"period":"2025-12","value":101.6,"yoy_pct":1.0},
+      {"period":"2026-01","value":101.7,"yoy_pct":0.8},{"period":"2026-02","value":101.6,"yoy_pct":0.8},{"period":"2026-03","value":101.6,"yoy_pct":0.7},{"period":"2026-04","value":102.7,"yoy_pct":1.9}
+    ],
+    "verification_note":"Values mirror the official CPI 0150 series; official Statistics Bureau/e-Stat is canonical. Secondary web rendering was used only to verify row values where direct binary CSV retrieval was unavailable in-session."
+  },
+  "beauty_real_proxy": {
+    "formula":"real_growth_pct = ((1 + nominal_growth_pct/100) / (1 + cpi_cosmetics_growth_pct/100) - 1) * 100",
+    "observations":[
+      {"period":"2025","channel":"department_store_cosmetics","nominal_growth_pct":1.3,"price_growth_pct":0.7,"real_growth_proxy_pct":0.6,"nominal_basis":"JDSA store-count-adjusted YoY","price_basis":"CPI cosmetics annual YoY","status":"derived_proxy"},
+      {"period":"2025","channel":"drugstore_beauty","nominal_growth_pct":6.3,"price_growth_pct":0.7,"real_growth_proxy_pct":5.6,"nominal_basis":"METI drugstore Beauty Care annual YoY","price_basis":"CPI cosmetics annual YoY","status":"derived_proxy"}
+    ],
+    "interpretation":"Retail real-growth proxy removes cosmetics consumer-price inflation from nominal retail growth. It is not equivalent to real value added or production volume."
+  },
+  "industry_deflator": {
+    "source_table":"SNA economic activity GDP deflator, calendar year, 2020=100",
+    "official_history_available":"1994-2024",
+    "collection_status":"official_series_verified_binary_values_pending_ingest",
+    "target_industries":["agriculture","mining","manufacturing","utilities_waste","construction","wholesale_retail","transport_postal","accommodation_food","information_communications","finance_insurance","real_estate","professional_business_support","public_admin","education","health_social","other_services"],
+    "required_fields":["period","deflator_index","deflator_yoy_pct","nominal_yoy_pct","real_yoy_pct"],
+    "decomposition_rule":"For the same calendar year, read official nominal YoY, official real YoY and official GDP-deflator YoY together. Do not substitute CPI or SPPI for the SNA GDP deflator.",
+    "ingest_note":"The official Excel/CSV endpoints were verified, but binary retrieval was unavailable in the current execution environment. No values are guessed."
+  }
+}
