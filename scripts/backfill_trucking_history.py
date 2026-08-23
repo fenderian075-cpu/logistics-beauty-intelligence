@@ -36,18 +36,22 @@ def number(v):
     try:return float(m.group(0))
     except ValueError:return None
 
-def period(v):
-    s=str(v or '').strip().replace('.0','')
-    m=re.match(r'^(20\d{2})(\d{2})',s)
-    if m and 1<=int(m.group(2))<=12:return f'{m.group(1)}-{int(m.group(2)):02d}'
-    return None
+def estat_time_code(v):
+    """Decode e-Stat automobile-transport time-axis codes.
 
-def year_token(v):
-    x=number(v)
-    if x is not None and 2000<=x<=2100 and float(x).is_integer():return str(int(x))
-    s=str(v or '').strip()
-    m=re.fullmatch(r'(20\d{2})年?',s)
-    return m.group(1) if m else None
+    The official 2-1/2-2 workbooks use 10-digit codes such as:
+      2015000000 -> annual 2015
+      2025000101 -> monthly 2025-01
+      2025001212 -> monthly 2025-12
+    The month is carried in the final two digits; positions 5-6 are not YYYYMM.
+    """
+    s=str(v or '').strip().replace('.0','')
+    if not re.fullmatch(r'20\d{8}',s):return None,None
+    year=s[:4]
+    if s.endswith('000000'):return year,None
+    month=int(s[-2:])
+    if 1<=month<=12:return None,f'{year}-{month:02d}'
+    return None,None
 
 def parse(blob,sheet_name):
     wb=load_workbook(io.BytesIO(blob),read_only=True,data_only=True)
@@ -57,11 +61,10 @@ def parse(blob,sheet_name):
         if len(row)<5:continue
         v=number(row[4])
         if v is None:continue
-        p=period(row[1])
+        y,p=estat_time_code(row[1])
         if p:
             monthly.append({'period':p,'value':v,'status':'official','source':'国土交通省 自動車輸送統計/e-Stat'})
             continue
-        y=year_token(row[1])
         if y and 2015<=int(y)<=2100:
             annual.append({'period':y,'value':v,'status':'official_connected','source':'国土交通省 自動車輸送統計/e-Stat'})
     wb.close()
