@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0",
+  "dataset": "sna-collector-status",
+  "status": "pending",
+  "stage": "awaiting_main_workflow",
+  "vintage": "2024",
+  "collect_outcome": null,
+  "validate_outcome": null,
+  "collect_exit_code": null,
+  "updated_at": "2026-08-23T03:48:00Z",
+  "diagnostic_tail": null,
+  "note": "This file is overwritten by the SNA collector workflow on main. Public diagnostic only; no credentials or private data are included."
+}
