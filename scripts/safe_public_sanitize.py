@@ -51,6 +51,9 @@ PROSE_REPLACEMENTS = [
     ("base demand", "基礎需要"),
     ("promotion uplift", "販促による上振れ"),
     ("effective capacity loss", "実効供給力の低下"),
+    ("effective supply", "実効供給力"),
+    ("fleet supply", "船腹供給"),
+    ("delay absorption", "遅延による供給力吸収"),
     ("deep-sea capacity", "外航船腹量"),
     ("booking lead time", "予約リードタイム"),
     ("service adjustment", "サービス調整"),
@@ -64,6 +67,8 @@ PROSE_REPLACEMENTS = [
     ("global index", "世界運賃指数"),
     ("carrier/service", "輸送会社・サービス"),
     ("capacity shortage", "船腹不足"),
+    ("幹線capacity", "幹線輸送力"),
+    ("promotion/launch", "販促・新製品投入"),
     ("Blank sailing", "欠便"),
     ("blank sailing", "欠便"),
 ]
