@@ -4,18 +4,26 @@
   "title_ja": "物流労働力の年齢構造",
   "frequency": "annual",
   "sources": [
-    {
-      "name": "総務省統計局 労働力調査年報 I-B-5 / 結果原表 II-2-1",
-      "url": "https://www.e-stat.go.jp/stat-search/files?layout=dataset&query=%E7%94%A3%E6%A5%AD%E5%88%A5%E5%B0%B1%E6%A5%AD%E8%80%85%E6%95%B0"
-    }
+    {"name":"総務省統計局 労働力調査 2-2-1 年齢階級，産業別就業者数（2007年～）","url":"https://www.e-stat.go.jp/dbview?sid=0003007108","stats_data_id":"0003007108"},
+    {"name":"総務省統計局 労働力調査年報 I-B-5","url":"https://www.e-stat.go.jp/stat-search/files?layout=dataset&query=%E7%94%A3%E6%A5%AD%E5%88%A5%E5%B0%B1%E6%A5%AD%E8%80%85%E6%95%B0","role":"annual-report cross-check"}
   ],
+  "api_contract": {
+    "stats_data_id":"0003007108",
+    "tab":"01",
+    "area":"00000",
+    "sex":{"total":"0","male":"1","female":"2"},
+    "industry":{"transport_postal":"42","road_freight":"45","warehousing":"48"},
+    "age":{"total":"00","15_19":"02","20_24":"05","25_29":"07","30_34":"08","35_39":"10","40_44":"11","45_49":"13","50_54":"14","55_64":"15","55_59":"16","60_64":"17","65_plus":"18"},
+    "time":{"from":"2015000000","to":"2025000000"}
+  },
   "notes": [
-    "2025年年報 I-B-5 および2025年度結果原表 II-2-1 が、年齢階級×産業別就業者数を公式に提供していることを確認済み。",
+    "e-Stat 2-2-1のメタデータコードを固定し、Excel列位置ではなくAPI分類コードで取得する。",
+    "年齢帯は15-24=(15-19+20-24)、25-34=(25-29+30-34)、35-44=(35-39+40-44)、45-54=(45-49+50-54)、55-64は公式再掲値、65+は公式値。",
+    "55歳以上比率=(55-64+65+)/総数、34歳以下比率=(15-24+25-34)/総数、replacement ratio=(15-34)/(55+)として派生可能。",
     "道路貨物運送業・倉庫業は産業統計。トラックドライバー職業統計とは混同しない。",
-    "欠損値は補間しない。平均年齢は年齢階級から擬似算出しない。",
-    "55歳以上比率=(55-64 + 65+)/総数、34歳以下比率=(15-24 + 25-34)/総数として、公式実数の投入後に派生する。"
+    "欠損値は補間しない。平均年齢は年齢階級から擬似算出しない。"
   ],
-  "status": "source_verified_schema_ready",
+  "status":"source_verified_api_ready",
   "series": [
     {"metric_id":"transport_postal_age_15_24","name_ja":"運輸業・郵便業 15-24歳就業者数","unit":"ten_thousand_persons","observations":[]},
     {"metric_id":"transport_postal_age_25_34","name_ja":"運輸業・郵便業 25-34歳就業者数","unit":"ten_thousand_persons","observations":[]},
@@ -25,13 +33,30 @@
     {"metric_id":"transport_postal_age_65_plus","name_ja":"運輸業・郵便業 65歳以上就業者数","unit":"ten_thousand_persons","observations":[]},
     {"metric_id":"transport_postal_age_55_plus_share","name_ja":"運輸業・郵便業 55歳以上比率","unit":"pct","observations":[]},
     {"metric_id":"transport_postal_young_share","name_ja":"運輸業・郵便業 34歳以下比率","unit":"pct","observations":[]},
+    {"metric_id":"transport_postal_replacement_ratio","name_ja":"運輸業・郵便業 若年/高齢 replacement ratio","unit":"ratio","observations":[]},
+
     {"metric_id":"road_freight_employment","name_ja":"道路貨物運送業 就業者数","unit":"ten_thousand_persons","observations":[]},
+    {"metric_id":"road_freight_age_15_24","name_ja":"道路貨物運送業 15-24歳就業者数","unit":"ten_thousand_persons","observations":[]},
+    {"metric_id":"road_freight_age_25_34","name_ja":"道路貨物運送業 25-34歳就業者数","unit":"ten_thousand_persons","observations":[]},
+    {"metric_id":"road_freight_age_35_44","name_ja":"道路貨物運送業 35-44歳就業者数","unit":"ten_thousand_persons","observations":[]},
+    {"metric_id":"road_freight_age_45_54","name_ja":"道路貨物運送業 45-54歳就業者数","unit":"ten_thousand_persons","observations":[]},
+    {"metric_id":"road_freight_age_55_64","name_ja":"道路貨物運送業 55-64歳就業者数","unit":"ten_thousand_persons","observations":[]},
+    {"metric_id":"road_freight_age_65_plus","name_ja":"道路貨物運送業 65歳以上就業者数","unit":"ten_thousand_persons","observations":[]},
     {"metric_id":"road_freight_age_55_plus_share","name_ja":"道路貨物運送業 55歳以上比率","unit":"pct","observations":[]},
     {"metric_id":"road_freight_young_share","name_ja":"道路貨物運送業 34歳以下比率","unit":"pct","observations":[]},
+    {"metric_id":"road_freight_replacement_ratio","name_ja":"道路貨物運送業 若年/高齢 replacement ratio","unit":"ratio","observations":[]},
     {"metric_id":"road_freight_female_share","name_ja":"道路貨物運送業 女性比率","unit":"pct","observations":[]},
+
     {"metric_id":"warehousing_employment","name_ja":"倉庫業 就業者数","unit":"ten_thousand_persons","observations":[]},
+    {"metric_id":"warehousing_age_15_24","name_ja":"倉庫業 15-24歳就業者数","unit":"ten_thousand_persons","observations":[]},
+    {"metric_id":"warehousing_age_25_34","name_ja":"倉庫業 25-34歳就業者数","unit":"ten_thousand_persons","observations":[]},
+    {"metric_id":"warehousing_age_35_44","name_ja":"倉庫業 35-44歳就業者数","unit":"ten_thousand_persons","observations":[]},
+    {"metric_id":"warehousing_age_45_54","name_ja":"倉庫業 45-54歳就業者数","unit":"ten_thousand_persons","observations":[]},
+    {"metric_id":"warehousing_age_55_64","name_ja":"倉庫業 55-64歳就業者数","unit":"ten_thousand_persons","observations":[]},
+    {"metric_id":"warehousing_age_65_plus","name_ja":"倉庫業 65歳以上就業者数","unit":"ten_thousand_persons","observations":[]},
     {"metric_id":"warehousing_age_55_plus_share","name_ja":"倉庫業 55歳以上比率","unit":"pct","observations":[]},
     {"metric_id":"warehousing_young_share","name_ja":"倉庫業 34歳以下比率","unit":"pct","observations":[]},
+    {"metric_id":"warehousing_replacement_ratio","name_ja":"倉庫業 若年/高齢 replacement ratio","unit":"ratio","observations":[]},
     {"metric_id":"warehousing_female_share","name_ja":"倉庫業 女性比率","unit":"pct","observations":[]}
   ]
 }
