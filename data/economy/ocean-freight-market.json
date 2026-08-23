@@ -20,8 +20,19 @@
       "name_ja": "Drewry 世界コンテナ運賃指数（WCI）",
       "unit": "USD/40ft",
       "observations": [
-        {"period": "2025-12-18", "value": 2182, "status": "official_published_snapshot", "source_note": "Drewry OnDemand公開資料"},
-        {"period": "2026-08-20", "value": 4526, "wow_pct": 4.0, "status": "official", "source_note": "Drewry WCI 20 Aug 2026"}
+        {
+          "period": "2025-12-18",
+          "value": 2182,
+          "status": "official_published_snapshot",
+          "source_note": "Drewry OnDemand公開資料"
+        },
+        {
+          "period": "2026-08-20",
+          "value": 4526.0,
+          "wow_pct": 4.0,
+          "status": "official",
+          "source_note": "Drewry public tracker"
+        }
       ]
     },
     {
@@ -29,9 +40,16 @@
       "name_ja": "Drewry アジア域内コンテナ運賃指数（IACI）",
       "unit": "USD/40ft",
       "observations": [
-        {"period": "2026-08-20", "value": 1091, "wow_pct": 6.0, "status": "official", "source_note": "Drewry IACI 20 Aug 2026"}
+        {
+          "period": "2026-08-20",
+          "value": 1091.0,
+          "wow_pct": 6.0,
+          "status": "official",
+          "source_note": "Drewry public tracker"
+        }
       ]
     }
   ],
-  "collection_status": "append_weekly_snapshots"
+  "collection_status": "append_weekly_snapshots",
+  "last_collected_at": "2026-08-23T04:54:23.416675+00:00"
 }

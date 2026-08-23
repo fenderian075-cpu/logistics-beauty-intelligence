@@ -1,97 +1,509 @@
 {
-  "schema_version":"1.2",
-  "dataset":"macro",
-  "title_ja":"マクロ経済",
-  "frequency":"monthly+quarterly+annual",
-  "baseline_updated_at":"2026-08-23T11:36:00+09:00",
-  "sources":[
-    {"name":"内閣府 国民経済計算・2024年度年次推計","url":"https://www.esri.cao.go.jp/jp/sna/data/data_list/kakuhou/files/2024/sankou/pdf/point_flow20251223.pdf","vintage":"2025-12-23","use":"2005FY-2024FY historical annual baseline"},
-    {"name":"内閣府 四半期別GDP速報 2026年4-6月期1次速報","url":"https://www.esri.cao.go.jp/jp/sna/data/data_list/sokuhou/files/2026/qe262/gdemenuja.html","vintage":"2026-08-17","use":"latest 2025FY and 2026-Q2 preliminary observations"},
-    {"name":"経済産業省 鉱工業指数","url":"https://www.meti.go.jp/statistics/tyo/iip/"},
-    {"name":"日本銀行 企業物価・サービス価格","url":"https://www.boj.or.jp/statistics/pi/"}
+  "schema_version": "1.2",
+  "dataset": "macro",
+  "title_ja": "マクロ経済",
+  "frequency": "monthly+quarterly+annual",
+  "baseline_updated_at": "2026-08-23T11:36:00+09:00",
+  "sources": [
+    {
+      "name": "内閣府 国民経済計算・2024年度年次推計",
+      "url": "https://www.esri.cao.go.jp/jp/sna/data/data_list/kakuhou/files/2024/sankou/pdf/point_flow20251223.pdf",
+      "vintage": "2025-12-23",
+      "use": "2005FY-2024FY historical annual baseline",
+      "use_ja": "2005年度〜2024年度の年次履歴基準"
+    },
+    {
+      "name": "内閣府 四半期別GDP速報 2026年4-6月期1次速報",
+      "url": "https://www.esri.cao.go.jp/jp/sna/data/data_list/sokuhou/files/2026/qe262/gdemenuja.html",
+      "vintage": "2026-08-17",
+      "use": "latest 2025FY and 2026-Q2 preliminary observations",
+      "use_ja": "2025年度および2026年4-6月期の最新速報"
+    },
+    {
+      "name": "経済産業省 鉱工業指数",
+      "url": "https://www.meti.go.jp/statistics/tyo/iip/"
+    },
+    {
+      "name": "日本銀行 企業物価・サービス価格",
+      "url": "https://www.boj.or.jp/statistics/pi/"
+    }
   ],
-  "series":[
+  "series": [
     {
-      "metric_id":"nominal_gdp_fy_level",
-      "unit":"JPY_trillion",
-      "basis":"fiscal_year",
-      "observations":[
-        {"period":"2005FY","value":538.9,"status":"annual_estimate","vintage":"2025-12-23"},
-        {"period":"2006FY","value":542.8,"status":"annual_estimate","vintage":"2025-12-23"},
-        {"period":"2007FY","value":543.8,"status":"annual_estimate","vintage":"2025-12-23"},
-        {"period":"2008FY","value":522.5,"status":"annual_estimate","vintage":"2025-12-23"},
-        {"period":"2009FY","value":500.8,"status":"annual_estimate","vintage":"2025-12-23"},
-        {"period":"2010FY","value":509.2,"status":"annual_estimate","vintage":"2025-12-23"},
-        {"period":"2011FY","value":504.2,"status":"annual_estimate","vintage":"2025-12-23"},
-        {"period":"2012FY","value":504.5,"status":"annual_estimate","vintage":"2025-12-23"},
-        {"period":"2013FY","value":519.2,"status":"annual_estimate","vintage":"2025-12-23"},
-        {"period":"2014FY","value":533.7,"status":"annual_estimate","vintage":"2025-12-23"},
-        {"period":"2015FY","value":551.9,"status":"annual_estimate","vintage":"2025-12-23"},
-        {"period":"2016FY","value":556.3,"status":"annual_estimate","vintage":"2025-12-23"},
-        {"period":"2017FY","value":567.7,"status":"annual_estimate","vintage":"2025-12-23"},
-        {"period":"2018FY","value":569.9,"status":"annual_estimate","vintage":"2025-12-23"},
-        {"period":"2019FY","value":570.6,"status":"annual_estimate","vintage":"2025-12-23"},
-        {"period":"2020FY","value":554.3,"status":"annual_estimate","vintage":"2025-12-23"},
-        {"period":"2021FY","value":576.6,"status":"annual_estimate","vintage":"2025-12-23"},
-        {"period":"2022FY","value":591.7,"status":"annual_estimate","vintage":"2025-12-23"},
-        {"period":"2023FY","value":619.4,"status":"annual_estimate","vintage":"2025-12-23"},
-        {"period":"2024FY","value":642.4,"status":"annual_estimate","vintage":"2025-12-23"},
-        {"period":"2025FY","value":672.6,"status":"preliminary","published_at":"2026-08-17","vintage":"2026-08-17"}
-      ]
+      "metric_id": "nominal_gdp_fy_level",
+      "unit": "JPY_trillion",
+      "basis": "fiscal_year",
+      "observations": [
+        {
+          "period": "2005FY",
+          "value": 538.9,
+          "status": "annual_estimate",
+          "vintage": "2025-12-23"
+        },
+        {
+          "period": "2006FY",
+          "value": 542.8,
+          "status": "annual_estimate",
+          "vintage": "2025-12-23"
+        },
+        {
+          "period": "2007FY",
+          "value": 543.8,
+          "status": "annual_estimate",
+          "vintage": "2025-12-23"
+        },
+        {
+          "period": "2008FY",
+          "value": 522.5,
+          "status": "annual_estimate",
+          "vintage": "2025-12-23"
+        },
+        {
+          "period": "2009FY",
+          "value": 500.8,
+          "status": "annual_estimate",
+          "vintage": "2025-12-23"
+        },
+        {
+          "period": "2010FY",
+          "value": 509.2,
+          "status": "annual_estimate",
+          "vintage": "2025-12-23"
+        },
+        {
+          "period": "2011FY",
+          "value": 504.2,
+          "status": "annual_estimate",
+          "vintage": "2025-12-23"
+        },
+        {
+          "period": "2012FY",
+          "value": 504.5,
+          "status": "annual_estimate",
+          "vintage": "2025-12-23"
+        },
+        {
+          "period": "2013FY",
+          "value": 519.2,
+          "status": "annual_estimate",
+          "vintage": "2025-12-23"
+        },
+        {
+          "period": "2014FY",
+          "value": 533.7,
+          "status": "annual_estimate",
+          "vintage": "2025-12-23"
+        },
+        {
+          "period": "2015FY",
+          "value": 551.9,
+          "status": "annual_estimate",
+          "vintage": "2025-12-23"
+        },
+        {
+          "period": "2016FY",
+          "value": 556.3,
+          "status": "annual_estimate",
+          "vintage": "2025-12-23"
+        },
+        {
+          "period": "2017FY",
+          "value": 567.7,
+          "status": "annual_estimate",
+          "vintage": "2025-12-23"
+        },
+        {
+          "period": "2018FY",
+          "value": 569.9,
+          "status": "annual_estimate",
+          "vintage": "2025-12-23"
+        },
+        {
+          "period": "2019FY",
+          "value": 570.6,
+          "status": "annual_estimate",
+          "vintage": "2025-12-23"
+        },
+        {
+          "period": "2020FY",
+          "value": 554.3,
+          "status": "annual_estimate",
+          "vintage": "2025-12-23"
+        },
+        {
+          "period": "2021FY",
+          "value": 576.6,
+          "status": "annual_estimate",
+          "vintage": "2025-12-23"
+        },
+        {
+          "period": "2022FY",
+          "value": 591.7,
+          "status": "annual_estimate",
+          "vintage": "2025-12-23"
+        },
+        {
+          "period": "2023FY",
+          "value": 619.4,
+          "status": "annual_estimate",
+          "vintage": "2025-12-23"
+        },
+        {
+          "period": "2024FY",
+          "value": 642.4,
+          "status": "annual_estimate",
+          "vintage": "2025-12-23"
+        },
+        {
+          "period": "2025FY",
+          "value": 672.6,
+          "status": "preliminary",
+          "published_at": "2026-08-17",
+          "vintage": "2026-08-17"
+        }
+      ],
+      "name_ja": "名目GDP（年度）"
     },
     {
-      "metric_id":"nominal_gdp_fy_growth_pct",
-      "unit":"pct",
-      "comparison":"previous_fiscal_year",
-      "observations":[
-        {"period":"2005FY","value":0.8,"vintage":"2025-12-23"},{"period":"2006FY","value":0.7,"vintage":"2025-12-23"},{"period":"2007FY","value":0.2,"vintage":"2025-12-23"},{"period":"2008FY","value":-3.9,"vintage":"2025-12-23"},{"period":"2009FY","value":-4.1,"vintage":"2025-12-23"},{"period":"2010FY","value":1.7,"vintage":"2025-12-23"},{"period":"2011FY","value":-1.0,"vintage":"2025-12-23"},{"period":"2012FY","value":0.1,"vintage":"2025-12-23"},{"period":"2013FY","value":2.9,"vintage":"2025-12-23"},{"period":"2014FY","value":2.8,"vintage":"2025-12-23"},{"period":"2015FY","value":3.4,"vintage":"2025-12-23"},{"period":"2016FY","value":0.8,"vintage":"2025-12-23"},{"period":"2017FY","value":2.0,"vintage":"2025-12-23"},{"period":"2018FY","value":0.4,"vintage":"2025-12-23"},{"period":"2019FY","value":0.1,"vintage":"2025-12-23"},{"period":"2020FY","value":-2.9,"vintage":"2025-12-23"},{"period":"2021FY","value":4.0,"vintage":"2025-12-23"},{"period":"2022FY","value":2.6,"vintage":"2025-12-23"},{"period":"2023FY","value":4.7,"vintage":"2025-12-23"},{"period":"2024FY","value":3.7,"vintage":"2025-12-23"},{"period":"2025FY","value":4.3,"status":"preliminary","published_at":"2026-08-17","vintage":"2026-08-17"}
-      ]
+      "metric_id": "nominal_gdp_fy_growth_pct",
+      "unit": "pct",
+      "comparison": "previous_fiscal_year",
+      "observations": [
+        {
+          "period": "2005FY",
+          "value": 0.8,
+          "vintage": "2025-12-23"
+        },
+        {
+          "period": "2006FY",
+          "value": 0.7,
+          "vintage": "2025-12-23"
+        },
+        {
+          "period": "2007FY",
+          "value": 0.2,
+          "vintage": "2025-12-23"
+        },
+        {
+          "period": "2008FY",
+          "value": -3.9,
+          "vintage": "2025-12-23"
+        },
+        {
+          "period": "2009FY",
+          "value": -4.1,
+          "vintage": "2025-12-23"
+        },
+        {
+          "period": "2010FY",
+          "value": 1.7,
+          "vintage": "2025-12-23"
+        },
+        {
+          "period": "2011FY",
+          "value": -1.0,
+          "vintage": "2025-12-23"
+        },
+        {
+          "period": "2012FY",
+          "value": 0.1,
+          "vintage": "2025-12-23"
+        },
+        {
+          "period": "2013FY",
+          "value": 2.9,
+          "vintage": "2025-12-23"
+        },
+        {
+          "period": "2014FY",
+          "value": 2.8,
+          "vintage": "2025-12-23"
+        },
+        {
+          "period": "2015FY",
+          "value": 3.4,
+          "vintage": "2025-12-23"
+        },
+        {
+          "period": "2016FY",
+          "value": 0.8,
+          "vintage": "2025-12-23"
+        },
+        {
+          "period": "2017FY",
+          "value": 2.0,
+          "vintage": "2025-12-23"
+        },
+        {
+          "period": "2018FY",
+          "value": 0.4,
+          "vintage": "2025-12-23"
+        },
+        {
+          "period": "2019FY",
+          "value": 0.1,
+          "vintage": "2025-12-23"
+        },
+        {
+          "period": "2020FY",
+          "value": -2.9,
+          "vintage": "2025-12-23"
+        },
+        {
+          "period": "2021FY",
+          "value": 4.0,
+          "vintage": "2025-12-23"
+        },
+        {
+          "period": "2022FY",
+          "value": 2.6,
+          "vintage": "2025-12-23"
+        },
+        {
+          "period": "2023FY",
+          "value": 4.7,
+          "vintage": "2025-12-23"
+        },
+        {
+          "period": "2024FY",
+          "value": 3.7,
+          "vintage": "2025-12-23"
+        },
+        {
+          "period": "2025FY",
+          "value": 4.3,
+          "status": "preliminary",
+          "published_at": "2026-08-17",
+          "vintage": "2026-08-17"
+        }
+      ],
+      "name_ja": "名目GDP成長率（年度）"
     },
     {
-      "metric_id":"real_gdp_fy_growth_pct",
-      "unit":"pct",
-      "comparison":"previous_fiscal_year",
-      "chain_price_base_year":2020,
-      "observations":[
-        {"period":"2005FY","value":2.3,"vintage":"2025-12-23"},{"period":"2006FY","value":1.5,"vintage":"2025-12-23"},{"period":"2007FY","value":1.2,"vintage":"2025-12-23"},{"period":"2008FY","value":-3.3,"vintage":"2025-12-23"},{"period":"2009FY","value":-3.1,"vintage":"2025-12-23"},{"period":"2010FY","value":3.4,"vintage":"2025-12-23"},{"period":"2011FY","value":0.5,"vintage":"2025-12-23"},{"period":"2012FY","value":0.8,"vintage":"2025-12-23"},{"period":"2013FY","value":2.8,"vintage":"2025-12-23"},{"period":"2014FY","value":0.3,"vintage":"2025-12-23"},{"period":"2015FY","value":1.8,"vintage":"2025-12-23"},{"period":"2016FY","value":0.6,"vintage":"2025-12-23"},{"period":"2017FY","value":1.8,"vintage":"2025-12-23"},{"period":"2018FY","value":0.6,"vintage":"2025-12-23"},{"period":"2019FY","value":-0.9,"vintage":"2025-12-23"},{"period":"2020FY","value":-3.8,"vintage":"2025-12-23"},{"period":"2021FY","value":3.9,"vintage":"2025-12-23"},{"period":"2022FY","value":1.4,"vintage":"2025-12-23"},{"period":"2023FY","value":0.0,"vintage":"2025-12-23"},{"period":"2024FY","value":0.5,"vintage":"2025-12-23"},{"period":"2025FY","value":0.9,"status":"preliminary","published_at":"2026-08-17","vintage":"2026-08-17"}
-      ]
+      "metric_id": "real_gdp_fy_growth_pct",
+      "unit": "pct",
+      "comparison": "previous_fiscal_year",
+      "chain_price_base_year": 2020,
+      "observations": [
+        {
+          "period": "2005FY",
+          "value": 2.3,
+          "vintage": "2025-12-23"
+        },
+        {
+          "period": "2006FY",
+          "value": 1.5,
+          "vintage": "2025-12-23"
+        },
+        {
+          "period": "2007FY",
+          "value": 1.2,
+          "vintage": "2025-12-23"
+        },
+        {
+          "period": "2008FY",
+          "value": -3.3,
+          "vintage": "2025-12-23"
+        },
+        {
+          "period": "2009FY",
+          "value": -3.1,
+          "vintage": "2025-12-23"
+        },
+        {
+          "period": "2010FY",
+          "value": 3.4,
+          "vintage": "2025-12-23"
+        },
+        {
+          "period": "2011FY",
+          "value": 0.5,
+          "vintage": "2025-12-23"
+        },
+        {
+          "period": "2012FY",
+          "value": 0.8,
+          "vintage": "2025-12-23"
+        },
+        {
+          "period": "2013FY",
+          "value": 2.8,
+          "vintage": "2025-12-23"
+        },
+        {
+          "period": "2014FY",
+          "value": 0.3,
+          "vintage": "2025-12-23"
+        },
+        {
+          "period": "2015FY",
+          "value": 1.8,
+          "vintage": "2025-12-23"
+        },
+        {
+          "period": "2016FY",
+          "value": 0.6,
+          "vintage": "2025-12-23"
+        },
+        {
+          "period": "2017FY",
+          "value": 1.8,
+          "vintage": "2025-12-23"
+        },
+        {
+          "period": "2018FY",
+          "value": 0.6,
+          "vintage": "2025-12-23"
+        },
+        {
+          "period": "2019FY",
+          "value": -0.9,
+          "vintage": "2025-12-23"
+        },
+        {
+          "period": "2020FY",
+          "value": -3.8,
+          "vintage": "2025-12-23"
+        },
+        {
+          "period": "2021FY",
+          "value": 3.9,
+          "vintage": "2025-12-23"
+        },
+        {
+          "period": "2022FY",
+          "value": 1.4,
+          "vintage": "2025-12-23"
+        },
+        {
+          "period": "2023FY",
+          "value": 0.0,
+          "vintage": "2025-12-23"
+        },
+        {
+          "period": "2024FY",
+          "value": 0.5,
+          "vintage": "2025-12-23"
+        },
+        {
+          "period": "2025FY",
+          "value": 0.9,
+          "status": "preliminary",
+          "published_at": "2026-08-17",
+          "vintage": "2026-08-17"
+        }
+      ],
+      "name_ja": "実質GDP成長率（年度）"
     },
     {
-      "metric_id":"real_gdp_fy_level",
-      "unit":"JPY_trillion",
-      "basis":"fiscal_year_2020_chain_prices",
-      "observations":[{"period":"2025FY","value":594.6,"status":"preliminary","published_at":"2026-08-17","vintage":"2026-08-17"}]
+      "metric_id": "real_gdp_fy_level",
+      "unit": "JPY_trillion",
+      "basis": "fiscal_year_2020_chain_prices",
+      "observations": [
+        {
+          "period": "2025FY",
+          "value": 594.6,
+          "status": "preliminary",
+          "published_at": "2026-08-17",
+          "vintage": "2026-08-17"
+        }
+      ],
+      "name_ja": "実質GDP（年度）"
     },
     {
-      "metric_id":"real_gdp_qoq_pct",
-      "unit":"pct",
-      "comparison":"previous_quarter_seasonally_adjusted",
-      "observations":[{"period":"2026-Q2","value":0.3,"status":"first_preliminary","published_at":"2026-08-17","vintage":"2026-08-17"}]
+      "metric_id": "real_gdp_qoq_pct",
+      "unit": "pct",
+      "comparison": "previous_quarter_seasonally_adjusted",
+      "observations": [
+        {
+          "period": "2026-Q2",
+          "value": 0.3,
+          "status": "first_preliminary",
+          "published_at": "2026-08-17",
+          "vintage": "2026-08-17"
+        }
+      ],
+      "name_ja": "実質GDP 前期比"
     },
     {
-      "metric_id":"nominal_gdp_qoq_pct",
-      "unit":"pct",
-      "comparison":"previous_quarter_seasonally_adjusted",
-      "observations":[{"period":"2026-Q2","value":1.2,"status":"first_preliminary","published_at":"2026-08-17","vintage":"2026-08-17"}]
+      "metric_id": "nominal_gdp_qoq_pct",
+      "unit": "pct",
+      "comparison": "previous_quarter_seasonally_adjusted",
+      "observations": [
+        {
+          "period": "2026-Q2",
+          "value": 1.2,
+          "status": "first_preliminary",
+          "published_at": "2026-08-17",
+          "vintage": "2026-08-17"
+        }
+      ],
+      "name_ja": "名目GDP 前期比"
     },
     {
-      "metric_id":"real_gdp_quarterly_level_saar",
-      "unit":"JPY_trillion",
-      "basis":"seasonally_adjusted_annual_rate_2020_chain_prices",
-      "observations":[{"period":"2026-Q2","value":598.3,"status":"first_preliminary","published_at":"2026-08-17","vintage":"2026-08-17"}]
+      "metric_id": "real_gdp_quarterly_level_saar",
+      "unit": "JPY_trillion",
+      "basis": "seasonally_adjusted_annual_rate_2020_chain_prices",
+      "observations": [
+        {
+          "period": "2026-Q2",
+          "value": 598.3,
+          "status": "first_preliminary",
+          "published_at": "2026-08-17",
+          "vintage": "2026-08-17"
+        }
+      ],
+      "name_ja": "実質GDP 季節調整済年率"
     },
     {
-      "metric_id":"nominal_gdp_quarterly_level_saar",
-      "unit":"JPY_trillion",
-      "basis":"seasonally_adjusted_annual_rate",
-      "observations":[{"period":"2026-Q2","value":687.7,"status":"first_preliminary","published_at":"2026-08-17","vintage":"2026-08-17"}]
+      "metric_id": "nominal_gdp_quarterly_level_saar",
+      "unit": "JPY_trillion",
+      "basis": "seasonally_adjusted_annual_rate",
+      "observations": [
+        {
+          "period": "2026-Q2",
+          "value": 687.7,
+          "status": "first_preliminary",
+          "published_at": "2026-08-17",
+          "vintage": "2026-08-17"
+        }
+      ],
+      "name_ja": "名目GDP 季節調整済年率"
     },
-    {"metric_id":"industrial_production","unit":"index","observations":[]},
-    {"metric_id":"manufacturing_shipments","unit":"index","observations":[]},
-    {"metric_id":"eur_jpy","unit":"JPY/EUR","observations":[]},
-    {"metric_id":"usd_jpy","unit":"JPY/USD","observations":[]},
-    {"metric_id":"crude_oil_import_cost","unit":"JPY","observations":[]}
+    {
+      "metric_id": "industrial_production",
+      "unit": "index",
+      "observations": [],
+      "name_ja": "鉱工業生産指数"
+    },
+    {
+      "metric_id": "manufacturing_shipments",
+      "unit": "index",
+      "observations": [],
+      "name_ja": "製造工業出荷指数"
+    },
+    {
+      "metric_id": "eur_jpy",
+      "unit": "JPY/EUR",
+      "observations": [],
+      "name_ja": "ユーロ円相場"
+    },
+    {
+      "metric_id": "usd_jpy",
+      "unit": "JPY/USD",
+      "observations": [],
+      "name_ja": "ドル円相場"
+    },
+    {
+      "metric_id": "crude_oil_import_cost",
+      "unit": "JPY",
+      "observations": [],
+      "name_ja": "原油輸入価格"
+    }
   ],
-  "revision_policy":"GDP is revision-prone. Historical annual observations retain their source vintage; preliminary observations are replaced by the latest official vintage when a newer QE or annual estimate becomes available. Do not compare two vintages as if they were economic change.",
-  "rule":"Macro is context, not a logistics signal by itself. Promote it only when a transmission channel to trade, physical flow, cost or demand is supported."
+  "revision_policy": "GDP is revision-prone. Historical annual observations retain their source vintage; preliminary observations are replaced by the latest official vintage when a newer QE or annual estimate becomes available. Do not compare two vintages as if they were economic change.",
+  "rule": "Macro is context, not a logistics signal by itself. Promote it only when a transmission channel to trade, physical flow, cost or demand is supported.",
+  "frequency_ja": "月次・四半期・年次",
+  "revision_policy_ja": "GDPは改定されるため、速報値は最新公表値へ更新し、過去年次は出典vintageを保持する。vintage差を景気変化として扱わない。",
+  "rule_ja": "マクロ経済は単独で物流シグナルに昇格させず、貿易・物量・コスト・需要への伝播経路が確認できる場合に使う。"
 }
