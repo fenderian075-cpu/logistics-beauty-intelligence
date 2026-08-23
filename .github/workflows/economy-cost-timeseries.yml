@@ -8,6 +8,7 @@ on:
     branches: [main]
     paths:
       - "scripts/update_economy_timeseries.py"
+      - "scripts/update_japan_fuel_prices.py"
       - "scripts/localize_macro_and_buzz.py"
       - "data/economy/fuel-prices.json"
       - "data/economy/ocean-freight-market.json"
@@ -26,8 +27,11 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: pip install requests
-      - name: Refresh public market snapshots
+      - run: pip install requests beautifulsoup4 openpyxl
+      - name: Refresh official Japan fuel-price history
+        continue-on-error: true
+        run: python scripts/update_japan_fuel_prices.py
+      - name: Refresh public ocean market snapshots and macro labels
         run: python scripts/update_economy_timeseries.py
       - name: Apply Japanese display labels
         run: python scripts/localize_macro_and_buzz.py
