@@ -7,6 +7,7 @@ on:
     paths:
       - "scripts/sanitize_public_content.py"
       - "scripts/localize_source_matrices.py"
+      - "scripts/localize_public_ui.py"
       - "scripts/audit_public_content.py"
       - ".github/workflows/public-content-sanitize.yml"
 
@@ -25,11 +26,14 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Sanitize public data and UI vocabulary
+      - name: Sanitize public data and HTML
         run: python scripts/sanitize_public_content.py
 
       - name: Localize extended source matrices
         run: python scripts/localize_source_matrices.py
+
+      - name: Localize selected public UI literals
+        run: python scripts/localize_public_ui.py
 
       - name: Audit public privacy and Japanese UI
         run: python scripts/audit_public_content.py
