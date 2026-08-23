@@ -1,10 +1,8 @@
 #!/usr/bin/env python3
 """Validate Demand × Capacity structural logistics datasets.
 
-This intentionally recomputes derived parcel/worker observations from their
-canonical source stores so the frontend cannot silently drift from source data.
-No interpolation is permitted. Published age series are also guarded against
-coverage collapse and pseudo-derived averages.
+Recompute derived parcel/worker observations from canonical sources and guard
+published age/labor-market series against silent coverage or semantic drift.
 """
 from __future__ import annotations
 
@@ -34,11 +32,18 @@ def by_period(rows):
     return {str(row["period"]): float(row["value"]) for row in rows}
 
 
+def one(data, metric_id):
+    rows = observations(data, metric_id)
+    assert len(rows) == 1, (metric_id, rows)
+    return rows[0]
+
+
 def main():
     parcel = read("parcel-demand.json")
     workforce = read("logistics-workforce.json")
     capacity = read("logistics-capacity.json")
     demography = read("driver-demography.json")
+    labor = read("logistics-labor-market.json")
 
     parcels = by_period(observations(parcel, "parcel_delivery_volume"))
     workers = by_period(observations(workforce, "transport_postal_employment"))
@@ -56,41 +61,46 @@ def main():
 
     recomputed = {}
     for period in expected_periods:
-        # million parcels / ten-thousand persons => parcels per worker = *100
         value = round(parcels[period] / workers[period] * 100, 1)
         recomputed[period] = value
     for row in proxy:
         period = str(row["period"])
-        assert abs(float(row["value"]) - recomputed[period]) <= 0.11, (period, row["value"], recomputed[period])
-        assert row.get("status") == "derived", period
+        assert abs(float(row["value"]) - recomputed[period]) <= 0.11
+        assert row.get("status") == "derived"
 
     base = recomputed["2015"]
     idx = {str(r["period"]): float(r["value"]) for r in index}
     for period, value in recomputed.items():
-        expected = round(value / base * 100, 1)
-        assert abs(idx[period] - expected) <= 0.11, (period, idx[period], expected)
+        assert abs(idx[period] - round(value / base * 100, 1)) <= 0.11
 
     female = by_period(observations(workforce, "transport_postal_employment_female"))
     male = by_period(observations(workforce, "transport_postal_employment_male"))
     female_share = by_period(observations(workforce, "transport_postal_female_share"))
     for period in sorted(set(female) & set(male) & set(female_share)):
         expected = round(female[period] / (female[period] + male[period]) * 100, 2)
-        assert abs(female_share[period] - expected) <= 0.02, (period, female_share[period], expected)
+        assert abs(female_share[period] - expected) <= 0.02
 
-    age_ids = [
-        "all_industries_average_age",
-        "commercial_large_truck_driver_average_age",
-        "commercial_small_truck_driver_average_age",
-    ]
+    age_ids = ["all_industries_average_age", "commercial_large_truck_driver_average_age", "commercial_small_truck_driver_average_age"]
     age = {mid: observations(demography, mid) for mid in age_ids}
     for mid, rows in age.items():
         periods = [str(r["period"]) for r in rows]
         assert len(rows) == 11 and periods[0] == "2010" and periods[-1] == "2020", (mid, periods)
-        assert all(r.get("status") == "official_secondary" for r in rows), f"{mid}: average age must be published, not pseudo-derived"
+        assert all(r.get("status") == "official_secondary" for r in rows)
     large = by_period(age["commercial_large_truck_driver_average_age"])
     all_industry = by_period(age["all_industries_average_age"])
     assert large["2020"] == 49.4 and all_industry["2020"] == 43.2
-    assert large["2020"] > all_industry["2020"]
+
+    current_age = one(labor, "truck_driver_average_age_2025")
+    income = one(labor, "truck_driver_annual_income")
+    hours = one(labor, "truck_driver_monthly_work_hours")
+    vacancy = one(labor, "truck_driver_job_openings_ratio")
+    offered = one(labor, "truck_driver_offered_monthly_wage")
+    assert (current_age["period"], float(current_age["value"])) == ("2025", 51.5)
+    assert float(income["value"]) == 507.2 and float(hours["value"]) == 175
+    assert (vacancy["period"], float(vacancy["value"])) == ("2025FY", 2.94)
+    assert float(offered["value"]) == 29.5
+    long_vacancy = observations(labor, "automobile_driver_job_openings_ratio_history")
+    assert len(long_vacancy) == 17 and long_vacancy[0]["period"] == "2006" and long_vacancy[-1]["period"] == "2022"
 
     print(json.dumps({
         "status": "success",
@@ -98,8 +108,9 @@ def main():
         "workforce_coverage": [min(workers), max(workers), len(workers)],
         "derived_coverage": [actual_periods[0], actual_periods[-1], len(actual_periods)],
         "latest_load_index": idx[actual_periods[-1]],
-        "driver_age_coverage": ["2010", "2020", len(age["commercial_large_truck_driver_average_age"])],
-        "large_driver_age_2020": large["2020"],
+        "driver_age_2025": current_age["value"],
+        "truck_driver_vacancy_2025fy": vacancy["value"],
+        "truck_driver_income_2025": income["value"],
     }, ensure_ascii=False, indent=2))
 
 
