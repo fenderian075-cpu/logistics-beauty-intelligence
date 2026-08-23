@@ -1,0 +1,42 @@
+name: Patch archive regression expectation once
+
+on:
+  push:
+    branches: [fix/report-radar-visual-polish]
+    paths:
+      - ".github/workflows/patch-archive-test-once.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: fix/report-radar-visual-polish
+          fetch-depth: 0
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Replace stale fixed weekly count
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('tests/dom-smoke.mjs')
+          s = p.read_text(encoding='utf-8')
+          old = '  ok("filtering by type narrows the list", d.querySelectorAll(".archive-item").length === 1);'
+          new = '''  {\n    const expectedWeekly = DATA.reports.filter((r) => r.type === "weekly").length;\n    ok("filtering by type narrows the list",\n      d.querySelectorAll(".archive-item").length === expectedWeekly,\n      `${d.querySelectorAll(".archive-item").length} vs ${expectedWeekly}`);\n  }'''
+          if old not in s:
+              raise SystemExit('Expected archive assertion not found; refusing to patch')
+          p.write_text(s.replace(old, new, 1), encoding='utf-8')
+          PY
+      - name: Remove one-shot workflow and commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/patch-archive-test-once.yml
+          git add tests/dom-smoke.mjs
+          git commit -m "test: derive weekly archive count from live reports"
+          git push origin HEAD:fix/report-radar-visual-polish
