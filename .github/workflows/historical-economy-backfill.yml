@@ -8,6 +8,7 @@ on:
     paths:
       - "scripts/backfill_official_economy_history.py"
       - "scripts/backfill_cpi_iip_history.py"
+      - "scripts/inspect_iip_estat.py"
       - "scripts/update_sna_industry_deflators.py"
       - "scripts/update_japan_fuel_prices_v2.py"
       - ".github/workflows/historical-economy-backfill.yml"
@@ -15,6 +16,7 @@ on:
     paths:
       - "scripts/backfill_official_economy_history.py"
       - "scripts/backfill_cpi_iip_history.py"
+      - "scripts/inspect_iip_estat.py"
       - "scripts/update_sna_industry_deflators.py"
       - "scripts/update_japan_fuel_prices_v2.py"
       - ".github/workflows/historical-economy-backfill.yml"
@@ -56,6 +58,9 @@ jobs:
         run: python scripts/backfill_official_economy_history.py
       - name: Harden CPI and IIP publication-layout parsing
         run: python scripts/backfill_cpi_iip_history.py
+      - name: Diagnose official e-Stat IIP layout
+        if: always()
+        run: python scripts/inspect_iip_estat.py
       - name: Validate generated JSON and coverage
         run: |
           python - <<'PY'
@@ -67,7 +72,6 @@ jobs:
           print('backfill status:', status['status'])
           print('stages:', status['stages'])
           print('coverage series:', len(cov.get('series',[])))
-          # Core historical families must be complete before merge.
           for key in ('trade','gdp','cpi','iip'):
               assert status['stages'].get(key,{}).get('status') == 'success', (key,status['stages'].get(key))
           PY
