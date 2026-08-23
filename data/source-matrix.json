@@ -1,13 +1,13 @@
 {
-  "schema_version": "2.3",
+  "schema_version": "2.4",
   "sources": [
     {"priority":"P0","domain":"logistics","layer":"Domestic Operations","name":"ヤマト運輸 運行状況","url":"https://www.kuronekoyamato.co.jp/ytc/chien/chien_hp.html","cadence":["daily"],"extract":["集荷停止","配達遅延","対象地域","再開"]},
     {"priority":"P0","domain":"logistics","layer":"Domestic Operations","name":"佐川急便 お知らせ","url":"https://www2.sagawa-exp.co.jp/information/list/","cadence":["daily","weekly"],"extract":["集配業務への影響","台風","地震","大雨","大雪"]},
     {"priority":"P0","domain":"logistics","layer":"Domestic Operations","name":"日本郵便 運行情報","url":"https://www.post.japanpost.jp/","cadence":["daily"],"extract":["郵便物・ゆうパック遅延","引受停止","船便影響"]},
     {"priority":"P0","domain":"logistics","layer":"Weather","name":"気象庁 防災情報","url":"https://www.jma.go.jp/bosai/","cadence":["daily"],"extract":["警報","台風","大雨","大雪","地震","津波"]},
     {"priority":"P0","domain":"logistics","layer":"Roads","name":"JARTIC","url":"https://www.jartic.or.jp/","cadence":["daily"],"extract":["通行止め","大規模渋滞"]},
-    {"priority":"P0","domain":"logistics","layer":"Customs","name":"NACCS掲示板","url":"https://bbs.naccscenter.com/","cadence":["daily"],"extract":["障害","復旧","メンテナンス","仕様変更"]},
-    {"priority":"P0","domain":"logistics","layer":"Customs","name":"税関 新着情報","url":"https://www.customs.go.jp/news/index.htm","cadence":["daily","weekly"],"extract":["HS","関税","EPA/FTA","予備審査","保税","制度変更"]},
+    {"priority":"P0","domain":"logistics","layer":"Customs & Regulation","name":"NACCS掲示板","url":"https://bbs.naccscenter.com/","cadence":["daily"],"extract":["障害","復旧","メンテナンス","仕様変更"]},
+    {"priority":"P0","domain":"logistics","layer":"Customs & Regulation","name":"税関 新着情報","url":"https://www.customs.go.jp/news/index.htm","cadence":["daily","weekly"],"extract":["HS","関税","EPA/FTA","予備審査","保税","制度変更"]},
     {"priority":"P1","domain":"logistics","layer":"Freight Market","name":"Drewry World Container Index","url":"https://www.drewry.co.uk/trackers-and-indices/latest-trackers-and-indices/world-container-index-assessed-by-drewry","cadence":["weekly","monthly"],"extract":["WCI","route rates","weekly change"]},
     {"priority":"P1","domain":"logistics","layer":"Freight Market","name":"Drewry Trackers & Indices","url":"https://www.drewry.co.uk/trackers-and-indices","cadence":["weekly","monthly"],"extract":["blank sailings","Intra-Asia"]},
     {"priority":"P1","domain":"logistics","layer":"Freight Market","name":"Freightos","url":"https://www.freightos.com/freight-resources/","cadence":["weekly","monthly"],"extract":["FBX","market commentary"]},
