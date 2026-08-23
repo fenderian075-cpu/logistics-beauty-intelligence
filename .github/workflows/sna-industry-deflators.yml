@@ -1,0 +1,86 @@
+name: Update SNA industry deflators
+
+on:
+  workflow_dispatch:
+    inputs:
+      vintage:
+        description: "SNA annual vintage year (blank = current year - 2)"
+        required: false
+        default: ""
+  push:
+    branches: [main]
+    paths:
+      - "scripts/update_sna_industry_deflators.py"
+      - ".github/workflows/sna-industry-deflators.yml"
+  schedule:
+    # Annual SNA is normally released around late January. Recheck monthly Jan-Mar.
+    - cron: "17 2 2 1-3 *"
+
+permissions:
+  contents: write
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install collector dependencies
+        run: python -m pip install --disable-pip-version-check requests openpyxl
+
+      - name: Resolve vintage
+        id: vintage
+        shell: bash
+        run: |
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" && -n "${{ inputs.vintage }}" ]]; then
+            VINTAGE="${{ inputs.vintage }}"
+          else
+            VINTAGE="$(( $(date -u +%Y) - 2 ))"
+          fi
+          echo "year=$VINTAGE" >> "$GITHUB_OUTPUT"
+          echo "Using SNA vintage $VINTAGE"
+
+      - name: Collect official ESRI SNA tables
+        run: |
+          python scripts/update_sna_industry_deflators.py \
+            --vintage "${{ steps.vintage.outputs.year }}" \
+            --output data/economy/industry-deflators.json
+
+      - name: Validate output
+        run: |
+          python - <<'PY'
+          import json
+          p = "data/economy/industry-deflators.json"
+          d = json.load(open(p, encoding="utf-8"))
+          assert d["dataset"] == "industry-deflators"
+          assert len(d["industries"]) >= 14
+          assert int(d["coverage"]["end_year"]) == int(d["source_vintage"])
+          for row in d["industries"]:
+              assert row["observations"], row["id"]
+          # Exact-identity gaps should be small after rounding; large gaps indicate
+          # the parser selected the wrong matrix or basis.
+          latest = [r["observations"][-1] for r in d["industries"] if r["observations"]]
+          gaps = [abs(float(o["identity_gap_pctpt"])) for o in latest if o.get("identity_gap_pctpt") is not None]
+          assert gaps and max(gaps) <= 1.0, max(gaps) if gaps else None
+          print("validated", d["coverage"], "max_identity_gap", max(gaps))
+          PY
+
+      - name: Commit refreshed dataset
+        shell: bash
+        run: |
+          if git diff --quiet -- data/economy/industry-deflators.json; then
+            echo "No SNA dataset change."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/economy/industry-deflators.json
+          git commit -m "data: refresh SNA industry deflators"
+          git push

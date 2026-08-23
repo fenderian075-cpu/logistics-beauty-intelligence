@@ -63,6 +63,9 @@ export const loadBeautyBrands = () => loadOptionalJSON("data/beauty-priority-bra
 export const loadEconomyOverview = () =>
   loadOptionalJSON("data/economy/overview.json", { cards: [], transmission_chain: [] });
 
+export const loadIndustryDeflators = () =>
+  loadOptionalJSON("data/economy/industry-deflators.json", { industries: [] });
+
 export const loadEconomyBundle = () => Promise.all([
   loadOptionalJSON("data/economy/japan-trade.json", {}),
   loadOptionalJSON("data/economy/warehouse-flow.json", {}),
