@@ -49,7 +49,10 @@ def cd(i):
  return 'cd'+i[0].upper()+i[1:]
 
 def fetch(app,tab_obj,vehicle_obj,tab_code,vehicle_code):
- p={'appId':app,'statsDataId':STATS_DATA_ID,'limit':1000,cd(tab_obj['id']):tab_code,cd(vehicle_obj['id']):vehicle_code,'cdTimeFrom':'2020000000','cdTimeTo':'2024000000'}
+ # The fiscal-year metadata codes are not simple YYYY000000 boundaries.
+ # This table contains only 2020FY-2024FY, so request all five time cells and
+ # filter by the displayed year after retrieval.
+ p={'appId':app,'statsDataId':STATS_DATA_ID,'limit':1000,cd(tab_obj['id']):tab_code,cd(vehicle_obj['id']):vehicle_code}
  d=get(DATA,p); r=d['GET_STATS_DATA']['RESULT']
  if str(r.get('STATUS'))!='0':raise RuntimeError({'result':r,'params':p})
  out={}
