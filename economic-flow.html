@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>実体経済と物流 | LBI</title>
-<meta name="description" content="需要・貿易・港湾・倉庫・トラック・航空・物流コストを接続して見る実体物流ページ。">
+<meta name="description" content="需要・貿易・港湾・倉庫・トラック・航空・物流コストを接続し、各指標の長期推移まで分析する実体物流ページ。">
 <meta name="color-scheme" content="light dark">
 <link rel="stylesheet" href="assets/css/tokens.css"><link rel="stylesheet" href="assets/css/base.css"><link rel="stylesheet" href="assets/css/layout.css"><link rel="stylesheet" href="assets/css/components.css"><link rel="stylesheet" href="assets/css/pages.css">
 <script>try{var d=document.documentElement,t=localStorage.getItem("lbi:theme"),n=localStorage.getItem("lbi:density");if(t==="dark"||t==="light")d.setAttribute("data-theme",t);if(n==="compact")d.setAttribute("data-density","compact");}catch(e){}</script>
@@ -19,7 +19,7 @@
 <div class="shell-tools"><button type="button" class="tool-btn" id="tool-theme" aria-pressed="false">自動</button><button type="button" class="tool-btn" id="tool-density" aria-pressed="false">標準</button><button type="button" class="tool-btn" id="tool-help">?</button></div>
 </nav><div class="app-frame"><div class="app-ribbon" id="app-ribbon" aria-label="現在のステータス" role="status"></div>
 <main class="app-main" id="main"><div class="wrap">
-<header class="page-head"><p class="eyebrow">実体経済・物流フロー</p><h1>実体経済と物流</h1><p>需要 → 貿易 → 物量 → 倉庫 → 輸送 → コストを同じ時間軸で確認する。</p></header>
+<header class="page-head"><p class="eyebrow">実体経済・物流フロー</p><h1>実体経済と物流</h1><p>需要 → 貿易 → 物量 → 倉庫 → 輸送 → コストを同じ時間軸で確認する。主要指標や全系列の行をクリックすると、過去の推移と現在の位置を詳しく分析できます。</p></header>
 <section class="section section--span" aria-labelledby="flow-kpi-title"><div class="section__head"><div><p class="eyebrow">CURRENT PULSE</p><h2 class="section__title" id="flow-kpi-title">主要指標</h2></div></div><div id="flow-kpi"></div></section>
 <section class="section section--span"><div class="section__head"><h2 class="section__title">現在のスナップショット</h2></div><div class="economy-grid" id="flow-overview"></div></section>
 <section class="section section--span"><div class="section__head"><h2 class="section__title">需要から物流コストまでの連鎖</h2></div><div class="transmission-chain" id="flow-chain"></div><p class="regime-note">単一指標では判断しません。需要、貿易、実物流、在庫、コスト、企業動向をつないで評価します。</p></section>
