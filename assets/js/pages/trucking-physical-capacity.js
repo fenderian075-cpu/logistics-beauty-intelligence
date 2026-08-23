@@ -1,4 +1,4 @@
-import { el, byId } from "../core/dom.js";
+import { el, byId, clear } from "../core/dom.js";
 import { loadOptionalJSON } from "../data/store.js";
 import { chart } from "../render/chart.js";
 
@@ -14,35 +14,38 @@ function card(label,s,format,note){
   item.appendChild(el("span","value-row__meta",o?`${o.period} · ${note}`:note));
   return item;
 }
+function indexed(s){
+  const rows=s?.observations||[],base=rows.find((o)=>String(o.period)==="2015");
+  if(!base||!Number(base.value))return[];
+  return rows.map((o)=>({x:o.period,y:Number((Number(o.value)/Number(base.value)*100).toFixed(1))})).filter((p)=>Number.isFinite(p.y));
+}
 
 async function mount(){
-  const root=byId("logistics-structure"); if(!root)return;
+  const root=byId("trucking-physical-capacity"); if(!root)return;
   const data=await loadOptionalJSON("data/economy/trucking-physical-capacity.json",{});
+  clear(root);
   const operators=series(data,"truck_operators"),vehicles=series(data,"commercial_truck_vehicles");
   const vpo=series(data,"vehicles_per_operator"),tpv=series(data,"ton_km_per_vehicle");
-  if(!operators?.observations?.length||!vehicles?.observations?.length)return;
+  if(!operators?.observations?.length||!vehicles?.observations?.length){
+    root.appendChild(el("p","flow-block__reading","国土交通省の事業者数・車両数長期系列を取得中です。未取得値は推測で補完しません。"));
+    return;
+  }
 
-  root.appendChild(el("h3","flow-block__sub","Road freight physical capacity"));
   const row=el("div","value-row");
   row.appendChild(card("トラック事業者数",operators,(v)=>`${jp(v,0)}者`,"年度末"));
   row.appendChild(card("営業用トラック車両数",vehicles,(v)=>`${jp(v,0)}台`,"軽自動車除く"));
-  if(vpo?.observations?.length)row.appendChild(card("1事業者あたり車両数",vpo,(v)=>`${jp(v,1)}台/者`,"構造指標"));
+  if(vpo?.observations?.length)row.appendChild(card("1事業者あたり車両数",vpo,(v)=>`${jp(v,1)}台/者`,"事業構造"));
   if(tpv?.observations?.length)row.appendChild(card("1台あたりton-km",tpv,(v)=>`${jp(v,1)}千ton-km/台`,"capacity load proxy"));
   root.appendChild(row);
 
   const stock=chart({kind:"line",unitLabel:"2015=100",series:[
     {name:"事業者数",unitLabel:"2015=100",points:indexed(operators)},
     {name:"営業用トラック車両数",unitLabel:"2015=100",points:indexed(vehicles)}
-  ],note:"事業者数と車両ストックを2015=100で比較。企業数の増減と物理的な輸送機材の増減を分けて見ます。"});
+  ],note:"事業者数と営業用車両ストックを2015=100で比較。企業数と物理的な輸送機材を分離して確認します。"});
   if(stock)root.appendChild(stock);
   if(tpv?.observations?.length){
     const c=chart({kind:"line",unitLabel:"千ton-km/台",series:[{name:"営業用トラック1台あたりton-km",unitLabel:"千ton-km/台",points:points(tpv)}],note:"営業用トラック年間ton-km ÷ 営業用トラック車両数。実働率・積載率そのものではなく、車両ストック当たり輸送需要のproxyです。"});
     if(c)root.appendChild(c);
   }
-}
-function indexed(s){
-  const rows=s?.observations||[],base=rows.find((o)=>String(o.period)==="2015");
-  if(!base||!Number(base.value))return[];
-  return rows.map((o)=>({x:o.period,y:Number((Number(o.value)/Number(base.value)*100).toFixed(1))})).filter((p)=>Number.isFinite(p.y));
 }
 mount().catch((err)=>console.warn("trucking physical capacity mount skipped",err));
