@@ -4,7 +4,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 
-from run_sna_industry_deflators import year_of
+from run_sna_industry_deflators import source_kind, valid_xlsx, year_of
 
 
 class SnaYearParserTests(unittest.TestCase):
@@ -26,6 +26,17 @@ class SnaYearParserTests(unittest.TestCase):
         self.assertEqual(year_of("昭和63年"), 1988)
         self.assertIsNone(year_of("増加率"))
         self.assertIsNone(year_of(None))
+
+    def test_source_kind(self):
+        self.assertEqual(source_kind("https://x/2024fcm3n_jp.xlsx"), "nominal")
+        self.assertEqual(source_kind("https://x/2024fcm3rn_jp.xlsx"), "real")
+        self.assertEqual(source_kind("https://x/2024fcm3dn_jp.xlsx"), "deflator")
+        self.assertIsNone(source_kind("https://x/other.xlsx"))
+
+    def test_xlsx_signature(self):
+        self.assertTrue(valid_xlsx(b"PK" + b"x" * 5000))
+        self.assertFalse(valid_xlsx(b"<html>" + b"x" * 5000))
+        self.assertFalse(valid_xlsx(b"PKshort"))
 
 
 if __name__ == "__main__":
