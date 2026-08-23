@@ -3,7 +3,7 @@
   "dataset": "public-sanitize-status",
   "status": "failure",
   "stage": "audit",
-  "updated_at": "2026-08-23T04:33:01.886720+00:00",
+  "updated_at": "2026-08-23T04:34:57.735949+00:00",
   "stages": {
     "restore": "success",
     "sanitize": "success",
@@ -20,6 +20,6 @@
     "report_validation": null,
     "customs_validation": null
   },
-  "diagnostic_tail": "[ERROR] data/reports.json: untranslated public UI term 'effective supply'\n[ERROR] data/reports.json: untranslated public UI term 'fleet supply'\n[ERROR] data/reports.json: untranslated public UI term 'delay absorption'\n[ERROR] data/reports.json: untranslated public UI term '幹線capacity'\n[ERROR] data/reports.json: untranslated public UI term 'promotion/launch'\n[ERROR] economic-flow.html: untranslated public UI term 'ECONOMIC &amp; PHYSICAL FLOW'\n",
+  "diagnostic_tail": "[ERROR] data/reports.json: untranslated public UI term 'effective supply'\n[ERROR] data/reports.json: untranslated public UI term 'delay absorption'\n",
   "note": "Public sanitizer health only; stable machine keys and non-brand URLs must remain unchanged."
 }
