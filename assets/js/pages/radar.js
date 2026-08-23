@@ -20,6 +20,20 @@ const SCOPE_LABELS = {
   regional: "地域",
   shipment: "個別出荷"
 };
+const DIMENSION_LABELS = {
+  rate: "運賃",
+  supply: "供給",
+  demand: "需要",
+  reliability: "信頼性",
+  risk: "リスク",
+  mixed: "複合"
+};
+const MATERIALITY_LABELS = {
+  structural: "構造変化",
+  material: "重要",
+  notable: "注目",
+  routine: "通常"
+};
 
 function matches(item, state) {
   if (state.domain && item.domain !== state.domain) return false;
@@ -27,10 +41,14 @@ function matches(item, state) {
   if (state.importance && item.importance !== state.importance) return false;
   if (state.jp && item.japan_relevance !== state.jp) return false;
   if (state.scope && item.operational_scope !== state.scope) return false;
+  if (state.dimension && item.market_dimension !== state.dimension) return false;
+  if (state.materiality && item.market_materiality !== state.materiality) return false;
   if (!withinRange(item.date, state.from, state.to)) return false;
   if (state.q) {
     const hay = [item.headline, item.summary, item.observed_impact, item.japan_implication,
-                 item.operational_implication, item.operational_scope, (item.topic_ids || []).join(" ")]
+                 item.operational_implication, item.operational_scope, item.market_dimension,
+                 item.market_materiality, item.market_change, item.time_horizon, item.confidence,
+                 item.demand_driver, (item.topic_ids || []).join(" ")]
       .filter(Boolean).join(" ").toLowerCase();
     if (!state.q.toLowerCase().split(/\s+/).every((term) => hay.indexOf(term) !== -1)) return false;
   }
@@ -47,6 +65,18 @@ function scopeOptions(items) {
   const order = ["network", "global", "market", "regional", "shipment"];
   const seen = new Set(items.map((i) => i.operational_scope).filter(Boolean));
   return [["", "すべて"], ...order.filter((s) => seen.has(s)).map((s) => [s, SCOPE_LABELS[s] || s])];
+}
+
+function dimensionOptions(items) {
+  const order = ["risk", "reliability", "supply", "demand", "rate", "mixed"];
+  const seen = new Set(items.map((i) => i.market_dimension).filter(Boolean));
+  return [["", "すべて"], ...order.filter((d) => seen.has(d)).map((d) => [d, DIMENSION_LABELS[d] || d])];
+}
+
+function materialityOptions(items) {
+  const order = ["structural", "material", "notable", "routine"];
+  const seen = new Set(items.map((i) => i.market_materiality).filter(Boolean));
+  return [["", "すべて"], ...order.filter((m) => seen.has(m)).map((m) => [m, MATERIALITY_LABELS[m] || m])];
 }
 
 function groupHead(status, count) {
@@ -68,6 +98,8 @@ export function init() {
     mountShell(intel);
 
     const items = intel.news;
+    const allItems = intel.allNews || items;
+    const suppressedCount = Math.max(0, allItems.length - items.length);
     const lastSeen = readLastSeen();
     const newCount = countNewSince(items, lastSeen);
 
@@ -131,6 +163,8 @@ export function init() {
         { key: "status", label: "状態", type: "select",
           options: [["", "すべて"], ...GROUPS.map((s) => [s, L.newsStatusLabel(s)])] },
         { key: "scope", label: "影響範囲", type: "select", options: scopeOptions(items) },
+        { key: "dimension", label: "市場軸", type: "select", options: dimensionOptions(items) },
+        { key: "materiality", label: "変化の重要度", type: "select", options: materialityOptions(items) },
         { key: "domain", label: "領域", type: "select", options: domainOptions(items) },
         { key: "importance", label: "重要度", type: "select",
           options: [["", "すべて"], ["high", "高"], ["medium", "中"], ["low", "低"]] },
@@ -145,6 +179,7 @@ export function init() {
     const summary = byId("radar-summary");
     if (summary) {
       const counts = GROUPS.map((s) => `${L.UI.radarGroups[s]} ${items.filter((i) => i.status === s).length}`);
+      if (suppressedCount) counts.push(`通常観測 ${suppressedCount}件は履歴へ`);
       summary.textContent = counts.join(" / ");
     }
 
