@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "dataset": "parcel-demand",
+  "title_ja": "宅配便・メール便需要",
+  "frequency": "annual",
+  "sources": [
+    {
+      "name": "国土交通省 宅配便等取扱個数の調査",
+      "url": "https://www.mlit.go.jp/statistics/details/jidosha_list.html"
+    },
+    {
+      "name": "国土交通省 令和6年度宅配便等取扱実績関係資料",
+      "url": "https://www.mlit.go.jp/report/press/content/001906814.pdf"
+    }
+  ],
+  "notes": [
+    "宅配便はB2C専用統計ではなく法人向け荷物も含むため、LBIではB2C需要の代理指標として扱う。",
+    "2016年10月以降、ゆうパケットはメール便ではなく宅配便に含まれるため長期比較には定義変更の影響がある。"
+  ],
+  "series": [
+    {
+      "metric_id": "parcel_delivery_volume",
+      "name_ja": "宅配便取扱個数",
+      "unit": "million parcels",
+      "observations": [
+        {"period":"2010","value":3220,"status":"official","source":"国土交通省 宅配便等取扱個数の調査"},
+        {"period":"2011","value":3401,"status":"official","source":"国土交通省 宅配便等取扱個数の調査","yoy":5.62},
+        {"period":"2012","value":3526,"status":"official","source":"国土交通省 宅配便等取扱個数の調査","yoy":3.68},
+        {"period":"2013","value":3637,"status":"official","source":"国土交通省 宅配便等取扱個数の調査","yoy":3.15},
+        {"period":"2014","value":3614,"status":"official","source":"国土交通省 宅配便等取扱個数の調査","yoy":-0.63},
+        {"period":"2015","value":3745,"status":"official","source":"国土交通省 宅配便等取扱個数の調査","yoy":3.62},
+        {"period":"2016","value":4019,"status":"official","source":"国土交通省 宅配便等取扱個数の調査","yoy":7.32},
+        {"period":"2017","value":4251,"status":"official","source":"国土交通省 宅配便等取扱個数の調査","yoy":5.77},
+        {"period":"2018","value":4307,"status":"official","source":"国土交通省 宅配便等取扱個数の調査","yoy":1.32},
+        {"period":"2019","value":4323,"status":"official","source":"国土交通省 宅配便等取扱個数の調査","yoy":0.37},
+        {"period":"2020","value":4836,"status":"official","source":"国土交通省 宅配便等取扱個数の調査","yoy":11.87},
+        {"period":"2021","value":4953,"status":"official","source":"国土交通省 宅配便等取扱個数の調査","yoy":2.42},
+        {"period":"2022","value":5006,"status":"official","source":"国土交通省 宅配便等取扱個数の調査","yoy":1.07},
+        {"period":"2023","value":5007,"status":"official","source":"国土交通省 宅配便等取扱個数の調査","yoy":0.02},
+        {"period":"2024","value":5031,"status":"official","source":"国土交通省 宅配便等取扱個数の調査","yoy":0.48}
+      ]
+    },
+    {
+      "metric_id": "mail_delivery_volume",
+      "name_ja": "メール便取扱冊数",
+      "unit": "million items",
+      "observations": [
+        {"period":"2020","value":4239,"status":"official","source":"国土交通省 宅配便等取扱個数の調査"},
+        {"period":"2021","value":4287,"status":"official","source":"国土交通省 宅配便等取扱個数の調査","yoy":1.13},
+        {"period":"2022","value":4032,"status":"official","source":"国土交通省 宅配便等取扱個数の調査","yoy":-5.95},
+        {"period":"2023","value":3610,"status":"official","source":"国土交通省 宅配便等取扱個数の調査","yoy":-10.47},
+        {"period":"2024","value":3345,"status":"official","source":"国土交通省 宅配便等取扱個数の調査","yoy":-7.34}
+      ]
+    }
+  ]
+}
