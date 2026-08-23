@@ -92,7 +92,17 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/economy
+          git add \
+            data/economy/japan-trade.json \
+            data/economy/macro.json \
+            data/economy/prices.json \
+            data/economy/fuel-prices.json \
+            data/economy/fuel-collector-status.json \
+            data/economy/industry-deflators.json \
+            data/economy/sna-collector-status.json \
+            data/economy/warehouse-flow.json \
+            data/economy/historical-backfill-status.json \
+            data/economy/historical-coverage.json
           if git diff --cached --quiet; then
             echo "No historical data change."
             exit 0
