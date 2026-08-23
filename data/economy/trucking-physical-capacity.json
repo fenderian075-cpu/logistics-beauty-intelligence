@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "dataset": "trucking-physical-capacity",
+  "title_ja": "トラック物理キャパシティ",
+  "frequency": "annual",
+  "status": "source_verified_collector_ready",
+  "sources": [
+    {
+      "name": "国土交通省 数字でみる自動車2025 - トラック事業者数の推移",
+      "url": "https://www.mlit.go.jp/jidosha/content/001894861.xls"
+    },
+    {
+      "name": "国土交通省 数字でみる自動車2025 - トラック車両数の推移",
+      "url": "https://www.mlit.go.jp/jidosha/content/001894863.xlsx"
+    },
+    {
+      "name": "国土交通省 自動車輸送統計",
+      "url": "https://www.mlit.go.jp/k-toukei/jidousya.html"
+    }
+  ],
+  "notes": [
+    "事業者数・車両数は国土交通省のトラック事業長期系列を使用し、推計・補間は行わない。",
+    "営業用トラックton-kmは自動車輸送統計の接続済み年次系列を使用する。",
+    "ton-km/vehicleは営業用輸送需要を車両ストックで割る物理capacity utilization proxyであり、実働率や積載率そのものではない。"
+  ],
+  "series": [
+    {
+      "metric_id": "truck_operators",
+      "name_ja": "トラック事業者数",
+      "unit": "operators",
+      "observations": []
+    },
+    {
+      "metric_id": "commercial_truck_vehicles",
+      "name_ja": "営業用トラック車両数",
+      "unit": "vehicles",
+      "observations": []
+    },
+    {
+      "metric_id": "vehicles_per_operator",
+      "name_ja": "1事業者あたり車両数",
+      "unit": "vehicles_per_operator",
+      "observations": []
+    },
+    {
+      "metric_id": "ton_km_per_vehicle",
+      "name_ja": "営業用トラック1台あたりton-km",
+      "unit": "thousand_tonne_km_per_vehicle_year",
+      "observations": []
+    }
+  ]
+}
