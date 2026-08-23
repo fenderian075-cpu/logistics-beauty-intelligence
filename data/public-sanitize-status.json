@@ -1,9 +1,9 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "dataset": "public-sanitize-status",
   "status": "failure",
   "stage": "audit",
-  "updated_at": "2026-08-23T04:14:59.373520+00:00",
+  "updated_at": "2026-08-23T04:16:25.817797+00:00",
   "stages": {
     "sanitize_data": "success",
     "localize_sources": "success",
@@ -11,5 +11,8 @@
     "audit": "failure",
     "customs_validation": "skipped"
   },
+  "audit_exit_code": "1",
+  "customs_exit_code": null,
+  "diagnostic_tail": "[ERROR] assets/js/core/labels.js: untranslated public UI term 'Topic Intelligence'\n[ERROR] assets/js/core/labels.js: untranslated public UI term 'Beauty商流'\n",
   "note": "Public sanitizer health only; no private monitoring targets are stored here."
 }
