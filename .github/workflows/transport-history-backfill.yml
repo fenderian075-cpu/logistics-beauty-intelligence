@@ -1,0 +1,63 @@
+name: Backfill official transport history
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "40 3 3 * *"
+  push:
+    paths:
+      - "scripts/backfill_transport_history.py"
+      - "scripts/backfill_port_history.py"
+      - "scripts/backfill_trucking_history.py"
+      - "scripts/backfill_air_cargo_history.py"
+      - ".github/workflows/transport-history-backfill.yml"
+  pull_request:
+    paths:
+      - "scripts/backfill_transport_history.py"
+      - "scripts/backfill_port_history.py"
+      - "scripts/backfill_trucking_history.py"
+      - "scripts/backfill_air_cargo_history.py"
+      - ".github/workflows/transport-history-backfill.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests openpyxl beautifulsoup4
+      - name: Backfill transport price history
+        run: python scripts/backfill_transport_history.py
+      - name: Backfill port container history
+        run: python scripts/backfill_port_history.py
+      - name: Backfill trucking history
+        run: python scripts/backfill_trucking_history.py
+      - name: Backfill air cargo history
+        run: python scripts/backfill_air_cargo_history.py
+      - name: Validate JSON and contracts
+        run: |
+          python - <<'PY'
+          import json, glob
+          for p in glob.glob('data/economy/*.json'):
+              json.load(open(p,encoding='utf-8'))
+          print('economy json valid')
+          PY
+          python scripts/validate_public_schema_integrity.py
+          python scripts/validate-customs-taxonomy.py
+      - name: Commit transport history on main
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/economy
+          if git diff --cached --quiet; then
+            echo "No transport history change."
+            exit 0
+          fi
+          git commit -m "data: backfill official transport history"
+          git push
