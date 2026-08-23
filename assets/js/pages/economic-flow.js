@@ -28,9 +28,9 @@ function renderDataset(host, data) {
   section.appendChild(head);
 
   const series = data.series || [];
-  if (!series.length) {
+  if (!series.length && !(data.observations || []).length) {
     section.appendChild(el("p", "empty-state", "系列定義のみ。観測値を蓄積中です。"));
-  } else {
+  } else if (series.length) {
     const wrap = el("div", "table-scroll");
     const table = el("table", "data-table economy-table");
     const thead = el("thead");
@@ -46,6 +46,24 @@ function renderDataset(host, data) {
       tr.appendChild(el("td", null, `${formatValue(obs)}${obs && s.unit ? ` ${s.unit}` : ""}`));
       tr.appendChild(el("td", null, obs && obs.yoy != null ? `${obs.yoy > 0 ? "+" : ""}${obs.yoy}%` : "—"));
       tr.appendChild(el("td", null, obs && obs.mom != null ? `${obs.mom > 0 ? "+" : ""}${obs.mom}%` : "—"));
+      tbody.appendChild(tr);
+    });
+    table.appendChild(tbody); wrap.appendChild(table); section.appendChild(wrap);
+  } else {
+    const wrap = el("div", "table-scroll");
+    const table = el("table", "data-table economy-table");
+    const thead = el("thead");
+    const trh = el("tr");
+    ["指標", "期間", "値", "前年比", "区分"].forEach((label) => trh.appendChild(el("th", null, label)));
+    thead.appendChild(trh); table.appendChild(thead);
+    const tbody = el("tbody");
+    (data.observations || []).forEach((obs) => {
+      const tr = el("tr");
+      tr.appendChild(el("td", null, obs.metric || "—"));
+      tr.appendChild(el("td", null, obs.period || "—"));
+      tr.appendChild(el("td", null, obs.value != null ? `${Number(obs.value).toLocaleString("ja-JP")} ${obs.unit || ""}` : "—"));
+      tr.appendChild(el("td", null, obs.yoy != null ? `${obs.yoy > 0 ? "+" : ""}${obs.yoy}%` : "—"));
+      tr.appendChild(el("td", null, obs.status || "—"));
       tbody.appendChild(tr);
     });
     table.appendChild(tbody); wrap.appendChild(table); section.appendChild(wrap);
@@ -98,6 +116,6 @@ export async function init() {
   const host = byId("flow-datasets");
   if (host) {
     clear(host);
-    [bundle.trade, bundle.warehouse, bundle.port, bundle.cost, bundle.trucking, bundle.air, bundle.beauty, bundle.macro].forEach((dataset) => renderDataset(host, dataset));
+    [bundle.trade, bundle.warehouse, bundle.port, bundle.cost, bundle.trucking, bundle.air, bundle.beauty, bundle.beautyMarket, bundle.macro].forEach((dataset) => renderDataset(host, dataset));
   }
 }
