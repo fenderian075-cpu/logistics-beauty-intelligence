@@ -128,7 +128,7 @@
               }
             ],
             "operational_implication": "主要幹線は予防的lead-time管理、局地例外は対象出荷時のみ個別管理する。",
-            "action_direction": "東西幹線は着日余裕を維持し、奄美方面は実出荷時のみcarrier確認する。"
+            "action_direction": "東西幹線は着日余裕を維持し、奄美方面は実出荷時のみ輸送会社確認する。"
           },
           {
             "id": "middle-east-maritime-risk",
@@ -185,7 +185,7 @@
               }
             ],
             "operational_implication": "8月末〜9月上旬は複数ブランド施策とEC promotionが重なり、短期の倉庫波動になり得る。",
-            "action_direction": "販促による上振れを基礎需要と分けてcapacityを確認する。"
+            "action_direction": "販促による上振れを基礎需要と分けて供給力を確認する。"
           }
         ],
         "regulatory_structural": []
@@ -214,7 +214,7 @@
       "type": "daily",
       "title": "物流・化粧品インテリジェンス・ブリーフ — DAILY",
       "summary": "国内配送は一部地域で例外が残り、国際面ではホルムズ海峡の通航が低水準。全国一律の運用変更は不要。",
-      "bottom_line": "国内は対象地域別の配送確認、中東はcarrier/lane単位の影響確認を優先する。",
+      "bottom_line": "国内は対象地域別の配送確認、中東は輸送会社・航路単位の影響確認を優先する。",
       "key_issues": [
         "国内配送の局地例外",
         "中東海域の航行リスク",
@@ -284,7 +284,7 @@
               }
             ],
             "operational_implication": "燃料・迂回・保険・船腹への二次波及を監視。",
-            "action_direction": "中東関連carrier/laneを個別確認する。"
+            "action_direction": "中東関連輸送会社・航路を個別確認する。"
           }
         ],
         "cost_capacity": [],
@@ -312,7 +312,7 @@
       "period": "2026-08-17/2026-08-23",
       "title": "物流・化粧品インテリジェンス・ブリーフ — WEEKLY",
       "summary": "WCIとIACIは上昇したが、価格上昇を一律の船腹不足とはみなさない。Sea-Intelligenceは外航船腹量の5.0%、約170万TEUが遅延で実質吸収される構造を示した。国内では荷待ち・荷役等時間が2時間02分まで改善し、物流2024問題は規制開始から生産性改善・制度実装の局面へ移行。物流企業の提携・投資とブランド公式サイト・EC promotionも継続監視する。",
-      "bottom_line": "アジア発はRate・space・Reliabilityを別管理し、遅延による実効供給力の低下を織り込む。国内は幹線トラック、ドレージ、港湾待機、荷待ち・荷役を上位監視。Beautyは販促・新製品投入と自然需要を分離する。",
+      "bottom_line": "アジア発は運賃・船腹・定時性を別管理し、遅延による実効供給力の低下を織り込む。国内は幹線トラック、ドレージ、港湾待機、荷待ち・荷役を上位監視。Beautyは販促・新製品投入と自然需要を分離する。",
       "key_issues": [
         "WCI 4,526米ドル/40ft（+4%）、IACI 1,091米ドル/40ft（+6%）",
         "Sea-Intelligence: 外航船腹量の5.0%、約170万TEUが遅延で吸収",
@@ -387,7 +387,7 @@
               }
             ],
             "operational_implication": "世界運賃指数上昇を全lane一律のcost/capacity悪化と解釈しない。",
-            "action_direction": "lane別rateを確認する。"
+            "action_direction": "航路別運賃を確認する。"
           },
           {
             "id": "ocean-intra-asia-capacity",
@@ -523,7 +523,7 @@
             "中東迂回",
             "航路別需要差"
           ],
-          "japan_implication": "日本発着ではglobal rateよりlane/T-S/connection reliabilityを重視。",
+          "japan_implication": "日本発着ではglobal rateより航路・積替え・接続定時性を重視。",
           "operational_implication": "Rate・space・ETAを別管理する。",
           "outlook_30d": "価格圧力と低いreliabilityが併存。",
           "risk_scenario": "中東悪化や港湾混雑で実効供給力がさらに低下。",
@@ -669,8 +669,8 @@
                 "url": "https://www.drewry.co.uk/trackers-and-indices/latest-trackers-and-indices/world-container-index-assessed-by-drewry"
               }
             ],
-            "operational_implication": "rateだけで船腹不足を判断しない。",
-            "action_direction": "lane別rateと実効供給力を別管理する。"
+            "operational_implication": "運賃だけで船腹不足を判断しない。",
+            "action_direction": "航路別運賃と実効供給力を別管理する。"
           }
         ],
         "reliability": [
@@ -814,9 +814,9 @@
             "port congestion",
             "航路別需要差"
           ],
-          "japan_implication": "日本発着は名目capacityよりlane/T-S/ETA variabilityを重視。",
-          "operational_implication": "rate・space・reliabilityを別管理。",
-          "outlook_30d": "low reliabilityとprice pressureが併存。",
+          "japan_implication": "日本発着は名目船腹量より航路・積替え・到着時刻変動を重視。",
+          "operational_implication": "運賃・船腹・定時性を別管理。",
+          "outlook_30d": "低い定時性と価格圧力が併存。",
           "outlook_90d": "遅延による供給力吸収が続けば新造船効果の一部を相殺。",
           "risk_scenario": "中東・港湾混雑悪化で実効供給力が再縮小。",
           "confidence": "high"
