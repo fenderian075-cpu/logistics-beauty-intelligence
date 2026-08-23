@@ -1,6 +1,6 @@
 /* =========================================================================
-   app.js — the single entry point.
-   One module graph, one render pass; no polling or recurring DOM patching.
+   app.js — the single frontend entry point.
+   One module graph, one canonical navigation rail, one render pass.
    ========================================================================= */
 
 import { byId, qs } from "./core/dom.js";
@@ -16,92 +16,77 @@ const PAGES = {
   archive: () => import("./pages/archive.js"),
   commerce: () => import("./pages/commerce-calendar.js"),
   buzz: () => import("./pages/buzz.js"),
-  sources: () => import("./pages/source-matrix.js?v=8.2.1"),
+  sources: () => import("./pages/source-matrix.js"),
   "status-history": () => import("./pages/status-history.js"),
   "lens-history": () => import("./pages/lens-history.js")
 };
 
-function ensureProductionPolish() {
-  if (document.getElementById("lbi-v8-2-polish")) return;
-  const style = document.createElement("style");
-  style.id = "lbi-v8-2-polish";
-  style.textContent = `
-    .brand { align-items:center; white-space:nowrap; }
-    .brand__mark,.brand__sub { line-height:1.25; white-space:nowrap; flex:0 0 auto; }
-    .radar-row__head { grid-template-columns:78px 48px 86px minmax(0,1fr) auto; column-gap:var(--s2); }
-    .radar-row__state { display:inline-flex; align-items:center; justify-content:center; box-sizing:border-box; width:64px; min-width:64px; margin-left:4px; padding:2px 6px; border:1px solid var(--rule-strong); border-radius:var(--radius); background:var(--surface); overflow:visible; white-space:nowrap; line-height:1.2; letter-spacing:0; }
-    .radar-row[data-status="observed"] .radar-row__state { border-color:var(--st-disruption); background:var(--st-disruption-bg); color:var(--st-disruption); }
-    .radar-row[data-status="reported"] .radar-row__state { border-style:dashed; color:var(--ink-2); }
-    .radar-row[data-status="resolved"] .radar-row__state { border-color:var(--rule); background:var(--surface-alt); }
-    .data-table th:first-child,.data-table td:first-child { min-width:88px; white-space:nowrap; }
-    .priority { min-width:38px; white-space:nowrap; }
-    .report,.wrap.report,.wrap-read.report { width:100%; max-width:var(--content-max); }
-
-    /* The dashboard's right-hand change column can be much narrower than a
-       full report. Long signal names must own the first row; badges wrap on a
-       second row instead of squeezing Japanese text into a vertical column. */
-    #changed-list .sig-card--compact .sig-card__summary {
-      grid-template-columns:minmax(0,1fr);
-      gap:6px;
-      align-items:start;
-    }
-    #changed-list .sig-card--compact .sig-card__head {
-      width:100%;
-      min-width:0;
-      align-items:flex-start;
-    }
-    #changed-list .sig-card--compact .sig-card__name {
-      min-width:0;
-      overflow-wrap:normal;
-      word-break:normal;
-      line-break:strict;
-      white-space:normal;
-      line-height:1.55;
-    }
-    #changed-list .sig-card--compact .sig-card__badges {
-      width:100%;
-      justify-content:flex-start;
-      align-items:center;
-      gap:4px;
-    }
-
-    .economy-thesis { margin:0 0 var(--s4); color:var(--ink-2); }
-    .economy-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:var(--s3); }
-    .economy-card { display:flex; flex-direction:column; min-width:0; padding:var(--s4); border:1px solid var(--rule); border-radius:var(--radius); background:var(--surface); color:inherit; text-decoration:none; }
-    .economy-card:hover { border-color:var(--rule-strong); }
-    .economy-card__headline { display:block; margin-bottom:var(--s2); font-size:1rem; }
-    .economy-card__value { margin:0 0 var(--s1); font-size:1.3rem; font-weight:700; font-variant-numeric:tabular-nums; }
-    .economy-card__meta,.economy-card__detail { margin:0; color:var(--ink-2); font-size:.82rem; }
-    .economy-card__detail { margin-top:var(--s2); line-height:1.55; }
-    .economy-card__drill { margin-top:auto; padding-top:var(--s3); color:var(--accent); font-size:.82rem; }
-    .economy-card[data-direction="rising"] { border-top:2px solid var(--st-watch); }
-    .economy-card[data-direction="improving"] { border-top:2px solid var(--st-normal); }
-    .economy-card[data-direction="unknown"] { border-top:2px solid var(--rule-strong); }
-    .transmission-chain { display:flex; align-items:center; flex-wrap:wrap; gap:var(--s2); margin:var(--s3) 0; }
-    .transmission-node { padding:6px 9px; border:1px solid var(--rule); border-radius:var(--radius); background:var(--surface-alt); font-size:.82rem; }
-    .transmission-arrow { color:var(--ink-3); }
-    .flow-dataset { margin-top:var(--s6); }
-    .economy-table td:nth-child(3),.economy-table td:nth-child(4),.economy-table td:nth-child(5) { font-variant-numeric:tabular-nums; }
-    @media (max-width:1100px) { .economy-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .brand__sub { display:none; } }
-    @media (max-width:700px) { .economy-grid { grid-template-columns:1fr; } }
-  `;
-  document.head.appendChild(style);
+function ensureV8Styles() {
+  if (document.getElementById("lbi-v8-dashboard-css")) return;
+  const link = document.createElement("link");
+  link.id = "lbi-v8-dashboard-css";
+  link.rel = "stylesheet";
+  link.href = (document.body.getAttribute("data-root") || "") + "assets/css/v8-dashboard.css";
+  document.head.appendChild(link);
 }
 
-function ensureEconomicNav() {
+/**
+ * Static report files span several generations. Instead of copying a large nav
+ * fragment into every historical HTML file, every page is normalised through
+ * this single canonical rail before shell listeners are attached.
+ */
+function ensureCanonicalRail() {
   const rail = document.querySelector(".app-rail");
-  if (!rail || rail.querySelector('[data-nav="economy"]')) return;
-  const groups = Array.from(rail.querySelectorAll(".rail-group"));
-  const ref = groups.find((g) => (g.querySelector(".rail-group__label")?.textContent || "").trim() === "参照");
-  if (!ref) return;
-  const a = document.createElement("a");
-  a.className = "rail-link";
-  a.dataset.nav = "economy";
-  const root = document.body.getAttribute("data-root") || "";
-  a.href = root + "economic-flow.html";
-  a.textContent = "実体経済と物流";
-  const label = ref.querySelector(".rail-group__label");
-  if (label && label.nextSibling) ref.insertBefore(a, label.nextSibling); else ref.appendChild(a);
+  if (!rail) return;
+  const r = document.body.getAttribute("data-root") || "";
+  const href = (path) => `${r}${path}`;
+  rail.setAttribute("aria-label", "メインナビゲーション");
+  rail.innerHTML = `
+    <a class="brand" href="${href("index.html")}">
+      <span class="brand__mark">LBI</span>
+      <span class="brand__sub">物流・化粧品インテリジェンス</span>
+    </a>
+    <div class="rail-group">
+      <p class="rail-group__label">現況</p>
+      <a class="rail-link" data-nav="home" href="${href("index.html")}">ダッシュボード</a>
+      <a class="rail-link" data-nav="radar" href="${href("radar.html")}">オペレーションレーダー<span class="rail-link__count" id="rail-count-radar"></span></a>
+      <a class="rail-link" data-nav="topic" href="${href("topic.html")}">トピック<span class="rail-link__count" id="rail-count-topic"></span></a>
+    </div>
+    <div class="rail-group">
+      <p class="rail-group__label">レポート</p>
+      <a class="rail-link" id="nav-latest-daily" data-nav="daily" href="${href("archive.html?type=daily")}">日次</a>
+      <a class="rail-link" id="nav-latest-weekly" data-nav="weekly" href="${href("archive.html?type=weekly")}">週次</a>
+      <a class="rail-link" id="nav-latest-monthly" data-nav="monthly" href="${href("archive.html?type=monthly")}">月次</a>
+      <a class="rail-link" data-nav="archive" href="${href("archive.html")}">過去のレポート</a>
+    </div>
+    <div class="rail-group">
+      <p class="rail-group__label">分析</p>
+      <a class="rail-link" data-nav="economy" href="${href("economic-flow.html")}">実体経済と物流</a>
+    </div>
+    <div class="rail-group">
+      <p class="rail-group__label">ビューティー</p>
+      <a class="rail-link" data-nav="commerce" href="${href("commerce-calendar.html")}">EC予定</a>
+      <a class="rail-link" data-nav="buzz" href="${href("buzz.html")}">バズ</a>
+    </div>
+    <div class="rail-group">
+      <p class="rail-group__label">参照</p>
+      <a class="rail-link" data-nav="sources" href="${href("source-matrix.html")}">情報源</a>
+      <a class="rail-link" data-nav="status-history" href="${href("status-history.html")}">ステータス履歴</a>
+      <a class="rail-link" data-nav="lens-history" href="${href("lens-history.html")}">シグナル履歴</a>
+    </div>
+    <div class="shell-tools">
+      <button type="button" class="tool-btn" id="tool-theme" aria-pressed="false">自動</button>
+      <button type="button" class="tool-btn" id="tool-density" aria-pressed="false">標準</button>
+      <button type="button" class="tool-btn" id="tool-help" title="キーボードショートカット">?</button>
+    </div>`;
+}
+
+function normalizeEconomyOverviewIds() {
+  const overview = document.getElementById("flow-overview");
+  if (!overview) return;
+  overview.querySelectorAll("[id]").forEach((node) => {
+    if (!node.id.startsWith("overview-")) node.id = `overview-${node.id}`;
+  });
 }
 
 function detectPage() {
@@ -129,17 +114,19 @@ function showFatal(message) {
 function boot() {
   if (window.__lbiBooted) return;
   window.__lbiBooted = true;
-  ensureProductionPolish();
+  ensureV8Styles();
+  ensureCanonicalRail();
   initPrint();
   initShell();
-  ensureEconomicNav();
   const page = detectPage();
   if (!page) return;
-  PAGES[page]().then((mod) => mod.init()).catch((err) => {
+  PAGES[page]().then((mod) => mod.init()).then(() => {
+    if (page === "economy") normalizeEconomyOverviewIds();
+  }).catch((err) => {
     console.error(`LBI: ${page} failed to initialise.`, err);
     showFatal("データを読み込めませんでした。ページを再読み込みしてください。");
   });
 }
 
-if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot, { once:true });
+if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot, { once: true });
 else boot();
