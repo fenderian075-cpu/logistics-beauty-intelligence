@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "dataset": "freight-driver-vacancy-history",
   "title_ja": "貨物自動車運転者の求人需給",
   "frequency": "annual",
@@ -7,17 +7,18 @@
     {
       "name": "国土交通省 交通政策白書・トラック運転者の労働環境をめぐる現状",
       "url": "https://www.mlit.go.jp/sogoseisaku/transport/content/001748051.pdf",
-      "underlying_source": "厚生労働省 一般職業紹介状況"
+      "underlying_source": "厚生労働省 一般職業紹介状況／職業安定業務統計"
     },
     {
-      "name": "国土交通省 自動車運送業を取り巻く現状と課題",
-      "url": "https://www.mlit.go.jp/policy/shingikai/content/001894724.pdf",
-      "underlying_source": "厚生労働省 一般職業紹介状況"
+      "name": "国土交通省 トラック事業を取り巻く現状②",
+      "url": "https://www.mlit.go.jp/policy/shingikai/content/001911581.pdf",
+      "underlying_source": "厚生労働省 職業安定業務統計"
     }
   ],
   "notes": [
-    "貨物自動車運転者（パート含む）の有効求人倍率を使用し、バス・タクシー等を含む『自動車運転の職業』長期系列とは分ける。",
-    "2023年まで同一定義で接続。2025年度job tagの2.94倍は処理済み職業統計のため、この系列には直接接続しない。",
+    "貨物自動車運転者・貨物自動車運転手（パート含む）の有効求人倍率を使用し、バス・タクシー等を含む『自動車運転の職業』長期系列とは分ける。",
+    "2018～2024を同じ貨物自動車運転系の系列として保持する。",
+    "2025年度job tagの2.94倍は職業情報提供サイト側の処理済み職業統計であり、同一分類・集約条件を完全確認できるまでは本系列へ直接接続しない。",
     "倍率は有効求人数÷有効求職者数。高いほど採用需給が逼迫している。"
   ],
   "series": [
@@ -26,12 +27,13 @@
       "name_ja": "貨物自動車運転者 有効求人倍率",
       "unit": "ratio",
       "observations": [
-        {"period":"2018","value":2.83,"status":"official_secondary","source":"MLIT from MHLW General Employment Placement Situation"},
+        {"period":"2018","value":2.83,"status":"official_secondary","source":"MLIT from MHLW employment placement statistics"},
         {"period":"2019","value":2.82,"status":"official_secondary","source":"同上"},
         {"period":"2020","value":1.94,"status":"official_secondary","source":"同上"},
         {"period":"2021","value":1.96,"status":"official_secondary","source":"同上"},
         {"period":"2022","value":2.14,"status":"official_secondary","source":"同上"},
-        {"period":"2023","value":2.18,"status":"official_secondary","source":"同上"}
+        {"period":"2023","value":2.18,"status":"official_secondary","source":"同上"},
+        {"period":"2024","value":2.37,"status":"official_secondary","source":"MLIT from MHLW Occupational Employment Security Statistics"}
       ]
     },
     {
@@ -39,12 +41,13 @@
       "name_ja": "全職業 有効求人倍率（貨物比較用）",
       "unit": "ratio",
       "observations": [
-        {"period":"2018","value":1.46,"status":"official_secondary","source":"MLIT from MHLW General Employment Placement Situation"},
+        {"period":"2018","value":1.46,"status":"official_secondary","source":"MLIT from MHLW employment placement statistics"},
         {"period":"2019","value":1.41,"status":"official_secondary","source":"同上"},
         {"period":"2020","value":1.01,"status":"official_secondary","source":"同上"},
         {"period":"2021","value":1.05,"status":"official_secondary","source":"同上"},
         {"period":"2022","value":1.19,"status":"official_secondary","source":"同上"},
-        {"period":"2023","value":1.17,"status":"official_secondary","source":"同上"}
+        {"period":"2023","value":1.17,"status":"official_secondary","source":"同上"},
+        {"period":"2024","value":1.16,"status":"official_secondary","source":"MLIT from MHLW Occupational Employment Security Statistics"}
       ]
     },
     {
@@ -57,7 +60,8 @@
         {"period":"2020","value":1.92,"status":"derived","source":"同上"},
         {"period":"2021","value":1.87,"status":"derived","source":"同上"},
         {"period":"2022","value":1.80,"status":"derived","source":"同上"},
-        {"period":"2023","value":1.86,"status":"derived","source":"同上"}
+        {"period":"2023","value":1.86,"status":"derived","source":"同上"},
+        {"period":"2024","value":2.04,"status":"derived","source":"同上"}
       ]
     }
   ]
