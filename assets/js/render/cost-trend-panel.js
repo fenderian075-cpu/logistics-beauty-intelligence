@@ -26,10 +26,10 @@ function displaySeries(series, mode) {
   if (mode !== "ocean-jpy") return series;
   return {
     ...series,
-    unit: "円/40フィートコンテナ",
+    unit: "万円/40フィートコンテナ",
     observations: (series.observations || []).map((o) => {
-      const value = oceanYen(o);
-      return value == null ? null : { ...o, value, source_value_usd: o.value, jpy_per_usd: yenRate(o) };
+      const yen = oceanYen(o);
+      return yen == null ? null : { ...o, value: yen / 10000, value_yen: yen, source_value_usd: o.value, jpy_per_usd: yenRate(o) };
     }).filter(Boolean)
   };
 }
@@ -48,7 +48,7 @@ function lineChart(seriesList, unit) {
   [0, .25, .5, .75, 1].forEach((r) => {
     const gy = pad.t + r * (height - pad.t - pad.b), val = max - r * span;
     const line = document.createElementNS(svg.namespaceURI, "line"); line.setAttribute("x1", pad.l); line.setAttribute("x2", width-pad.r); line.setAttribute("y1", gy); line.setAttribute("y2", gy); line.setAttribute("class", "trend-chart__grid"); svg.appendChild(line);
-    const text = document.createElementNS(svg.namespaceURI, "text"); text.setAttribute("x", pad.l-8); text.setAttribute("y", gy+4); text.setAttribute("text-anchor", "end"); text.setAttribute("class", "trend-chart__axis"); text.textContent = fmt(val, 0); svg.appendChild(text);
+    const text = document.createElementNS(svg.namespaceURI, "text"); text.setAttribute("x", pad.l-8); text.setAttribute("y", gy+4); text.setAttribute("text-anchor", "end"); text.setAttribute("class", "trend-chart__axis"); text.textContent = fmt(val, 1); svg.appendChild(text);
   });
   seriesList.forEach((s, idx) => {
     if (!(s.observations || []).length) return;
@@ -58,7 +58,7 @@ function lineChart(seriesList, unit) {
     s.observations.forEach((o) => {
       const c = document.createElementNS(svg.namespaceURI, "circle"); c.setAttribute("cx", x(o.period)); c.setAttribute("cy", y(o.value)); c.setAttribute("r", 3.5); c.setAttribute("class", `trend-chart__point trend-chart__point--${idx+1}`);
       const t = document.createElementNS(svg.namespaceURI, "title");
-      t.textContent = `${s.name_ja}: ${o.period} ${fmt(o.value, 0)} ${unit}${o.source_value_usd != null ? `（原値 $${fmt(o.source_value_usd, 0)}、換算 ${o.jpy_per_usd}円/ドル）` : ""}`;
+      t.textContent = `${s.name_ja}: ${o.period} ${fmt(o.value, 1)} ${unit}${o.source_value_usd != null ? `（${fmt(o.value_yen, 0)}円、原値 $${fmt(o.source_value_usd, 0)}、換算 ${o.jpy_per_usd}円/ドル）` : ""}`;
       c.appendChild(t); svg.appendChild(c);
     });
   });
@@ -76,8 +76,8 @@ function sectionFor(data, ids, title, note, mode = "native") {
   selected.forEach((s, idx) => {
     const o = latest(s), raw = latest(canonical[idx]), card = el("article", "economy-card economy-card--static");
     card.appendChild(el("p", "eyebrow", s.name_ja));
-    card.appendChild(el("strong", "economy-card__headline", o ? `${fmt(o.value, mode === "ocean-jpy" ? 0 : 1)} ${s.unit}` : "未確認"));
-    const detail = o ? `${o.period}${o.wow_pct != null ? ` / 前週比 ${o.wow_pct > 0 ? "+" : ""}${o.wow_pct}%` : ""}${mode === "ocean-jpy" && raw ? ` / 原値 $${fmt(raw.value, 0)} / 換算 ${o.jpy_per_usd}円/ドル` : ""}` : "観測値を蓄積中";
+    card.appendChild(el("strong", "economy-card__headline", o ? `${fmt(o.value, 1)} ${s.unit}` : "未確認"));
+    const detail = o ? `${o.period}${o.wow_pct != null ? ` / 前週比 ${o.wow_pct > 0 ? "+" : ""}${o.wow_pct}%` : ""}${mode === "ocean-jpy" && raw ? ` / ${fmt(o.value_yen, 0)}円 / 原値 $${fmt(raw.value, 0)} / 換算 ${o.jpy_per_usd}円/ドル` : ""}` : "観測値を蓄積中";
     card.appendChild(el("p", "economy-card__detail", detail)); cards.appendChild(card);
   });
   section.appendChild(cards);
