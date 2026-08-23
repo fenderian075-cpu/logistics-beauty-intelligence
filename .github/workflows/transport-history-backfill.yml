@@ -1,0 +1,41 @@
+name: Backfill official transport history
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "scripts/inspect_boj_sppi.py"
+      - "scripts/backfill_transport_history.py"
+      - ".github/workflows/transport-history-backfill.yml"
+  pull_request:
+    paths:
+      - "scripts/inspect_boj_sppi.py"
+      - "scripts/backfill_transport_history.py"
+      - ".github/workflows/transport-history-backfill.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests openpyxl beautifulsoup4
+      - name: Inspect BOJ SPPI publication layout
+        run: python scripts/inspect_boj_sppi.py
+      - name: Backfill transport history
+        if: hashFiles('scripts/backfill_transport_history.py') != ''
+        run: python scripts/backfill_transport_history.py
+      - name: Validate JSON
+        if: hashFiles('scripts/backfill_transport_history.py') != ''
+        run: |
+          python - <<'PY'
+          import json, glob
+          for p in glob.glob('data/economy/*.json'):
+              json.load(open(p,encoding='utf-8'))
+          print('economy json valid')
+          PY
