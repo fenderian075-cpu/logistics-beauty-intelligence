@@ -10,6 +10,12 @@ on:
       - "scripts/update_sna_industry_deflators.py"
       - "scripts/update_japan_fuel_prices_v2.py"
       - ".github/workflows/historical-economy-backfill.yml"
+  pull_request:
+    paths:
+      - "scripts/backfill_official_economy_history.py"
+      - "scripts/update_sna_industry_deflators.py"
+      - "scripts/update_japan_fuel_prices_v2.py"
+      - ".github/workflows/historical-economy-backfill.yml"
 
 permissions:
   contents: write
@@ -50,7 +56,7 @@ jobs:
           python scripts/validate_public_schema_integrity.py
           python scripts/validate-customs-taxonomy.py
       - name: Commit long history on main
-        if: github.ref == 'refs/heads/main'
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
