@@ -1,17 +1,21 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "dataset": "logistics-capacity",
   "title_ja": "物流需給・処理負荷",
   "frequency": "annual",
   "sources": [
     {"name":"国土交通省 宅配便等取扱個数の調査","url":"https://www.mlit.go.jp/statistics/details/jidosha_list.html"},
     {"name":"総務省統計局 労働力調査","url":"https://www.stat.go.jp/data/roudou/"},
-    {"name":"総務省統計局 人口推計","url":"https://www.stat.go.jp/data/jinsui/"}
+    {"name":"総務省統計局 人口推計","url":"https://www.stat.go.jp/data/jinsui/"},
+    {"name":"国土交通省 自動車輸送統計","url":"https://www.mlit.go.jp/k-toukei/jidousya.html"},
+    {"name":"国土交通省 営業普通倉庫の実績（主要21社）","url":"https://www.mlit.go.jp/seisakutokatsu/freight/seisakutokatsu_freight_mn2_000009.html"}
   ],
   "notes": [
     "宅配便個数を運輸業・郵便業就業者数で除した構造指標。宅配便には法人向けを一部含み、就業者には宅配以外の運輸・郵便従事者も含むため、生産性そのものではなく需要/労働供給の方向を見るproxyとして扱う。",
     "Parcel intensityは宅配便個数 ÷ 総人口。公式宅配便統計が純B2Cではないため、EC利用頻度そのものではなくラストマイル需要の人口当たり強度として扱う。",
-    "Labor Capacity Stressの正式指数ではない。年齢構成、賃金、求人倍率が揃った後に複合指数を別系列として構築する。"
+    "Freight labor productivityは営業用トラックton-km ÷ 道路貨物運送業就業者、Warehouse labor productivityは倉庫入出庫量 ÷ 倉庫業就業者として算出予定。道路貨物・倉庫就業者の公式e-Stat系列が取得されるまで観測値は空のまま保持する。",
+    "倉庫荷動きは営業普通倉庫の主要21社系列であり、全国倉庫業就業者を分母とするWarehouse labor productivityは厳密な企業生産性ではなく構造proxyとして扱う。",
+    "Labor Capacity Stressの正式指数ではない。年齢構成、賃金、求人倍率、道路貨物/倉庫労働生産性が揃った後に複合指数を別系列として構築する。"
   ],
   "series": [
     {
@@ -64,6 +68,21 @@
         {"period":"2023","value":128.7,"status":"derived","source":"同上"},
         {"period":"2024","value":130.8,"status":"derived","source":"同上"}
       ]
+    },
+    {
+      "metric_id": "freight_labor_productivity",
+      "name_ja": "道路貨物就業者あたり営業用トラックton-km",
+      "unit": "million_tonne_km_per_worker_year",
+      "dependency": "road_freight_employment",
+      "observations": []
+    },
+    {
+      "metric_id": "warehouse_labor_productivity",
+      "name_ja": "倉庫業就業者あたり倉庫入出庫量",
+      "unit": "tonnes_per_worker_year",
+      "dependency": "warehousing_employment",
+      "scope_note": "営業普通倉庫主要21社の入出庫量を全国倉庫業就業者で除すため、構造proxyとしてのみ使用する。",
+      "observations": []
     }
   ]
 }
