@@ -1,5 +1,5 @@
 {
-  "schema_version": "2.1",
+  "schema_version": "2.2",
   "meta": {
     "note": "Canonical registry of persistent signal IDs. A signal ID must exist here before it can be used in data/reports.json. IDs are never renamed or reused: history is derived by matching this ID across reports.",
     "lenses": {
@@ -35,11 +35,11 @@
       "description_ja": "台風・大雨・降雪・地震など、輸送網に直接影響する気象・災害事象。"
     },
     "japan-customs-naccs": {
-      "name_ja": "通関・NACCS 稼働",
-      "name_en": "Customs and NACCS availability",
-      "lens": "disruption",
-      "polarity": "up_is_bad",
-      "description_ja": "NACCS の計画停止・障害、税関の運用変更など、輸入手続きの停滞要因。"
+      "name_ja": "通関・法令",
+      "name_en": "Customs & Trade Regulation",
+      "lens": "regulatory_structural",
+      "polarity": "neutral",
+      "description_ja": "税関・NACCSの運用、HS・関税・EPA/FTA・保税制度など、輸出入実務の可否・手順・コストを変える制度変更とシステム障害。NACCSは監視ソースの一つとして扱う。"
     },
     "ocean-global-price": {
       "name_ja": "海上運賃（グローバル水準）",
