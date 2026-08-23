@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Localize final display-only terms without touching stable machine values."""
+"""Localize final display-only terms and normalize public report shell details.
+
+Only presentation fields and an obsolete app.js cache-buster are changed. Stable
+JSON enums, IDs, URLs to external sources and HTML data attributes are untouched.
+"""
 from __future__ import annotations
 
 import json
@@ -19,6 +23,7 @@ EXTRACT_REPLACEMENTS = {
 HTML_REPLACEMENTS = {
     "Corporate / Market": "企業・市場",
     "Beauty需要": "化粧品需要",
+    'assets/js/app.js?v=8.0.0': 'assets/js/app.js',
 }
 
 
@@ -58,7 +63,7 @@ def fix_report_html() -> None:
 def main() -> None:
     fix_source_display_fields()
     fix_report_html()
-    print("Final display-only terms localized; machine values untouched.")
+    print("Final public display/shell terms normalized; machine values untouched.")
 
 
 if __name__ == "__main__":
