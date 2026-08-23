@@ -37,7 +37,6 @@ jobs:
         run: python -m py_compile scripts/update_logistics_workforce_age.py scripts/validate_logistics_structure.py
 
       - name: Refresh official age and industry structure
-        if: github.event_name != 'pull_request'
         shell: bash
         run: |
           if [ -z "$ESTAT_APP_ID" ]; then
