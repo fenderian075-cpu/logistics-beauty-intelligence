@@ -1,25 +1,26 @@
 #!/usr/bin/env python3
-import io,requests
+import io,re,requests
+from bs4 import BeautifulSoup
 from openpyxl import load_workbook
 H={'User-Agent':'Mozilla/5.0 LBI-Transport-History/1.0','Referer':'https://www.e-stat.go.jp/'}
-URLS={
- 'truck_tonnes_trend':'https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040488230&fileKind=0',
- 'truck_tonkm_trend':'https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040488231&fileKind=0',
- 'truck_3_1_view':'https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040488234&fileKind=4',
- 'air_latest':'https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040482050&fileKind=0',
-}
-for name,url in URLS.items():
-    r=requests.get(url,headers=H,timeout=90);print('\n===',name,r.status_code,len(r.content),r.headers.get('content-type'))
-    if r.status_code!=200 or not r.content.startswith(b'PK'):
-        print(repr(r.content[:200]));continue
-    wb=load_workbook(io.BytesIO(r.content),read_only=True,data_only=True);print('sheets',wb.sheetnames)
-    for ws in wb.worksheets[:5]:
-        print('SHEET',ws.title,'rows',ws.max_row,'cols',ws.max_column)
-        non=[]
+PORT_LIST='https://www.e-stat.go.jp/stat-search/files?cycle=0&layout=dataset&page=1&tclass1val=0&toukei=00600280&tstat=000001135203'
+r=requests.get(PORT_LIST,headers=H,timeout=90);r.raise_for_status();soup=BeautifulSoup(r.content,'html.parser')
+books={}
+for a in soup.find_all('a',href=True):
+    txt=' '.join(a.stripped_strings)
+    m=re.search(r'港別集計値\s*(20\d{2})年1月[～~](\d{1,2})月',txt)
+    sid=re.search(r'stat_infid=(\d+)',a['href'])
+    if m and sid:books[int(m.group(1))]=(int(m.group(2)),sid.group(1))
+print('PORT YEARS',sorted(books))
+for y in (min(books),2019,2020,max(books)):
+    if y not in books:continue
+    endm,sid=books[y];url=f'https://www.e-stat.go.jp/stat-search/file-download?statInfId={sid}&fileKind=0'
+    rr=requests.get(url,headers=H,timeout=120);rr.raise_for_status();print('\n=== PORT',y,'months',endm,'sid',sid,'bytes',len(rr.content))
+    wb=load_workbook(io.BytesIO(rr.content),read_only=True,data_only=True)
+    ws=next((x for x in wb.worksheets if 'コンテナ個数' in x.title),None);print('sheets',wb.sheetnames,'target',ws.title if ws else None)
+    if ws:
         for i,row in enumerate(ws.iter_rows(values_only=True)):
-            vals=tuple(row[:30])
-            if any(v not in (None,'') for v in vals): non.append((i+1,vals))
-        for x in non[:45]:print(x[0],repr(x[1]))
-        print('TAIL')
-        for x in non[-20:]:print(x[0],repr(x[1]))
+            vals=tuple(row[:45])
+            if any(v not in (None,'') for v in vals):print(i+1,repr(vals))
+            if i>=32:break
     wb.close()
