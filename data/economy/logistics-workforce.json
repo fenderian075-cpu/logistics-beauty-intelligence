@@ -4,115 +4,24 @@
   "title_ja": "物流労働力",
   "frequency": "annual+monthly",
   "sources": [
-    {
-      "name": "総務省統計局 労働力調査",
-      "url": "https://www.stat.go.jp/data/roudou/"
-    },
-    {
-      "name": "e-Stat 年齢階級・産業別就業者数 2-2-1（2007年～）",
-      "url": "https://www.e-stat.go.jp/dbview?sid=0003007108"
-    },
-    {
-      "name": "e-Stat 詳細集計 産業・雇用形態・年齢階級 2-1-1（2007年～）",
-      "url": "https://www.e-stat.go.jp/dbview?sid=0003009266"
-    },
-    {
-      "name": "e-Stat 労働力調査 結果原表 II-2-1",
-      "url": "https://www.e-stat.go.jp/stat-search/files?layout=dataset&query=%E7%94%A3%E6%A5%AD%E5%88%A5%E5%B0%B1%E6%A5%AD%E8%80%85%E6%95%B0"
-    }
+    {"name":"総務省統計局 労働力調査","url":"https://www.stat.go.jp/data/roudou/"},
+    {"name":"e-Stat 年齢階級・産業別就業者数 2-2-1（2007年～）","url":"https://www.e-stat.go.jp/dbview?sid=0003007108"},
+    {"name":"e-Stat 詳細集計 産業・雇用形態・年齢階級 2-1-1（2007年～）","url":"https://www.e-stat.go.jp/dbview?sid=0003009266"},
+    {"name":"e-Stat 労働力調査年報 I-B-5 / 結果原表 II-2-1","url":"https://www.e-stat.go.jp/stat-search/files?layout=dataset&query=%E7%94%A3%E6%A5%AD%E5%88%A5%E5%B0%B1%E6%A5%AD%E8%80%85%E6%95%B0"}
   ],
   "notes": [
-    "産業大分類『運輸業，郵便業』を物流労働供給の基準系列として採用。公式表2-2-1では2007年以降の年齢階級×産業×男女が取得でき、結果原表II-2-1では道路貨物運送業・倉庫業まで細分可能。",
+    "産業大分類『運輸業，郵便業』を物流労働供給の基準系列として採用。",
     "2025年平均は総務省統計局の年平均結果。2026年3月の男女内訳は月次基本集計であり、年平均系列とは別系列として保持する。",
-    "年齢構成は15-24、25-34、35-44、45-54、55-64、65+を基本バンドとし、55+比率と若年比率を派生する。平均年齢は公式値が直接取得できる場合のみ掲載し、階級中央値からの擬似平均は作らない。",
-    "道路貨物運送業・倉庫業の年齢/男女データは公式結果原表から取得する。値が取得できない期間を補間しない。"
+    "年齢構成・道路貨物運送業・倉庫業の中分類は data/economy/logistics-workforce-age.json で別管理する。公式年報I-B-5/結果原表II-2-1の列定義を確認後のみ観測値を投入する。",
+    "平均年齢は年齢階級から擬似算出せず、公式値が直接公表された系列だけを driver-demography.json に保持する。"
   ],
-  "planned_metric_contract": {
-    "age": [
-      "transport_postal_age_15_24",
-      "transport_postal_age_25_34",
-      "transport_postal_age_35_44",
-      "transport_postal_age_45_54",
-      "transport_postal_age_55_64",
-      "transport_postal_age_65_plus",
-      "transport_postal_age_55_plus_share",
-      "transport_postal_young_share"
-    ],
-    "industry_detail": [
-      "road_freight_employment",
-      "road_freight_age_55_plus_share",
-      "road_freight_female_share",
-      "warehousing_employment",
-      "warehousing_age_55_plus_share",
-      "warehousing_female_share"
-    ],
-    "labor_market": [
-      "transport_postal_monthly_cash_earnings",
-      "transport_postal_scheduled_cash_earnings",
-      "transport_postal_overtime_cash_earnings",
-      "transport_driver_job_openings_ratio"
-    ]
-  },
   "series": [
-    {
-      "metric_id": "transport_postal_employment",
-      "name_ja": "運輸業・郵便業 就業者数（年平均）",
-      "unit": "ten_thousand_persons",
-      "observations": [
-        {"period":"2015","value":336,"status":"official","source":"総務省 労働力調査"},
-        {"period":"2016","value":339,"status":"official","source":"総務省 労働力調査","yoy":0.89},
-        {"period":"2017","value":340,"status":"official","source":"総務省 労働力調査","yoy":0.29},
-        {"period":"2018","value":342,"status":"official","source":"総務省 労働力調査","yoy":0.59},
-        {"period":"2019","value":348,"status":"official","source":"総務省 労働力調査","yoy":1.75},
-        {"period":"2020","value":349,"status":"official","source":"総務省 労働力調査","yoy":0.29},
-        {"period":"2021","value":352,"status":"official","source":"総務省 労働力調査","yoy":0.86},
-        {"period":"2022","value":351,"status":"official","source":"総務省 労働力調査","yoy":-0.28},
-        {"period":"2023","value":349,"status":"official","source":"総務省 労働力調査","yoy":-0.57},
-        {"period":"2024","value":345,"status":"official","source":"総務省 労働力調査","yoy":-1.15},
-        {"period":"2025","value":345,"status":"official","source":"総務省 労働力調査","yoy":0.0}
-      ]
-    },
-    {
-      "metric_id": "transport_postal_employees",
-      "name_ja": "運輸業・郵便業 雇用者数（年平均）",
-      "unit": "ten_thousand_persons",
-      "observations": [
-        {"period":"2015","value":323,"status":"official","source":"総務省 労働力調査"},
-        {"period":"2016","value":327,"status":"official","source":"総務省 労働力調査","yoy":1.24},
-        {"period":"2017","value":329,"status":"official","source":"総務省 労働力調査","yoy":0.61},
-        {"period":"2018","value":331,"status":"official","source":"総務省 労働力調査","yoy":0.61},
-        {"period":"2019","value":337,"status":"official","source":"総務省 労働力調査","yoy":1.81},
-        {"period":"2020","value":337,"status":"official","source":"総務省 労働力調査","yoy":0.0},
-        {"period":"2021","value":339,"status":"official","source":"総務省 労働力調査","yoy":0.59},
-        {"period":"2022","value":337,"status":"official","source":"総務省 労働力調査","yoy":-0.59},
-        {"period":"2023","value":334,"status":"official","source":"総務省 労働力調査","yoy":-0.89},
-        {"period":"2024","value":330,"status":"official","source":"総務省 労働力調査","yoy":-1.2},
-        {"period":"2025","value":330,"status":"official","source":"総務省 労働力調査","yoy":0.0}
-      ]
-    },
-    {
-      "metric_id": "transport_postal_employment_male",
-      "name_ja": "運輸業・郵便業 男性就業者数（月次）",
-      "unit": "ten_thousand_persons",
-      "observations": [
-        {"period":"2026-03","value":277,"status":"official","source":"総務省 労働力調査 2026年3月分"}
-      ]
-    },
-    {
-      "metric_id": "transport_postal_employment_female",
-      "name_ja": "運輸業・郵便業 女性就業者数（月次）",
-      "unit": "ten_thousand_persons",
-      "observations": [
-        {"period":"2026-03","value":84,"status":"official","source":"総務省 労働力調査 2026年3月分"}
-      ]
-    },
-    {
-      "metric_id": "transport_postal_female_share",
-      "name_ja": "運輸業・郵便業 女性比率（月次）",
-      "unit": "pct",
-      "observations": [
-        {"period":"2026-03","value":23.27,"status":"derived","source":"男性277万人・女性84万人からLBI算出"}
-      ]
-    }
+    {"metric_id":"transport_postal_employment","name_ja":"運輸業・郵便業 就業者数（年平均）","unit":"ten_thousand_persons","observations":[
+      {"period":"2015","value":336,"status":"official","source":"総務省 労働力調査"},{"period":"2016","value":339,"status":"official","source":"総務省 労働力調査","yoy":0.89},{"period":"2017","value":340,"status":"official","source":"総務省 労働力調査","yoy":0.29},{"period":"2018","value":342,"status":"official","source":"総務省 労働力調査","yoy":0.59},{"period":"2019","value":348,"status":"official","source":"総務省 労働力調査","yoy":1.75},{"period":"2020","value":349,"status":"official","source":"総務省 労働力調査","yoy":0.29},{"period":"2021","value":352,"status":"official","source":"総務省 労働力調査","yoy":0.86},{"period":"2022","value":351,"status":"official","source":"総務省 労働力調査","yoy":-0.28},{"period":"2023","value":349,"status":"official","source":"総務省 労働力調査","yoy":-0.57},{"period":"2024","value":345,"status":"official","source":"総務省 労働力調査","yoy":-1.15},{"period":"2025","value":345,"status":"official","source":"総務省 労働力調査","yoy":0.0}]},
+    {"metric_id":"transport_postal_employees","name_ja":"運輸業・郵便業 雇用者数（年平均）","unit":"ten_thousand_persons","observations":[
+      {"period":"2015","value":323,"status":"official","source":"総務省 労働力調査"},{"period":"2016","value":327,"status":"official","source":"総務省 労働力調査","yoy":1.24},{"period":"2017","value":329,"status":"official","source":"総務省 労働力調査","yoy":0.61},{"period":"2018","value":331,"status":"official","source":"総務省 労働力調査","yoy":0.61},{"period":"2019","value":337,"status":"official","source":"総務省 労働力調査","yoy":1.81},{"period":"2020","value":337,"status":"official","source":"総務省 労働力調査","yoy":0.0},{"period":"2021","value":339,"status":"official","source":"総務省 労働力調査","yoy":0.59},{"period":"2022","value":337,"status":"official","source":"総務省 労働力調査","yoy":-0.59},{"period":"2023","value":334,"status":"official","source":"総務省 労働力調査","yoy":-0.89},{"period":"2024","value":330,"status":"official","source":"総務省 労働力調査","yoy":-1.2},{"period":"2025","value":330,"status":"official","source":"総務省 労働力調査","yoy":0.0}]},
+    {"metric_id":"transport_postal_employment_male","name_ja":"運輸業・郵便業 男性就業者数（月次）","unit":"ten_thousand_persons","observations":[{"period":"2026-03","value":277,"status":"official","source":"総務省 労働力調査 2026年3月分"}]},
+    {"metric_id":"transport_postal_employment_female","name_ja":"運輸業・郵便業 女性就業者数（月次）","unit":"ten_thousand_persons","observations":[{"period":"2026-03","value":84,"status":"official","source":"総務省 労働力調査 2026年3月分"}]},
+    {"metric_id":"transport_postal_female_share","name_ja":"運輸業・郵便業 女性比率（月次）","unit":"pct","observations":[{"period":"2026-03","value":23.27,"status":"derived","source":"男性277万人・女性84万人からLBI算出"}]}
   ]
 }
