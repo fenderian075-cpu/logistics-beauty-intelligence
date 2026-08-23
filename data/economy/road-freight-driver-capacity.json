@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0",
+  "dataset": "road-freight-driver-capacity",
+  "title_ja": "道路貨物の運転系労働力",
+  "frequency": "annual",
+  "status": "schema_ready",
+  "sources": [
+    {
+      "name": "総務省 労働力調査 基本集計 年次2-5-1 産業，職業別就業者数",
+      "url": "https://www.e-stat.go.jp/dbview?sid=0003024266",
+      "stats_data_id": "0003024266"
+    }
+  ],
+  "notes": [
+    "道路貨物運送業に従事する『輸送・機械運転従事者』を取得する。主に自動車運転従事者を含むが、純粋なトラックドライバー職業人数とは同一ではない。",
+    "道路貨物運送業という産業と、輸送・機械運転従事者という職業の交差表であり、job tagのトラックドライバー統計とは定義を分ける。",
+    "労働力調査は万人単位の丸めを含むため、派生比率は構造指標として扱う。"
+  ],
+  "series": [
+    {"metric_id":"road_freight_transport_machine_workers","name_ja":"道路貨物 輸送・機械運転従事者","unit":"ten_thousand_persons","observations":[]},
+    {"metric_id":"road_freight_transport_machine_male","name_ja":"道路貨物 輸送・機械運転従事者 男性","unit":"ten_thousand_persons","observations":[]},
+    {"metric_id":"road_freight_transport_machine_female","name_ja":"道路貨物 輸送・機械運転従事者 女性","unit":"ten_thousand_persons","observations":[]},
+    {"metric_id":"road_freight_transport_machine_share","name_ja":"道路貨物就業者に占める輸送・機械運転従事者比率","unit":"pct","observations":[]},
+    {"metric_id":"road_freight_transport_machine_female_share","name_ja":"道路貨物 輸送・機械運転従事者 女性比率","unit":"pct","observations":[]},
+    {"metric_id":"commercial_truck_vehicles_per_transport_machine_worker","name_ja":"輸送・機械運転従事者1人あたり営業用トラック車両","unit":"vehicles_per_worker","observations":[]}
+  ]
+}
