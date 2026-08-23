@@ -43,7 +43,7 @@ jobs:
         with:
           python-version: "3.12"
       - name: Install collector dependencies
-        run: python -m pip install --disable-pip-version-check openpyxl
+        run: python -m pip install --disable-pip-version-check openpyxl xlrd
 
       - name: Compile collectors
         run: python -m py_compile scripts/update_logistics_workforce_age.py scripts/update_logistics_productivity.py scripts/update_household_demand.py scripts/validate_logistics_structure.py
