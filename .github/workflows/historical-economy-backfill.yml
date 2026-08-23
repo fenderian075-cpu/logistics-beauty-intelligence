@@ -7,12 +7,14 @@ on:
   push:
     paths:
       - "scripts/backfill_official_economy_history.py"
+      - "scripts/backfill_cpi_iip_history.py"
       - "scripts/update_sna_industry_deflators.py"
       - "scripts/update_japan_fuel_prices_v2.py"
       - ".github/workflows/historical-economy-backfill.yml"
   pull_request:
     paths:
       - "scripts/backfill_official_economy_history.py"
+      - "scripts/backfill_cpi_iip_history.py"
       - "scripts/update_sna_industry_deflators.py"
       - "scripts/update_japan_fuel_prices_v2.py"
       - ".github/workflows/historical-economy-backfill.yml"
@@ -52,7 +54,9 @@ jobs:
         run: python scripts/update_japan_fuel_prices_v2.py
       - name: Backfill official macro, CPI, trade and IIP history
         run: python scripts/backfill_official_economy_history.py
-      - name: Validate generated JSON
+      - name: Harden CPI and IIP publication-layout parsing
+        run: python scripts/backfill_cpi_iip_history.py
+      - name: Validate generated JSON and coverage
         run: |
           python - <<'PY'
           import json, glob
@@ -61,7 +65,11 @@ jobs:
           status=json.load(open('data/economy/historical-backfill-status.json',encoding='utf-8'))
           cov=json.load(open('data/economy/historical-coverage.json',encoding='utf-8'))
           print('backfill status:', status['status'])
+          print('stages:', status['stages'])
           print('coverage series:', len(cov.get('series',[])))
+          # Core historical families must be complete before merge.
+          for key in ('trade','gdp','cpi','iip'):
+              assert status['stages'].get(key,{}).get('status') == 'success', (key,status['stages'].get(key))
           PY
       - name: Frontend and schema regression
         run: |
