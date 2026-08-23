@@ -3,6 +3,7 @@
 
 Design goals:
 - discover the latest SSW Table 3 from the stable ISA landing page (do not pin the PDF URL)
+- derive the half-year period from the PDF itself, not from fragile landing-page markup
 - parse the auto-transport field and truck/taxi/bus breakdown
 - append only newer half-year observations
 - never mix these visa-channel counts with MHLW foreign-employment totals
@@ -35,29 +36,19 @@ def era_to_year(era_year: int) -> int:
     return 2018 + era_year  # Reiwa 1 = 2019
 
 
-def discover_latest_table3() -> tuple[str, str]:
+def discover_latest_table3() -> str:
     r = requests.get(LANDING, headers={"User-Agent": UA}, timeout=30)
     r.raise_for_status()
     soup = BeautifulSoup(r.text, "html.parser")
-
-    # The ISA publication page presents the latest half-year first, but the period label is not
-    # consistently emitted as a heading element. Resolve it from normalized page text instead.
-    page_text = norm(soup.get_text(" ", strip=True))
-    m = re.search(r"令和\s*(\d+)年\s*(6|12)月末", page_text)
-    if not m:
-        raise RuntimeError("Could not resolve latest SSW half-year period from ISA landing page")
-    period = f"{era_to_year(int(m.group(1))):04d}-{int(m.group(2)):02d}"
-
-    # The latest section appears first. Choose the first PDF link whose anchor denotes Table 3.
-    candidates = []
+    # ISA lists the latest half-year section first. The first Table 3 PDF therefore belongs to the
+    # latest snapshot. Avoid relying on heading markup because the production page does not expose
+    # the period label consistently to non-browser clients.
     for a in soup.find_all("a"):
         txt = norm(a.get_text(" ", strip=True)).replace("３", "3")
         href = a.get("href") or ""
         if "第3表" in txt and ".pdf" in href.lower():
-            candidates.append(urljoin(LANDING, href))
-    if not candidates:
-        raise RuntimeError("Could not discover latest SSW Table 3 PDF")
-    return period, candidates[0]
+            return urljoin(LANDING, href)
+    raise RuntimeError("Could not discover latest SSW Table 3 PDF")
 
 
 def extract_pdf_text(url: str) -> str:
@@ -68,6 +59,17 @@ def extract_pdf_text(url: str) -> str:
     if not text.strip():
         raise RuntimeError("Latest SSW Table 3 PDF contained no extractable text")
     return norm(text)
+
+
+def parse_period(text: str) -> str:
+    t = norm(text)
+    m = re.search(r"令和\s*(\d+)年\s*(6|12)月末", t)
+    if not m:
+        # Some table titles use '現在' rather than a trailing '月末'.
+        m = re.search(r"令和\s*(\d+)年\s*(6|12)月(?:末)?(?:現在)?", t)
+    if not m:
+        raise RuntimeError("Could not resolve SSW half-year period from latest Table 3 PDF")
+    return f"{era_to_year(int(m.group(1))):04d}-{int(m.group(2)):02d}"
 
 
 def parse_auto_transport(text: str) -> tuple[int, int, int, int]:
@@ -91,13 +93,13 @@ def parse_auto_transport(text: str) -> tuple[int, int, int, int]:
 
     pos = t.find("自動車運送業分野")
     if pos >= 0:
-        window = t[pos : pos + 1200]
+        window = t[pos : pos + 1400]
         if all(x in window for x in ("トラック運転者", "タクシー運転者", "バス運転者")):
             nums = [int(x.replace(",", "")) for x in re.findall(r"(?<!\d)([\d,]+)(?!\d)", window)]
-            for a in range(min(len(nums), 16)):
-                for b in range(a + 1, min(len(nums), 16)):
-                    for c in range(b + 1, min(len(nums), 16)):
-                        for d in range(c + 1, min(len(nums), 16)):
+            for a in range(min(len(nums), 18)):
+                for b in range(a + 1, min(len(nums), 18)):
+                    for c in range(b + 1, min(len(nums), 18)):
+                        for d in range(c + 1, min(len(nums), 18)):
                             vals = [nums[a], nums[b], nums[c], nums[d]]
                             for total_idx in range(4):
                                 total = vals[total_idx]
@@ -124,8 +126,9 @@ def upsert(series: dict, period: str, value: int, source: str) -> None:
 
 
 def main() -> None:
-    period, pdf_url = discover_latest_table3()
+    pdf_url = discover_latest_table3()
     text = extract_pdf_text(pdf_url)
+    period = parse_period(text)
     total, truck, taxi, bus = parse_auto_transport(text)
 
     data = json.loads(DATA.read_text(encoding="utf-8"))
