@@ -1,0 +1,12 @@
+{
+  "schema_version":"1.0",
+  "sources":[
+    {"priority":"P0","domain":"beauty","layer":"Retail / Department Store","name":"日本百貨店協会 百貨店売上高","url":"https://www.depart.or.jp/store_sale/","cadence":["weekly","monthly"],"extract":["全国百貨店売上高","化粧品売上高","化粧品前年比","化粧品構成比","東京地区","地区別商品別売上高"]},
+    {"priority":"P0","domain":"beauty","layer":"Industry Statistics","name":"日本化粧品工業会 化粧品統計","url":"https://www.jcia.org/user/statistics/","cadence":["weekly","monthly"],"extract":["国内出荷額","品目別構成比","百貨店化粧品売上","化粧品輸出入","家計支出","薬用化粧品比率"]},
+    {"priority":"P0","domain":"beauty","layer":"Production / Shipment","name":"経済産業省 生産動態統計 化粧品","url":"https://www.meti.go.jp/statistics/tyo/seidou/","cadence":["weekly","monthly"],"extract":["生産","出荷","在庫","品目別化粧品","数量","金額"]},
+    {"priority":"P1","domain":"beauty","layer":"Retail / Commerce","name":"経済産業省 商業動態統計","url":"https://www.meti.go.jp/statistics/tyo/syoudou/","cadence":["weekly","monthly"],"extract":["百貨店","ドラッグストア","医薬品・化粧品小売業","販売額","在庫","数量要因","価格要因"]},
+    {"priority":"P2","domain":"beauty","layer":"Market Research","name":"富士経済 化粧品市場公開リリース","url":"https://www.fuji-keizai.co.jp/press/","cadence":["weekly","monthly"],"extract":["市場規模","カテゴリ成長率","スキンケア","メイクアップ","フレグランス","公開シェア"]},
+    {"priority":"P2","domain":"beauty","layer":"Market Research","name":"矢野経済研究所 化粧品市場公開リリース","url":"https://www.yano.co.jp/press-release/","cadence":["weekly","monthly"],"extract":["国内市場規模","業務用市場","受託製造市場","予測","公開シェア"]},
+    {"priority":"P2","domain":"beauty","layer":"Industry Media","name":"週刊粧業オンライン","url":"https://form.syogyo.jp/news/","cadence":["daily","weekly","monthly"],"extract":["業界ニュース","新製品動向","企業業績","流通","市場シェア公開情報","価格改定","M&A"]}
+  ]
+}
