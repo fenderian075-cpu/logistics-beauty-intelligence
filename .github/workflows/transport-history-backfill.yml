@@ -67,4 +67,5 @@ jobs:
             exit 0
           fi
           git commit -m "data: backfill official transport history"
+          git pull --rebase origin main
           git push
