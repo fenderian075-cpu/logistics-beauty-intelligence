@@ -1,18 +1,49 @@
 {
-  "schema_version":"1.0",
+  "schema_version":"1.1",
   "dataset":"retail-beauty",
   "title_ja":"Beauty実需・小売",
   "frequency":"monthly",
   "sources":[
+    {"name":"日本百貨店協会 百貨店売上高","url":"https://www.depart.or.jp/store_sale/"},
+    {"name":"日本化粧品工業会 化粧品統計","url":"https://www.jcia.org/user/statistics/"},
     {"name":"経済産業省 商業動態統計","url":"https://www.meti.go.jp/statistics/tyo/syoudou/"},
     {"name":"財務省 貿易統計","url":"https://www.customs.go.jp/toukei/info/"}
   ],
   "series":[
-    {"metric_id":"department_store_cosmetics_sales","unit":"JPY","observations":[]},
+    {
+      "metric_id":"department_store_cosmetics_sales",
+      "unit":"JPY",
+      "observations":[
+        {"period":"2026-04","value":39530694000,"yoy":2.3,"share_of_department_store_sales_pct":8.9,"published_at":"2026-05-25","status":"official","source":"日本百貨店協会 全国百貨店売上高概況"},
+        {"period":"2026-05","value":42924133000,"yoy":6.9,"share_of_department_store_sales_pct":9.2,"published_at":"2026-06-25","status":"official","source":"日本百貨店協会 全国百貨店売上高概況"}
+      ]
+    },
     {"metric_id":"drugstore_beauty_sales","unit":"JPY","observations":[]},
     {"metric_id":"beauty_import_value","unit":"JPY","observations":[]},
-    {"metric_id":"beauty_import_volume","unit":"quantity","observations":[]}
+    {"metric_id":"beauty_import_volume","unit":"quantity","observations":[]},
+    {
+      "metric_id":"cosmetics_domestic_shipments",
+      "unit":"JPY",
+      "observations":[
+        {"period":"2024","value":1374500000000,"yoy":5.5,"status":"official_summary","source":"日本化粧品工業会 / 経済産業省 生産動態統計"}
+      ]
+    },
+    {
+      "metric_id":"cosmetics_household_spend_two_plus_person_household",
+      "unit":"JPY_per_household_year",
+      "observations":[
+        {"period":"2024","value":38436,"status":"official_summary","source":"日本化粧品工業会 / 総務省 家計調査"}
+      ]
+    }
   ],
-  "priority_dimensions":["makeup","skincare","fragrance","department_store","drugstore","EC","France","Italy","China","Korea"],
-  "interpretation":"Brand.com promotion and Google Trends are leading/attention signals; retail and trade statistics are physical/economic confirmation. Never treat promotion as organic demand."
+  "category_structure":[
+    {"period":"2024","category":"skincare","share_pct":44.5,"basis":"domestic_shipment_value","source":"日本化粧品工業会"},
+    {"period":"2024","category":"haircare","share_pct":26.9,"basis":"domestic_shipment_value","source":"日本化粧品工業会"},
+    {"period":"2024","category":"makeup","share_pct":20.9,"basis":"domestic_shipment_value","source":"日本化粧品工業会"},
+    {"period":"2024","category":"special_purpose","share_pct":7.1,"basis":"domestic_shipment_value","source":"日本化粧品工業会"},
+    {"period":"2024","category":"fragrance","share_pct":0.7,"basis":"domestic_shipment_value","source":"日本化粧品工業会"}
+  ],
+  "priority_dimensions":["makeup","skincare","fragrance","department_store","drugstore","EC","priority_import_flow"],
+  "privacy_note":"Specific priority origin countries, ports and routes are intentionally not stored in this public dataset. They are evaluated only during the private intelligence run and public output is generalized.",
+  "interpretation":"Brand.com promotion and Google Trends are leading/attention signals; department-store, retail, shipment and trade statistics are economic confirmation. Never treat promotion as organic demand."
 }
