@@ -1,10 +1,10 @@
 {
   "schema_version": "1.0",
   "meta": {
-    "purpose": "Verified future Beauty Commerce events. 週次 updates existing event IDs instead of duplicating them.",
+    "purpose": "Verified future Beauty Commerce events. Weekly updates existing event IDs instead of duplicating them.",
     "drivers": [
-      "販促",
-      "新製品投入",
+      "promotion",
+      "launch",
       "organic",
       "buzz"
     ],
@@ -23,7 +23,7 @@
       "end_date": "2026-09-09",
       "channel": "Qoo10",
       "event": "メガ割 2026 Q3",
-      "driver": "販促",
+      "driver": "promotion",
       "scope": "Beauty / marketplace",
       "status": "scheduled",
       "confidence": "high",
@@ -38,13 +38,13 @@
       "end_date": "2026-09-01",
       "channel": "Rakuten",
       "event": "LUXURY BEAUTY 10,000円以上で300ポイント",
-      "driver": "販促",
+      "driver": "promotion",
       "scope": "Luxury Beauty official shops",
       "status": "active",
       "confidence": "high",
       "expected_impact": "Luxury Beauty公式ショップで継続する販促需要。",
       "logistics_implication": "月末・月初のLuxury EC需要とreplenishmentを注視。",
-      "source": "https://event.rakuten.co.jp/beauty/brand/luxe/luxurybeauty/施策/",
+      "source": "https://event.rakuten.co.jp/beauty/brand/luxe/luxurybeauty/campaign/",
       "last_verified": "2026-08-22"
     },
     {
@@ -53,13 +53,13 @@
       "end_date": "2026-10-01",
       "channel": "Rakuten",
       "event": "LUXURY BEAUTY 次回キャンペーン",
-      "driver": "販促",
+      "driver": "promotion",
       "scope": "Luxury Beauty official shops",
       "status": "scheduled",
       "confidence": "high",
       "expected_impact": "公式ページで次回開催期間まで確認済み。",
       "logistics_implication": "9月月初から継続するLuxury EC施策としてcalendar管理。",
-      "source": "https://event.rakuten.co.jp/beauty/brand/luxe/luxurybeauty/施策/",
+      "source": "https://event.rakuten.co.jp/beauty/brand/luxe/luxurybeauty/campaign/",
       "last_verified": "2026-08-22"
     }
   ]

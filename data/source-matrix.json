@@ -1,5 +1,5 @@
 {
-  "schema_version": "2.6",
+  "schema_version": "2.7",
   "sources": [
     {
       "priority": "P0",
@@ -8,7 +8,7 @@
       "name": "ヤマト運輸 運行状況",
       "url": "https://www.kuronekoyamato.co.jp/ytc/chien/chien_hp.html",
       "cadence": [
-        "日次"
+        "daily"
       ],
       "extract": [
         "集荷停止",
@@ -24,8 +24,8 @@
       "name": "佐川急便 お知らせ",
       "url": "https://www2.sagawa-exp.co.jp/information/list/",
       "cadence": [
-        "日次",
-        "週次"
+        "daily",
+        "weekly"
       ],
       "extract": [
         "集配業務への影響",
@@ -42,7 +42,7 @@
       "name": "日本郵便 運行情報",
       "url": "https://www.post.japanpost.jp/",
       "cadence": [
-        "日次"
+        "daily"
       ],
       "extract": [
         "郵便物・ゆうパック遅延",
@@ -57,7 +57,7 @@
       "name": "気象庁 防災情報",
       "url": "https://www.jma.go.jp/bosai/",
       "cadence": [
-        "日次"
+        "daily"
       ],
       "extract": [
         "警報",
@@ -75,7 +75,7 @@
       "name": "JARTIC",
       "url": "https://www.jartic.or.jp/",
       "cadence": [
-        "日次"
+        "daily"
       ],
       "extract": [
         "通行止め",
@@ -90,7 +90,7 @@
       "name": "NACCS掲示板",
       "url": "https://bbs.naccscenter.com/",
       "cadence": [
-        "日次"
+        "daily"
       ],
       "extract": [
         "障害",
@@ -107,8 +107,8 @@
       "name": "税関 新着情報",
       "url": "https://www.customs.go.jp/news/index.htm",
       "cadence": [
-        "日次",
-        "週次"
+        "daily",
+        "weekly"
       ],
       "extract": [
         "HS",
@@ -126,8 +126,8 @@
       "name": "Drewry World Container Index",
       "url": "https://www.drewry.co.uk/trackers-and-indices/latest-trackers-and-indices/world-container-index-assessed-by-drewry",
       "cadence": [
-        "週次",
-        "月次"
+        "weekly",
+        "monthly"
       ],
       "extract": [
         "WCI",
@@ -142,8 +142,8 @@
       "name": "Drewry Trackers & Indices",
       "url": "https://www.drewry.co.uk/trackers-and-indices",
       "cadence": [
-        "週次",
-        "月次"
+        "weekly",
+        "monthly"
       ],
       "extract": [
         "欠便",
@@ -157,8 +157,8 @@
       "name": "Freightos",
       "url": "https://www.freightos.com/freight-resources/",
       "cadence": [
-        "週次",
-        "月次"
+        "weekly",
+        "monthly"
       ],
       "extract": [
         "FBX",
@@ -172,8 +172,8 @@
       "name": "IATA Economics Library",
       "url": "https://www.iata.org/en/publications/economics/economics-library/",
       "cadence": [
-        "週次",
-        "月次"
+        "weekly",
+        "monthly"
       ],
       "extract": [
         "CTK",
@@ -189,8 +189,8 @@
       "name": "日本海事新聞",
       "url": "https://www.jmd.co.jp/",
       "cadence": [
-        "週次",
-        "月次"
+        "weekly",
+        "monthly"
       ],
       "extract": [
         "海運",
@@ -206,8 +206,8 @@
       "name": "LOGISTICS TODAY",
       "url": "https://www.logi-today.com/",
       "cadence": [
-        "日次",
-        "週次"
+        "daily",
+        "weekly"
       ],
       "extract": [
         "3PL",
@@ -226,8 +226,8 @@
       "name": "日本物流新聞",
       "url": "http://www.japanpress.co.jp/",
       "cadence": [
-        "週次",
-        "月次"
+        "weekly",
+        "monthly"
       ],
       "extract": [
         "物流政策",
@@ -242,11 +242,11 @@
       "priority": "P1",
       "domain": "logistics",
       "layer": "専門媒体",
-      "name": "日次 Cargo",
-      "url": "https://www.日次-cargo.com/",
+      "name": "Daily Cargo",
+      "url": "https://www.daily-cargo.com/",
       "cadence": [
-        "日次",
-        "週次"
+        "daily",
+        "weekly"
       ],
       "extract": [
         "航空貨物",
@@ -264,7 +264,7 @@
       "name": "DHL Logistics Trend Radar",
       "url": "https://www.dhl.com/jp-en/home/innovation-in-logistics/logistics-trend-radar.html",
       "cadence": [
-        "月次"
+        "monthly"
       ],
       "extract": [
         "AI",
@@ -280,7 +280,7 @@
       "name": "AWS Supply Chain Lens",
       "url": "https://docs.aws.amazon.com/wellarchitected/latest/supply-chain-lens/supply-chain-lens.html",
       "cadence": [
-        "月次"
+        "monthly"
       ],
       "extract": [
         "可視化",
@@ -295,7 +295,7 @@
       "name": "Amazon Japan Beauty",
       "url": "https://www.amazon.co.jp/gp/bestsellers/beauty",
       "cadence": [
-        "週次"
+        "weekly"
       ],
       "extract": [
         "売れ筋",
@@ -310,7 +310,7 @@
       "name": "Amazon Japan Retail News",
       "url": "https://www.aboutamazon.jp/news/retail",
       "cadence": [
-        "週次"
+        "weekly"
       ],
       "extract": [
         "大型セール",
@@ -325,7 +325,7 @@
       "name": "楽天 Brand Beauty",
       "url": "https://event.rakuten.co.jp/beauty/brand/official/",
       "cadence": [
-        "週次"
+        "weekly"
       ],
       "extract": [
         "公式ブランド施策",
@@ -338,14 +338,14 @@
       "domain": "beauty",
       "layer": "EC・小売プラットフォーム",
       "name": "楽天 Brand Day",
-      "url": "https://event.rakuten.co.jp/brand/施策/",
+      "url": "https://event.rakuten.co.jp/brand/campaign/",
       "cadence": [
-        "週次"
+        "weekly"
       ],
       "extract": [
         "Brand Day",
         "開催期間",
-        "Beauty施策"
+        "化粧品施策"
       ]
     },
     {
@@ -355,7 +355,7 @@
       "name": "ZOZOCOSME New Cosmetics Collection",
       "url": "https://zozo.jp/event/cosme-collection/",
       "cadence": [
-        "週次"
+        "weekly"
       ],
       "extract": [
         "新作",
@@ -371,7 +371,7 @@
       "name": "@cosme 週間ランキング",
       "url": "https://www.cosme.net/ranking/products/week/1",
       "cadence": [
-        "週次"
+        "weekly"
       ],
       "extract": [
         "ランキング",
@@ -386,12 +386,12 @@
       "name": "Qoo10",
       "url": "https://www.qoo10.jp/",
       "cadence": [
-        "週次"
+        "weekly"
       ],
       "extract": [
         "メガ割",
         "ランキング",
-        "K-Beauty demand"
+        "K-Beauty関連需要"
       ]
     },
     {
@@ -401,7 +401,7 @@
       "name": "化粧品ブランド・企業 公開情報監視群",
       "url": null,
       "cadence": [
-        "日次"
+        "daily"
       ],
       "extract": [
         "メイクアップ",
@@ -425,50 +425,17 @@
       "name": "化粧品ブランド・企業 公開情報監視群",
       "url": null,
       "cadence": [
-        "週次",
-        "月次"
+        "weekly",
+        "monthly"
       ],
       "extract": [
         "売上",
         "地域",
         "Luxe",
         "China",
-        "EC"
-      ],
-      "public_aggregate": true
-    },
-    {
-      "priority": "P1",
-      "domain": "beauty",
-      "layer": "企業情報",
-      "name": "化粧品ブランド・企業 公開情報監視群",
-      "url": null,
-      "cadence": [
-        "週次",
-        "月次"
-      ],
-      "extract": [
-        "売上",
+        "EC",
         "fragrance",
-        "China",
-        "Japan"
-      ],
-      "public_aggregate": true
-    },
-    {
-      "priority": "P1",
-      "domain": "beauty",
-      "layer": "企業情報",
-      "name": "化粧品ブランド・企業 公開情報監視群",
-      "url": null,
-      "cadence": [
-        "週次",
-        "月次"
-      ],
-      "extract": [
-        "売上",
         "Japan",
-        "China",
         "Travel Retail"
       ],
       "public_aggregate": true

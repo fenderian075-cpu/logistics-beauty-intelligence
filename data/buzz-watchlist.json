@@ -5,55 +5,62 @@
   "terms": [
     {
       "term": "香水",
-      "category": "フレグランス"
+      "category": "fragrance"
     },
     {
       "term": "リップ",
-      "category": "メイクアップ"
+      "category": "makeup"
     },
     {
       "term": "ファンデーション",
-      "category": "メイクアップ"
+      "category": "makeup"
     },
     {
       "term": "クッションファンデ",
-      "category": "メイクアップ"
+      "category": "makeup"
     },
     {
       "term": "美容液",
-      "category": "スキンケア"
+      "category": "skincare"
     },
     {
       "term": "日焼け止め",
-      "category": "スキンケア"
+      "category": "skincare"
     },
     {
       "term": "韓国コスメ",
-      "category": "市場"
+      "category": "market"
     },
     {
       "term": "チャーム コスメ",
-      "category": "販促"
+      "category": "promotion"
     },
     {
       "term": "ポーチ コスメ",
-      "category": "販促"
+      "category": "promotion"
     },
     {
       "term": "ギフト コスメ",
-      "category": "販促"
+      "category": "promotion"
     },
     {
       "term": "限定 コスメ",
-      "category": "販促"
+      "category": "promotion"
     },
     {
       "term": "GWP コスメ",
-      "category": "販促"
+      "category": "promotion"
     },
     {
       "term": "PWP コスメ",
-      "category": "販促"
+      "category": "promotion"
     }
-  ]
+  ],
+  "category_labels_ja": {
+    "fragrance": "フレグランス",
+    "makeup": "メイクアップ",
+    "skincare": "スキンケア",
+    "market": "市場",
+    "promotion": "販促"
+  }
 }

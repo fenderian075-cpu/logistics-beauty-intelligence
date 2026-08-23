@@ -10,7 +10,7 @@
       "summary": "台風18号の影響が奄美群島の輸送に実際に波及。ヤマト運輸は8月23日7時時点で奄美市・大島郡宛ての全商品を荷受停止としており、鹿児島～奄美～沖縄航路では8月23日便の経路変更に加え、8月25日那覇発上り便の欠航も決定している。",
       "japan_implication": "奄美群島向けは通常の宅配・補充リードタイムを前提にできず、沖縄・奄美向け輸送は船便の運航状況と滞留解消ペースに強く依存する。",
       "operational_implication": "奄美市・大島郡向け出荷はヤマトで保留。受付再開または代替輸送を確認し、沖縄・奄美向け着日指定は少なくとも8月25日まで船便接続を個別確認する。",
-      "outlook_7d": "台風通過後の輸送会社受付再開、8月25日欠航後の船便正常化、滞留貨物の解消を日次確認する。",
+      "outlook_7d": "台風通過後のcarrier受付再開、8月25日欠航後の船便正常化、滞留貨物の解消を日次確認する。",
       "outlook_30d": null,
       "outlook_90d": null,
       "developments": [
@@ -40,7 +40,7 @@
       ],
       "data_points": [],
       "related_report_ids": [
-        "2026-08-23-日次"
+        "2026-08-23-daily"
       ]
     },
     {
@@ -50,7 +50,7 @@
       "confidence": "high",
       "summary": "8月23日朝、台風18号で奄美市・大島郡宛てにヤマトの全商品荷受停止が発生し、鹿児島～奄美～沖縄航路では23日便の経路変更と25日那覇発便の欠航が決定。能登の一部荷受停止・局地遅延も継続する。一方、名神集中工事は継続中だが、今朝7時のヤマト現況では工事由来の全国的な実遅延はまだ確認できない。",
       "japan_implication": "国内配送は全国一律の停止ではなく、奄美・沖縄方面の船便影響、能登の停止地域、名神を通る東西幹線の予防的リードタイム管理を分ける必要がある。",
-      "operational_implication": "奄美市・大島郡向けは出荷保留。沖縄・奄美向けは8月25日まで船便接続を確認。能登の停止地域は輸送会社確認。9月12日まで東西幹線は着日余裕を持たせる。",
+      "operational_implication": "奄美市・大島郡向けは出荷保留。沖縄・奄美向けは8月25日まで船便接続を確認。能登の停止地域はcarrier確認。9月12日まで東西幹線は着日余裕を持たせる。",
       "outlook_7d": "台風18号後の奄美受付再開、8月25日欠航後の船便正常化、名神工事初週の実際の遅延発生状況を確認。",
       "outlook_30d": "名神集中工事は9月12日6時まで予定。",
       "outlook_90d": null,
@@ -59,7 +59,7 @@
           "date": "2026-08-23",
           "type": "observed_impact",
           "headline": "台風18号で奄美向けヤマト荷受停止、沖縄・奄美フェリーにも実運航影響",
-          "summary": "奄美市・大島郡宛て全商品の荷受停止を確認。フェリーは8月23日鹿児島発便が名瀬までに短縮され、8月25日那覇発上り便も欠航予定。国内配送指標は前日より悪化。",
+          "summary": "奄美市・大島郡宛て全商品の荷受停止を確認。フェリーは8月23日鹿児島発便が名瀬までに短縮され、8月25日那覇発上り便も欠航予定。国内配送signalは前日より悪化。",
           "evidence": [
             {
               "class": "primary_operational",
@@ -116,18 +116,18 @@
         }
       ],
       "related_report_ids": [
-        "2026-08-23-日次",
-        "2026-08-22-日次"
+        "2026-08-23-daily",
+        "2026-08-22-daily"
       ]
     },
     {
-      "topic_id": "middle-east-maritime-リスク",
+      "topic_id": "middle-east-maritime-risk",
       "title_ja": "中東海域の航行リスク",
       "current_state": "watch",
       "confidence": "high",
       "summary": "ホルムズ海峡の通航は通常水準を大きく下回り、Red Sea/Suezでは一部サービスが段階的に戻る一方、中東港湾混雑とサービス調整が続く。全面正常化ではなく、routeごとの分断された回復局面。",
       "japan_implication": "日本向け全体の一律停止ではないが、燃料・保険・船腹配分・中東接続・T/Sの不確実性が残る。",
-      "operational_implication": "Middle East/Europe関連貨物は輸送会社・サービス単位で経路・寄港・追加料金・輸送日数を確認する。",
+      "operational_implication": "Middle East/Europe関連貨物は輸送会社・サービス単位でrouting・寄港・surcharge・輸送日数を確認する。",
       "outlook_7d": "高い変動性が継続。個別通航許可や部分的Suez復帰を全面正常化と解釈しない。",
       "outlook_30d": "安全保障条件次第でTrans-Suez復帰と再迂回が混在する可能性。",
       "outlook_90d": null,
@@ -216,10 +216,10 @@
         }
       ],
       "related_report_ids": [
-        "2026-08-23-日次",
-        "2026-08-22-日次",
-        "2026-08-22-週次",
-        "2026-08-22-月次"
+        "2026-08-23-daily",
+        "2026-08-22-daily",
+        "2026-08-22-weekly",
+        "2026-08-22-monthly"
       ]
     },
     {
@@ -229,9 +229,9 @@
       "confidence": "high",
       "summary": "Drewry WCIは8月20日に4%上昇しUSD 4,526/40ft。3週連続上昇だが、上昇は太平洋横断航路主導で、アジア―欧州・地中海航路は軟調。",
       "japan_implication": "日本発着契約への影響はlane・契約条件別。世界運賃指数上昇だけで一律cost escalationとはしない。",
-      "operational_implication": "スポット/renewal条件はWCIだけでなく対象laneとキャパシティ/定時性を分けて確認する。",
+      "operational_implication": "spot/renewal条件はWCIだけでなく対象laneとcapacity/reliabilityを分けて確認する。",
       "outlook_7d": "太平洋横断航路主導の上昇が他laneへ波及するかを確認。",
-      "outlook_30d": "キャパシティ adjustmentと需要差によりlane別分化が続く可能性。",
+      "outlook_30d": "capacity adjustmentと需要差によりlane別分化が続く可能性。",
       "outlook_90d": null,
       "developments": [
         {
@@ -259,8 +259,8 @@
         }
       ],
       "related_report_ids": [
-        "2026-08-22-週次",
-        "2026-08-22-月次"
+        "2026-08-22-weekly",
+        "2026-08-22-monthly"
       ]
     },
     {
@@ -268,18 +268,18 @@
       "title_ja": "Blank Sailing 圧力",
       "current_state": "watch",
       "confidence": "high",
-      "summary": "Drewryはweek35〜39の主要East-Westで49 blank sailings、6% cancellation rateを予測。94%は運航予定で、全面的なキャパシティ withdrawalではなく選択的調整。",
+      "summary": "Drewryはweek35〜39の主要East-Westで49 欠便s、6% cancellation rateを予測。94%は運航予定で、全面的なcapacity withdrawalではなく選択的調整。",
       "japan_implication": "日本接続の欠便・port omissionリスクはglobal cancel rateより個別service確認が重要。",
       "operational_implication": "booking時に該当service/voyageの欠便・T/S接続を確認する。",
       "outlook_7d": "week35開始に伴う実際のcancellation/omissionを確認。",
-      "outlook_30d": "需要差に応じたselective blank sailingが継続する可能性。",
+      "outlook_30d": "需要差に応じたselective 欠便が継続する可能性。",
       "outlook_90d": null,
       "developments": [
         {
           "date": "2026-08-21",
           "type": "market_data",
-          "headline": "49 blank sailings expected across major East-West trades",
-          "summary": "week35〜39、cancellation 運賃 6%、94% scheduled sailings expected to operate。",
+          "headline": "49 欠便s expected across major East-West trades",
+          "summary": "week35〜39、cancellation rate 6%、94% scheduled sailings expected to operate。",
           "evidence": [
             {
               "class": "market_data",
@@ -300,25 +300,25 @@
         },
         {
           "date": "2026-08-21",
-          "metric": "Cancellation 運賃",
+          "metric": "Cancellation rate",
           "value": 6,
           "unit": "%",
           "source": "Drewry"
         }
       ],
       "related_report_ids": [
-        "2026-08-22-週次",
-        "2026-08-22-月次"
+        "2026-08-22-weekly",
+        "2026-08-22-monthly"
       ]
     },
     {
-      "topic_id": "ocean-schedule-定時性",
+      "topic_id": "ocean-schedule-reliability",
       "title_ja": "海上スケジュール定時性",
       "current_state": "watch",
       "confidence": "high",
       "summary": "Sea-Intelligenceの最新公開値では2026年6月のglobal 定時性は62.6%、前月比-1.9pp。late vessel average delayは5.31日で前月比0.34日改善。",
-      "japan_implication": "RateとReliabilityは別の計画変数。ETA confidenceは輸送会社/lane単位の確認が必要。",
-      "operational_implication": "新製品投入や在庫補充では平均輸送日数だけでなくarrival varianceを織り込む。",
+      "japan_implication": "RateとReliabilityは別の計画変数。ETA confidenceはcarrier/lane単位の確認が必要。",
+      "operational_implication": "launchや在庫補充では平均輸送日数だけでなくarrival varianceを織り込む。",
       "outlook_7d": null,
       "outlook_30d": "次回公表でJuneの悪化が一時的か確認。",
       "outlook_90d": null,
@@ -332,7 +332,7 @@
             {
               "class": "market_data",
               "source": "Sea-Intelligence",
-              "url": "https://sea-intelligence.com/press-room/400-global-schedule-定時性-drops-to-62-6-in-june-2026"
+              "url": "https://sea-intelligence.com/press-room/400-global-schedule-reliability-drops-to-62-6-in-june-2026"
             }
           ]
         }
@@ -340,7 +340,7 @@
       "data_points": [
         {
           "date": "2026-06",
-          "metric": "Global 定時性",
+          "metric": "Global schedule reliability",
           "value": 62.6,
           "unit": "%",
           "change": "-1.9pp MoM",
@@ -356,18 +356,18 @@
         }
       ],
       "related_report_ids": [
-        "2026-08-22-週次",
-        "2026-08-22-月次"
+        "2026-08-22-weekly",
+        "2026-08-22-monthly"
       ]
     },
     {
-      "topic_id": "beauty-japan-ec-販促",
+      "topic_id": "beauty-japan-ec-promotion",
       "title_ja": "日本Beauty EC・プロモーション需要",
       "current_state": "watch",
       "confidence": "high",
       "summary": "Qoo10メガ割が8月28日17時から9月9日23:59まで予定。楽天LUXURY BEAUTYのポイント施策に加え、個別ブランド公式オンラインでは8月25日まで購入特典施策を実施中。短期EC波動はorganic需要と分けて見る必要がある。",
-      "japan_implication": "8月末〜9月上旬はBeauty ECの販促-driven volume増加が重なりやすい。",
-      "operational_implication": "order volume、gift material、梱包資材、CS/cancel波動を販促起因として別管理する。",
+      "japan_implication": "8月末〜9月上旬はBeauty ECのpromotion-driven volume増加が重なりやすい。",
+      "operational_implication": "order volume、gift material、梱包資材、CS/cancel波動をpromotion起因として別管理する。",
       "outlook_7d": "個別ブランド施策終了とQoo10開始前後のorder/search movementを監視。",
       "outlook_30d": "9月上旬は複数EC施策の重なりによる短期波動を想定。",
       "outlook_90d": null,
@@ -376,7 +376,7 @@
           "date": "2026-08-23",
           "type": "commerce_event",
           "headline": "個別ブランド公式オンラインでL’Art & La Matière購入特典を8/25まで実施",
-          "summary": "プロモコード利用の購入でネロリ ウートルノワ2mLを進呈。販促-driven / temporaryとして扱い、売上実績とは区別する。",
+          "summary": "プロモコード利用の購入でネロリ ウートルノワ2mLを進呈。promotion-driven / temporaryとして扱い、売上実績とは区別する。",
           "evidence": [
             {
               "class": "brand_official",
@@ -407,16 +407,16 @@
             {
               "class": "commerce_platform",
               "source": "楽天市場 LUXURY BEAUTY",
-              "url": "https://event.rakuten.co.jp/beauty/brand/luxe/luxurybeauty/施策/"
+              "url": "https://event.rakuten.co.jp/beauty/brand/luxe/luxurybeauty/campaign/"
             }
           ]
         }
       ],
       "data_points": [],
       "related_report_ids": [
-        "2026-08-23-日次",
-        "2026-08-22-週次",
-        "2026-08-22-月次"
+        "2026-08-23-daily",
+        "2026-08-22-weekly",
+        "2026-08-22-monthly"
       ]
     },
     {
@@ -425,10 +425,10 @@
       "current_state": "watch",
       "confidence": "medium",
       "summary": "直近企業開示ではLuxury Fragranceが強く、Skincareも回復を示す一方、Makeupは相対的に緩やか。単一カテゴリではなくPrestige Beauty内のカテゴリ差として追跡する。",
-      "japan_implication": "日本の需要を直接示すものではないが、global allocation・新製品投入 priority・category mixの先行材料になる。",
+      "japan_implication": "日本の需要を直接示すものではないが、global allocation・launch priority・category mixの先行材料になる。",
       "operational_implication": "Fragrance偏重で予測せず、Skincare/Makeupを含むカテゴリ別allocationとJapan sell-outを照合する。",
       "outlook_7d": null,
-      "outlook_30d": "企業IR、ブランド公式サイト 新製品投入、EC rankingの複数チャネル一致を確認。",
+      "outlook_30d": "企業IR、ブランド公式サイト launch、EC rankingの複数チャネル一致を確認。",
       "outlook_90d": null,
       "developments": [
         {
@@ -460,8 +460,8 @@
       ],
       "data_points": [],
       "related_report_ids": [
-        "2026-08-22-週次",
-        "2026-08-22-月次"
+        "2026-08-22-weekly",
+        "2026-08-22-monthly"
       ]
     }
   ]

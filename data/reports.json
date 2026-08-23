@@ -1,7 +1,7 @@
 {
   "schema_version": "2.1",
   "meta": {
-    "note": "Production intelligence history. Persistent 指標s use registry IDs; market_intelligence separates 運賃, Supply, Demand, Reliability and リスク.",
+    "note": "Production intelligence history. Persistent signals use registry IDs; market_intelligence separates Rate, Supply, Demand, Reliability and Risk.",
     "signal_keys": [
       "wci",
       "scfi"
@@ -12,11 +12,11 @@
       "disruption",
       "unconfirmed"
     ],
-    "registry": "data/指標-registry.json",
+    "registry": "data/signal-registry.json",
     "lenses": [
       "disruption",
-      "cost_キャパシティ",
-      "定時性",
+      "cost_capacity",
+      "reliability",
       "demand_commerce",
       "regulatory_structural"
     ],
@@ -48,8 +48,8 @@
       ],
       "demand_driver": [
         "organic",
-        "販促",
-        "新製品投入",
+        "promotion",
+        "launch",
         "buzz"
       ],
       "duration": [
@@ -65,16 +65,16 @@
       "status": "watch",
       "as_of": "2026年8月23日 09:16 JST",
       "sample": false,
-      "id": "2026-08-23-日次",
-      "type": "日次",
-      "title": "物流・化粧品インテリジェンス・ブリーフ — 日次",
-      "summary": "全国・主要物流ネットワークを対象とする新たな一律運用変更は不要。名神集中工事は東西幹線の発表事象として監視し、中東海域は高リスク継続。台風18号の奄美方面への実影響は局地例外として扱い、対象出荷がある場合のみ個別対応する。ブランド公式サイトでは複数の8月施策を確認し、8月末のEC 販促と合わせて短期波動を監視する。",
-      "bottom_line": "全社・全国一律の変更なし。名神を使う東西幹線は着日余裕を維持し、中東・欧州関連は輸送会社・サービス単位で確認。奄美方面は実出荷時のみ個別確認。Beautyは8月末〜9月上旬の施策/新製品投入重複をEC・倉庫キャパシティの観点で確認する。",
+      "id": "2026-08-23-daily",
+      "type": "daily",
+      "title": "物流・化粧品インテリジェンス・ブリーフ — DAILY",
+      "summary": "全国・主要物流ネットワークを対象とする新たな一律運用変更は不要。名神集中工事は東西幹線の発表事象として監視し、中東海域は高リスク継続。台風18号の奄美方面への実影響は局地例外として扱い、対象出荷がある場合のみ個別対応する。ブランド公式サイトでは複数の8月施策を確認し、8月末のEC promotionと合わせて短期波動を監視する。",
+      "bottom_line": "全社・全国一律の変更なし。名神を使う東西幹線は着日余裕を維持し、中東・欧州関連は輸送会社・サービス単位で確認。奄美方面は実出荷時のみ個別確認。Beautyは8月末〜9月上旬のcampaign/launch重複をEC・倉庫capacityの観点で確認する。",
       "key_issues": [
         "名神集中工事は主要東西幹線リスクだがネットワーク全体な実遅延は未確認",
         "中東海域は高リスク継続",
         "奄美の荷受停止は局地例外として個別管理",
-        "全登録ブランド公式サイトをDaily監視し8月末〜9月上旬の販促/新製品投入重複を確認"
+        "全登録ブランド公式サイトをDaily監視し8月末〜9月上旬のpromotion/launch重複を確認"
       ],
       "tags": [
         "名神",
@@ -128,10 +128,10 @@
               }
             ],
             "operational_implication": "主要幹線は予防的lead-time管理、局地例外は対象出荷時のみ個別管理する。",
-            "action_direction": "東西幹線は着日余裕を維持し、奄美方面は実出荷時のみ輸送会社確認する。"
+            "action_direction": "東西幹線は着日余裕を維持し、奄美方面は実出荷時のみcarrier確認する。"
           },
           {
-            "id": "middle-east-maritime-リスク",
+            "id": "middle-east-maritime-risk",
             "signal": "ホルムズ海峡の低通航と中東港湾・サービス調整は継続し、全面正常化は確認できない。",
             "lens": "disruption",
             "direction": "volatile",
@@ -145,7 +145,7 @@
                 "url": "https://www.reuters.com/business/energy/iran-grants-permission-number-iraqi-oil-tankers-pass-through-hormuz-2026-08-22/"
               }
             ],
-            "operational_implication": "中東・欧州関連貨物は経路・寄港・追加料金・輸送日数の個別確認が必要。",
+            "operational_implication": "中東・欧州関連貨物はrouting・寄港・surcharge・輸送日数の個別確認が必要。",
             "action_direction": "輸送会社・サービス単位で確認する。"
           }
         ],
@@ -153,16 +153,26 @@
         "reliability": [],
         "demand_commerce": [
           {
-            "id": "beauty-japan-ec-販促",
-            "signal": "全登録ブランド公式サイトをDaily監視対象化。複数ブランド等で8月の販促/新製品投入を確認し、Qoo10メガ割は8月28日開始予定。",
+            "id": "beauty-japan-ec-promotion",
+            "signal": "全登録ブランド公式サイトをDaily監視対象化。複数ブランド等で8月のpromotion/launchを確認し、Qoo10メガ割は8月28日開始予定。",
             "lens": "demand_commerce",
             "direction": "volatile",
             "impact": "medium",
             "change_status": "new",
             "confidence": "high",
-            "demand_driver": "販促",
+            "demand_driver": "promotion",
             "duration": "temporary",
             "evidence": [
+              {
+                "source": "ブランド公式サイト監視群",
+                "date": "2026-08-23",
+                "url": null
+              },
+              {
+                "source": "ブランド公式サイト監視群",
+                "date": "2026-08-23",
+                "url": null
+              },
               {
                 "source": "ブランド公式サイト監視群",
                 "date": "2026-08-23",
@@ -174,37 +184,37 @@
                 "url": "https://www.qoo10.jp/gmkt.inc/Mobile/Special/Special.aspx?sid=220713"
               }
             ],
-            "operational_implication": "8月末〜9月上旬は複数ブランド施策とEC 販促が重なり、短期の倉庫波動になり得る。",
-            "action_direction": "販促による上振れを基礎需要と分けてキャパシティを確認する。"
+            "operational_implication": "8月末〜9月上旬は複数ブランド施策とEC promotionが重なり、短期の倉庫波動になり得る。",
+            "action_direction": "販促による上振れを基礎需要と分けてcapacityを確認する。"
           }
         ],
         "regulatory_structural": []
       },
       "change_summary": {
-        "comparison_base": "2026-08-22-日次",
+        "comparison_base": "2026-08-22-daily",
         "new": [
-          "beauty-japan-ec-販促"
+          "beauty-japan-ec-promotion"
         ],
         "deteriorating": [],
         "improving": [],
         "resolved": [],
         "unchanged_high_risk": [
           "japan-domestic-delivery",
-          "middle-east-maritime-リスク"
+          "middle-east-maritime-risk"
         ]
       },
-      "path": "reports/2026/08/2026-08-23-日次.html"
+      "path": "reports/2026/08/2026-08-23-daily.html"
     },
     {
       "date": "2026-08-22",
       "status": "watch",
       "as_of": "2026年8月22日 18:30 JST",
       "sample": false,
-      "id": "2026-08-22-日次",
-      "type": "日次",
-      "title": "物流・化粧品インテリジェンス・ブリーフ — 日次",
+      "id": "2026-08-22-daily",
+      "type": "daily",
+      "title": "物流・化粧品インテリジェンス・ブリーフ — DAILY",
       "summary": "国内配送は一部地域で例外が残り、国際面ではホルムズ海峡の通航が低水準。全国一律の運用変更は不要。",
-      "bottom_line": "国内は対象地域別の配送確認、中東は輸送会社/lane単位の影響確認を優先する。",
+      "bottom_line": "国内は対象地域別の配送確認、中東はcarrier/lane単位の影響確認を優先する。",
       "key_issues": [
         "国内配送の局地例外",
         "中東海域の航行リスク",
@@ -259,7 +269,7 @@
             "action_direction": "対象出荷を個別確認する。"
           },
           {
-            "id": "middle-east-maritime-リスク",
+            "id": "middle-east-maritime-risk",
             "signal": "ホルムズ海峡の低通航が続き、中東海域の航行リスクは高い。",
             "lens": "disruption",
             "direction": "volatile",
@@ -274,7 +284,7 @@
               }
             ],
             "operational_implication": "燃料・迂回・保険・船腹への二次波及を監視。",
-            "action_direction": "中東関連輸送会社/laneを個別確認する。"
+            "action_direction": "中東関連carrier/laneを個別確認する。"
           }
         ],
         "cost_capacity": [],
@@ -290,25 +300,25 @@
         "resolved": [],
         "unchanged_high_risk": []
       },
-      "path": "reports/2026/08/2026-08-22-日次.html"
+      "path": "reports/2026/08/2026-08-22-daily.html"
     },
     {
       "date": "2026-08-23",
       "status": "watch",
       "as_of": "2026年8月23日 09:16 JST",
       "sample": false,
-      "id": "2026-08-23-週次",
-      "type": "週次",
+      "id": "2026-08-23-weekly",
+      "type": "weekly",
       "period": "2026-08-17/2026-08-23",
-      "title": "物流・化粧品インテリジェンス・ブリーフ — 週次",
-      "summary": "WCIとIACIは上昇したが、価格上昇を一律の船腹不足とはみなさない。Sea-Intelligenceは外航船腹量の5.0%、約170万TEUが遅延で実質吸収される構造を示した。国内では荷待ち・荷役等時間が2時間02分まで改善し、物流2024問題は規制開始から生産性改善・制度実装の局面へ移行。物流企業の提携・投資とブランド公式サイト/EC 販促も継続監視する。",
-      "bottom_line": "アジア発はRate・スペース・Reliabilityを別管理し、遅延による実効供給力の低下を織り込む。国内は幹線トラック、ドレージ、港湾待機、荷待ち・荷役を上位監視。Beautyは販促/新製品投入と自然需要を分離する。",
+      "title": "物流・化粧品インテリジェンス・ブリーフ — WEEKLY",
+      "summary": "WCIとIACIは上昇したが、価格上昇を一律の船腹不足とはみなさない。Sea-Intelligenceは外航船腹量の5.0%、約170万TEUが遅延で実質吸収される構造を示した。国内では荷待ち・荷役等時間が2時間02分まで改善し、物流2024問題は規制開始から生産性改善・制度実装の局面へ移行。物流企業の提携・投資とブランド公式サイト・EC promotionも継続監視する。",
+      "bottom_line": "アジア発はRate・space・Reliabilityを別管理し、遅延による実効供給力の低下を織り込む。国内は幹線トラック、ドレージ、港湾待機、荷待ち・荷役を上位監視。Beautyはpromotion/launchと自然需要を分離する。",
       "key_issues": [
         "WCI 4,526米ドル/40ft（+4%）、IACI 1,091米ドル/40ft（+6%）",
         "Sea-Intelligence: 外航船腹量の5.0%、約170万TEUが遅延で吸収",
         "国内トラック荷待ち・荷役等2時間02分、2024年度比1時間16分短縮",
         "国内物流企業で提携・BCPネットワーク・投資動向を継続監視",
-        "ブランド公式サイト/ECの8月末〜9月上旬施策が短期波動要因"
+        "ブランド公式サイト・ECの8月末〜9月上旬施策が短期波動要因"
       ],
       "tags": [
         "WCI",
@@ -342,7 +352,7 @@
       "intelligence": {
         "disruption": [
           {
-            "id": "middle-east-maritime-リスク",
+            "id": "middle-east-maritime-risk",
             "signal": "中東海域の航行リスクは高水準を維持。",
             "lens": "disruption",
             "direction": "volatile",
@@ -356,7 +366,7 @@
                 "url": "https://www.reuters.com/business/energy/iran-grants-permission-number-iraqi-oil-tankers-pass-through-hormuz-2026-08-22/"
               }
             ],
-            "operational_implication": "中東・欧州関連の経路/寄港/insurance/追加料金を個別確認。",
+            "operational_implication": "中東・欧州関連のrouting/寄港/insurance/surchargeを個別確認。",
             "action_direction": "輸送会社・サービス単位で確認する。"
           }
         ],
@@ -364,7 +374,7 @@
           {
             "id": "ocean-global-price",
             "signal": "Drewry WCIは8月20日に4%上昇して4,526米ドル/40ft。太平洋横断航路主導。",
-            "lens": "cost_キャパシティ",
+            "lens": "cost_capacity",
             "direction": "rising",
             "impact": "medium",
             "change_status": "new",
@@ -376,13 +386,13 @@
                 "url": "https://www.drewry.co.uk/trackers-and-indices/latest-trackers-and-indices/world-container-index-assessed-by-drewry"
               }
             ],
-            "operational_implication": "世界運賃指数上昇を全lane一律のcost/キャパシティ悪化と解釈しない。",
+            "operational_implication": "世界運賃指数上昇を全lane一律のcost/capacity悪化と解釈しない。",
             "action_direction": "lane別rateを確認する。"
           },
           {
-            "id": "ocean-intra-asia-キャパシティ",
-            "signal": "IACIは8月20日に6%上昇して1,091米ドル/40ft。価格上昇は確認できるが物理キャパシティ tighteningは別証拠が必要。",
-            "lens": "cost_キャパシティ",
+            "id": "ocean-intra-asia-capacity",
+            "signal": "IACIは8月20日に6%上昇して1,091米ドル/40ft。価格上昇は確認できるが物理capacity tighteningは別証拠が必要。",
+            "lens": "cost_capacity",
             "direction": "stable",
             "impact": "medium",
             "change_status": "new",
@@ -400,9 +410,9 @@
         ],
         "reliability": [
           {
-            "id": "ocean-schedule-定時性",
+            "id": "ocean-schedule-reliability",
             "signal": "Sea-Intelligenceは定時性が60〜65%、遅延が外航船腹量の5.0%、約170万TEUを実質吸収する構造を公表。",
-            "lens": "定時性",
+            "lens": "reliability",
             "direction": "falling",
             "impact": "high",
             "change_status": "deteriorating",
@@ -411,25 +421,30 @@
               {
                 "source": "Sea-Intelligence",
                 "date": "2026-08-19",
-                "url": "https://www.sea-intelligence.com/press-room/403-1-7-million-teu-vessel-スペース-absorbed-in-delays"
+                "url": "https://www.sea-intelligence.com/press-room/403-1-7-million-teu-vessel-space-absorbed-in-delays"
               }
             ],
             "operational_implication": "名目fleet増加だけで供給緩和を判断できず、ETA varianceとeffective supply lossを織り込む必要。",
-            "action_direction": "重要貨物はconnection 定時性とETA bufferを重視する。"
+            "action_direction": "重要貨物はconnection reliabilityとETA bufferを重視する。"
           }
         ],
         "demand_commerce": [
           {
-            "id": "beauty-japan-ec-販促",
+            "id": "beauty-japan-ec-promotion",
             "signal": "複数ブランド公式サイトの8月施策と8月28日開始予定のQoo10メガ割が重なり、短期EC波動が見込まれる。",
             "lens": "demand_commerce",
             "direction": "volatile",
             "impact": "medium",
             "change_status": "new",
             "confidence": "high",
-            "demand_driver": "販促",
+            "demand_driver": "promotion",
             "duration": "temporary",
             "evidence": [
+              {
+                "source": "ブランド公式サイト監視群",
+                "date": "2026-08-23",
+                "url": null
+              },
               {
                 "source": "ブランド公式サイト監視群",
                 "date": "2026-08-23",
@@ -442,7 +457,7 @@
               }
             ],
             "operational_implication": "短期の倉庫・EC出荷波動を基礎需要から分離する。",
-            "action_direction": "施策日程をキャパシティ planningへ反映する。"
+            "action_direction": "campaign日程をcapacity planningへ反映する。"
           }
         ],
         "regulatory_structural": [
@@ -461,7 +476,7 @@
                 "url": "https://www.mlit.go.jp/report/press/tokatsu02_hh_000084.html"
               }
             ],
-            "operational_implication": "荷主・倉庫・運送会社の荷待ち/荷役KPI、幹線キャパシティ、港湾/ドレージ生産性を継続評価する。",
+            "operational_implication": "荷主・倉庫・運送会社の荷待ち/荷役KPI、幹線capacity、港湾/ドレージ生産性を継続評価する。",
             "action_direction": "局地遅延より構造KPIをWeeklyで上位監視する。"
           }
         ]
@@ -473,7 +488,7 @@
           "rate": {
             "direction": "rising",
             "evidence": [
-              "WCI +4% to 4,526 USD/40ft; 太平洋横断航路主導"
+              "WCI +4% to 4,526 USD/40ft; Transpacific主導"
             ]
           },
           "supply": {
@@ -485,13 +500,13 @@
           "demand": {
             "direction": "mixed",
             "evidence": [
-              "運賃 directionは航路別に分化"
+              "rate directionは航路別に分化"
             ]
           },
           "reliability": {
             "direction": "deteriorating",
             "evidence": [
-              "Sea-Intelligence: 定時性 60-65%付近、5.0%の外航船腹量が遅延で吸収"
+              "Sea-Intelligence: schedule reliability 60-65%付近、5.0%のdeep-sea capacityが遅延で吸収"
             ]
           },
           "risk": "high",
@@ -500,7 +515,7 @@
               "中東海域の高リスク継続"
             ],
             "observed_impact": [
-              "遅延による約170万TEUのeffective キャパシティ absorption"
+              "遅延による約170万TEUのeffective capacity absorption"
             ]
           },
           "structural_drivers": [
@@ -508,9 +523,9 @@
             "中東迂回",
             "航路別需要差"
           ],
-          "japan_implication": "日本発着ではglobal rateよりlane/T-S/connection 定時性を重視。",
-          "operational_implication": "運賃・スペース・ETAを別管理する。",
-          "outlook_30d": "価格圧力と低い定時性が併存。",
+          "japan_implication": "日本発着ではglobal rateよりlane/T-S/connection reliabilityを重視。",
+          "operational_implication": "Rate・space・ETAを別管理する。",
+          "outlook_30d": "価格圧力と低いreliabilityが併存。",
           "risk_scenario": "中東悪化や港湾混雑でeffective supplyがさらに低下。",
           "confidence": "high"
         },
@@ -526,7 +541,7 @@
           "supply": {
             "direction": "unknown",
             "evidence": [
-              "price上昇だけではphysical キャパシティ tighteningを確認できない"
+              "price上昇だけではphysical capacity tighteningを確認できない"
             ]
           },
           "demand": {
@@ -546,9 +561,9 @@
             "regional price pressure"
           ],
           "japan_implication": "アジア発補充のcost pressureを監視。",
-          "operational_implication": "spaceは輸送会社単位で別確認。",
+          "operational_implication": "spaceはcarrier単位で別確認。",
           "outlook_30d": "price pressure継続を監視。",
-          "risk_scenario": "スペース tighteningが確認された場合はlead timeへ波及。",
+          "risk_scenario": "space tighteningが確認された場合はlead timeへ波及。",
           "confidence": "medium"
         }
       ],
@@ -556,37 +571,37 @@
         "comparison_base": null,
         "new": [
           "ocean-global-price",
-          "ocean-intra-asia-キャパシティ",
-          "beauty-japan-ec-販促",
+          "ocean-intra-asia-capacity",
+          "beauty-japan-ec-promotion",
           "japan-logistics-regulation"
         ],
         "deteriorating": [
-          "ocean-schedule-定時性"
+          "ocean-schedule-reliability"
         ],
         "improving": [],
         "resolved": [],
         "unchanged_high_risk": [
-          "middle-east-maritime-リスク"
+          "middle-east-maritime-risk"
         ]
       },
-      "path": "reports/2026/08/2026-08-23-週次.html"
+      "path": "reports/2026/08/2026-08-23-weekly.html"
     },
     {
       "date": "2026-08-23",
       "status": "watch",
       "as_of": "2026年8月23日 09:16 JST",
       "sample": false,
-      "id": "2026-08-23-月次",
-      "type": "月次",
+      "id": "2026-08-23-monthly",
+      "type": "monthly",
       "period": "2026-08",
-      "title": "物流・化粧品インテリジェンス・ブリーフ — 月次",
-      "summary": "8月の構造判断は、海上のeffective キャパシティ、日本国内物流の生産性KPI、物流企業のネットワーク・資本再編、Beautyの需要driver分離へ更新。Sea-Intelligenceは外航船腹量の5.0%、約170万TEUが遅延で吸収される状態を示し、日本では荷待ち・荷役等が2時間02分まで改善した一方、物流効率化法の実装・計測・報告が次の焦点となる。",
-      "bottom_line": "海上はRate/nominal Supply/effective Supply/Reliability/Riskを分ける。国内は幹線トラック・ドレージ・港湾待機・荷待ちKPIを構造指標にし、物流企業のM&A/資本提携/投資もキャパシティ先行指標として追う。Beautyは全ブランド公式サイトの日次観測を構造需要と販促に分解する。",
+      "title": "物流・化粧品インテリジェンス・ブリーフ — MONTHLY",
+      "summary": "8月の構造判断は、海上のeffective capacity、日本国内物流の生産性KPI、物流企業のネットワーク・資本再編、Beautyの需要driver分離へ更新。Sea-Intelligenceは外航船腹量の5.0%、約170万TEUが遅延で吸収される状態を示し、日本では荷待ち・荷役等が2時間02分まで改善した一方、物流効率化法の実装・計測・報告が次の焦点となる。",
+      "bottom_line": "海上はRate/nominal Supply/effective Supply/Reliability/Riskを分ける。国内は幹線トラック・ドレージ・港湾待機・荷待ちKPIを構造指標にし、物流企業のM&A/資本提携/投資もcapacity先行指標として追う。Beautyは全ブランド公式サイトの日次観測を構造需要とpromotionに分解する。",
       "key_issues": [
         "遅延が世界外航船腹量の5.0%、約170万TEUを実質吸収",
         "日本の荷待ち・荷役等は2時間02分まで改善、制度対応はKPI実装局面へ",
         "セイノーHD/AZ-COM丸和HD等で業務提携・BCPネットワーク・投資の動き",
-        "BeautyはFragranceだけでなくSkincare/Makeupを含む選択的需要と販促を分離"
+        "BeautyはFragranceだけでなくSkincare/Makeupを含む選択的需要とpromotionを分離"
       ],
       "tags": [
         "Effective Capacity",
@@ -620,7 +635,7 @@
       "intelligence": {
         "disruption": [
           {
-            "id": "middle-east-maritime-リスク",
+            "id": "middle-east-maritime-risk",
             "signal": "中東海域の航行リスクは構造的なeffective supply/fuel/insurance変動要因として継続。",
             "lens": "disruption",
             "direction": "volatile",
@@ -634,15 +649,15 @@
                 "url": "https://www.reuters.com/business/energy/iran-grants-permission-number-iraqi-oil-tankers-pass-through-hormuz-2026-08-22/"
               }
             ],
-            "operational_implication": "Middle East/Europe 経路の不確実性を1-3か月シナリオへ残す。",
-            "action_direction": "輸送会社・サービスごとの経路復帰・再迂回を追う。"
+            "operational_implication": "Middle East/Europe routingの不確実性を1-3か月シナリオへ残す。",
+            "action_direction": "輸送会社・サービスごとのrouting復帰・再迂回を追う。"
           }
         ],
         "cost_capacity": [
           {
             "id": "ocean-global-price",
             "signal": "WCIは8月20日4,526米ドル/40ft、+4%。価格上昇とphysical/effective supplyを分けて評価する。",
-            "lens": "cost_キャパシティ",
+            "lens": "cost_capacity",
             "direction": "rising",
             "impact": "medium",
             "change_status": "new",
@@ -654,15 +669,15 @@
                 "url": "https://www.drewry.co.uk/trackers-and-indices/latest-trackers-and-indices/world-container-index-assessed-by-drewry"
               }
             ],
-            "operational_implication": "rateだけでキャパシティ shortageを判断しない。",
+            "operational_implication": "rateだけで船腹不足を判断しない。",
             "action_direction": "lane別rateとeffective supplyを別管理する。"
           }
         ],
         "reliability": [
           {
-            "id": "ocean-schedule-定時性",
+            "id": "ocean-schedule-reliability",
             "signal": "定時性 60-65%付近、late arrival 5-5.5日付近が新常態となり、外航船腹量の5.0%、約170万TEUを吸収。",
-            "lens": "定時性",
+            "lens": "reliability",
             "direction": "falling",
             "impact": "high",
             "change_status": "new",
@@ -671,7 +686,7 @@
               {
                 "source": "Sea-Intelligence",
                 "date": "2026-08-19",
-                "url": "https://www.sea-intelligence.com/press-room/403-1-7-million-teu-vessel-スペース-absorbed-in-delays"
+                "url": "https://www.sea-intelligence.com/press-room/403-1-7-million-teu-vessel-space-absorbed-in-delays"
               }
             ],
             "operational_implication": "名目船腹増加の効果をdelay absorptionが相殺する。",
@@ -705,16 +720,21 @@
             "action_direction": "Fragrance/Skincare/Makeupを分けて追跡する。"
           },
           {
-            "id": "beauty-japan-ec-販促",
-            "signal": "全ブランド公式サイトをDaily観測し、EC/ブランド公式サイト施策を短期販促 driverとして自然需要から分離する。",
+            "id": "beauty-japan-ec-promotion",
+            "signal": "全ブランド公式サイトをDaily観測し、EC/ブランド公式サイト施策を短期promotion driverとして自然需要から分離する。",
             "lens": "demand_commerce",
             "direction": "volatile",
             "impact": "medium",
             "change_status": "new",
             "confidence": "high",
-            "demand_driver": "販促",
+            "demand_driver": "promotion",
             "duration": "temporary",
             "evidence": [
+              {
+                "source": "ブランド公式サイト監視群",
+                "date": "2026-08-23",
+                "url": null
+              },
               {
                 "source": "ブランド公式サイト監視群",
                 "date": "2026-08-23",
@@ -726,7 +746,7 @@
                 "url": "https://www.qoo10.jp/gmkt.inc/Mobile/Special/Special.aspx?sid=220713"
               }
             ],
-            "operational_implication": "施策集中による倉庫波動を基礎需要から切り離す。",
+            "operational_implication": "campaign集中による倉庫波動を基礎需要から切り離す。",
             "action_direction": "Brand×Category×Channel×Demand Driverで月次評価する。"
           }
         ],
@@ -746,7 +766,7 @@
                 "url": "https://www.mlit.go.jp/report/press/tokatsu02_hh_000084.html"
               }
             ],
-            "operational_implication": "幹線キャパシティ、荷待ち/荷役、港湾ゲート、ドレージ生産性を構造KPIにする。",
+            "operational_implication": "幹線capacity、荷待ち/荷役、港湾ゲート、ドレージ生産性を構造KPIにする。",
             "action_direction": "2024問題を単純な不足 narrativeではなく改善KPIと残存制約で評価する。"
           }
         ]
@@ -764,7 +784,7 @@
           "supply": {
             "direction": "tightening",
             "evidence": [
-              "Sea-Intelligence: 外航船腹量の5.0%、約1.7m TEUが遅延で吸収。pre-pandemic平均2.2%"
+              "Sea-Intelligence: deep-sea capacityの5.0%、約1.7m TEUが遅延で吸収。pre-pandemic平均2.2%"
             ]
           },
           "demand": {
@@ -776,7 +796,7 @@
           "reliability": {
             "direction": "deteriorating",
             "evidence": [
-              "定時性 60-65%付近、late arrivals 5-5.5日付近"
+              "schedule reliability 60-65%付近、late arrivals 5-5.5日付近"
             ]
           },
           "risk": "high",
@@ -785,7 +805,7 @@
               "中東航行リスク継続"
             ],
             "observed_impact": [
-              "delay absorptionによる実効供給力の低下"
+              "delay absorptionによるeffective capacity loss"
             ]
           },
           "structural_drivers": [
@@ -794,9 +814,9 @@
             "port congestion",
             "航路別需要差"
           ],
-          "japan_implication": "日本発着は名目キャパシティよりlane/T-S/ETA variabilityを重視。",
-          "operational_implication": "運賃・スペース・定時性を別管理。",
-          "outlook_30d": "low 定時性とprice pressureが併存。",
+          "japan_implication": "日本発着は名目capacityよりlane/T-S/ETA variabilityを重視。",
+          "operational_implication": "rate・space・reliabilityを別管理。",
+          "outlook_30d": "low reliabilityとprice pressureが併存。",
           "outlook_90d": "delay absorptionが続けば新造船効果の一部を相殺。",
           "risk_scenario": "中東・港湾混雑悪化でeffective supplyが再縮小。",
           "confidence": "high"
@@ -841,11 +861,11 @@
             "港湾/ドレージ生産性",
             "物流企業再編"
           ],
-          "japan_implication": "2024問題は一方向悪化ではなく、生産性改善と残存キャパシティ制約の両面で見る。",
+          "japan_implication": "2024問題は一方向悪化ではなく、生産性改善と残存capacity制約の両面で見る。",
           "operational_implication": "主要港・幹線・荷待ちKPIと企業network投資を継続監視。",
           "outlook_30d": "制度実装と主要幹線/港湾実影響を監視。",
           "outlook_90d": "中長期計画、資本提携、BCP network投資が供給構造に反映されるか評価。",
-          "risk_scenario": "需要増に生産性改善が追いつかなければキャパシティ pressure再燃。",
+          "risk_scenario": "需要増に生産性改善が追いつかなければcapacity pressure再燃。",
           "confidence": "medium"
         }
       ],
@@ -853,19 +873,19 @@
         "comparison_base": null,
         "new": [
           "ocean-global-price",
-          "ocean-schedule-定時性",
+          "ocean-schedule-reliability",
           "beauty-luxury-fragrance",
-          "beauty-japan-ec-販促",
+          "beauty-japan-ec-promotion",
           "japan-logistics-regulation"
         ],
         "deteriorating": [],
         "improving": [],
         "resolved": [],
         "unchanged_high_risk": [
-          "middle-east-maritime-リスク"
+          "middle-east-maritime-risk"
         ]
       },
-      "path": "reports/2026/08/2026-08-23-月次.html"
+      "path": "reports/2026/08/2026-08-23-monthly.html"
     }
   ]
 }

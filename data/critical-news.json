@@ -12,15 +12,15 @@
       "japan_relevance": "high",
       "operational_scope": "shipment",
       "status": "observed",
-      "market_dimension": "リスク",
+      "market_dimension": "risk",
       "market_materiality": "material",
       "market_change": "deterioration",
       "time_horizon": "immediate",
       "confidence": "high",
       "summary": "ヤマト運輸は8月23日7時時点で、奄美市・大島郡宛ての全商品の荷受けを台風18号の影響で停止。鹿児島～奄美～沖縄航路では8月23日鹿児島発便が名瀬までに短縮され徳之島以南を抜港し、8月25日那覇発上り便も欠航予定となった。",
-      "observed_impact": "輸送会社 acceptance stop、8月23日便の実際の航行経路変更に加え、8月25日那覇発便の欠航も決定。予報段階ではなく、少なくとも25日まで輸送実行可否に直接影響する状態。",
+      "observed_impact": "carrier acceptance stop、8月23日便の実際の航行経路変更に加え、8月25日那覇発便の欠航も決定。予報段階ではなく、少なくとも25日まで輸送実行可否に直接影響する状態。",
       "japan_implication": "奄美群島向けの宅配・補充・店舗配送は通常リードタイムでの実行ができず、沖縄本島を含む鹿児島―奄美―沖縄の船便接続でも滞留・翌便繰越のリスクが高まる。",
-      "operational_implication": "奄美市・大島郡向けはヤマトで出荷保留とし受付再開または代替輸送を確認する。沖縄・奄美向け着日指定は少なくとも8月25日まで輸送会社の利用モードと船便接続を個別確認する。",
+      "operational_implication": "奄美市・大島郡向けはヤマトで出荷保留とし受付再開または代替輸送を確認する。沖縄・奄美向け着日指定は少なくとも8月25日までcarrierの利用モードと船便接続を個別確認する。",
       "topic_ids": [
         "japan-weather-disruption",
         "japan-domestic-delivery"
@@ -47,7 +47,7 @@
       ]
     },
     {
-      "id": "2026-08-22-meishin-construction-delivery-リスク",
+      "id": "2026-08-22-meishin-construction-delivery-risk",
       "date": "2026-08-22",
       "event_date": "2026-08-22/2026-09-12",
       "headline": "名神集中工事が開始、東京・関東⇔関西を中心に全国的な配送遅延リスク",
@@ -56,7 +56,7 @@
       "japan_relevance": "high",
       "operational_scope": "network",
       "status": "reported",
-      "market_dimension": "リスク",
+      "market_dimension": "risk",
       "market_materiality": "material",
       "market_change": "deterioration",
       "time_horizon": "30d",
@@ -64,7 +64,7 @@
       "summary": "名神高速道路の集中工事が8月22日0時に開始。吹田IC～一宮JCTなどで昼夜連続車線規制、夜間通行止め、IC閉鎖が予定され、ヤマト運輸は東京・関東から関西を発着する荷物を中心に全国的な遅延が発生する可能性を案内している。",
       "observed_impact": "8月23日7時のヤマト運輸現況ページでは名神工事を理由とする遅延地域は掲載されておらず、全国的な実遅延発生までは未確認。",
       "japan_implication": "東西幹線輸送に関係するため、関東⇔関西だけでなく迂回・幹線接続を通じて他地域にも遅延が波及し得る。",
-      "operational_implication": "9月12日までの期間は東京・関東⇔関西の宅配・路線便に通常より余裕を持たせ、着日指定・EC出荷・店舗向け緊急配送は輸送会社別の最新遅延情報を確認する。",
+      "operational_implication": "9月12日までの期間は東京・関東⇔関西の宅配・路線便に通常より余裕を持たせ、着日指定・EC出荷・店舗向け緊急配送はcarrier別の最新遅延情報を確認する。",
       "topic_ids": [
         "japan-domestic-delivery"
       ],
@@ -107,9 +107,9 @@
       "summary": "ホルムズ海峡では通常水準を大きく下回る通航が続く一方、イランは一部イラク向けタンカーに個別通航を認めた。全面正常化ではなく、選別的・不安定な通航状態が続いている。",
       "observed_impact": "8月18日時点のKplerベース報道ではcommodity vesselの通航は1日6隻程度にとどまり、VLCC/LNG船の通航も限定的だった。中国系船社では湾岸チョークポイント回避とSTS利用が確認されている。",
       "japan_implication": "日本発着コンテナの一律停止を意味しないが、燃料・保険・船腹配分・中東接続の変動要因として高い監視優先度を維持する。",
-      "operational_implication": "中東関連貨物は輸送会社/lane単位で経路・追加料金・輸送日数を確認し、一般論から直接影響を断定しない。",
+      "operational_implication": "中東関連貨物はcarrier/lane単位でrouting・surcharge・輸送日数を確認し、一般論から直接影響を断定しない。",
       "topic_ids": [
-        "middle-east-maritime-リスク"
+        "middle-east-maritime-risk"
       ],
       "evidence": [
         {
@@ -127,10 +127,10 @@
       ]
     },
     {
-      "id": "2026-08-21-east-west-キャパシティ-adjustment",
+      "id": "2026-08-21-east-west-capacity-adjustment",
       "date": "2026-08-21",
       "event_date": "2026-08-24/2026-09-27",
-      "headline": "主要East-Westで今後5週間49便のblank sailing、キャンセル率6%",
+      "headline": "主要East-Westで今後5週間49便の欠便、キャンセル率6%",
       "domain": "ocean",
       "importance": "medium",
       "japan_relevance": "medium",
@@ -141,13 +141,13 @@
       "market_change": "deterioration",
       "time_horizon": "30d",
       "confidence": "high",
-      "summary": "Drewryはweek35〜39の主要East-West航路で49 blank sailings、6% cancellation 運賃、94%の予定便が運航見込みとした。市場は全面的な供給不足ではなく、需要差に合わせた選択的キャパシティ調整局面。",
+      "summary": "Drewryはweek35〜39の主要East-West航路で49 欠便s、6% cancellation rate、94%の予定便が運航見込みとした。市場は全面的な供給不足ではなく、需要差に合わせた選択的capacity調整局面。",
       "observed_impact": "公開情報から日本向け個別booking障害までは確認していない。",
       "japan_implication": "日本接続を含むアジア発 bookingでは航路・接続便単位で欠便/omissionの確認が必要。",
-      "operational_implication": "Rate上昇をキャパシティ不足と同一視せず、blank sailingと実際のservice scheduleを分けて監視する。",
+      "operational_implication": "Rate上昇をcapacity不足と同一視せず、欠便と実際のservice scheduleを分けて監視する。",
       "topic_ids": [
         "ocean-blank-sailing-pressure",
-        "ocean-intra-asia-キャパシティ"
+        "ocean-intra-asia-capacity"
       ],
       "evidence": [
         {
@@ -168,18 +168,18 @@
       "japan_relevance": "high",
       "operational_scope": "market",
       "status": "observed",
-      "market_dimension": "運賃",
+      "market_dimension": "rate",
       "market_materiality": "routine",
       "market_change": "no_material_change",
       "time_horizon": "7d",
       "confidence": "high",
-      "summary": "Drewry WCIは4%上昇しUSD 4,526/40ft、IACIは6%上昇しUSD 1,091/40ft。価格上昇は確認できるが、これだけでphysical キャパシティ shortageとは判断しない。",
+      "summary": "Drewry WCIは4%上昇しUSD 4,526/40ft、IACIは6%上昇しUSD 1,091/40ft。価格上昇は確認できるが、これだけでphysical 船腹不足とは判断しない。",
       "observed_impact": "市場価格指標の上昇を確認。日本向け個別契約運賃への転嫁幅は契約・lane別。",
       "japan_implication": "アジア発の短期spot/renewal条件は上方向の圧力を受け得る。",
-      "operational_implication": "価格、キャパシティ、定時性を別管理し、次回booking/入札条件を確認する。",
+      "operational_implication": "価格、capacity、reliabilityを別管理し、次回booking/入札条件を確認する。",
       "topic_ids": [
         "ocean-global-price",
-        "ocean-intra-asia-キャパシティ"
+        "ocean-intra-asia-capacity"
       ],
       "evidence": [
         {
@@ -206,7 +206,7 @@
       "japan_relevance": "medium",
       "operational_scope": "global",
       "status": "observed",
-      "market_dimension": "定時性",
+      "market_dimension": "reliability",
       "market_materiality": "material",
       "market_change": "deterioration",
       "time_horizon": "7d",
@@ -216,8 +216,8 @@
       "japan_implication": "中東経由・接続貨物ではT/S・港湾滞留によるlead-time varianceが拡大する可能性。",
       "operational_implication": "該当ルートはscheduleだけでなく実際の寄港とconnectionを確認する。",
       "topic_ids": [
-        "middle-east-maritime-リスク",
-        "ocean-schedule-定時性"
+        "middle-east-maritime-risk",
+        "ocean-schedule-reliability"
       ],
       "evidence": [
         {
@@ -243,13 +243,13 @@
       "market_change": "acceleration",
       "time_horizon": "7d",
       "confidence": "high",
-      "demand_driver": "販促",
-      "summary": "Qoo10の2026 Q3メガ割は8月28日17:00〜9月9日23:59予定。Beauty ECでは販促-driven demand spikeとして倉庫波動の先行監視対象。",
+      "demand_driver": "promotion",
+      "summary": "Qoo10の2026 Q3メガ割は8月28日17:00〜9月9日23:59予定。Beauty ECではpromotion-driven demand spikeとして倉庫波動の先行監視対象。",
       "observed_impact": "開始前のため実需増加は未観測。",
       "japan_implication": "Beauty ECの短期需要・gift/promo material消費・出荷波動に影響し得る。",
       "operational_implication": "8月28日以降のorder volumeを自然需要と分けて評価する。",
       "topic_ids": [
-        "beauty-japan-ec-販促"
+        "beauty-japan-ec-promotion"
       ],
       "evidence": [
         {

@@ -1,9 +1,9 @@
 {
   "schema_version": "2.1",
   "dataset": "public-sanitize-status",
-  "status": "failure",
-  "stage": "report_validation",
-  "updated_at": "2026-08-23T04:27:58.170613+00:00",
+  "status": "success",
+  "stage": "success",
+  "updated_at": "2026-08-23T04:30:45.332711+00:00",
   "stages": {
     "restore": "success",
     "sanitize": "success",
@@ -11,15 +11,15 @@
     "finalize_display": "success",
     "audit": "success",
     "schema_integrity": "success",
-    "report_validation": "failure",
-    "customs_validation": "skipped"
+    "report_validation": "success",
+    "customs_validation": "success"
   },
   "exit_codes": {
     "audit": "0",
     "schema_integrity": "0",
-    "report_validation": "1",
-    "customs_validation": null
+    "report_validation": "0",
+    "customs_validation": "0"
   },
-  "diagnostic_tail": "[WARN ] 2026-08-22-daily: change_summary has no comparison_base\n[WARN ] 2026-08-23-weekly: change_summary has no comparison_base\n[WARN ] 2026-08-23-monthly: change_summary has no comparison_base\n[WARN ] 2026-08-23-daily: no 前回からの変化 section (id=\"chg-h\")\n[WARN ] 2026-08-22-daily: no 前回からの変化 section (id=\"chg-h\")\n[WARN ] 2026-08-23-weekly: no 前回からの変化 section (id=\"chg-h\")\n[WARN ] 2026-08-23-monthly: monthly report has no data-report-period attribute\n[WARN ] 2026-08-23-monthly: no 前回からの変化 section (id=\"chg-h\")\n[ERROR] 2026-08-23-weekly: no <script type=\"module\" src=\"…assets/js/app.js\"> — the page will not render signals\n[ERROR] 2026-08-23-monthly: no <script type=\"module\" src=\"…assets/js/app.js\"> — the page will not render signals\n\nchecked 4 report(s): 2 error(s), 8 warning(s)\n",
+  "diagnostic_tail": null,
   "note": "Public sanitizer health only; stable machine keys and non-brand URLs must remain unchanged."
 }
