@@ -3,7 +3,7 @@
   "dataset": "labor-capacity-stress-sensitivity",
   "title_ja": "物流労働キャパシティ・ストレス 感度分析",
   "frequency": "annual",
-  "status": "schema_ready",
+  "status": "derived_leave_one_out",
   "methodology": {
     "base_score": "labor_capacity_stress_v1",
     "test": "leave_one_component_out",
@@ -16,13 +16,398 @@
     "感度レンジが狭いほど、v1の方向性が特定1要素だけに依存していないことを示す。"
   ],
   "series": [
-    {"metric_id":"stress_without_parcel_load","name_ja":"宅配需要圧力を除外","unit":"index_2018_100","observations":[]},
-    {"metric_id":"stress_without_freight_vacancy","name_ja":"貨物求人圧力を除外","unit":"index_2018_100","observations":[]},
-    {"metric_id":"stress_without_aging","name_ja":"高齢化圧力を除外","unit":"index_2018_100","observations":[]},
-    {"metric_id":"stress_without_replacement","name_ja":"世代交代圧力を除外","unit":"index_2018_100","observations":[]},
-    {"metric_id":"stress_without_working_age","name_ja":"生産年齢人口圧力を除外","unit":"index_2018_100","observations":[]},
-    {"metric_id":"stress_leave_one_out_min","name_ja":"leave-one-out 最小値","unit":"index_2018_100","observations":[]},
-    {"metric_id":"stress_leave_one_out_max","name_ja":"leave-one-out 最大値","unit":"index_2018_100","observations":[]},
-    {"metric_id":"stress_leave_one_out_range","name_ja":"leave-one-out レンジ","unit":"index_points","observations":[]}
-  ]
+    {
+      "metric_id": "stress_without_parcel_load",
+      "name_ja": "宅配需要圧力を除外",
+      "unit": "index_2018_100",
+      "observations": [
+        {
+          "period": "2018",
+          "value": 100.0,
+          "status": "derived",
+          "source": "LBI leave-one-out: excluded parcel_labor_load_pressure_v1; remaining four equal 25%"
+        },
+        {
+          "period": "2019",
+          "value": 101.7,
+          "status": "derived",
+          "source": "LBI leave-one-out: excluded parcel_labor_load_pressure_v1; remaining four equal 25%"
+        },
+        {
+          "period": "2020",
+          "value": 93.9,
+          "status": "derived",
+          "source": "LBI leave-one-out: excluded parcel_labor_load_pressure_v1; remaining four equal 25%"
+        },
+        {
+          "period": "2021",
+          "value": 98.3,
+          "status": "derived",
+          "source": "LBI leave-one-out: excluded parcel_labor_load_pressure_v1; remaining four equal 25%"
+        },
+        {
+          "period": "2022",
+          "value": 104.4,
+          "status": "derived",
+          "source": "LBI leave-one-out: excluded parcel_labor_load_pressure_v1; remaining four equal 25%"
+        },
+        {
+          "period": "2023",
+          "value": 104.7,
+          "status": "derived",
+          "source": "LBI leave-one-out: excluded parcel_labor_load_pressure_v1; remaining four equal 25%"
+        },
+        {
+          "period": "2024",
+          "value": 111.1,
+          "status": "derived",
+          "source": "LBI leave-one-out: excluded parcel_labor_load_pressure_v1; remaining four equal 25%"
+        }
+      ]
+    },
+    {
+      "metric_id": "stress_without_freight_vacancy",
+      "name_ja": "貨物求人圧力を除外",
+      "unit": "index_2018_100",
+      "observations": [
+        {
+          "period": "2018",
+          "value": 100.0,
+          "status": "derived",
+          "source": "LBI leave-one-out: excluded freight_driver_vacancy_pressure_v1; remaining four equal 25%"
+        },
+        {
+          "period": "2019",
+          "value": 101.5,
+          "status": "derived",
+          "source": "LBI leave-one-out: excluded freight_driver_vacancy_pressure_v1; remaining four equal 25%"
+        },
+        {
+          "period": "2020",
+          "value": 104.3,
+          "status": "derived",
+          "source": "LBI leave-one-out: excluded freight_driver_vacancy_pressure_v1; remaining four equal 25%"
+        },
+        {
+          "period": "2021",
+          "value": 108.9,
+          "status": "derived",
+          "source": "LBI leave-one-out: excluded freight_driver_vacancy_pressure_v1; remaining four equal 25%"
+        },
+        {
+          "period": "2022",
+          "value": 113.8,
+          "status": "derived",
+          "source": "LBI leave-one-out: excluded freight_driver_vacancy_pressure_v1; remaining four equal 25%"
+        },
+        {
+          "period": "2023",
+          "value": 114.0,
+          "status": "derived",
+          "source": "LBI leave-one-out: excluded freight_driver_vacancy_pressure_v1; remaining four equal 25%"
+        },
+        {
+          "period": "2024",
+          "value": 119.2,
+          "status": "derived",
+          "source": "LBI leave-one-out: excluded freight_driver_vacancy_pressure_v1; remaining four equal 25%"
+        }
+      ]
+    },
+    {
+      "metric_id": "stress_without_aging",
+      "name_ja": "高齢化圧力を除外",
+      "unit": "index_2018_100",
+      "observations": [
+        {
+          "period": "2018",
+          "value": 100.0,
+          "status": "derived",
+          "source": "LBI leave-one-out: excluded road_freight_aging_pressure_v1; remaining four equal 25%"
+        },
+        {
+          "period": "2019",
+          "value": 100.0,
+          "status": "derived",
+          "source": "LBI leave-one-out: excluded road_freight_aging_pressure_v1; remaining four equal 25%"
+        },
+        {
+          "period": "2020",
+          "value": 95.3,
+          "status": "derived",
+          "source": "LBI leave-one-out: excluded road_freight_aging_pressure_v1; remaining four equal 25%"
+        },
+        {
+          "period": "2021",
+          "value": 99.4,
+          "status": "derived",
+          "source": "LBI leave-one-out: excluded road_freight_aging_pressure_v1; remaining four equal 25%"
+        },
+        {
+          "period": "2022",
+          "value": 103.8,
+          "status": "derived",
+          "source": "LBI leave-one-out: excluded road_freight_aging_pressure_v1; remaining four equal 25%"
+        },
+        {
+          "period": "2023",
+          "value": 103.8,
+          "status": "derived",
+          "source": "LBI leave-one-out: excluded road_freight_aging_pressure_v1; remaining four equal 25%"
+        },
+        {
+          "period": "2024",
+          "value": 109.3,
+          "status": "derived",
+          "source": "LBI leave-one-out: excluded road_freight_aging_pressure_v1; remaining four equal 25%"
+        }
+      ]
+    },
+    {
+      "metric_id": "stress_without_replacement",
+      "name_ja": "世代交代圧力を除外",
+      "unit": "index_2018_100",
+      "observations": [
+        {
+          "period": "2018",
+          "value": 100.0,
+          "status": "derived",
+          "source": "LBI leave-one-out: excluded road_freight_replacement_pressure_v1; remaining four equal 25%"
+        },
+        {
+          "period": "2019",
+          "value": 101.0,
+          "status": "derived",
+          "source": "LBI leave-one-out: excluded road_freight_replacement_pressure_v1; remaining four equal 25%"
+        },
+        {
+          "period": "2020",
+          "value": 96.0,
+          "status": "derived",
+          "source": "LBI leave-one-out: excluded road_freight_replacement_pressure_v1; remaining four equal 25%"
+        },
+        {
+          "period": "2021",
+          "value": 97.5,
+          "status": "derived",
+          "source": "LBI leave-one-out: excluded road_freight_replacement_pressure_v1; remaining four equal 25%"
+        },
+        {
+          "period": "2022",
+          "value": 101.8,
+          "status": "derived",
+          "source": "LBI leave-one-out: excluded road_freight_replacement_pressure_v1; remaining four equal 25%"
+        },
+        {
+          "period": "2023",
+          "value": 102.8,
+          "status": "derived",
+          "source": "LBI leave-one-out: excluded road_freight_replacement_pressure_v1; remaining four equal 25%"
+        },
+        {
+          "period": "2024",
+          "value": 106.4,
+          "status": "derived",
+          "source": "LBI leave-one-out: excluded road_freight_replacement_pressure_v1; remaining four equal 25%"
+        }
+      ]
+    },
+    {
+      "metric_id": "stress_without_working_age",
+      "name_ja": "生産年齢人口圧力を除外",
+      "unit": "index_2018_100",
+      "observations": [
+        {
+          "period": "2018",
+          "value": 100.0,
+          "status": "derived",
+          "source": "LBI leave-one-out: excluded working_age_supply_pressure_v1; remaining four equal 25%"
+        },
+        {
+          "period": "2019",
+          "value": 101.3,
+          "status": "derived",
+          "source": "LBI leave-one-out: excluded working_age_supply_pressure_v1; remaining four equal 25%"
+        },
+        {
+          "period": "2020",
+          "value": 96.2,
+          "status": "derived",
+          "source": "LBI leave-one-out: excluded working_age_supply_pressure_v1; remaining four equal 25%"
+        },
+        {
+          "period": "2021",
+          "value": 100.8,
+          "status": "derived",
+          "source": "LBI leave-one-out: excluded working_age_supply_pressure_v1; remaining four equal 25%"
+        },
+        {
+          "period": "2022",
+          "value": 107.2,
+          "status": "derived",
+          "source": "LBI leave-one-out: excluded working_age_supply_pressure_v1; remaining four equal 25%"
+        },
+        {
+          "period": "2023",
+          "value": 107.6,
+          "status": "derived",
+          "source": "LBI leave-one-out: excluded working_age_supply_pressure_v1; remaining four equal 25%"
+        },
+        {
+          "period": "2024",
+          "value": 114.4,
+          "status": "derived",
+          "source": "LBI leave-one-out: excluded working_age_supply_pressure_v1; remaining four equal 25%"
+        }
+      ]
+    },
+    {
+      "metric_id": "stress_leave_one_out_min",
+      "name_ja": "leave-one-out 最小値",
+      "unit": "index_2018_100",
+      "observations": [
+        {
+          "period": "2018",
+          "value": 100.0,
+          "status": "derived",
+          "source": "Minimum of five leave-one-out variants"
+        },
+        {
+          "period": "2019",
+          "value": 100.0,
+          "status": "derived",
+          "source": "Minimum of five leave-one-out variants"
+        },
+        {
+          "period": "2020",
+          "value": 93.9,
+          "status": "derived",
+          "source": "Minimum of five leave-one-out variants"
+        },
+        {
+          "period": "2021",
+          "value": 97.5,
+          "status": "derived",
+          "source": "Minimum of five leave-one-out variants"
+        },
+        {
+          "period": "2022",
+          "value": 101.8,
+          "status": "derived",
+          "source": "Minimum of five leave-one-out variants"
+        },
+        {
+          "period": "2023",
+          "value": 102.8,
+          "status": "derived",
+          "source": "Minimum of five leave-one-out variants"
+        },
+        {
+          "period": "2024",
+          "value": 106.4,
+          "status": "derived",
+          "source": "Minimum of five leave-one-out variants"
+        }
+      ]
+    },
+    {
+      "metric_id": "stress_leave_one_out_max",
+      "name_ja": "leave-one-out 最大値",
+      "unit": "index_2018_100",
+      "observations": [
+        {
+          "period": "2018",
+          "value": 100.0,
+          "status": "derived",
+          "source": "Maximum of five leave-one-out variants"
+        },
+        {
+          "period": "2019",
+          "value": 101.7,
+          "status": "derived",
+          "source": "Maximum of five leave-one-out variants"
+        },
+        {
+          "period": "2020",
+          "value": 104.3,
+          "status": "derived",
+          "source": "Maximum of five leave-one-out variants"
+        },
+        {
+          "period": "2021",
+          "value": 108.9,
+          "status": "derived",
+          "source": "Maximum of five leave-one-out variants"
+        },
+        {
+          "period": "2022",
+          "value": 113.8,
+          "status": "derived",
+          "source": "Maximum of five leave-one-out variants"
+        },
+        {
+          "period": "2023",
+          "value": 114.0,
+          "status": "derived",
+          "source": "Maximum of five leave-one-out variants"
+        },
+        {
+          "period": "2024",
+          "value": 119.2,
+          "status": "derived",
+          "source": "Maximum of five leave-one-out variants"
+        }
+      ]
+    },
+    {
+      "metric_id": "stress_leave_one_out_range",
+      "name_ja": "leave-one-out レンジ",
+      "unit": "index_points",
+      "observations": [
+        {
+          "period": "2018",
+          "value": 0.0,
+          "status": "derived",
+          "source": "Max minus min of five leave-one-out variants"
+        },
+        {
+          "period": "2019",
+          "value": 1.7,
+          "status": "derived",
+          "source": "Max minus min of five leave-one-out variants"
+        },
+        {
+          "period": "2020",
+          "value": 10.4,
+          "status": "derived",
+          "source": "Max minus min of five leave-one-out variants"
+        },
+        {
+          "period": "2021",
+          "value": 11.4,
+          "status": "derived",
+          "source": "Max minus min of five leave-one-out variants"
+        },
+        {
+          "period": "2022",
+          "value": 12.1,
+          "status": "derived",
+          "source": "Max minus min of five leave-one-out variants"
+        },
+        {
+          "period": "2023",
+          "value": 11.2,
+          "status": "derived",
+          "source": "Max minus min of five leave-one-out variants"
+        },
+        {
+          "period": "2024",
+          "value": 12.8,
+          "status": "derived",
+          "source": "Max minus min of five leave-one-out variants"
+        }
+      ]
+    }
+  ],
+  "latest_common_year": "2024"
 }
