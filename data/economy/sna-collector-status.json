@@ -1,13 +1,13 @@
 {
   "schema_version": "1.0",
   "dataset": "sna-collector-status",
-  "status": "pending",
-  "stage": "awaiting_main_workflow",
+  "status": "success",
+  "stage": "success",
   "vintage": "2024",
-  "collect_outcome": null,
-  "validate_outcome": null,
-  "collect_exit_code": null,
-  "updated_at": "2026-08-23T03:48:00Z",
-  "diagnostic_tail": null,
-  "note": "This file is overwritten by the SNA collector workflow on main. Public diagnostic only; no credentials or private data are included."
+  "collect_outcome": "success",
+  "validate_outcome": "success",
+  "collect_exit_code": "0",
+  "updated_at": "2026-08-23T03:54:57.842374+00:00",
+  "diagnostic_tail": "Wrote data/economy/industry-deflators.json: 16 industries, {'start_year': 1994, 'end_year': 2024, 'target_industries': 16}\n",
+  "note": "Public diagnostic only; no credentials or private data are included."
 }
