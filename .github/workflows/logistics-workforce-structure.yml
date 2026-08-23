@@ -25,7 +25,7 @@ on:
       - ".github/workflows/logistics-workforce-structure.yml"
   pull_request:
     paths:
-      - "scripts/update_logistics-workforce-age.py"
+      - "scripts/update_logistics_workforce_age.py"
       - "scripts/update_logistics_productivity.py"
       - "scripts/update_household_demand.py"
       - "scripts/update_trucking_physical_capacity.py"
