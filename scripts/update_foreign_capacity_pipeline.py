@@ -37,14 +37,20 @@ def discover_latest_table3() -> str:
         href = a.get("href") or ""
         if ".pdf" not in href.lower():
             continue
+        url = urljoin(LANDING, href)
         own = norm(a.get_text(" ", strip=True))
         parent = norm(a.parent.get_text(" ", strip=True)) if a.parent else own
-        grand = norm(a.parent.parent.get_text(" ", strip=True)) if a.parent and a.parent.parent else parent
-        context = " | ".join((own, parent, grand))
-        pdfs.append((urljoin(LANDING, href), context))
-        if "第3表" in context:
-            return urljoin(LANDING, href)
-    diagnostic = [f"{u} :: {c[:180]}" for u, c in pdfs[:20]]
+        pdfs.append((url, own, parent))
+        # Current ISA markup labels the desired link itself as 第1表、第2表、第3表(PDF).
+        if "第3表" in own:
+            return url
+    # Fallback for a future layout where the anchor says only PDF. Keep this immediate-parent only
+    # and exclude overview/detail/point links so a whole section wrapper cannot cause a false match.
+    excluded = ("概要版", "詳細版", "ポイント", "運用状況")
+    for url, own, parent in pdfs:
+        if "第3表" in parent and not any(x in own or x in parent[:80] for x in excluded):
+            return url
+    diagnostic = [f"{u} :: own={o[:100]} :: parent={p[:160]}" for u, o, p in pdfs[:20]]
     raise RuntimeError("Could not discover latest SSW Table 3 PDF; PDF candidates=" + json.dumps(diagnostic, ensure_ascii=False))
 
 
@@ -52,7 +58,6 @@ def extract_pdf_text(url: str) -> str:
     r = requests.get(url, headers={"User-Agent": UA, "Referer": LANDING}, timeout=45)
     r.raise_for_status()
     reader = PdfReader(io.BytesIO(r.content))
-    # Preserve page/line breaks for table-layout parsing; normalize width only.
     text = "\n".join(page.extract_text() or "" for page in reader.pages)
     if not text.strip():
         raise RuntimeError("Latest SSW Table 3 PDF contained no extractable text")
@@ -68,7 +73,6 @@ def parse_period(text: str) -> str:
 
 
 def parse_auto_transport(text: str) -> tuple[int, int, int, int]:
-    # Keep numeric-cell separators, but remove whitespace inserted between Japanese label characters.
     raw = unicodedata.normalize("NFKC", text)
     label_joined = re.sub(r"(?<=[\u3040-\u30ff\u3400-\u9fff])\s+(?=[\u3040-\u30ff\u3400-\u9fff])", "", raw)
     t = norm(label_joined)
@@ -93,30 +97,10 @@ def parse_auto_transport(text: str) -> tuple[int, int, int, int]:
         if total == truck + taxi + bus and total >= 0:
             return total, truck, taxi, bus
 
-    # Try a line-oriented parse. Accept only four-number rows that reconcile arithmetically and are
-    # adjacent to one of the auto-transport/truck labels.
-    lines = [norm(x) for x in label_joined.splitlines() if norm(x)]
-    for idx, line in enumerate(lines):
-        context = " ".join(lines[max(0, idx - 3): min(len(lines), idx + 4)])
-        if not (re.search(field, context) or "トラック" in context):
-            continue
-        nums = [int(x.replace(",", "")) for x in re.findall(r"(?<!\d)(\d[\d,]*)(?!\d)", context)]
-        nums = [x for x in nums if x < 1000000]
-        for total in nums:
-            for truck in nums:
-                for taxi in nums:
-                    for bus in nums:
-                        if len({id(total), id(truck), id(taxi), id(bus)}) == 4:
-                            continue
-                        # Values are tiny enough that equality is a strong guard; explicit current
-                        # regression anchors in validate_foreign_workforce provide a second guard.
-                        if total > 0 and total == truck + taxi + bus:
-                            return total, truck, taxi, bus
-
     compact = re.sub(r"\s+", "", raw)
     keywords = {k: (k in compact) for k in ["自動車運送業", "トラック", "タクシー", "バス"]}
-    snippets = [norm(line)[:300] for line in raw.splitlines() if any(k in line for k in ["自動車", "トラック", "タクシー", "バス"])][:20]
-    raise RuntimeError("Could not confidently parse auto-transport split; keywords=" + json.dumps(keywords, ensure_ascii=False) + "; snippets=" + json.dumps(snippets, ensure_ascii=False) + "; prefix=" + norm(raw)[:2500])
+    snippets = [norm(line)[:500] for line in raw.splitlines() if any(k in line for k in ["自動車", "トラック", "タクシー", "バス"])][:30]
+    raise RuntimeError("Could not confidently parse auto-transport split; keywords=" + json.dumps(keywords, ensure_ascii=False) + "; snippets=" + json.dumps(snippets, ensure_ascii=False) + "; prefix=" + norm(raw)[:3000])
 
 
 def get_series(data: dict, metric_id: str) -> dict:
