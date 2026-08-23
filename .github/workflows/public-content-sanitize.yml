@@ -1,0 +1,44 @@
+name: Sanitize public content
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/sanitize_public_content.py"
+      - "scripts/audit_public_content.py"
+      - ".github/workflows/public-content-sanitize.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  sanitize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Sanitize public data and UI vocabulary
+        run: python scripts/sanitize_public_content.py
+
+      - name: Audit public privacy and Japanese UI
+        run: python scripts/audit_public_content.py
+
+      - name: Commit sanitized public output
+        shell: bash
+        run: |
+          if git diff --quiet; then
+            echo "No public sanitization changes."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data assets/js index.html radar.html topic.html archive.html economic-flow.html source-matrix.html status-history.html lens-history.html buzz.html commerce-calendar.html reports templates
+          git commit -m "data: sanitize public Japanese and brand privacy"
+          git push
