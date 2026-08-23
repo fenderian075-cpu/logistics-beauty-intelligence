@@ -24,6 +24,7 @@ function displayValue(unit, value) {
   if (unit === "million items") return `${jp(v / 100, 2)}億冊`;
   if (unit === "ten_thousand_persons") return `${jp(v, 0)}万人`;
   if (unit === "million_persons") return `${jp(v, 2)}百万人`;
+  if (unit === "million_households") return `${jp(v, 2)}百万世帯`;
   if (unit === "pct") return `${jp(v, 1)}%`;
   if (unit === "years") return `${jp(v, 1)}歳`;
   if (unit === "ten_thousand_jpy_year") return `${jp(v, 1)}万円/年`;
@@ -33,6 +34,7 @@ function displayValue(unit, value) {
   if (unit === "trillion_jpy") return `${jp(v, 2)}兆円`;
   if (unit === "parcels_per_worker_year") return `${jp(v, 0)}個/人・年`;
   if (unit === "parcels_per_person_year") return `${jp(v, 1)}個/人・年`;
+  if (unit === "parcels_per_household_year") return `${jp(v, 1)}個/世帯・年`;
   if (unit === "thousand_tonne_km_per_worker_year") return `${jp(v, 1)}千ton-km/人`;
   if (unit === "tonnes_per_worker_year") return `${jp(v, 1)}t/人`;
   if (unit === "index_2015_100") return jp(v, 1);
@@ -57,7 +59,7 @@ function sourceNote(text) { return el("p", "flow-block__reading", text); }
 async function mount() {
   const root = byId("logistics-structure");
   if (!root) return;
-  const [parcel, workforce, capacity, demography, labor, population, workforceAge, ecDemand] = await Promise.all([
+  const [parcel, workforce, capacity, demography, labor, population, workforceAge, ecDemand, householdDemand] = await Promise.all([
     loadOptionalJSON("data/economy/parcel-demand.json", {}),
     loadOptionalJSON("data/economy/logistics-workforce.json", {}),
     loadOptionalJSON("data/economy/logistics-capacity.json", {}),
@@ -65,7 +67,8 @@ async function mount() {
     loadOptionalJSON("data/economy/logistics-labor-market.json", {}),
     loadOptionalJSON("data/economy/japan-demography.json", {}),
     loadOptionalJSON("data/economy/logistics-workforce-age.json", {}),
-    loadOptionalJSON("data/economy/ec-demand.json", {})
+    loadOptionalJSON("data/economy/ec-demand.json", {}),
+    loadOptionalJSON("data/economy/household-demand.json", {})
   ]);
   clear(root);
 
@@ -83,6 +86,8 @@ async function mount() {
   const physicalEc = series(ecDemand, "physical_btoc_ec_market");
   const physicalEcRate = series(ecDemand, "physical_btoc_ec_rate");
   const physicalEcIndex = series(ecDemand, "physical_btoc_ec_index_2015");
+  const households = series(householdDemand, "resident_register_households");
+  const parcelPerHousehold = series(householdDemand, "parcel_per_household");
   const allAge = series(demography, "all_industries_average_age");
   const largeDriverAge = series(demography, "commercial_large_truck_driver_average_age");
   const smallDriverAge = series(demography, "commercial_small_truck_driver_average_age");
@@ -102,7 +107,6 @@ async function mount() {
   const foreignPopulation = series(population, "foreign_population");
 
   const tp55 = series(workforceAge, "transport_postal_age_55_plus_share");
-  const tpYoung = series(workforceAge, "transport_postal_young_share");
   const tpReplacement = series(workforceAge, "transport_postal_replacement_ratio");
   const roadEmployment = series(workforceAge, "road_freight_employment");
   const road55 = series(workforceAge, "road_freight_age_55_plus_share");
@@ -118,7 +122,7 @@ async function mount() {
   const pulse = el("div", "value-row");
   pulse.appendChild(card("宅配便取扱個数", parcelVolume, "B2C需要proxy"));
   pulse.appendChild(card("物販系BtoC-EC", physicalEc, "金額ベース需要"));
-  pulse.appendChild(card("1人当たり宅配便", parcelPerCapita, "人口ベース"));
+  pulse.appendChild(card("1世帯当たり宅配便", parcelPerHousehold, "世帯需要proxy"));
   pulse.appendChild(card("運輸業・郵便業 就業者", employment, "年平均"));
   pulse.appendChild(card("宅配需要/労働力", loadIndex, "2015=100"));
   pulse.appendChild(card("有効求人倍率", vacancy, "トラックドライバー"));
@@ -130,10 +134,24 @@ async function mount() {
     { name:"メール便", unitLabel:"百万冊", points:points(mailVolume) }
   ], note:"宅配便は法人向けを一部含むため、B2Cそのものではなくラストマイル需要の代理指標として扱います。" });
   if (parcelChart) root.appendChild(parcelChart);
-  const intensityChart = chart({ kind:"line", unitLabel:"個/人・年", series:[
-    { name:"人口1人当たり宅配便", unitLabel:"個/人・年", points:points(parcelPerCapita) }
-  ], note:"宅配便個数 ÷ 総人口。人口減少下でもラストマイル需要密度が上昇しているかを見る指標です。" });
+  const intensityChart = chart({ kind:"line", unitLabel:"個/年", series:[
+    { name:"人口1人当たり", unitLabel:"個/人・年", points:points(parcelPerCapita) },
+    { name:"1世帯当たり", unitLabel:"個/世帯・年", points:points(parcelPerHousehold) }
+  ], note:"人口当たりと世帯当たりの2方向からラストマイル需要密度を確認します。世帯系列は1月1日住民基本台帳との組合せのためproxyです。" });
   if (intensityChart) root.appendChild(intensityChart);
+  if (hasData(households)) {
+    const hhRow = el("div", "value-row");
+    hhRow.appendChild(card("住民基本台帳 世帯数", households, "1月1日現在"));
+    hhRow.appendChild(card("1世帯当たり宅配便", parcelPerHousehold, "年度宅配÷世帯数"));
+    root.appendChild(hhRow);
+    const hh2015 = households.observations?.find((o) => o.period === "2015");
+    const hhNow = latest(households);
+    const pph2015 = parcelPerHousehold?.observations?.find((o) => o.period === "2015");
+    const pphNow = latest(parcelPerHousehold);
+    if (hh2015 && hhNow && pph2015 && pphNow) {
+      root.appendChild(sourceNote(`住民基本台帳世帯数は2015年${jp(hh2015.value,2)}百万世帯から2026年${jp(hhNow.value,2)}百万世帯へ増加。一方、1世帯当たり宅配便は2015年${jp(pph2015.value,1)}個から2024年${jp(pphNow.value,1)}個へ上昇しており、世帯細分化だけではなく世帯当たり配送需要も高まっています。`));
+    }
+  }
 
   if (hasData(physicalEc)) {
     root.appendChild(el("h3", "flow-block__sub", "EC demand context"));
@@ -272,11 +290,7 @@ async function mount() {
   const loadObs = latest(parcelPerWorker);
   if (loadObs) root.appendChild(sourceNote(`2024年のproxyは物流就業者1人あたり約${jp(loadObs.value,0)}個/年。2015年比では需要/労働力の負荷指数が約30.8%上昇しています。`));
 
-  if (!hasData(tp55)) {
-    root.appendChild(sourceNote("年齢階級×産業の公式e-Stat系列は未取得です。取得成功後に55歳以上比率・34歳以下比率・世代交代比率・道路貨物/倉庫就業者を表示します。"));
-  } else {
-    root.appendChild(sourceNote("次段: 住民基本台帳の世帯数を厳密に取り込み1世帯当たり宅配便を追加し、外国人物流労働者・ドライバー数・賃金/労働時間の長期系列を補強した後、複合Labor Capacity Stressを構築します。"));
-  }
+  root.appendChild(sourceNote("次段: 外国人物流労働者・ドライバー数・賃金/労働時間の長期系列とトラック物理capacityを補強し、入力系列の時間整合性を確認したうえで複合Labor Capacity Stressを構築します。"));
 }
 
 mount().catch((err) => console.error("logistics structure mount failed", err));
