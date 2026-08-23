@@ -33,6 +33,9 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Compile collector
+        run: python -m py_compile scripts/update_logistics_workforce_age.py scripts/validate_logistics_structure.py
+
       - name: Refresh official age and industry structure
         if: github.event_name != 'pull_request'
         shell: bash
@@ -45,6 +48,18 @@ jobs:
 
       - name: Validate structural datasets
         run: python scripts/validate_logistics_structure.py
+
+      - name: Report collector state
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open('data/economy/logistics-workforce-age.json', encoding='utf-8'))
+          print('workforce age status:', d.get('status'))
+          print('statsDataId:', d.get('api_contract',{}).get('stats_data_id'))
+          populated=sum(bool(s.get('observations')) for s in d.get('series',[]))
+          print('populated series:', populated, '/', len(d.get('series',[])))
+          PY
 
       - name: Commit refreshed workforce data on main
         if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
