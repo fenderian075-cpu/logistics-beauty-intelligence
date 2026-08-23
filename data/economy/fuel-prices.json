@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "dataset": "fuel-prices",
   "title_ja": "日本の燃料価格",
   "frequency": "weekly+monthly",
@@ -8,6 +8,11 @@
     "url": "https://www.enecho.meti.go.jp/statistics/petroleum_and_lpgas/pl007/results.html",
     "publication_rule_ja": "給油所小売価格は原則毎週月曜日調査・水曜日公表。全国平均と都道府県別を公表。"
   },
+  "verification_source": {
+    "name": "oil-stat.com",
+    "url": "https://oil-stat.com/",
+    "role_ja": "資源エネルギー庁の公表値を転載する公開時系列。公式Excel collectorの全履歴取込を安定化するまで、直近公表値の照合・初期seedにのみ使用。"
+  },
   "interpretation_ja": "国内配送コストへの波及を見るため、レギュラーガソリンと軽油を主要系列とする。灯油は家計・季節要因の補助系列。価格上昇だけで輸送能力不足とは判断しない。",
   "series": [
     {
@@ -15,8 +20,18 @@
       "name_ja": "レギュラーガソリン 全国平均",
       "unit": "円/L",
       "observations": [
-        {"period": "2025-12-15", "value": 159.7, "status": "official", "source_note": "資源エネルギー庁公表資料"},
-        {"period": "2026-05-25", "value": 169.2, "status": "official", "source_note": "資源エネルギー庁公表資料"}
+        {"period":"2025-12-15","value":159.7,"status":"official","source_note":"資源エネルギー庁公表資料"},
+        {"period":"2026-05-25","value":169.2,"status":"official","source_note":"資源エネルギー庁公表資料"},
+        {"period":"2026-06-15","value":169.7,"status":"official_republished","source_note":"資源エネルギー庁公表値を公開転載時系列で照合"},
+        {"period":"2026-06-22","value":169.8,"status":"official_republished","source_note":"資源エネルギー庁公表値を公開転載時系列で照合"},
+        {"period":"2026-06-29","value":169.8,"status":"official_republished","source_note":"資源エネルギー庁公表値を公開転載時系列で照合"},
+        {"period":"2026-07-06","value":169.9,"status":"official_republished","source_note":"資源エネルギー庁公表値を公開転載時系列で照合"},
+        {"period":"2026-07-13","value":169.9,"status":"official_republished","source_note":"資源エネルギー庁公表値を公開転載時系列で照合"},
+        {"period":"2026-07-21","value":170.0,"status":"official_republished","source_note":"資源エネルギー庁公表値を公開転載時系列で照合"},
+        {"period":"2026-07-27","value":170.1,"status":"official_republished","source_note":"資源エネルギー庁公表値を公開転載時系列で照合"},
+        {"period":"2026-08-03","value":170.1,"status":"official_republished","source_note":"資源エネルギー庁公表値を公開転載時系列で照合"},
+        {"period":"2026-08-10","value":170.1,"status":"official_republished","source_note":"資源エネルギー庁公表値を公開転載時系列で照合"},
+        {"period":"2026-08-17","value":169.8,"status":"official_republished","source_note":"資源エネルギー庁公表値を公開転載時系列で照合"}
       ]
     },
     {
@@ -24,17 +39,38 @@
       "name_ja": "軽油 全国平均",
       "unit": "円/L",
       "observations": [
-        {"period": "2025-12-15", "value": 146.0, "status": "official", "source_note": "資源エネルギー庁公表資料"}
+        {"period":"2025-12-15","value":146.0,"status":"official","source_note":"資源エネルギー庁公表資料"},
+        {"period":"2026-06-15","value":159.0,"status":"official_republished","source_note":"資源エネルギー庁公表値を公開転載時系列で照合"},
+        {"period":"2026-06-22","value":159.0,"status":"official_republished","source_note":"資源エネルギー庁公表値を公開転載時系列で照合"},
+        {"period":"2026-06-29","value":159.2,"status":"official_republished","source_note":"資源エネルギー庁公表値を公開転載時系列で照合"},
+        {"period":"2026-07-06","value":159.2,"status":"official_republished","source_note":"資源エネルギー庁公表値を公開転載時系列で照合"},
+        {"period":"2026-07-13","value":159.3,"status":"official_republished","source_note":"資源エネルギー庁公表値を公開転載時系列で照合"},
+        {"period":"2026-07-21","value":159.4,"status":"official_republished","source_note":"資源エネルギー庁公表値を公開転載時系列で照合"},
+        {"period":"2026-07-27","value":159.4,"status":"official_republished","source_note":"資源エネルギー庁公表値を公開転載時系列で照合"},
+        {"period":"2026-08-03","value":159.4,"status":"official_republished","source_note":"資源エネルギー庁公表値を公開転載時系列で照合"},
+        {"period":"2026-08-10","value":159.5,"status":"official_republished","source_note":"資源エネルギー庁公表値を公開転載時系列で照合"},
+        {"period":"2026-08-17","value":159.3,"status":"official_republished","source_note":"資源エネルギー庁公表値を公開転載時系列で照合"}
       ]
     },
     {
       "metric_id": "kerosene_national",
-      "name_ja": "灯油 全国平均",
+      "name_ja": "灯油 全国平均（店頭）",
       "unit": "円/18L",
       "observations": [
-        {"period": "2025-12-15", "value": 2201, "status": "official", "source_note": "資源エネルギー庁公表資料"}
+        {"period":"2025-12-15","value":2201,"status":"official","source_note":"資源エネルギー庁公表資料"},
+        {"period":"2026-06-15","value":2528,"status":"official_republished","source_note":"資源エネルギー庁公表値を公開転載時系列で照合"},
+        {"period":"2026-06-22","value":2531,"status":"official_republished","source_note":"資源エネルギー庁公表値を公開転載時系列で照合"},
+        {"period":"2026-06-29","value":2531,"status":"official_republished","source_note":"資源エネルギー庁公表値を公開転載時系列で照合"},
+        {"period":"2026-07-06","value":2532,"status":"official_republished","source_note":"資源エネルギー庁公表値を公開転載時系列で照合"},
+        {"period":"2026-07-13","value":2533,"status":"official_republished","source_note":"資源エネルギー庁公表値を公開転載時系列で照合"},
+        {"period":"2026-07-21","value":2533,"status":"official_republished","source_note":"資源エネルギー庁公表値を公開転載時系列で照合"},
+        {"period":"2026-07-27","value":2532,"status":"official_republished","source_note":"資源エネルギー庁公表値を公開転載時系列で照合"},
+        {"period":"2026-08-03","value":2533,"status":"official_republished","source_note":"資源エネルギー庁公表値を公開転載時系列で照合"},
+        {"period":"2026-08-10","value":2534,"status":"official_republished","source_note":"資源エネルギー庁公表値を公開転載時系列で照合"},
+        {"period":"2026-08-17","value":2532,"status":"official_republished","source_note":"資源エネルギー庁公表値を公開転載時系列で照合"}
       ]
     }
   ],
-  "collection_status": "seeded_official_points_collector_pending_first_full_history_run"
+  "collection_status": "recent_official_values_seeded_full_official_workbook_ingestion_pending",
+  "collection_note_ja": "直近週次は資源エネルギー庁公表値を転載する公開時系列で照合して初期投入。正式な長期履歴は公式週次Excel collectorをprimaryとして取り込む。欠損値は推測で補完しない。"
 }
