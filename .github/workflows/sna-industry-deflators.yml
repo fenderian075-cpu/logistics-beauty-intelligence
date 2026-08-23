@@ -15,7 +15,6 @@ on:
       - "tests/test_sna_year_parser.py"
       - ".github/workflows/sna-industry-deflators.yml"
   schedule:
-    # Annual SNA is normally released around late January. Recheck monthly Jan-Mar.
     - cron: "17 2 2 1-3 *"
 
 permissions:
@@ -52,13 +51,25 @@ jobs:
           echo "year=$VINTAGE" >> "$GITHUB_OUTPUT"
           echo "Using SNA vintage $VINTAGE"
 
-      - name: Collect official ESRI SNA tables
+      - name: Collect official SNA tables
+        id: collect
+        continue-on-error: true
+        shell: bash
         run: |
+          set +e
           python scripts/run_sna_industry_deflators.py \
             --vintage "${{ steps.vintage.outputs.year }}" \
-            --output data/economy/industry-deflators.json
+            --output data/economy/industry-deflators.json \
+            > /tmp/sna-collector.log 2>&1
+          RC=$?
+          cat /tmp/sna-collector.log
+          echo "exit_code=$RC" >> "$GITHUB_OUTPUT"
+          exit "$RC"
 
       - name: Validate output
+        id: validate
+        if: steps.collect.outcome == 'success'
+        continue-on-error: true
         run: |
           python - <<'PY'
           import json
@@ -77,15 +88,65 @@ jobs:
           print("validated", d["coverage"], "max_identity_gap", max(gaps))
           PY
 
-      - name: Commit refreshed dataset
+      - name: Write collector status
+        if: always()
+        env:
+          VINTAGE: ${{ steps.vintage.outputs.year }}
+          COLLECT_OUTCOME: ${{ steps.collect.outcome }}
+          VALIDATE_OUTCOME: ${{ steps.validate.outcome }}
+          COLLECT_EXIT_CODE: ${{ steps.collect.outputs.exit_code }}
+        run: |
+          python - <<'PY'
+          import json, os
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          log_path = Path('/tmp/sna-collector.log')
+          log = log_path.read_text(encoding='utf-8', errors='replace') if log_path.exists() else ''
+          collect = os.environ.get('COLLECT_OUTCOME') or 'not_run'
+          validate = os.environ.get('VALIDATE_OUTCOME') or 'not_run'
+          ok = collect == 'success' and validate == 'success'
+          stage = 'success' if ok else ('collect' if collect != 'success' else 'validate')
+          status = {
+              'schema_version': '1.0',
+              'dataset': 'sna-collector-status',
+              'status': 'success' if ok else 'failure',
+              'stage': stage,
+              'vintage': os.environ.get('VINTAGE'),
+              'collect_outcome': collect,
+              'validate_outcome': validate,
+              'collect_exit_code': os.environ.get('COLLECT_EXIT_CODE') or None,
+              'updated_at': datetime.now(timezone.utc).isoformat(),
+              'diagnostic_tail': log[-4000:] if log else None,
+              'note': 'Public diagnostic only; no credentials or private data are included.'
+          }
+          out = Path('data/economy/sna-collector-status.json')
+          out.write_text(json.dumps(status, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          print(json.dumps(status, ensure_ascii=False, indent=2))
+          PY
+
+      - name: Commit dataset or diagnostic status
+        if: always()
         shell: bash
         run: |
-          if git diff --quiet -- data/economy/industry-deflators.json; then
-            echo "No SNA dataset change."
-            exit 0
-          fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/economy/industry-deflators.json
-          git commit -m "data: refresh SNA industry deflators"
+          git add data/economy/sna-collector-status.json
+          if [[ "${{ steps.collect.outcome }}" == "success" && "${{ steps.validate.outcome }}" == "success" && -f data/economy/industry-deflators.json ]]; then
+            git add data/economy/industry-deflators.json
+          fi
+          if git diff --cached --quiet; then
+            echo "No SNA dataset/status change."
+            exit 0
+          fi
+          git commit -m "data: refresh SNA industry deflator status"
           git push
+
+      - name: Fail workflow when collector is unhealthy
+        if: always()
+        run: |
+          python - <<'PY'
+          import json
+          d = json.load(open('data/economy/sna-collector-status.json', encoding='utf-8'))
+          assert d['status'] == 'success', f"SNA collector failed at {d['stage']}: {d.get('diagnostic_tail')}"
+          PY
