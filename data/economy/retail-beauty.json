@@ -1,0 +1,18 @@
+{
+  "schema_version":"1.0",
+  "dataset":"retail-beauty",
+  "title_ja":"Beauty実需・小売",
+  "frequency":"monthly",
+  "sources":[
+    {"name":"経済産業省 商業動態統計","url":"https://www.meti.go.jp/statistics/tyo/syoudou/"},
+    {"name":"財務省 貿易統計","url":"https://www.customs.go.jp/toukei/info/"}
+  ],
+  "series":[
+    {"metric_id":"department_store_cosmetics_sales","unit":"JPY","observations":[]},
+    {"metric_id":"drugstore_beauty_sales","unit":"JPY","observations":[]},
+    {"metric_id":"beauty_import_value","unit":"JPY","observations":[]},
+    {"metric_id":"beauty_import_volume","unit":"quantity","observations":[]}
+  ],
+  "priority_dimensions":["makeup","skincare","fragrance","department_store","drugstore","EC","France","Italy","China","Korea"],
+  "interpretation":"Brand.com promotion and Google Trends are leading/attention signals; retail and trade statistics are physical/economic confirmation. Never treat promotion as organic demand."
+}

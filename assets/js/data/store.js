@@ -1,14 +1,5 @@
 /* =========================================================================
    store.js — the only place in the frontend that fetches data/*.json.
-   -------------------------------------------------------------------------
-   Why this exists: before v5, index.html fetched data/reports.json twice
-   (header.js + site.js) and report pages fetched it a third time from
-   market-intelligence.js. Every module now goes through this store, so one
-   page load issues exactly one request per file.
-
-   Contract with the content pipeline (docs/INTELLIGENCE_PIPELINE_V4.md):
-   the frontend is a read-only consumer. Nothing here writes to data/**, and
-   unknown keys are passed through untouched.
    ========================================================================= */
 
 import { root } from "../core/dom.js";
@@ -16,7 +7,6 @@ import { adaptReports, adaptRegistry } from "./adapters.js";
 
 const inflight = new Map();
 
-/** Fetch a JSON file once per page load. Returns the same promise on repeat. */
 export function loadJSON(path) {
   if (inflight.has(path)) return inflight.get(path);
   const url = root() + path;
@@ -29,14 +19,8 @@ export function loadJSON(path) {
   return promise;
 }
 
-/** Test seam: drop the per-page request cache. Never called by the site —
-    tests/dom-smoke.mjs renders several pages inside one Node process, which
-    would otherwise share this module's state. */
-export function resetCache() {
-  inflight.clear();
-}
+export function resetCache() { inflight.clear(); }
 
-/** Optional file: resolves to `fallback` instead of rejecting. */
 export function loadOptionalJSON(path, fallback) {
   return loadJSON(path).catch((err) => {
     console.warn(`${path} unavailable — continuing without it.`, err);
@@ -45,30 +29,16 @@ export function loadOptionalJSON(path, fallback) {
 }
 
 export const loadReports = () => loadJSON("data/reports.json").then(adaptReports);
-
-/* The registry is optional by design: signal rendering degrades to inline
-   metadata when it is missing, so a registry problem never blanks a page. */
 export const loadRegistry = () =>
   loadOptionalJSON("data/signal-registry.json", { signals: {} }).then(adaptRegistry);
-
-export const loadCommerceCalendar = () =>
-  loadOptionalJSON("data/commerce-calendar.json", { events: [] });
-
-export const loadHolidays = () =>
-  loadOptionalJSON("data/jp-holidays.json", { holidays: {} });
-
+export const loadCommerceCalendar = () => loadOptionalJSON("data/commerce-calendar.json", { events: [] });
+export const loadHolidays = () => loadOptionalJSON("data/jp-holidays.json", { holidays: {} });
 export const loadBuzz = () => loadJSON("data/buzz.json");
 
 function normalizeMonitoringSource(source) {
   const s = { ...source };
   const cadence = Array.isArray(s.cadence) ? s.cadence.slice() : [];
-
-  /* Product rule: every configured Brand.com is checked every Daily run,
-     regardless of whether it originated in the base or extra matrix. */
-  if (String(s.layer || "").toLowerCase().includes("brand.com") && !cadence.includes("daily")) {
-    cadence.unshift("daily");
-  }
-
+  if (String(s.layer || "").toLowerCase().includes("brand.com") && !cadence.includes("daily")) cadence.unshift("daily");
   s.cadence = Array.from(new Set(cadence));
   return s;
 }
@@ -79,17 +49,28 @@ export const loadSourceMatrix = () =>
     loadOptionalJSON("data/source-matrix-extra.json", { sources: [] }),
     loadOptionalJSON("data/source-matrix-economics.json", { sources: [] })
   ]).then(([base, extra, economics]) =>
-    (base.sources || [])
-      .concat(extra.sources || [], economics.sources || [])
-      .map(normalizeMonitoringSource));
+    (base.sources || []).concat(extra.sources || [], economics.sources || []).map(normalizeMonitoringSource));
 
-/* Layer-2 feeds. Consumed by the Intelligence Experience work (PR2); exposed
-   here so there is exactly one loading path when those pages land. */
-export const loadCriticalNews = () =>
-  loadOptionalJSON("data/critical-news.json", { items: [] });
+export const loadCriticalNews = () => loadOptionalJSON("data/critical-news.json", { items: [] });
+export const loadTopics = () => loadOptionalJSON("data/topic-intelligence.json", { topics: [] });
+export const loadBeautyBrands = () => loadOptionalJSON("data/beauty-priority-brands.json", { priority_brands: [] });
 
-export const loadTopics = () =>
-  loadOptionalJSON("data/topic-intelligence.json", { topics: [] });
+/* Economic & Physical Flow layer. Individual files are persistent time-series
+   stores. overview.json is a presentation snapshot derived from those stores;
+   report automation updates both the source series and this compact summary. */
+export const loadEconomyOverview = () =>
+  loadOptionalJSON("data/economy/overview.json", { cards: [], transmission_chain: [] });
 
-export const loadBeautyBrands = () =>
-  loadOptionalJSON("data/beauty-priority-brands.json", { priority_brands: [] });
+export const loadEconomyBundle = () => Promise.all([
+  loadOptionalJSON("data/economy/japan-trade.json", {}),
+  loadOptionalJSON("data/economy/warehouse-flow.json", {}),
+  loadOptionalJSON("data/economy/port-throughput.json", {}),
+  loadOptionalJSON("data/economy/freight-cost.json", {}),
+  loadOptionalJSON("data/economy/trucking.json", {}),
+  loadOptionalJSON("data/economy/air-cargo.json", {}),
+  loadOptionalJSON("data/economy/retail-beauty.json", {}),
+  loadOptionalJSON("data/economy/macro.json", {}),
+  loadOptionalJSON("data/economy/logistics-companies.json", {})
+]).then(([trade, warehouse, port, cost, trucking, air, beauty, macro, companies]) => ({
+  trade, warehouse, port, cost, trucking, air, beauty, macro, companies
+}));

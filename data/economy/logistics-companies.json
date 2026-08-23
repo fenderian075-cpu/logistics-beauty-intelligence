@@ -1,0 +1,33 @@
+{
+  "schema_version":"1.0",
+  "dataset":"logistics-companies",
+  "title_ja":"物流企業・資本市場",
+  "frequency":"daily+quarterly",
+  "primary_source":{"name":"JPX TDnet","url":"https://www.jpx.co.jp/equities/listing/disclosure/tdnet/"},
+  "companies":[
+    {"id":"yamato-hd","name":"ヤマトホールディングス","metrics":["revenue","operating_profit","parcel_volume","unit_price","capex","mna","restructuring","stock_reaction"]},
+    {"id":"sg-hd","name":"SGホールディングス","metrics":["revenue","operating_profit","parcel_volume","unit_price","capex","mna","stock_reaction"]},
+    {"id":"nx-hd","name":"NIPPON EXPRESSホールディングス","metrics":["revenue","operating_profit","air_forwarding_volume","ocean_forwarding_volume","mna","network","stock_reaction"]},
+    {"id":"seino-hd","name":"セイノーホールディングス","metrics":["revenue","operating_profit","linehaul_volume","alliances","mna","stock_reaction"]},
+    {"id":"senko-ghd","name":"センコーグループホールディングス","metrics":["revenue","operating_profit","warehouse_capex","mna","automation","stock_reaction"]},
+    {"id":"sbs-hd","name":"SBSホールディングス","metrics":["revenue","operating_profit","3pl","warehouse_capex","mna","stock_reaction"]},
+    {"id":"azcom-maruwa","name":"AZ-COM丸和ホールディングス","metrics":["revenue","operating_profit","ec_logistics","3pl","mna","stock_reaction"]},
+    {"id":"mitsubishi-logistics","name":"三菱倉庫","metrics":["revenue","operating_profit","warehouse","real_estate","capex","stock_reaction"]},
+    {"id":"mitsui-soko-hd","name":"三井倉庫ホールディングス","metrics":["revenue","operating_profit","warehouse","forwarding","mna","stock_reaction"]},
+    {"id":"sumitomo-warehouse","name":"住友倉庫","metrics":["revenue","operating_profit","warehouse","port","capex","stock_reaction"]},
+    {"id":"kamigumi","name":"上組","metrics":["revenue","operating_profit","port","warehouse","capex","stock_reaction"]},
+    {"id":"sankyu","name":"山九","metrics":["revenue","operating_profit","3pl","plant_logistics","port","stock_reaction"]},
+    {"id":"nyk","name":"日本郵船","metrics":["revenue","operating_profit","container_exposure","air_cargo","shipping_market","stock_reaction"]},
+    {"id":"mol","name":"商船三井","metrics":["revenue","operating_profit","container_exposure","shipping_market","stock_reaction"]},
+    {"id":"kline","name":"川崎汽船","metrics":["revenue","operating_profit","container_exposure","shipping_market","stock_reaction"]}
+  ],
+  "events":[
+    {"date":"2026-08-03","company_id":"yamato-hd","type":"earnings","headline":"2027年3月期 第1四半期決算を公表","source":{"name":"ヤマトホールディングス IR","url":"https://www.yamato-hd.co.jp/investors/information/2027.html"},"interpretation":"収益と小口貨物volumeを分離して継続評価する起点。"},
+    {"date":"2026-08-06","company_id":"yamato-hd","type":"volume","headline":"2026年7月の小口貨物取扱実績を公表","source":{"name":"ヤマトホールディングス IR","url":"https://www.yamato-hd.co.jp/investors/information/2027.html"},"interpretation":"決算の売上・利益変化を実物volumeと接続する。"},
+    {"date":"2026-04-24","company_id":"seino-hd","related_company_ids":["azcom-maruwa"],"type":"business_alliance","headline":"AZ-COM丸和ホールディングスとの業務提携に向け基本合意","source":{"name":"セイノーホールディングス","url":"https://www.seino.co.jp/seino/shd/"},"interpretation":"個社capacityから共同ネットワークへ供給構造が変わる可能性。"},
+    {"date":"2026-07-14","company_id":"seino-hd","related_company_ids":["azcom-maruwa"],"type":"business_alliance","headline":"物流業界BCPネットワーク構想を公表","source":{"name":"セイノーホールディングス","url":"https://www.seino.co.jp/seino/shd/"},"interpretation":"災害時の相互補完・network resilienceを構造監視対象にする。"},
+    {"date":"2026-07-22","company_id":"seino-hd","type":"capex","headline":"100億円規模のSEINO Alliance Fundを公表","source":{"name":"セイノーホールディングス","url":"https://www.seino.co.jp/seino/shd/"},"interpretation":"物流capacity・DX・提携拡張の投資余力を先行指標として扱う。"}
+  ],
+  "event_types":["earnings","guidance","volume","mna","tob","capital_alliance","business_alliance","restructuring","divestiture","capex","automation","insolvency","credit_stress","stock_repricing"],
+  "stock_rule":"Do not store routine noise as intelligence. Record material/unusual or clearly news-driven repricing and preserve the causal disclosure/news evidence."
+}

@@ -1,0 +1,20 @@
+{
+  "schema_version":"1.0",
+  "dataset":"macro",
+  "title_ja":"マクロ経済",
+  "frequency":"monthly+quarterly",
+  "sources":[
+    {"name":"内閣府 国民経済計算","url":"https://www.esri.cao.go.jp/jp/sna/menu.html"},
+    {"name":"経済産業省 鉱工業指数","url":"https://www.meti.go.jp/statistics/tyo/iip/"},
+    {"name":"日本銀行 企業物価・サービス価格","url":"https://www.boj.or.jp/statistics/pi/"}
+  ],
+  "series":[
+    {"metric_id":"real_gdp","unit":"index","observations":[]},
+    {"metric_id":"industrial_production","unit":"index","observations":[]},
+    {"metric_id":"manufacturing_shipments","unit":"index","observations":[]},
+    {"metric_id":"eur_jpy","unit":"JPY/EUR","observations":[]},
+    {"metric_id":"usd_jpy","unit":"JPY/USD","observations":[]},
+    {"metric_id":"crude_oil_import_cost","unit":"JPY","observations":[]}
+  ],
+  "rule":"Macro is context, not a logistics signal by itself. Promote it only when a transmission channel to trade, physical flow, cost or demand is supported."
+}

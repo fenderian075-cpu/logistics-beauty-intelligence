@@ -1,0 +1,17 @@
+{
+  "schema_version":"1.0",
+  "dataset":"freight-cost",
+  "title_ja":"日本物流コスト",
+  "frequency":"monthly",
+  "source":{"name":"日本銀行 企業向けサービス価格指数（2020年基準）","url":"https://www.boj.or.jp/statistics/pi/sppi_2020/"},
+  "base":"2020=100",
+  "series":[
+    {"metric_id":"road_freight","name_ja":"道路貨物輸送","unit":"index","observations":[{"period":"2026-06","value":111.6,"yoy":3.6,"mom":-0.1,"status":"preliminary","published_at":"2026-07-27"}]},
+    {"metric_id":"ocean_freight","name_ja":"外航貨物輸送","unit":"index","observations":[{"period":"2026-06","value":233.8,"yoy":52.8,"mom":-3.1,"status":"preliminary","published_at":"2026-07-27"}]},
+    {"metric_id":"coastal_freight","name_ja":"内航貨物輸送","unit":"index","observations":[{"period":"2026-06","value":135.0,"yoy":4.2,"mom":0.0,"status":"preliminary","published_at":"2026-07-27"}]},
+    {"metric_id":"port_transport","name_ja":"港湾運送","unit":"index","observations":[{"period":"2026-06","value":105.1,"yoy":0.8,"mom":0.0,"status":"preliminary","published_at":"2026-07-27"}]},
+    {"metric_id":"international_air_freight","name_ja":"国際航空貨物輸送","unit":"index","observations":[{"period":"2026-06","value":142.4,"yoy":48.0,"mom":-6.7,"status":"preliminary","published_at":"2026-07-27"}]},
+    {"metric_id":"warehouse_service","name_ja":"倉庫","unit":"index","observations":[{"period":"2026-06","value":105.1,"yoy":1.6,"mom":0.0,"status":"preliminary","published_at":"2026-07-27"}]},
+    {"metric_id":"third_party_logistics","name_ja":"3PL","unit":"index","observations":[{"period":"2026-06","value":109.7,"yoy":1.1,"mom":1.6,"status":"preliminary","published_at":"2026-07-27"}]}
+  ]
+}
