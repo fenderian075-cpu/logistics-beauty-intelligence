@@ -3,7 +3,7 @@
   "dataset": "road-freight-driver-capacity",
   "title_ja": "道路貨物の運転系労働力",
   "frequency": "annual",
-  "status": "schema_ready",
+  "status": "populated_from_estat_api",
   "sources": [
     {
       "name": "総務省 労働力調査 基本集計 年次2-5-1 産業，職業別就業者数",
@@ -17,11 +17,626 @@
     "労働力調査は万人単位の丸めを含むため、派生比率は構造指標として扱う。"
   ],
   "series": [
-    {"metric_id":"road_freight_transport_machine_workers","name_ja":"道路貨物 輸送・機械運転従事者","unit":"ten_thousand_persons","observations":[]},
-    {"metric_id":"road_freight_transport_machine_male","name_ja":"道路貨物 輸送・機械運転従事者 男性","unit":"ten_thousand_persons","observations":[]},
-    {"metric_id":"road_freight_transport_machine_female","name_ja":"道路貨物 輸送・機械運転従事者 女性","unit":"ten_thousand_persons","observations":[]},
-    {"metric_id":"road_freight_transport_machine_share","name_ja":"道路貨物就業者に占める輸送・機械運転従事者比率","unit":"pct","observations":[]},
-    {"metric_id":"road_freight_transport_machine_female_share","name_ja":"道路貨物 輸送・機械運転従事者 女性比率","unit":"pct","observations":[]},
-    {"metric_id":"commercial_truck_vehicles_per_transport_machine_worker","name_ja":"輸送・機械運転従事者1人あたり営業用トラック車両","unit":"vehicles_per_worker","observations":[]}
-  ]
+    {
+      "metric_id": "road_freight_transport_machine_workers",
+      "name_ja": "道路貨物 輸送・機械運転従事者",
+      "unit": "ten_thousand_persons",
+      "observations": [
+        {
+          "period": "2009",
+          "value": 80.0,
+          "status": "official_api",
+          "source": "e-Stat LFS 2-5-1 statsDataId=0003024266: road freight x transport/machine operation workers"
+        },
+        {
+          "period": "2010",
+          "value": 79.0,
+          "status": "official_api",
+          "source": "e-Stat LFS 2-5-1 statsDataId=0003024266: road freight x transport/machine operation workers"
+        },
+        {
+          "period": "2012",
+          "value": 83.0,
+          "status": "official_api",
+          "source": "e-Stat LFS 2-5-1 statsDataId=0003024266: road freight x transport/machine operation workers"
+        },
+        {
+          "period": "2013",
+          "value": 84.0,
+          "status": "official_api",
+          "source": "e-Stat LFS 2-5-1 statsDataId=0003024266: road freight x transport/machine operation workers"
+        },
+        {
+          "period": "2014",
+          "value": 83.0,
+          "status": "official_api",
+          "source": "e-Stat LFS 2-5-1 statsDataId=0003024266: road freight x transport/machine operation workers"
+        },
+        {
+          "period": "2015",
+          "value": 80.0,
+          "status": "official_api",
+          "source": "e-Stat LFS 2-5-1 statsDataId=0003024266: road freight x transport/machine operation workers"
+        },
+        {
+          "period": "2016",
+          "value": 83.0,
+          "status": "official_api",
+          "source": "e-Stat LFS 2-5-1 statsDataId=0003024266: road freight x transport/machine operation workers"
+        },
+        {
+          "period": "2017",
+          "value": 83.0,
+          "status": "official_api",
+          "source": "e-Stat LFS 2-5-1 statsDataId=0003024266: road freight x transport/machine operation workers"
+        },
+        {
+          "period": "2018",
+          "value": 86.0,
+          "status": "official_api",
+          "source": "e-Stat LFS 2-5-1 statsDataId=0003024266: road freight x transport/machine operation workers"
+        },
+        {
+          "period": "2019",
+          "value": 87.0,
+          "status": "official_api",
+          "source": "e-Stat LFS 2-5-1 statsDataId=0003024266: road freight x transport/machine operation workers"
+        },
+        {
+          "period": "2020",
+          "value": 85.0,
+          "status": "official_api",
+          "source": "e-Stat LFS 2-5-1 statsDataId=0003024266: road freight x transport/machine operation workers"
+        },
+        {
+          "period": "2021",
+          "value": 85.0,
+          "status": "official_api",
+          "source": "e-Stat LFS 2-5-1 statsDataId=0003024266: road freight x transport/machine operation workers"
+        },
+        {
+          "period": "2022",
+          "value": 86.0,
+          "status": "official_api",
+          "source": "e-Stat LFS 2-5-1 statsDataId=0003024266: road freight x transport/machine operation workers"
+        },
+        {
+          "period": "2023",
+          "value": 88.0,
+          "status": "official_api",
+          "source": "e-Stat LFS 2-5-1 statsDataId=0003024266: road freight x transport/machine operation workers"
+        },
+        {
+          "period": "2024",
+          "value": 86.0,
+          "status": "official_api",
+          "source": "e-Stat LFS 2-5-1 statsDataId=0003024266: road freight x transport/machine operation workers"
+        },
+        {
+          "period": "2025",
+          "value": 86.0,
+          "status": "official_api",
+          "source": "e-Stat LFS 2-5-1 statsDataId=0003024266: road freight x transport/machine operation workers"
+        }
+      ]
+    },
+    {
+      "metric_id": "road_freight_transport_machine_male",
+      "name_ja": "道路貨物 輸送・機械運転従事者 男性",
+      "unit": "ten_thousand_persons",
+      "observations": [
+        {
+          "period": "2009",
+          "value": 78.0,
+          "status": "official_api",
+          "source": "e-Stat LFS 2-5-1 statsDataId=0003024266: road freight x transport/machine operation workers male"
+        },
+        {
+          "period": "2010",
+          "value": 77.0,
+          "status": "official_api",
+          "source": "e-Stat LFS 2-5-1 statsDataId=0003024266: road freight x transport/machine operation workers male"
+        },
+        {
+          "period": "2012",
+          "value": 81.0,
+          "status": "official_api",
+          "source": "e-Stat LFS 2-5-1 statsDataId=0003024266: road freight x transport/machine operation workers male"
+        },
+        {
+          "period": "2013",
+          "value": 83.0,
+          "status": "official_api",
+          "source": "e-Stat LFS 2-5-1 statsDataId=0003024266: road freight x transport/machine operation workers male"
+        },
+        {
+          "period": "2014",
+          "value": 81.0,
+          "status": "official_api",
+          "source": "e-Stat LFS 2-5-1 statsDataId=0003024266: road freight x transport/machine operation workers male"
+        },
+        {
+          "period": "2015",
+          "value": 78.0,
+          "status": "official_api",
+          "source": "e-Stat LFS 2-5-1 statsDataId=0003024266: road freight x transport/machine operation workers male"
+        },
+        {
+          "period": "2016",
+          "value": 81.0,
+          "status": "official_api",
+          "source": "e-Stat LFS 2-5-1 statsDataId=0003024266: road freight x transport/machine operation workers male"
+        },
+        {
+          "period": "2017",
+          "value": 81.0,
+          "status": "official_api",
+          "source": "e-Stat LFS 2-5-1 statsDataId=0003024266: road freight x transport/machine operation workers male"
+        },
+        {
+          "period": "2018",
+          "value": 84.0,
+          "status": "official_api",
+          "source": "e-Stat LFS 2-5-1 statsDataId=0003024266: road freight x transport/machine operation workers male"
+        },
+        {
+          "period": "2019",
+          "value": 85.0,
+          "status": "official_api",
+          "source": "e-Stat LFS 2-5-1 statsDataId=0003024266: road freight x transport/machine operation workers male"
+        },
+        {
+          "period": "2020",
+          "value": 83.0,
+          "status": "official_api",
+          "source": "e-Stat LFS 2-5-1 statsDataId=0003024266: road freight x transport/machine operation workers male"
+        },
+        {
+          "period": "2021",
+          "value": 82.0,
+          "status": "official_api",
+          "source": "e-Stat LFS 2-5-1 statsDataId=0003024266: road freight x transport/machine operation workers male"
+        },
+        {
+          "period": "2022",
+          "value": 83.0,
+          "status": "official_api",
+          "source": "e-Stat LFS 2-5-1 statsDataId=0003024266: road freight x transport/machine operation workers male"
+        },
+        {
+          "period": "2023",
+          "value": 85.0,
+          "status": "official_api",
+          "source": "e-Stat LFS 2-5-1 statsDataId=0003024266: road freight x transport/machine operation workers male"
+        },
+        {
+          "period": "2024",
+          "value": 83.0,
+          "status": "official_api",
+          "source": "e-Stat LFS 2-5-1 statsDataId=0003024266: road freight x transport/machine operation workers male"
+        },
+        {
+          "period": "2025",
+          "value": 82.0,
+          "status": "official_api",
+          "source": "e-Stat LFS 2-5-1 statsDataId=0003024266: road freight x transport/machine operation workers male"
+        }
+      ]
+    },
+    {
+      "metric_id": "road_freight_transport_machine_female",
+      "name_ja": "道路貨物 輸送・機械運転従事者 女性",
+      "unit": "ten_thousand_persons",
+      "observations": [
+        {
+          "period": "2009",
+          "value": 2.0,
+          "status": "official_api",
+          "source": "e-Stat LFS 2-5-1 statsDataId=0003024266: road freight x transport/machine operation workers female"
+        },
+        {
+          "period": "2010",
+          "value": 2.0,
+          "status": "official_api",
+          "source": "e-Stat LFS 2-5-1 statsDataId=0003024266: road freight x transport/machine operation workers female"
+        },
+        {
+          "period": "2012",
+          "value": 2.0,
+          "status": "official_api",
+          "source": "e-Stat LFS 2-5-1 statsDataId=0003024266: road freight x transport/machine operation workers female"
+        },
+        {
+          "period": "2013",
+          "value": 2.0,
+          "status": "official_api",
+          "source": "e-Stat LFS 2-5-1 statsDataId=0003024266: road freight x transport/machine operation workers female"
+        },
+        {
+          "period": "2014",
+          "value": 2.0,
+          "status": "official_api",
+          "source": "e-Stat LFS 2-5-1 statsDataId=0003024266: road freight x transport/machine operation workers female"
+        },
+        {
+          "period": "2015",
+          "value": 2.0,
+          "status": "official_api",
+          "source": "e-Stat LFS 2-5-1 statsDataId=0003024266: road freight x transport/machine operation workers female"
+        },
+        {
+          "period": "2016",
+          "value": 2.0,
+          "status": "official_api",
+          "source": "e-Stat LFS 2-5-1 statsDataId=0003024266: road freight x transport/machine operation workers female"
+        },
+        {
+          "period": "2017",
+          "value": 2.0,
+          "status": "official_api",
+          "source": "e-Stat LFS 2-5-1 statsDataId=0003024266: road freight x transport/machine operation workers female"
+        },
+        {
+          "period": "2018",
+          "value": 2.0,
+          "status": "official_api",
+          "source": "e-Stat LFS 2-5-1 statsDataId=0003024266: road freight x transport/machine operation workers female"
+        },
+        {
+          "period": "2019",
+          "value": 3.0,
+          "status": "official_api",
+          "source": "e-Stat LFS 2-5-1 statsDataId=0003024266: road freight x transport/machine operation workers female"
+        },
+        {
+          "period": "2020",
+          "value": 3.0,
+          "status": "official_api",
+          "source": "e-Stat LFS 2-5-1 statsDataId=0003024266: road freight x transport/machine operation workers female"
+        },
+        {
+          "period": "2021",
+          "value": 3.0,
+          "status": "official_api",
+          "source": "e-Stat LFS 2-5-1 statsDataId=0003024266: road freight x transport/machine operation workers female"
+        },
+        {
+          "period": "2022",
+          "value": 3.0,
+          "status": "official_api",
+          "source": "e-Stat LFS 2-5-1 statsDataId=0003024266: road freight x transport/machine operation workers female"
+        },
+        {
+          "period": "2023",
+          "value": 3.0,
+          "status": "official_api",
+          "source": "e-Stat LFS 2-5-1 statsDataId=0003024266: road freight x transport/machine operation workers female"
+        },
+        {
+          "period": "2024",
+          "value": 4.0,
+          "status": "official_api",
+          "source": "e-Stat LFS 2-5-1 statsDataId=0003024266: road freight x transport/machine operation workers female"
+        },
+        {
+          "period": "2025",
+          "value": 4.0,
+          "status": "official_api",
+          "source": "e-Stat LFS 2-5-1 statsDataId=0003024266: road freight x transport/machine operation workers female"
+        }
+      ]
+    },
+    {
+      "metric_id": "road_freight_transport_machine_share",
+      "name_ja": "道路貨物就業者に占める輸送・機械運転従事者比率",
+      "unit": "pct",
+      "observations": [
+        {
+          "period": "2009",
+          "value": 43.24,
+          "status": "derived",
+          "source": "LBI: transport/machine workers / road freight employment"
+        },
+        {
+          "period": "2010",
+          "value": 43.65,
+          "status": "derived",
+          "source": "LBI: transport/machine workers / road freight employment"
+        },
+        {
+          "period": "2012",
+          "value": 45.6,
+          "status": "derived",
+          "source": "LBI: transport/machine workers / road freight employment"
+        },
+        {
+          "period": "2013",
+          "value": 44.92,
+          "status": "derived",
+          "source": "LBI: transport/machine workers / road freight employment"
+        },
+        {
+          "period": "2014",
+          "value": 44.86,
+          "status": "derived",
+          "source": "LBI: transport/machine workers / road freight employment"
+        },
+        {
+          "period": "2015",
+          "value": 43.24,
+          "status": "derived",
+          "source": "LBI: transport/machine workers / road freight employment"
+        },
+        {
+          "period": "2016",
+          "value": 44.15,
+          "status": "derived",
+          "source": "LBI: transport/machine workers / road freight employment"
+        },
+        {
+          "period": "2017",
+          "value": 43.46,
+          "status": "derived",
+          "source": "LBI: transport/machine workers / road freight employment"
+        },
+        {
+          "period": "2018",
+          "value": 44.56,
+          "status": "derived",
+          "source": "LBI: transport/machine workers / road freight employment"
+        },
+        {
+          "period": "2019",
+          "value": 44.16,
+          "status": "derived",
+          "source": "LBI: transport/machine workers / road freight employment"
+        },
+        {
+          "period": "2020",
+          "value": 43.59,
+          "status": "derived",
+          "source": "LBI: transport/machine workers / road freight employment"
+        },
+        {
+          "period": "2021",
+          "value": 42.5,
+          "status": "derived",
+          "source": "LBI: transport/machine workers / road freight employment"
+        },
+        {
+          "period": "2022",
+          "value": 42.79,
+          "status": "derived",
+          "source": "LBI: transport/machine workers / road freight employment"
+        },
+        {
+          "period": "2023",
+          "value": 43.78,
+          "status": "derived",
+          "source": "LBI: transport/machine workers / road freight employment"
+        },
+        {
+          "period": "2024",
+          "value": 43.43,
+          "status": "derived",
+          "source": "LBI: transport/machine workers / road freight employment"
+        },
+        {
+          "period": "2025",
+          "value": 43.0,
+          "status": "derived",
+          "source": "LBI: transport/machine workers / road freight employment"
+        }
+      ]
+    },
+    {
+      "metric_id": "road_freight_transport_machine_female_share",
+      "name_ja": "道路貨物 輸送・機械運転従事者 女性比率",
+      "unit": "pct",
+      "observations": [
+        {
+          "period": "2009",
+          "value": 2.5,
+          "status": "derived",
+          "source": "LBI: female transport/machine workers / total"
+        },
+        {
+          "period": "2010",
+          "value": 2.53,
+          "status": "derived",
+          "source": "LBI: female transport/machine workers / total"
+        },
+        {
+          "period": "2012",
+          "value": 2.41,
+          "status": "derived",
+          "source": "LBI: female transport/machine workers / total"
+        },
+        {
+          "period": "2013",
+          "value": 2.38,
+          "status": "derived",
+          "source": "LBI: female transport/machine workers / total"
+        },
+        {
+          "period": "2014",
+          "value": 2.41,
+          "status": "derived",
+          "source": "LBI: female transport/machine workers / total"
+        },
+        {
+          "period": "2015",
+          "value": 2.5,
+          "status": "derived",
+          "source": "LBI: female transport/machine workers / total"
+        },
+        {
+          "period": "2016",
+          "value": 2.41,
+          "status": "derived",
+          "source": "LBI: female transport/machine workers / total"
+        },
+        {
+          "period": "2017",
+          "value": 2.41,
+          "status": "derived",
+          "source": "LBI: female transport/machine workers / total"
+        },
+        {
+          "period": "2018",
+          "value": 2.33,
+          "status": "derived",
+          "source": "LBI: female transport/machine workers / total"
+        },
+        {
+          "period": "2019",
+          "value": 3.45,
+          "status": "derived",
+          "source": "LBI: female transport/machine workers / total"
+        },
+        {
+          "period": "2020",
+          "value": 3.53,
+          "status": "derived",
+          "source": "LBI: female transport/machine workers / total"
+        },
+        {
+          "period": "2021",
+          "value": 3.53,
+          "status": "derived",
+          "source": "LBI: female transport/machine workers / total"
+        },
+        {
+          "period": "2022",
+          "value": 3.49,
+          "status": "derived",
+          "source": "LBI: female transport/machine workers / total"
+        },
+        {
+          "period": "2023",
+          "value": 3.41,
+          "status": "derived",
+          "source": "LBI: female transport/machine workers / total"
+        },
+        {
+          "period": "2024",
+          "value": 4.65,
+          "status": "derived",
+          "source": "LBI: female transport/machine workers / total"
+        },
+        {
+          "period": "2025",
+          "value": 4.65,
+          "status": "derived",
+          "source": "LBI: female transport/machine workers / total"
+        }
+      ]
+    },
+    {
+      "metric_id": "commercial_truck_vehicles_per_transport_machine_worker",
+      "name_ja": "輸送・機械運転従事者1人あたり営業用トラック車両",
+      "unit": "vehicles_per_worker",
+      "observations": [
+        {
+          "period": "2010",
+          "value": 1.7,
+          "status": "derived_proxy",
+          "source": "LBI: commercial truck vehicles / road-freight transport-machine workers"
+        },
+        {
+          "period": "2012",
+          "value": 1.61,
+          "status": "derived_proxy",
+          "source": "LBI: commercial truck vehicles / road-freight transport-machine workers"
+        },
+        {
+          "period": "2013",
+          "value": 1.61,
+          "status": "derived_proxy",
+          "source": "LBI: commercial truck vehicles / road-freight transport-machine workers"
+        },
+        {
+          "period": "2014",
+          "value": 1.64,
+          "status": "derived_proxy",
+          "source": "LBI: commercial truck vehicles / road-freight transport-machine workers"
+        },
+        {
+          "period": "2015",
+          "value": 1.72,
+          "status": "derived_proxy",
+          "source": "LBI: commercial truck vehicles / road-freight transport-machine workers"
+        },
+        {
+          "period": "2016",
+          "value": 1.63,
+          "status": "derived_proxy",
+          "source": "LBI: commercial truck vehicles / road-freight transport-machine workers"
+        },
+        {
+          "period": "2017",
+          "value": 1.65,
+          "status": "derived_proxy",
+          "source": "LBI: commercial truck vehicles / road-freight transport-machine workers"
+        },
+        {
+          "period": "2018",
+          "value": 1.65,
+          "status": "derived_proxy",
+          "source": "LBI: commercial truck vehicles / road-freight transport-machine workers"
+        },
+        {
+          "period": "2019",
+          "value": 1.67,
+          "status": "derived_proxy",
+          "source": "LBI: commercial truck vehicles / road-freight transport-machine workers"
+        },
+        {
+          "period": "2020",
+          "value": 1.72,
+          "status": "derived_proxy",
+          "source": "LBI: commercial truck vehicles / road-freight transport-machine workers"
+        },
+        {
+          "period": "2021",
+          "value": 1.73,
+          "status": "derived_proxy",
+          "source": "LBI: commercial truck vehicles / road-freight transport-machine workers"
+        },
+        {
+          "period": "2022",
+          "value": 1.69,
+          "status": "derived_proxy",
+          "source": "LBI: commercial truck vehicles / road-freight transport-machine workers"
+        },
+        {
+          "period": "2023",
+          "value": 1.69,
+          "status": "derived_proxy",
+          "source": "LBI: commercial truck vehicles / road-freight transport-machine workers"
+        }
+      ]
+    }
+  ],
+  "resolved_metadata": {
+    "objects": {
+      "sex_obj": "cat01",
+      "occ_obj": "cat02",
+      "status_obj": "cat03",
+      "industry_obj": "cat04",
+      "age_obj": "cat05",
+      "area_obj": "area"
+    },
+    "codes": {
+      "sex_total": "0",
+      "sex_male": "1",
+      "sex_female": "2",
+      "occ_total": "000",
+      "occ_transport_machine": "031",
+      "status_employed": "02",
+      "industry_road_freight": "45",
+      "age_15_plus": "00",
+      "area_japan": "00000"
+    }
+  }
 }
