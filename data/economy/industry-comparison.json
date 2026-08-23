@@ -1,0 +1,43 @@
+{
+  "schema_version":"1.0",
+  "dataset":"industry-comparison",
+  "title_ja":"全産業比較：名目構成と実質モメンタム",
+  "frequency":"annual+quarterly",
+  "updated_at":"2026-08-23T12:00:00+09:00",
+  "methodology":"Nominal structure uses calendar-year GDP share at current prices from the Cabinet Office annual national accounts. Current real momentum uses the latest production-side QNA real seasonally adjusted QoQ growth. These are intentionally separate measures and must not be combined as if they were one growth rate.",
+  "sources":[
+    {"name":"内閣府 2024年度国民経済計算 年次推計","url":"https://www.esri.cao.go.jp/jp/sna/data/data_list/kakuhou/files/2024/2024_kaku_top.html"},
+    {"name":"内閣府 生産側系列の四半期速報 2026年1-3月期","url":"https://www.esri.cao.go.jp/jp/sna/sonota/seisanqna/seisanqna_top.html"}
+  ],
+  "share_history_years":[2019,2020,2021,2022,2023,2024],
+  "industries":[
+    {"id":"agriculture","name_ja":"農林水産業","nominal_share_pct":{"2019":1.0,"2020":1.0,"2021":0.9,"2022":0.9,"2023":0.8,"2024":1.0},"latest_real_qoq":{"period":"2026-Q1","value":-5.5,"contribution_pctpt":-0.1}},
+    {"id":"mining","name_ja":"鉱業","nominal_share_pct":{"2019":0.0,"2020":0.0,"2021":0.0,"2022":0.1,"2023":0.1,"2024":0.1},"latest_real_qoq":{"period":"2026-Q1","value":0.9,"contribution_pctpt":0.0}},
+    {"id":"manufacturing","name_ja":"製造業","nominal_share_pct":{"2019":20.1,"2020":19.8,"2021":19.8,"2022":19.0,"2023":19.6,"2024":19.0},"latest_real_qoq":{"period":"2026-Q1","value":2.9,"contribution_pctpt":0.5}},
+    {"id":"construction","name_ja":"建設業","nominal_share_pct":{"2019":6.1,"2020":6.0,"2021":5.9,"2022":5.7,"2023":5.7,"2024":5.3},"latest_real_qoq":{"period":"2026-Q1","value":1.7,"contribution_pctpt":0.1}},
+    {"id":"utilities_waste","name_ja":"電気・ガス・水道・廃棄物処理業","nominal_share_pct":{"2019":3.0,"2020":3.1,"2021":2.9,"2022":2.5,"2023":2.5,"2024":2.6},"latest_real_qoq":{"period":"2026-Q1","value":-5.7,"contribution_pctpt":-0.2}},
+    {"id":"wholesale_retail","name_ja":"卸売・小売業","nominal_share_pct":{"2019":11.7,"2020":12.4,"2021":12.8,"2022":12.5,"2023":11.9,"2024":12.5},"latest_real_qoq":{"period":"2026-Q1","value":-1.9,"contribution_pctpt":-0.2}},
+    {"id":"transport_postal","name_ja":"運輸・郵便業","nominal_share_pct":{"2019":5.4,"2020":4.6,"2021":4.4,"2022":4.8,"2023":5.1,"2024":5.3},"latest_real_qoq":{"period":"2026-Q1","value":0.7,"contribution_pctpt":0.0},"price_metric_id":"sppi_transport_postal"},
+    {"id":"accommodation_food","name_ja":"宿泊・飲食サービス業","nominal_share_pct":{"2019":2.5,"2020":1.5,"2021":1.3,"2022":1.6,"2023":1.7,"2024":1.8},"latest_real_qoq":{"period":"2026-Q1","value":1.6,"contribution_pctpt":0.0}},
+    {"id":"information_communications","name_ja":"情報通信業","nominal_share_pct":{"2019":5.6,"2020":6.2,"2021":6.0,"2022":6.2,"2023":6.3,"2024":6.2},"latest_real_qoq":{"period":"2026-Q1","value":1.6,"contribution_pctpt":0.1}},
+    {"id":"finance_insurance","name_ja":"金融・保険業","nominal_share_pct":{"2019":3.9,"2020":4.0,"2021":3.9,"2022":4.2,"2023":4.4,"2024":4.4},"latest_real_qoq":{"period":"2026-Q1","value":1.9,"contribution_pctpt":0.1}},
+    {"id":"real_estate","name_ja":"不動産業","nominal_share_pct":{"2019":12.3,"2020":12.7,"2021":12.9,"2022":13.0,"2023":12.8,"2024":12.8},"latest_real_qoq":{"period":"2026-Q1","value":0.8,"contribution_pctpt":0.1}},
+    {"id":"professional_business_support","name_ja":"専門・科学技術、業務支援サービス業","nominal_share_pct":{"2019":8.0,"2020":8.4,"2021":9.0,"2022":9.5,"2023":9.2,"2024":9.2},"latest_real_qoq":{"period":"2026-Q1","value":-1.4,"contribution_pctpt":-0.1}},
+    {"id":"public_admin","name_ja":"公務","nominal_share_pct":{"2019":4.9,"2020":5.0,"2021":5.0,"2022":5.0,"2023":4.8,"2024":4.9},"latest_real_qoq":{"period":"2026-Q1","value":-0.2,"contribution_pctpt":0.0}},
+    {"id":"education","name_ja":"教育","nominal_share_pct":{"2019":3.7,"2020":3.8,"2021":3.8,"2022":3.7,"2023":3.7,"2024":3.6},"latest_real_qoq":{"period":"2026-Q1","value":0.0,"contribution_pctpt":0.0}},
+    {"id":"health_social","name_ja":"保健衛生・社会事業","nominal_share_pct":{"2019":7.2,"2020":7.3,"2021":7.1,"2022":7.0,"2023":6.9,"2024":6.8},"latest_real_qoq":{"period":"2026-Q1","value":1.3,"contribution_pctpt":0.1}},
+    {"id":"other_services","name_ja":"その他のサービス","nominal_share_pct":{"2019":4.5,"2020":4.1,"2021":4.2,"2022":4.4,"2023":4.5,"2024":4.4},"latest_real_qoq":{"period":"2026-Q1","value":-0.2,"contribution_pctpt":0.0}}
+  ],
+  "aggregates":[
+    {"id":"primary","name_ja":"第1次産業","latest_real_qoq":{"period":"2026-Q1","value":-5.5}},
+    {"id":"secondary","name_ja":"第2次産業","latest_real_qoq":{"period":"2026-Q1","value":2.6}},
+    {"id":"tertiary","name_ja":"第3次産業","latest_real_qoq":{"period":"2026-Q1","value":-0.1}},
+    {"id":"total","name_ja":"経済活動別付加価値 合計","latest_real_qoq":{"period":"2026-Q1","value":0.6}}
+  ],
+  "comparison_notes":[
+    "Nominal GDP share shows economic weight, not growth.",
+    "Real QoQ shows current volume/activity momentum after price effects are removed.",
+    "Beauty is not an SNA standalone industry; compare it through retail/shipment demand datasets and a dedicated cosmetics CPI deflator when seeded.",
+    "Transport/postal pricing should be read with SPPI; a higher service price index does not itself mean higher physical freight volume."
+  ]
+}
