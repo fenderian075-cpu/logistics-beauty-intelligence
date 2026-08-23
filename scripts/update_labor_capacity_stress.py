@@ -37,8 +37,8 @@ def main():
     out0['status']='derived_equal_weight_v0'; out0['latest_common_year']=years0[-1]
     (ECON/'labor-capacity-stress.json').write_text(json.dumps(out0,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
 
-    # v1: shorter history but freight-driver-specific vacancy definition.
-    years1=[str(y) for y in range(2018,2024)]
+    # v1: freight-driver-specific vacancy definition, now verified through 2024.
+    years1=[str(y) for y in range(2018,2025)]
     for name,v in [('load',load),('freight_vacancy',vacancy1),('old',old),('replacement',repl),('working_age',work)]: require(name,v,years1)
     base_load=load['2018']; base_vac1=vacancy1['2018']; base_old1=old['2018']; base_repl1=repl['2018']; base_work1=work['2018']
     components1={
