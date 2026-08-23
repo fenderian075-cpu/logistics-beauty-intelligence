@@ -30,6 +30,9 @@ def era_to_year(era_year: int) -> int:
 def discover_latest_table3() -> str:
     r = requests.get(LANDING, headers={"User-Agent": UA}, timeout=30)
     r.raise_for_status()
+    # MOJ currently serves UTF-8 HTML without a reliable charset header; requests otherwise decodes
+    # Japanese text as Latin-1 and destroys labels such as 第1表、第2表、第3表.
+    r.encoding = "utf-8"
     soup = BeautifulSoup(r.text, "html.parser")
     pdfs = []
     for a in soup.find_all("a"):
@@ -41,7 +44,7 @@ def discover_latest_table3() -> str:
         grand = norm(a.parent.parent.get_text(" ", strip=True)) if a.parent and a.parent.parent else parent
         context = " | ".join((own, parent, grand))
         pdfs.append((urljoin(LANDING, href), context))
-        # On ISA pages the anchor itself may only say 'PDF'; the table name sits in the surrounding li/p.
+        # The latest section is listed first; the anchor can be just '(PDF)', so inspect surrounding text.
         if "第3表" in context:
             return urljoin(LANDING, href)
     diagnostic = [f"{u} :: {c[:180]}" for u, c in pdfs[:20]]
