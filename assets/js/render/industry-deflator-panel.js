@@ -26,9 +26,29 @@ function assessment(obs) {
   return "実質横ばい圏";
 }
 
+function hydrateIndustryComparison(data) {
+  const section = document.getElementById("industry-comparison");
+  if (!section) return;
+  const byName = new Map((data.industries || []).map((row) => [row.name_ja || row.id, row]));
+  section.querySelectorAll("tbody tr").forEach((tr) => {
+    const cells = tr.querySelectorAll("td");
+    if (cells.length < 5) return;
+    const industry = byName.get(cells[0].textContent.trim());
+    const obs = latestObservation(industry);
+    if (!obs) return;
+    cells[4].textContent = `${obs.period} GDPデフレーター ${Number(obs.deflator_index_2020_100).toFixed(1)} / 前年比 ${pct(obs.deflator_yoy_pct)}`;
+    cells[4].setAttribute("data-sna-deflator", industry.id);
+  });
+}
+
 export async function mountIndustryDeflatorPanel() {
   const data = await loadIndustryDeflators();
   if (!data || !Array.isArray(data.industries) || !data.industries.length) return;
+
+  // The compact all-industry table is rendered by economic-flow.js. Hydrate its
+  // price column from the canonical SNA deflator dataset so every SNA industry
+  // displays the actual GDP deflator instead of a prices.json placeholder.
+  hydrateIndustryComparison(data);
 
   const host = document.getElementById("flow-datasets");
   if (!host || document.getElementById("industry-deflator-panel")) return;
