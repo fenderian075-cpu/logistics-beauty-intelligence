@@ -1,18 +1,18 @@
 {
-  "schema_version":"1.1",
-  "updated_at":"2026-08-23T10:13:00+09:00",
+  "schema_version":"1.2",
+  "updated_at":"2026-08-23T10:50:00+09:00",
   "title_ja":"実体経済と物流",
   "thesis":"需要・貿易・物量・倉庫・輸送コストを分けて追い、物流ニュースを実体経済へ接続する。Beautyは小売・出荷・市場推計をBrand.com/Buzzから分離して確認する。",
   "cards":[
-    {"id":"trade","label":"貿易","headline":"輸出入とも大幅増","value":"輸出 +19.3% / 輸入 +25.4%","period":"2026-06","direction":"rising","source":"財務省 貿易統計","url":"https://www.customs.go.jp/news/movement.htm","detail":"輸出10.929兆円、輸入11.336兆円。貿易差額は▲0.407兆円。"},
-    {"id":"beauty","label":"Beauty実需","headline":"百貨店化粧品は伸びが加速","value":"429.2億円 / +6.9% YoY","period":"2026-05","direction":"rising","source":"日本百貨店協会","url":"https://www.depart.or.jp/store_sale/","detail":"全国百貨店の化粧品売上。4月+2.3%から5月+6.9%へ。百貨店総売上に占める構成比は9.2%。"},
-    {"id":"port","label":"港湾","headline":"国内コンテナ取扱は増加","value":"2,236万TEU / +1.8%","period":"2025","direction":"rising","source":"国土交通省 港湾局","url":"https://www.mlit.go.jp/report/press/port03_hh_000140.html","detail":"外貿1,780万TEU +1.8%、内貿456万TEU +1.9%。"},
+    {"id":"trade","label":"貿易","headline":"輸出入とも大幅増","value":"輸出 YoY +19.3% / 輸入 YoY +25.4%","period":"2026-06 vs 2025-06","direction":"rising","source":"財務省 貿易統計","url":"https://www.customs.go.jp/news/movement.htm","detail":"2026年6月の輸出10.929兆円、輸入11.336兆円。貿易差額は▲0.407兆円。金額ベースであり、物量増加とは分けて解釈する。"},
+    {"id":"beauty","label":"Beauty実需","headline":"百貨店化粧品は伸びが加速","value":"429.2億円 / YoY +6.9%","period":"2026-05 vs 2025-05","direction":"rising","source":"日本百貨店協会","url":"https://www.depart.or.jp/store_sale/","detail":"全国百貨店の化粧品売上。2026年4月 YoY +2.3% → 5月 YoY +6.9%。百貨店総売上に占める構成比は9.2%。"},
+    {"id":"port","label":"港湾","headline":"国内コンテナ取扱は増加","value":"2,236万TEU / YoY +1.8%","period":"2025 vs 2024","direction":"rising","source":"国土交通省 港湾局","url":"https://www.mlit.go.jp/report/press/port03_hh_000140.html","detail":"2025年の外貿1,780万TEU（YoY +1.8%）、内貿456万TEU（YoY +1.9%）。"},
     {"id":"warehouse","label":"倉庫","headline":"2026月次値は取得待ち","value":"未確認","period":"latest source page","direction":"unknown","source":"国土交通省 主要21社倉庫","url":"https://www.mlit.go.jp/seisakutokatsu/freight/seisakutokatsu_freight_mn2_000009.html","detail":"入庫・出庫・保管残高・回転率を月次保存する。取得できない値は推測しない。"},
-    {"id":"truck","label":"トラック","headline":"荷待ち・荷役は改善","value":"2時間02分 / ▲1時間16分","period":"2025 survey","direction":"improving","source":"国土交通省","url":"https://www.mlit.go.jp/report/press/tokatsu02_hh_000084.html","detail":"1運行平均拘束時間10時間13分。物流効率化法の2時間以内目標に接近。"},
-    {"id":"cost","label":"物流コスト","headline":"道路貨物は上昇、国際運賃は高変動","value":"道路貨物 +3.6% YoY","period":"2026-06","direction":"rising","source":"日本銀行 SPPI","url":"https://www.boj.or.jp/statistics/pi/cspi_release/sppi2606.pdf","detail":"道路貨物111.6、倉庫105.1（+1.6%）、国際航空貨物142.4（+48.0%）。"},
-    {"id":"air","label":"航空貨物","headline":"国際貨物量は増加","value":"139,343t / +9.2%","period":"2026-04","direction":"rising","source":"国土交通省 航空輸送統計","url":"https://www.mlit.go.jp/report/press/joho05_hh_000908.html","detail":"重量利用率71.8%。国内航空貨物は50,776t、前年比▲0.4%。"}
+    {"id":"truck","label":"トラック","headline":"荷待ち・荷役は改善","value":"2時間02分 / -1時間16分 vs 2024年度調査","period":"2025年度調査","direction":"improving","source":"国土交通省","url":"https://www.mlit.go.jp/report/press/tokatsu02_hh_000084.html","detail":"1運行平均拘束時間10時間13分。物流効率化法の2時間以内目標に接近。"},
+    {"id":"cost","label":"物流コスト","headline":"道路貨物は上昇、国際運賃は高変動","value":"道路貨物 SPPI YoY +3.6%","period":"2026-06 vs 2025-06","direction":"rising","source":"日本銀行 SPPI","url":"https://www.boj.or.jp/statistics/pi/cspi_release/sppi2606.pdf","detail":"道路貨物111.6、倉庫105.1（YoY +1.6%）、国際航空貨物142.4（YoY +48.0%）。指数水準と伸び率を分けて評価する。"},
+    {"id":"air","label":"航空貨物","headline":"国際貨物量は増加","value":"139,343t / YoY +9.2%","period":"2026-04 vs 2025-04","direction":"rising","source":"国土交通省 航空輸送統計","url":"https://www.mlit.go.jp/report/press/joho05_hh_000908.html","detail":"重量利用率71.8%。国内航空貨物は50,776t（YoY -0.4%）。"}
   ],
   "transmission_chain":["消費・Beauty需要","輸出入","港湾・航空・トラック物量","倉庫入出庫・在庫","物流コスト・キャパシティ","物流企業収益・投資","オペレーション判断"],
   "privacy":"Priority sourcing geographies and routes are evaluated privately and are not named or persisted in public datasets.",
-  "interpretation":"単一指標で景気や物流逼迫を判断しない。需要、Trade、Physical Flow、Inventory、Cost、Corporateをつないで因果を評価する。"
+  "interpretation":"単一指標で景気や物流逼迫を判断しない。需要、Trade、Physical Flow、Inventory、Cost、Corporateをつないで因果を評価する。比較値はYoY/MoM/WoW/YTD等と比較対象期間を必ず明示する。"
 }
