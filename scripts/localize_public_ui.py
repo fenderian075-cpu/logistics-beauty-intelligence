@@ -15,6 +15,8 @@ SAFE_REPLACEMENTS = [
     ("Critical Radar", "重要動向"),
     ("Source Matrix", "情報源一覧"),
     ("Status History", "ステータス履歴"),
+    ("ECONOMIC &amp; PHYSICAL FLOW", "実体経済・物流フロー"),
+    ("Economic &amp; Physical Flow", "経済・物流フロー"),
     ("Economic & Physical Flow", "経済・物流フロー"),
     ("Economic Flow", "経済・物流フロー"),
     ("NOMINAL → PRICE → REAL", "名目 → 価格 → 実質"),
