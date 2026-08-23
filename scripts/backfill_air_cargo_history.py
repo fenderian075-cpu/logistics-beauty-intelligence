@@ -4,7 +4,8 @@
 The official annual workbook contains calendar-year totals for 2015 onward and
 monthly domestic/international observations for the two latest complete years.
 Existing newer LBI monthly observations are preserved when the appendix does not
-yet cover them. No interpolation is performed.
+yet cover them. Existing public metric IDs and units are retained exactly:
+weight in tonnes and tonne-km in thousand tonne-km. No interpolation is performed.
 """
 from __future__ import annotations
 
@@ -60,6 +61,9 @@ def parse_month(v,year):
 def obs(period,value,status='official'):
     return {'period':period,'value':value,'status':status,'source':SOURCE}
 
+def clean_number(v):
+    return int(v) if float(v).is_integer() else v
+
 def parse_workbook(blob):
     wb=load_workbook(io.BytesIO(blob),read_only=True,data_only=True);ws=wb['付表第1表暦年'] if '付表第1表暦年' in wb.sheetnames else wb[wb.sheetnames[0]]
     rows=[tuple(r) for r in ws.iter_rows(values_only=True)]
@@ -70,37 +74,38 @@ def parse_workbook(blob):
         y,era=jp_year(row[0],era)
         if not y:continue
         w=number(row[5]);tk=number(row[6])
-        if w is not None:dom_a.append(obs(str(y),round(w/1000,3)))
-        if tk is not None:dom_tkm_a.append(obs(str(y),round(tk/1000,3))) # thousand t-km -> million
+        if w is not None:dom_a.append(obs(str(y),clean_number(w)))
+        if tk is not None:dom_tkm_a.append(obs(str(y),clean_number(tk)))
     era=None
     for row in rows[50:61]:
         y,era=jp_year(row[8],era)
         if not y:continue
         w=number(row[13]);tk=number(row[14])
-        if w is not None:int_a.append(obs(str(y),round(w/1000,3)))
-        if tk is not None:int_tkm_a.append(obs(str(y),round(tk/1000,3)))
+        if w is not None:int_a.append(obs(str(y),clean_number(w)))
+        if tk is not None:int_tkm_a.append(obs(str(y),clean_number(tk)))
 
     year=None
     for row in rows[17:41]:
         p,year=parse_month(row[0],year)
         if not p:continue
         w=number(row[5]);tk=number(row[6])
-        if w is not None:dom_m.append(obs(p,round(w/1000,3)))
-        if tk is not None:dom_tkm_m.append(obs(p,round(tk/1000,3)))
+        if w is not None:dom_m.append(obs(p,clean_number(w)))
+        if tk is not None:dom_tkm_m.append(obs(p,clean_number(tk)))
     year=None
     for row in rows[61:]:
         p,year=parse_month(row[8],year)
         if not p:continue
         w=number(row[13]);tk=number(row[14])
-        if w is not None:int_m.append(obs(p,round(w/1000,3)))
-        if tk is not None:int_tkm_m.append(obs(p,round(tk/1000,3)))
+        if w is not None:int_m.append(obs(p,clean_number(w)))
+        if tk is not None:int_tkm_m.append(obs(p,clean_number(tk)))
     wb.close()
     return {'dom_a':dom_a,'dom_tkm_a':dom_tkm_a,'int_a':int_a,'int_tkm_a':int_tkm_a,'dom_m':dom_m,'dom_tkm_m':dom_tkm_m,'int_m':int_m,'int_tkm_m':int_tkm_m}
 
 def merge_newer(existing,new):
     by={r['period']:r for r in new}
+    newest=max(by,default='0000-00')
     for r in existing or []:
-        if r.get('period') and r['period']>max(by,default='0000-00'):
+        if r.get('period') and r['period']>newest:
             by[r['period']]=r
     return [by[p] for p in sorted(by)]
 
@@ -133,14 +138,15 @@ def main():
 
     data=json.loads(OUT.read_text(encoding='utf-8'))
     series={}
-    series['dom_m']=upsert(data,'domestic_air_cargo','国内航空貨物輸送量（月次）','thousand tonnes',p['dom_m'],True)
-    series['dom_tkm_m']=upsert(data,'domestic_air_cargo_ton_km','国内航空貨物輸送トンキロ（月次）','million tonne-km',p['dom_tkm_m'],True)
-    series['int_m']=upsert(data,'international_air_cargo','国際航空貨物輸送量（月次）','thousand tonnes',p['int_m'],True)
-    series['int_tkm_m']=upsert(data,'international_air_cargo_ton_km','国際航空貨物輸送トンキロ（月次）','million tonne-km',p['int_tkm_m'],True)
-    series['dom_a']=upsert(data,'domestic_air_cargo_annual','国内航空貨物輸送量（年次）','thousand tonnes',p['dom_a'])
-    series['dom_tkm_a']=upsert(data,'domestic_air_cargo_ton_km_annual','国内航空貨物輸送トンキロ（年次）','million tonne-km',p['dom_tkm_a'])
-    series['int_a']=upsert(data,'international_air_cargo_annual','国際航空貨物輸送量（年次）','thousand tonnes',p['int_a'])
-    series['int_tkm_a']=upsert(data,'international_air_cargo_ton_km_annual','国際航空貨物輸送トンキロ（年次）','million tonne-km',p['int_tkm_a'])
+    # Preserve established public IDs/units so backfill is additive, not a schema migration.
+    series['dom_m']=upsert(data,'domestic_air_cargo_tonnes','国内航空貨物輸送量（月次）','tonnes',p['dom_m'],True)
+    series['dom_tkm_m']=upsert(data,'domestic_air_cargo_ton_km','国内航空貨物輸送トンキロ（月次）','thousand ton-km',p['dom_tkm_m'],True)
+    series['int_m']=upsert(data,'international_air_cargo_tonnes','国際航空貨物輸送量（月次）','tonnes',p['int_m'],True)
+    series['int_tkm_m']=upsert(data,'international_air_cargo_ton_km','国際航空貨物輸送トンキロ（月次）','thousand ton-km',p['int_tkm_m'],True)
+    series['dom_a']=upsert(data,'domestic_air_cargo_tonnes_annual','国内航空貨物輸送量（年次）','tonnes',p['dom_a'])
+    series['dom_tkm_a']=upsert(data,'domestic_air_cargo_ton_km_annual','国内航空貨物輸送トンキロ（年次）','thousand ton-km',p['dom_tkm_a'])
+    series['int_a']=upsert(data,'international_air_cargo_tonnes_annual','国際航空貨物輸送量（年次）','tonnes',p['int_a'])
+    series['int_tkm_a']=upsert(data,'international_air_cargo_ton_km_annual','国際航空貨物輸送トンキロ（年次）','thousand ton-km',p['int_tkm_a'])
     data['historical_backfill_at']=now();OUT.write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     coverage={k:{'observations':len(v),'start':v[0]['period'],'end':v[-1]['period']} for k,v in series.items()}
     st={'schema_version':'1.0','dataset':'air-cargo-history-status','updated_at':now(),'status':'success','source_url':URL,'coverage':coverage}
