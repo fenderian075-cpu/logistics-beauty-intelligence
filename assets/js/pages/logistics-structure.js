@@ -14,6 +14,7 @@ function displayValue(unit, value) {
   if (unit === "million parcels") return `${jp(v / 100, 2)}億個`;
   if (unit === "million items") return `${jp(v / 100, 2)}億冊`;
   if (unit === "ten_thousand_persons") return `${jp(v, 0)}万人`;
+  if (unit === "million_persons") return `${jp(v, 2)}百万人`;
   if (unit === "pct") return `${jp(v, 1)}%`;
   if (unit === "years") return `${jp(v, 1)}歳`;
   if (unit === "ten_thousand_jpy_year") return `${jp(v, 1)}万円/年`;
@@ -43,12 +44,13 @@ function sourceNote(text) { return el("p", "flow-block__reading", text); }
 async function mount() {
   const root = byId("logistics-structure");
   if (!root) return;
-  const [parcel, workforce, capacity, demography, labor] = await Promise.all([
+  const [parcel, workforce, capacity, demography, labor, population] = await Promise.all([
     loadOptionalJSON("data/economy/parcel-demand.json", {}),
     loadOptionalJSON("data/economy/logistics-workforce.json", {}),
     loadOptionalJSON("data/economy/logistics-capacity.json", {}),
     loadOptionalJSON("data/economy/driver-demography.json", {}),
-    loadOptionalJSON("data/economy/logistics-labor-market.json", {})
+    loadOptionalJSON("data/economy/logistics-labor-market.json", {}),
+    loadOptionalJSON("data/economy/japan-demography.json", {})
   ]);
   clear(root);
 
@@ -68,6 +70,13 @@ async function mount() {
   const offeredWage = series(labor, "truck_driver_offered_monthly_wage");
   const vacancyHistory = series(labor, "automobile_driver_job_openings_ratio_history");
   const allVacancyHistory = series(labor, "all_occupations_job_openings_ratio_history");
+  const popTotal = series(population, "population_total");
+  const popMale = series(population, "population_male");
+  const popFemale = series(population, "population_female");
+  const workingAge = series(population, "working_age_population_15_64");
+  const age65 = series(population, "population_age_65_plus");
+  const workingAgeShare = series(population, "working_age_share");
+  const foreignPopulation = series(population, "foreign_population");
 
   const pulse = el("div", "value-row");
   pulse.appendChild(card("宅配便取扱個数", parcelVolume, "B2C需要proxy"));
@@ -75,7 +84,7 @@ async function mount() {
   pulse.appendChild(card("宅配需要/労働力", loadIndex, "2015=100"));
   pulse.appendChild(card("トラックドライバー平均年齢", currentDriverAge, "2025年"));
   pulse.appendChild(card("有効求人倍率", vacancy, "トラックドライバー"));
-  pulse.appendChild(card("女性就業者比率", femaleShare, "運輸業・郵便業"));
+  pulse.appendChild(card("生産年齢人口比率", workingAgeShare, "15-64歳"));
   root.appendChild(pulse);
 
   root.appendChild(el("h3", "flow-block__sub", "Parcel / Last-mile demand"));
@@ -88,6 +97,37 @@ async function mount() {
   root.appendChild(el("h3", "flow-block__sub", "Logistics workforce supply"));
   const workforceChart = chart({ kind:"line", unitLabel:"万人", series:[{ name:"運輸業・郵便業 就業者", unitLabel:"万人", points:points(employment) }], note:"産業大分類の基準系列。道路貨物運送業・倉庫業の細分系列を次に接続します。" });
   if (workforceChart) root.appendChild(workforceChart);
+
+  root.appendChild(el("h3", "flow-block__sub", "Japan demographic base"));
+  const populationChart = chart({ kind:"line", unitLabel:"百万人", series:[
+    { name:"総人口", unitLabel:"百万人", points:points(popTotal) },
+    { name:"生産年齢人口 15-64", unitLabel:"百万人", points:points(workingAge) },
+    { name:"65歳以上", unitLabel:"百万人", points:points(age65) }
+  ], note:"各年10月1日現在。2025年人口推計は2020年国勢調査基準の確定値で、2025年国勢調査の基本集計後に改定予定。" });
+  if (populationChart) root.appendChild(populationChart);
+
+  const sexChart = chart({ kind:"line", unitLabel:"百万人", series:[
+    { name:"男性", unitLabel:"百万人", points:points(popMale) },
+    { name:"女性", unitLabel:"百万人", points:points(popFemale) }
+  ], note:"男女とも減少傾向。物流労働供給の母集団変化を見る人口基盤系列です。" });
+  if (sexChart) root.appendChild(sexChart);
+
+  const popRow = el("div", "value-row");
+  popRow.appendChild(card("総人口", popTotal, "各年10月1日"));
+  popRow.appendChild(card("生産年齢人口", workingAge, "15-64歳"));
+  popRow.appendChild(card("65歳以上", age65, "人口構造"));
+  popRow.appendChild(card("外国人人口", foreignPopulation, "直近確定値"));
+  root.appendChild(popRow);
+
+  const pop2015 = popTotal?.observations?.find((o) => o.period === "2015");
+  const pop2025 = latest(popTotal);
+  const work2015 = workingAge?.observations?.find((o) => o.period === "2015");
+  const work2025 = latest(workingAge);
+  if (pop2015 && pop2025 && work2015 && work2025) {
+    const totalChange = (Number(pop2025.value) / Number(pop2015.value) - 1) * 100;
+    const workChange = (Number(work2025.value) / Number(work2015.value) - 1) * 100;
+    root.appendChild(sourceNote(`2015→2025で総人口は${jp(totalChange,1)}%、生産年齢人口は${jp(workChange,1)}%。物流人材の供給制約は業界固有の採用難だけでなく、母集団そのものの縮小と接続して見る必要があります。`));
+  }
 
   root.appendChild(el("h3", "flow-block__sub", "Driver aging"));
   const ageChart = chart({ kind:"line", unitLabel:"歳", series:[
@@ -110,6 +150,7 @@ async function mount() {
   laborRow.appendChild(card("求人賃金", offeredWage, "求人票ベース"));
   laborRow.appendChild(card("就業者年収", income, "賃金構造基本統計"));
   laborRow.appendChild(card("月間労働時間", workHours, "賃金構造基本統計"));
+  laborRow.appendChild(card("女性就業者比率", femaleShare, "運輸業・郵便業"));
   root.appendChild(laborRow);
 
   root.appendChild(el("h3", "flow-block__sub", "Demand / capacity pressure"));
@@ -118,7 +159,7 @@ async function mount() {
   const loadObs = latest(parcelPerWorker);
   if (loadObs) root.appendChild(sourceNote(`2024年のproxyは物流就業者1人あたり約${jp(loadObs.value,0)}個/年。2015年比では需要/労働力の負荷指数が約30.8%上昇しています。`));
 
-  root.appendChild(sourceNote("次段: 労働力調査の年齢階級×産業表から55歳以上比率・若年比率を投入し、道路貨物運送業・倉庫業へ細分化します。その後、人口動態と接続して複合Labor Capacity Stressを構築します。"));
+  root.appendChild(sourceNote("次段: 労働力調査I-B-5/II-2-1のExcel列を厳密検証して55歳以上比率・34歳以下比率を投入し、道路貨物運送業・倉庫業へ細分化します。その後、人口母集団と合わせた複合Labor Capacity Stressを構築します。"));
 }
 
 mount().catch((err) => console.error("logistics structure mount failed", err));
