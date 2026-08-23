@@ -13,6 +13,7 @@ import urllib.parse
 import urllib.request
 from pathlib import Path
 
+import xlrd
 from openpyxl import load_workbook
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -45,9 +46,6 @@ def discover_stat_infid(year: int) -> str:
     }
     html = fetch_bytes(LIST_URL + "?" + urllib.parse.urlencode(params)).decode("utf-8", errors="replace")
     table_no = f"{str(year)[-2:]}-01"
-
-    # e-Stat listing markup has changed over time. Match the stat_infid closest
-    # to the requested table number in either direction rather than pinning DOM.
     candidates = []
     for m in re.finditer(r"stat_infid=(\d+)", html, flags=re.I):
         start = max(0, m.start() - 3500)
@@ -56,9 +54,7 @@ def discover_stat_infid(year: int) -> str:
         if table_no in window and "人口、人口動態及び世帯数" in window:
             candidates.append(m.group(1))
     if candidates:
-        # Preserve document order and use first unique candidate.
         return list(dict.fromkeys(candidates))[0]
-
     raise RuntimeError(f"could not discover stat_infid for {year} {table_no}")
 
 
@@ -76,11 +72,29 @@ def norm(value) -> str:
     return re.sub(r"\s+", "", str(value or "")).replace("　", "")
 
 
-def extract_households(xlsx: bytes, year: int) -> float:
-    wb = load_workbook(io.BytesIO(xlsx), data_only=True, read_only=True)
+def workbook_rows(payload: bytes):
+    if payload.startswith(b"PK\x03\x04"):
+        wb = load_workbook(io.BytesIO(payload), data_only=True, read_only=True)
+        for ws in wb.worksheets:
+            rows = list(ws.iter_rows(min_row=1, max_row=min(ws.max_row, 80), values_only=True))
+            yield ws.title, rows
+        return
+
+    if payload.startswith(b"\xd0\xcf\x11\xe0"):
+        book = xlrd.open_workbook(file_contents=payload, on_demand=True)
+        for name in book.sheet_names():
+            ws = book.sheet_by_name(name)
+            rows = [ws.row_values(i) for i in range(min(ws.nrows, 80))]
+            yield name, rows
+        return
+
+    prefix = payload[:80]
+    raise RuntimeError(f"unsupported household workbook format; magic={prefix!r}")
+
+
+def extract_households(payload: bytes, year: int) -> float:
     diagnostics = []
-    for ws in wb.worksheets:
-        rows = list(ws.iter_rows(min_row=1, max_row=min(ws.max_row, 80), values_only=True))
+    for title, rows in workbook_rows(payload):
         if not rows:
             continue
         total_rows = []
@@ -88,7 +102,7 @@ def extract_households(xlsx: bytes, year: int) -> float:
             if any(norm(v) == "合計" for v in row[:12]):
                 total_rows.append(r_idx)
         header_cols = set()
-        for r_idx, row in enumerate(rows[:30], start=1):
+        for row in rows[:30]:
             for c_idx, value in enumerate(row, start=1):
                 text = norm(value)
                 if text == "世帯数" or text.endswith("世帯数"):
@@ -101,7 +115,7 @@ def extract_households(xlsx: bytes, year: int) -> float:
                     value = as_number(row[candidate_col - 1])
                     if value is not None and 30_000_000 <= value <= 100_000_000:
                         return value
-            diagnostics.append((ws.title, r_idx, list(row[:12]), sorted(header_cols)))
+            diagnostics.append((title, r_idx, list(row[:12]), sorted(header_cols)))
 
     raise RuntimeError(f"household total not found for {year}; diagnostics={diagnostics[:3]}")
 
@@ -123,7 +137,8 @@ def main():
         stat_infid = discover_stat_infid(year)
         discovered[str(year)] = stat_infid
         url = DOWNLOAD_URL + "?" + urllib.parse.urlencode({"fileKind": 0, "statInfId": stat_infid})
-        count = extract_households(fetch_bytes(url), year)
+        payload = fetch_bytes(url)
+        count = extract_households(payload, year)
         household_rows.append({
             "period": str(year),
             "value": round(count / 1_000_000, 6),
