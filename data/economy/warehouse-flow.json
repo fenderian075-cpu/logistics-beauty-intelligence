@@ -1,0 +1,23 @@
+{
+  "schema_version":"1.0",
+  "dataset":"warehouse-flow",
+  "title_ja":"倉庫荷動き",
+  "frequency":"monthly+quarterly",
+  "sources":[
+    {"name":"国土交通省 営業普通倉庫の実績（主要21社）","url":"https://www.mlit.go.jp/seisakutokatsu/freight/seisakutokatsu_freight_mn2_000009.html","frequency":"monthly"},
+    {"name":"国土交通省 倉庫統計季報","url":"https://www.mlit.go.jp/seisakutokatsu/freight/butsuryu06000.html","frequency":"quarterly"}
+  ],
+  "series":[
+    {"metric_id":"inbound_volume","unit":"tonnes","observations":[]},
+    {"metric_id":"outbound_volume","unit":"tonnes","observations":[]},
+    {"metric_id":"inventory_balance","unit":"tonnes","observations":[]},
+    {"metric_id":"warehouse_turnover","unit":"index","observations":[]},
+    {"metric_id":"storage_revenue","unit":"JPY","observations":[]}
+  ],
+  "interpretation_rules":[
+    {"pattern":"inbound_up,outbound_flat,inventory_up","meaning":"在庫積み上がり"},
+    {"pattern":"inbound_up,outbound_up,inventory_flat","meaning":"荷動き活発化"},
+    {"pattern":"outbound_up,inventory_down","meaning":"在庫取り崩し"}
+  ],
+  "availability":{"latest_period_visible_on_current_source_page":"2025-12","note":"2026 observations are not inserted until verified from the published workbook or e-Stat."}
+}
