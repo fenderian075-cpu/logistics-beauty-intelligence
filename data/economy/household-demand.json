@@ -17,7 +17,8 @@
   "notes": [
     "世帯数は各年1月1日現在の住民基本台帳総計。日本人住民のみ・外国人住民のみの表は使用しない。",
     "宅配便は年度統計、世帯数は暦年1月1日スナップショットのため、1世帯当たり宅配便個数は厳密な同時点比率ではなく年間需要密度のproxyとして扱う。",
-    "e-Statの年次一覧からYY-01総計ファイルを自動発見し、全国合計の世帯数を抽出する。推計・補間は行わない。"
+    "e-Statの年次一覧からYY-01総計ファイルを自動発見し、全国合計の世帯数を抽出する。推計・補間は行わない。",
+    "2015-2024のparcel_per_householdは同じ西暦ラベルの住民基本台帳1月1日世帯数を分母に用いる。年度と暦年スナップショットの時点差を解消した指標ではない。"
   ],
   "status": "populated_from_estat_files",
   "series": [
@@ -26,78 +27,18 @@
       "name_ja": "住民基本台帳 世帯数（総計）",
       "unit": "million_households",
       "observations": [
-        {
-          "period": "2015",
-          "value": 56.41214,
-          "status": "official_file",
-          "source": "e-Stat BRR 15-01 stat_infid=000030438567"
-        },
-        {
-          "period": "2016",
-          "value": 56.950757,
-          "status": "official_file",
-          "source": "e-Stat BRR 16-01 stat_infid=000031429217"
-        },
-        {
-          "period": "2017",
-          "value": 57.477037,
-          "status": "official_file",
-          "source": "e-Stat BRR 17-01 stat_infid=000031598550"
-        },
-        {
-          "period": "2018",
-          "value": 58.007536,
-          "status": "official_file",
-          "source": "e-Stat BRR 18-01 stat_infid=000031736911"
-        },
-        {
-          "period": "2019",
-          "value": 58.527117,
-          "status": "official_file",
-          "source": "e-Stat BRR 19-01 stat_infid=000031843906"
-        },
-        {
-          "period": "2020",
-          "value": 59.071519,
-          "status": "official_file",
-          "source": "e-Stat BRR 20-01 stat_infid=000031971201"
-        },
-        {
-          "period": "2021",
-          "value": 59.497356,
-          "status": "official_file",
-          "source": "e-Stat BRR 21-01 stat_infid=000040306655"
-        },
-        {
-          "period": "2022",
-          "value": 59.761065,
-          "status": "official_file",
-          "source": "e-Stat BRR 22-01 stat_infid=000032224634"
-        },
-        {
-          "period": "2023",
-          "value": 60.266318,
-          "status": "official_file",
-          "source": "e-Stat BRR 23-01 stat_infid=000040306645"
-        },
-        {
-          "period": "2024",
-          "value": 60.779141,
-          "status": "official_file",
-          "source": "e-Stat BRR 24-01 stat_infid=000040306668"
-        },
-        {
-          "period": "2025",
-          "value": 61.287994,
-          "status": "official_file",
-          "source": "e-Stat BRR 25-01 stat_infid=000040306651"
-        },
-        {
-          "period": "2026",
-          "value": 61.74714,
-          "status": "official_file",
-          "source": "e-Stat BRR 26-01 stat_infid=000040479047"
-        }
+        {"period":"2015","value":56.41214,"status":"official_file","source":"e-Stat BRR 15-01 stat_infid=000030438567"},
+        {"period":"2016","value":56.950757,"status":"official_file","source":"e-Stat BRR 16-01 stat_infid=000031429217"},
+        {"period":"2017","value":57.477037,"status":"official_file","source":"e-Stat BRR 17-01 stat_infid=000031598550"},
+        {"period":"2018","value":58.007536,"status":"official_file","source":"e-Stat BRR 18-01 stat_infid=000031736911"},
+        {"period":"2019","value":58.527117,"status":"official_file","source":"e-Stat BRR 19-01 stat_infid=000031843906"},
+        {"period":"2020","value":59.071519,"status":"official_file","source":"e-Stat BRR 20-01 stat_infid=000031971201"},
+        {"period":"2021","value":59.497356,"status":"official_file","source":"e-Stat BRR 21-01 stat_infid=000040306655"},
+        {"period":"2022","value":59.761065,"status":"official_file","source":"e-Stat BRR 22-01 stat_infid=000032224634"},
+        {"period":"2023","value":60.266318,"status":"official_file","source":"e-Stat BRR 23-01 stat_infid=000040306645"},
+        {"period":"2024","value":60.779141,"status":"official_file","source":"e-Stat BRR 24-01 stat_infid=000040306668"},
+        {"period":"2025","value":61.287994,"status":"official_file","source":"e-Stat BRR 25-01 stat_infid=000040306651"},
+        {"period":"2026","value":61.74714,"status":"official_file","source":"e-Stat BRR 26-01 stat_infid=000040479047"}
       ]
     },
     {
@@ -105,84 +46,25 @@
       "name_ja": "1世帯あたり宅配便個数",
       "unit": "parcels_per_household_year",
       "observations": [
-        {
-          "period": "2015",
-          "value": 66.4,
-          "status": "derived_proxy",
-          "source": "MLIT parcel volume / MIC resident-register households"
-        },
-        {
-          "period": "2016",
-          "value": 70.6,
-          "status": "derived_proxy",
-          "source": "MLIT parcel volume / MIC resident-register households"
-        },
-        {
-          "period": "2017",
-          "value": 74.0,
-          "status": "derived_proxy",
-          "source": "MLIT parcel volume / MIC resident-register households"
-        },
-        {
-          "period": "2018",
-          "value": 74.2,
-          "status": "derived_proxy",
-          "source": "MLIT parcel volume / MIC resident-register households"
-        },
-        {
-          "period": "2019",
-          "value": 73.9,
-          "status": "derived_proxy",
-          "source": "MLIT parcel volume / MIC resident-register households"
-        },
-        {
-          "period": "2020",
-          "value": 81.9,
-          "status": "derived_proxy",
-          "source": "MLIT parcel volume / MIC resident-register households"
-        },
-        {
-          "period": "2021",
-          "value": 83.2,
-          "status": "derived_proxy",
-          "source": "MLIT parcel volume / MIC resident-register households"
-        },
-        {
-          "period": "2022",
-          "value": 83.8,
-          "status": "derived_proxy",
-          "source": "MLIT parcel volume / MIC resident-register households"
-        },
-        {
-          "period": "2023",
-          "value": 83.1,
-          "status": "derived_proxy",
-          "source": "MLIT parcel volume / MIC resident-register households"
-        },
-        {
-          "period": "2024",
-          "value": 82.8,
-          "status": "derived_proxy",
-          "source": "MLIT parcel volume / MIC resident-register households"
-        }
+        {"period":"2015","value":66.4,"status":"derived_proxy","source":"MLIT parcel volume / MIC resident-register households"},
+        {"period":"2016","value":70.6,"status":"derived_proxy","source":"MLIT parcel volume / MIC resident-register households"},
+        {"period":"2017","value":74.0,"status":"derived_proxy","source":"MLIT parcel volume / MIC resident-register households"},
+        {"period":"2018","value":74.2,"status":"derived_proxy","source":"MLIT parcel volume / MIC resident-register households"},
+        {"period":"2019","value":73.9,"status":"derived_proxy","source":"MLIT parcel volume / MIC resident-register households"},
+        {"period":"2020","value":81.9,"status":"derived_proxy","source":"MLIT parcel volume / MIC resident-register households"},
+        {"period":"2021","value":83.2,"status":"derived_proxy","source":"MLIT parcel volume / MIC resident-register households"},
+        {"period":"2022","value":83.8,"status":"derived_proxy","source":"MLIT parcel volume / MIC resident-register households"},
+        {"period":"2023","value":83.1,"status":"derived_proxy","source":"MLIT parcel volume / MIC resident-register households"},
+        {"period":"2024","value":82.8,"status":"derived_proxy","source":"MLIT parcel volume / MIC resident-register households"}
       ]
     }
   ],
   "file_contract": {
     "table": "YY-01",
     "stat_infids": {
-      "2015": "000030438567",
-      "2016": "000031429217",
-      "2017": "000031598550",
-      "2018": "000031736911",
-      "2019": "000031843906",
-      "2020": "000031971201",
-      "2021": "000040306655",
-      "2022": "000032224634",
-      "2023": "000040306645",
-      "2024": "000040306668",
-      "2025": "000040306651",
-      "2026": "000040479047"
+      "2015":"000030438567","2016":"000031429217","2017":"000031598550","2018":"000031736911",
+      "2019":"000031843906","2020":"000031971201","2021":"000040306655","2022":"000032224634",
+      "2023":"000040306645","2024":"000040306668","2025":"000040306651","2026":"000040479047"
     }
   }
 }
