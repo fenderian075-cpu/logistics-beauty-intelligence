@@ -1,29 +1,437 @@
 {
-  "schema_version":"2.0",
-  "sources":[
-    {"priority":"P0","domain":"economy","layer":"Trade / Physical Flow","name":"財務省 貿易統計","url":"https://www.customs.go.jp/toukei/info/","cadence":["daily","weekly","monthly"],"extract":["月次輸出入","旬次速報","国別","品目別","運送形態別","海上コンテナ","航空貨物","化粧品関連HS"]},
-    {"priority":"P0","domain":"economy","layer":"Warehouse / Physical Flow","name":"国土交通省 営業普通倉庫 主要21社","url":"https://www.mlit.go.jp/seisakutokatsu/freight/seisakutokatsu_freight_mn2_000009.html","cadence":["weekly","monthly"],"extract":["入庫量","出庫量","保管残高","回転率","料金"]},
-    {"priority":"P0","domain":"economy","layer":"Port / Physical Flow","name":"国土交通省 港湾調査","url":"https://www.mlit.go.jp/k-toukei/kouwan.html","cadence":["weekly","monthly"],"extract":["港別TEU","輸入","輸出","外貿","内貿","空コンテナ","東京","横浜","名古屋","大阪","神戸"]},
-    {"priority":"P0","domain":"economy","layer":"Truck / Physical Flow","name":"国土交通省 自動車輸送統計","url":"https://www.mlit.go.jp/k-toukei/jidousya.html","cadence":["weekly","monthly"],"extract":["貨物輸送トン数","トンキロ","営業用トラック","地域別","品目別"]},
-    {"priority":"P0","domain":"economy","layer":"Air / Physical Flow","name":"国土交通省 航空輸送統計","url":"https://www.mlit.go.jp/k-toukei/koukuu.html","cadence":["weekly","monthly"],"extract":["国際航空貨物トン数","トンキロ","重量利用率","国内航空貨物"]},
-    {"priority":"P0","domain":"economy","layer":"Logistics Cost","name":"日本銀行 企業向けサービス価格指数","url":"https://www.boj.or.jp/statistics/pi/sppi_2020/","cadence":["weekly","monthly"],"extract":["道路貨物輸送","外航貨物輸送","内航貨物輸送","港湾運送","国際航空貨物輸送","倉庫","3PL"]},
-    {"priority":"P1","domain":"economy","layer":"Beauty Demand","name":"経済産業省 商業動態統計","url":"https://www.meti.go.jp/statistics/tyo/syoudou/","cadence":["weekly","monthly"],"extract":["百貨店","ドラッグストア","商品別販売","在庫","化粧品関連需要"]},
-    {"priority":"P1","domain":"economy","layer":"Macro","name":"内閣府 国民経済計算","url":"https://www.esri.cao.go.jp/jp/sna/menu.html","cadence":["monthly"],"extract":["GDP","個人消費","設備投資","輸出入"]},
-    {"priority":"P1","domain":"economy","layer":"Macro","name":"経済産業省 鉱工業指数","url":"https://www.meti.go.jp/statistics/tyo/iip/","cadence":["monthly"],"extract":["生産","出荷","在庫","製造業活動"]},
-    {"priority":"P1","domain":"economy","layer":"Inbound Demand","name":"JNTO 訪日外客統計","url":"https://www.jnto.go.jp/statistics/data/visitors-statistics/","cadence":["monthly"],"extract":["訪日客数","国籍別","インバウンド需要"]},
-    {"priority":"P1","domain":"economy","layer":"Inbound Demand","name":"観光庁 インバウンド消費動向調査","url":"https://www.mlit.go.jp/kankocho/tokei_hakusyo/gaikokujinshohidoko.html","cadence":["monthly"],"extract":["訪日外国人消費","買物代","国籍別消費"]},
-
-    {"priority":"P0","domain":"logistics","layer":"Corporate / Market","name":"JPX TDnet 適時開示","url":"https://www.jpx.co.jp/equities/listing/disclosure/tdnet/","cadence":["daily","weekly","monthly"],"extract":["決算","業績予想修正","M&A","TOB","資本提携","事業再編","大型投資","撤退","重要事実"]},
-    {"priority":"P1","domain":"logistics","layer":"Corporate / IR","name":"ヤマトホールディングス IR","url":"https://www.yamato-hd.co.jp/investors/","cadence":["daily","weekly","monthly"],"extract":["決算","取扱個数","単価","投資","株価反応","事業再編","M&A"]},
-    {"priority":"P1","domain":"logistics","layer":"Corporate / IR","name":"SGホールディングス IR","url":"https://www.sg-hldgs.co.jp/ir/","cadence":["daily","weekly","monthly"],"extract":["決算","宅配便取扱個数","単価","投資","株価反応","M&A"]},
-    {"priority":"P1","domain":"logistics","layer":"Corporate / IR","name":"NIPPON EXPRESSホールディングス IR","url":"https://www.nipponexpress-holdings.com/ja/ir/","cadence":["daily","weekly","monthly"],"extract":["決算","国際航空貨物取扱","国際海上輸送取扱","M&A","ネットワーク","株価反応"]},
-    {"priority":"P1","domain":"logistics","layer":"Corporate / IR","name":"セイノーホールディングス IR","url":"https://www.seino.co.jp/seino/shd/ir/","cadence":["daily","weekly","monthly"],"extract":["決算","路線便","提携","M&A","物流2024年問題","株価反応"]},
-    {"priority":"P1","domain":"logistics","layer":"Corporate / IR","name":"センコーグループホールディングス IR","url":"https://www.senkogrouphd.co.jp/ir/","cadence":["daily","weekly","monthly"],"extract":["決算","M&A","物流施設投資","自動化","株価反応"]},
-    {"priority":"P1","domain":"logistics","layer":"Corporate / IR","name":"SBSホールディングス IR","url":"https://www.sbs-group.co.jp/sbshlds/ir/","cadence":["daily","weekly","monthly"],"extract":["決算","3PL","M&A","物流施設","株価反応"]},
-    {"priority":"P1","domain":"logistics","layer":"Corporate / IR","name":"AZ-COM丸和ホールディングス IR","url":"https://www.az-com-maruwa-hd.co.jp/ir/","cadence":["daily","weekly","monthly"],"extract":["決算","EC物流","3PL","M&A","TOB","株価反応"]},
-    {"priority":"P1","domain":"logistics","layer":"Warehouse / IR","name":"三菱倉庫 IR","url":"https://www.mitsubishi-logistics.co.jp/ir/","cadence":["weekly","monthly"],"extract":["倉庫収益","物流量","設備投資","自動化","不動産"]},
-    {"priority":"P1","domain":"logistics","layer":"Warehouse / IR","name":"三井倉庫ホールディングス IR","url":"https://msh.mitsui-soko.com/ir/","cadence":["weekly","monthly"],"extract":["倉庫","フォワーディング","物流量","M&A","投資"]},
-    {"priority":"P1","domain":"logistics","layer":"Port / IR","name":"上組 IR","url":"https://www.kamigumi.co.jp/ir/","cadence":["weekly","monthly"],"extract":["港湾運送","倉庫","取扱量","設備投資"]},
-    {"priority":"P1","domain":"logistics","layer":"Integrated Logistics / IR","name":"山九 IR","url":"https://www.sankyu.co.jp/ir/","cadence":["weekly","monthly"],"extract":["3PL","港湾","プラント物流","設備投資","業績"]}
+  "schema_version": "2.0",
+  "sources": [
+    {
+      "priority": "P0",
+      "domain": "economy",
+      "layer": "貿易・実物流",
+      "name": "財務省 貿易統計",
+      "url": "https://www.customs.go.jp/toukei/info/",
+      "cadence": [
+        "daily",
+        "weekly",
+        "monthly"
+      ],
+      "extract": [
+        "月次輸出入",
+        "旬次速報",
+        "国別",
+        "品目別",
+        "運送形態別",
+        "海上コンテナ",
+        "航空貨物",
+        "化粧品関連HS"
+      ]
+    },
+    {
+      "priority": "P0",
+      "domain": "economy",
+      "layer": "倉庫・実物流",
+      "name": "国土交通省 営業普通倉庫 主要21社",
+      "url": "https://www.mlit.go.jp/seisakutokatsu/freight/seisakutokatsu_freight_mn2_000009.html",
+      "cadence": [
+        "weekly",
+        "monthly"
+      ],
+      "extract": [
+        "入庫量",
+        "出庫量",
+        "保管残高",
+        "回転率",
+        "料金"
+      ]
+    },
+    {
+      "priority": "P0",
+      "domain": "economy",
+      "layer": "港湾・実物流",
+      "name": "国土交通省 港湾調査",
+      "url": "https://www.mlit.go.jp/k-toukei/kouwan.html",
+      "cadence": [
+        "weekly",
+        "monthly"
+      ],
+      "extract": [
+        "港別TEU",
+        "輸入",
+        "輸出",
+        "外貿",
+        "内貿",
+        "空コンテナ",
+        "東京",
+        "横浜",
+        "名古屋",
+        "大阪",
+        "神戸"
+      ]
+    },
+    {
+      "priority": "P0",
+      "domain": "economy",
+      "layer": "トラック・実物流",
+      "name": "国土交通省 自動車輸送統計",
+      "url": "https://www.mlit.go.jp/k-toukei/jidousya.html",
+      "cadence": [
+        "weekly",
+        "monthly"
+      ],
+      "extract": [
+        "貨物輸送トン数",
+        "トンキロ",
+        "営業用トラック",
+        "地域別",
+        "品目別"
+      ]
+    },
+    {
+      "priority": "P0",
+      "domain": "economy",
+      "layer": "航空・実物流",
+      "name": "国土交通省 航空輸送統計",
+      "url": "https://www.mlit.go.jp/k-toukei/koukuu.html",
+      "cadence": [
+        "weekly",
+        "monthly"
+      ],
+      "extract": [
+        "国際航空貨物トン数",
+        "トンキロ",
+        "重量利用率",
+        "国内航空貨物"
+      ]
+    },
+    {
+      "priority": "P0",
+      "domain": "economy",
+      "layer": "物流コスト",
+      "name": "日本銀行 企業向けサービス価格指数",
+      "url": "https://www.boj.or.jp/statistics/pi/sppi_2020/",
+      "cadence": [
+        "weekly",
+        "monthly"
+      ],
+      "extract": [
+        "道路貨物輸送",
+        "外航貨物輸送",
+        "内航貨物輸送",
+        "港湾運送",
+        "国際航空貨物輸送",
+        "倉庫",
+        "3PL"
+      ]
+    },
+    {
+      "priority": "P1",
+      "domain": "economy",
+      "layer": "化粧品需要",
+      "name": "経済産業省 商業動態統計",
+      "url": "https://www.meti.go.jp/statistics/tyo/syoudou/",
+      "cadence": [
+        "weekly",
+        "monthly"
+      ],
+      "extract": [
+        "百貨店",
+        "ドラッグストア",
+        "商品別販売",
+        "在庫",
+        "化粧品関連需要"
+      ]
+    },
+    {
+      "priority": "P1",
+      "domain": "economy",
+      "layer": "マクロ経済",
+      "name": "内閣府 国民経済計算",
+      "url": "https://www.esri.cao.go.jp/jp/sna/menu.html",
+      "cadence": [
+        "monthly"
+      ],
+      "extract": [
+        "GDP",
+        "個人消費",
+        "設備投資",
+        "輸出入"
+      ]
+    },
+    {
+      "priority": "P1",
+      "domain": "economy",
+      "layer": "マクロ経済",
+      "name": "経済産業省 鉱工業指数",
+      "url": "https://www.meti.go.jp/statistics/tyo/iip/",
+      "cadence": [
+        "monthly"
+      ],
+      "extract": [
+        "生産",
+        "出荷",
+        "在庫",
+        "製造業活動"
+      ]
+    },
+    {
+      "priority": "P1",
+      "domain": "economy",
+      "layer": "訪日需要",
+      "name": "JNTO 訪日外客統計",
+      "url": "https://www.jnto.go.jp/statistics/data/visitors-statistics/",
+      "cadence": [
+        "monthly"
+      ],
+      "extract": [
+        "訪日客数",
+        "国籍別",
+        "インバウンド需要"
+      ]
+    },
+    {
+      "priority": "P1",
+      "domain": "economy",
+      "layer": "訪日需要",
+      "name": "観光庁 インバウンド消費動向調査",
+      "url": "https://www.mlit.go.jp/kankocho/tokei_hakusyo/gaikokujinshohidoko.html",
+      "cadence": [
+        "monthly"
+      ],
+      "extract": [
+        "訪日外国人消費",
+        "買物代",
+        "国籍別消費"
+      ]
+    },
+    {
+      "priority": "P0",
+      "domain": "logistics",
+      "layer": "企業・市場",
+      "name": "JPX TDnet 適時開示",
+      "url": "https://www.jpx.co.jp/equities/listing/disclosure/tdnet/",
+      "cadence": [
+        "daily",
+        "weekly",
+        "monthly"
+      ],
+      "extract": [
+        "決算",
+        "業績予想修正",
+        "M&A",
+        "TOB",
+        "資本提携",
+        "事業再編",
+        "大型投資",
+        "撤退",
+        "重要事実"
+      ]
+    },
+    {
+      "priority": "P1",
+      "domain": "logistics",
+      "layer": "企業IR",
+      "name": "ヤマトホールディングス IR",
+      "url": "https://www.yamato-hd.co.jp/investors/",
+      "cadence": [
+        "daily",
+        "weekly",
+        "monthly"
+      ],
+      "extract": [
+        "決算",
+        "取扱個数",
+        "単価",
+        "投資",
+        "株価反応",
+        "事業再編",
+        "M&A"
+      ]
+    },
+    {
+      "priority": "P1",
+      "domain": "logistics",
+      "layer": "企業IR",
+      "name": "SGホールディングス IR",
+      "url": "https://www.sg-hldgs.co.jp/ir/",
+      "cadence": [
+        "daily",
+        "weekly",
+        "monthly"
+      ],
+      "extract": [
+        "決算",
+        "宅配便取扱個数",
+        "単価",
+        "投資",
+        "株価反応",
+        "M&A"
+      ]
+    },
+    {
+      "priority": "P1",
+      "domain": "logistics",
+      "layer": "企業IR",
+      "name": "NIPPON EXPRESSホールディングス IR",
+      "url": "https://www.nipponexpress-holdings.com/ja/ir/",
+      "cadence": [
+        "daily",
+        "weekly",
+        "monthly"
+      ],
+      "extract": [
+        "決算",
+        "国際航空貨物取扱",
+        "国際海上輸送取扱",
+        "M&A",
+        "ネットワーク",
+        "株価反応"
+      ]
+    },
+    {
+      "priority": "P1",
+      "domain": "logistics",
+      "layer": "企業IR",
+      "name": "セイノーホールディングス IR",
+      "url": "https://www.seino.co.jp/seino/shd/ir/",
+      "cadence": [
+        "daily",
+        "weekly",
+        "monthly"
+      ],
+      "extract": [
+        "決算",
+        "路線便",
+        "提携",
+        "M&A",
+        "物流2024年問題",
+        "株価反応"
+      ]
+    },
+    {
+      "priority": "P1",
+      "domain": "logistics",
+      "layer": "企業IR",
+      "name": "センコーグループホールディングス IR",
+      "url": "https://www.senkogrouphd.co.jp/ir/",
+      "cadence": [
+        "daily",
+        "weekly",
+        "monthly"
+      ],
+      "extract": [
+        "決算",
+        "M&A",
+        "物流施設投資",
+        "自動化",
+        "株価反応"
+      ]
+    },
+    {
+      "priority": "P1",
+      "domain": "logistics",
+      "layer": "企業IR",
+      "name": "SBSホールディングス IR",
+      "url": "https://www.sbs-group.co.jp/sbshlds/ir/",
+      "cadence": [
+        "daily",
+        "weekly",
+        "monthly"
+      ],
+      "extract": [
+        "決算",
+        "3PL",
+        "M&A",
+        "物流施設",
+        "株価反応"
+      ]
+    },
+    {
+      "priority": "P1",
+      "domain": "logistics",
+      "layer": "企業IR",
+      "name": "AZ-COM丸和ホールディングス IR",
+      "url": "https://www.az-com-maruwa-hd.co.jp/ir/",
+      "cadence": [
+        "daily",
+        "weekly",
+        "monthly"
+      ],
+      "extract": [
+        "決算",
+        "EC物流",
+        "3PL",
+        "M&A",
+        "TOB",
+        "株価反応"
+      ]
+    },
+    {
+      "priority": "P1",
+      "domain": "logistics",
+      "layer": "倉庫IR",
+      "name": "三菱倉庫 IR",
+      "url": "https://www.mitsubishi-logistics.co.jp/ir/",
+      "cadence": [
+        "weekly",
+        "monthly"
+      ],
+      "extract": [
+        "倉庫収益",
+        "物流量",
+        "設備投資",
+        "自動化",
+        "不動産"
+      ]
+    },
+    {
+      "priority": "P1",
+      "domain": "logistics",
+      "layer": "倉庫IR",
+      "name": "三井倉庫ホールディングス IR",
+      "url": "https://msh.mitsui-soko.com/ir/",
+      "cadence": [
+        "weekly",
+        "monthly"
+      ],
+      "extract": [
+        "倉庫",
+        "フォワーディング",
+        "物流量",
+        "M&A",
+        "投資"
+      ]
+    },
+    {
+      "priority": "P1",
+      "domain": "logistics",
+      "layer": "港湾IR",
+      "name": "上組 IR",
+      "url": "https://www.kamigumi.co.jp/ir/",
+      "cadence": [
+        "weekly",
+        "monthly"
+      ],
+      "extract": [
+        "港湾運送",
+        "倉庫",
+        "取扱量",
+        "設備投資"
+      ]
+    },
+    {
+      "priority": "P1",
+      "domain": "logistics",
+      "layer": "総合物流IR",
+      "name": "山九 IR",
+      "url": "https://www.sankyu.co.jp/ir/",
+      "cadence": [
+        "weekly",
+        "monthly"
+      ],
+      "extract": [
+        "3PL",
+        "港湾",
+        "プラント物流",
+        "設備投資",
+        "業績"
+      ]
+    }
   ]
 }

@@ -1,30 +1,59 @@
 {
+  "schema_version": "2.0-public",
   "anchor": "化粧品",
+  "public_note": "個別ブランド検索語は公開しない。公開版はカテゴリ・市場・販促テーマのみ保持する。",
   "terms": [
-    {"term":"Dior コスメ","category":"brand","brand":"Dior"},
-    {"term":"CHANEL コスメ","category":"brand","brand":"CHANEL"},
-    {"term":"YSL コスメ","category":"brand","brand":"YSL Beauty"},
-    {"term":"ランコム","category":"brand","brand":"Lancôme"},
-    {"term":"SK-II","category":"brand","brand":"SK-II"},
-    {"term":"資生堂","category":"brand","brand":"資生堂"},
-    {"term":"クレドポー ボーテ","category":"brand","brand":"Clé de Peau Beauté"},
-    {"term":"ジョーマローン","category":"brand","brand":"Jo Malone London"},
-    {"term":"バイレード","category":"brand","brand":"Byredo"},
-    {"term":"Rare Beauty","category":"brand","brand":"Rare Beauty"},
-    {"term":"Rhode beauty","category":"brand","brand":"Rhode"},
-    {"term":"Fenty Beauty","category":"brand","brand":"Fenty Beauty"},
-    {"term":"Charlotte Tilbury","category":"brand","brand":"Charlotte Tilbury"},
-    {"term":"香水","category":"fragrance"},
-    {"term":"リップ","category":"makeup"},
-    {"term":"ファンデーション","category":"makeup"},
-    {"term":"クッションファンデ","category":"makeup"},
-    {"term":"美容液","category":"skincare"},
-    {"term":"日焼け止め","category":"skincare"},
-    {"term":"韓国コスメ","category":"market"},
-    {"term":"チャーム コスメ","category":"promotion"},
-    {"term":"ポーチ コスメ","category":"promotion"},
-    {"term":"キー コスメ","category":"promotion"},
-    {"term":"GWP コスメ","category":"promotion"},
-    {"term":"PWP コスメ","category":"promotion"}
+    {
+      "term": "香水",
+      "category": "フレグランス"
+    },
+    {
+      "term": "リップ",
+      "category": "メイクアップ"
+    },
+    {
+      "term": "ファンデーション",
+      "category": "メイクアップ"
+    },
+    {
+      "term": "クッションファンデ",
+      "category": "メイクアップ"
+    },
+    {
+      "term": "美容液",
+      "category": "スキンケア"
+    },
+    {
+      "term": "日焼け止め",
+      "category": "スキンケア"
+    },
+    {
+      "term": "韓国コスメ",
+      "category": "市場"
+    },
+    {
+      "term": "チャーム コスメ",
+      "category": "販促"
+    },
+    {
+      "term": "ポーチ コスメ",
+      "category": "販促"
+    },
+    {
+      "term": "ギフト コスメ",
+      "category": "販促"
+    },
+    {
+      "term": "限定 コスメ",
+      "category": "販促"
+    },
+    {
+      "term": "GWP コスメ",
+      "category": "販促"
+    },
+    {
+      "term": "PWP コスメ",
+      "category": "販促"
+    }
   ]
 }

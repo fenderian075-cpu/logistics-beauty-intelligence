@@ -166,7 +166,7 @@ export function marketRegimeSection(report, intel) {
   const head = el("div", "section__head");
   const heading = el("div");
   heading.appendChild(el("p", "eyebrow", "物流市場"));
-  heading.appendChild(el("h2", "section__title", "市場レジーム"));
+  heading.appendChild(el("h2", "section__title", "市場局面"));
   heading.id = "market-regime-title";
   head.appendChild(heading);
   head.appendChild(el("p", "section__note", `${L.typeLabel(report.type)} / ${report.date}`));

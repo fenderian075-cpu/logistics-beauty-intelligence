@@ -6,7 +6,7 @@
   Replace every {{PLACEHOLDER}}. Do not change the <head>, header, footer or
   script tags: they are identical on every report page.
 
-  {{TYPE}}        daily | weekly | monthly
+  {{TYPE}}        日次 | 週次 | 月次
   {{TYPE_JA}}     デイリー | ウィークリー | マンスリー
   {{DATE}}        ISO date, e.g. 2026-08-24
   {{DATE_JA}}     2026年8月24日（月）
@@ -26,26 +26,26 @@
 
   v1.1 — Changes since previous brief
   -----------------------------------
-   - Daily   : the 前回からの変化 section goes immediately AFTER the Status Board.
-   - Weekly  : compare with the previous weekly, placed after Executive Summary.
-   - Monthly : compare with the previous monthly, placed after Executive Summary.
+   - 日次   : the 前回からの変化 section goes immediately AFTER the Status Board.
+   - 週次  : compare with the previous 週次, placed after Executive Summary.
+   - 月次 : compare with the previous 月次, placed after Executive Summary.
    - Show ONLY what moved. Never list unchanged categories.
    - If there is no previous report of this type, keep the .changes--none block
      and delete the full .changes block (they are mutually exclusive).
    - The same comparison must also be written into the reports.json entry as
      change_summary — the dashboard reads it from there, not from this HTML.
 
-  v2.1 — structured signals
+  v2.1 — structured 指標s
   -------------------------
    - Signal cards are NOT written by hand. They are rendered by report.js from
      the `intelligence` block of this report's entry in data/reports.json.
-     Keep the empty <div id="report-signals"></div> below; if the entry has no
+     Keep the empty <div id="report-指標s"></div> below; if the entry has no
      `intelligence`, the whole section hides itself.
-   - Every signal id must already exist in data/signal-registry.json.
+   - Every 指標 id must already exist in data/指標-registry.json.
    - Enums: direction rising|falling|stable|volatile|unknown ·
      impact/confidence high|medium|low ·
      change_status new|deteriorating|improving|resolved|unchanged|unchanged_high_risk ·
-     (beauty only) demand_driver organic|promotion|launch|buzz ·
+     (beauty only) demand_driver organic|販促|新製品投入|buzz ·
      duration temporary|persistent|unknown
    - The prose sections below are still the detailed record. Signals are the
      machine-readable index of the same judgement, not a replacement for it.
@@ -87,9 +87,9 @@
 
   <div class="rail-group">
     <p class="rail-group__label">レポート</p>
-    <a class="rail-link" id="nav-latest-daily" data-nav="daily" href="../../../archive.html?type=daily">日次</a>
-    <a class="rail-link" id="nav-latest-weekly" data-nav="weekly" href="../../../archive.html?type=weekly">週次</a>
-    <a class="rail-link" id="nav-latest-monthly" data-nav="monthly" href="../../../archive.html?type=monthly">月次</a>
+    <a class="rail-link" id="nav-latest-日次" data-nav="日次" href="../../../archive.html?type=日次">日次</a>
+    <a class="rail-link" id="nav-latest-週次" data-nav="週次" href="../../../archive.html?type=週次">週次</a>
+    <a class="rail-link" id="nav-latest-月次" data-nav="月次" href="../../../archive.html?type=月次">月次</a>
     <a class="rail-link" data-nav="archive" href="../../../archive.html">過去のレポート</a>
   </div>
 
@@ -162,7 +162,7 @@
           <p class="status-cell__note">{{S_WEATHER_NOTE}}</p>
         </div>
         <div class="status-cell" data-status="{{S_CUSTOMS}}">
-          <div class="status-cell__name">通関・NACCS</div>
+          <div class="status-cell__name">通関・法令</div>
           <div class="status-cell__value"><span class="dot"></span><span>{{S_CUSTOMS_LABEL}}</span></div>
           <p class="status-cell__note">{{S_CUSTOMS_NOTE}}</p>
         </div>
@@ -185,8 +185,8 @@
     </section>
 
     <!-- ===================================================================
-         前回からの変化 — Daily: place directly after the Status Board.
-                          Weekly / Monthly: place after Executive Summary.
+         前回からの変化 — 日次: place directly after the Status Board.
+                          週次 / 月次: place after Executive Summary.
          Keep EITHER the .changes block OR the .changes--none block.
          =================================================================== -->
     <section aria-labelledby="chg-h">
@@ -241,7 +241,7 @@
     <!-- v2.1 — rendered from data/reports.json; hides itself when empty. -->
     <section aria-labelledby="sig-list-h">
       <h2 id="sig-list-h">構造化シグナル</h2>
-      <div id="report-signals"></div>
+      <div id="report-指標s"></div>
     </section>
 
     <section aria-labelledby="exec-h">
@@ -314,7 +314,7 @@
     <section aria-labelledby="sig-h">
       <h2 id="sig-h">主要指標</h2>
       <!-- Only indicators worth tracking over time. Mirror these values into
-           the reports.json "signals" object so the dashboard can show deltas.
+           the reports.json "指標s" object so the dashboard can show deltas.
            Leave a row out entirely when there is no fresh figure. -->
       <div class="table-scroll">
         <table>

@@ -62,8 +62,8 @@ function beautyProxy(bundle) {
   return {
     dept, drug, deptReal, drugReal, cpiLatest,
     nominalText: dept ? `百貨店化粧品 ${dept.period} ${pct(dept.yoy_store_adjusted_pct)}` : "未確認",
-    secondaryText: drug ? `ドラッグストアBeauty ${drug.period} ${pct(drug.yoy_pct)}` : "—",
-    realText: deptReal && drugReal ? `2025実質proxy 百貨店 ${pct(deptReal.real_growth_proxy_pct)} / Drugstore ${pct(drugReal.real_growth_proxy_pct)}` : "実質proxy未算出"
+    secondaryText: drug ? `ドラッグストア化粧品 ${drug.period} ${pct(drug.yoy_pct)}` : "—",
+    realText: deptReal && drugReal ? `2025実質推計 百貨店 ${pct(deptReal.real_growth_proxy_pct)} / Drugstore ${pct(drugReal.real_growth_proxy_pct)}` : "実質推計未算出"
   };
 }
 function priceForIndustry(bundle, industry) { return industry.price_metric_id ? latest(findSeries(bundle.prices, industry.price_metric_id)) : null; }
@@ -85,9 +85,9 @@ function renderDecomposition(host, bundle) {
   if (!data || !data.beauty_cpi) return;
   const section = el("section", "flow-dataset"); section.id = "deflator-decomposition";
   const head = el("div", "section__head"), title = el("div");
-  title.appendChild(el("p", "eyebrow", "NOMINAL → PRICE → REAL"));
+  title.appendChild(el("p", "eyebrow", "名目 → 価格 → 実質"));
   title.appendChild(el("h2", "section__title", "名目・価格・実質の分解"));
-  title.appendChild(el("p", "regime-note", "同一期間・同一比較基準が揃う場合だけ実質化します。BeautyはCPI化粧品を小売需要の価格proxyとして使用し、SNA実質付加価値とは区別します。"));
+  title.appendChild(el("p", "regime-note", "同一期間・同一比較基準が揃う場合だけ実質化します。BeautyはCPI化粧品を小売需要の価格代理指標として使用し、SNA実質付加価値とは区別します。"));
   head.appendChild(title); section.appendChild(head);
 
   const cards = el("div", "economy-grid");
@@ -95,9 +95,9 @@ function renderDecomposition(host, bundle) {
   const proxy = (data.beauty_real_proxy && data.beauty_real_proxy.observations) || [];
   const dept = proxy.find((r) => r.channel === "department_store_cosmetics");
   const drug = proxy.find((r) => r.channel === "drugstore_beauty");
-  [["化粧品価格", latestCpi ? `CPI化粧品 ${latestCpi.period} ${pct(latestCpi.yoy_pct)}` : "未確認", "2015-2025年の年平均接続系列をbaseline化。"],
-   ["百貨店Beauty", dept ? `名目 ${pct(dept.nominal_growth_pct)} → 実質proxy ${pct(dept.real_growth_proxy_pct)}` : "未確認", dept ? `価格寄与 ${pct(dept.price_growth_pct)}。店舗数調整後YoYを使用。` : ""],
-   ["Drugstore Beauty", drug ? `名目 ${pct(drug.nominal_growth_pct)} → 実質proxy ${pct(drug.real_growth_proxy_pct)}` : "未確認", drug ? `価格寄与 ${pct(drug.price_growth_pct)}。METI Beauty Care年次YoYを使用。` : ""]
+  [["化粧品価格", latestCpi ? `CPI化粧品 ${latestCpi.period} ${pct(latestCpi.yoy_pct)}` : "未確認", "2015-2025年の年平均接続系列を基準系列化。"],
+   ["百貨店化粧品", dept ? `名目 ${pct(dept.nominal_growth_pct)} → 実質推計 ${pct(dept.real_growth_proxy_pct)}` : "未確認", dept ? `価格寄与 ${pct(dept.price_growth_pct)}。店舗数調整後YoYを使用。` : ""],
+   ["ドラッグストア化粧品", drug ? `名目 ${pct(drug.nominal_growth_pct)} → 実質推計 ${pct(drug.real_growth_proxy_pct)}` : "未確認", drug ? `価格寄与 ${pct(drug.price_growth_pct)}。METI Beauty Care年次YoYを使用。` : ""]
   ].forEach(([label, headline, detail]) => { const card = el("article", "economy-card economy-card--static"); card.appendChild(el("p", "eyebrow", label)); card.appendChild(el("strong", "economy-card__headline", headline)); card.appendChild(el("p", "economy-card__detail", detail)); cards.appendChild(card); });
   section.appendChild(cards);
 
@@ -109,28 +109,28 @@ function renderDecomposition(host, bundle) {
 function renderIndustryComparison(host, bundle) {
   const data = bundle.industry; if (!data || !Array.isArray(data.industries)) return;
   const section = el("section", "flow-dataset industry-comparison"); section.id = "industry-comparison";
-  const head = el("div", "section__head"), title = el("div"); title.appendChild(el("p", "eyebrow", "NOMINAL × REAL × PRICE"));
+  const head = el("div", "section__head"), title = el("div"); title.appendChild(el("p", "eyebrow", "名目 × 実質 × 価格"));
   title.appendChild(el("h2", "section__title", "全産業比較：名目・実質・価格"));
   title.appendChild(el("p", "regime-note", "2024年名目成長は年次、2026Q1実質成長は直近四半期です。期間が違うため差し引きはせず、方向とレジームを比較します。"));
   head.appendChild(title); section.appendChild(head);
 
   const beauty = beautyProxy(bundle), notes = el("div", "economy-grid"), logistics = data.industries.find((i) => i.id === "transport_postal"), logisticsPrice = logistics ? priceForIndustry(bundle, logistics) : null;
-  [["物流", logistics ? `名目2024 ${pct(logistics.nominal_yoy_2024_pct)} / 実質2026Q1 ${pct(logistics.latest_real_qoq && logistics.latest_real_qoq.value)}` : "未確認", logisticsPrice ? `運輸・郵便SPPI ${logisticsPrice.period} ${pct(logisticsPrice.yoy)}。売上/付加価値の増加と価格上昇を分離。` : "価格系列未確認"],
+  [["物流", logistics ? `2024年名目 ${pct(logistics.nominal_yoy_2024_pct)} / 2026年1-3月期実質 ${pct(logistics.latest_real_qoq && logistics.latest_real_qoq.value)}` : "未確認", logisticsPrice ? `運輸・郵便SPPI ${logisticsPrice.period} ${pct(logisticsPrice.yoy)}。売上/付加価値の増加と価格上昇を分離。` : "価格系列未確認"],
    ["Beauty", beauty.nominalText, `${beauty.secondaryText} / ${beauty.realText}`],
-   ["比較ルール", "名目 ≠ 実質 ≠ 価格", "Beautyの実質proxyはCPI化粧品で価格要因を除去。産業GDPはSNA産業デフレーターのみを使い、CPI/SPPIで代用しない。"]
+   ["比較ルール", "名目 ≠ 実質 ≠ 価格", "化粧品需要の実質推計はCPI化粧品で価格要因を除去。産業GDPはSNA産業デフレーターのみを使い、CPI/SPPIで代用しない。"]
   ].forEach(([label, headline, detail]) => { const card = el("article", "economy-card economy-card--static"); card.appendChild(el("p", "eyebrow", label)); card.appendChild(el("strong", "economy-card__headline", headline)); card.appendChild(el("p", "economy-card__detail", detail)); notes.appendChild(card); });
   section.appendChild(notes);
 
   const wrap = el("div", "table-scroll"), table = el("table", "data-table economy-table"), thead = el("thead"), trh = el("tr");
-  ["産業", "名目GDP構成比 2024", "名目YoY 2024", "実質QoQ 2026Q1", "価格シグナル", "読み方"].forEach((label) => trh.appendChild(el("th", null, label))); thead.appendChild(trh); table.appendChild(thead);
+  ["産業", "名目GDP構成比 2024", "名目前年比 2024", "実質前期比 2026年1-3月期", "価格指標", "読み方"].forEach((label) => trh.appendChild(el("th", null, label))); thead.appendChild(trh); table.appendChild(thead);
   const tbody = el("tbody");
   data.industries.slice().sort((a,b) => Number((b.nominal_share_pct||{})["2024"]||0)-Number((a.nominal_share_pct||{})["2024"]||0)).forEach((industry) => {
     const priceObs = priceForIndustry(bundle, industry), tr = el("tr"); if (industry.id === "transport_postal") tr.setAttribute("data-highlight", "logistics");
     tr.appendChild(el("td", null, industry.name_ja || industry.id)); tr.appendChild(el("td", null, pct((industry.nominal_share_pct || {})["2024"])));
     tr.appendChild(el("td", null, pct(industry.nominal_yoy_2024_pct))); tr.appendChild(el("td", null, pct(industry.latest_real_qoq && industry.latest_real_qoq.value)));
-    tr.appendChild(el("td", null, priceObs ? `${priceObs.period} YoY ${pct(priceObs.yoy)}` : "SNAデフレーター取込待ち")); tr.appendChild(el("td", null, assessment(industry, priceObs))); tbody.appendChild(tr);
+    tr.appendChild(el("td", null, priceObs ? `${priceObs.period} YoY ${pct(priceObs.yoy)}` : "SNAデフレーター未取込")); tr.appendChild(el("td", null, assessment(industry, priceObs))); tbody.appendChild(tr);
   });
-  const beautyRow = el("tr"); beautyRow.setAttribute("data-highlight", "beauty"); beautyRow.appendChild(el("td", null, "Beauty需要 proxy")); beautyRow.appendChild(el("td", null, "SNA単独産業ではない"));
+  const beautyRow = el("tr"); beautyRow.setAttribute("data-highlight", "beauty"); beautyRow.appendChild(el("td", null, "化粧品需要の実質推計")); beautyRow.appendChild(el("td", null, "SNA単独産業ではない"));
   beautyRow.appendChild(el("td", null, beauty.nominalText)); beautyRow.appendChild(el("td", null, beauty.realText)); beautyRow.appendChild(el("td", null, beauty.cpiLatest ? `CPI化粧品 ${beauty.cpiLatest.period} ${pct(beauty.cpiLatest.yoy_pct)}` : "—"));
   beautyRow.appendChild(el("td", null, beauty.secondaryText)); tbody.appendChild(beautyRow);
   table.appendChild(tbody); wrap.appendChild(table); section.appendChild(wrap);

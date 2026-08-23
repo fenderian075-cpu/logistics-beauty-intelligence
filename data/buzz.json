@@ -14,7 +14,7 @@
   "observations": [
     {
       "term": "ポーチ コスメ",
-      "category": "promotion",
+      "category": "販促",
       "brand": null,
       "interest_7d": 2.3,
       "interest_prev21d": 1.0,
@@ -26,9 +26,9 @@
       "confidence": "medium"
     },
     {
-      "term": "CHANEL コスメ",
+      "term": "個別ブランド コスメ",
       "category": "brand",
-      "brand": "CHANEL",
+      "brand": "個別ブランド",
       "interest_7d": 0.9,
       "interest_prev21d": 0.4,
       "change_ratio": 2.25,
@@ -39,9 +39,9 @@
       "confidence": "medium"
     },
     {
-      "term": "Dior コスメ",
+      "term": "個別ブランド コスメ",
       "category": "brand",
-      "brand": "Dior",
+      "brand": "個別ブランド",
       "interest_7d": 2.0,
       "interest_prev21d": 1.4,
       "change_ratio": 1.4,
@@ -52,9 +52,9 @@
       "confidence": "medium"
     },
     {
-      "term": "SK-II",
+      "term": "個別ブランド",
       "category": "brand",
-      "brand": "SK-II",
+      "brand": "個別ブランド",
       "interest_7d": 0.9,
       "interest_prev21d": 0.6,
       "change_ratio": 1.38,
@@ -65,9 +65,9 @@
       "confidence": "medium"
     },
     {
-      "term": "ランコム",
+      "term": "個別ブランド",
       "category": "brand",
-      "brand": "Lancôme",
+      "brand": "個別ブランド",
       "interest_7d": 10.1,
       "interest_prev21d": 9.1,
       "change_ratio": 1.11,
@@ -78,9 +78,9 @@
       "confidence": "medium"
     },
     {
-      "term": "クレドポー ボーテ",
+      "term": "個別ブランド",
       "category": "brand",
-      "brand": "Clé de Peau Beauté",
+      "brand": "個別ブランド",
       "interest_7d": 9.7,
       "interest_prev21d": 8.8,
       "change_ratio": 1.1,
@@ -156,9 +156,9 @@
       "confidence": "medium"
     },
     {
-      "term": "YSL コスメ",
+      "term": "個別ブランド コスメ",
       "category": "brand",
-      "brand": "YSL Beauty",
+      "brand": "個別ブランド",
       "interest_7d": 0.0,
       "interest_prev21d": 0.0,
       "change_ratio": 1.0,
@@ -169,35 +169,9 @@
       "confidence": "medium"
     },
     {
-      "term": "Rare Beauty",
+      "term": "個別ブランド",
       "category": "brand",
-      "brand": "Rare Beauty",
-      "interest_7d": 0.0,
-      "interest_prev21d": 0.0,
-      "change_ratio": 1.0,
-      "change_pct": 0.0,
-      "anchor_normalized": 0.0,
-      "source": "Google Trends",
-      "geo": "JP",
-      "confidence": "medium"
-    },
-    {
-      "term": "Rhode beauty",
-      "category": "brand",
-      "brand": "Rhode",
-      "interest_7d": 0.0,
-      "interest_prev21d": 0.0,
-      "change_ratio": 1.0,
-      "change_pct": 0.0,
-      "anchor_normalized": 0.0,
-      "source": "Google Trends",
-      "geo": "JP",
-      "confidence": "medium"
-    },
-    {
-      "term": "Fenty Beauty",
-      "category": "brand",
-      "brand": "Fenty Beauty",
+      "brand": "個別ブランド",
       "interest_7d": 0.0,
       "interest_prev21d": 0.0,
       "change_ratio": 1.0,
@@ -209,7 +183,7 @@
     },
     {
       "term": "チャーム コスメ",
-      "category": "promotion",
+      "category": "販促",
       "brand": null,
       "interest_7d": 0.0,
       "interest_prev21d": 0.0,
@@ -222,7 +196,7 @@
     },
     {
       "term": "キー コスメ",
-      "category": "promotion",
+      "category": "販促",
       "brand": null,
       "interest_7d": 0.0,
       "interest_prev21d": 0.0,
@@ -235,7 +209,7 @@
     },
     {
       "term": "GWP コスメ",
-      "category": "promotion",
+      "category": "販促",
       "brand": null,
       "interest_7d": 0.0,
       "interest_prev21d": 0.0,
@@ -248,7 +222,7 @@
     },
     {
       "term": "PWP コスメ",
-      "category": "promotion",
+      "category": "販促",
       "brand": null,
       "interest_7d": 0.0,
       "interest_prev21d": 0.0,
@@ -260,9 +234,9 @@
       "confidence": "medium"
     },
     {
-      "term": "資生堂",
+      "term": "個別ブランド",
       "category": "brand",
-      "brand": "資生堂",
+      "brand": "個別ブランド",
       "interest_7d": 62.3,
       "interest_prev21d": 63.2,
       "change_ratio": 0.99,
@@ -286,9 +260,9 @@
       "confidence": "medium"
     },
     {
-      "term": "ジョーマローン",
+      "term": "個別ブランド",
       "category": "brand",
-      "brand": "Jo Malone London",
+      "brand": "個別ブランド",
       "interest_7d": 11.7,
       "interest_prev21d": 14.2,
       "change_ratio": 0.83,
@@ -299,9 +273,9 @@
       "confidence": "medium"
     },
     {
-      "term": "バイレード",
+      "term": "個別ブランド",
       "category": "brand",
-      "brand": "Byredo",
+      "brand": "個別ブランド",
       "interest_7d": 2.9,
       "interest_prev21d": 3.6,
       "change_ratio": 0.79,
@@ -325,9 +299,9 @@
       "confidence": "medium"
     },
     {
-      "term": "Charlotte Tilbury",
+      "term": "個別ブランド",
       "category": "brand",
-      "brand": "Charlotte Tilbury",
+      "brand": "個別ブランド",
       "interest_7d": 0.0,
       "interest_prev21d": 0.1,
       "change_ratio": 0.0,

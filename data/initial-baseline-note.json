@@ -7,14 +7,14 @@
       "Japan nominal GDP fiscal-year level: 2005FY-2025FY (2025FY preliminary)",
       "Japan nominal GDP fiscal-year growth: 2005FY-2025FY",
       "Japan real GDP fiscal-year growth: 2005FY-2025FY",
-      "2026-Q2 real/nominal GDP QoQ and seasonally adjusted annual-rate levels"
+      "2026-Q2 real/nominal GDP QoQ and seasonally adjusted annual-運賃 levels"
     ],
     "industry_comparison": [
       "16 SNA industries: nominal GDP share history 2019-2024",
       "16 SNA industries: official current-price GDP levels for 2023 and 2024",
       "16 SNA industries: 2024 nominal YoY derived from official current-price levels",
       "16 SNA industries plus primary/secondary/tertiary aggregates: latest 2026-Q1 real seasonally adjusted QoQ momentum",
-      "Transport/postal linked to its SPPI price signal without treating price as physical volume"
+      "Transport/postal linked to its SPPI price 指標 without treating price as physical volume"
     ],
     "prices": [
       "Japan CPI major groups: annual 2024-2025",
@@ -22,15 +22,15 @@
       "Transport/postal SPPI and selected logistics services including road freight, ocean freight, international air freight, warehousing and 3PL"
     ],
     "beauty_retail": [
-      "Department-store total sales: calendar-year 2021-2025 and monthly 2026-01 to 2026-06",
-      "Department-store cosmetics sales: calendar-year 2021-2025 and monthly 2026-01 to 2026-06",
+      "Department-store total sales: calendar-year 2021-2025 and 月次 2026-01 to 2026-06",
+      "Department-store cosmetics sales: calendar-year 2021-2025 and 月次 2026-01 to 2026-06",
       "Drugstore total and Beauty Care sales: calendar-year 2022-2025",
       "Existing cosmetics shipment, household spend and category structure observations retained",
       "Beauty real-demand proxy is intentionally not calculated until official cosmetics CPI history is seeded"
     ],
     "trade": [
       "Japan total exports/imports/trade balance: calendar-year 2015-2024",
-      "Existing 2026 monthly and H1 provisional trade observations retained"
+      "Existing 2026 月次 and H1 provisional trade observations retained"
     ]
   },
   "data_rules": [
@@ -40,7 +40,7 @@
     "GDP observations retain source vintage because GDP is revised retrospectively; a vintage change is not interpreted as an economic event.",
     "Derived values such as annual trade balance and 2024 industry nominal YoY are explicitly derived from official published totals.",
     "SPPI is a business-service transaction price index and is not treated as freight volume or an SNA deflator.",
-    "Historical baseline observations are context and confirmation layers, not Critical Radar events by themselves."
+    "Historical baseline observations are context and confirmation layers, not 重要動向 events by themselves."
   ],
   "collector_backlog": [
     "Official 2025-base item-level CPI history for cosmetics small group 0150, required before Beauty nominal sales can be converted into a same-period real-demand proxy.",

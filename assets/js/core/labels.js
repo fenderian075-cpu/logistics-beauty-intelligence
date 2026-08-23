@@ -27,7 +27,7 @@ export const STATUS = {
 export const DOMAIN = {
   domestic: "国内配送",
   weather: "気象・災害",
-  customs: "通関・NACCS",
+  customs: "通関・法令",
   ocean: "海上輸送",
   air: "航空貨物",
   global: "グローバルサプライチェーン"
@@ -129,7 +129,7 @@ export function evidenceTier(cls) {
 }
 
 
-/* ---- Operations Radar / Topic Intelligence (v6) --------------------------- */
+/* ---- Operations Radar / トピック分析 (v6) --------------------------- */
 
 /** critical-news.json `domain` */
 export const NEWS_DOMAIN = {
@@ -139,7 +139,7 @@ export const NEWS_DOMAIN = {
   customs: "通関",
   weather: "気象",
   regulatory: "規制",
-  beauty_commerce: "Beauty商流",
+  beauty_commerce: "化粧品商流",
   global: "グローバル"
 };
 
@@ -220,7 +220,7 @@ export const UI = {
   readReport: (type) => `${pick(REPORT_TYPE, type)}を読む`,
   signalsTitle: "主要指標",
   sigEvidence: "根拠",
-  sigHistory: "この signal の推移",
+  sigHistory: "この指標の推移",
   sigHistoryNone: "過去の観測はまだありません。",
   sigHistoryThin: "観測が1件のみのため、推移グラフは表示していません。",
   sigHistoryChart: "影響度と変化ステータスの推移",
@@ -284,8 +284,8 @@ export const UI = {
     monthly: "何の前提が変わったか"
   },
   typeDesc: {
-    daily: "国内配送・気象・通関・NACCS・重大な輸送障害などの例外管理。",
-    weekly: "運賃・キャパシティ・定時性・港湾・航空・Beauty需要・EC施策などを分析。",
-    monthly: "物流構造・規制・市況・技術成熟度・Beauty需要構造を中期分析。"
+    daily: "国内配送・気象・通関・法令・重大な輸送障害などの例外管理。",
+    weekly: "運賃・キャパシティ・定時性・港湾・航空・化粧品需要・EC施策などを分析。",
+    monthly: "物流構造・規制・市況・技術成熟度・化粧品需要構造を中期分析。"
   }
 };
