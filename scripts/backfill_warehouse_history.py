@@ -2,9 +2,9 @@
 """Backfill MLIT 21-company ordinary-warehouse history from official workbooks.
 
 The official monthly workbook contains a long-run `推移表` with inbound volume,
-inventory balance/value, utilization and cargo-turnover ratio.  Outbound volume
-is reconstructed only where the workbook provides all components of MLIT's
-published turnover formula, and is explicitly marked as derived.
+inventory balance/value, utilization and cargo-turnover ratio. Outbound volume
+is reconstructed only where all components of MLIT's published turnover formula
+exist, and is explicitly marked as derived.
 """
 from __future__ import annotations
 
@@ -18,6 +18,7 @@ from urllib.parse import urljoin
 import requests
 from bs4 import BeautifulSoup
 from openpyxl import load_workbook
+import xlrd
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "data/economy/warehouse-flow.json"
@@ -33,18 +34,14 @@ def period_from_label(value, current_year=None):
     text = norm(value)
     if not text:
         return None, current_year
-    m = re.search(r"平成(\d+)年(\d+)月", text)
-    if m:
-        y, mo = 1988 + int(m.group(1)), int(m.group(2)); return f"{y:04d}-{mo:02d}", y
-    m = re.search(r"令和(\d+)年(\d+)月", text)
-    if m:
-        y, mo = 2018 + int(m.group(1)), int(m.group(2)); return f"{y:04d}-{mo:02d}", y
-    m = re.search(r"H(\d+)年(\d+)月", text, re.I)
-    if m:
-        y, mo = 1988 + int(m.group(1)), int(m.group(2)); return f"{y:04d}-{mo:02d}", y
-    m = re.search(r"R(\d+)年(\d+)月", text, re.I)
-    if m:
-        y, mo = 2018 + int(m.group(1)), int(m.group(2)); return f"{y:04d}-{mo:02d}", y
+    for era, offset in (("平成", 1988), ("令和", 2018)):
+        m = re.search(rf"{era}(\d+)年(\d+)月", text)
+        if m:
+            y, mo = offset + int(m.group(1)), int(m.group(2)); return f"{y:04d}-{mo:02d}", y
+    for era, offset in (("H", 1988), ("R", 2018)):
+        m = re.search(rf"{era}(\d+)年(\d+)月", text, re.I)
+        if m:
+            y, mo = offset + int(m.group(1)), int(m.group(2)); return f"{y:04d}-{mo:02d}", y
     m = re.fullmatch(r"(\d{1,2})月", text)
     if m and current_year:
         return f"{current_year:04d}-{int(m.group(1)):02d}", current_year
@@ -65,46 +62,47 @@ def workbook_links():
     links = []
     for a in soup.find_all("a", href=True):
         href = urljoin(PAGE, a["href"])
-        if re.search(r"\.xlsx(?:$|\?)", href, re.I): links.append(href)
-    # Recent files are xlsx. The page lists months within the latest year first;
-    # inspecting the first 24 is enough to select the workbook with the latest
-    # embedded long-run trend table without downloading the full archive.
+        if re.search(r"\.xlsx?(?:$|\?)", href, re.I): links.append(href)
+    # The official page lists the newest year first and its twelve months first.
+    # Inspect 24 candidates to tolerate mixed XLS/XLSX publication formats.
     return list(dict.fromkeys(links))[:24]
 
 
-def parse_xlsx(url):
+def parse_workbook(url):
     res = requests.get(url, headers=UA, timeout=60); res.raise_for_status()
-    book = load_workbook(BytesIO(res.content), data_only=True, read_only=True)
-    if "推移表" not in book.sheetnames:
-        return None
-    ws = book["推移表"]
-    rows = []
-    current_year = None
-    # The monthly section starts after row 30. Columns are fixed in the official
-    # workbook: B inbound kt, H inventory kt, K inventory value JPY mn,
-    # Q utilization %, R turnover %.
-    for r in range(31, ws.max_row + 1):
-        period, current_year = period_from_label(ws.cell(r, 1).value, current_year)
-        if not period:
-            continue
-        inbound_kt = num(ws.cell(r, 2).value)
-        inventory_kt = num(ws.cell(r, 8).value)
-        inventory_value_mn = num(ws.cell(r, 11).value)
-        utilization = num(ws.cell(r, 17).value)
-        turnover = num(ws.cell(r, 18).value)
-        if inbound_kt is None or inventory_kt is None:
-            continue
+    is_xlsx = url.lower().split("?")[0].endswith(".xlsx")
+    if is_xlsx:
+        book = load_workbook(BytesIO(res.content), data_only=True, read_only=True)
+        if "推移表" not in book.sheetnames: return None
+        ws = book["推移表"]
+        max_row = ws.max_row
+        cell = lambda r, c: ws.cell(r, c).value
+    else:
+        book = xlrd.open_workbook(file_contents=res.content)
+        names = [n.strip() for n in book.sheet_names()]
+        if "推移表" not in names: return None
+        real_name = book.sheet_names()[names.index("推移表")]
+        ws = book.sheet_by_name(real_name)
+        max_row = ws.nrows
+        cell = lambda r, c: ws.cell_value(r - 1, c - 1) if r <= ws.nrows and c <= ws.ncols else None
+
+    rows, current_year = [], None
+    # Monthly section: B inbound kt, H inventory kt, K inventory value JPY mn,
+    # Q utilization %, R turnover %. This contract is shared by recent XLS/XLSX.
+    for r in range(31, max_row + 1):
+        period, current_year = period_from_label(cell(r, 1), current_year)
+        if not period: continue
+        inbound_kt, inventory_kt = num(cell(r, 2)), num(cell(r, 8))
+        if inbound_kt is None or inventory_kt is None: continue
         rows.append({
             "period": period,
             "inbound_kt": inbound_kt,
             "inventory_kt": inventory_kt,
-            "inventory_value_mn_jpy": inventory_value_mn,
-            "utilization_pct": utilization,
-            "turnover_pct": turnover,
+            "inventory_value_mn_jpy": num(cell(r, 11)),
+            "utilization_pct": num(cell(r, 17)),
+            "turnover_pct": num(cell(r, 18)),
         })
-    if not rows:
-        return None
-    # Deduplicate the legacy anchor row and sort chronologically.
+    if not rows: return None
     by_period = {row["period"]: row for row in rows}
     rows = [by_period[k] for k in sorted(by_period)]
     return {"url": url, "rows": rows, "latest": rows[-1]["period"]}
@@ -122,7 +120,9 @@ def add_changes(rows):
     for i, row in enumerate(rows):
         if i:
             prev = rows[i-1]["value"]
-            if prev not in (None, 0): row["mom"] = round((row["value"] / prev - 1) * 100, 2)
+            py, pm = map(int, rows[i-1]["period"].split("-")); cy, cm = map(int, row["period"].split("-"))
+            if (cy * 12 + cm) - (py * 12 + pm) == 1 and prev not in (None, 0):
+                row["mom"] = round((row["value"] / prev - 1) * 100, 2)
         y, m = map(int, row["period"].split("-"))
         prior = values.get(f"{y-1:04d}-{m:02d}")
         if prior and prior["value"] not in (None, 0): row["yoy"] = round((row["value"] / prior["value"] - 1) * 100, 2)
@@ -133,43 +133,35 @@ def main():
     parsed = []
     for url in workbook_links():
         try:
-            item = parse_xlsx(url)
+            item = parse_workbook(url)
             if item: parsed.append(item)
         except Exception as exc:
             print("warehouse candidate failed", url, type(exc).__name__, str(exc)[:120])
-    if not parsed:
-        raise RuntimeError("No usable MLIT warehouse trend workbook found")
+    if not parsed: raise RuntimeError("No usable MLIT warehouse trend workbook found")
     best = max(parsed, key=lambda item: item["latest"])
     raw = best["rows"]
 
     inbound = [obs(r["period"], r["inbound_kt"] * 1000) for r in raw]
     inventory = [obs(r["period"], r["inventory_kt"] * 1000) for r in raw]
-    turnover = [obs(r["period"], r["turnover_pct"], unit_note="percent turnover") for r in raw if r["turnover_pct"] is not None]
-    utilization = [obs(r["period"], r["utilization_pct"], unit_note="percent utilization") for r in raw if r["utilization_pct"] is not None]
+    turnover = [obs(r["period"], r["turnover_pct"]) for r in raw if r["turnover_pct"] is not None]
+    utilization = [obs(r["period"], r["utilization_pct"]) for r in raw if r["utilization_pct"] is not None]
     inventory_value = [obs(r["period"], r["inventory_value_mn_jpy"] * 1_000_000) for r in raw if r["inventory_value_mn_jpy"] is not None]
 
-    # MLIT formula printed in every workbook:
-    # turnover = (inbound + outbound) / (previous inventory + current inventory) * 100.
-    # Because turnover is published rounded, outbound is an approximate derived
-    # series; never label it as a directly observed official value.
+    # MLIT's printed formula:
+    # turnover = (inbound + outbound)/(previous inventory + current inventory)*100.
+    # Published turnover is rounded, so this outbound series is an approximation.
     outbound = []
     for prev, cur in zip(raw, raw[1:]):
-        if period_from_label(cur["period"])[0] is None:  # ISO labels do not use this parser; harmless guard below
-            pass
         py, pm = map(int, prev["period"].split("-")); cy, cm = map(int, cur["period"].split("-"))
-        contiguous = (cy * 12 + cm) - (py * 12 + pm) == 1
-        if not contiguous or cur["turnover_pct"] is None:
-            continue
+        if (cy * 12 + cm) - (py * 12 + pm) != 1 or cur["turnover_pct"] is None: continue
         estimated_kt = (cur["turnover_pct"] / 100.0) * (prev["inventory_kt"] + cur["inventory_kt"]) - cur["inbound_kt"]
-        if estimated_kt < 0:
-            continue
+        if estimated_kt < 0: continue
         outbound.append(obs(cur["period"], estimated_kt * 1000,
             status="derived_from_official_turnover_formula",
             derivation="(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
             note_ja="国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。"))
 
     for rows in (inbound, outbound, inventory, turnover, utilization, inventory_value): add_changes(rows)
-
     data = json.loads(OUT.read_text(encoding="utf-8")) if OUT.exists() else {}
     names = {
         "inbound_volume": ("入庫量", "tonnes", inbound),
@@ -183,20 +175,13 @@ def main():
     final = []
     for metric_id, (name_ja, unit, rows) in names.items():
         s = existing.get(metric_id, {"metric_id": metric_id})
-        s.update({"name_ja": name_ja, "unit": unit, "observations": rows})
-        final.append(s)
-    # Preserve the legacy storage_revenue placeholder explicitly as unavailable;
-    # inventory value is not warehouse service revenue and must not be mislabeled.
+        s.update({"name_ja": name_ja, "unit": unit, "observations": rows}); final.append(s)
     if "storage_revenue" in existing:
-        s = existing["storage_revenue"]
-        s["observations"] = []
+        s = existing["storage_revenue"]; s["observations"] = []
         s["availability_note_ja"] = "主要21社統計に倉庫サービス売上高はないため未取得。保管残高金額とは別概念。"
         final.append(s)
     data.update({
-        "schema_version": "1.1",
-        "dataset": "warehouse-flow",
-        "title_ja": "倉庫荷動き",
-        "frequency": "monthly",
+        "schema_version": "1.1", "dataset": "warehouse-flow", "title_ja": "倉庫荷動き", "frequency": "monthly",
         "sources": [{"name": "国土交通省 営業普通倉庫の実績（主要21社）", "url": PAGE, "frequency": "monthly"}],
         "series": final,
         "coverage": {"start": raw[0]["period"], "end": raw[-1]["period"], "observations": len(raw), "workbook": best["url"]},
