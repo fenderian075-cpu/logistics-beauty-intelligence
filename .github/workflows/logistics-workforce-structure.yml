@@ -26,6 +26,7 @@ on:
       - "data/economy/ec-demand.json"
       - "data/economy/household-demand.json"
       - "data/economy/logistics-foreign-workforce.json"
+      - "data/economy/logistics-foreign-capacity-pipeline.json"
       - "data/economy/trucking-physical-capacity.json"
       - "data/economy/road-freight-driver-capacity.json"
       - "data/economy/driver-labor-history.json"
@@ -56,6 +57,7 @@ on:
       - "data/economy/ec-demand.json"
       - "data/economy/household-demand.json"
       - "data/economy/logistics-foreign-workforce.json"
+      - "data/economy/logistics-foreign-capacity-pipeline.json"
       - "data/economy/trucking-physical-capacity.json"
       - "data/economy/road-freight-driver-capacity.json"
       - "data/economy/driver-labor-history.json"
@@ -154,6 +156,7 @@ jobs:
             ('data/economy/road-freight-driver-capacity.json','road_freight_transport_machine_workers'),
             ('data/economy/driver-labor-history.json','large_truck_driver_annual_income'),
             ('data/economy/freight-driver-vacancy-history.json','freight_driver_job_openings_ratio'),
+            ('data/economy/logistics-foreign-capacity-pipeline.json','ssw_auto_transport_truck_drivers'),
             ('data/economy/labor-capacity-stress.json','labor_capacity_stress_equal_weight'),
             ('data/economy/labor-capacity-stress-v1.json','labor_capacity_stress_v1'),
             ('data/economy/labor-capacity-stress-sensitivity.json','stress_leave_one_out_range')]:
