@@ -40,43 +40,21 @@ def discover_latest_table3() -> tuple[str, str]:
     r.raise_for_status()
     soup = BeautifulSoup(r.text, "html.parser")
 
-    # ISA keeps the latest half-year section first. Resolve the period from the first Reiwa month-end heading.
-    period = None
-    section = None
-    for tag in soup.find_all(["h2", "h3", "h4"]):
-        t = norm(tag.get_text(" ", strip=True))
-        m = re.search(r"令和\s*(\d+)年\s*(6|12)月末", t)
-        if m:
-            period = f"{era_to_year(int(m.group(1))):04d}-{int(m.group(2)):02d}"
-            section = tag
-            break
-    if not period:
+    # The ISA publication page presents the latest half-year first, but the period label is not
+    # consistently emitted as a heading element. Resolve it from normalized page text instead.
+    page_text = norm(soup.get_text(" ", strip=True))
+    m = re.search(r"令和\s*(\d+)年\s*(6|12)月末", page_text)
+    if not m:
         raise RuntimeError("Could not resolve latest SSW half-year period from ISA landing page")
+    period = f"{era_to_year(int(m.group(1))):04d}-{int(m.group(2)):02d}"
 
-    # Prefer Table 3 inside the latest section; stop at the next period heading.
+    # The latest section appears first. Choose the first PDF link whose anchor denotes Table 3.
     candidates = []
-    node = section
-    while node is not None:
-        node = node.find_next()
-        if node is None:
-            break
-        if node.name in {"h2", "h3", "h4"}:
-            txt = norm(node.get_text(" ", strip=True))
-            if re.search(r"令和\s*\d+年\s*(6|12)月末", txt):
-                break
-        if node.name == "a":
-            txt = norm(node.get_text(" ", strip=True))
-            href = node.get("href") or ""
-            if "第3表" in txt.replace("３", "3") and ".pdf" in href.lower():
-                candidates.append(urljoin(LANDING, href))
-    if not candidates:
-        # Layout fallback: first Table 3 PDF link on the page, since latest period is presented first.
-        for a in soup.find_all("a"):
-            txt = norm(a.get_text(" ", strip=True)).replace("３", "3")
-            href = a.get("href") or ""
-            if "第3表" in txt and ".pdf" in href.lower():
-                candidates.append(urljoin(LANDING, href))
-                break
+    for a in soup.find_all("a"):
+        txt = norm(a.get_text(" ", strip=True)).replace("３", "3")
+        href = a.get("href") or ""
+        if "第3表" in txt and ".pdf" in href.lower():
+            candidates.append(urljoin(LANDING, href))
     if not candidates:
         raise RuntimeError("Could not discover latest SSW Table 3 PDF")
     return period, candidates[0]
@@ -94,8 +72,6 @@ def extract_pdf_text(url: str) -> str:
 
 def parse_auto_transport(text: str) -> tuple[int, int, int, int]:
     t = norm(text)
-    # Table 3 has a field total plus the three auto-transport work categories. PDF text order can vary,
-    # so try label-value and value-label layouts before a guarded local-window fallback.
     patterns = [
         r"自動車運送業分野\s*([\d,]+).*?トラック運転者\s*([\d,]+).*?タクシー運転者\s*([\d,]+).*?バス運転者\s*([\d,]+)",
         r"自動車運送業分野.*?トラック運転者\s*([\d,]+).*?タクシー運転者\s*([\d,]+).*?バス運転者\s*([\d,]+).*?(?:計|総数)\s*([\d,]+)",
@@ -108,24 +84,20 @@ def parse_auto_transport(text: str) -> tuple[int, int, int, int]:
         nums = [int(x.replace(",", "")) for x in m.groups()]
         if i == 1:
             truck, taxi, bus, total = nums
-        elif i == 2:
-            total, truck, taxi, bus = nums
         else:
             total, truck, taxi, bus = nums
         if total == truck + taxi + bus and total >= 0:
             return total, truck, taxi, bus
 
-    # Guarded fallback: inspect only a short window around the field name. Accept values only if a
-    # 4-number combination satisfies total = truck + taxi + bus and all three category labels exist.
     pos = t.find("自動車運送業分野")
     if pos >= 0:
-        window = t[pos : pos + 900]
+        window = t[pos : pos + 1200]
         if all(x in window for x in ("トラック運転者", "タクシー運転者", "バス運転者")):
             nums = [int(x.replace(",", "")) for x in re.findall(r"(?<!\d)([\d,]+)(?!\d)", window)]
-            for a in range(min(len(nums), 12)):
-                for b in range(a + 1, min(len(nums), 12)):
-                    for c in range(b + 1, min(len(nums), 12)):
-                        for d in range(c + 1, min(len(nums), 12)):
+            for a in range(min(len(nums), 16)):
+                for b in range(a + 1, min(len(nums), 16)):
+                    for c in range(b + 1, min(len(nums), 16)):
+                        for d in range(c + 1, min(len(nums), 16)):
                             vals = [nums[a], nums[b], nums[c], nums[d]]
                             for total_idx in range(4):
                                 total = vals[total_idx]
