@@ -1,25 +1,25 @@
 {
   "schema_version": "2.1",
   "dataset": "public-sanitize-status",
-  "status": "success",
-  "stage": "success",
-  "updated_at": "2026-08-23T04:30:45.332711+00:00",
+  "status": "failure",
+  "stage": "audit",
+  "updated_at": "2026-08-23T04:33:01.886720+00:00",
   "stages": {
     "restore": "success",
     "sanitize": "success",
     "localize_ui": "success",
     "finalize_display": "success",
-    "audit": "success",
-    "schema_integrity": "success",
-    "report_validation": "success",
-    "customs_validation": "success"
+    "audit": "failure",
+    "schema_integrity": "skipped",
+    "report_validation": "skipped",
+    "customs_validation": "skipped"
   },
   "exit_codes": {
-    "audit": "0",
-    "schema_integrity": "0",
-    "report_validation": "0",
-    "customs_validation": "0"
+    "audit": "1",
+    "schema_integrity": null,
+    "report_validation": null,
+    "customs_validation": null
   },
-  "diagnostic_tail": null,
+  "diagnostic_tail": "[ERROR] data/reports.json: untranslated public UI term 'effective supply'\n[ERROR] data/reports.json: untranslated public UI term 'fleet supply'\n[ERROR] data/reports.json: untranslated public UI term 'delay absorption'\n[ERROR] data/reports.json: untranslated public UI term '幹線capacity'\n[ERROR] data/reports.json: untranslated public UI term 'promotion/launch'\n[ERROR] economic-flow.html: untranslated public UI term 'ECONOMIC &amp; PHYSICAL FLOW'\n",
   "note": "Public sanitizer health only; stable machine keys and non-brand URLs must remain unchanged."
 }
