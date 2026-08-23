@@ -1,0 +1,63 @@
+name: Backfill official economy history
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "20 3 2 * *"
+  push:
+    paths:
+      - "scripts/backfill_official_economy_history.py"
+      - "scripts/update_sna_industry_deflators.py"
+      - "scripts/update_japan_fuel_prices_v2.py"
+      - ".github/workflows/historical-economy-backfill.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install collectors
+        run: pip install requests beautifulsoup4 openpyxl xlrd
+      - name: Refresh SNA industry history
+        continue-on-error: true
+        run: python scripts/update_sna_industry_deflators.py
+      - name: Refresh fuel long history
+        continue-on-error: true
+        run: python scripts/update_japan_fuel_prices_v2.py
+      - name: Backfill official macro, CPI, trade and IIP history
+        run: python scripts/backfill_official_economy_history.py
+      - name: Validate generated JSON
+        run: |
+          python - <<'PY'
+          import json, glob
+          for p in glob.glob('data/economy/*.json'):
+              json.load(open(p, encoding='utf-8'))
+          status=json.load(open('data/economy/historical-backfill-status.json',encoding='utf-8'))
+          cov=json.load(open('data/economy/historical-coverage.json',encoding='utf-8'))
+          print('backfill status:', status['status'])
+          print('coverage series:', len(cov.get('series',[])))
+          PY
+      - name: Frontend and schema regression
+        run: |
+          python scripts/validate_public_schema_integrity.py
+          python scripts/validate-customs-taxonomy.py
+      - name: Commit long history on main
+        if: github.ref == 'refs/heads/main'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/economy
+          if git diff --cached --quiet; then
+            echo "No historical data change."
+            exit 0
+          fi
+          git commit -m "data: backfill official economy history"
+          git push
