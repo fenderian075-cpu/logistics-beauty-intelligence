@@ -11,6 +11,30 @@ import { loadCriticalNews } from "../data/store.js";
 
 let sources = [];
 
+const PRIORITY_ORDER = new Map([
+  ["P0", 0],
+  ["P1", 1],
+  ["P2", 2],
+  ["P3", 3]
+]);
+
+function priorityRank(value) {
+  return PRIORITY_ORDER.has(value) ? PRIORITY_ORDER.get(value) : 99;
+}
+
+function stableSourceSort(a, b) {
+  const byPriority = priorityRank(a.priority) - priorityRank(b.priority);
+  if (byPriority) return byPriority;
+
+  const byDomain = String(a.domain || "").localeCompare(String(b.domain || ""), "ja");
+  if (byDomain) return byDomain;
+
+  const byLayer = String(a.layer || "").localeCompare(String(b.layer || ""), "ja");
+  if (byLayer) return byLayer;
+
+  return String(a.name || "").localeCompare(String(b.name || ""), "ja");
+}
+
 function value(id) {
   const node = byId(id);
   return node ? node.value : "";
@@ -31,7 +55,7 @@ function render() {
     if (cadence && (s.cadence || []).indexOf(cadence) < 0) return false;
     if (q && [s.name, s.layer, (s.extract || []).join(" ")].join(" ").toLowerCase().indexOf(q) < 0) return false;
     return true;
-  });
+  }).slice().sort(stableSourceSort);
 
   const count = byId("source-count");
   if (count) count.textContent = `${rows.length} 件`;
