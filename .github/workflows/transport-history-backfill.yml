@@ -7,12 +7,14 @@ on:
       - "scripts/inspect_boj_sppi.py"
       - "scripts/inspect_estat_transport_files.py"
       - "scripts/backfill_transport_history.py"
+      - "scripts/backfill_port_history.py"
       - ".github/workflows/transport-history-backfill.yml"
   pull_request:
     paths:
       - "scripts/inspect_boj_sppi.py"
       - "scripts/inspect_estat_transport_files.py"
       - "scripts/backfill_transport_history.py"
+      - "scripts/backfill_port_history.py"
       - ".github/workflows/transport-history-backfill.yml"
 
 permissions:
@@ -31,8 +33,10 @@ jobs:
         run: python scripts/inspect_boj_sppi.py
       - name: Inspect e-Stat transport workbooks
         run: python scripts/inspect_estat_transport_files.py
-      - name: Backfill transport history
+      - name: Backfill transport price history
         run: python scripts/backfill_transport_history.py
+      - name: Backfill port container history
+        run: python scripts/backfill_port_history.py
       - name: Validate JSON
         run: |
           python - <<'PY'
