@@ -108,31 +108,38 @@ def parse_horizontal(payload, kind):
 
 
 def decode_era_row(row, current_era):
-    """Decode era and era-year from the leftmost cells of a vertical table.
-
-    Supports separate cells such as [平成, 元, ...], compact labels such as
-    '平 5' / '令 1', and continuation rows containing only 6, 7, ... .
-    """
     era=current_era
-    explicit_year=None
     for cell in row[:5]:
         s=norm(cell)
         if not s: continue
-        # Compact era label: 平5, 令1, 平成元, etc.
         m=re.fullmatch(r'(昭和|昭|平成|平|令和|令)(元|\d{1,2})', s)
         if m:
             era=ERA_ALIASES[m.group(1)]
-            explicit_year=1 if m.group(2) == '元' else int(m.group(2))
-            return era, explicit_year
+            return era, 1 if m.group(2) == '元' else int(m.group(2))
         if s in ERA_ALIASES:
             era=ERA_ALIASES[s]
             continue
-        if s == '元' and era:
-            return era, 1
+        if s == '元' and era: return era, 1
         n=number(cell)
-        if n is not None and era and 1 <= n <= 64:
-            return era, int(n)
+        if n is not None and era and 1 <= n <= 64: return era, int(n)
     return era, None
+
+
+def longest_contiguous(matches):
+    """Keep the longest row-ordered block where western years rise by exactly 1.
+
+    This excludes numeric footnotes appearing below the official table body.
+    """
+    best=[]; current=[]
+    for item in matches:
+        y=item[0]
+        if not current or y == current[-1][0] + 1:
+            current.append(item)
+        else:
+            if len(current) > len(best): best=current
+            current=[item]
+    if len(current) > len(best): best=current
+    return best
 
 
 def parse_vertical_era(payload, kind):
@@ -152,32 +159,32 @@ def parse_vertical_era(payload, kind):
         if header_idx is None:
             for i,row in enumerate(rows[:25]):
                 text='|'.join(norm(x) for x in row[:16] if norm(x))
-                if '年度' in text:
-                    header_idx=i; header_label=text; break
+                if '年度' in text: header_idx=i; header_label=text; break
         if header_idx is None: continue
 
-        era=None; values={}; row_matches=[]
+        era=None; matches=[]
         for r_idx,row in enumerate(rows[header_idx+1:], start=header_idx+2):
-            era, ey = decode_era_row(row, era)
+            era, ey=decode_era_row(row,era)
             if era is None or ey is None: continue
-            y=ERA_BASE[era] + ey
+            y=ERA_BASE[era]+ey
             if not (1975 <= y <= 2035): continue
-            nums=[number(x) for x in row]
-            nums=[x for x in nums if x is not None]
+            nums=[number(x) for x in row if number(x) is not None]
             if len(nums) < 2: continue
-            # Both official tables place 合計/計 as the final numeric column.
             total=nums[-1]
             if total <= 0: continue
-            values[y]=total; row_matches.append((r_idx,era,ey,total))
+            matches.append((y,total,r_idx,era,ey))
 
-        modern={y:values[y] for y in sorted(values) if 2010 <= y <= 2035}
+        block=longest_contiguous(matches)
+        modern=[x for x in block if 2010 <= x[0] <= 2035]
         if len(modern) >= 10:
-            candidate=(len(modern),sheet,header_label,modern,row_matches[-5:])
+            values={y:total for y,total,_,_,_ in modern}
+            last_rows=[(r,era,ey,total) for y,total,r,era,ey in modern[-5:]]
+            candidate=(len(modern),sheet,header_label,values,last_rows,(block[0][0],block[-1][0]))
             if best is None or candidate[0] > best[0]: best=candidate
 
     if best is None: return None
-    _,sheet,label,values,last_rows=best
-    return values, {'layout':'vertical_japanese_era','sheet':sheet,'matched_header':label,'last_rows':last_rows}
+    _,sheet,label,values,last_rows,block_range=best
+    return values, {'layout':'vertical_japanese_era','sheet':sheet,'matched_header':label,'official_block_years':list(block_range),'last_rows':last_rows}
 
 
 def parse_metric(payload, kind):
