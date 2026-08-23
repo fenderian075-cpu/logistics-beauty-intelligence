@@ -49,6 +49,20 @@
 .report { max-width: none; width: 100%; }
 .report-topics { margin-bottom: var(--s5); }
 
+/* ---- economic flow time-series --------------------------------------------- */
+
+.cost-trend-panel { overflow: hidden; }
+.trend-chart { width: 100%; min-height: 230px; margin-top: var(--s4); overflow: visible; }
+.trend-chart__grid { stroke: var(--rule); stroke-width: 1; }
+.trend-chart__axis { fill: var(--muted); font-size: 11px; }
+.trend-chart__line { fill: none; stroke: currentColor; stroke-width: 2.4; vector-effect: non-scaling-stroke; }
+.trend-chart__line--1, .trend-chart__point--1 { color: var(--text); stroke: var(--text); }
+.trend-chart__line--2, .trend-chart__point--2 { color: var(--muted); stroke: var(--muted); }
+.trend-chart__point { fill: var(--surface); stroke-width: 2; }
+.trend-legend { display: flex; flex-wrap: wrap; gap: var(--s3); margin-top: var(--s2); font-size: .86rem; color: var(--muted); }
+.trend-legend__item::before { content: "—"; margin-right: .35rem; font-weight: 700; }
+.trend-legend__item--1 { color: var(--text); }
+
 @media (max-width: 1200px) {
   .dashboard { grid-template-columns: 1fr; }
   .dashboard > .section { grid-column: 1 / -1; }
@@ -58,4 +72,5 @@
 
 @media (max-width: 720px) {
   .history-context { grid-template-columns: 1fr; }
+  .trend-chart { min-height: 190px; }
 }
