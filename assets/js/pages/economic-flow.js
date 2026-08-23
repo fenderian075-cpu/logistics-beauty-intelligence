@@ -54,11 +54,17 @@ function renderDataset(host, data) {
 function beautyProxy(bundle) {
   const dept = latest(findSeries(bundle.beauty, "department_store_cosmetics_sales"));
   const drug = latest(findSeries(bundle.beauty, "drugstore_beauty_sales"));
-  const cosmeticsCpi = latest(findSeries(bundle.prices, "cpi_cosmetics"));
-  return { dept, drug, cosmeticsCpi,
-    nominalText: dept ? `百貨店化粧品 ${dept.period} ${pct(dept.yoy_store_adjusted_pct)}` : drug ? `ドラッグストアBeauty ${drug.period} ${pct(drug.yoy_pct)}` : "未確認",
+  const proxyRows = (((bundle.decomposition || {}).beauty_real_proxy || {}).observations || []);
+  const deptReal = proxyRows.find((r) => r.channel === "department_store_cosmetics" && r.period === "2025");
+  const drugReal = proxyRows.find((r) => r.channel === "drugstore_beauty" && r.period === "2025");
+  const cpiAnnual = ((((bundle.decomposition || {}).beauty_cpi || {}).annual) || []);
+  const cpiLatest = cpiAnnual.length ? cpiAnnual[cpiAnnual.length - 1] : null;
+  return {
+    dept, drug, deptReal, drugReal, cpiLatest,
+    nominalText: dept ? `百貨店化粧品 ${dept.period} ${pct(dept.yoy_store_adjusted_pct)}` : "未確認",
     secondaryText: drug ? `ドラッグストアBeauty ${drug.period} ${pct(drug.yoy_pct)}` : "—",
-    realText: cosmeticsCpi ? "化粧品CPIで実質化可能" : "化粧品CPI未投入のため実質未算出" };
+    realText: deptReal && drugReal ? `2025実質proxy 百貨店 ${pct(deptReal.real_growth_proxy_pct)} / Drugstore ${pct(drugReal.real_growth_proxy_pct)}` : "実質proxy未算出"
+  };
 }
 function priceForIndustry(bundle, industry) { return industry.price_metric_id ? latest(findSeries(bundle.prices, industry.price_metric_id)) : null; }
 function assessment(industry, priceObs) {
@@ -74,6 +80,32 @@ function assessment(industry, priceObs) {
   return "直近実質横ばい";
 }
 
+function renderDecomposition(host, bundle) {
+  const data = bundle.decomposition;
+  if (!data || !data.beauty_cpi) return;
+  const section = el("section", "flow-dataset"); section.id = "deflator-decomposition";
+  const head = el("div", "section__head"), title = el("div");
+  title.appendChild(el("p", "eyebrow", "NOMINAL → PRICE → REAL"));
+  title.appendChild(el("h2", "section__title", "名目・価格・実質の分解"));
+  title.appendChild(el("p", "regime-note", "同一期間・同一比較基準が揃う場合だけ実質化します。BeautyはCPI化粧品を小売需要の価格proxyとして使用し、SNA実質付加価値とは区別します。"));
+  head.appendChild(title); section.appendChild(head);
+
+  const cards = el("div", "economy-grid");
+  const annual = data.beauty_cpi.annual || [], latestCpi = annual.length ? annual[annual.length - 1] : null;
+  const proxy = (data.beauty_real_proxy && data.beauty_real_proxy.observations) || [];
+  const dept = proxy.find((r) => r.channel === "department_store_cosmetics");
+  const drug = proxy.find((r) => r.channel === "drugstore_beauty");
+  [["化粧品価格", latestCpi ? `CPI化粧品 ${latestCpi.period} ${pct(latestCpi.yoy_pct)}` : "未確認", "2015-2025年の年平均接続系列をbaseline化。"],
+   ["百貨店Beauty", dept ? `名目 ${pct(dept.nominal_growth_pct)} → 実質proxy ${pct(dept.real_growth_proxy_pct)}` : "未確認", dept ? `価格寄与 ${pct(dept.price_growth_pct)}。店舗数調整後YoYを使用。` : ""],
+   ["Drugstore Beauty", drug ? `名目 ${pct(drug.nominal_growth_pct)} → 実質proxy ${pct(drug.real_growth_proxy_pct)}` : "未確認", drug ? `価格寄与 ${pct(drug.price_growth_pct)}。METI Beauty Care年次YoYを使用。` : ""]
+  ].forEach(([label, headline, detail]) => { const card = el("article", "economy-card economy-card--static"); card.appendChild(el("p", "eyebrow", label)); card.appendChild(el("strong", "economy-card__headline", headline)); card.appendChild(el("p", "economy-card__detail", detail)); cards.appendChild(card); });
+  section.appendChild(cards);
+
+  const deflator = data.industry_deflator || {};
+  section.appendChild(el("p", "source-note", `産業別GDPデフレーター: ${deflator.official_history_available || "—"} の公式系列を確認済み。${deflator.collection_status === "official_series_verified_binary_values_pending_ingest" ? "数値本体は取得環境制約のため未投入。推計値では埋めません。" : ""}`));
+  host.appendChild(section);
+}
+
 function renderIndustryComparison(host, bundle) {
   const data = bundle.industry; if (!data || !Array.isArray(data.industries)) return;
   const section = el("section", "flow-dataset industry-comparison"); section.id = "industry-comparison";
@@ -85,7 +117,7 @@ function renderIndustryComparison(host, bundle) {
   const beauty = beautyProxy(bundle), notes = el("div", "economy-grid"), logistics = data.industries.find((i) => i.id === "transport_postal"), logisticsPrice = logistics ? priceForIndustry(bundle, logistics) : null;
   [["物流", logistics ? `名目2024 ${pct(logistics.nominal_yoy_2024_pct)} / 実質2026Q1 ${pct(logistics.latest_real_qoq && logistics.latest_real_qoq.value)}` : "未確認", logisticsPrice ? `運輸・郵便SPPI ${logisticsPrice.period} ${pct(logisticsPrice.yoy)}。売上/付加価値の増加と価格上昇を分離。` : "価格系列未確認"],
    ["Beauty", beauty.nominalText, `${beauty.secondaryText} / ${beauty.realText}`],
-   ["比較ルール", "名目 ≠ 実質 ≠ 価格", "BeautyはSNA単独産業ではないため、小売・出荷を需要proxyとして表示。化粧品CPI取得後に同一期間の実質proxyを算出。"]
+   ["比較ルール", "名目 ≠ 実質 ≠ 価格", "Beautyの実質proxyはCPI化粧品で価格要因を除去。産業GDPはSNA産業デフレーターのみを使い、CPI/SPPIで代用しない。"]
   ].forEach(([label, headline, detail]) => { const card = el("article", "economy-card economy-card--static"); card.appendChild(el("p", "eyebrow", label)); card.appendChild(el("strong", "economy-card__headline", headline)); card.appendChild(el("p", "economy-card__detail", detail)); notes.appendChild(card); });
   section.appendChild(notes);
 
@@ -96,10 +128,10 @@ function renderIndustryComparison(host, bundle) {
     const priceObs = priceForIndustry(bundle, industry), tr = el("tr"); if (industry.id === "transport_postal") tr.setAttribute("data-highlight", "logistics");
     tr.appendChild(el("td", null, industry.name_ja || industry.id)); tr.appendChild(el("td", null, pct((industry.nominal_share_pct || {})["2024"])));
     tr.appendChild(el("td", null, pct(industry.nominal_yoy_2024_pct))); tr.appendChild(el("td", null, pct(industry.latest_real_qoq && industry.latest_real_qoq.value)));
-    tr.appendChild(el("td", null, priceObs ? `${priceObs.period} YoY ${pct(priceObs.yoy)}` : "—")); tr.appendChild(el("td", null, assessment(industry, priceObs))); tbody.appendChild(tr);
+    tr.appendChild(el("td", null, priceObs ? `${priceObs.period} YoY ${pct(priceObs.yoy)}` : "SNAデフレーター取込待ち")); tr.appendChild(el("td", null, assessment(industry, priceObs))); tbody.appendChild(tr);
   });
   const beautyRow = el("tr"); beautyRow.setAttribute("data-highlight", "beauty"); beautyRow.appendChild(el("td", null, "Beauty需要 proxy")); beautyRow.appendChild(el("td", null, "SNA単独産業ではない"));
-  beautyRow.appendChild(el("td", null, beauty.nominalText)); beautyRow.appendChild(el("td", null, beauty.realText)); beautyRow.appendChild(el("td", null, beauty.cosmeticsCpi ? `${beauty.cosmeticsCpi.period} ${formatValue(beauty.cosmeticsCpi)}` : "化粧品CPI 収集中"));
+  beautyRow.appendChild(el("td", null, beauty.nominalText)); beautyRow.appendChild(el("td", null, beauty.realText)); beautyRow.appendChild(el("td", null, beauty.cpiLatest ? `CPI化粧品 ${beauty.cpiLatest.period} ${pct(beauty.cpiLatest.yoy_pct)}` : "—"));
   beautyRow.appendChild(el("td", null, beauty.secondaryText)); tbody.appendChild(beautyRow);
   table.appendChild(tbody); wrap.appendChild(table); section.appendChild(wrap);
   section.appendChild(el("p", "source-note", "出典: 内閣府 国民経済計算 / 総務省 CPI / 日本銀行 SPPI / 日本百貨店協会 / 経済産業省。名目年次と実質四半期は期間が異なるため、機械的な差分をインフレ率とはみなしません。")); host.appendChild(section);
@@ -111,5 +143,5 @@ function renderChain(data) { const host = byId("flow-chain"); if (!host) return;
 export async function init() {
   const [overview, bundle, reports, news] = await Promise.all([loadEconomyOverview(), loadEconomyBundle(), loadReports(), loadCriticalNews()]);
   mountShell({ reports: reports.reports, news: (news && news.items) || [] }); bindLatestReportNav(reports.reports); markCurrent(); renderOverview(overview); renderChain(overview);
-  const host = byId("flow-datasets"); if (host) { clear(host); renderIndustryComparison(host, bundle); [bundle.prices, bundle.trade, bundle.warehouse, bundle.port, bundle.cost, bundle.trucking, bundle.air, bundle.beauty, bundle.beautyMarket, bundle.macro].forEach((dataset) => renderDataset(host, dataset)); }
+  const host = byId("flow-datasets"); if (host) { clear(host); renderDecomposition(host, bundle); renderIndustryComparison(host, bundle); [bundle.prices, bundle.trade, bundle.warehouse, bundle.port, bundle.cost, bundle.trucking, bundle.air, bundle.beauty, bundle.beautyMarket, bundle.macro].forEach((dataset) => renderDataset(host, dataset)); }
 }
