@@ -22,9 +22,10 @@ function indexed(s,baseYear="2015"){
 
 async function mount(){
   const root=byId("trucking-physical-capacity"); if(!root)return;
-  const [data,driver]=await Promise.all([
+  const [data,driver,business]=await Promise.all([
     loadOptionalJSON("data/economy/trucking-physical-capacity.json",{}),
-    loadOptionalJSON("data/economy/road-freight-driver-capacity.json",{})
+    loadOptionalJSON("data/economy/road-freight-driver-capacity.json",{}),
+    loadOptionalJSON("data/economy/trucking-business-structure.json",{})
   ]);
   clear(root);
   const operators=series(data,"truck_operators"),vehicles=series(data,"commercial_truck_vehicles");
@@ -33,6 +34,8 @@ async function mount(){
   const workerShare=series(driver,"road_freight_transport_machine_share");
   const femaleShare=series(driver,"road_freight_transport_machine_female_share");
   const vehiclesPerWorker=series(driver,"commercial_truck_vehicles_per_transport_machine_worker");
+  const commercialTonnageShare=series(business,"commercial_tonnage_share_post2020");
+  const commercialTonKmShare=series(business,"commercial_ton_km_share_post2020");
   if(!operators?.observations?.length||!vehicles?.observations?.length){
     root.appendChild(el("p","flow-block__reading","国土交通省の事業者数・車両数長期系列を取得中です。未取得値は推測で補完しません。"));
     return;
@@ -65,6 +68,22 @@ async function mount(){
     const c=chart({kind:"line",unitLabel:"千ton-km/台",series:[{name:"営業用トラック1台あたりton-km",unitLabel:"千ton-km/台",points:points(tpv)}],note:"営業用トラック年間ton-km ÷ 営業用トラック車両数。実働率・積載率そのものではなく、車両ストック当たり輸送需要のproxyです。"});
     if(c)root.appendChild(c);
   }
+
+  if(commercialTonnageShare?.observations?.length&&commercialTonKmShare?.observations?.length){
+    root.appendChild(el("h3","flow-block__sub","Commercial vs own-account — post-2020 only"));
+    const businessRow=el("div","value-row");
+    businessRow.appendChild(card("営業用シェア（輸送トン数）",commercialTonnageShare,(v)=>`${jp(v,1)}%`,"2020年方法変更後"));
+    businessRow.appendChild(card("営業用シェア（ton-km）",commercialTonKmShare,(v)=>`${jp(v,1)}%`,"2020年方法変更後"));
+    root.appendChild(businessRow);
+    const c=chart({kind:"line",unitLabel:"%",series:[
+      {name:"営業用シェア・輸送トン数",unitLabel:"%",points:points(commercialTonnageShare)},
+      {name:"営業用シェア・ton-km",unitLabel:"%",points:points(commercialTonKmShare)}
+    ],note:"国土交通省『自動車輸送統計』は2020年4月に調査・集計方法が変更され、変更前後の時系列連続性は保証されません。このチャートは2020年度以降だけを独立系列として表示します。ton-kmは距離を加味した輸送仕事量です。"});
+    if(c)root.appendChild(c);
+    const ts=latest(commercialTonnageShare),ks=latest(commercialTonKmShare);
+    root.appendChild(el("p","flow-block__reading",`${ts.period}年度は輸送トン数の${jp(ts.value,1)}%が営業用ですが、ton-kmでは${jp(ks.value,1)}%を占めます。物量ベース以上に、長距離・高輸送仕事量で営業用トラックへの依存が強い構造です。`));
+  }
+
   if(workers?.observations?.length){
     const first=workers.observations.find((o)=>String(o.period)==="2015"),now=latest(workers);
     if(first&&now)root.appendChild(el("p","flow-block__reading",`道路貨物の輸送・機械運転従事者は2015年の${jp(first.value,0)}万人から2025年の${jp(now.value,0)}万人へ増えていますが、2025年でも道路貨物就業者の${jp(latest(workerShare)?.value,1)}%にとどまり、女性比率は${jp(latest(femaleShare)?.value,1)}%です。人員数だけでなく高齢化・世代交代・労働時間と併せてcapacityを読みます。`));
