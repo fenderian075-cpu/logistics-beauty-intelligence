@@ -8,7 +8,7 @@ on:
     paths:
       - "scripts/backfill_official_economy_history.py"
       - "scripts/backfill_cpi_iip_history.py"
-      - "scripts/inspect_iip_estat.py"
+      - "scripts/backfill_iip_estat_current.py"
       - "scripts/update_sna_industry_deflators.py"
       - "scripts/update_japan_fuel_prices_v2.py"
       - ".github/workflows/historical-economy-backfill.yml"
@@ -16,7 +16,7 @@ on:
     paths:
       - "scripts/backfill_official_economy_history.py"
       - "scripts/backfill_cpi_iip_history.py"
-      - "scripts/inspect_iip_estat.py"
+      - "scripts/backfill_iip_estat_current.py"
       - "scripts/update_sna_industry_deflators.py"
       - "scripts/update_japan_fuel_prices_v2.py"
       - ".github/workflows/historical-economy-backfill.yml"
@@ -54,13 +54,12 @@ jobs:
       - name: Refresh fuel long history
         continue-on-error: true
         run: python scripts/update_japan_fuel_prices_v2.py
-      - name: Backfill official macro, CPI, trade and IIP history
+      - name: Backfill official macro, CPI, trade and discovery history
         run: python scripts/backfill_official_economy_history.py
-      - name: Harden CPI and IIP publication-layout parsing
+      - name: Harden CPI publication-layout parsing
         run: python scripts/backfill_cpi_iip_history.py
-      - name: Diagnose official e-Stat IIP layout
-        if: always()
-        run: python scripts/inspect_iip_estat.py
+      - name: Parse current IIP from official e-Stat workbook
+        run: python scripts/backfill_iip_estat_current.py
       - name: Validate generated JSON and coverage
         run: |
           python - <<'PY'
