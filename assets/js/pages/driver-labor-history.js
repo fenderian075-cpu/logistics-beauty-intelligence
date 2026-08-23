@@ -30,8 +30,8 @@ async function mount(){
   if(!large?.observations?.length)return;
 
   const row=el("div","value-row");
-  row.appendChild(card("大型トラック 年間労働時間",large,(v)=>`${jp(v,0)}時間/年`,"賃金構造基本統計"));
-  row.appendChild(card("大型トラック 年間所得",largeInc,(v)=>`${jp(v,0)}万円/年`,"賃金構造基本統計"));
+  row.appendChild(card("大型トラック 年間労働時間",large,(v)=>`${jp(v,0)}時間/年`,"最新遡及系列"));
+  row.appendChild(card("大型トラック 年間所得",largeInc,(v)=>`${jp(v,0)}万円/年`,"最新遡及系列"));
   row.appendChild(card("大型 所得格差",largeGap,(v)=>`${v>0?"+":""}${jp(v,1)}%`,"全産業比"));
   row.appendChild(card("中小型 所得格差",smallGap,(v)=>`${v>0?"+":""}${jp(v,1)}%`,"全産業比"));
   root.appendChild(row);
@@ -40,7 +40,7 @@ async function mount(){
     {name:"大型トラック",unitLabel:"時間/年",points:points(large)},
     {name:"中小型トラック",unitLabel:"時間/年",points:points(small)},
     {name:"全産業平均",unitLabel:"時間/年",points:points(all)}
-  ],note:"厚生労働省『賃金構造基本統計調査』を厚労省・国交省が整理した年次系列。2024年4月の時間外労働上限規制・改善基準告示改正前後を読む基準線です。"});
+  ],note:"国土交通省の最新資料が厚生労働省『賃金構造基本統計調査』から同一グラフで遡及掲載した2016–2024年系列へ統一。2024年4月の時間外労働上限規制・改善基準告示改正後の最初の年次観測を含みます。"});
   if(hours)root.appendChild(hours);
 
   if(largeInc?.observations?.length){
@@ -48,11 +48,11 @@ async function mount(){
       {name:"大型トラック",unitLabel:"万円/年",points:points(largeInc)},
       {name:"中小型トラック",unitLabel:"万円/年",points:points(smallInc)},
       {name:"全産業平均",unitLabel:"万円/年",points:points(allInc)}
-    ],note:"年間所得額 = きまって支給する現金給与額×12 + 年間賞与その他特別給与額。大型は全産業との差が縮小している一方、中小型は2023年でも約14%低い水準です。"});
+    ],note:"年間所得額 = きまって支給する現金給与額×12 + 年間賞与その他特別給与額。最新資料の2016–2024遡及系列を使用し、旧資料の過去年値とは混在させません。"});
     if(income)root.appendChild(income);
   }
 
-  const po=latest(premium),lg=latest(largeGap),sg=latest(smallGap);
-  root.appendChild(el("p","flow-block__reading",`2023年の大型トラックは年間労働時間が全産業より${jp(po.value,1)}%長い一方、年間所得は${jp(Math.abs(lg.value),1)}%低い。中小型の所得差は${jp(Math.abs(sg.value),1)}%で、賃金競争力の弱さは車格によって差が残っています。2025年job tagは別の処理済み職業統計のため、この長期系列には直結しません。`));
+  const po=latest(premium),lg=latest(largeGap),sg=latest(smallGap),now=latest(large);
+  root.appendChild(el("p","flow-block__reading",`${now.period}年の大型トラックは年間労働時間が全産業より${jp(po.value,1)}%長い一方、年間所得は${jp(Math.abs(lg.value),1)}%低い。中小型の所得差は${jp(Math.abs(sg.value),1)}%です。上限規制後の初年度でも時間差・所得差は残っており、2025年job tagの集約済み職業値はこの車格別系列には接続しません。`));
 }
 mount().catch((err)=>console.warn("driver labor history mount skipped",err));
