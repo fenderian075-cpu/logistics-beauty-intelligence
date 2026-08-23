@@ -370,7 +370,12 @@ async function testArchive() {
     typeSelect.value = "weekly";
     typeSelect.dispatchEvent(new r.window.Event("change"));
   });
-  ok("filtering by type narrows the list", d.querySelectorAll(".archive-item").length === 1);
+  {
+    const expectedWeekly = DATA.reports.filter((r) => r.type === "weekly").length;
+    ok("filtering by type narrows the list",
+      d.querySelectorAll(".archive-item").length === expectedWeekly,
+      `${d.querySelectorAll(".archive-item").length} vs ${expectedWeekly}`);
+  }
   ok("filter state is written to the URL", r.window.location.search.includes("type=weekly"),
     r.window.location.search);
 
