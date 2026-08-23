@@ -1,19 +1,24 @@
 {
-  "schema_version": "1.1",
+  "schema_version": "2.0",
   "dataset": "public-sanitize-status",
-  "status": "success",
-  "stage": "success",
-  "updated_at": "2026-08-23T04:18:38.308302+00:00",
+  "status": "failure",
+  "stage": "audit",
+  "updated_at": "2026-08-23T04:24:42.835210+00:00",
   "stages": {
-    "sanitize_data": "success",
-    "sanitize_aliases": "success",
-    "localize_sources": "success",
+    "restore": "success",
+    "sanitize": "success",
     "localize_ui": "success",
-    "audit": "success",
-    "customs_validation": "success"
+    "audit": "failure",
+    "schema_integrity": "skipped",
+    "report_validation": "skipped",
+    "customs_validation": "skipped"
   },
-  "audit_exit_code": "0",
-  "customs_exit_code": "0",
-  "diagnostic_tail": null,
-  "note": "Public sanitizer health only; no private monitoring targets are stored here."
+  "exit_codes": {
+    "audit": "1",
+    "schema_integrity": null,
+    "report_validation": null,
+    "customs_validation": null
+  },
+  "diagnostic_tail": "[ERROR] data/source-matrix.json: untranslated public UI term 'Beauty需要'\n[ERROR] reports/2026/08/2026-08-23-weekly.html: untranslated public UI term 'Corporate / Market'\n",
+  "note": "Public sanitizer health only; stable machine keys and non-brand URLs must remain unchanged."
 }
