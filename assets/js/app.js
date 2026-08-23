@@ -16,10 +16,20 @@ const PAGES = {
   archive: () => import("./pages/archive.js"),
   commerce: () => import("./pages/commerce-calendar.js"),
   buzz: () => import("./pages/buzz.js"),
-  sources: () => import("./pages/source-matrix.js?v=8.2.1"),
+  sources: () => import("./pages/source-matrix.js"),
   "status-history": () => import("./pages/status-history.js"),
   "lens-history": () => import("./pages/lens-history.js")
 };
+
+function ensureV8Styles() {
+  if (document.getElementById("lbi-v8-dashboard-css")) return;
+  const link = document.createElement("link");
+  link.id = "lbi-v8-dashboard-css";
+  link.rel = "stylesheet";
+  const root = document.body.getAttribute("data-root") || "";
+  link.href = root + "assets/css/v8-dashboard.css";
+  document.head.appendChild(link);
+}
 
 function ensureProductionPolish() {
   if (document.getElementById("lbi-v8-2-polish")) return;
@@ -37,9 +47,6 @@ function ensureProductionPolish() {
     .priority { min-width:38px; white-space:nowrap; }
     .report,.wrap.report,.wrap-read.report { width:100%; max-width:var(--content-max); }
 
-    /* The dashboard's right-hand change column can be much narrower than a
-       full report. Long signal names must own the first row; badges wrap on a
-       second row instead of squeezing Japanese text into a vertical column. */
     #changed-list .sig-card--compact .sig-card__summary {
       grid-template-columns:minmax(0,1fr);
       gap:6px;
@@ -129,6 +136,7 @@ function showFatal(message) {
 function boot() {
   if (window.__lbiBooted) return;
   window.__lbiBooted = true;
+  ensureV8Styles();
   ensureProductionPolish();
   initPrint();
   initShell();

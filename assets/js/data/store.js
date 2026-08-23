@@ -79,7 +79,12 @@ export const loadEconomyBundle = () => Promise.all([
   loadOptionalJSON("data/economy/logistics-companies.json", {}),
   loadOptionalJSON("data/economy/prices.json", {}),
   loadOptionalJSON("data/economy/industry-comparison.json", {}),
-  loadOptionalJSON("data/economy/deflator-decomposition.json", {})
-]).then(([trade, warehouse, port, cost, trucking, air, beauty, beautyMarket, macro, companies, prices, industry, decomposition]) => ({
-  trade, warehouse, port, cost, trucking, air, beauty, beautyMarket, macro, companies, prices, industry, decomposition
+  loadOptionalJSON("data/economy/deflator-decomposition.json", {}),
+  loadOptionalJSON("data/economy/fuel-prices.json", {}),
+  loadOptionalJSON("data/economy/ocean-freight-market.json", {}),
+  loadOptionalJSON("data/economy/fuel-collector-status.json", {})
+]).then(([trade, warehouse, port, cost, trucking, air, beauty, beautyMarket, macro, companies,
+          prices, industry, decomposition, fuel, ocean, fuelStatus]) => ({
+  trade, warehouse, port, cost, trucking, air, beauty, beautyMarket, macro, companies,
+  prices, industry, decomposition, fuel, ocean, fuelStatus
 }));

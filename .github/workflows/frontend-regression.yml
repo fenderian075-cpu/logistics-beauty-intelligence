@@ -1,0 +1,48 @@
+name: Frontend regression
+
+on:
+  pull_request:
+    paths:
+      - "*.html"
+      - "assets/**"
+      - "tests/**"
+      - "package.json"
+      - "data/**"
+      - "scripts/validate-report.py"
+      - "scripts/validate_public_schema_integrity.py"
+      - "scripts/validate-customs-taxonomy.py"
+      - ".github/workflows/frontend-regression.yml"
+  push:
+    branches: [main]
+    paths:
+      - "*.html"
+      - "assets/**"
+      - "tests/**"
+      - "package.json"
+      - "data/**"
+      - "scripts/validate-report.py"
+      - "scripts/validate_public_schema_integrity.py"
+      - "scripts/validate-customs-taxonomy.py"
+      - ".github/workflows/frontend-regression.yml"
+
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install DOM test dependency
+        run: npm install --no-audit --no-fund
+      - name: Static and DOM regression tests
+        run: npm test
+      - name: Report validation
+        run: python scripts/validate-report.py
+      - name: Public schema integrity
+        run: python scripts/validate_public_schema_integrity.py
+      - name: Customs taxonomy integrity
+        run: python scripts/validate-customs-taxonomy.py

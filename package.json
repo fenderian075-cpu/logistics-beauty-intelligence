@@ -1,0 +1,15 @@
+{
+  "name": "logistics-beauty-intelligence",
+  "private": true,
+  "version": "8.0.0",
+  "description": "Development-only regression-test dependencies for the static LBI GitHub Pages site.",
+  "type": "module",
+  "scripts": {
+    "test:static": "node tests/static-audit.mjs",
+    "test:dom": "node tests/dom-smoke.mjs",
+    "test": "npm run test:static && npm run test:dom"
+  },
+  "devDependencies": {
+    "jsdom": "26.1.0"
+  }
+}
