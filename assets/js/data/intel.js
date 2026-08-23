@@ -40,9 +40,51 @@ const SCOPE_RANK = {
   shipment: 0
 };
 
+/* Market Intelligence v4: Rate != Supply != Demand != Reliability != Risk.
+   Dimension is categorical, while materiality/change/horizon/confidence affect
+   decision priority. A routine metric print is retained in the source history
+   but does not belong in the default Critical Radar. */
+const MATERIALITY_RANK = {
+  structural: 120,
+  material: 80,
+  notable: 30,
+  routine: 0
+};
+
+const MARKET_CHANGE_RANK = {
+  regime_shift: 100,
+  acceleration: 60,
+  deterioration: 50,
+  improvement: 40,
+  normalization: 20,
+  no_material_change: -20
+};
+
+const HORIZON_RANK = {
+  immediate: 50,
+  "7d": 40,
+  "30d": 20,
+  "90d": 10
+};
+
+const CONFIDENCE_RANK = {
+  high: 30,
+  medium: 15,
+  low: 0
+};
+
+export function isRadarEligible(item) {
+  return !(item.market_materiality === "routine" &&
+           item.market_change === "no_material_change");
+}
+
 export function radarRank(item) {
   return (NEWS_RANK[item.status] || 100) +
          (SCOPE_RANK[item.operational_scope] || 0) +
+         (MATERIALITY_RANK[item.market_materiality] || 0) +
+         (MARKET_CHANGE_RANK[item.market_change] || 0) +
+         (HORIZON_RANK[item.time_horizon] || 0) +
+         (CONFIDENCE_RANK[item.confidence] || 0) +
          (IMPORTANCE_RANK[item.importance] || 10) +
          (RELEVANCE_RANK[item.japan_relevance] || 1);
 }
@@ -60,13 +102,16 @@ export async function loadIntel() {
 
   const reports = reportData.reports;
   const topics = (topicData && topicData.topics) || [];
-  const news = sortRadar((newsData && newsData.items) || []);
+  const allNews = sortRadar((newsData && newsData.items) || []);
+  const news = allNews.filter(isRadarEligible);
 
   const topicById = new Map(topics.map((t) => [t.topic_id, t]));
   const reportById = new Map(reports.map((r) => [r.id, r]));
 
   const newsByTopic = new Map();
-  news.forEach((item) => {
+  /* Topic Intelligence keeps routine observations as evidence/history even when
+     they are suppressed from the Critical Radar surface. */
+  allNews.forEach((item) => {
     (item.topic_ids || []).forEach((id) => {
       if (!newsByTopic.has(id)) newsByTopic.set(id, []);
       newsByTopic.get(id).push(item);
@@ -95,7 +140,7 @@ export async function loadIntel() {
   });
 
   return {
-    reports, topics, news, reportData,
+    reports, topics, news, allNews, reportData,
     topic: (id) => topicById.get(id) || null,
     hasTopic: (id) => topicById.has(id),
     report: (id) => reportById.get(id) || null,
