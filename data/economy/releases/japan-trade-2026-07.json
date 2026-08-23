@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "dataset": "japan-trade-release",
+  "period": "2026-07",
+  "published_at": "2026-08-20",
+  "status": "provisional",
+  "source": {
+    "name": "財務省 貿易統計 令和8年7月分速報",
+    "url": "https://www.customs.go.jp/toukei/shinbun/happyou.htm"
+  },
+  "observations": [
+    {
+      "metric_id": "exports_total",
+      "value": 11.5118,
+      "unit": "JPY_trillion",
+      "yoy_pct": 23.2,
+      "comparison": {"type": "yoy", "base_period": "2025-07"}
+    },
+    {
+      "metric_id": "imports_total",
+      "value": 12.1463,
+      "unit": "JPY_trillion",
+      "yoy_pct": 27.8,
+      "comparison": {"type": "yoy", "base_period": "2025-07"}
+    },
+    {
+      "metric_id": "exports_quantity_index",
+      "value": 112.2,
+      "unit": "index",
+      "yoy_pct": 5.2,
+      "comparison": {"type": "yoy", "base_period": "2025-07"}
+    },
+    {
+      "metric_id": "imports_quantity_index",
+      "value": 106.6,
+      "unit": "index",
+      "yoy_pct": 1.2,
+      "comparison": {"type": "yoy", "base_period": "2025-07"}
+    },
+    {
+      "metric_id": "trade_balance",
+      "value": -0.6345,
+      "unit": "JPY_trillion"
+    }
+  ],
+  "interpretation": "名目貿易金額と数量指数を分離する。名目金額の前年比伸びを物理的な貨物需要の伸びとして扱わない。",
+  "privacy": "Public release stores national aggregates only. Priority sourcing geographies, ports and lanes are evaluated privately and are not persisted here."
+}
