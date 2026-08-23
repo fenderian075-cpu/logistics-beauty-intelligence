@@ -21,6 +21,7 @@ function displayValue(unit, value) {
   if (unit === "ten_thousand_jpy_month") return `${jp(v, 1)}万円/月`;
   if (unit === "hours_month") return `${jp(v, 0)}時間/月`;
   if (unit === "ratio") return `${jp(v, 2)}倍`;
+  if (unit === "parcels_per_person_year") return `${jp(v, 1)}個/人・年`;
   if (unit === "parcels_per_worker_year") return `${jp(v, 0)}個/人・年`;
   if (unit === "index_2015_100") return jp(v, 1);
   return jp(v, 1);
@@ -56,8 +57,11 @@ async function mount() {
 
   const parcelVolume = series(parcel, "parcel_delivery_volume");
   const mailVolume = series(parcel, "mail_delivery_volume");
+  const allEmployment = series(workforce, "all_industries_employment");
   const employment = series(workforce, "transport_postal_employment");
+  const employmentShare = series(workforce, "transport_postal_employment_share");
   const femaleShare = series(workforce, "transport_postal_female_share");
+  const parcelPerCapita = series(capacity, "parcel_per_capita");
   const parcelPerWorker = series(capacity, "parcel_per_transport_worker");
   const loadIndex = series(capacity, "parcel_load_index_2015");
   const allAge = series(demography, "all_industries_average_age");
@@ -80,7 +84,9 @@ async function mount() {
 
   const pulse = el("div", "value-row");
   pulse.appendChild(card("宅配便取扱個数", parcelVolume, "B2C需要proxy"));
+  pulse.appendChild(card("1人当たり宅配便", parcelPerCapita, "Parcel intensity"));
   pulse.appendChild(card("運輸業・郵便業 就業者", employment, "年平均"));
+  pulse.appendChild(card("物流就業者シェア", employmentShare, "全産業就業者比"));
   pulse.appendChild(card("宅配需要/労働力", loadIndex, "2015=100"));
   pulse.appendChild(card("トラックドライバー平均年齢", currentDriverAge, "2025年"));
   pulse.appendChild(card("有効求人倍率", vacancy, "トラックドライバー"));
@@ -94,9 +100,21 @@ async function mount() {
   ], note:"宅配便は法人向けを一部含むため、B2Cそのものではなくラストマイル需要の代理指標として扱います。" });
   if (parcelChart) root.appendChild(parcelChart);
 
+  const intensityChart = chart({ kind:"line", unitLabel:"個/人・年", series:[
+    { name:"人口1人当たり宅配便", unitLabel:"個/人・年", points:points(parcelPerCapita) }
+  ], note:"宅配便取扱個数 ÷ 総人口。純B2Cではなく、人口当たりラストマイル需要の強度です。" });
+  if (intensityChart) root.appendChild(intensityChart);
+
   root.appendChild(el("h3", "flow-block__sub", "Logistics workforce supply"));
-  const workforceChart = chart({ kind:"line", unitLabel:"万人", series:[{ name:"運輸業・郵便業 就業者", unitLabel:"万人", points:points(employment) }], note:"産業大分類の基準系列。道路貨物運送業・倉庫業の細分系列を次に接続します。" });
+  const workforceChart = chart({ kind:"line", unitLabel:"万人", series:[
+    { name:"日本総就業者", unitLabel:"万人", points:points(allEmployment) },
+    { name:"運輸業・郵便業", unitLabel:"万人", points:points(employment) }
+  ], note:"同じ労働力調査の年平均系列。物流就業者の絶対数だけでなく、日本全体の雇用拡大との相対差を見ます。" });
   if (workforceChart) root.appendChild(workforceChart);
+  const shareChart = chart({ kind:"line", unitLabel:"%", series:[
+    { name:"運輸・郵便就業者シェア", unitLabel:"%", points:points(employmentShare) }
+  ], note:"運輸業・郵便業就業者 ÷ 日本総就業者。2015年5.27%から2025年5.05%へ低下。" });
+  if (shareChart) root.appendChild(shareChart);
 
   root.appendChild(el("h3", "flow-block__sub", "Japan demographic base"));
   const populationChart = chart({ kind:"line", unitLabel:"百万人", series:[
@@ -126,7 +144,7 @@ async function mount() {
   if (pop2015 && pop2025 && work2015 && work2025) {
     const totalChange = (Number(pop2025.value) / Number(pop2015.value) - 1) * 100;
     const workChange = (Number(work2025.value) / Number(work2015.value) - 1) * 100;
-    root.appendChild(sourceNote(`2015→2025で総人口は${jp(totalChange,1)}%、生産年齢人口は${jp(workChange,1)}%。物流人材の供給制約は業界固有の採用難だけでなく、母集団そのものの縮小と接続して見る必要があります。`));
+    root.appendChild(sourceNote(`2015→2025で総人口は${jp(totalChange,1)}%、生産年齢人口は${jp(workChange,1)}%。一方で日本総就業者は増加しているため、物流の供給制約は人口減だけでなく、産業間の人材獲得競争としても見る必要があります。`));
   }
 
   root.appendChild(el("h3", "flow-block__sub", "Driver aging"));
@@ -157,9 +175,10 @@ async function mount() {
   const capacityChart = chart({ kind:"line", unitLabel:"2015=100", series:[{ name:"宅配需要/物流労働力", unitLabel:"2015=100", points:points(loadIndex) }], note:"宅配便個数 ÷ 運輸業・郵便業就業者を2015年=100に指数化。生産性ではなく需給圧力のproxyです。" });
   if (capacityChart) root.appendChild(capacityChart);
   const loadObs = latest(parcelPerWorker);
-  if (loadObs) root.appendChild(sourceNote(`2024年のproxyは物流就業者1人あたり約${jp(loadObs.value,0)}個/年。2015年比では需要/労働力の負荷指数が約30.8%上昇しています。`));
+  const intensityObs = latest(parcelPerCapita);
+  if (loadObs && intensityObs) root.appendChild(sourceNote(`2024年は人口1人当たり宅配便が約${jp(intensityObs.value,1)}個/年、物流就業者1人当たりproxyが約${jp(loadObs.value,0)}個/年。需要強度と労働供給負荷を分けて追えるようになりました。`));
 
-  root.appendChild(sourceNote("次段: 労働力調査I-B-5/II-2-1のExcel列を厳密検証して55歳以上比率・34歳以下比率を投入し、道路貨物運送業・倉庫業へ細分化します。その後、人口母集団と合わせた複合Labor Capacity Stressを構築します。"));
+  root.appendChild(sourceNote("次段: 労働力調査I-B-5/2-2-1の年齢階級実数を投入し、55歳以上比率・34歳以下比率・replacement ratioを算出。続いて道路貨物運送業・倉庫業へ同じ構造を細分化します。"));
 }
 
 mount().catch((err) => console.error("logistics structure mount failed", err));
