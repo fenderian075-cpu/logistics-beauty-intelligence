@@ -33,8 +33,20 @@ jobs:
       - name: Install collectors
         run: pip install requests beautifulsoup4 openpyxl xlrd
       - name: Refresh SNA industry history
+        if: github.event_name != 'pull_request'
         continue-on-error: true
         run: python scripts/update_sna_industry_deflators.py
+      - name: Validate existing SNA history on pull requests
+        if: github.event_name == 'pull_request'
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open('data/economy/industry-deflators.json',encoding='utf-8'))
+          cov=d.get('coverage',{})
+          assert cov.get('start_year') <= 1994 and cov.get('end_year') >= 2024, cov
+          assert len(d.get('industries',[])) >= 16
+          print('SNA baseline valid', cov, 'industries=',len(d['industries']))
+          PY
       - name: Refresh fuel long history
         continue-on-error: true
         run: python scripts/update_japan_fuel_prices_v2.py
