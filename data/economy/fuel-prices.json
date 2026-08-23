@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0",
+  "dataset": "fuel-prices",
+  "title_ja": "日本の燃料価格",
+  "frequency": "weekly+monthly",
+  "source": {
+    "name": "資源エネルギー庁 石油製品価格調査",
+    "url": "https://www.enecho.meti.go.jp/statistics/petroleum_and_lpgas/pl007/results.html",
+    "publication_rule_ja": "給油所小売価格は原則毎週月曜日調査・水曜日公表。全国平均と都道府県別を公表。"
+  },
+  "interpretation_ja": "国内配送コストへの波及を見るため、レギュラーガソリンと軽油を主要系列とする。灯油は家計・季節要因の補助系列。価格上昇だけで輸送能力不足とは判断しない。",
+  "series": [
+    {
+      "metric_id": "regular_gasoline_national",
+      "name_ja": "レギュラーガソリン 全国平均",
+      "unit": "円/L",
+      "observations": [
+        {"period": "2025-12-15", "value": 159.7, "status": "official", "source_note": "資源エネルギー庁公表資料"},
+        {"period": "2026-05-25", "value": 169.2, "status": "official", "source_note": "資源エネルギー庁公表資料"}
+      ]
+    },
+    {
+      "metric_id": "diesel_national",
+      "name_ja": "軽油 全国平均",
+      "unit": "円/L",
+      "observations": [
+        {"period": "2025-12-15", "value": 146.0, "status": "official", "source_note": "資源エネルギー庁公表資料"}
+      ]
+    },
+    {
+      "metric_id": "kerosene_national",
+      "name_ja": "灯油 全国平均",
+      "unit": "円/18L",
+      "observations": [
+        {"period": "2025-12-15", "value": 2201, "status": "official", "source_note": "資源エネルギー庁公表資料"}
+      ]
+    }
+  ],
+  "collection_status": "seeded_official_points_collector_pending_first_full_history_run"
+}

@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0",
+  "effective_from": "2026-08-24",
+  "title_ja": "レポート必須コスト指標",
+  "policy_ja": "燃料・海上運賃は物流コスト判断の基礎系列として、今後のレポートで必ず確認する。数値はレポート作成時点の公表値を固定保存し、後日の最新値で過去レポートを書き換えない。",
+  "daily": {
+    "required": ["regular_gasoline_national", "diesel_national", "drewry_wci", "drewry_iaci"],
+    "rule_ja": "最新公表値を確認し、前回から変化がなければ簡潔に記録。大幅変動時のみCritical Radar昇格を検討する。"
+  },
+  "weekly": {
+    "required": ["regular_gasoline_national", "diesel_national", "drewry_wci", "drewry_iaci", "road_freight", "ocean_freight"],
+    "rule_ja": "週次推移と国内配送・国際輸送へのコスト影響を必ず評価する。運賃上昇を船腹不足と同義にしない。"
+  },
+  "monthly": {
+    "required": ["regular_gasoline_national", "diesel_national", "drewry_wci", "drewry_iaci", "road_freight", "ocean_freight", "international_air_freight", "warehouse_service"],
+    "rule_ja": "燃料、スポット海上運賃、日銀物流サービス価格を分け、価格要因と物量・供給力・定時性を構造的に評価する。"
+  }
+}
