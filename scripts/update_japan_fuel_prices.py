@@ -21,7 +21,7 @@ import xlrd
 
 ROOT = Path(__file__).resolve().parents[1]
 RESULTS = "https://www.enecho.meti.go.jp/statistics/petroleum_and_lpgas/pl007/results.html"
-UA = {"User-Agent": "Mozilla/5.0 LBI-public-fuel-collector/1.2"}
+UA = {"User-Agent": "Mozilla/5.0 LBI-public-fuel-collector/1.3"}
 STATUS_PATH = ROOT / "data/economy/fuel-collector-status.json"
 
 
@@ -30,21 +30,37 @@ def norm(v):
 
 
 def write_status(status, stage, **extra):
-    payload = {"schema_version":"1.1","dataset":"fuel-collector-status","status":status,"stage":stage,
+    payload = {"schema_version":"1.2","dataset":"fuel-collector-status","status":status,"stage":stage,
                "updated_at":datetime.now(timezone.utc).isoformat(), **extra}
     STATUS_PATH.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
 def find_weekly_url(html):
+    """Choose the long-run 1990- weekly workbook, not the current 29KB detail workbook."""
     soup = BeautifulSoup(html, "html.parser")
+    scored = []
     for a in soup.find_all("a", href=True):
-        label, href = norm(a.get_text(" ")), a["href"]
-        if "週次" in label and re.search(r"\.xlsx?(?:\?|$)", href, re.I):
-            return urljoin(RESULTS, href)
-    candidates = [urljoin(RESULTS, a["href"]) for a in soup.find_all("a", href=True)
-                  if re.search(r"\.xlsx?(?:\?|$)", a["href"], re.I)]
-    if not candidates: raise RuntimeError("weekly Excel link not found")
-    return candidates[0]
+        href = a["href"]
+        if not re.search(r"\.xlsx?(?:\?|$)", href, re.I):
+            continue
+        # The site sometimes places `週次ファイル` outside the anchor itself.
+        parent_text = a.parent.get_text(" ", strip=True) if a.parent else ""
+        grand_text = a.parent.parent.get_text(" ", strip=True) if a.parent and a.parent.parent else ""
+        context = norm("|".join([a.get_text(" ", strip=True), parent_text, grand_text]))
+        score = 0
+        if "週次ファイル" in context or "週次" in context: score += 100
+        if "1990年" in context or "平成2年" in context or "8月27日" in context: score += 80
+        if "調査結果一覧" in context: score += 30
+        if "結果詳細版" in context or "結果詳細" in context: score -= 120
+        if "概要" in context: score -= 60
+        scored.append((score, urljoin(RESULTS, href), context[:400]))
+    if not scored:
+        raise RuntimeError("Excel links not found on official result page")
+    scored.sort(key=lambda x: x[0], reverse=True)
+    best = scored[0]
+    if best[0] <= 0:
+        raise RuntimeError(f"long-run weekly workbook could not be identified; candidates={scored[:8]}")
+    return best[1], scored[:8]
 
 
 def parse_date(v, datemode=None):
@@ -78,7 +94,6 @@ def sheet_blob(name, nrows, ncols, getter):
 
 
 def observations_vertical(nrows, ncols, getter, datemode, mid):
-    """Dates down rows; find a national-value column on a product-specific sheet."""
     candidate_cols = []
     for c in range(ncols):
         header = "|".join(norm(getter(r, c)) for r in range(min(nrows, 30)))
@@ -87,8 +102,10 @@ def observations_vertical(nrows, ncols, getter, datemode, mid):
     for col in candidate_cols:
         rows = []
         for r in range(nrows):
-            period = next((parse_date(getter(r, c), datemode) for c in range(min(ncols, 8))
-                           if parse_date(getter(r, c), datemode)), None)
+            period = None
+            for c in range(min(ncols, 8)):
+                period = parse_date(getter(r, c), datemode)
+                if period: break
             v = getter(r, col)
             if period and isinstance(v, (int, float)) and float(v) > 0:
                 rows.append({"period":period,"value":round(float(v),1),"status":"official"})
@@ -97,7 +114,6 @@ def observations_vertical(nrows, ncols, getter, datemode, mid):
 
 
 def observations_horizontal(nrows, ncols, getter, datemode, mid):
-    """Dates across columns; find the row labelled 全国 / 全国平均."""
     date_cols = {}
     for c in range(ncols):
         for r in range(min(nrows, 30)):
@@ -127,7 +143,6 @@ def parse_sheet(name, nrows, ncols, getter, datemode=None):
     horizontal = observations_horizontal(nrows, ncols, getter, datemode, mid)
     rows = horizontal if len(horizontal) > len(vertical) else vertical
     if not rows: return None
-    # Deduplicate by period and sort; latest official workbook value wins.
     dedup = {r["period"]: r for r in rows}
     rows = [dedup[p] for p in sorted(dedup)]
     return mid, rows, "horizontal" if len(horizontal) > len(vertical) else "vertical"
@@ -140,8 +155,7 @@ def parse_xlsx(content):
         result = parse_sheet(ws.title, ws.max_row, ws.max_column, lambda r,c: ws.cell(r+1,c+1).value)
         if result:
             mid, rows, layout = result
-            if len(rows) > len(parsed.get(mid, [])):
-                parsed[mid] = rows
+            if len(rows) > len(parsed.get(mid, [])): parsed[mid] = rows
             details.append({"sheet":ws.title,"metric_id":mid,"layout":layout,"rows":len(rows)})
     return parsed, details
 
@@ -153,19 +167,18 @@ def parse_xls(content):
         result = parse_sheet(ws.name, ws.nrows, ws.ncols, lambda r,c: ws.cell_value(r,c), wb.datemode)
         if result:
             mid, rows, layout = result
-            if len(rows) > len(parsed.get(mid, [])):
-                parsed[mid] = rows
+            if len(rows) > len(parsed.get(mid, [])): parsed[mid] = rows
             details.append({"sheet":ws.name,"metric_id":mid,"layout":layout,"rows":len(rows)})
     return parsed, details
 
 
 def main():
-    weekly = None
+    weekly, link_candidates = None, None
     try:
         write_status("running", "fetch_index")
         page = requests.get(RESULTS, headers=UA, timeout=30); page.raise_for_status()
-        weekly = find_weekly_url(page.text)
-        write_status("running", "download_workbook", weekly_workbook_url=weekly)
+        weekly, link_candidates = find_weekly_url(page.text)
+        write_status("running", "download_workbook", weekly_workbook_url=weekly, link_candidates=link_candidates)
         book = requests.get(weekly, headers=UA, timeout=60); book.raise_for_status(); content = book.content
         if content.startswith(b"PK"):
             workbook_format, (parsed, details) = "xlsx", parse_xlsx(content)
@@ -187,10 +200,11 @@ def main():
         path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         counts = {mid:len(rows) for mid,rows in parsed.items()}
         write_status("success","success",weekly_workbook_url=weekly,workbook_format=workbook_format,
-                     parsed_sheets=details,row_counts=counts)
+                     link_candidates=link_candidates,parsed_sheets=details,row_counts=counts)
         print(counts)
     except Exception as exc:
-        write_status("failure","collector",weekly_workbook_url=weekly,error=str(exc),diagnostic_tail=traceback.format_exc()[-6000:])
+        write_status("failure","collector",weekly_workbook_url=weekly,link_candidates=link_candidates,
+                     error=str(exc),diagnostic_tail=traceback.format_exc()[-6000:])
         raise
 
 if __name__ == "__main__": main()
