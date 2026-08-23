@@ -1,0 +1,82 @@
+name: Apply verified logistics UI redesign
+
+on:
+  push:
+    branches: [feat/logistics-ui-information-architecture]
+    paths:
+      - ".ui-payload/READY"
+
+permissions:
+  contents: write
+
+jobs:
+  apply-and-verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Apply reviewed UI payload
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat .ui-payload/chunk-* | base64 --decode > /tmp/lbi-ui.tar.gz
+          tar -xzf /tmp/lbi-ui.tar.gz -C .
+          rm -f \
+            assets/js/pages/demand-context.js \
+            assets/js/pages/driver-labor-history.js \
+            assets/js/pages/foreign-workforce.js \
+            assets/js/pages/labor-capacity-stress.js \
+            assets/js/pages/logistics-productivity.js \
+            assets/js/pages/logistics-structure.js \
+            assets/js/pages/trucking-physical-capacity.js
+          rm -rf .ui-payload
+          rm -f .github/workflows/apply-logistics-ui-redesign.yml
+
+      - name: Install DOM regression dependency
+        run: npm install --no-audit --no-fund
+
+      - name: Static and DOM regression
+        run: npm test
+
+      - name: Public and structural validators
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/validate-report.py
+          python scripts/validate_public_schema_integrity.py
+          python scripts/audit_public_content.py
+          python scripts/validate-customs-taxonomy.py
+          python scripts/validate_logistics_structure.py
+          python scripts/validate_household_demand.py
+          python scripts/validate_foreign_workforce.py
+          python scripts/validate_trucking_physical_capacity.py
+          python scripts/validate_road_freight_driver_capacity.py
+          python scripts/validate_driver_labor_history.py
+          python scripts/validate_labor_capacity_stress.py
+          python scripts/validate_labor_capacity_stress_sensitivity.py
+          python scripts/validate_trucking_business_structure.py
+
+      - name: Guard data layer
+        run: git diff --exit-code -- data
+
+      - name: Commit verified redesign
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git commit -m "Redesign logistics intelligence information architecture"
+          git push origin HEAD:feat/logistics-ui-information-architecture
