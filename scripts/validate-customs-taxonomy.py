@@ -14,6 +14,8 @@ SIGNAL_ID = "japan-customs-naccs"
 VALID = {"operational", "regulatory", "mixed"}
 ENFORCE_FROM = "2026-08-24"
 REGISTRY_LENS = "regulatory_structural"
+PUBLIC_LAYER = "通関・法令"
+LEGACY_LAYER = "Customs & Regulation"
 
 
 def fail(message: str) -> None:
@@ -38,9 +40,12 @@ def main() -> None:
             fail(f"{subtype} default_lens must remain {REGISTRY_LENS} for registry compatibility")
 
     source_data = json.loads(SOURCES.read_text(encoding="utf-8"))
-    customs_sources = [s for s in source_data.get("sources", []) if s.get("layer") == "Customs & Regulation"]
+    customs_sources = [
+        s for s in source_data.get("sources", [])
+        if s.get("layer") in {PUBLIC_LAYER, LEGACY_LAYER}
+    ]
     if not customs_sources:
-        fail("no Customs & Regulation sources found")
+        fail("通関・法令の情報源が見つかりません")
     for source in customs_sources:
         subtype = source.get("customs_subtype")
         if subtype not in VALID:
