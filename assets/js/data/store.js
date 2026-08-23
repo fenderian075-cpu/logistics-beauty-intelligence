@@ -47,17 +47,19 @@ export const loadSourceMatrix = () =>
   Promise.all([
     loadJSON("data/source-matrix.json"),
     loadOptionalJSON("data/source-matrix-extra.json", { sources: [] }),
-    loadOptionalJSON("data/source-matrix-economics.json", { sources: [] })
-  ]).then(([base, extra, economics]) =>
-    (base.sources || []).concat(extra.sources || [], economics.sources || []).map(normalizeMonitoringSource));
+    loadOptionalJSON("data/source-matrix-economics.json", { sources: [] }),
+    loadOptionalJSON("data/source-matrix-beauty-economy.json", { sources: [] })
+  ]).then(([base, extra, economics, beautyEconomy]) =>
+    (base.sources || [])
+      .concat(extra.sources || [], economics.sources || [], beautyEconomy.sources || [])
+      .map(normalizeMonitoringSource));
 
 export const loadCriticalNews = () => loadOptionalJSON("data/critical-news.json", { items: [] });
 export const loadTopics = () => loadOptionalJSON("data/topic-intelligence.json", { topics: [] });
 export const loadBeautyBrands = () => loadOptionalJSON("data/beauty-priority-brands.json", { priority_brands: [] });
 
 /* Economic & Physical Flow layer. Individual files are persistent time-series
-   stores. overview.json is a presentation snapshot derived from those stores;
-   report automation updates both the source series and this compact summary. */
+   stores. overview.json is a presentation snapshot derived from those stores. */
 export const loadEconomyOverview = () =>
   loadOptionalJSON("data/economy/overview.json", { cards: [], transmission_chain: [] });
 
@@ -69,8 +71,9 @@ export const loadEconomyBundle = () => Promise.all([
   loadOptionalJSON("data/economy/trucking.json", {}),
   loadOptionalJSON("data/economy/air-cargo.json", {}),
   loadOptionalJSON("data/economy/retail-beauty.json", {}),
+  loadOptionalJSON("data/economy/beauty-market.json", {}),
   loadOptionalJSON("data/economy/macro.json", {}),
   loadOptionalJSON("data/economy/logistics-companies.json", {})
-]).then(([trade, warehouse, port, cost, trucking, air, beauty, macro, companies]) => ({
-  trade, warehouse, port, cost, trucking, air, beauty, macro, companies
+]).then(([trade, warehouse, port, cost, trucking, air, beauty, beautyMarket, macro, companies]) => ({
+  trade, warehouse, port, cost, trucking, air, beauty, beautyMarket, macro, companies
 }));
