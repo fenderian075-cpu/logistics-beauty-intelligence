@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0",
+  "dataset": "japan-demography",
+  "title_ja": "日本の人口・労働供給基盤",
+  "frequency": "annual+monthly",
+  "sources": [
+    {
+      "name": "総務省統計局 人口推計",
+      "url": "https://www.stat.go.jp/data/jinsui/2.htm",
+      "role": "年齢・男女別の継続時系列"
+    },
+    {
+      "name": "令和7年国勢調査 人口速報集計",
+      "url": "https://www.stat.go.jp/data/kokusei/2025/kekka.html",
+      "role": "2025-10-01の人口基準点"
+    }
+  ],
+  "notes": [
+    "2025年国勢調査速報の総人口は2025年10月1日現在1億2305万人。2020年比309.7万人減（-2.5%）。",
+    "男女別・年齢別の継続推移は人口推計を正本とし、国勢調査速報の総人口と混在させない。",
+    "生産年齢人口は15-64歳。総人口・男女・0-14歳・15-64歳・65歳以上を基本系列とする。",
+    "外国人人口は別系列として保持し、総人口減少と労働供給補完を分けて分析できるようにする。"
+  ],
+  "series": [
+    {
+      "metric_id": "population_total_census_preliminary",
+      "name_ja": "総人口（国勢調査速報）",
+      "unit": "million_persons",
+      "observations": [
+        {"period":"2025-10-01","value":123.05,"status":"official_preliminary","source":"総務省統計局 令和7年国勢調査 人口速報集計","change_vs_2020_million":-3.097,"change_vs_2020_pct":-2.5}
+      ]
+    },
+    {"metric_id":"population_total","name_ja":"総人口（人口推計）","unit":"million_persons","observations":[]},
+    {"metric_id":"population_male","name_ja":"男性人口","unit":"million_persons","observations":[]},
+    {"metric_id":"population_female","name_ja":"女性人口","unit":"million_persons","observations":[]},
+    {"metric_id":"population_age_0_14","name_ja":"0-14歳人口","unit":"million_persons","observations":[]},
+    {"metric_id":"working_age_population_15_64","name_ja":"生産年齢人口（15-64歳）","unit":"million_persons","observations":[]},
+    {"metric_id":"population_age_65_plus","name_ja":"65歳以上人口","unit":"million_persons","observations":[]},
+    {"metric_id":"working_age_share","name_ja":"生産年齢人口比率","unit":"pct","observations":[]},
+    {"metric_id":"foreign_population","name_ja":"外国人人口","unit":"million_persons","observations":[]}
+  ]
+}
