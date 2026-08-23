@@ -5,13 +5,32 @@
   "frequency": "annual",
   "sources": [
     {"name":"国土交通省 宅配便等取扱個数の調査","url":"https://www.mlit.go.jp/statistics/details/jidosha_list.html"},
-    {"name":"総務省統計局 労働力調査","url":"https://www.stat.go.jp/data/roudou/"}
+    {"name":"総務省統計局 労働力調査","url":"https://www.stat.go.jp/data/roudou/"},
+    {"name":"総務省統計局 人口推計","url":"https://www.stat.go.jp/data/jinsui/"}
   ],
   "notes": [
     "宅配便個数を運輸業・郵便業就業者数で除した構造指標。宅配便には法人向けを一部含み、就業者には宅配以外の運輸・郵便従事者も含むため、生産性そのものではなく需要/労働供給の方向を見るproxyとして扱う。",
+    "Parcel intensityは宅配便個数 ÷ 総人口。公式宅配便統計が純B2Cではないため、EC利用頻度そのものではなくラストマイル需要の人口当たり強度として扱う。",
     "Labor Capacity Stressの正式指数ではない。年齢構成、賃金、求人倍率が揃った後に複合指数を別系列として構築する。"
   ],
   "series": [
+    {
+      "metric_id": "parcel_per_capita",
+      "name_ja": "1人あたり宅配便個数（Parcel intensity）",
+      "unit": "parcels_per_person_year",
+      "observations": [
+        {"period":"2015","value":29.5,"status":"derived","source":"MLIT宅配便個数 ÷ 総務省 人口推計"},
+        {"period":"2016","value":31.6,"status":"derived","source":"同上"},
+        {"period":"2017","value":33.5,"status":"derived","source":"同上"},
+        {"period":"2018","value":34.0,"status":"derived","source":"同上"},
+        {"period":"2019","value":34.2,"status":"derived","source":"同上"},
+        {"period":"2020","value":38.3,"status":"derived","source":"同上"},
+        {"period":"2021","value":39.5,"status":"derived","source":"同上"},
+        {"period":"2022","value":40.1,"status":"derived","source":"同上"},
+        {"period":"2023","value":40.3,"status":"derived","source":"同上"},
+        {"period":"2024","value":40.6,"status":"derived","source":"同上"}
+      ]
+    },
     {
       "metric_id": "parcel_per_transport_worker",
       "name_ja": "運輸就業者1人あたり宅配便個数（proxy）",
