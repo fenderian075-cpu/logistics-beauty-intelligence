@@ -11,13 +11,18 @@ NAME_REPLACEMENTS = {
     "Beauty需要": "化粧品需要",
     "Beauty Demand": "化粧品需要",
 }
+EXTRACT_REPLACEMENTS = {
+    "K-Beauty需要": "K-Beauty関連需要",
+    "K-Beauty demand": "K-Beauty関連需要",
+    "Beauty施策": "化粧品施策",
+}
 HTML_REPLACEMENTS = {
     "Corporate / Market": "企業・市場",
     "Beauty需要": "化粧品需要",
 }
 
 
-def fix_source_names() -> None:
+def fix_source_display_fields() -> None:
     for path in sorted((ROOT / "data").glob("source-matrix*.json")):
         data = json.loads(path.read_text(encoding="utf-8"))
         changed = False
@@ -29,6 +34,12 @@ def fix_source_names() -> None:
                     new_name = new_name.replace(old, new)
                 if new_name != name:
                     source["name"] = new_name
+                    changed = True
+            extracts = source.get("extract")
+            if isinstance(extracts, list):
+                new_extracts = [EXTRACT_REPLACEMENTS.get(item, item) for item in extracts]
+                if new_extracts != extracts:
+                    source["extract"] = new_extracts
                     changed = True
         if changed:
             path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
@@ -45,7 +56,7 @@ def fix_report_html() -> None:
 
 
 def main() -> None:
-    fix_source_names()
+    fix_source_display_fields()
     fix_report_html()
     print("Final display-only terms localized; machine values untouched.")
 
