@@ -1,6 +1,6 @@
 /* =========================================================================
-   source-matrix.js — the monitoring ledger (what the pipeline watches).
-   Public ledger intentionally aggregates individual Brand.com sources.
+   source-matrix.js — 公開用の監視情報源一覧。
+   個別ブランドの監視対象は公開せず、集約した監視群として表示する。
    ========================================================================= */
 
 import { el, extLink, byId, clear } from "../core/dom.js";
@@ -15,8 +15,29 @@ const PRIORITY_ORDER = new Map([
   ["P0", 0], ["P1", 1], ["P2", 2], ["P3", 3]
 ]);
 
+const DOMAIN_LABEL = {
+  logistics: "物流",
+  beauty: "化粧品",
+  economics: "経済",
+  economy: "経済"
+};
+
+const CADENCE_LABEL = {
+  daily: "日次",
+  weekly: "週次",
+  monthly: "月次"
+};
+
 function priorityRank(value) {
   return PRIORITY_ORDER.has(value) ? PRIORITY_ORDER.get(value) : 99;
+}
+
+function domainLabel(value) {
+  return DOMAIN_LABEL[value] || value || "—";
+}
+
+function cadenceLabel(value) {
+  return CADENCE_LABEL[value] || value;
 }
 
 function stableSourceSort(a, b) {
@@ -30,18 +51,26 @@ function stableSourceSort(a, b) {
 }
 
 function publicSourceList(list) {
-  const brandSources = list.filter((s) => String(s.layer || "").toLowerCase().includes("brand.com"));
-  const visible = list.filter((s) => !String(s.layer || "").toLowerCase().includes("brand.com"));
+  // Legacy data may still contain an English Brand.com layer. Aggregate it at
+  // render time as a second line of defence; current public JSON is sanitized too.
+  const brandSources = list.filter((s) => {
+    const layer = String(s.layer || "").toLowerCase();
+    return layer.includes("brand.com") || layer.includes("ブランド公式サイト監視");
+  });
+  const visible = list.filter((s) => {
+    const layer = String(s.layer || "").toLowerCase();
+    return !layer.includes("brand.com") && !layer.includes("ブランド公式サイト監視");
+  });
 
   if (brandSources.length) {
     visible.push({
       priority: "P1",
       domain: "beauty",
-      layer: "Brand.com",
-      name: "Brand.com監視群",
+      layer: "ブランド公式サイト監視",
+      name: "ブランド公式サイト監視群",
       url: null,
       cadence: ["daily"],
-      extract: ["新製品", "限定", "GWP/PWP", "ギフト", "EC限定", "先行販売", "キャンペーン", "在庫・販売条件の重要変更"]
+      extract: ["新製品", "限定品", "GWP/PWP", "ギフト", "EC限定", "先行販売", "施策", "販売条件の重要変更"]
     });
   }
   return visible;
@@ -65,7 +94,7 @@ function render() {
     if (domain && s.domain !== domain) return false;
     if (priority && s.priority !== priority) return false;
     if (cadence && (s.cadence || []).indexOf(cadence) < 0) return false;
-    if (q && [s.name, s.layer, (s.extract || []).join(" ")].join(" ").toLowerCase().indexOf(q) < 0) return false;
+    if (q && [s.name, s.layer, domainLabel(s.domain), (s.extract || []).join(" ")].join(" ").toLowerCase().indexOf(q) < 0) return false;
     return true;
   }).slice().sort(stableSourceSort);
 
@@ -82,14 +111,14 @@ function render() {
     pri.appendChild(chip);
     tr.appendChild(pri);
 
-    tr.appendChild(el("td", null, `${s.domain} / ${s.layer}`));
+    tr.appendChild(el("td", null, `${domainLabel(s.domain)} / ${s.layer}`));
 
     const nameTd = el("td");
     if (s.url) nameTd.appendChild(extLink(s.url, s.name));
     else nameTd.appendChild(el("span", null, s.name));
     tr.appendChild(nameTd);
 
-    tr.appendChild(el("td", null, (s.cadence || []).join(" / ")));
+    tr.appendChild(el("td", null, (s.cadence || []).map(cadenceLabel).join(" / ")));
     tr.appendChild(el("td", null, (s.extract || []).join(" / ")));
     tbody.appendChild(tr);
   });

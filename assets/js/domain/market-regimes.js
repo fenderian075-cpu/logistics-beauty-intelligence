@@ -1,12 +1,6 @@
 /* =========================================================================
-   market-regimes.js — deterministic cross-source regime classification.
-   -------------------------------------------------------------------------
-   Principles:
-   - Rate != Supply != Demand != Reliability != Risk.
-   - Promotion/buzz are leading or attention signals, never proof of organic demand.
-   - Official retail/shipment/trade observations are confirmation layers.
-   - Industry market research is structural/category context, not current demand proof.
-   - A single price print cannot create a capacity-tightness regime by itself.
+   market-regimes.js — cross-source regime classification.
+   Internal enum keys remain stable; all user-facing copy is Japanese.
    ========================================================================= */
 
 const CHANGE_SCORE = {
@@ -89,12 +83,12 @@ function oceanRegime(newsData) {
     summary: state === "tightening"
       ? "供給制約と運賃上昇が同時に確認され、単なる価格変動を超えた引き締まり。"
       : state === "stressed"
-        ? "Reliability / Riskの悪化が主因。運賃変化とは分離して判断。"
+        ? "定時性またはリスクの悪化が主因。運賃変化とは分離して判断。"
         : state === "capacity_adjustment"
-          ? "Blank sailing等の供給調整はあるが、価格と実booking障害の同時確認は不足。"
+          ? "欠便などの供給調整はあるが、価格上昇と実際の予約障害が同時に起きている証拠は不足。"
           : state === "price_pressure"
-            ? "Rateは上向きだがSupply / Reliabilityの裏付けが不足。Capacity shortageとは判定しない。"
-            : "Rate / Supply / Reliability / Riskを分離すると、全面的な市場逼迫は未確認。",
+            ? "運賃は上向きだが、供給量と定時性の裏付けが不足。船腹不足とは判定しない。"
+            : "運賃・供給・定時性・リスクを分離すると、全面的な市場逼迫は未確認。",
     dimensions: { rate, supply, reliability, risk }
   };
 }
@@ -124,8 +118,6 @@ function beautyDemandRegime(economy, buzz, commerce) {
   const promotionEvents = events.filter((event) => event.driver === "promotion");
   const organicEvents = events.filter((event) => event.driver === "organic");
 
-  /* Monthly retail confirmation decays quickly. Older official data remains useful
-     as context but must not certify today's demand regime. */
   const confirmationFresh = deptAge !== null && deptAge <= 45;
   const confirmedGrowth = deptYoy !== null && deptYoy >= 5;
   const confirmedWeakness = deptYoy !== null && deptYoy < 0;
@@ -137,7 +129,7 @@ function beautyDemandRegime(economy, buzz, commerce) {
     label = "実需弱含み";
   } else if (confirmedGrowth && confirmationFresh && organicEvents.length) {
     state = "organic_strengthening";
-    label = "オーガニック需要強化";
+    label = "自然需要の強まり";
   } else if (promotionEvents.length && (!confirmationFresh || !confirmedGrowth)) {
     state = "promotion_pressure";
     label = "販促需要圧力";
@@ -147,19 +139,19 @@ function beautyDemandRegime(economy, buzz, commerce) {
   }
 
   const confirmation = dept
-    ? `百貨店化粧品売上 ${dept.period}: YoY ${deptYoy >= 0 ? "+" : ""}${deptYoy}%${confirmationFresh ? "" : "（現在判定には時差あり）"}`
+    ? `百貨店化粧品売上 ${dept.period}: 前年比 ${deptYoy >= 0 ? "+" : ""}${deptYoy}%${confirmationFresh ? "" : "（現在判定には時差あり）"}`
     : "百貨店化粧品売上: 未取得";
   const structural = categoryContext
-    ? `構造参考: ${categoryContext.metric} YoY ${Number(categoryContext.yoy) >= 0 ? "+" : ""}${categoryContext.yoy}%（市場調査値、現在実需の証拠には使わない）`
+    ? `構造参考: ${categoryContext.metric} 前年比 ${Number(categoryContext.yoy) >= 0 ? "+" : ""}${categoryContext.yoy}%（市場調査値、現在実需の証拠には使わない）`
     : "構造参考: カテゴリ市場データ未取得";
 
   return {
     id: "beauty-demand",
-    title: "Beauty需要",
+    title: "化粧品需要",
     state,
     label,
     confidence: confirmationFresh ? "high" : (dept ? "medium" : "low"),
-    summary: `${confirmation}。販促 ${promotionEvents.length}件、意味のあるBuzz加速 ${meaningfulBuzz.length}件。${structural}。Promotion / Buzz / 市場予測はorganic demandの証拠として扱わない。`,
+    summary: `${confirmation}。販促 ${promotionEvents.length}件、意味のある検索・話題の加速 ${meaningfulBuzz.length}件。${structural}。販促・話題化・市場予測は自然需要の証拠として扱わない。`,
     dimensions: {
       department_store_yoy: deptYoy,
       department_store_data_age_days: deptAge,
