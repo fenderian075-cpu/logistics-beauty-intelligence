@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0",
+  "dataset": "labor-capacity-stress-sensitivity",
+  "title_ja": "物流労働キャパシティ・ストレス 感度分析",
+  "frequency": "annual",
+  "status": "schema_ready",
+  "methodology": {
+    "base_score": "labor_capacity_stress_v1",
+    "test": "leave_one_component_out",
+    "remaining_component_weight": 0.25,
+    "purpose": "Check whether the equal-weight v1 conclusion is dominated by any single input."
+  },
+  "notes": [
+    "v1の5要素から1要素ずつ除外し、残る4要素を各25%で単純平均する。",
+    "これは最適ウェイト推定ではなく、単一要素依存性を確認するロバストネス診断である。",
+    "感度レンジが狭いほど、v1の方向性が特定1要素だけに依存していないことを示す。"
+  ],
+  "series": [
+    {"metric_id":"stress_without_parcel_load","name_ja":"宅配需要圧力を除外","unit":"index_2018_100","observations":[]},
+    {"metric_id":"stress_without_freight_vacancy","name_ja":"貨物求人圧力を除外","unit":"index_2018_100","observations":[]},
+    {"metric_id":"stress_without_aging","name_ja":"高齢化圧力を除外","unit":"index_2018_100","observations":[]},
+    {"metric_id":"stress_without_replacement","name_ja":"世代交代圧力を除外","unit":"index_2018_100","observations":[]},
+    {"metric_id":"stress_without_working_age","name_ja":"生産年齢人口圧力を除外","unit":"index_2018_100","observations":[]},
+    {"metric_id":"stress_leave_one_out_min","name_ja":"leave-one-out 最小値","unit":"index_2018_100","observations":[]},
+    {"metric_id":"stress_leave_one_out_max","name_ja":"leave-one-out 最大値","unit":"index_2018_100","observations":[]},
+    {"metric_id":"stress_leave_one_out_range","name_ja":"leave-one-out レンジ","unit":"index_points","observations":[]}
+  ]
+}
