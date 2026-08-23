@@ -21,7 +21,13 @@
     {"id":"mol","name":"商船三井","metrics":["revenue","operating_profit","container_exposure","shipping_market","stock_reaction"]},
     {"id":"kline","name":"川崎汽船","metrics":["revenue","operating_profit","container_exposure","shipping_market","stock_reaction"]}
   ],
-  "events":[],
+  "events":[
+    {"date":"2026-08-03","company_id":"yamato-hd","type":"earnings","headline":"2027年3月期 第1四半期決算を公表","source":{"name":"ヤマトホールディングス IR","url":"https://www.yamato-hd.co.jp/investors/information/2027.html"},"interpretation":"収益と小口貨物volumeを分離して継続評価する起点。"},
+    {"date":"2026-08-06","company_id":"yamato-hd","type":"volume","headline":"2026年7月の小口貨物取扱実績を公表","source":{"name":"ヤマトホールディングス IR","url":"https://www.yamato-hd.co.jp/investors/information/2027.html"},"interpretation":"決算の売上・利益変化を実物volumeと接続する。"},
+    {"date":"2026-04-24","company_id":"seino-hd","related_company_ids":["azcom-maruwa"],"type":"business_alliance","headline":"AZ-COM丸和ホールディングスとの業務提携に向け基本合意","source":{"name":"セイノーホールディングス","url":"https://www.seino.co.jp/seino/shd/"},"interpretation":"個社capacityから共同ネットワークへ供給構造が変わる可能性。"},
+    {"date":"2026-07-14","company_id":"seino-hd","related_company_ids":["azcom-maruwa"],"type":"business_alliance","headline":"物流業界BCPネットワーク構想を公表","source":{"name":"セイノーホールディングス","url":"https://www.seino.co.jp/seino/shd/"},"interpretation":"災害時の相互補完・network resilienceを構造監視対象にする。"},
+    {"date":"2026-07-22","company_id":"seino-hd","type":"capex","headline":"100億円規模のSEINO Alliance Fundを公表","source":{"name":"セイノーホールディングス","url":"https://www.seino.co.jp/seino/shd/"},"interpretation":"物流capacity・DX・提携拡張の投資余力を先行指標として扱う。"}
+  ],
   "event_types":["earnings","guidance","volume","mna","tob","capital_alliance","business_alliance","restructuring","divestiture","capex","automation","insolvency","credit_stress","stock_repricing"],
   "stock_rule":"Do not store routine noise as intelligence. Record material/unusual or clearly news-driven repricing and preserve the causal disclosure/news evidence."
 }
