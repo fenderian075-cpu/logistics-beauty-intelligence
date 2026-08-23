@@ -11,6 +11,8 @@ on:
     branches: [main]
     paths:
       - "scripts/update_sna_industry_deflators.py"
+      - "scripts/run_sna_industry_deflators.py"
+      - "tests/test_sna_year_parser.py"
       - ".github/workflows/sna-industry-deflators.yml"
   schedule:
     # Annual SNA is normally released around late January. Recheck monthly Jan-Mar.
@@ -35,6 +37,9 @@ jobs:
       - name: Install collector dependencies
         run: python -m pip install --disable-pip-version-check requests openpyxl
 
+      - name: Test year/header parsing
+        run: python -m unittest tests/test_sna_year_parser.py
+
       - name: Resolve vintage
         id: vintage
         shell: bash
@@ -49,7 +54,7 @@ jobs:
 
       - name: Collect official ESRI SNA tables
         run: |
-          python scripts/update_sna_industry_deflators.py \
+          python scripts/run_sna_industry_deflators.py \
             --vintage "${{ steps.vintage.outputs.year }}" \
             --output data/economy/industry-deflators.json
 
@@ -62,10 +67,10 @@ jobs:
           assert d["dataset"] == "industry-deflators"
           assert len(d["industries"]) >= 14
           assert int(d["coverage"]["end_year"]) == int(d["source_vintage"])
+          assert int(d["coverage"]["start_year"]) <= 1994
           for row in d["industries"]:
               assert row["observations"], row["id"]
-          # Exact-identity gaps should be small after rounding; large gaps indicate
-          # the parser selected the wrong matrix or basis.
+              assert row["observations"][-1]["period"] == d["source_vintage"], row["id"]
           latest = [r["observations"][-1] for r in d["industries"] if r["observations"]]
           gaps = [abs(float(o["identity_gap_pctpt"])) for o in latest if o.get("identity_gap_pctpt") is not None]
           assert gaps and max(gaps) <= 1.0, max(gaps) if gaps else None
