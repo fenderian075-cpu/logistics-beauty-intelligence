@@ -16,7 +16,7 @@ const PAGES = {
   archive: () => import("./pages/archive.js"),
   commerce: () => import("./pages/commerce-calendar.js"),
   buzz: () => import("./pages/buzz.js"),
-  sources: () => import("./pages/source-matrix.js"),
+  sources: () => import("./pages/source-matrix.js?v=8.2.1"),
   "status-history": () => import("./pages/status-history.js"),
   "lens-history": () => import("./pages/lens-history.js")
 };
