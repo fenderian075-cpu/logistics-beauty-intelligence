@@ -1,17 +1,28 @@
 import { el, byId, clear } from "../core/dom.js";
 import { loadOptionalJSON } from "../data/store.js";
-import { formatObservation, formatPct, formatPeriod } from "../core/units.js";
+import { formatPct, formatPeriod } from "../core/units.js";
 import { chart } from "../render/chart.js";
 
 const latest = (s) => (s?.observations || []).at(-1) || null;
 const series = (d, id) => (d?.series || []).find((s) => s.metric_id === id);
 const points = (s) => (s?.observations || []).map((o) => ({ x: o.period, y: Number(o.value) })).filter((p) => Number.isFinite(p.y));
+const jp = (v, digits = 1) => Number(v).toLocaleString("ja-JP", { maximumFractionDigits: digits });
+
+function displayValue(unit, value) {
+  if (value == null || !Number.isFinite(Number(value))) return "未確認";
+  const v = Number(value);
+  if (unit === "million parcels") return `${jp(v / 100, 2)}億個`;
+  if (unit === "million items") return `${jp(v / 100, 2)}億冊`;
+  if (unit === "ten_thousand_persons") return `${jp(v, 0)}万人`;
+  if (unit === "pct") return `${jp(v, 1)}%`;
+  return jp(v, 1);
+}
 
 function card(label, s, note) {
   const obs = latest(s);
   const item = el("div", "value-row__item");
   item.appendChild(el("span", "value-row__label", label));
-  item.appendChild(el("strong", "value-row__value", obs ? formatObservation(s.unit, obs.value).text : "未確認"));
+  item.appendChild(el("strong", "value-row__value", obs ? displayValue(s.unit, obs.value) : "未確認"));
   const meta = [];
   if (obs) meta.push(formatPeriod(obs.period));
   if (obs?.yoy != null) meta.push(`前年比 ${formatPct(obs.yoy)}`);
@@ -20,9 +31,7 @@ function card(label, s, note) {
   return item;
 }
 
-function sourceNote(text) {
-  return el("p", "flow-block__reading", text);
-}
+function sourceNote(text) { return el("p", "flow-block__reading", text); }
 
 async function mount() {
   const root = byId("logistics-structure");
@@ -44,8 +53,7 @@ async function mount() {
   pulse.appendChild(card("女性就業者比率", femaleShare, "月次スナップショット"));
   root.appendChild(pulse);
 
-  const demandTitle = el("h3", "flow-block__sub", "Parcel / Last-mile demand");
-  root.appendChild(demandTitle);
+  root.appendChild(el("h3", "flow-block__sub", "Parcel / Last-mile demand"));
   const parcelChart = chart({
     kind: "line",
     unitLabel: "百万個",
@@ -57,8 +65,7 @@ async function mount() {
   });
   if (parcelChart) root.appendChild(parcelChart);
 
-  const workforceTitle = el("h3", "flow-block__sub", "Logistics workforce supply");
-  root.appendChild(workforceTitle);
+  root.appendChild(el("h3", "flow-block__sub", "Logistics workforce supply"));
   const workforceChart = chart({
     kind: "line",
     unitLabel: "万人",
