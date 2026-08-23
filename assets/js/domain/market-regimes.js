@@ -110,7 +110,8 @@ function beautyDemandRegime(economy, buzz, commerce) {
   const retail = economy && economy.beauty;
   const beautyMarket = economy && economy.beautyMarket;
   const dept = latestMetric(retail, "department_store_cosmetics_sales");
-  const deptYoy = dept && Number.isFinite(Number(dept.yoy)) ? Number(dept.yoy) : null;
+  const deptYoyRaw = dept ? (dept.yoy_store_adjusted_pct ?? dept.yoy) : null;
+  const deptYoy = Number.isFinite(Number(deptYoyRaw)) ? Number(deptYoyRaw) : null;
   const deptAge = dept ? daysOld(dept.published_at) : null;
   const categoryContext = strongestBeautyCategory(beautyMarket);
 
