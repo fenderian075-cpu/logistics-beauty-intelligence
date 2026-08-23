@@ -1,7 +1,7 @@
 {
-  "schema_version": "1.1",
-  "generated_at": "2026-08-23T11:36:00+09:00",
-  "purpose": "Real-data v4 baseline prepared so LBI can evaluate current conditions against quantitative history rather than isolated current prints.",
+  "schema_version": "1.2",
+  "generated_at": "2026-08-23T12:00:00+09:00",
+  "purpose": "Real-data v4 baseline prepared so LBI can evaluate current conditions against quantitative history and separate nominal growth, real activity and price effects.",
   "quantitative_history": {
     "macro": [
       "Japan nominal GDP fiscal-year level: 2005FY-2025FY (2025FY preliminary)",
@@ -9,11 +9,24 @@
       "Japan real GDP fiscal-year growth: 2005FY-2025FY",
       "2026-Q2 real/nominal GDP QoQ and seasonally adjusted annual-rate levels"
     ],
+    "industry_comparison": [
+      "16 SNA industries: nominal GDP share history 2019-2024",
+      "16 SNA industries: official current-price GDP levels for 2023 and 2024",
+      "16 SNA industries: 2024 nominal YoY derived from official current-price levels",
+      "16 SNA industries plus primary/secondary/tertiary aggregates: latest 2026-Q1 real seasonally adjusted QoQ momentum",
+      "Transport/postal linked to its SPPI price signal without treating price as physical volume"
+    ],
+    "prices": [
+      "Japan CPI major groups: annual 2024-2025",
+      "SPPI all services: annual 2023-2025",
+      "Transport/postal SPPI and selected logistics services including road freight, ocean freight, international air freight, warehousing and 3PL"
+    ],
     "beauty_retail": [
       "Department-store total sales: calendar-year 2021-2025 and monthly 2026-01 to 2026-06",
       "Department-store cosmetics sales: calendar-year 2021-2025 and monthly 2026-01 to 2026-06",
       "Drugstore total and Beauty Care sales: calendar-year 2022-2025",
-      "Existing cosmetics shipment, household spend and category structure observations retained"
+      "Existing cosmetics shipment, household spend and category structure observations retained",
+      "Beauty real-demand proxy is intentionally not calculated until official cosmetics CPI history is seeded"
     ],
     "trade": [
       "Japan total exports/imports/trade balance: calendar-year 2015-2024",
@@ -22,10 +35,17 @@
   },
   "data_rules": [
     "Every percentage field states or implies an explicit comparison basis in the metric or field name; naked deltas are not used.",
+    "Nominal, real and price series are separate analytical axes. Values with different periods are not mechanically subtracted to create an inflation estimate.",
     "JDSA store-count-adjusted YoY is stored separately as yoy_store_adjusted_pct and is not reconstructed from raw sales values.",
     "GDP observations retain source vintage because GDP is revised retrospectively; a vintage change is not interpreted as an economic event.",
-    "Derived values such as annual trade balance are explicitly marked derived_from_official_totals.",
+    "Derived values such as annual trade balance and 2024 industry nominal YoY are explicitly derived from official published totals.",
+    "SPPI is a business-service transaction price index and is not treated as freight volume or an SNA deflator.",
     "Historical baseline observations are context and confirmation layers, not Critical Radar events by themselves."
+  ],
+  "collector_backlog": [
+    "Official 2025-base item-level CPI history for cosmetics small group 0150, required before Beauty nominal sales can be converted into a same-period real-demand proxy.",
+    "Production-side QNA nominal seasonally adjusted QoQ by industry, to provide same-period nominal-vs-real quarterly comparisons alongside the existing real QNA series.",
+    "Longer industry GDP deflator histories for direct annual price-effect decomposition by industry."
   ],
   "notes": [
     "This file is informational only and is not intended as a frontend dependency.",
