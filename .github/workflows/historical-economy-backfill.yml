@@ -11,6 +11,9 @@ on:
       - "scripts/backfill_iip_estat_current.py"
       - "scripts/update_sna_industry_deflators.py"
       - "scripts/update_japan_fuel_prices_v2.py"
+      - "scripts/backfill_warehouse_history.py"
+      - "scripts/inspect_warehouse_workbook.py"
+      - "scripts/validate_economy_history_coverage.py"
       - ".github/workflows/historical-economy-backfill.yml"
   pull_request:
     paths:
@@ -19,6 +22,9 @@ on:
       - "scripts/backfill_iip_estat_current.py"
       - "scripts/update_sna_industry_deflators.py"
       - "scripts/update_japan_fuel_prices_v2.py"
+      - "scripts/backfill_warehouse_history.py"
+      - "scripts/inspect_warehouse_workbook.py"
+      - "scripts/validate_economy_history_coverage.py"
       - ".github/workflows/historical-economy-backfill.yml"
 
 permissions:
@@ -51,6 +57,9 @@ jobs:
           assert len(d.get('industries',[])) >= 16
           print('SNA baseline valid', cov, 'industries=',len(d['industries']))
           PY
+      - name: Inspect current warehouse workbook layout
+        if: github.event_name == 'pull_request'
+        run: python scripts/inspect_warehouse_workbook.py
       - name: Refresh fuel long history
         continue-on-error: true
         run: python scripts/update_japan_fuel_prices_v2.py
@@ -62,6 +71,9 @@ jobs:
         run: python scripts/backfill_cpi_iip_history.py
       - name: Parse current IIP from official e-Stat workbook
         run: python scripts/backfill_iip_estat_current.py
+      - name: Backfill warehouse history
+        if: hashFiles('scripts/backfill_warehouse_history.py') != ''
+        run: python scripts/backfill_warehouse_history.py
       - name: Validate generated JSON and coverage
         run: |
           python - <<'PY'
@@ -75,6 +87,11 @@ jobs:
           print('coverage series:', len(cov.get('series',[])))
           for key in ('trade','gdp','cpi','iip'):
               assert status['stages'].get(key,{}).get('status') == 'success', (key,status['stages'].get(key))
+          trade=json.load(open('data/economy/japan-trade.json',encoding='utf-8'))
+          by_id={s['metric_id']:s for s in trade.get('series',[])}
+          assert len(by_id['exports_total_annual']['observations']) >= 70
+          assert len(by_id['exports_total']['observations']) >= 400
+          print('trade history rows:',len(by_id['exports_total_annual']['observations']),len(by_id['exports_total']['observations']))
           PY
       - name: Frontend and schema regression
         run: |
