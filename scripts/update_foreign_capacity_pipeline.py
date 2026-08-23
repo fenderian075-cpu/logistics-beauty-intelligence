@@ -1,14 +1,5 @@
 #!/usr/bin/env python3
-"""Refresh the Specified Skilled Worker logistics capacity pipeline from ISA's latest half-year publication.
-
-Design goals:
-- discover the latest SSW Table 3 from the stable ISA landing page (do not pin the PDF URL)
-- derive the half-year period from the PDF itself, not from fragile landing-page markup
-- parse the auto-transport field and truck/taxi/bus breakdown
-- append only newer half-year observations
-- never mix these visa-channel counts with MHLW foreign-employment totals
-- fail closed if the current PDF layout cannot be parsed confidently
-"""
+"""Refresh the Specified Skilled Worker logistics capacity pipeline from ISA's latest half-year publication."""
 from __future__ import annotations
 
 import io
@@ -33,22 +24,28 @@ def norm(s: str) -> str:
 
 
 def era_to_year(era_year: int) -> int:
-    return 2018 + era_year  # Reiwa 1 = 2019
+    return 2018 + era_year
 
 
 def discover_latest_table3() -> str:
     r = requests.get(LANDING, headers={"User-Agent": UA}, timeout=30)
     r.raise_for_status()
     soup = BeautifulSoup(r.text, "html.parser")
-    # ISA lists the latest half-year section first. The first Table 3 PDF therefore belongs to the
-    # latest snapshot. Avoid relying on heading markup because the production page does not expose
-    # the period label consistently to non-browser clients.
+    pdfs = []
     for a in soup.find_all("a"):
-        txt = norm(a.get_text(" ", strip=True)).replace("３", "3")
         href = a.get("href") or ""
-        if "第3表" in txt and ".pdf" in href.lower():
+        if ".pdf" not in href.lower():
+            continue
+        own = norm(a.get_text(" ", strip=True))
+        parent = norm(a.parent.get_text(" ", strip=True)) if a.parent else own
+        grand = norm(a.parent.parent.get_text(" ", strip=True)) if a.parent and a.parent.parent else parent
+        context = " | ".join((own, parent, grand))
+        pdfs.append((urljoin(LANDING, href), context))
+        # On ISA pages the anchor itself may only say 'PDF'; the table name sits in the surrounding li/p.
+        if "第3表" in context:
             return urljoin(LANDING, href)
-    raise RuntimeError("Could not discover latest SSW Table 3 PDF")
+    diagnostic = [f"{u} :: {c[:180]}" for u, c in pdfs[:20]]
+    raise RuntimeError("Could not discover latest SSW Table 3 PDF; PDF candidates=" + json.dumps(diagnostic, ensure_ascii=False))
 
 
 def extract_pdf_text(url: str) -> str:
@@ -63,12 +60,9 @@ def extract_pdf_text(url: str) -> str:
 
 def parse_period(text: str) -> str:
     t = norm(text)
-    m = re.search(r"令和\s*(\d+)年\s*(6|12)月末", t)
+    m = re.search(r"令和\s*(\d+)年\s*(6|12)月末", t) or re.search(r"令和\s*(\d+)年\s*(6|12)月(?:末)?(?:現在)?", t)
     if not m:
-        # Some table titles use '現在' rather than a trailing '月末'.
-        m = re.search(r"令和\s*(\d+)年\s*(6|12)月(?:末)?(?:現在)?", t)
-    if not m:
-        raise RuntimeError("Could not resolve SSW half-year period from latest Table 3 PDF")
+        raise RuntimeError("Could not resolve SSW half-year period from latest Table 3 PDF; prefix=" + t[:500])
     return f"{era_to_year(int(m.group(1))):04d}-{int(m.group(2)):02d}"
 
 
@@ -90,23 +84,9 @@ def parse_auto_transport(text: str) -> tuple[int, int, int, int]:
             total, truck, taxi, bus = nums
         if total == truck + taxi + bus and total >= 0:
             return total, truck, taxi, bus
-
     pos = t.find("自動車運送業分野")
-    if pos >= 0:
-        window = t[pos : pos + 1400]
-        if all(x in window for x in ("トラック運転者", "タクシー運転者", "バス運転者")):
-            nums = [int(x.replace(",", "")) for x in re.findall(r"(?<!\d)([\d,]+)(?!\d)", window)]
-            for a in range(min(len(nums), 18)):
-                for b in range(a + 1, min(len(nums), 18)):
-                    for c in range(b + 1, min(len(nums), 18)):
-                        for d in range(c + 1, min(len(nums), 18)):
-                            vals = [nums[a], nums[b], nums[c], nums[d]]
-                            for total_idx in range(4):
-                                total = vals[total_idx]
-                                parts = [vals[j] for j in range(4) if j != total_idx]
-                                if total == sum(parts) and total > 0:
-                                    return total, parts[0], parts[1], parts[2]
-    raise RuntimeError("Could not confidently parse auto-transport total/truck/taxi/bus from latest SSW Table 3")
+    window = t[pos : pos + 1800] if pos >= 0 else ""
+    raise RuntimeError("Could not confidently parse auto-transport split; context=" + window[:1600])
 
 
 def get_series(data: dict, metric_id: str) -> dict:
@@ -130,28 +110,17 @@ def main() -> None:
     text = extract_pdf_text(pdf_url)
     period = parse_period(text)
     total, truck, taxi, bus = parse_auto_transport(text)
-
     data = json.loads(DATA.read_text(encoding="utf-8"))
     source = f"Immigration Services Agency SSW Table 3 ({period}); {pdf_url}"
     upsert(get_series(data, "ssw_auto_transport_residents"), period, total, source)
     upsert(get_series(data, "ssw_auto_transport_truck_drivers"), period, truck, source)
     upsert(get_series(data, "ssw_auto_transport_taxi_drivers"), period, taxi, source)
     upsert(get_series(data, "ssw_auto_transport_bus_drivers"), period, bus, source)
-
     data["status"] = "official_half_year_auto_refresh_plus_policy_capacity"
     data["latest_snapshot"] = period
     data["latest_source_url"] = pdf_url
     DATA.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-
-    print(json.dumps({
-        "status": "success",
-        "period": period,
-        "source": pdf_url,
-        "auto_transport": total,
-        "truck": truck,
-        "taxi": taxi,
-        "bus": bus,
-    }, ensure_ascii=False, indent=2))
+    print(json.dumps({"status":"success","period":period,"source":pdf_url,"auto_transport":total,"truck":truck,"taxi":taxi,"bus":bus}, ensure_ascii=False, indent=2))
 
 
 if __name__ == "__main__":
