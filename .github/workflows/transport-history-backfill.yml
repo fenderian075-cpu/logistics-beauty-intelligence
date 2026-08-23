@@ -9,6 +9,7 @@ on:
       - "scripts/inspect_boj_sppi.py"
       - "scripts/inspect_estat_transport_files.py"
       - "scripts/inspect_air_cumulative.py"
+      - "scripts/inspect_truck_current.py"
       - "scripts/backfill_transport_history.py"
       - "scripts/backfill_port_history.py"
       - "scripts/backfill_trucking_history.py"
@@ -19,6 +20,7 @@ on:
       - "scripts/inspect_boj_sppi.py"
       - "scripts/inspect_estat_transport_files.py"
       - "scripts/inspect_air_cumulative.py"
+      - "scripts/inspect_truck_current.py"
       - "scripts/backfill_transport_history.py"
       - "scripts/backfill_port_history.py"
       - "scripts/backfill_trucking_history.py"
@@ -43,6 +45,8 @@ jobs:
         run: python scripts/inspect_estat_transport_files.py
       - name: Inspect annual aviation history workbook
         run: python scripts/inspect_air_cumulative.py
+      - name: Inspect current trucking trend workbooks
+        run: python scripts/inspect_truck_current.py
       - name: Backfill transport price history
         run: python scripts/backfill_transport_history.py
       - name: Backfill port container history
@@ -50,7 +54,6 @@ jobs:
       - name: Backfill trucking history
         run: python scripts/backfill_trucking_history.py
       - name: Backfill air cargo history
-        if: hashFiles('scripts/backfill_air_cargo_history.py') != ''
         run: python scripts/backfill_air_cargo_history.py
       - name: Validate JSON and contracts
         run: |
