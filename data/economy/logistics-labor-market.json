@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "dataset": "logistics-labor-market",
   "title_ja": "物流人材需給・賃金",
   "frequency": "annual+fiscal",
@@ -16,50 +16,50 @@
     }
   ],
   "notes": [
-    "job tagのトラックドライバー統計は関連職業をまとめた職業情報で、道路貨物運送業という産業統計とは定義が異なる。",
+    "job tagのトラックドライバー統計は関連する複数職業を加工・集約した職業情報で、道路貨物運送業という産業統計や、国土交通省が示す貨物自動車運転手系列とは定義が異なる。",
+    "分類非互換性は同年度値でも確認できる。2024年度job tag『トラックドライバー』有効求人倍率は3.2倍だが、国土交通省資料の『貨物自動車運転手（パート含む）』は2.37倍。このため2025年度job tag 2.94倍を2018–2024の貨物運転者系列へ接続しない。",
     "有効求人倍率は労働供給の逼迫度を表す。高いほど求人に対する求職者が少ない。",
-    "2025年度の求人賃金は求人票ベース、年収・年齢・労働時間は2025年賃金構造基本統計調査を加工した就業者統計であり、同一概念ではない。"
+    "2025年度の求人賃金は求人票ベース、年収・年齢・労働時間は2025年賃金構造基本統計調査をjob tagが加工した就業者統計であり、同一概念ではない。"
   ],
+  "compatibility_checks": {
+    "job_tag_vs_freight_driver_vacancy": {
+      "status": "not_comparable_for_time_series_append",
+      "evidence_period": "2024FY",
+      "job_tag_truck_driver_ratio": 3.2,
+      "mlit_freight_automobile_driver_ratio": 2.37,
+      "decision": "Keep job-tag 2025FY 2.94 as a standalone current snapshot; do not append to freight-driver history or Stress v1."
+    }
+  },
   "series": [
     {
       "metric_id": "truck_driver_average_age_2025",
       "name_ja": "トラックドライバー 平均年齢",
       "unit": "years",
-      "observations": [
-        {"period":"2025","value":51.5,"status":"official_processed","source":"厚生労働省 job tag / 令和7年賃金構造基本統計調査"}
-      ]
+      "observations": [{"period":"2025","value":51.5,"status":"official_processed","source":"厚生労働省 job tag / 令和7年賃金構造基本統計調査"}]
     },
     {
       "metric_id": "truck_driver_annual_income",
       "name_ja": "トラックドライバー 年収",
       "unit": "ten_thousand_jpy_year",
-      "observations": [
-        {"period":"2025","value":507.2,"status":"official_processed","source":"厚生労働省 job tag / 令和7年賃金構造基本統計調査"}
-      ]
+      "observations": [{"period":"2025","value":507.2,"status":"official_processed","source":"厚生労働省 job tag / 令和7年賃金構造基本統計調査"}]
     },
     {
       "metric_id": "truck_driver_monthly_work_hours",
       "name_ja": "トラックドライバー 月間労働時間",
       "unit": "hours_month",
-      "observations": [
-        {"period":"2025","value":175,"status":"official_processed","source":"厚生労働省 job tag / 令和7年賃金構造基本統計調査"}
-      ]
+      "observations": [{"period":"2025","value":175,"status":"official_processed","source":"厚生労働省 job tag / 令和7年賃金構造基本統計調査"}]
     },
     {
       "metric_id": "truck_driver_job_openings_ratio",
       "name_ja": "トラックドライバー 有効求人倍率",
       "unit": "ratio",
-      "observations": [
-        {"period":"2025FY","value":2.94,"status":"official_processed","source":"厚生労働省 job tag / ハローワーク求人統計"}
-      ]
+      "observations": [{"period":"2025FY","value":2.94,"status":"official_processed_standalone","source":"厚生労働省 job tag / ハローワーク求人統計"}]
     },
     {
       "metric_id": "truck_driver_offered_monthly_wage",
       "name_ja": "トラックドライバー 求人賃金",
       "unit": "ten_thousand_jpy_month",
-      "observations": [
-        {"period":"2025FY","value":29.5,"status":"official_processed","source":"厚生労働省 job tag / ハローワーク求人統計"}
-      ]
+      "observations": [{"period":"2025FY","value":29.5,"status":"official_processed","source":"厚生労働省 job tag / ハローワーク求人統計"}]
     },
     {
       "metric_id": "automobile_driver_job_openings_ratio_history",
