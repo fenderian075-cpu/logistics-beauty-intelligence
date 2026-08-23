@@ -1,0 +1,13 @@
+{
+  "schema_version":"1.0",
+  "dataset":"air-cargo",
+  "title_ja":"航空貨物実績",
+  "frequency":"monthly",
+  "source":{"name":"国土交通省 航空輸送統計","url":"https://www.mlit.go.jp/k-toukei/koukuu.html"},
+  "series":[
+    {"metric_id":"international_air_cargo_tonnes","unit":"tonnes","observations":[{"period":"2026-04","value":139343,"yoy":9.2,"published_at":"2026-06-30"}]},
+    {"metric_id":"international_air_cargo_ton_km","unit":"thousand ton-km","observations":[{"period":"2026-04","value":772004,"yoy":8.3,"published_at":"2026-06-30"}]},
+    {"metric_id":"international_weight_load_factor","unit":"%","observations":[{"period":"2026-04","value":71.8,"published_at":"2026-06-30"}]},
+    {"metric_id":"domestic_air_cargo_tonnes","unit":"tonnes","observations":[{"period":"2026-04","value":50776,"yoy":-0.4,"published_at":"2026-06-30"}]}
+  ]
+}
