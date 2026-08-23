@@ -1,13 +1,1121 @@
 {
-  "schema_version":"1.0",
-  "dataset":"air-cargo",
-  "title_ja":"航空貨物実績",
-  "frequency":"monthly",
-  "source":{"name":"国土交通省 航空輸送統計","url":"https://www.mlit.go.jp/k-toukei/koukuu.html"},
-  "series":[
-    {"metric_id":"international_air_cargo_tonnes","unit":"tonnes","observations":[{"period":"2026-04","value":139343,"yoy":9.2,"published_at":"2026-06-30"}]},
-    {"metric_id":"international_air_cargo_ton_km","unit":"thousand ton-km","observations":[{"period":"2026-04","value":772004,"yoy":8.3,"published_at":"2026-06-30"}]},
-    {"metric_id":"international_weight_load_factor","unit":"%","observations":[{"period":"2026-04","value":71.8,"published_at":"2026-06-30"}]},
-    {"metric_id":"domestic_air_cargo_tonnes","unit":"tonnes","observations":[{"period":"2026-04","value":50776,"yoy":-0.4,"published_at":"2026-06-30"}]}
-  ]
+  "schema_version": "1.0",
+  "dataset": "air-cargo",
+  "title_ja": "航空貨物実績",
+  "frequency": "monthly",
+  "source": {
+    "name": "国土交通省 航空輸送統計",
+    "url": "https://www.mlit.go.jp/k-toukei/koukuu.html"
+  },
+  "series": [
+    {
+      "metric_id": "international_air_cargo_tonnes",
+      "unit": "tonnes",
+      "observations": [
+        {
+          "period": "2024-01",
+          "value": 107742,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat"
+        },
+        {
+          "period": "2024-02",
+          "value": 101151,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": -6.12
+        },
+        {
+          "period": "2024-03",
+          "value": 134782,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": 33.25
+        },
+        {
+          "period": "2024-04",
+          "value": 123619,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": -8.28
+        },
+        {
+          "period": "2024-05",
+          "value": 130220,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": 5.34
+        },
+        {
+          "period": "2024-06",
+          "value": 133880,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": 2.81
+        },
+        {
+          "period": "2024-07",
+          "value": 132677,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": -0.9
+        },
+        {
+          "period": "2024-08",
+          "value": 121592,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": -8.35
+        },
+        {
+          "period": "2024-09",
+          "value": 129160,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": 6.22
+        },
+        {
+          "period": "2024-10",
+          "value": 134646,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": 4.25
+        },
+        {
+          "period": "2024-11",
+          "value": 134397,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": -0.18
+        },
+        {
+          "period": "2024-12",
+          "value": 130935,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": -2.58
+        },
+        {
+          "period": "2025-01",
+          "value": 117436,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": -10.31,
+          "yoy": 9.0
+        },
+        {
+          "period": "2025-02",
+          "value": 106793,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": -9.06,
+          "yoy": 5.58
+        },
+        {
+          "period": "2025-03",
+          "value": 139432,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": 30.56,
+          "yoy": 3.45
+        },
+        {
+          "period": "2025-04",
+          "value": 127597,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": -8.49,
+          "yoy": 3.22
+        },
+        {
+          "period": "2025-05",
+          "value": 129725,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": 1.67,
+          "yoy": -0.38
+        },
+        {
+          "period": "2025-06",
+          "value": 136543,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": 5.26,
+          "yoy": 1.99
+        },
+        {
+          "period": "2025-07",
+          "value": 144700,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": 5.97,
+          "yoy": 9.06
+        },
+        {
+          "period": "2025-08",
+          "value": 137251,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": -5.15,
+          "yoy": 12.88
+        },
+        {
+          "period": "2025-09",
+          "value": 137286,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": 0.03,
+          "yoy": 6.29
+        },
+        {
+          "period": "2025-10",
+          "value": 139346,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": 1.5,
+          "yoy": 3.49
+        },
+        {
+          "period": "2025-11",
+          "value": 143151,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": 2.73,
+          "yoy": 6.51
+        },
+        {
+          "period": "2025-12",
+          "value": 142080,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": -0.75,
+          "yoy": 8.51
+        },
+        {
+          "period": "2026-04",
+          "value": 139343,
+          "published_at": "2026-06-30",
+          "mom": -1.93,
+          "yoy": 9.21
+        }
+      ],
+      "name_ja": "国際航空貨物輸送量（月次）"
+    },
+    {
+      "metric_id": "international_air_cargo_ton_km",
+      "unit": "thousand ton-km",
+      "observations": [
+        {
+          "period": "2024-01",
+          "value": 614376,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat"
+        },
+        {
+          "period": "2024-02",
+          "value": 601522,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": -2.09
+        },
+        {
+          "period": "2024-03",
+          "value": 764572,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": 27.11
+        },
+        {
+          "period": "2024-04",
+          "value": 696405,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": -8.92
+        },
+        {
+          "period": "2024-05",
+          "value": 734469,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": 5.47
+        },
+        {
+          "period": "2024-06",
+          "value": 748314,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": 1.89
+        },
+        {
+          "period": "2024-07",
+          "value": 734347,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": -1.87
+        },
+        {
+          "period": "2024-08",
+          "value": 677609,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": -7.73
+        },
+        {
+          "period": "2024-09",
+          "value": 717184,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": 5.84
+        },
+        {
+          "period": "2024-10",
+          "value": 754958,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": 5.27
+        },
+        {
+          "period": "2024-11",
+          "value": 734039,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": -2.77
+        },
+        {
+          "period": "2024-12",
+          "value": 708882,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": -3.43
+        },
+        {
+          "period": "2025-01",
+          "value": 652765,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": -7.92,
+          "yoy": 6.25
+        },
+        {
+          "period": "2025-02",
+          "value": 600788,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": -7.96,
+          "yoy": -0.12
+        },
+        {
+          "period": "2025-03",
+          "value": 866580,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": 44.24,
+          "yoy": 13.34
+        },
+        {
+          "period": "2025-04",
+          "value": 712535,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": -17.78,
+          "yoy": 2.32
+        },
+        {
+          "period": "2025-05",
+          "value": 719421,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": 0.97,
+          "yoy": -2.05
+        },
+        {
+          "period": "2025-06",
+          "value": 765485,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": 6.4,
+          "yoy": 2.29
+        },
+        {
+          "period": "2025-07",
+          "value": 807872,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": 5.54,
+          "yoy": 10.01
+        },
+        {
+          "period": "2025-08",
+          "value": 763726,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": -5.46,
+          "yoy": 12.71
+        },
+        {
+          "period": "2025-09",
+          "value": 758664,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": -0.66,
+          "yoy": 5.78
+        },
+        {
+          "period": "2025-10",
+          "value": 778498,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": 2.61,
+          "yoy": 3.12
+        },
+        {
+          "period": "2025-11",
+          "value": 792714,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": 1.83,
+          "yoy": 7.99
+        },
+        {
+          "period": "2025-12",
+          "value": 779601,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": -1.65,
+          "yoy": 9.98
+        },
+        {
+          "period": "2026-04",
+          "value": 772004,
+          "published_at": "2026-06-30",
+          "mom": -0.97,
+          "yoy": 8.35
+        }
+      ],
+      "name_ja": "国際航空貨物輸送トンキロ（月次）"
+    },
+    {
+      "metric_id": "international_weight_load_factor",
+      "unit": "%",
+      "observations": [
+        {
+          "period": "2026-04",
+          "value": 71.8,
+          "published_at": "2026-06-30"
+        }
+      ]
+    },
+    {
+      "metric_id": "domestic_air_cargo_tonnes",
+      "unit": "tonnes",
+      "observations": [
+        {
+          "period": "2024-01",
+          "value": 39651,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat"
+        },
+        {
+          "period": "2024-02",
+          "value": 42434,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": 7.02
+        },
+        {
+          "period": "2024-03",
+          "value": 47872,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": 12.82
+        },
+        {
+          "period": "2024-04",
+          "value": 46140,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": -3.62
+        },
+        {
+          "period": "2024-05",
+          "value": 44732,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": -3.05
+        },
+        {
+          "period": "2024-06",
+          "value": 46123,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": 3.11
+        },
+        {
+          "period": "2024-07",
+          "value": 53280,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": 15.52
+        },
+        {
+          "period": "2024-08",
+          "value": 50908,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": -4.45
+        },
+        {
+          "period": "2024-09",
+          "value": 52730,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": 3.58
+        },
+        {
+          "period": "2024-10",
+          "value": 56721,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": 7.57
+        },
+        {
+          "period": "2024-11",
+          "value": 55330,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": -2.45
+        },
+        {
+          "period": "2024-12",
+          "value": 65800,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": 18.92
+        },
+        {
+          "period": "2025-01",
+          "value": 46635,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": -29.13,
+          "yoy": 17.61
+        },
+        {
+          "period": "2025-02",
+          "value": 46698,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": 0.14,
+          "yoy": 10.05
+        },
+        {
+          "period": "2025-03",
+          "value": 53021,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": 13.54,
+          "yoy": 10.76
+        },
+        {
+          "period": "2025-04",
+          "value": 50999,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": -3.81,
+          "yoy": 10.53
+        },
+        {
+          "period": "2025-05",
+          "value": 48981,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": -3.96,
+          "yoy": 9.5
+        },
+        {
+          "period": "2025-06",
+          "value": 48359,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": -1.27,
+          "yoy": 4.85
+        },
+        {
+          "period": "2025-07",
+          "value": 57139,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": 18.16,
+          "yoy": 7.24
+        },
+        {
+          "period": "2025-08",
+          "value": 52196,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": -8.65,
+          "yoy": 2.53
+        },
+        {
+          "period": "2025-09",
+          "value": 49660,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": -4.86,
+          "yoy": -5.82
+        },
+        {
+          "period": "2025-10",
+          "value": 52888,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": 6.5,
+          "yoy": -6.76
+        },
+        {
+          "period": "2025-11",
+          "value": 49872,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": -5.7,
+          "yoy": -9.86
+        },
+        {
+          "period": "2025-12",
+          "value": 60448,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": 21.21,
+          "yoy": -8.13
+        },
+        {
+          "period": "2026-04",
+          "value": 50776,
+          "published_at": "2026-06-30",
+          "mom": -16.0,
+          "yoy": -0.44
+        }
+      ],
+      "name_ja": "国内航空貨物輸送量（月次）"
+    },
+    {
+      "metric_id": "domestic_air_cargo_ton_km",
+      "observations": [
+        {
+          "period": "2024-01",
+          "value": 42695,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat"
+        },
+        {
+          "period": "2024-02",
+          "value": 45689,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": 7.01
+        },
+        {
+          "period": "2024-03",
+          "value": 52095,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": 14.02
+        },
+        {
+          "period": "2024-04",
+          "value": 50368,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": -3.32
+        },
+        {
+          "period": "2024-05",
+          "value": 48824,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": -3.07
+        },
+        {
+          "period": "2024-06",
+          "value": 49851,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": 2.1
+        },
+        {
+          "period": "2024-07",
+          "value": 57788,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": 15.92
+        },
+        {
+          "period": "2024-08",
+          "value": 54225,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": -6.17
+        },
+        {
+          "period": "2024-09",
+          "value": 55213,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": 1.82
+        },
+        {
+          "period": "2024-10",
+          "value": 59384,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": 7.55
+        },
+        {
+          "period": "2024-11",
+          "value": 58330,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": -1.77
+        },
+        {
+          "period": "2024-12",
+          "value": 70119,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": 20.21
+        },
+        {
+          "period": "2025-01",
+          "value": 49318,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": -29.67,
+          "yoy": 15.51
+        },
+        {
+          "period": "2025-02",
+          "value": 49212,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": -0.21,
+          "yoy": 7.71
+        },
+        {
+          "period": "2025-03",
+          "value": 56631,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": 15.08,
+          "yoy": 8.71
+        },
+        {
+          "period": "2025-04",
+          "value": 55674,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": -1.69,
+          "yoy": 10.53
+        },
+        {
+          "period": "2025-05",
+          "value": 53426,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": -4.04,
+          "yoy": 9.43
+        },
+        {
+          "period": "2025-06",
+          "value": 52358,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": -2.0,
+          "yoy": 5.03
+        },
+        {
+          "period": "2025-07",
+          "value": 62511,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": 19.39,
+          "yoy": 8.17
+        },
+        {
+          "period": "2025-08",
+          "value": 56368,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": -9.83,
+          "yoy": 3.95
+        },
+        {
+          "period": "2025-09",
+          "value": 53074,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": -5.84,
+          "yoy": -3.87
+        },
+        {
+          "period": "2025-10",
+          "value": 56994,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": 7.39,
+          "yoy": -4.02
+        },
+        {
+          "period": "2025-11",
+          "value": 54021,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": -5.22,
+          "yoy": -7.39
+        },
+        {
+          "period": "2025-12",
+          "value": 65862,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "mom": 21.92,
+          "yoy": -6.07
+        }
+      ],
+      "name_ja": "国内航空貨物輸送トンキロ（月次）",
+      "unit": "thousand ton-km"
+    },
+    {
+      "metric_id": "domestic_air_cargo_tonnes_annual",
+      "observations": [
+        {
+          "period": "2015",
+          "value": 919356,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat"
+        },
+        {
+          "period": "2016",
+          "value": 904890,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "yoy": -1.57
+        },
+        {
+          "period": "2017",
+          "value": 916663,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "yoy": 1.3
+        },
+        {
+          "period": "2018",
+          "value": 840646,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "yoy": -8.29
+        },
+        {
+          "period": "2019",
+          "value": 791800,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "yoy": -5.81
+        },
+        {
+          "period": "2020",
+          "value": 500721,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "yoy": -36.76
+        },
+        {
+          "period": "2021",
+          "value": 462104,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "yoy": -7.71
+        },
+        {
+          "period": "2022",
+          "value": 537334,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "yoy": 16.28
+        },
+        {
+          "period": "2023",
+          "value": 557233,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "yoy": 3.7
+        },
+        {
+          "period": "2024",
+          "value": 601720,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "yoy": 7.98
+        },
+        {
+          "period": "2025",
+          "value": 616898,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "yoy": 2.52
+        }
+      ],
+      "name_ja": "国内航空貨物輸送量（年次）",
+      "unit": "tonnes"
+    },
+    {
+      "metric_id": "domestic_air_cargo_ton_km_annual",
+      "observations": [
+        {
+          "period": "2015",
+          "value": 960449,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat"
+        },
+        {
+          "period": "2016",
+          "value": 948503,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "yoy": -1.24
+        },
+        {
+          "period": "2017",
+          "value": 984412,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "yoy": 3.79
+        },
+        {
+          "period": "2018",
+          "value": 899146,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "yoy": -8.66
+        },
+        {
+          "period": "2019",
+          "value": 846085,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "yoy": -5.9
+        },
+        {
+          "period": "2020",
+          "value": 540447,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "yoy": -36.12
+        },
+        {
+          "period": "2021",
+          "value": 508171,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "yoy": -5.97
+        },
+        {
+          "period": "2022",
+          "value": 587398,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "yoy": 15.59
+        },
+        {
+          "period": "2023",
+          "value": 603551,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "yoy": 2.75
+        },
+        {
+          "period": "2024",
+          "value": 644580,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "yoy": 6.8
+        },
+        {
+          "period": "2025",
+          "value": 665452,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "yoy": 3.24
+        }
+      ],
+      "name_ja": "国内航空貨物輸送トンキロ（年次）",
+      "unit": "thousand ton-km"
+    },
+    {
+      "metric_id": "international_air_cargo_tonnes_annual",
+      "observations": [
+        {
+          "period": "2015",
+          "value": 1402155,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat"
+        },
+        {
+          "period": "2016",
+          "value": 1528599,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "yoy": 9.02
+        },
+        {
+          "period": "2017",
+          "value": 1750144,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "yoy": 14.49
+        },
+        {
+          "period": "2018",
+          "value": 1537020,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "yoy": -12.18
+        },
+        {
+          "period": "2019",
+          "value": 1444134,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "yoy": -6.04
+        },
+        {
+          "period": "2020",
+          "value": 1281993,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "yoy": -11.23
+        },
+        {
+          "period": "2021",
+          "value": 1767866,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "yoy": 37.9
+        },
+        {
+          "period": "2022",
+          "value": 1550835,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "yoy": -12.28
+        },
+        {
+          "period": "2023",
+          "value": 1362193,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "yoy": -12.16
+        },
+        {
+          "period": "2024",
+          "value": 1514802,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "yoy": 11.2
+        },
+        {
+          "period": "2025",
+          "value": 1601340,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "yoy": 5.71
+        }
+      ],
+      "name_ja": "国際航空貨物輸送量（年次）",
+      "unit": "tonnes"
+    },
+    {
+      "metric_id": "international_air_cargo_ton_km_annual",
+      "observations": [
+        {
+          "period": "2015",
+          "value": 7947047,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat"
+        },
+        {
+          "period": "2016",
+          "value": 8412385,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "yoy": 5.86
+        },
+        {
+          "period": "2017",
+          "value": 9700162,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "yoy": 15.31
+        },
+        {
+          "period": "2018",
+          "value": 8415188,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "yoy": -13.25
+        },
+        {
+          "period": "2019",
+          "value": 8071431,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "yoy": -4.08
+        },
+        {
+          "period": "2020",
+          "value": 7276480,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "yoy": -9.85
+        },
+        {
+          "period": "2021",
+          "value": 10357343,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "yoy": 42.34
+        },
+        {
+          "period": "2022",
+          "value": 9098126,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "yoy": -12.16
+        },
+        {
+          "period": "2023",
+          "value": 7869137,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "yoy": -13.51
+        },
+        {
+          "period": "2024",
+          "value": 8486677,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "yoy": 7.85
+        },
+        {
+          "period": "2025",
+          "value": 8998649,
+          "status": "official",
+          "source": "国土交通省 航空輸送統計/e-Stat",
+          "yoy": 6.03
+        }
+      ],
+      "name_ja": "国際航空貨物輸送トンキロ（年次）",
+      "unit": "thousand ton-km"
+    }
+  ],
+  "historical_backfill_at": "2026-08-23T17:37:07+09:00"
 }

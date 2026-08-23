@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "dataset": "air-cargo-history-status",
+  "updated_at": "2026-08-23T17:37:07+09:00",
+  "status": "success",
+  "source_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000040471594",
+  "coverage": {
+    "dom_m": {
+      "observations": 25,
+      "start": "2024-01",
+      "end": "2026-04"
+    },
+    "dom_tkm_m": {
+      "observations": 24,
+      "start": "2024-01",
+      "end": "2025-12"
+    },
+    "int_m": {
+      "observations": 25,
+      "start": "2024-01",
+      "end": "2026-04"
+    },
+    "int_tkm_m": {
+      "observations": 25,
+      "start": "2024-01",
+      "end": "2026-04"
+    },
+    "dom_a": {
+      "observations": 11,
+      "start": "2015",
+      "end": "2025"
+    },
+    "dom_tkm_a": {
+      "observations": 11,
+      "start": "2015",
+      "end": "2025"
+    },
+    "int_a": {
+      "observations": 11,
+      "start": "2015",
+      "end": "2025"
+    },
+    "int_tkm_a": {
+      "observations": 11,
+      "start": "2015",
+      "end": "2025"
+    }
+  }
+}

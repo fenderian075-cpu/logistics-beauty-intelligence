@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0",
+  "dataset": "port-history-status",
+  "updated_at": "2026-08-23T17:37:04+09:00",
+  "status": "success",
+  "workbooks_discovered": 17,
+  "workbooks_parsed": 17,
+  "failures": {},
+  "partial_current_year": {
+    "2026": {
+      "published_months": 6,
+      "usable_national_months": 5
+    }
+  },
+  "monthly_observations": 197,
+  "start": "2010-01",
+  "end": "2026-05"
+}

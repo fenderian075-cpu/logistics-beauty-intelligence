@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0",
+  "dataset": "trucking-history-status",
+  "updated_at": "2026-08-23T17:37:06+09:00",
+  "status": "success",
+  "sources": {
+    "tonnes": "https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040488230&fileKind=0",
+    "ton_km": "https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040488231&fileKind=0"
+  },
+  "coverage": {
+    "commercial_truck_tonnage_annual": {
+      "observations": 10,
+      "start": "2015",
+      "end": "2024"
+    },
+    "commercial_truck_ton_km_annual": {
+      "observations": 10,
+      "start": "2015",
+      "end": "2024"
+    },
+    "commercial_truck_tonnage": {
+      "observations": 13,
+      "start": "2025-01",
+      "end": "2026-01"
+    },
+    "commercial_truck_ton_km": {
+      "observations": 13,
+      "start": "2025-01",
+      "end": "2026-01"
+    }
+  }
+}

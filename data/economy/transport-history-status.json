@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "dataset": "transport-history-status",
+  "updated_at": "2026-08-23T17:36:47+09:00",
+  "status": "success",
+  "source": "日本銀行 企業向けサービス価格指数（2020年基準）",
+  "current_url": "https://www.stat-search.boj.or.jp/ssi/docs/info/sppi_m_jp.zip",
+  "connected_url": "https://www.stat-search.boj.or.jp/ssi/docs/info/sppilink.csv",
+  "coverage": {
+    "road_freight": {
+      "observations": 498,
+      "start": "1985-01",
+      "end": "2026-06",
+      "connected_observations": 420,
+      "current_observations": 78
+    },
+    "ocean_freight": {
+      "observations": 498,
+      "start": "1985-01",
+      "end": "2026-06",
+      "connected_observations": 420,
+      "current_observations": 78
+    },
+    "coastal_freight": {
+      "observations": 498,
+      "start": "1985-01",
+      "end": "2026-06",
+      "connected_observations": 420,
+      "current_observations": 78
+    },
+    "port_transport": {
+      "observations": 498,
+      "start": "1985-01",
+      "end": "2026-06",
+      "connected_observations": 420,
+      "current_observations": 78
+    },
+    "international_air_freight": {
+      "observations": 498,
+      "start": "1985-01",
+      "end": "2026-06",
+      "connected_observations": 420,
+      "current_observations": 78
+    },
+    "warehouse_service": {
+      "observations": 498,
+      "start": "1985-01",
+      "end": "2026-06",
+      "connected_observations": 420,
+      "current_observations": 78
+    },
+    "third_party_logistics": {
+      "observations": 78,
+      "start": "2020-01",
+      "end": "2026-06",
+      "connected_observations": 0,
+      "current_observations": 78
+    }
+  }
+}
