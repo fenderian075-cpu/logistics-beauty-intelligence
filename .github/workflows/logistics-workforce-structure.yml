@@ -11,6 +11,7 @@ on:
       - "scripts/validate_logistics_structure.py"
       - "data/economy/logistics-workforce-age.json"
       - "data/economy/logistics-capacity.json"
+      - "data/economy/ec-demand.json"
       - ".github/workflows/logistics-workforce-structure.yml"
   pull_request:
     paths:
@@ -19,6 +20,7 @@ on:
       - "scripts/validate_logistics_structure.py"
       - "data/economy/logistics-workforce-age.json"
       - "data/economy/logistics-capacity.json"
+      - "data/economy/ec-demand.json"
       - ".github/workflows/logistics-workforce-structure.yml"
 
 permissions:
@@ -62,12 +64,16 @@ jobs:
           import json
           age=json.load(open('data/economy/logistics-workforce-age.json', encoding='utf-8'))
           cap=json.load(open('data/economy/logistics-capacity.json', encoding='utf-8'))
+          ec=json.load(open('data/economy/ec-demand.json', encoding='utf-8'))
           print('workforce age status:', age.get('status'))
           print('statsDataId:', age.get('api_contract',{}).get('stats_data_id'))
           print('populated age series:', sum(bool(s.get('observations')) for s in age.get('series',[])), '/', len(age.get('series',[])))
           for mid in ('freight_labor_productivity','warehouse_labor_productivity'):
               s=next(x for x in cap['series'] if x['metric_id']==mid)
               print(mid, 'observations:', len(s.get('observations',[])), 'latest:', (s.get('observations') or [None])[-1])
+          for mid in ('physical_btoc_ec_market','physical_btoc_ec_rate','physical_btoc_ec_index_2015'):
+              s=next(x for x in ec['series'] if x['metric_id']==mid)
+              print(mid, 'latest:', (s.get('observations') or [None])[-1])
           PY
 
       - name: Commit refreshed structural data on source branch
