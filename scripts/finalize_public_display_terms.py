@@ -20,7 +20,7 @@ EXTRACT_REPLACEMENTS = {
     "K-Beauty demand": "K-Beauty関連需要",
     "Beauty施策": "化粧品施策",
 }
-REPORT_JSON_REPLACEMENTS = {
+PUBLIC_JSON_REPLACEMENTS = {
     "effective supply": "実効供給力",
     "delay absorption": "遅延による供給力吸収",
     "rate・space・reliability": "運賃・船腹・定時性",
@@ -34,6 +34,9 @@ REPORT_JSON_REPLACEMENTS = {
     "名目capacity": "名目船腹量",
     "capacityを確認": "供給力を確認",
     "carrier/lane": "輸送会社・航路",
+    "対象lane": "対象航路",
+    "carrier確認": "輸送会社確認",
+    "carrier受付": "輸送会社受付",
 }
 HTML_REPLACEMENTS = {
     "Logistics &amp; Beauty Intelligence": "物流・化粧品インテリジェンス",
@@ -77,6 +80,17 @@ HTML_REPLACEMENTS = {
     'assets/js/app.js?v=8.0.0': 'assets/js/app.js',
 }
 
+PUBLIC_JSON_PATHS = [
+    ROOT / "data/reports.json",
+    ROOT / "data/topic-intelligence.json",
+    ROOT / "data/critical-news.json",
+]
+ROOT_HTML_PATHS = [
+    ROOT / "index.html", ROOT / "radar.html", ROOT / "topic.html", ROOT / "archive.html",
+    ROOT / "economic-flow.html", ROOT / "source-matrix.html", ROOT / "status-history.html",
+    ROOT / "lens-history.html", ROOT / "buzz.html", ROOT / "commerce-calendar.html",
+]
+
 
 def replace_strings(value, replacements):
     if isinstance(value, str):
@@ -114,18 +128,22 @@ def fix_source_display_fields() -> None:
             path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
-def fix_report_json() -> None:
-    path = ROOT / "data/reports.json"
-    if not path.exists():
-        return
-    data = json.loads(path.read_text(encoding="utf-8"))
-    updated = replace_strings(data, REPORT_JSON_REPLACEMENTS)
-    if updated != data:
-        path.write_text(json.dumps(updated, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+def fix_public_json() -> None:
+    for path in PUBLIC_JSON_PATHS:
+        if not path.exists():
+            continue
+        data = json.loads(path.read_text(encoding="utf-8"))
+        updated = replace_strings(data, PUBLIC_JSON_REPLACEMENTS)
+        if updated != data:
+            path.write_text(json.dumps(updated, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
-def fix_report_html() -> None:
-    for path in (ROOT / "reports").glob("**/*.html"):
+def fix_html() -> None:
+    paths = list(ROOT_HTML_PATHS)
+    paths.extend((ROOT / "reports").glob("**/*.html"))
+    for path in paths:
+        if not path.exists():
+            continue
         text = path.read_text(encoding="utf-8")
         updated = text
         for old, new in HTML_REPLACEMENTS.items():
@@ -136,8 +154,8 @@ def fix_report_html() -> None:
 
 def main() -> None:
     fix_source_display_fields()
-    fix_report_json()
-    fix_report_html()
+    fix_public_json()
+    fix_html()
     print("Final public display/shell terms normalized; machine values untouched.")
 
 
