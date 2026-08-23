@@ -7,14 +7,18 @@ on:
   push:
     paths:
       - "scripts/update_logistics_workforce_age.py"
+      - "scripts/update_logistics_productivity.py"
       - "scripts/validate_logistics_structure.py"
       - "data/economy/logistics-workforce-age.json"
+      - "data/economy/logistics-capacity.json"
       - ".github/workflows/logistics-workforce-structure.yml"
   pull_request:
     paths:
       - "scripts/update_logistics_workforce_age.py"
+      - "scripts/update_logistics_productivity.py"
       - "scripts/validate_logistics_structure.py"
       - "data/economy/logistics-workforce-age.json"
+      - "data/economy/logistics-capacity.json"
       - ".github/workflows/logistics-workforce-structure.yml"
 
 permissions:
@@ -33,46 +37,48 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Compile collector
-        run: python -m py_compile scripts/update_logistics_workforce_age.py scripts/validate_logistics_structure.py
+      - name: Compile collectors
+        run: python -m py_compile scripts/update_logistics_workforce_age.py scripts/update_logistics_productivity.py scripts/validate_logistics_structure.py
 
       - name: Refresh official age and industry structure
         shell: bash
         run: |
           if [ -z "$ESTAT_APP_ID" ]; then
             echo "ESTAT_APP_ID is not configured; keeping the last validated official dataset."
-            exit 0
+          else
+            python scripts/update_logistics_workforce_age.py
           fi
-          python scripts/update_logistics_workforce_age.py
+
+      - name: Derive freight and warehouse labor productivity
+        run: python scripts/update_logistics_productivity.py
 
       - name: Validate structural datasets
         run: python scripts/validate_logistics_structure.py
 
-      - name: Report collector state
+      - name: Report structural state
         shell: bash
         run: |
           python - <<'PY'
           import json
-          d=json.load(open('data/economy/logistics-workforce-age.json', encoding='utf-8'))
-          print('workforce age status:', d.get('status'))
-          print('statsDataId:', d.get('api_contract',{}).get('stats_data_id'))
-          populated=sum(bool(s.get('observations')) for s in d.get('series',[]))
-          print('populated series:', populated, '/', len(d.get('series',[])))
+          age=json.load(open('data/economy/logistics-workforce-age.json', encoding='utf-8'))
+          cap=json.load(open('data/economy/logistics-capacity.json', encoding='utf-8'))
+          print('workforce age status:', age.get('status'))
+          print('statsDataId:', age.get('api_contract',{}).get('stats_data_id'))
+          print('populated age series:', sum(bool(s.get('observations')) for s in age.get('series',[])), '/', len(age.get('series',[])))
+          for mid in ('freight_labor_productivity','warehouse_labor_productivity'):
+              s=next(x for x in cap['series'] if x['metric_id']==mid)
+              print(mid, 'observations:', len(s.get('observations',[])), 'latest:', (s.get('observations') or [None])[-1])
           PY
 
-      - name: Commit refreshed workforce data on source branch
+      - name: Commit refreshed structural data on source branch
         if: github.event_name != 'pull_request'
         shell: bash
         run: |
-          if [ -z "$ESTAT_APP_ID" ]; then
-            echo "No e-Stat credential; nothing to commit."
-            exit 0
-          fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/economy/logistics-workforce-age.json
+          git add data/economy/logistics-workforce-age.json data/economy/logistics-capacity.json
           if git diff --cached --quiet; then
-            echo "No workforce structure change."
+            echo "No structural data change."
             exit 0
           fi
           git commit -m "data: refresh logistics workforce structure"
