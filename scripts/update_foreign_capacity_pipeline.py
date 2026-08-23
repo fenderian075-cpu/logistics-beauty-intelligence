@@ -30,6 +30,7 @@ def era_to_year(era_year: int) -> int:
 def discover_latest_table3() -> str:
     r = requests.get(LANDING, headers={"User-Agent": UA}, timeout=30)
     r.raise_for_status()
+    # MOJ currently serves UTF-8 without a reliable charset header.
     r.encoding = "utf-8"
     soup = BeautifulSoup(r.text, "html.parser")
     pdfs = []
@@ -41,6 +42,7 @@ def discover_latest_table3() -> str:
         own = norm(a.get_text(" ", strip=True))
         parent = norm(a.parent.get_text(" ", strip=True)) if a.parent else own
         pdfs.append((url, own, parent))
+        # Current ISA markup labels the combined table PDF itself as 第1表、第2表、第3表(PDF).
         if "第3表" in own:
             return url
     excluded = ("概要版", "詳細版", "ポイント", "運用状況")
@@ -69,92 +71,65 @@ def parse_period(text: str) -> str:
     return f"{era_to_year(int(m.group(1))):04d}-{int(m.group(2)):02d}"
 
 
-def numeric_tokens(s: str) -> list[int]:
-    return [int(x.replace(",", "")) for x in re.findall(r"(?<!\d)(\d[\d,]*)(?!\d)", s)]
-
-
-def reconciled_quad(nums: list[int]) -> tuple[int, int, int, int] | None:
-    """Find a contiguous [total,truck,taxi,bus] or [truck,taxi,bus,total] block."""
-    for i in range(max(0, len(nums) - 3)):
-        a, b, c, d = nums[i:i + 4]
-        # Exclude obvious years/page numbers while preserving plausible small field counts.
-        if max(a, b, c, d) >= 1_000_000:
-            continue
-        if a > 0 and a == b + c + d:
-            return a, b, c, d
-        if d > 0 and d == a + b + c:
-            return d, a, b, c
-    return None
+def join_japanese_labels(text: str) -> str:
+    """Remove whitespace inserted by PDF extraction only between Japanese label characters."""
+    return re.sub(r"(?<=[\u3040-\u30ff\u3400-\u9fff])\s+(?=[\u3040-\u30ff\u3400-\u9fff])", "", text)
 
 
 def parse_auto_transport(text: str) -> tuple[int, int, int, int]:
     raw = unicodedata.normalize("NFKC", text)
-    label_joined = re.sub(r"(?<=[\u3040-\u30ff\u3400-\u9fff])\s+(?=[\u3040-\u30ff\u3400-\u9fff])", "", raw)
-    t = norm(label_joined)
-    field = r"自動車運送業(?:分野)?"
-    truck_label = r"トラック(?:運転者)?"
-    taxi_label = r"タクシー(?:運転者)?"
-    bus_label = r"バス(?:運転者)?"
+    t = norm(join_japanese_labels(raw))
 
-    # First support layouts where labels and values are interleaved in extraction order.
-    patterns = [
-        field + r"\s*([\d,]+).*?" + truck_label + r"\s*([\d,]+).*?" + taxi_label + r"\s*([\d,]+).*?" + bus_label + r"\s*([\d,]+)",
-        field + r".*?" + truck_label + r"\s*([\d,]+).*?" + taxi_label + r"\s*([\d,]+).*?" + bus_label + r"\s*([\d,]+).*?(?:計|総数)\s*([\d,]+)",
-    ]
-    for i, p in enumerate(patterns):
-        m = re.search(p, t)
-        if not m:
-            continue
-        nums = [int(x.replace(",", "")) for x in m.groups()]
-        if i == 1:
-            truck, taxi, bus, total = nums
-        else:
-            total, truck, taxi, bus = nums
-        if total == truck + taxi + bus and total >= 0:
+    # ISA Table 3 currently extracts this block as:
+    # 自動車運送業分野 151  鉄道分野 54
+    # トラック運転者 タクシー運転者 バス運転者 軌道整備 ... 運輸係員
+    # 123 16 12 14 8 6 26 0
+    # Parse the field total independently, then the first three values after the complete header row.
+    total_match = re.search(
+        r"自動車運送業(?:分野)?\s*([\d,]+)\s*鉄道(?:分野)?\s*[\d,]+",
+        t,
+    )
+    parts_match = re.search(
+        r"トラック運転者\s*タクシー運転者\s*バス運転者"
+        r".*?運輸係員\s*([\d,]+)\s+([\d,]+)\s+([\d,]+)",
+        t,
+    )
+    if total_match and parts_match:
+        total = int(total_match.group(1).replace(",", ""))
+        truck, taxi, bus = [int(x.replace(",", "")) for x in parts_match.groups()]
+        if total > 0 and total == truck + taxi + bus:
             return total, truck, taxi, bus
 
-    # Actual ISA Table 3 currently extracts column labels first and the numeric row later.
-    # Restrict the search to the real Table 3 section (not the TOC occurrence), then look shortly
-    # after the truck/taxi/bus header for a reconciled four-number block.
-    compact_labels = re.sub(r"(?<=[\u3040-\u30ff\u3400-\u9fff])\s+(?=[\u3040-\u30ff\u3400-\u9fff])", "", raw)
-    table3_markers = [m.start() for m in re.finditer(r"【第3表】|第3表", compact_labels)]
-    section = compact_labels[table3_markers[-1]:] if table3_markers else compact_labels
-    label_pos = section.find("トラック運転者")
-    if label_pos < 0:
-        label_pos = section.find("トラック")
-    if label_pos >= 0:
-        after = section[label_pos: label_pos + 12000]
-        nums = numeric_tokens(after)[:160]
-        quad = reconciled_quad(nums)
-        if quad:
-            return quad
+    # Future-layout fallback: after the truck/taxi/bus header, find the first three adjacent numeric
+    # values whose sum equals an auto-transport field total found shortly before the header.
+    label_pos = t.find("トラック運転者")
+    field_pos = t.rfind("自動車運送業", 0, label_pos if label_pos >= 0 else len(t))
+    if label_pos >= 0 and field_pos >= 0:
+        before = t[field_pos:label_pos]
+        totals = [int(x.replace(",", "")) for x in re.findall(r"(?<!\d)(\d[\d,]*)(?!\d)", before)]
+        totals = [x for x in totals if 0 < x < 100000]
+        after = t[label_pos:label_pos + 5000]
+        # Skip numeric values that may occur inside the header itself by starting after 運輸係員 if present.
+        end_header = after.find("運輸係員")
+        if end_header >= 0:
+            after = after[end_header + len("運輸係員"):]
+        nums = [int(x.replace(",", "")) for x in re.findall(r"(?<!\d)(\d[\d,]*)(?!\d)", after)][:80]
+        for i in range(max(0, len(nums) - 2)):
+            truck, taxi, bus = nums[i:i + 3]
+            total = truck + taxi + bus
+            if total in totals:
+                return total, truck, taxi, bus
 
-    # A second guard uses the known field total exposed in Table 1/2. For the latest field-total
-    # value, find the auto-transport column around '総数', then require a Table-3 three-part block
-    # that sums to it. This makes accidental arithmetic matches much less likely.
     joined = re.sub(r"\s+", "", raw)
-    field_pos = joined.find("自動車運送業分野")
-    field_total = None
-    if field_pos >= 0:
-        # The first national '総数' row follows the industry headers. Extract a moderate window and
-        # identify plausible current auto-transport total by matching a Table-3 candidate later.
-        table1_window = joined[field_pos: field_pos + 1200]
-        table1_nums = numeric_tokens(table1_window)
-        if table1_nums:
-            # 151 is currently in this set; future values remain candidates rather than hard-coded.
-            candidate_totals = {n for n in table1_nums if 0 < n < 100000}
-            if label_pos >= 0:
-                part_nums = numeric_tokens(section[label_pos: label_pos + 12000])[:200]
-                for i in range(max(0, len(part_nums) - 2)):
-                    truck, taxi, bus = part_nums[i:i + 3]
-                    total = truck + taxi + bus
-                    if total in candidate_totals and total > 0:
-                        field_total = total
-                        return field_total, truck, taxi, bus
-
     keywords = {k: (k in joined) for k in ["自動車運送業", "トラック", "タクシー", "バス"]}
-    context = norm(section[label_pos:label_pos + 6000] if label_pos >= 0 else section[:6000])
-    raise RuntimeError("Could not confidently parse auto-transport split; keywords=" + json.dumps(keywords, ensure_ascii=False) + "; table3_context=" + context)
+    context_start = max(0, field_pos) if field_pos >= 0 else 0
+    context = norm(join_japanese_labels(raw))[context_start:context_start + 6000]
+    raise RuntimeError(
+        "Could not confidently parse auto-transport split; keywords="
+        + json.dumps(keywords, ensure_ascii=False)
+        + "; context="
+        + context
+    )
 
 
 def get_series(data: dict, metric_id: str) -> dict:
@@ -188,7 +163,15 @@ def main() -> None:
     data["latest_snapshot"] = period
     data["latest_source_url"] = pdf_url
     DATA.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(json.dumps({"status":"success","period":period,"source":pdf_url,"auto_transport":total,"truck":truck,"taxi":taxi,"bus":bus}, ensure_ascii=False, indent=2))
+    print(json.dumps({
+        "status": "success",
+        "period": period,
+        "source": pdf_url,
+        "auto_transport": total,
+        "truck": truck,
+        "taxi": taxi,
+        "bus": bus,
+    }, ensure_ascii=False, indent=2))
 
 
 if __name__ == "__main__":
