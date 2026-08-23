@@ -1,5 +1,5 @@
 {
-  "schema_version": "2.2",
+  "schema_version": "2.3",
   "sources": [
     {"priority":"P0","domain":"logistics","layer":"Domestic Operations","name":"ヤマト運輸 運行状況","url":"https://www.kuronekoyamato.co.jp/ytc/chien/chien_hp.html","cadence":["daily"],"extract":["集荷停止","配達遅延","対象地域","再開"]},
     {"priority":"P0","domain":"logistics","layer":"Domestic Operations","name":"佐川急便 お知らせ","url":"https://www2.sagawa-exp.co.jp/information/list/","cadence":["daily","weekly"],"extract":["集配業務への影響","台風","地震","大雨","大雪"]},
@@ -25,14 +25,7 @@
     {"priority":"P1","domain":"beauty","layer":"Platform","name":"ZOZOCOSME New Cosmetics Collection","url":"https://zozo.jp/event/cosme-collection/","cadence":["weekly"],"extract":["新作","先行販売","限定","launch date"]},
     {"priority":"P1","domain":"beauty","layer":"Platform","name":"@cosme 週間ランキング","url":"https://www.cosme.net/ranking/products/week/1","cadence":["weekly"],"extract":["ランキング","新規上昇","複数週定着"]},
     {"priority":"P1","domain":"beauty","layer":"Platform","name":"Qoo10","url":"https://www.qoo10.jp/","cadence":["weekly"],"extract":["メガ割","ranking","K-Beauty demand"]},
-    {"priority":"P1","domain":"beauty","layer":"Brand.com","name":"Dior Beauty","url":"https://www.dior.com/ja_jp/beauty","cadence":["weekly"],"extract":["launch","limited","GWP","EC限定"]},
-    {"priority":"P1","domain":"beauty","layer":"Brand.com","name":"CHANEL Beauty","url":"https://www.chanel.com/jp/fragrance-beauty/","cadence":["weekly"],"extract":["launch","limited","campaign"]},
-    {"priority":"P1","domain":"beauty","layer":"Brand.com","name":"YSL Beauty","url":"https://www.yslb.jp/","cadence":["weekly"],"extract":["launch","limited","EC施策"]},
-    {"priority":"P1","domain":"beauty","layer":"Brand.com","name":"Lancôme","url":"https://www.lancome.jp/","cadence":["weekly"],"extract":["launch","campaign","GWP"]},
-    {"priority":"P1","domain":"beauty","layer":"Brand.com","name":"SK-II","url":"https://www.sk-ii.jp/","cadence":["weekly"],"extract":["campaign","limited","launch"]},
-    {"priority":"P1","domain":"beauty","layer":"Brand.com","name":"資生堂","url":"https://brand.shiseido.co.jp/","cadence":["weekly"],"extract":["launch","campaign"]},
-    {"priority":"P1","domain":"beauty","layer":"Brand.com","name":"Clé de Peau Beauté","url":"https://www.cledepeau-beaute.com/jp/","cadence":["weekly"],"extract":["launch","limited","campaign"]},
-    {"priority":"P1","domain":"beauty","layer":"Brand.com","name":"Jo Malone London","url":"https://www.jomalone.jp/","cadence":["weekly"],"extract":["fragrance launch","gift","limited"]},
+    {"priority":"P0","domain":"beauty","layer":"Brand.com Monitoring","name":"Brand.com監視群","url":"https://www.google.com/","cadence":["daily"],"extract":["Makeup","Skincare","Fragrance","新製品","限定","GWP/PWP","ギフト","EC限定","先行販売","キャンペーン","価格・販売条件変更"]},
     {"priority":"P1","domain":"beauty","layer":"Corporate","name":"L'Oréal Finance","url":"https://www.loreal-finance.com/eng","cadence":["weekly","monthly"],"extract":["sales","region","Luxe","China","e-commerce"]},
     {"priority":"P1","domain":"beauty","layer":"Corporate","name":"Estée Lauder Companies","url":"https://www.elcompanies.com/en/investors","cadence":["weekly","monthly"],"extract":["sales","fragrance","China","Japan"]},
     {"priority":"P1","domain":"beauty","layer":"Corporate","name":"資生堂 IR","url":"https://corp.shiseido.com/en/ir/","cadence":["weekly","monthly"],"extract":["sales","Japan","China","Travel Retail"]}
