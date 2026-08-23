@@ -1,0 +1,66 @@
+name: Refresh logistics workforce structure
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "40 3 5 * *"
+  push:
+    paths:
+      - "scripts/update_logistics_workforce_age.py"
+      - "scripts/validate_logistics_structure.py"
+      - "data/economy/logistics-workforce-age.json"
+      - ".github/workflows/logistics-workforce-structure.yml"
+  pull_request:
+    paths:
+      - "scripts/update_logistics_workforce_age.py"
+      - "scripts/validate_logistics_structure.py"
+      - "data/economy/logistics-workforce-age.json"
+      - ".github/workflows/logistics-workforce-structure.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    env:
+      ESTAT_APP_ID: ${{ secrets.ESTAT_APP_ID }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Refresh official age and industry structure
+        if: github.event_name != 'pull_request'
+        shell: bash
+        run: |
+          if [ -z "$ESTAT_APP_ID" ]; then
+            echo "ESTAT_APP_ID is not configured; keeping the last validated official dataset."
+            exit 0
+          fi
+          python scripts/update_logistics_workforce_age.py
+
+      - name: Validate structural datasets
+        run: python scripts/validate_logistics_structure.py
+
+      - name: Commit refreshed workforce data on main
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        shell: bash
+        run: |
+          if [ -z "$ESTAT_APP_ID" ]; then
+            echo "No e-Stat credential; nothing to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/economy/logistics-workforce-age.json
+          if git diff --cached --quiet; then
+            echo "No workforce structure change."
+            exit 0
+          fi
+          git commit -m "data: refresh logistics workforce structure"
+          git pull --rebase origin main
+          git push
