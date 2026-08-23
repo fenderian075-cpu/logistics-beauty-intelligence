@@ -1,0 +1,15 @@
+{
+  "schema_version":"1.0",
+  "dataset":"port-throughput",
+  "title_ja":"港湾コンテナ取扱",
+  "frequency":"monthly+annual",
+  "source":{"name":"国土交通省 港湾調査","url":"https://www.mlit.go.jp/k-toukei/kouwan.html"},
+  "series":[
+    {"metric_id":"japan_total_container","unit":"million TEU","observations":[{"period":"2025","value":22.36,"yoy":1.8,"status":"preliminary","published_at":"2026-08-21"}]},
+    {"metric_id":"japan_foreign_trade_container","unit":"million TEU","observations":[{"period":"2025","value":17.80,"yoy":1.8,"status":"preliminary","published_at":"2026-08-21"}]},
+    {"metric_id":"japan_domestic_container","unit":"million TEU","observations":[{"period":"2025","value":4.56,"yoy":1.9,"status":"preliminary","published_at":"2026-08-21"}]}
+  ],
+  "priority_ports":["Tokyo","Yokohama","Nagoya","Osaka","Kobe"],
+  "priority_metrics":["import_teu","export_teu","foreign_trade_teu","empty_container","yoy","3m_momentum"],
+  "availability":{"latest_monthly_preliminary":"2026-05"}
+}
