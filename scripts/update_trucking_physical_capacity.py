@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Collect national truck operator and vehicle stock history from MLIT workbooks.
 
-The MLIT "数字でみる自動車" workbooks use both legacy XLS and XLSX and may
-lay years out vertically by Japanese era. Only explicit official observations
-are emitted; no interpolation is performed.
+The MLIT "数字でみる自動車" workbooks use both legacy XLS and XLSX and lay
+years out vertically by Japanese era. Only explicit official observations are
+emitted; no interpolation is performed.
 """
 from __future__ import annotations
 import io, json, re
@@ -20,6 +20,7 @@ SOURCES = {
 }
 HEADERS = {'User-Agent':'Mozilla/5.0 LBI-Trucking-Capacity/1.0','Referer':'https://www.mlit.go.jp/'}
 ERA_BASE = {'昭和':1925, '平成':1988, '令和':2018}
+ERA_ALIASES = {'昭和':'昭和', '昭':'昭和', '平成':'平成', '平':'平成', '令和':'令和', '令':'令和'}
 
 
 def norm(v):
@@ -35,8 +36,7 @@ def number(v):
 
 def western_year(v):
     s = norm(v).replace('年度', '').replace('年', '')
-    if re.fullmatch(r'20\d{2}', s):
-        return int(s)
+    if re.fullmatch(r'20\d{2}', s): return int(s)
     m = re.fullmatch(r'(?:H|平成)(\d{1,2})', s, re.I)
     if m: return 1988 + int(m.group(1))
     m = re.fullmatch(r'(?:R|令和)(\d{1,2})', s, re.I)
@@ -107,42 +107,49 @@ def parse_horizontal(payload, kind):
     return values, {'layout':'horizontal','sheet':sheet,'matched_label':label}
 
 
-def era_year_token(row, era):
-    """Return the Japanese-era year number from the left side of a data row."""
-    # A transition row can contain [平成, 元, ...] / [令和, 元, ...].
-    for i, cell in enumerate(row[:5]):
+def decode_era_row(row, current_era):
+    """Decode era and era-year from the leftmost cells of a vertical table.
+
+    Supports separate cells such as [平成, 元, ...], compact labels such as
+    '平 5' / '令 1', and continuation rows containing only 6, 7, ... .
+    """
+    era=current_era
+    explicit_year=None
+    for cell in row[:5]:
         s=norm(cell)
-        if s == '元': return 1
-        if s in ERA_BASE: continue
+        if not s: continue
+        # Compact era label: 平5, 令1, 平成元, etc.
+        m=re.fullmatch(r'(昭和|昭|平成|平|令和|令)(元|\d{1,2})', s)
+        if m:
+            era=ERA_ALIASES[m.group(1)]
+            explicit_year=1 if m.group(2) == '元' else int(m.group(2))
+            return era, explicit_year
+        if s in ERA_ALIASES:
+            era=ERA_ALIASES[s]
+            continue
+        if s == '元' and era:
+            return era, 1
         n=number(cell)
-        if n is not None and 1 <= n <= 64:
-            # Avoid treating a metric as the year: only accept numeric cells before
-            # the first large count. In the official tables the era year is leftmost.
-            if all(number(x) is None or abs(number(x)) < 100 for x in row[:i]):
-                return int(n)
-    return None
+        if n is not None and era and 1 <= n <= 64:
+            return era, int(n)
+    return era, None
 
 
 def parse_vertical_era(payload, kind):
     best=None
     for sheet, rows in workbook_rows(payload):
-        # Require a sheet/title consistent with the requested metric.
         sheet_text='|'.join(norm(x) for row in rows[:8] for x in row[:12] if norm(x))
         if kind == 'operators' and '事業者数' not in sheet_text: continue
         if kind == 'vehicles' and not any(k in sheet_text for k in ('車両数','車両','トラック')): continue
 
-        # Find the header row. The official operator table explicitly labels 合計;
-        # vehicle tables may use 合計/総数/計. We still take the last populated
-        # numeric cell only after identifying the correct table section.
         header_idx=None; header_label=''
         for i,row in enumerate(rows[:25]):
             text='|'.join(norm(x) for x in row[:16] if norm(x))
             if kind == 'operators' and ('合計' in text and ('一般' in text or '特積' in text)):
                 header_idx=i; header_label=text; break
-            if kind == 'vehicles' and ('車両' in sheet_text) and any(k in text for k in ('合計','総数','計')):
+            if kind == 'vehicles' and any(k in text for k in ('合計','総数','計')):
                 header_idx=i; header_label=text; break
         if header_idx is None:
-            # Some vehicle workbooks put the title above a plain 年度 table.
             for i,row in enumerate(rows[:25]):
                 text='|'.join(norm(x) for x in row[:16] if norm(x))
                 if '年度' in text:
@@ -151,18 +158,14 @@ def parse_vertical_era(payload, kind):
 
         era=None; values={}; row_matches=[]
         for r_idx,row in enumerate(rows[header_idx+1:], start=header_idx+2):
-            # Update era state whenever an era name appears in the left cells.
-            for cell in row[:5]:
-                s=norm(cell)
-                if s in ERA_BASE: era=s; break
-            if era is None: continue
-            ey=era_year_token(row,era)
-            if ey is None: continue
-            y=ERA_BASE[era]+ey
+            era, ey = decode_era_row(row, era)
+            if era is None or ey is None: continue
+            y=ERA_BASE[era] + ey
             if not (1975 <= y <= 2035): continue
             nums=[number(x) for x in row]
             nums=[x for x in nums if x is not None]
             if len(nums) < 2: continue
+            # Both official tables place 合計/計 as the final numeric column.
             total=nums[-1]
             if total <= 0: continue
             values[y]=total; row_matches.append((r_idx,era,ey,total))
@@ -209,7 +212,6 @@ def main():
 
     trucking=json.loads(TRUCKING.read_text(encoding='utf-8'))
     tkm={int(o['period']):float(o['value']) for o in series(trucking,'commercial_truck_ton_km_annual').get('observations',[])}
-    # billion tonne-km / vehicles -> thousand tonne-km per vehicle = *1e6.
     tpv={y:tkm[y]*1_000_000/vehicles[y] for y in sorted(set(tkm)&set(vehicles)) if vehicles[y] > 0}
     if len(vpo) < 8 or len(tpv) < 5:
         raise RuntimeError(f'insufficient overlap: vehicles/operator={sorted(vpo)}, ton-km/vehicle={sorted(tpv)}')
