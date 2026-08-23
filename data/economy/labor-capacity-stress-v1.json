@@ -1,12 +1,12 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "dataset": "labor-capacity-stress-v1",
   "title_ja": "物流労働キャパシティ・ストレス v1",
   "frequency": "annual",
   "status": "derived_freight_specific_equal_weight_v1",
   "methodology": {
     "version": "v1-freight-specific-vacancy",
-    "common_period": "2018-2023",
+    "common_period": "2018-2024",
     "base_year": "2018",
     "components": [
       "parcel_labor_load_pressure_v1",
@@ -24,270 +24,18 @@
     }
   },
   "notes": [
-    "v1は求人需給を『自動車運転の職業』から『貨物自動車運転者』へ限定し、道路貨物の年齢構造との対象整合性を改善する。",
+    "v1は求人需給を『貨物自動車運転者／貨物自動車運転手』へ限定し、道路貨物の年齢構造との対象整合性を改善する。",
     "2018年を100とし、5要素を各20%で単純平均する透明な診断指数。公的指数ではない。",
     "年間所得額は採用競争力の重要な文脈だが、大型・中小型の集約ウェイトを恣意的に置かないためv1スコアには含めない。",
-    "2024年以降は貨物自動車運転者の同一定義求人系列が確認できた時点で延長する。"
+    "2024年度の貨物自動車運転手有効求人倍率2.37倍まで同一定義の国土交通省資料で接続する。2025年度job tag 2.94倍は分類・集約条件を完全確認するまで接続しない。"
   ],
   "series": [
-    {
-      "metric_id": "parcel_labor_load_pressure_v1",
-      "name_ja": "宅配需要/物流労働力圧力 v1",
-      "unit": "index_2018_100",
-      "observations": [
-        {
-          "period": "2018",
-          "value": 100.0,
-          "status": "derived",
-          "source": "LBI transparent normalization; 2018=100"
-        },
-        {
-          "period": "2019",
-          "value": 98.6,
-          "status": "derived",
-          "source": "LBI transparent normalization; 2018=100"
-        },
-        {
-          "period": "2020",
-          "value": 110.0,
-          "status": "derived",
-          "source": "LBI transparent normalization; 2018=100"
-        },
-        {
-          "period": "2021",
-          "value": 111.7,
-          "status": "derived",
-          "source": "LBI transparent normalization; 2018=100"
-        },
-        {
-          "period": "2022",
-          "value": 113.3,
-          "status": "derived",
-          "source": "LBI transparent normalization; 2018=100"
-        },
-        {
-          "period": "2023",
-          "value": 113.9,
-          "status": "derived",
-          "source": "LBI transparent normalization; 2018=100"
-        }
-      ]
-    },
-    {
-      "metric_id": "freight_driver_vacancy_pressure_v1",
-      "name_ja": "貨物自動車運転者 求人需給圧力 v1",
-      "unit": "index_2018_100",
-      "observations": [
-        {
-          "period": "2018",
-          "value": 100.0,
-          "status": "derived",
-          "source": "LBI transparent normalization; 2018=100"
-        },
-        {
-          "period": "2019",
-          "value": 99.6,
-          "status": "derived",
-          "source": "LBI transparent normalization; 2018=100"
-        },
-        {
-          "period": "2020",
-          "value": 68.6,
-          "status": "derived",
-          "source": "LBI transparent normalization; 2018=100"
-        },
-        {
-          "period": "2021",
-          "value": 69.3,
-          "status": "derived",
-          "source": "LBI transparent normalization; 2018=100"
-        },
-        {
-          "period": "2022",
-          "value": 75.6,
-          "status": "derived",
-          "source": "LBI transparent normalization; 2018=100"
-        },
-        {
-          "period": "2023",
-          "value": 77.0,
-          "status": "derived",
-          "source": "LBI transparent normalization; 2018=100"
-        }
-      ]
-    },
-    {
-      "metric_id": "road_freight_aging_pressure_v1",
-      "name_ja": "道路貨物 高齢化圧力 v1",
-      "unit": "index_2018_100",
-      "observations": [
-        {
-          "period": "2018",
-          "value": 100.0,
-          "status": "derived",
-          "source": "LBI transparent normalization; 2018=100"
-        },
-        {
-          "period": "2019",
-          "value": 105.4,
-          "status": "derived",
-          "source": "LBI transparent normalization; 2018=100"
-        },
-        {
-          "period": "2020",
-          "value": 104.6,
-          "status": "derived",
-          "source": "LBI transparent normalization; 2018=100"
-        },
-        {
-          "period": "2021",
-          "value": 107.4,
-          "status": "derived",
-          "source": "LBI transparent normalization; 2018=100"
-        },
-        {
-          "period": "2022",
-          "value": 116.0,
-          "status": "derived",
-          "source": "LBI transparent normalization; 2018=100"
-        },
-        {
-          "period": "2023",
-          "value": 117.8,
-          "status": "derived",
-          "source": "LBI transparent normalization; 2018=100"
-        }
-      ]
-    },
-    {
-      "metric_id": "road_freight_replacement_pressure_v1",
-      "name_ja": "道路貨物 世代交代圧力 v1",
-      "unit": "index_2018_100",
-      "observations": [
-        {
-          "period": "2018",
-          "value": 100.0,
-          "status": "derived",
-          "source": "LBI transparent normalization; 2018=100"
-        },
-        {
-          "period": "2019",
-          "value": 101.6,
-          "status": "derived",
-          "source": "LBI transparent normalization; 2018=100"
-        },
-        {
-          "period": "2020",
-          "value": 101.6,
-          "status": "derived",
-          "source": "LBI transparent normalization; 2018=100"
-        },
-        {
-          "period": "2021",
-          "value": 114.8,
-          "status": "derived",
-          "source": "LBI transparent normalization; 2018=100"
-        },
-        {
-          "period": "2022",
-          "value": 124.0,
-          "status": "derived",
-          "source": "LBI transparent normalization; 2018=100"
-        },
-        {
-          "period": "2023",
-          "value": 121.6,
-          "status": "derived",
-          "source": "LBI transparent normalization; 2018=100"
-        }
-      ]
-    },
-    {
-      "metric_id": "working_age_supply_pressure_v1",
-      "name_ja": "生産年齢人口供給圧力 v1",
-      "unit": "index_2018_100",
-      "observations": [
-        {
-          "period": "2018",
-          "value": 100.0,
-          "status": "derived",
-          "source": "LBI transparent normalization; 2018=100"
-        },
-        {
-          "period": "2019",
-          "value": 100.3,
-          "status": "derived",
-          "source": "LBI transparent normalization; 2018=100"
-        },
-        {
-          "period": "2020",
-          "value": 100.9,
-          "status": "derived",
-          "source": "LBI transparent normalization; 2018=100"
-        },
-        {
-          "period": "2021",
-          "value": 101.7,
-          "status": "derived",
-          "source": "LBI transparent normalization; 2018=100"
-        },
-        {
-          "period": "2022",
-          "value": 102.1,
-          "status": "derived",
-          "source": "LBI transparent normalization; 2018=100"
-        },
-        {
-          "period": "2023",
-          "value": 102.5,
-          "status": "derived",
-          "source": "LBI transparent normalization; 2018=100"
-        }
-      ]
-    },
-    {
-      "metric_id": "labor_capacity_stress_v1",
-      "name_ja": "物流労働キャパシティ・ストレス v1",
-      "unit": "index_2018_100",
-      "observations": [
-        {
-          "period": "2018",
-          "value": 100.0,
-          "status": "derived",
-          "source": "Arithmetic mean of five disclosed 2018=100 pressure components"
-        },
-        {
-          "period": "2019",
-          "value": 101.1,
-          "status": "derived",
-          "source": "Arithmetic mean of five disclosed 2018=100 pressure components"
-        },
-        {
-          "period": "2020",
-          "value": 97.1,
-          "status": "derived",
-          "source": "Arithmetic mean of five disclosed 2018=100 pressure components"
-        },
-        {
-          "period": "2021",
-          "value": 101.0,
-          "status": "derived",
-          "source": "Arithmetic mean of five disclosed 2018=100 pressure components"
-        },
-        {
-          "period": "2022",
-          "value": 106.2,
-          "status": "derived",
-          "source": "Arithmetic mean of five disclosed 2018=100 pressure components"
-        },
-        {
-          "period": "2023",
-          "value": 106.6,
-          "status": "derived",
-          "source": "Arithmetic mean of five disclosed 2018=100 pressure components"
-        }
-      ]
-    }
+    {"metric_id":"parcel_labor_load_pressure_v1","name_ja":"宅配需要/物流労働力圧力 v1","unit":"index_2018_100","observations":[]},
+    {"metric_id":"freight_driver_vacancy_pressure_v1","name_ja":"貨物自動車運転者 求人需給圧力 v1","unit":"index_2018_100","observations":[]},
+    {"metric_id":"road_freight_aging_pressure_v1","name_ja":"道路貨物 高齢化圧力 v1","unit":"index_2018_100","observations":[]},
+    {"metric_id":"road_freight_replacement_pressure_v1","name_ja":"道路貨物 世代交代圧力 v1","unit":"index_2018_100","observations":[]},
+    {"metric_id":"working_age_supply_pressure_v1","name_ja":"生産年齢人口供給圧力 v1","unit":"index_2018_100","observations":[]},
+    {"metric_id":"labor_capacity_stress_v1","name_ja":"物流労働キャパシティ・ストレス v1","unit":"index_2018_100","observations":[]}
   ],
-  "latest_common_year": "2023"
+  "latest_common_year": "2024"
 }
