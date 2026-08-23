@@ -27,29 +27,103 @@ jobs:
           python-version: "3.12"
 
       - name: Sanitize public data and HTML
+        id: sanitize_data
+        continue-on-error: true
         run: python scripts/sanitize_public_content.py
 
       - name: Localize extended source matrices
+        id: localize_sources
+        if: steps.sanitize_data.outcome == 'success'
+        continue-on-error: true
         run: python scripts/localize_source_matrices.py
 
       - name: Localize selected public UI literals
+        id: localize_ui
+        if: steps.sanitize_data.outcome == 'success' && steps.localize_sources.outcome == 'success'
+        continue-on-error: true
         run: python scripts/localize_public_ui.py
 
       - name: Audit public privacy and Japanese UI
+        id: audit
+        if: steps.sanitize_data.outcome == 'success' && steps.localize_sources.outcome == 'success' && steps.localize_ui.outcome == 'success'
+        continue-on-error: true
         run: python scripts/audit_public_content.py
 
       - name: Validate customs taxonomy after localization
+        id: customs
+        if: steps.audit.outcome == 'success'
+        continue-on-error: true
         run: python scripts/validate-customs-taxonomy.py
 
-      - name: Commit sanitized public output
-        shell: bash
+      - name: Write public sanitizer status
+        if: always()
+        env:
+          SANITIZE: ${{ steps.sanitize_data.outcome }}
+          SOURCES: ${{ steps.localize_sources.outcome }}
+          UI: ${{ steps.localize_ui.outcome }}
+          AUDIT: ${{ steps.audit.outcome }}
+          CUSTOMS: ${{ steps.customs.outcome }}
         run: |
-          if git diff --quiet; then
-            echo "No public sanitization changes."
-            exit 0
-          fi
+          python - <<'PY'
+          import json, os
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          stages = {
+              "sanitize_data": os.environ.get("SANITIZE") or "not_run",
+              "localize_sources": os.environ.get("SOURCES") or "not_run",
+              "localize_ui": os.environ.get("UI") or "not_run",
+              "audit": os.environ.get("AUDIT") or "not_run",
+              "customs_validation": os.environ.get("CUSTOMS") or "not_run",
+          }
+          ok = all(value == "success" for value in stages.values())
+          failed_stage = next((name for name, value in stages.items() if value != "success"), None)
+          status = {
+              "schema_version": "1.0",
+              "dataset": "public-sanitize-status",
+              "status": "success" if ok else "failure",
+              "stage": "success" if ok else failed_stage,
+              "updated_at": datetime.now(timezone.utc).isoformat(),
+              "stages": stages,
+              "note": "Public sanitizer health only; no private monitoring targets are stored here."
+          }
+          Path("data/public-sanitize-status.json").write_text(
+              json.dumps(status, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+          )
+          print(json.dumps(status, ensure_ascii=False, indent=2))
+          PY
+
+      - name: Commit sanitized output or diagnostic status
+        if: always()
+        shell: bash
+        env:
+          SANITIZE: ${{ steps.sanitize_data.outcome }}
+          SOURCES: ${{ steps.localize_sources.outcome }}
+          UI: ${{ steps.localize_ui.outcome }}
+          AUDIT: ${{ steps.audit.outcome }}
+          CUSTOMS: ${{ steps.customs.outcome }}
+        run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data assets/js index.html radar.html topic.html archive.html economic-flow.html source-matrix.html status-history.html lens-history.html buzz.html commerce-calendar.html reports templates
-          git commit -m "data: sanitize public Japanese and brand privacy"
+          if [[ "$SANITIZE" == "success" && "$SOURCES" == "success" && "$UI" == "success" && "$AUDIT" == "success" && "$CUSTOMS" == "success" ]]; then
+            git add -A
+            MESSAGE="data: sanitize public Japanese and brand privacy"
+          else
+            git add data/public-sanitize-status.json
+            MESSAGE="data: record public sanitizer failure"
+          fi
+          if git diff --cached --quiet; then
+            echo "No public sanitizer/status change."
+            exit 0
+          fi
+          git commit -m "$MESSAGE"
           git push
+
+      - name: Fail when public sanitizer is unhealthy
+        if: always()
+        run: |
+          python - <<'PY'
+          import json
+          d = json.load(open("data/public-sanitize-status.json", encoding="utf-8"))
+          assert d["status"] == "success", f"public sanitizer failed at {d['stage']}: {d['stages']}"
+          PY
