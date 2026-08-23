@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0",
+  "dataset": "public-sanitize-status",
+  "status": "failure",
+  "stage": "audit",
+  "updated_at": "2026-08-23T04:14:59.373520+00:00",
+  "stages": {
+    "sanitize_data": "success",
+    "localize_sources": "success",
+    "localize_ui": "success",
+    "audit": "failure",
+    "customs_validation": "skipped"
+  },
+  "note": "Public sanitizer health only; no private monitoring targets are stored here."
+}
