@@ -6,10 +6,11 @@ on:
     branches: [main]
     paths:
       - "scripts/sanitize_public_content.py"
-      - "scripts/sanitize_brand_aliases.py"
-      - "scripts/localize_source_matrices.py"
+      - "scripts/safe_public_sanitize.py"
+      - "scripts/restore_pre_sanitize_public_files.sh"
       - "scripts/localize_public_ui.py"
       - "scripts/audit_public_content.py"
+      - "scripts/validate_public_schema_integrity.py"
       - ".github/workflows/public-content-sanitize.yml"
 
 permissions:
@@ -26,26 +27,20 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Sanitize public data and HTML
-        id: sanitize_data
+      - name: Restore pre-sanitize machine contracts
+        id: restore
         continue-on-error: true
-        run: python scripts/sanitize_public_content.py
+        run: bash scripts/restore_pre_sanitize_public_files.sh
 
-      - name: Sanitize Japanese beauty-brand aliases
-        id: sanitize_aliases
-        if: steps.sanitize_data.outcome == 'success'
+      - name: Apply schema-aware privacy sanitizer
+        id: sanitize
+        if: steps.restore.outcome == 'success'
         continue-on-error: true
-        run: python scripts/sanitize_brand_aliases.py
-
-      - name: Localize extended source matrices
-        id: localize_sources
-        if: steps.sanitize_data.outcome == 'success' && steps.sanitize_aliases.outcome == 'success'
-        continue-on-error: true
-        run: python scripts/localize_source_matrices.py
+        run: python scripts/safe_public_sanitize.py
 
       - name: Localize selected public UI literals
         id: localize_ui
-        if: steps.localize_sources.outcome == 'success'
+        if: steps.sanitize.outcome == 'success'
         continue-on-error: true
         run: python scripts/localize_public_ui.py
 
@@ -62,9 +57,35 @@ jobs:
           echo "exit_code=$RC" >> "$GITHUB_OUTPUT"
           exit "$RC"
 
-      - name: Validate customs taxonomy after localization
-        id: customs
+      - name: Validate stable schema and URLs
+        id: schema
         if: steps.audit.outcome == 'success'
+        continue-on-error: true
+        shell: bash
+        run: |
+          set +e
+          python scripts/validate_public_schema_integrity.py > /tmp/schema-audit.log 2>&1
+          RC=$?
+          cat /tmp/schema-audit.log
+          echo "exit_code=$RC" >> "$GITHUB_OUTPUT"
+          exit "$RC"
+
+      - name: Validate report contracts
+        id: reports
+        if: steps.schema.outcome == 'success'
+        continue-on-error: true
+        shell: bash
+        run: |
+          set +e
+          python scripts/validate-report.py > /tmp/report-audit.log 2>&1
+          RC=$?
+          cat /tmp/report-audit.log
+          echo "exit_code=$RC" >> "$GITHUB_OUTPUT"
+          exit "$RC"
+
+      - name: Validate customs taxonomy
+        id: customs
+        if: steps.reports.outcome == 'success'
         continue-on-error: true
         shell: bash
         run: |
@@ -78,66 +99,91 @@ jobs:
       - name: Write public sanitizer status
         if: always()
         env:
-          SANITIZE: ${{ steps.sanitize_data.outcome }}
-          ALIASES: ${{ steps.sanitize_aliases.outcome }}
-          SOURCES: ${{ steps.localize_sources.outcome }}
+          RESTORE: ${{ steps.restore.outcome }}
+          SANITIZE: ${{ steps.sanitize.outcome }}
           UI: ${{ steps.localize_ui.outcome }}
           AUDIT: ${{ steps.audit.outcome }}
+          SCHEMA: ${{ steps.schema.outcome }}
+          REPORTS: ${{ steps.reports.outcome }}
           CUSTOMS: ${{ steps.customs.outcome }}
           AUDIT_EXIT: ${{ steps.audit.outputs.exit_code }}
+          SCHEMA_EXIT: ${{ steps.schema.outputs.exit_code }}
+          REPORT_EXIT: ${{ steps.reports.outputs.exit_code }}
           CUSTOMS_EXIT: ${{ steps.customs.outputs.exit_code }}
         run: |
           python - <<'PY'
           import json, os
           from datetime import datetime, timezone
           from pathlib import Path
+
           stages = {
-              "sanitize_data": os.environ.get("SANITIZE") or "not_run",
-              "sanitize_aliases": os.environ.get("ALIASES") or "not_run",
-              "localize_sources": os.environ.get("SOURCES") or "not_run",
+              "restore": os.environ.get("RESTORE") or "not_run",
+              "sanitize": os.environ.get("SANITIZE") or "not_run",
               "localize_ui": os.environ.get("UI") or "not_run",
               "audit": os.environ.get("AUDIT") or "not_run",
+              "schema_integrity": os.environ.get("SCHEMA") or "not_run",
+              "report_validation": os.environ.get("REPORTS") or "not_run",
               "customs_validation": os.environ.get("CUSTOMS") or "not_run",
           }
           ok = all(value == "success" for value in stages.values())
           failed_stage = next((name for name, value in stages.items() if value != "success"), None)
-          audit_log = Path('/tmp/public-audit.log').read_text(encoding='utf-8', errors='replace') if Path('/tmp/public-audit.log').exists() else ''
-          customs_log = Path('/tmp/customs-audit.log').read_text(encoding='utf-8', errors='replace') if Path('/tmp/customs-audit.log').exists() else ''
-          diagnostic = audit_log if stages['audit'] == 'failure' else customs_log if stages['customs_validation'] == 'failure' else ''
-          status = {
-              "schema_version": "1.1", "dataset": "public-sanitize-status",
-              "status": "success" if ok else "failure", "stage": "success" if ok else failed_stage,
-              "updated_at": datetime.now(timezone.utc).isoformat(), "stages": stages,
-              "audit_exit_code": os.environ.get("AUDIT_EXIT") or None,
-              "customs_exit_code": os.environ.get("CUSTOMS_EXIT") or None,
-              "diagnostic_tail": diagnostic[-8000:] if diagnostic else None,
-              "note": "Public sanitizer health only; no private monitoring targets are stored here."
+          logs = {
+              "audit": "/tmp/public-audit.log",
+              "schema_integrity": "/tmp/schema-audit.log",
+              "report_validation": "/tmp/report-audit.log",
+              "customs_validation": "/tmp/customs-audit.log",
           }
-          Path("data/public-sanitize-status.json").write_text(json.dumps(status, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+          diagnostic = ""
+          if failed_stage in logs and Path(logs[failed_stage]).exists():
+              diagnostic = Path(logs[failed_stage]).read_text(encoding="utf-8", errors="replace")
+          status = {
+              "schema_version": "2.0",
+              "dataset": "public-sanitize-status",
+              "status": "success" if ok else "failure",
+              "stage": "success" if ok else failed_stage,
+              "updated_at": datetime.now(timezone.utc).isoformat(),
+              "stages": stages,
+              "exit_codes": {
+                  "audit": os.environ.get("AUDIT_EXIT") or None,
+                  "schema_integrity": os.environ.get("SCHEMA_EXIT") or None,
+                  "report_validation": os.environ.get("REPORT_EXIT") or None,
+                  "customs_validation": os.environ.get("CUSTOMS_EXIT") or None,
+              },
+              "diagnostic_tail": diagnostic[-10000:] if diagnostic else None,
+              "note": "Public sanitizer health only; stable machine keys and non-brand URLs must remain unchanged."
+          }
+          Path("data/public-sanitize-status.json").write_text(
+              json.dumps(status, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+          )
           print(json.dumps(status, ensure_ascii=False, indent=2))
           PY
 
-      - name: Commit sanitized output or diagnostic status
+      - name: Commit repaired public output or diagnostic status
         if: always()
         shell: bash
         env:
-          SANITIZE: ${{ steps.sanitize_data.outcome }}
-          ALIASES: ${{ steps.sanitize_aliases.outcome }}
-          SOURCES: ${{ steps.localize_sources.outcome }}
+          RESTORE: ${{ steps.restore.outcome }}
+          SANITIZE: ${{ steps.sanitize.outcome }}
           UI: ${{ steps.localize_ui.outcome }}
           AUDIT: ${{ steps.audit.outcome }}
+          SCHEMA: ${{ steps.schema.outcome }}
+          REPORTS: ${{ steps.reports.outcome }}
           CUSTOMS: ${{ steps.customs.outcome }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if [[ "$SANITIZE" == "success" && "$ALIASES" == "success" && "$SOURCES" == "success" && "$UI" == "success" && "$AUDIT" == "success" && "$CUSTOMS" == "success" ]]; then
+          if [[ "$RESTORE" == "success" && "$SANITIZE" == "success" && "$UI" == "success" && "$AUDIT" == "success" && "$SCHEMA" == "success" && "$REPORTS" == "success" && "$CUSTOMS" == "success" ]]; then
             git add -A
-            MESSAGE="data: sanitize public Japanese and brand privacy"
+            MESSAGE="data: repair public Japanese and brand privacy"
           else
+            git reset
             git add data/public-sanitize-status.json
-            MESSAGE="data: record public sanitizer failure"
+            MESSAGE="data: record schema-safe sanitizer failure"
           fi
-          if git diff --cached --quiet; then exit 0; fi
+          if git diff --cached --quiet; then
+            echo "No public sanitizer/status change."
+            exit 0
+          fi
           git commit -m "$MESSAGE"
           git push
 
