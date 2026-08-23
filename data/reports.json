@@ -106,6 +106,36 @@
           "source": null
         }
       },
+      "cost_snapshot": {
+        "as_of": "2026-08-24T08:00:00+09:00",
+        "metrics": {
+          "regular_gasoline_national": {
+            "value": null,
+            "unit": "JPY/L",
+            "data_date": null,
+            "source": "資源エネルギー庁 石油製品価格調査 / data/economy/fuel-prices.json"
+          },
+          "diesel_national": {
+            "value": null,
+            "unit": "JPY/L",
+            "data_date": null,
+            "source": "資源エネルギー庁 石油製品価格調査 / data/economy/fuel-prices.json"
+          },
+          "drewry_wci": {
+            "value": 4526,
+            "unit": "USD/40ft",
+            "data_date": "2026-08-20",
+            "source": "Drewry World Container Index"
+          },
+          "drewry_iaci": {
+            "value": 1091,
+            "unit": "USD/40ft",
+            "data_date": "2026-08-20",
+            "source": "Drewry Intra-Asia Container Index"
+          }
+        },
+        "interpretation_ja": "燃料は今回の実行時に最新観測値を再検証できなかったため値をnullのまま保持し、推測で補完しない。WCI/IACIは2026年8月20日公表水準を固定保存する。いずれも価格指標であり、物理需要や船腹不足を直接意味しない。"
+      },
       "intelligence": {
         "disruption": [
           {
