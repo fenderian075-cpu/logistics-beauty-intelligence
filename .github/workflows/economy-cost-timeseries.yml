@@ -1,0 +1,59 @@
+name: Refresh economy cost time-series
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "35 5 * * 3"
+  push:
+    branches: [main]
+    paths:
+      - "scripts/update_economy_timeseries.py"
+      - "scripts/localize_macro_and_buzz.py"
+      - "data/economy/fuel-prices.json"
+      - "data/economy/ocean-freight-market.json"
+      - ".github/workflows/economy-cost-timeseries.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests
+      - name: Refresh public market snapshots
+        run: python scripts/update_economy_timeseries.py
+      - name: Apply Japanese display labels
+        run: python scripts/localize_macro_and_buzz.py
+      - name: Validate JSON
+        run: |
+          python - <<'PY'
+          import json
+          for path in [
+              'data/economy/macro.json',
+              'data/economy/fuel-prices.json',
+              'data/economy/ocean-freight-market.json',
+              'data/report-required-metrics.json'
+          ]:
+              json.load(open(path, encoding='utf-8'))
+              print('valid', path)
+          PY
+      - name: Commit refreshed data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/economy/macro.json data/economy/fuel-prices.json data/economy/ocean-freight-market.json \
+                  index.html radar.html topic.html archive.html economic-flow.html source-matrix.html \
+                  status-history.html lens-history.html buzz.html commerce-calendar.html templates/report-template.html reports || true
+          if git diff --cached --quiet; then
+            echo "No economy cost time-series change."
+            exit 0
+          fi
+          git commit -m "data: refresh fuel and ocean cost time-series"
+          git push
