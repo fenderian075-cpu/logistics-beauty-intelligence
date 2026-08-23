@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "dataset": "logistics-foreign-workforce",
+  "title_ja": "外国人物流労働力",
+  "frequency": "annual_snapshot_october",
+  "sources": [
+    {
+      "name": "厚生労働省 外国人雇用状況の届出状況まとめ",
+      "url": "https://www.mhlw.go.jp/stf/newpage_68794.html",
+      "note": "各年10月末時点。特別永住者、外交・公用は対象外。"
+    }
+  ],
+  "notes": [
+    "外国人雇用状況の届出件数による10月末スナップショットであり、労働力調査の年平均就業者数とは母集団・時点が異なる。",
+    "運輸業・郵便業は日本標準産業分類の大分類H。道路貨物運送業や倉庫業へ細分した値ではない。",
+    "transport_postal_foreign_share_of_all_foreignは外国人労働者全体のうち運輸業・郵便業に雇用される割合であり、運輸業・郵便業就業者に占める外国人比率ではない。"
+  ],
+  "series": [
+    {
+      "metric_id": "foreign_workers_all_industries",
+      "name_ja": "外国人労働者数 全産業",
+      "unit": "persons",
+      "observations": [
+        {"period":"2023-10","value":2048675,"status":"official","source":"MHLW 外国人雇用状況 令和5年10月末"},
+        {"period":"2024-10","value":2302587,"status":"official","source":"MHLW 外国人雇用状況 令和6年10月末"},
+        {"period":"2025-10","value":2571037,"status":"official","source":"MHLW 外国人雇用状況 令和7年10月末"}
+      ]
+    },
+    {
+      "metric_id": "transport_postal_foreign_workers",
+      "name_ja": "運輸業・郵便業 外国人労働者数",
+      "unit": "persons",
+      "observations": [
+        {"period":"2023-10","value":66581,"status":"official","source":"MHLW 産業別外国人労働者数 H 運輸業、郵便業"},
+        {"period":"2024-10","value":75157,"status":"official","source":"MHLW 産業別外国人労働者数 H 運輸業、郵便業"},
+        {"period":"2025-10","value":85477,"status":"official","source":"MHLW 産業別外国人労働者数 H 運輸業、郵便業"}
+      ]
+    },
+    {
+      "metric_id": "transport_postal_foreign_share_of_all_foreign",
+      "name_ja": "外国人労働者全体に占める運輸業・郵便業比率",
+      "unit": "pct",
+      "observations": [
+        {"period":"2023-10","value":3.2,"status":"official","source":"MHLW 産業別構成比"},
+        {"period":"2024-10","value":3.3,"status":"official","source":"MHLW 産業別構成比"},
+        {"period":"2025-10","value":3.3,"status":"official","source":"MHLW 産業別構成比"}
+      ]
+    },
+    {
+      "metric_id": "transport_postal_foreign_worker_index_2023",
+      "name_ja": "運輸業・郵便業 外国人労働者指数（2023=100）",
+      "unit": "index_2023_100",
+      "observations": [
+        {"period":"2023-10","value":100.0,"status":"derived","source":"transport_postal_foreign_workersを2023=100に指数化"},
+        {"period":"2024-10","value":112.9,"status":"derived","source":"同上"},
+        {"period":"2025-10","value":128.4,"status":"derived","source":"同上"}
+      ]
+    }
+  ]
+}
