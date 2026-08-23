@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0",
+  "dataset": "prices",
+  "title_ja": "物価・価格レイヤー",
+  "frequency": "annual+monthly",
+  "updated_at": "2026-08-23T12:00:00+09:00",
+  "principle": "Nominal growth must be separated from price effects. CPI is a household-consumption price measure; SPPI is a business-service transaction price measure. Neither is silently substituted for an SNA GDP deflator.",
+  "sources": [
+    {"name":"総務省統計局 消費者物価指数","url":"https://www.stat.go.jp/data/cpi/1.html"},
+    {"name":"日本銀行 企業向けサービス価格指数","url":"https://www.boj.or.jp/statistics/pi/cspi_release/"}
+  ],
+  "series": [
+    {"metric_id":"cpi_all_items","name_ja":"CPI 総合","unit":"2020=100","observations":[{"period":"2024","value":108.5,"yoy":2.7,"status":"official","source":"総務省統計局"},{"period":"2025","value":111.9,"yoy":3.2,"status":"official","source":"総務省統計局"}]},
+    {"metric_id":"cpi_food","name_ja":"CPI 食料","unit":"2020=100","observations":[{"period":"2024","value":117.8,"yoy":4.3,"status":"official","source":"総務省統計局"},{"period":"2025","value":125.8,"yoy":6.8,"status":"official","source":"総務省統計局"}]},
+    {"metric_id":"cpi_housing","name_ja":"CPI 住居","unit":"2020=100","observations":[{"period":"2024","value":103.1,"yoy":0.7,"status":"official","source":"総務省統計局"},{"period":"2025","value":104.0,"yoy":1.0,"status":"official","source":"総務省統計局"}]},
+    {"metric_id":"cpi_fuel_light_water","name_ja":"CPI 光熱・水道","unit":"2020=100","observations":[{"period":"2024","value":112.8,"yoy":4.0,"status":"official","source":"総務省統計局"},{"period":"2025","value":116.9,"yoy":3.6,"status":"official","source":"総務省統計局"}]},
+    {"metric_id":"cpi_furniture_household","name_ja":"CPI 家具・家事用品","unit":"2020=100","observations":[{"period":"2024","value":118.4,"yoy":4.0,"status":"official","source":"総務省統計局"},{"period":"2025","value":121.6,"yoy":2.7,"status":"official","source":"総務省統計局"}]},
+    {"metric_id":"cpi_clothes_footwear","name_ja":"CPI 被服・履物","unit":"2020=100","observations":[{"period":"2024","value":108.2,"yoy":2.4,"status":"official","source":"総務省統計局"},{"period":"2025","value":111.1,"yoy":2.6,"status":"official","source":"総務省統計局"}]},
+    {"metric_id":"cpi_medical","name_ja":"CPI 保健医療","unit":"2020=100","observations":[{"period":"2024","value":102.8,"yoy":1.6,"status":"official","source":"総務省統計局"},{"period":"2025","value":104.3,"yoy":1.5,"status":"official","source":"総務省統計局"}]},
+    {"metric_id":"cpi_transport_communication","name_ja":"CPI 交通・通信","unit":"2020=100","observations":[{"period":"2024","value":97.4,"yoy":1.6,"status":"official","source":"総務省統計局"},{"period":"2025","value":100.0,"yoy":2.7,"status":"official","source":"総務省統計局"}]},
+    {"metric_id":"cpi_education","name_ja":"CPI 教育","unit":"2020=100","observations":[{"period":"2024","value":101.6,"yoy":-0.4,"status":"official","source":"総務省統計局"},{"period":"2025","value":97.1,"yoy":-4.5,"status":"official","source":"総務省統計局"}]},
+    {"metric_id":"cpi_culture_recreation","name_ja":"CPI 教養娯楽","unit":"2020=100","observations":[{"period":"2024","value":112.9,"yoy":5.4,"status":"official","source":"総務省統計局"},{"period":"2025","value":115.6,"yoy":2.4,"status":"official","source":"総務省統計局"}]},
+    {"metric_id":"cpi_miscellaneous","name_ja":"CPI 諸雑費","unit":"2020=100","observations":[{"period":"2024","value":104.8,"yoy":1.1,"status":"official","source":"総務省統計局"},{"period":"2025","value":105.9,"yoy":1.1,"status":"official","source":"総務省統計局"}]},
+    {"metric_id":"cpi_cosmetics","name_ja":"CPI 化粧品","unit":"index","observations":[],"collection_status":"defined_not_seeded","classification_note":"2025-base CPI includes cosmetics as small-group code 0150. Exact historical values should be collected from the official item-level time-series before use as a Beauty deflator."},
+    {"metric_id":"sppi_all_services","name_ja":"SPPI 全サービス","unit":"2020=100","observations":[{"period":"2023","value":104.5,"yoy":2.2,"status":"official","source":"日本銀行"},{"period":"2024","value":107.8,"yoy":3.2,"status":"official","source":"日本銀行"},{"period":"2025","value":111.0,"yoy":3.0,"status":"official","source":"日本銀行"}]},
+    {"metric_id":"sppi_transport_postal","name_ja":"SPPI 運輸・郵便","unit":"2020=100","observations":[{"period":"2024FY","value":109.7,"yoy":2.9,"status":"official","source":"日本銀行"},{"period":"2026-01","value":112.6,"yoy":2.1,"mom":-0.9,"status":"preliminary","source":"日本銀行"}]},
+    {"metric_id":"sppi_road_freight","name_ja":"SPPI 道路貨物輸送","unit":"2020=100","observations":[{"period":"2026-01","value":108.7,"yoy":2.5,"mom":-0.2,"status":"preliminary","source":"日本銀行"}]},
+    {"metric_id":"sppi_ocean_freight","name_ja":"SPPI 外洋貨物輸送","unit":"2020=100","observations":[{"period":"2026-01","value":162.5,"yoy":1.4,"mom":-2.1,"status":"preliminary","source":"日本銀行"}]},
+    {"metric_id":"sppi_international_air_freight","name_ja":"SPPI 国際航空貨物輸送","unit":"2020=100","observations":[{"period":"2026-01","value":113.6,"yoy":6.4,"mom":1.2,"status":"preliminary","source":"日本銀行"}]},
+    {"metric_id":"sppi_warehousing","name_ja":"SPPI 倉庫","unit":"2020=100","observations":[{"period":"2026-01","value":104.4,"yoy":1.5,"mom":0.0,"status":"preliminary","source":"日本銀行"}]},
+    {"metric_id":"sppi_3pl","name_ja":"SPPI 3PL","unit":"2020=100","observations":[{"period":"2026-01","value":107.1,"yoy":1.8,"mom":-3.1,"status":"preliminary","source":"日本銀行"}]}
+  ]
+}
