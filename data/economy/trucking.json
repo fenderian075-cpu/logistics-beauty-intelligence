@@ -1,0 +1,23 @@
+{
+  "schema_version":"1.0",
+  "dataset":"trucking",
+  "title_ja":"国内トラック・荷待ち・荷役",
+  "frequency":"monthly+survey",
+  "sources":[
+    {"name":"国土交通省 自動車輸送統計","url":"https://www.mlit.go.jp/k-toukei/jidousya.html"},
+    {"name":"国土交通省 トラックドライバー拘束時間調査","url":"https://www.mlit.go.jp/report/press/tokatsu02_hh_000084.html"},
+    {"name":"物流効率化法 理解促進ポータル","url":"https://www.revised-logistics-act-portal.mlit.go.jp/"}
+  ],
+  "series":[
+    {"metric_id":"average_duty_time_per_run","unit":"hours","observations":[{"period":"2025-survey","value":10.2167,"display":"10時間13分","change_vs_previous":"-1時間33分","published_at":"2026-07-10"}]},
+    {"metric_id":"waiting_and_handling_per_run","unit":"hours","observations":[{"period":"2025-survey","value":2.0333,"display":"2時間02分","change_vs_previous":"-1時間16分","published_at":"2026-07-10"}]},
+    {"metric_id":"freight_transport_volume","unit":"tonnes","observations":[]},
+    {"metric_id":"freight_transport_ton_km","unit":"ton-km","observations":[]}
+  ],
+  "policy_targets":[
+    {"metric":"waiting_and_handling_per_run","target":"2時間以内"},
+    {"metric":"waiting_and_handling_per_delivery","target":"1時間以内"},
+    {"metric":"vehicle_loading_efficiency","target":"44%"}
+  ],
+  "availability":{"latest_motor_transport_preliminary":"2026-05","note":"Monthly freight-volume values are inserted only after verified e-Stat retrieval."}
+}
