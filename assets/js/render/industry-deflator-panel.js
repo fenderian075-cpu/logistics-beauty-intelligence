@@ -42,9 +42,9 @@ export async function mountIndustryDeflatorPanel() {
   section.id = "industry-deflator-panel";
   const head = el("div", "section__head");
   const title = el("div");
-  title.appendChild(el("p", "eyebrow", "SAME-PERIOD DECOMPOSITION"));
-  title.appendChild(el("h2", "section__title", `産業別 名目 → 価格 → 実質 (${latestYear})`));
-  title.appendChild(el("p", "regime-note", "同じ暦年・同じSNA vintageの名目GDP、実質GDP、GDPデフレーターを使用。CPI/SPPIは代用しません。"));
+  title.appendChild(el("p", "eyebrow", "同期間分解"));
+  title.appendChild(el("h2", "section__title", `産業別 名目 → 価格 → 実質（${latestYear}年）`));
+  title.appendChild(el("p", "regime-note", "同じ暦年・同じSNA年次推計の名目GDP、実質GDP、GDPデフレーターを使用。CPI/SPPIは代用しません。"));
   head.appendChild(title);
   section.appendChild(head);
 
@@ -81,7 +81,7 @@ export async function mountIndustryDeflatorPanel() {
   const table = el("table", "data-table economy-table");
   const thead = el("thead");
   const trh = el("tr");
-  ["産業", "名目YoY", "GDPデフレーターYoY", "実質YoY", "恒等式差分", "判定"].forEach((label) => trh.appendChild(el("th", null, label)));
+  ["産業", "名目前年比", "GDPデフレーター前年比", "実質前年比", "恒等式差分", "判定"].forEach((label) => trh.appendChild(el("th", null, label)));
   thead.appendChild(trh);
   table.appendChild(thead);
   const tbody = el("tbody");
@@ -93,14 +93,14 @@ export async function mountIndustryDeflatorPanel() {
     tr.appendChild(el("td", null, pct(row.latest.nominal_yoy_pct)));
     tr.appendChild(el("td", null, pct(row.latest.deflator_yoy_pct)));
     tr.appendChild(el("td", null, pct(row.latest.real_yoy_pct)));
-    tr.appendChild(el("td", null, row.latest.identity_gap_pctpt == null ? "—" : `${Number(row.latest.identity_gap_pctpt).toFixed(1)}pt`));
+    tr.appendChild(el("td", null, row.latest.identity_gap_pctpt == null ? "—" : `${Number(row.latest.identity_gap_pctpt).toFixed(1)}ポイント`));
     tr.appendChild(el("td", null, assessment(row.latest)));
     tbody.appendChild(tr);
   });
   table.appendChild(tbody);
   wrap.appendChild(table);
   section.appendChild(wrap);
-  section.appendChild(el("p", "source-note", `出典: ${data.source?.name || "内閣府 国民経済計算"} / vintage ${data.source_vintage || "—"}。YoYは同一vintageの公式レベルから算出。`));
+  section.appendChild(el("p", "source-note", `出典: ${data.source?.name || "内閣府 国民経済計算"} / 公表年次 ${data.source_vintage || "—"}。前年比は同一年次推計の公式レベルから算出。`));
 
   const comparison = document.getElementById("industry-comparison");
   if (comparison && comparison.parentNode === host) host.insertBefore(section, comparison.nextSibling);
