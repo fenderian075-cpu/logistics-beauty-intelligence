@@ -12,6 +12,7 @@ on:
       - "scripts/update_trucking_physical_capacity.py"
       - "scripts/update_road_freight_driver_capacity.py"
       - "scripts/update_labor_capacity_stress.py"
+      - "scripts/update_labor_capacity_stress_sensitivity.py"
       - "scripts/validate_logistics_structure.py"
       - "scripts/validate_household_demand.py"
       - "scripts/validate_foreign_workforce.py"
@@ -19,6 +20,7 @@ on:
       - "scripts/validate_road_freight_driver_capacity.py"
       - "scripts/validate_driver_labor_history.py"
       - "scripts/validate_labor_capacity_stress.py"
+      - "scripts/validate_labor_capacity_stress_sensitivity.py"
       - "data/economy/logistics-workforce-age.json"
       - "data/economy/logistics-capacity.json"
       - "data/economy/ec-demand.json"
@@ -30,6 +32,7 @@ on:
       - "data/economy/freight-driver-vacancy-history.json"
       - "data/economy/labor-capacity-stress.json"
       - "data/economy/labor-capacity-stress-v1.json"
+      - "data/economy/labor-capacity-stress-sensitivity.json"
       - ".github/workflows/logistics-workforce-structure.yml"
   pull_request:
     paths:
@@ -39,6 +42,7 @@ on:
       - "scripts/update_trucking_physical_capacity.py"
       - "scripts/update_road_freight_driver_capacity.py"
       - "scripts/update_labor_capacity_stress.py"
+      - "scripts/update_labor_capacity_stress_sensitivity.py"
       - "scripts/validate_logistics_structure.py"
       - "scripts/validate_household_demand.py"
       - "scripts/validate_foreign_workforce.py"
@@ -46,6 +50,7 @@ on:
       - "scripts/validate_road_freight_driver_capacity.py"
       - "scripts/validate_driver_labor_history.py"
       - "scripts/validate_labor_capacity_stress.py"
+      - "scripts/validate_labor_capacity_stress_sensitivity.py"
       - "data/economy/logistics-workforce-age.json"
       - "data/economy/logistics-capacity.json"
       - "data/economy/ec-demand.json"
@@ -57,6 +62,7 @@ on:
       - "data/economy/freight-driver-vacancy-history.json"
       - "data/economy/labor-capacity-stress.json"
       - "data/economy/labor-capacity-stress-v1.json"
+      - "data/economy/labor-capacity-stress-sensitivity.json"
       - ".github/workflows/logistics-workforce-structure.yml"
 
 permissions:
@@ -78,7 +84,7 @@ jobs:
         run: python -m pip install --disable-pip-version-check openpyxl xlrd requests
 
       - name: Compile collectors
-        run: python -m py_compile scripts/update_logistics_workforce_age.py scripts/update_logistics_productivity.py scripts/update_household_demand.py scripts/update_trucking_physical_capacity.py scripts/update_road_freight_driver_capacity.py scripts/update_labor_capacity_stress.py scripts/validate_logistics_structure.py scripts/validate_household_demand.py scripts/validate_foreign_workforce.py scripts/validate_trucking_physical_capacity.py scripts/validate_road_freight_driver_capacity.py scripts/validate_driver_labor_history.py scripts/validate_labor_capacity_stress.py
+        run: python -m py_compile scripts/update_logistics_workforce_age.py scripts/update_logistics_productivity.py scripts/update_household_demand.py scripts/update_trucking_physical_capacity.py scripts/update_road_freight_driver_capacity.py scripts/update_labor_capacity_stress.py scripts/update_labor_capacity_stress_sensitivity.py scripts/validate_logistics_structure.py scripts/validate_household_demand.py scripts/validate_foreign_workforce.py scripts/validate_trucking_physical_capacity.py scripts/validate_road_freight_driver_capacity.py scripts/validate_driver_labor_history.py scripts/validate_labor_capacity_stress.py scripts/validate_labor_capacity_stress_sensitivity.py
 
       - name: Refresh official age and industry structure
         shell: bash
@@ -110,6 +116,9 @@ jobs:
       - name: Derive labor capacity stress inputs
         run: python scripts/update_labor_capacity_stress.py
 
+      - name: Derive labor capacity stress sensitivity
+        run: python scripts/update_labor_capacity_stress_sensitivity.py
+
       - name: Validate structural datasets
         run: python scripts/validate_logistics_structure.py
 
@@ -131,6 +140,9 @@ jobs:
       - name: Validate labor capacity stress
         run: python scripts/validate_labor_capacity_stress.py
 
+      - name: Validate labor capacity stress sensitivity
+        run: python scripts/validate_labor_capacity_stress_sensitivity.py
+
       - name: Report structural state
         shell: bash
         run: |
@@ -143,7 +155,8 @@ jobs:
             ('data/economy/driver-labor-history.json','large_truck_driver_annual_income'),
             ('data/economy/freight-driver-vacancy-history.json','freight_driver_job_openings_ratio'),
             ('data/economy/labor-capacity-stress.json','labor_capacity_stress_equal_weight'),
-            ('data/economy/labor-capacity-stress-v1.json','labor_capacity_stress_v1')]:
+            ('data/economy/labor-capacity-stress-v1.json','labor_capacity_stress_v1'),
+            ('data/economy/labor-capacity-stress-sensitivity.json','stress_leave_one_out_range')]:
               d=json.load(open(file,encoding='utf-8')); s=next(x for x in d['series'] if x['metric_id']==mid); print(mid, (s.get('observations') or [None])[-1])
           PY
 
@@ -153,7 +166,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/economy/logistics-workforce-age.json data/economy/logistics-capacity.json data/economy/household-demand.json data/economy/trucking-physical-capacity.json data/economy/road-freight-driver-capacity.json data/economy/labor-capacity-stress.json data/economy/labor-capacity-stress-v1.json
+          git add data/economy/logistics-workforce-age.json data/economy/logistics-capacity.json data/economy/household-demand.json data/economy/trucking-physical-capacity.json data/economy/road-freight-driver-capacity.json data/economy/labor-capacity-stress.json data/economy/labor-capacity-stress-v1.json data/economy/labor-capacity-stress-sensitivity.json
           if git diff --cached --quiet; then
             echo "No structural data change."
             exit 0
