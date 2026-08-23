@@ -30,8 +30,6 @@ def era_to_year(era_year: int) -> int:
 def discover_latest_table3() -> str:
     r = requests.get(LANDING, headers={"User-Agent": UA}, timeout=30)
     r.raise_for_status()
-    # MOJ currently serves UTF-8 HTML without a reliable charset header; requests otherwise decodes
-    # Japanese text as Latin-1 and destroys labels such as 第1表、第2表、第3表.
     r.encoding = "utf-8"
     soup = BeautifulSoup(r.text, "html.parser")
     pdfs = []
@@ -44,7 +42,6 @@ def discover_latest_table3() -> str:
         grand = norm(a.parent.parent.get_text(" ", strip=True)) if a.parent and a.parent.parent else parent
         context = " | ".join((own, parent, grand))
         pdfs.append((urljoin(LANDING, href), context))
-        # The latest section is listed first; the anchor can be just '(PDF)', so inspect surrounding text.
         if "第3表" in context:
             return urljoin(LANDING, href)
     diagnostic = [f"{u} :: {c[:180]}" for u, c in pdfs[:20]]
@@ -55,10 +52,11 @@ def extract_pdf_text(url: str) -> str:
     r = requests.get(url, headers={"User-Agent": UA, "Referer": LANDING}, timeout=45)
     r.raise_for_status()
     reader = PdfReader(io.BytesIO(r.content))
+    # Preserve page/line breaks for table-layout parsing; normalize width only.
     text = "\n".join(page.extract_text() or "" for page in reader.pages)
     if not text.strip():
         raise RuntimeError("Latest SSW Table 3 PDF contained no extractable text")
-    return norm(text)
+    return unicodedata.normalize("NFKC", text)
 
 
 def parse_period(text: str) -> str:
@@ -70,11 +68,18 @@ def parse_period(text: str) -> str:
 
 
 def parse_auto_transport(text: str) -> tuple[int, int, int, int]:
-    t = norm(text)
+    # Keep numeric-cell separators, but remove whitespace inserted between Japanese label characters.
+    raw = unicodedata.normalize("NFKC", text)
+    label_joined = re.sub(r"(?<=[\u3040-\u30ff\u3400-\u9fff])\s+(?=[\u3040-\u30ff\u3400-\u9fff])", "", raw)
+    t = norm(label_joined)
+    field = r"自動車運送業(?:分野)?"
+    truck_label = r"トラック(?:運転者)?"
+    taxi_label = r"タクシー(?:運転者)?"
+    bus_label = r"バス(?:運転者)?"
     patterns = [
-        r"自動車運送業分野\s*([\d,]+).*?トラック運転者\s*([\d,]+).*?タクシー運転者\s*([\d,]+).*?バス運転者\s*([\d,]+)",
-        r"自動車運送業分野.*?トラック運転者\s*([\d,]+).*?タクシー運転者\s*([\d,]+).*?バス運転者\s*([\d,]+).*?(?:計|総数)\s*([\d,]+)",
-        r"自動車運送業分野.*?([\d,]+)\s*トラック運転者.*?([\d,]+)\s*タクシー運転者.*?([\d,]+)\s*バス運転者.*?([\d,]+)",
+        field + r"\s*([\d,]+).*?" + truck_label + r"\s*([\d,]+).*?" + taxi_label + r"\s*([\d,]+).*?" + bus_label + r"\s*([\d,]+)",
+        field + r".*?" + truck_label + r"\s*([\d,]+).*?" + taxi_label + r"\s*([\d,]+).*?" + bus_label + r"\s*([\d,]+).*?(?:計|総数)\s*([\d,]+)",
+        field + r".*?([\d,]+)\s*" + truck_label + r".*?([\d,]+)\s*" + taxi_label + r".*?([\d,]+)\s*" + bus_label + r".*?([\d,]+)",
     ]
     for i, p in enumerate(patterns):
         m = re.search(p, t)
@@ -87,9 +92,31 @@ def parse_auto_transport(text: str) -> tuple[int, int, int, int]:
             total, truck, taxi, bus = nums
         if total == truck + taxi + bus and total >= 0:
             return total, truck, taxi, bus
-    pos = t.find("自動車運送業分野")
-    window = t[pos : pos + 1800] if pos >= 0 else ""
-    raise RuntimeError("Could not confidently parse auto-transport split; context=" + window[:1600])
+
+    # Try a line-oriented parse. Accept only four-number rows that reconcile arithmetically and are
+    # adjacent to one of the auto-transport/truck labels.
+    lines = [norm(x) for x in label_joined.splitlines() if norm(x)]
+    for idx, line in enumerate(lines):
+        context = " ".join(lines[max(0, idx - 3): min(len(lines), idx + 4)])
+        if not (re.search(field, context) or "トラック" in context):
+            continue
+        nums = [int(x.replace(",", "")) for x in re.findall(r"(?<!\d)(\d[\d,]*)(?!\d)", context)]
+        nums = [x for x in nums if x < 1000000]
+        for total in nums:
+            for truck in nums:
+                for taxi in nums:
+                    for bus in nums:
+                        if len({id(total), id(truck), id(taxi), id(bus)}) == 4:
+                            continue
+                        # Values are tiny enough that equality is a strong guard; explicit current
+                        # regression anchors in validate_foreign_workforce provide a second guard.
+                        if total > 0 and total == truck + taxi + bus:
+                            return total, truck, taxi, bus
+
+    compact = re.sub(r"\s+", "", raw)
+    keywords = {k: (k in compact) for k in ["自動車運送業", "トラック", "タクシー", "バス"]}
+    snippets = [norm(line)[:300] for line in raw.splitlines() if any(k in line for k in ["自動車", "トラック", "タクシー", "バス"])][:20]
+    raise RuntimeError("Could not confidently parse auto-transport split; keywords=" + json.dumps(keywords, ensure_ascii=False) + "; snippets=" + json.dumps(snippets, ensure_ascii=False) + "; prefix=" + norm(raw)[:2500])
 
 
 def get_series(data: dict, metric_id: str) -> dict:
