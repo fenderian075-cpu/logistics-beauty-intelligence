@@ -16,7 +16,7 @@ import re
 import statistics
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
-from typing import Dict, Iterable, List, Optional, Tuple
+from typing import Dict, List, Optional
 
 import requests
 from openpyxl import load_workbook
@@ -44,7 +44,7 @@ INDUSTRIES = {
     "professional_business_support": ["専門・科学技術、業務支援サービス業", "専門・科学技術、業務支援サービス"],
     "public_admin": ["公務"],
     "education": ["教育"],
-    "health_social": ["保健衛生・社会事業", "保健衛生・社会事業"],
+    "health_social": ["保健衛生・社会事業"],
     "other_services": ["その他のサービス"],
 }
 
@@ -157,7 +157,6 @@ def vertical_candidates(wb) -> List[Dict[str, Dict[int, float]]]:
     for ws in wb.worksheets:
         max_col = min(ws.max_column, 120)
         max_row = min(ws.max_row, 500)
-        # Find rows with many industry labels; they are likely column headers.
         for hr in range(1, max_row + 1):
             industry_cols = {}
             for c in range(1, max_col + 1):
@@ -229,6 +228,13 @@ def round1(value: Optional[float]) -> Optional[float]:
     return None if value is None else round(value, 1)
 
 
+def exact_identity_gap(nominal_yoy: Optional[float], real_yoy: Optional[float], deflator_yoy: Optional[float]) -> Optional[float]:
+    if nominal_yoy is None or real_yoy is None or deflator_yoy is None:
+        return None
+    implied_nominal = ((1 + real_yoy / 100) * (1 + deflator_yoy / 100) - 1) * 100
+    return nominal_yoy - implied_nominal
+
+
 def build(vintage: int) -> dict:
     blobs = {k: download(url.format(v=vintage)) for k, url in URLS.items()}
     tables = {k: extract_table(blob, k) for k, blob in blobs.items()}
@@ -257,7 +263,7 @@ def build(vintage: int) -> dict:
                 "nominal_yoy_pct": round1(nominal_yoy),
                 "real_yoy_pct": round1(real_yoy),
                 "deflator_yoy_pct": round1(deflator_yoy),
-                "identity_gap_pctpt": round1(None if nominal_yoy is None or real_yoy is None or deflator_yoy is None else nominal_yoy - real_yoy - deflator_yoy),
+                "identity_gap_pctpt": round1(exact_identity_gap(nominal_yoy, real_yoy, deflator_yoy)),
                 "status": "official_levels_with_derived_growth"
             })
         industries.append({"id": iid, "name_ja": JP_NAMES[iid], "observations": obs})
@@ -276,7 +282,7 @@ def build(vintage: int) -> dict:
             "real_url": URLS["real"].format(v=vintage),
             "deflator_url": URLS["deflator"].format(v=vintage),
         },
-        "methodology": "Nominal, real and deflator levels are collected from the same Cabinet Office annual SNA vintage. YoY fields are derived from adjacent official levels. Chain-linked real levels are used only to derive within-series growth; CPI/SPPI are never substituted for the SNA industry GDP deflator.",
+        "methodology": "Nominal, real and deflator levels are collected from the same Cabinet Office annual SNA vintage. YoY fields are derived from adjacent official levels. identity_gap_pctpt checks the exact multiplicative identity nominal=(1+real)*(1+deflator)-1. Chain-linked real levels are used only to derive within-series growth; CPI/SPPI are never substituted for the SNA industry GDP deflator.",
         "coverage": {"start_year": min(common_years), "end_year": max(common_years), "target_industries": len(INDUSTRIES)},
         "industries": industries,
     }
