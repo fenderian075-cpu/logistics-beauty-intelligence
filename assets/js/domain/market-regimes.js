@@ -5,6 +5,7 @@
    - Rate != Supply != Demand != Reliability != Risk.
    - Promotion/buzz are leading or attention signals, never proof of organic demand.
    - Official retail/shipment/trade observations are confirmation layers.
+   - Industry market research is structural/category context, not current demand proof.
    - A single price print cannot create a capacity-tightness regime by itself.
    ========================================================================= */
 
@@ -98,11 +99,20 @@ function oceanRegime(newsData) {
   };
 }
 
+function strongestBeautyCategory(beautyMarket) {
+  const rows = ((beautyMarket && beautyMarket.observations) || [])
+    .filter((row) => Number.isFinite(Number(row.yoy)) && /skincare|lip|face|fragrance|cosmetic/i.test(row.metric || ""));
+  if (!rows.length) return null;
+  return rows.slice().sort((a, b) => Number(b.yoy) - Number(a.yoy))[0];
+}
+
 function beautyDemandRegime(economy, buzz, commerce) {
   const retail = economy && economy.beauty;
+  const beautyMarket = economy && economy.beautyMarket;
   const dept = latestMetric(retail, "department_store_cosmetics_sales");
   const deptYoy = dept && Number.isFinite(Number(dept.yoy)) ? Number(dept.yoy) : null;
   const deptAge = dept ? daysOld(dept.published_at) : null;
+  const categoryContext = strongestBeautyCategory(beautyMarket);
 
   const buzzRows = (buzz && buzz.observations) || [];
   const meaningfulBuzz = buzzRows.filter((row) =>
@@ -113,7 +123,9 @@ function beautyDemandRegime(economy, buzz, commerce) {
   const promotionEvents = events.filter((event) => event.driver === "promotion");
   const organicEvents = events.filter((event) => event.driver === "organic");
 
-  const confirmationFresh = deptAge !== null && deptAge <= 60;
+  /* Monthly retail confirmation decays quickly. Older official data remains useful
+     as context but must not certify today's demand regime. */
+  const confirmationFresh = deptAge !== null && deptAge <= 45;
   const confirmedGrowth = deptYoy !== null && deptYoy >= 5;
   const confirmedWeakness = deptYoy !== null && deptYoy < 0;
 
@@ -134,8 +146,11 @@ function beautyDemandRegime(economy, buzz, commerce) {
   }
 
   const confirmation = dept
-    ? `百貨店化粧品売上 ${dept.period}: YoY ${deptYoy >= 0 ? "+" : ""}${deptYoy}%${confirmationFresh ? "" : "（確認データに時差あり）"}`
+    ? `百貨店化粧品売上 ${dept.period}: YoY ${deptYoy >= 0 ? "+" : ""}${deptYoy}%${confirmationFresh ? "" : "（現在判定には時差あり）"}`
     : "百貨店化粧品売上: 未取得";
+  const structural = categoryContext
+    ? `構造参考: ${categoryContext.metric} YoY ${Number(categoryContext.yoy) >= 0 ? "+" : ""}${categoryContext.yoy}%（市場調査値、現在実需の証拠には使わない）`
+    : "構造参考: カテゴリ市場データ未取得";
 
   return {
     id: "beauty-demand",
@@ -143,13 +158,15 @@ function beautyDemandRegime(economy, buzz, commerce) {
     state,
     label,
     confidence: confirmationFresh ? "high" : (dept ? "medium" : "low"),
-    summary: `${confirmation}。販促 ${promotionEvents.length}件、意味のあるBuzz加速 ${meaningfulBuzz.length}件。Promotion / Buzzはorganic demandの証拠として扱わない。`,
+    summary: `${confirmation}。販促 ${promotionEvents.length}件、意味のあるBuzz加速 ${meaningfulBuzz.length}件。${structural}。Promotion / Buzz / 市場予測はorganic demandの証拠として扱わない。`,
     dimensions: {
       department_store_yoy: deptYoy,
       department_store_data_age_days: deptAge,
       promotion_events: promotionEvents.length,
       organic_events: organicEvents.length,
-      meaningful_buzz: meaningfulBuzz.length
+      meaningful_buzz: meaningfulBuzz.length,
+      structural_category_metric: categoryContext ? categoryContext.metric : null,
+      structural_category_yoy: categoryContext ? Number(categoryContext.yoy) : null
     }
   };
 }
