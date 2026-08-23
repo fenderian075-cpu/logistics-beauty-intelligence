@@ -1,0 +1,144 @@
+{
+  "schema_version": "1.2",
+  "dataset": "driver-labor-history",
+  "title_ja": "トラック運転者の労働時間・所得長期推移",
+  "frequency": "annual",
+  "sources": [
+    {
+      "name": "国土交通省近畿運輸局・兵庫労働局 トラック運転者の労働環境（労働時間、年間収入額）",
+      "url": "https://wwwtb.mlit.go.jp/kinki/content/000370861.pdf",
+      "underlying_source": "厚生労働省 賃金構造基本統計調査"
+    },
+    {
+      "name": "厚生労働省 自動車運転者の長時間労働改善に向けたポータル",
+      "url": "https://driver-roudou-jikan.mhlw.go.jp/truck/work",
+      "underlying_source": "厚生労働省 賃金構造基本統計調査"
+    }
+  ],
+  "notes": [
+    "2016～2024年は、最新の国土交通省資料が同一グラフで遡及掲載している系列へ統一した。過去資料の旧掲載値との混在を避けるため2014～2015年は本系列から外した。",
+    "年間所得額は、きまって支給する現金給与額×12＋年間賞与その他特別給与額として整理された値を使用する。",
+    "大型は営業用大型貨物自動車運転者、中小型は営業用貨物自動車運転者（大型車を除く）。全産業平均を比較基準として保持する。",
+    "2024年4月から自動車運転者にも時間外労働上限規制・改正改善基準告示が適用。2024年は制度変更後の最初の年次観測として扱う。",
+    "2025年job tagの年収・月間労働時間は複数のトラック関連職業で同じ処理済み値が表示されるため、この車格別長期系列へ直接接続しない。"
+  ],
+  "series": [
+    {
+      "metric_id":"large_truck_driver_annual_work_hours","name_ja":"大型トラック運転者 年間労働時間","unit":"hours_year","observations":[
+        {"period":"2016","value":2604,"status":"official_secondary_latest_retrospective","source":"MLIT/MHLW latest retrospective Wage Structure Survey series"},
+        {"period":"2017","value":2592,"status":"official_secondary_latest_retrospective","source":"同上"},
+        {"period":"2018","value":2580,"status":"official_secondary_latest_retrospective","source":"同上"},
+        {"period":"2019","value":2580,"status":"official_secondary_latest_retrospective","source":"同上"},
+        {"period":"2020","value":2532,"status":"official_secondary_latest_retrospective","source":"同上"},
+        {"period":"2021","value":2544,"status":"official_secondary_latest_retrospective","source":"同上"},
+        {"period":"2022","value":2568,"status":"official_secondary_latest_retrospective","source":"同上"},
+        {"period":"2023","value":2544,"status":"official_secondary_latest_retrospective","source":"同上"},
+        {"period":"2024","value":2484,"status":"official_secondary_latest_retrospective","source":"同上"}
+      ]
+    },
+    {
+      "metric_id":"small_medium_truck_driver_annual_work_hours","name_ja":"中小型トラック運転者 年間労働時間","unit":"hours_year","observations":[
+        {"period":"2016","value":2484,"status":"official_secondary_latest_retrospective","source":"MLIT/MHLW latest retrospective Wage Structure Survey series"},
+        {"period":"2017","value":2580,"status":"official_secondary_latest_retrospective","source":"同上"},
+        {"period":"2018","value":2568,"status":"official_secondary_latest_retrospective","source":"同上"},
+        {"period":"2019","value":2484,"status":"official_secondary_latest_retrospective","source":"同上"},
+        {"period":"2020","value":2484,"status":"official_secondary_latest_retrospective","source":"同上"},
+        {"period":"2021","value":2484,"status":"official_secondary_latest_retrospective","source":"同上"},
+        {"period":"2022","value":2520,"status":"official_secondary_latest_retrospective","source":"同上"},
+        {"period":"2023","value":2508,"status":"official_secondary_latest_retrospective","source":"同上"},
+        {"period":"2024","value":2424,"status":"official_secondary_latest_retrospective","source":"同上"}
+      ]
+    },
+    {
+      "metric_id":"all_industries_annual_work_hours","name_ja":"全産業平均 年間労働時間","unit":"hours_year","observations":[
+        {"period":"2016","value":2148,"status":"official_secondary_latest_retrospective","source":"MLIT/MHLW latest retrospective Wage Structure Survey series"},
+        {"period":"2017","value":2136,"status":"official_secondary_latest_retrospective","source":"同上"},
+        {"period":"2018","value":2136,"status":"official_secondary_latest_retrospective","source":"同上"},
+        {"period":"2019","value":2088,"status":"official_secondary_latest_retrospective","source":"同上"},
+        {"period":"2020","value":2100,"status":"official_secondary_latest_retrospective","source":"同上"},
+        {"period":"2021","value":2112,"status":"official_secondary_latest_retrospective","source":"同上"},
+        {"period":"2022","value":2124,"status":"official_secondary_latest_retrospective","source":"同上"},
+        {"period":"2023","value":2136,"status":"official_secondary_latest_retrospective","source":"同上"},
+        {"period":"2024","value":2052,"status":"official_secondary_latest_retrospective","source":"同上"}
+      ]
+    },
+    {
+      "metric_id":"large_truck_work_hours_premium_vs_all","name_ja":"大型トラック労働時間プレミアム（全産業比）","unit":"pct","observations":[
+        {"period":"2016","value":21.23,"status":"derived","source":"large_truck_driver_annual_work_hours / all_industries_annual_work_hours - 1"},
+        {"period":"2017","value":21.35,"status":"derived","source":"同上"},
+        {"period":"2018","value":20.79,"status":"derived","source":"同上"},
+        {"period":"2019","value":23.56,"status":"derived","source":"同上"},
+        {"period":"2020","value":20.57,"status":"derived","source":"同上"},
+        {"period":"2021","value":20.45,"status":"derived","source":"同上"},
+        {"period":"2022","value":20.90,"status":"derived","source":"同上"},
+        {"period":"2023","value":19.10,"status":"derived","source":"同上"},
+        {"period":"2024","value":21.05,"status":"derived","source":"同上"}
+      ]
+    },
+    {
+      "metric_id":"large_truck_driver_annual_income","name_ja":"大型トラック運転者 年間所得額","unit":"ten_thousand_jpy_year","observations":[
+        {"period":"2016","value":453,"status":"official_secondary_latest_retrospective","source":"MLIT/MHLW latest retrospective Wage Structure Survey series"},
+        {"period":"2017","value":458,"status":"official_secondary_latest_retrospective","source":"同上"},
+        {"period":"2018","value":459,"status":"official_secondary_latest_retrospective","source":"同上"},
+        {"period":"2019","value":456,"status":"official_secondary_latest_retrospective","source":"同上"},
+        {"period":"2020","value":454,"status":"official_secondary_latest_retrospective","source":"同上"},
+        {"period":"2021","value":463,"status":"official_secondary_latest_retrospective","source":"同上"},
+        {"period":"2022","value":477,"status":"official_secondary_latest_retrospective","source":"同上"},
+        {"period":"2023","value":485,"status":"official_secondary_latest_retrospective","source":"同上"},
+        {"period":"2024","value":492,"status":"official_secondary_latest_retrospective","source":"同上"}
+      ]
+    },
+    {
+      "metric_id":"small_medium_truck_driver_annual_income","name_ja":"中小型トラック運転者 年間所得額","unit":"ten_thousand_jpy_year","observations":[
+        {"period":"2016","value":404,"status":"official_secondary_latest_retrospective","source":"MLIT/MHLW latest retrospective Wage Structure Survey series"},
+        {"period":"2017","value":418,"status":"official_secondary_latest_retrospective","source":"同上"},
+        {"period":"2018","value":419,"status":"official_secondary_latest_retrospective","source":"同上"},
+        {"period":"2019","value":421,"status":"official_secondary_latest_retrospective","source":"同上"},
+        {"period":"2020","value":419,"status":"official_secondary_latest_retrospective","source":"同上"},
+        {"period":"2021","value":431,"status":"official_secondary_latest_retrospective","source":"同上"},
+        {"period":"2022","value":438,"status":"official_secondary_latest_retrospective","source":"同上"},
+        {"period":"2023","value":438,"status":"official_secondary_latest_retrospective","source":"同上"},
+        {"period":"2024","value":437,"status":"official_secondary_latest_retrospective","source":"同上"}
+      ]
+    },
+    {
+      "metric_id":"all_industries_annual_income","name_ja":"全産業平均 年間所得額","unit":"ten_thousand_jpy_year","observations":[
+        {"period":"2016","value":487,"status":"official_secondary_latest_retrospective","source":"MLIT/MHLW latest retrospective Wage Structure Survey series"},
+        {"period":"2017","value":488,"status":"official_secondary_latest_retrospective","source":"同上"},
+        {"period":"2018","value":494,"status":"official_secondary_latest_retrospective","source":"同上"},
+        {"period":"2019","value":494,"status":"official_secondary_latest_retrospective","source":"同上"},
+        {"period":"2020","value":487,"status":"official_secondary_latest_retrospective","source":"同上"},
+        {"period":"2021","value":489,"status":"official_secondary_latest_retrospective","source":"同上"},
+        {"period":"2022","value":497,"status":"official_secondary_latest_retrospective","source":"同上"},
+        {"period":"2023","value":507,"status":"official_secondary_latest_retrospective","source":"同上"},
+        {"period":"2024","value":527,"status":"official_secondary_latest_retrospective","source":"同上"}
+      ]
+    },
+    {
+      "metric_id":"large_truck_income_gap_vs_all","name_ja":"大型トラック所得格差（全産業比）","unit":"pct","observations":[
+        {"period":"2016","value":-6.98,"status":"derived","source":"large_truck_driver_annual_income / all_industries_annual_income - 1"},
+        {"period":"2017","value":-6.15,"status":"derived","source":"同上"},
+        {"period":"2018","value":-7.09,"status":"derived","source":"同上"},
+        {"period":"2019","value":-7.69,"status":"derived","source":"同上"},
+        {"period":"2020","value":-6.78,"status":"derived","source":"同上"},
+        {"period":"2021","value":-5.32,"status":"derived","source":"同上"},
+        {"period":"2022","value":-4.02,"status":"derived","source":"同上"},
+        {"period":"2023","value":-4.34,"status":"derived","source":"同上"},
+        {"period":"2024","value":-6.64,"status":"derived","source":"同上"}
+      ]
+    },
+    {
+      "metric_id":"small_medium_truck_income_gap_vs_all","name_ja":"中小型トラック所得格差（全産業比）","unit":"pct","observations":[
+        {"period":"2016","value":-17.04,"status":"derived","source":"small_medium_truck_driver_annual_income / all_industries_annual_income - 1"},
+        {"period":"2017","value":-14.34,"status":"derived","source":"同上"},
+        {"period":"2018","value":-15.18,"status":"derived","source":"同上"},
+        {"period":"2019","value":-14.78,"status":"derived","source":"同上"},
+        {"period":"2020","value":-13.96,"status":"derived","source":"同上"},
+        {"period":"2021","value":-11.86,"status":"derived","source":"同上"},
+        {"period":"2022","value":-11.87,"status":"derived","source":"同上"},
+        {"period":"2023","value":-13.61,"status":"derived","source":"同上"},
+        {"period":"2024","value":-17.08,"status":"derived","source":"同上"}
+      ]
+    }
+  ]
+}

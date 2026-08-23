@@ -1,0 +1,365 @@
+{
+  "schema_version": "1.0",
+  "dataset": "labor-capacity-stress",
+  "title_ja": "物流労働キャパシティ・ストレス",
+  "frequency": "annual",
+  "status": "derived_equal_weight_v0",
+  "methodology": {
+    "version": "v0-equal-weight-diagnostic",
+    "common_period": "2015-2022",
+    "base_year": "2015",
+    "components": [
+      "parcel_labor_load_index",
+      "vacancy_pressure_index",
+      "road_freight_aging_pressure_index",
+      "road_freight_replacement_pressure_index",
+      "working_age_supply_pressure_index"
+    ],
+    "weights": {
+      "parcel_labor_load_index": 0.2,
+      "vacancy_pressure_index": 0.2,
+      "road_freight_aging_pressure_index": 0.2,
+      "road_freight_replacement_pressure_index": 0.2,
+      "working_age_supply_pressure_index": 0.2
+    }
+  },
+  "notes": [
+    "LBI独自の診断指数であり、公的統計そのものではない。全入力と計算式を公開し、2015=100で比較する。",
+    "求人倍率・55歳以上比率・需要/労働力は上昇ほどストレス増。世代交代比率と生産年齢人口は低下ほどストレス増となるよう逆数方向に指数化する。",
+    "労働時間は長時間化が需給逼迫を示す一方、規制後は短縮が供給可能時間を減らすため符号が一意でない。v0スコアには含めず別表示する。",
+    "2023年以降は長期求人倍率系列の同一定義接続を確認後に延長する。"
+  ],
+  "series": [
+    {
+      "metric_id": "parcel_labor_load_index",
+      "name_ja": "宅配需要/物流労働力圧力",
+      "unit": "index_2015_100",
+      "observations": [
+        {
+          "period": "2015",
+          "value": 100.0,
+          "status": "derived",
+          "source": "LBI transparent normalization; 2015=100"
+        },
+        {
+          "period": "2016",
+          "value": 106.4,
+          "status": "derived",
+          "source": "LBI transparent normalization; 2015=100"
+        },
+        {
+          "period": "2017",
+          "value": 112.2,
+          "status": "derived",
+          "source": "LBI transparent normalization; 2015=100"
+        },
+        {
+          "period": "2018",
+          "value": 113.0,
+          "status": "derived",
+          "source": "LBI transparent normalization; 2015=100"
+        },
+        {
+          "period": "2019",
+          "value": 111.4,
+          "status": "derived",
+          "source": "LBI transparent normalization; 2015=100"
+        },
+        {
+          "period": "2020",
+          "value": 124.3,
+          "status": "derived",
+          "source": "LBI transparent normalization; 2015=100"
+        },
+        {
+          "period": "2021",
+          "value": 126.2,
+          "status": "derived",
+          "source": "LBI transparent normalization; 2015=100"
+        },
+        {
+          "period": "2022",
+          "value": 128.0,
+          "status": "derived",
+          "source": "LBI transparent normalization; 2015=100"
+        }
+      ]
+    },
+    {
+      "metric_id": "vacancy_pressure_index",
+      "name_ja": "求人需給圧力",
+      "unit": "index_2015_100",
+      "observations": [
+        {
+          "period": "2015",
+          "value": 100.0,
+          "status": "derived",
+          "source": "LBI transparent normalization; 2015=100"
+        },
+        {
+          "period": "2016",
+          "value": 113.2,
+          "status": "derived",
+          "source": "LBI transparent normalization; 2015=100"
+        },
+        {
+          "period": "2017",
+          "value": 131.7,
+          "status": "derived",
+          "source": "LBI transparent normalization; 2015=100"
+        },
+        {
+          "period": "2018",
+          "value": 146.3,
+          "status": "derived",
+          "source": "LBI transparent normalization; 2015=100"
+        },
+        {
+          "period": "2019",
+          "value": 151.2,
+          "status": "derived",
+          "source": "LBI transparent normalization; 2015=100"
+        },
+        {
+          "period": "2020",
+          "value": 109.8,
+          "status": "derived",
+          "source": "LBI transparent normalization; 2015=100"
+        },
+        {
+          "period": "2021",
+          "value": 102.4,
+          "status": "derived",
+          "source": "LBI transparent normalization; 2015=100"
+        },
+        {
+          "period": "2022",
+          "value": 112.2,
+          "status": "derived",
+          "source": "LBI transparent normalization; 2015=100"
+        }
+      ]
+    },
+    {
+      "metric_id": "road_freight_aging_pressure_index",
+      "name_ja": "道路貨物 高齢化圧力",
+      "unit": "index_2015_100",
+      "observations": [
+        {
+          "period": "2015",
+          "value": 100.0,
+          "status": "derived",
+          "source": "LBI transparent normalization; 2015=100"
+        },
+        {
+          "period": "2016",
+          "value": 102.6,
+          "status": "derived",
+          "source": "LBI transparent normalization; 2015=100"
+        },
+        {
+          "period": "2017",
+          "value": 107.2,
+          "status": "derived",
+          "source": "LBI transparent normalization; 2015=100"
+        },
+        {
+          "period": "2018",
+          "value": 108.1,
+          "status": "derived",
+          "source": "LBI transparent normalization; 2015=100"
+        },
+        {
+          "period": "2019",
+          "value": 113.9,
+          "status": "derived",
+          "source": "LBI transparent normalization; 2015=100"
+        },
+        {
+          "period": "2020",
+          "value": 113.0,
+          "status": "derived",
+          "source": "LBI transparent normalization; 2015=100"
+        },
+        {
+          "period": "2021",
+          "value": 116.1,
+          "status": "derived",
+          "source": "LBI transparent normalization; 2015=100"
+        },
+        {
+          "period": "2022",
+          "value": 125.3,
+          "status": "derived",
+          "source": "LBI transparent normalization; 2015=100"
+        }
+      ]
+    },
+    {
+      "metric_id": "road_freight_replacement_pressure_index",
+      "name_ja": "道路貨物 世代交代圧力",
+      "unit": "index_2015_100",
+      "observations": [
+        {
+          "period": "2015",
+          "value": 100.0,
+          "status": "derived",
+          "source": "LBI transparent normalization; 2015=100"
+        },
+        {
+          "period": "2016",
+          "value": 107.7,
+          "status": "derived",
+          "source": "LBI transparent normalization; 2015=100"
+        },
+        {
+          "period": "2017",
+          "value": 111.1,
+          "status": "derived",
+          "source": "LBI transparent normalization; 2015=100"
+        },
+        {
+          "period": "2018",
+          "value": 112.9,
+          "status": "derived",
+          "source": "LBI transparent normalization; 2015=100"
+        },
+        {
+          "period": "2019",
+          "value": 114.8,
+          "status": "derived",
+          "source": "LBI transparent normalization; 2015=100"
+        },
+        {
+          "period": "2020",
+          "value": 114.8,
+          "status": "derived",
+          "source": "LBI transparent normalization; 2015=100"
+        },
+        {
+          "period": "2021",
+          "value": 129.6,
+          "status": "derived",
+          "source": "LBI transparent normalization; 2015=100"
+        },
+        {
+          "period": "2022",
+          "value": 140.0,
+          "status": "derived",
+          "source": "LBI transparent normalization; 2015=100"
+        }
+      ]
+    },
+    {
+      "metric_id": "working_age_supply_pressure_index",
+      "name_ja": "生産年齢人口供給圧力",
+      "unit": "index_2015_100",
+      "observations": [
+        {
+          "period": "2015",
+          "value": 100.0,
+          "status": "derived",
+          "source": "LBI transparent normalization; 2015=100"
+        },
+        {
+          "period": "2016",
+          "value": 100.8,
+          "status": "derived",
+          "source": "LBI transparent normalization; 2015=100"
+        },
+        {
+          "period": "2017",
+          "value": 101.4,
+          "status": "derived",
+          "source": "LBI transparent normalization; 2015=100"
+        },
+        {
+          "period": "2018",
+          "value": 102.0,
+          "status": "derived",
+          "source": "LBI transparent normalization; 2015=100"
+        },
+        {
+          "period": "2019",
+          "value": 102.3,
+          "status": "derived",
+          "source": "LBI transparent normalization; 2015=100"
+        },
+        {
+          "period": "2020",
+          "value": 102.9,
+          "status": "derived",
+          "source": "LBI transparent normalization; 2015=100"
+        },
+        {
+          "period": "2021",
+          "value": 103.7,
+          "status": "derived",
+          "source": "LBI transparent normalization; 2015=100"
+        },
+        {
+          "period": "2022",
+          "value": 104.1,
+          "status": "derived",
+          "source": "LBI transparent normalization; 2015=100"
+        }
+      ]
+    },
+    {
+      "metric_id": "labor_capacity_stress_equal_weight",
+      "name_ja": "物流労働キャパシティ・ストレス v0",
+      "unit": "index_2015_100",
+      "observations": [
+        {
+          "period": "2015",
+          "value": 100.0,
+          "status": "derived",
+          "source": "Arithmetic mean of five disclosed 2015=100 pressure components"
+        },
+        {
+          "period": "2016",
+          "value": 106.1,
+          "status": "derived",
+          "source": "Arithmetic mean of five disclosed 2015=100 pressure components"
+        },
+        {
+          "period": "2017",
+          "value": 112.7,
+          "status": "derived",
+          "source": "Arithmetic mean of five disclosed 2015=100 pressure components"
+        },
+        {
+          "period": "2018",
+          "value": 116.5,
+          "status": "derived",
+          "source": "Arithmetic mean of five disclosed 2015=100 pressure components"
+        },
+        {
+          "period": "2019",
+          "value": 118.7,
+          "status": "derived",
+          "source": "Arithmetic mean of five disclosed 2015=100 pressure components"
+        },
+        {
+          "period": "2020",
+          "value": 113.0,
+          "status": "derived",
+          "source": "Arithmetic mean of five disclosed 2015=100 pressure components"
+        },
+        {
+          "period": "2021",
+          "value": 115.6,
+          "status": "derived",
+          "source": "Arithmetic mean of five disclosed 2015=100 pressure components"
+        },
+        {
+          "period": "2022",
+          "value": 121.9,
+          "status": "derived",
+          "source": "Arithmetic mean of five disclosed 2015=100 pressure components"
+        }
+      ]
+    }
+  ],
+  "latest_common_year": "2022"
+}

@@ -1,0 +1,2318 @@
+{
+  "schema_version": "1.1",
+  "dataset": "logistics-workforce-age",
+  "title_ja": "物流労働力の年齢構造",
+  "frequency": "annual",
+  "sources": [
+    {
+      "name": "総務省統計局 労働力調査 2-2-1 年齢階級・産業別就業者数",
+      "url": "https://www.e-stat.go.jp/dbview?sid=0003007108",
+      "stats_data_id": "0003007108"
+    }
+  ],
+  "notes": [
+    "e-Stat API仕様上、統計データ取得にはアプリケーションIDが必須。GitHub ActionsではRepository Secret ESTAT_APP_IDからのみ受け取る。",
+    "産業コードは運輸業・郵便業=42、道路貨物運送業=45、倉庫業=48。Excel列位置ではなく公式分類コードを使用する。",
+    "年齢階級は公式表の実数のみを使用し、欠損を補間しない。15-24、25-34、35-44、45-54は公式5歳階級を合算する。55-64はAPIで確実に返る55-59と60-64を合算し、65+は公式区分を使用する。",
+    "55歳以上比率=(55-64 + 65+)/総数、34歳以下比率=(15-24 + 25-34)/総数、世代交代比率=(34歳以下)/(55歳以上)としてLBIで派生する。",
+    "道路貨物運送業・倉庫業は産業統計。トラックドライバー職業統計とは混同しない。",
+    "平均年齢は年齢階級から推計せず、公式に直接公表された系列のみ driver-demography.json で保持する。"
+  ],
+  "status": "populated_from_estat_api",
+  "api_contract": {
+    "stats_data_id": "0003007108",
+    "industry": {
+      "transport_postal": "42",
+      "road_freight": "45",
+      "warehousing": "48"
+    },
+    "age": {
+      "total": "00",
+      "15_19": "02",
+      "20_24": "05",
+      "25_29": "07",
+      "30_34": "08",
+      "35_39": "10",
+      "40_44": "11",
+      "45_49": "13",
+      "50_54": "14",
+      "55_59": "16",
+      "60_64": "17",
+      "65_plus": "18"
+    },
+    "sex": {
+      "total": "0",
+      "female": "2"
+    },
+    "area": "00000",
+    "years": [
+      2015,
+      2025
+    ]
+  },
+  "series": [
+    {
+      "metric_id": "transport_postal_age_15_24",
+      "name_ja": "運輸業・郵便業 15-24歳就業者数",
+      "unit": "ten_thousand_persons",
+      "observations": [
+        {
+          "period": "2015",
+          "value": 13.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=42"
+        },
+        {
+          "period": "2016",
+          "value": 14.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=42"
+        },
+        {
+          "period": "2017",
+          "value": 16.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=42"
+        },
+        {
+          "period": "2018",
+          "value": 16.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=42"
+        },
+        {
+          "period": "2019",
+          "value": 18.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=42"
+        },
+        {
+          "period": "2020",
+          "value": 18.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=42"
+        },
+        {
+          "period": "2021",
+          "value": 19.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=42"
+        },
+        {
+          "period": "2022",
+          "value": 17.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=42"
+        },
+        {
+          "period": "2023",
+          "value": 15.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=42"
+        },
+        {
+          "period": "2024",
+          "value": 16.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=42"
+        },
+        {
+          "period": "2025",
+          "value": 16.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=42"
+        }
+      ]
+    },
+    {
+      "metric_id": "transport_postal_age_25_34",
+      "name_ja": "運輸業・郵便業 25-34歳就業者数",
+      "unit": "ten_thousand_persons",
+      "observations": [
+        {
+          "period": "2015",
+          "value": 48.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=42"
+        },
+        {
+          "period": "2016",
+          "value": 48.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=42"
+        },
+        {
+          "period": "2017",
+          "value": 46.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=42"
+        },
+        {
+          "period": "2018",
+          "value": 47.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=42"
+        },
+        {
+          "period": "2019",
+          "value": 47.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=42"
+        },
+        {
+          "period": "2020",
+          "value": 49.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=42"
+        },
+        {
+          "period": "2021",
+          "value": 49.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=42"
+        },
+        {
+          "period": "2022",
+          "value": 45.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=42"
+        },
+        {
+          "period": "2023",
+          "value": 47.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=42"
+        },
+        {
+          "period": "2024",
+          "value": 44.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=42"
+        },
+        {
+          "period": "2025",
+          "value": 43.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=42"
+        }
+      ]
+    },
+    {
+      "metric_id": "transport_postal_age_35_44",
+      "name_ja": "運輸業・郵便業 35-44歳就業者数",
+      "unit": "ten_thousand_persons",
+      "observations": [
+        {
+          "period": "2015",
+          "value": 87.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=42"
+        },
+        {
+          "period": "2016",
+          "value": 82.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=42"
+        },
+        {
+          "period": "2017",
+          "value": 81.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=42"
+        },
+        {
+          "period": "2018",
+          "value": 76.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=42"
+        },
+        {
+          "period": "2019",
+          "value": 72.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=42"
+        },
+        {
+          "period": "2020",
+          "value": 69.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=42"
+        },
+        {
+          "period": "2021",
+          "value": 69.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=42"
+        },
+        {
+          "period": "2022",
+          "value": 67.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=42"
+        },
+        {
+          "period": "2023",
+          "value": 65.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=42"
+        },
+        {
+          "period": "2024",
+          "value": 66.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=42"
+        },
+        {
+          "period": "2025",
+          "value": 62.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=42"
+        }
+      ]
+    },
+    {
+      "metric_id": "transport_postal_age_45_54",
+      "name_ja": "運輸業・郵便業 45-54歳就業者数",
+      "unit": "ten_thousand_persons",
+      "observations": [
+        {
+          "period": "2015",
+          "value": 86.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=42"
+        },
+        {
+          "period": "2016",
+          "value": 89.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=42"
+        },
+        {
+          "period": "2017",
+          "value": 93.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=42"
+        },
+        {
+          "period": "2018",
+          "value": 97.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=42"
+        },
+        {
+          "period": "2019",
+          "value": 98.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=42"
+        },
+        {
+          "period": "2020",
+          "value": 99.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=42"
+        },
+        {
+          "period": "2021",
+          "value": 104.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=42"
+        },
+        {
+          "period": "2022",
+          "value": 104.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=42"
+        },
+        {
+          "period": "2023",
+          "value": 104.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=42"
+        },
+        {
+          "period": "2024",
+          "value": 100.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=42"
+        },
+        {
+          "period": "2025",
+          "value": 97.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=42"
+        }
+      ]
+    },
+    {
+      "metric_id": "transport_postal_age_55_64",
+      "name_ja": "運輸業・郵便業 55-64歳就業者数",
+      "unit": "ten_thousand_persons",
+      "observations": [
+        {
+          "period": "2015",
+          "value": 68.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=42"
+        },
+        {
+          "period": "2016",
+          "value": 69.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=42"
+        },
+        {
+          "period": "2017",
+          "value": 69.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=42"
+        },
+        {
+          "period": "2018",
+          "value": 68.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=42"
+        },
+        {
+          "period": "2019",
+          "value": 72.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=42"
+        },
+        {
+          "period": "2020",
+          "value": 73.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=42"
+        },
+        {
+          "period": "2021",
+          "value": 73.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=42"
+        },
+        {
+          "period": "2022",
+          "value": 77.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=42"
+        },
+        {
+          "period": "2023",
+          "value": 77.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=42"
+        },
+        {
+          "period": "2024",
+          "value": 77.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=42"
+        },
+        {
+          "period": "2025",
+          "value": 85.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=42"
+        }
+      ]
+    },
+    {
+      "metric_id": "transport_postal_age_65_plus",
+      "name_ja": "運輸業・郵便業 65歳以上就業者数",
+      "unit": "ten_thousand_persons",
+      "observations": [
+        {
+          "period": "2015",
+          "value": 33.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=42"
+        },
+        {
+          "period": "2016",
+          "value": 35.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=42"
+        },
+        {
+          "period": "2017",
+          "value": 37.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=42"
+        },
+        {
+          "period": "2018",
+          "value": 39.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=42"
+        },
+        {
+          "period": "2019",
+          "value": 41.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=42"
+        },
+        {
+          "period": "2020",
+          "value": 40.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=42"
+        },
+        {
+          "period": "2021",
+          "value": 40.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=42"
+        },
+        {
+          "period": "2022",
+          "value": 41.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=42"
+        },
+        {
+          "period": "2023",
+          "value": 41.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=42"
+        },
+        {
+          "period": "2024",
+          "value": 40.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=42"
+        },
+        {
+          "period": "2025",
+          "value": 41.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=42"
+        }
+      ]
+    },
+    {
+      "metric_id": "transport_postal_age_55_plus_share",
+      "name_ja": "運輸業・郵便業 55歳以上比率",
+      "unit": "pct",
+      "observations": [
+        {
+          "period": "2015",
+          "value": 30.06,
+          "status": "derived",
+          "source": "LBI: 55+ / total (LBI baseline transport/postal annual employment)"
+        },
+        {
+          "period": "2016",
+          "value": 30.68,
+          "status": "derived",
+          "source": "LBI: 55+ / total (LBI baseline transport/postal annual employment)"
+        },
+        {
+          "period": "2017",
+          "value": 31.18,
+          "status": "derived",
+          "source": "LBI: 55+ / total (LBI baseline transport/postal annual employment)"
+        },
+        {
+          "period": "2018",
+          "value": 31.29,
+          "status": "derived",
+          "source": "LBI: 55+ / total (LBI baseline transport/postal annual employment)"
+        },
+        {
+          "period": "2019",
+          "value": 32.47,
+          "status": "derived",
+          "source": "LBI: 55+ / total (LBI baseline transport/postal annual employment)"
+        },
+        {
+          "period": "2020",
+          "value": 32.38,
+          "status": "derived",
+          "source": "LBI: 55+ / total (LBI baseline transport/postal annual employment)"
+        },
+        {
+          "period": "2021",
+          "value": 32.1,
+          "status": "derived",
+          "source": "LBI: 55+ / total (LBI baseline transport/postal annual employment)"
+        },
+        {
+          "period": "2022",
+          "value": 33.62,
+          "status": "derived",
+          "source": "LBI: 55+ / total (LBI baseline transport/postal annual employment)"
+        },
+        {
+          "period": "2023",
+          "value": 33.81,
+          "status": "derived",
+          "source": "LBI: 55+ / total (LBI baseline transport/postal annual employment)"
+        },
+        {
+          "period": "2024",
+          "value": 33.91,
+          "status": "derived",
+          "source": "LBI: 55+ / total (LBI baseline transport/postal annual employment)"
+        },
+        {
+          "period": "2025",
+          "value": 36.52,
+          "status": "derived",
+          "source": "LBI: 55+ / total (LBI baseline transport/postal annual employment)"
+        }
+      ]
+    },
+    {
+      "metric_id": "transport_postal_young_share",
+      "name_ja": "運輸業・郵便業 34歳以下比率",
+      "unit": "pct",
+      "observations": [
+        {
+          "period": "2015",
+          "value": 18.15,
+          "status": "derived",
+          "source": "LBI: <=34 / total (LBI baseline transport/postal annual employment)"
+        },
+        {
+          "period": "2016",
+          "value": 18.29,
+          "status": "derived",
+          "source": "LBI: <=34 / total (LBI baseline transport/postal annual employment)"
+        },
+        {
+          "period": "2017",
+          "value": 18.24,
+          "status": "derived",
+          "source": "LBI: <=34 / total (LBI baseline transport/postal annual employment)"
+        },
+        {
+          "period": "2018",
+          "value": 18.42,
+          "status": "derived",
+          "source": "LBI: <=34 / total (LBI baseline transport/postal annual employment)"
+        },
+        {
+          "period": "2019",
+          "value": 18.68,
+          "status": "derived",
+          "source": "LBI: <=34 / total (LBI baseline transport/postal annual employment)"
+        },
+        {
+          "period": "2020",
+          "value": 19.2,
+          "status": "derived",
+          "source": "LBI: <=34 / total (LBI baseline transport/postal annual employment)"
+        },
+        {
+          "period": "2021",
+          "value": 19.32,
+          "status": "derived",
+          "source": "LBI: <=34 / total (LBI baseline transport/postal annual employment)"
+        },
+        {
+          "period": "2022",
+          "value": 17.66,
+          "status": "derived",
+          "source": "LBI: <=34 / total (LBI baseline transport/postal annual employment)"
+        },
+        {
+          "period": "2023",
+          "value": 17.77,
+          "status": "derived",
+          "source": "LBI: <=34 / total (LBI baseline transport/postal annual employment)"
+        },
+        {
+          "period": "2024",
+          "value": 17.39,
+          "status": "derived",
+          "source": "LBI: <=34 / total (LBI baseline transport/postal annual employment)"
+        },
+        {
+          "period": "2025",
+          "value": 17.1,
+          "status": "derived",
+          "source": "LBI: <=34 / total (LBI baseline transport/postal annual employment)"
+        }
+      ]
+    },
+    {
+      "metric_id": "transport_postal_replacement_ratio",
+      "name_ja": "運輸業・郵便業 世代交代比率（34歳以下/55歳以上）",
+      "unit": "ratio",
+      "observations": [
+        {
+          "period": "2015",
+          "value": 0.6,
+          "status": "derived",
+          "source": "LBI: <=34 / 55+"
+        },
+        {
+          "period": "2016",
+          "value": 0.6,
+          "status": "derived",
+          "source": "LBI: <=34 / 55+"
+        },
+        {
+          "period": "2017",
+          "value": 0.58,
+          "status": "derived",
+          "source": "LBI: <=34 / 55+"
+        },
+        {
+          "period": "2018",
+          "value": 0.59,
+          "status": "derived",
+          "source": "LBI: <=34 / 55+"
+        },
+        {
+          "period": "2019",
+          "value": 0.58,
+          "status": "derived",
+          "source": "LBI: <=34 / 55+"
+        },
+        {
+          "period": "2020",
+          "value": 0.59,
+          "status": "derived",
+          "source": "LBI: <=34 / 55+"
+        },
+        {
+          "period": "2021",
+          "value": 0.6,
+          "status": "derived",
+          "source": "LBI: <=34 / 55+"
+        },
+        {
+          "period": "2022",
+          "value": 0.53,
+          "status": "derived",
+          "source": "LBI: <=34 / 55+"
+        },
+        {
+          "period": "2023",
+          "value": 0.53,
+          "status": "derived",
+          "source": "LBI: <=34 / 55+"
+        },
+        {
+          "period": "2024",
+          "value": 0.51,
+          "status": "derived",
+          "source": "LBI: <=34 / 55+"
+        },
+        {
+          "period": "2025",
+          "value": 0.47,
+          "status": "derived",
+          "source": "LBI: <=34 / 55+"
+        }
+      ]
+    },
+    {
+      "metric_id": "road_freight_employment",
+      "name_ja": "道路貨物運送業 就業者数",
+      "unit": "ten_thousand_persons",
+      "observations": [
+        {
+          "period": "2015",
+          "value": 185.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2016",
+          "value": 188.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2017",
+          "value": 191.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2018",
+          "value": 193.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2019",
+          "value": 197.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2020",
+          "value": 195.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2021",
+          "value": 200.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2022",
+          "value": 201.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2023",
+          "value": 201.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2024",
+          "value": 198.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2025",
+          "value": 200.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        }
+      ]
+    },
+    {
+      "metric_id": "road_freight_age_15_24",
+      "name_ja": "道路貨物運送業 15-24歳就業者数",
+      "unit": "ten_thousand_persons",
+      "observations": [
+        {
+          "period": "2015",
+          "value": 6.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2016",
+          "value": 7.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2017",
+          "value": 8.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2018",
+          "value": 8.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2019",
+          "value": 10.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2020",
+          "value": 9.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2021",
+          "value": 10.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2022",
+          "value": 10.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2023",
+          "value": 9.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2024",
+          "value": 8.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2025",
+          "value": 9.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        }
+      ]
+    },
+    {
+      "metric_id": "road_freight_age_25_34",
+      "name_ja": "道路貨物運送業 25-34歳就業者数",
+      "unit": "ten_thousand_persons",
+      "observations": [
+        {
+          "period": "2015",
+          "value": 27.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2016",
+          "value": 25.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2017",
+          "value": 25.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2018",
+          "value": 25.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2019",
+          "value": 25.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2020",
+          "value": 25.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2021",
+          "value": 22.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2022",
+          "value": 22.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2023",
+          "value": 24.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2024",
+          "value": 23.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2025",
+          "value": 23.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        }
+      ]
+    },
+    {
+      "metric_id": "road_freight_age_35_44",
+      "name_ja": "道路貨物運送業 35-44歳就業者数",
+      "unit": "ten_thousand_persons",
+      "observations": [
+        {
+          "period": "2015",
+          "value": 53.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2016",
+          "value": 50.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2017",
+          "value": 50.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2018",
+          "value": 46.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2019",
+          "value": 45.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2020",
+          "value": 42.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2021",
+          "value": 41.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2022",
+          "value": 39.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2023",
+          "value": 38.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2024",
+          "value": 38.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2025",
+          "value": 35.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        }
+      ]
+    },
+    {
+      "metric_id": "road_freight_age_45_54",
+      "name_ja": "道路貨物運送業 45-54歳就業者数",
+      "unit": "ten_thousand_persons",
+      "observations": [
+        {
+          "period": "2015",
+          "value": 53.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2016",
+          "value": 56.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2017",
+          "value": 57.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2018",
+          "value": 61.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2019",
+          "value": 61.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2020",
+          "value": 62.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2021",
+          "value": 67.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2022",
+          "value": 66.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2023",
+          "value": 65.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2024",
+          "value": 63.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2025",
+          "value": 60.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        }
+      ]
+    },
+    {
+      "metric_id": "road_freight_age_55_64",
+      "name_ja": "道路貨物運送業 55-64歳就業者数",
+      "unit": "ten_thousand_persons",
+      "observations": [
+        {
+          "period": "2015",
+          "value": 34.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2016",
+          "value": 34.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2017",
+          "value": 36.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2018",
+          "value": 36.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2019",
+          "value": 38.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2020",
+          "value": 38.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2021",
+          "value": 40.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2022",
+          "value": 44.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2023",
+          "value": 45.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2024",
+          "value": 48.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2025",
+          "value": 51.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        }
+      ]
+    },
+    {
+      "metric_id": "road_freight_age_65_plus",
+      "name_ja": "道路貨物運送業 65歳以上就業者数",
+      "unit": "ten_thousand_persons",
+      "observations": [
+        {
+          "period": "2015",
+          "value": 13.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2016",
+          "value": 15.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2017",
+          "value": 16.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2018",
+          "value": 17.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2019",
+          "value": 19.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2020",
+          "value": 18.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2021",
+          "value": 19.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2022",
+          "value": 20.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2023",
+          "value": 20.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2024",
+          "value": 19.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        },
+        {
+          "period": "2025",
+          "value": 21.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=45"
+        }
+      ]
+    },
+    {
+      "metric_id": "road_freight_age_55_plus_share",
+      "name_ja": "道路貨物運送業 55歳以上比率",
+      "unit": "pct",
+      "observations": [
+        {
+          "period": "2015",
+          "value": 25.41,
+          "status": "derived",
+          "source": "LBI: 55+ / total (e-Stat table total)"
+        },
+        {
+          "period": "2016",
+          "value": 26.06,
+          "status": "derived",
+          "source": "LBI: 55+ / total (e-Stat table total)"
+        },
+        {
+          "period": "2017",
+          "value": 27.23,
+          "status": "derived",
+          "source": "LBI: 55+ / total (e-Stat table total)"
+        },
+        {
+          "period": "2018",
+          "value": 27.46,
+          "status": "derived",
+          "source": "LBI: 55+ / total (e-Stat table total)"
+        },
+        {
+          "period": "2019",
+          "value": 28.93,
+          "status": "derived",
+          "source": "LBI: 55+ / total (e-Stat table total)"
+        },
+        {
+          "period": "2020",
+          "value": 28.72,
+          "status": "derived",
+          "source": "LBI: 55+ / total (e-Stat table total)"
+        },
+        {
+          "period": "2021",
+          "value": 29.5,
+          "status": "derived",
+          "source": "LBI: 55+ / total (e-Stat table total)"
+        },
+        {
+          "period": "2022",
+          "value": 31.84,
+          "status": "derived",
+          "source": "LBI: 55+ / total (e-Stat table total)"
+        },
+        {
+          "period": "2023",
+          "value": 32.34,
+          "status": "derived",
+          "source": "LBI: 55+ / total (e-Stat table total)"
+        },
+        {
+          "period": "2024",
+          "value": 33.84,
+          "status": "derived",
+          "source": "LBI: 55+ / total (e-Stat table total)"
+        },
+        {
+          "period": "2025",
+          "value": 36.0,
+          "status": "derived",
+          "source": "LBI: 55+ / total (e-Stat table total)"
+        }
+      ]
+    },
+    {
+      "metric_id": "road_freight_young_share",
+      "name_ja": "道路貨物運送業 34歳以下比率",
+      "unit": "pct",
+      "observations": [
+        {
+          "period": "2015",
+          "value": 17.84,
+          "status": "derived",
+          "source": "LBI: <=34 / total (e-Stat table total)"
+        },
+        {
+          "period": "2016",
+          "value": 17.02,
+          "status": "derived",
+          "source": "LBI: <=34 / total (e-Stat table total)"
+        },
+        {
+          "period": "2017",
+          "value": 17.28,
+          "status": "derived",
+          "source": "LBI: <=34 / total (e-Stat table total)"
+        },
+        {
+          "period": "2018",
+          "value": 17.1,
+          "status": "derived",
+          "source": "LBI: <=34 / total (e-Stat table total)"
+        },
+        {
+          "period": "2019",
+          "value": 17.77,
+          "status": "derived",
+          "source": "LBI: <=34 / total (e-Stat table total)"
+        },
+        {
+          "period": "2020",
+          "value": 17.44,
+          "status": "derived",
+          "source": "LBI: <=34 / total (e-Stat table total)"
+        },
+        {
+          "period": "2021",
+          "value": 16.0,
+          "status": "derived",
+          "source": "LBI: <=34 / total (e-Stat table total)"
+        },
+        {
+          "period": "2022",
+          "value": 15.92,
+          "status": "derived",
+          "source": "LBI: <=34 / total (e-Stat table total)"
+        },
+        {
+          "period": "2023",
+          "value": 16.42,
+          "status": "derived",
+          "source": "LBI: <=34 / total (e-Stat table total)"
+        },
+        {
+          "period": "2024",
+          "value": 15.66,
+          "status": "derived",
+          "source": "LBI: <=34 / total (e-Stat table total)"
+        },
+        {
+          "period": "2025",
+          "value": 16.0,
+          "status": "derived",
+          "source": "LBI: <=34 / total (e-Stat table total)"
+        }
+      ]
+    },
+    {
+      "metric_id": "road_freight_replacement_ratio",
+      "name_ja": "道路貨物運送業 世代交代比率（34歳以下/55歳以上）",
+      "unit": "ratio",
+      "observations": [
+        {
+          "period": "2015",
+          "value": 0.7,
+          "status": "derived",
+          "source": "LBI: <=34 / 55+"
+        },
+        {
+          "period": "2016",
+          "value": 0.65,
+          "status": "derived",
+          "source": "LBI: <=34 / 55+"
+        },
+        {
+          "period": "2017",
+          "value": 0.63,
+          "status": "derived",
+          "source": "LBI: <=34 / 55+"
+        },
+        {
+          "period": "2018",
+          "value": 0.62,
+          "status": "derived",
+          "source": "LBI: <=34 / 55+"
+        },
+        {
+          "period": "2019",
+          "value": 0.61,
+          "status": "derived",
+          "source": "LBI: <=34 / 55+"
+        },
+        {
+          "period": "2020",
+          "value": 0.61,
+          "status": "derived",
+          "source": "LBI: <=34 / 55+"
+        },
+        {
+          "period": "2021",
+          "value": 0.54,
+          "status": "derived",
+          "source": "LBI: <=34 / 55+"
+        },
+        {
+          "period": "2022",
+          "value": 0.5,
+          "status": "derived",
+          "source": "LBI: <=34 / 55+"
+        },
+        {
+          "period": "2023",
+          "value": 0.51,
+          "status": "derived",
+          "source": "LBI: <=34 / 55+"
+        },
+        {
+          "period": "2024",
+          "value": 0.46,
+          "status": "derived",
+          "source": "LBI: <=34 / 55+"
+        },
+        {
+          "period": "2025",
+          "value": 0.44,
+          "status": "derived",
+          "source": "LBI: <=34 / 55+"
+        }
+      ]
+    },
+    {
+      "metric_id": "road_freight_female_share",
+      "name_ja": "道路貨物運送業 女性比率",
+      "unit": "pct",
+      "observations": [
+        {
+          "period": "2015",
+          "value": 18.38,
+          "status": "derived",
+          "source": "LBI: female / total"
+        },
+        {
+          "period": "2016",
+          "value": 18.62,
+          "status": "derived",
+          "source": "LBI: female / total"
+        },
+        {
+          "period": "2017",
+          "value": 18.32,
+          "status": "derived",
+          "source": "LBI: female / total"
+        },
+        {
+          "period": "2018",
+          "value": 19.69,
+          "status": "derived",
+          "source": "LBI: female / total"
+        },
+        {
+          "period": "2019",
+          "value": 20.3,
+          "status": "derived",
+          "source": "LBI: female / total"
+        },
+        {
+          "period": "2020",
+          "value": 20.0,
+          "status": "derived",
+          "source": "LBI: female / total"
+        },
+        {
+          "period": "2021",
+          "value": 20.0,
+          "status": "derived",
+          "source": "LBI: female / total"
+        },
+        {
+          "period": "2022",
+          "value": 20.4,
+          "status": "derived",
+          "source": "LBI: female / total"
+        },
+        {
+          "period": "2023",
+          "value": 20.4,
+          "status": "derived",
+          "source": "LBI: female / total"
+        },
+        {
+          "period": "2024",
+          "value": 20.71,
+          "status": "derived",
+          "source": "LBI: female / total"
+        },
+        {
+          "period": "2025",
+          "value": 20.5,
+          "status": "derived",
+          "source": "LBI: female / total"
+        }
+      ]
+    },
+    {
+      "metric_id": "warehousing_employment",
+      "name_ja": "倉庫業 就業者数",
+      "unit": "ten_thousand_persons",
+      "observations": [
+        {
+          "period": "2015",
+          "value": 22.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2016",
+          "value": 23.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2017",
+          "value": 25.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2018",
+          "value": 25.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2019",
+          "value": 26.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2020",
+          "value": 26.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2021",
+          "value": 25.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2022",
+          "value": 27.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2023",
+          "value": 28.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2024",
+          "value": 29.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2025",
+          "value": 28.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        }
+      ]
+    },
+    {
+      "metric_id": "warehousing_age_15_24",
+      "name_ja": "倉庫業 15-24歳就業者数",
+      "unit": "ten_thousand_persons",
+      "observations": [
+        {
+          "period": "2015",
+          "value": 1.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2016",
+          "value": 1.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2017",
+          "value": 1.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2018",
+          "value": 1.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2019",
+          "value": 2.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2020",
+          "value": 2.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2021",
+          "value": 2.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2022",
+          "value": 1.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2023",
+          "value": 1.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2024",
+          "value": 1.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2025",
+          "value": 1.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        }
+      ]
+    },
+    {
+      "metric_id": "warehousing_age_25_34",
+      "name_ja": "倉庫業 25-34歳就業者数",
+      "unit": "ten_thousand_persons",
+      "observations": [
+        {
+          "period": "2015",
+          "value": 4.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2016",
+          "value": 4.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2017",
+          "value": 4.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2018",
+          "value": 5.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2019",
+          "value": 5.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2020",
+          "value": 4.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2021",
+          "value": 4.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2022",
+          "value": 5.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2023",
+          "value": 4.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2024",
+          "value": 4.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2025",
+          "value": 4.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        }
+      ]
+    },
+    {
+      "metric_id": "warehousing_age_35_44",
+      "name_ja": "倉庫業 35-44歳就業者数",
+      "unit": "ten_thousand_persons",
+      "observations": [
+        {
+          "period": "2015",
+          "value": 6.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2016",
+          "value": 6.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2017",
+          "value": 7.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2018",
+          "value": 7.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2019",
+          "value": 6.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2020",
+          "value": 6.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2021",
+          "value": 6.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2022",
+          "value": 6.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2023",
+          "value": 6.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2024",
+          "value": 6.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2025",
+          "value": 5.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        }
+      ]
+    },
+    {
+      "metric_id": "warehousing_age_45_54",
+      "name_ja": "倉庫業 45-54歳就業者数",
+      "unit": "ten_thousand_persons",
+      "observations": [
+        {
+          "period": "2015",
+          "value": 6.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2016",
+          "value": 6.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2017",
+          "value": 7.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2018",
+          "value": 7.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2019",
+          "value": 8.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2020",
+          "value": 7.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2021",
+          "value": 7.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2022",
+          "value": 8.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2023",
+          "value": 8.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2024",
+          "value": 9.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2025",
+          "value": 8.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        }
+      ]
+    },
+    {
+      "metric_id": "warehousing_age_55_64",
+      "name_ja": "倉庫業 55-64歳就業者数",
+      "unit": "ten_thousand_persons",
+      "observations": [
+        {
+          "period": "2015",
+          "value": 3.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2016",
+          "value": 5.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2017",
+          "value": 4.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2018",
+          "value": 4.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2019",
+          "value": 4.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2020",
+          "value": 5.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2021",
+          "value": 5.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2022",
+          "value": 5.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2023",
+          "value": 5.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2024",
+          "value": 5.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2025",
+          "value": 7.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        }
+      ]
+    },
+    {
+      "metric_id": "warehousing_age_65_plus",
+      "name_ja": "倉庫業 65歳以上就業者数",
+      "unit": "ten_thousand_persons",
+      "observations": [
+        {
+          "period": "2015",
+          "value": 1.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2016",
+          "value": 1.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2017",
+          "value": 1.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2018",
+          "value": 1.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2019",
+          "value": 2.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2020",
+          "value": 2.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2021",
+          "value": 2.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2022",
+          "value": 2.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2023",
+          "value": 2.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2024",
+          "value": 2.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        },
+        {
+          "period": "2025",
+          "value": 2.0,
+          "status": "official_api",
+          "source": "e-Stat 労働力調査 2-2-1 statsDataId=0003007108 cat01=48"
+        }
+      ]
+    },
+    {
+      "metric_id": "warehousing_age_55_plus_share",
+      "name_ja": "倉庫業 55歳以上比率",
+      "unit": "pct",
+      "observations": [
+        {
+          "period": "2015",
+          "value": 18.18,
+          "status": "derived",
+          "source": "LBI: 55+ / total (e-Stat table total)"
+        },
+        {
+          "period": "2016",
+          "value": 26.09,
+          "status": "derived",
+          "source": "LBI: 55+ / total (e-Stat table total)"
+        },
+        {
+          "period": "2017",
+          "value": 20.0,
+          "status": "derived",
+          "source": "LBI: 55+ / total (e-Stat table total)"
+        },
+        {
+          "period": "2018",
+          "value": 20.0,
+          "status": "derived",
+          "source": "LBI: 55+ / total (e-Stat table total)"
+        },
+        {
+          "period": "2019",
+          "value": 23.08,
+          "status": "derived",
+          "source": "LBI: 55+ / total (e-Stat table total)"
+        },
+        {
+          "period": "2020",
+          "value": 26.92,
+          "status": "derived",
+          "source": "LBI: 55+ / total (e-Stat table total)"
+        },
+        {
+          "period": "2021",
+          "value": 28.0,
+          "status": "derived",
+          "source": "LBI: 55+ / total (e-Stat table total)"
+        },
+        {
+          "period": "2022",
+          "value": 25.93,
+          "status": "derived",
+          "source": "LBI: 55+ / total (e-Stat table total)"
+        },
+        {
+          "period": "2023",
+          "value": 25.0,
+          "status": "derived",
+          "source": "LBI: 55+ / total (e-Stat table total)"
+        },
+        {
+          "period": "2024",
+          "value": 24.14,
+          "status": "derived",
+          "source": "LBI: 55+ / total (e-Stat table total)"
+        },
+        {
+          "period": "2025",
+          "value": 32.14,
+          "status": "derived",
+          "source": "LBI: 55+ / total (e-Stat table total)"
+        }
+      ]
+    },
+    {
+      "metric_id": "warehousing_young_share",
+      "name_ja": "倉庫業 34歳以下比率",
+      "unit": "pct",
+      "observations": [
+        {
+          "period": "2015",
+          "value": 22.73,
+          "status": "derived",
+          "source": "LBI: <=34 / total (e-Stat table total)"
+        },
+        {
+          "period": "2016",
+          "value": 21.74,
+          "status": "derived",
+          "source": "LBI: <=34 / total (e-Stat table total)"
+        },
+        {
+          "period": "2017",
+          "value": 20.0,
+          "status": "derived",
+          "source": "LBI: <=34 / total (e-Stat table total)"
+        },
+        {
+          "period": "2018",
+          "value": 24.0,
+          "status": "derived",
+          "source": "LBI: <=34 / total (e-Stat table total)"
+        },
+        {
+          "period": "2019",
+          "value": 26.92,
+          "status": "derived",
+          "source": "LBI: <=34 / total (e-Stat table total)"
+        },
+        {
+          "period": "2020",
+          "value": 23.08,
+          "status": "derived",
+          "source": "LBI: <=34 / total (e-Stat table total)"
+        },
+        {
+          "period": "2021",
+          "value": 24.0,
+          "status": "derived",
+          "source": "LBI: <=34 / total (e-Stat table total)"
+        },
+        {
+          "period": "2022",
+          "value": 22.22,
+          "status": "derived",
+          "source": "LBI: <=34 / total (e-Stat table total)"
+        },
+        {
+          "period": "2023",
+          "value": 17.86,
+          "status": "derived",
+          "source": "LBI: <=34 / total (e-Stat table total)"
+        },
+        {
+          "period": "2024",
+          "value": 17.24,
+          "status": "derived",
+          "source": "LBI: <=34 / total (e-Stat table total)"
+        },
+        {
+          "period": "2025",
+          "value": 17.86,
+          "status": "derived",
+          "source": "LBI: <=34 / total (e-Stat table total)"
+        }
+      ]
+    },
+    {
+      "metric_id": "warehousing_replacement_ratio",
+      "name_ja": "倉庫業 世代交代比率（34歳以下/55歳以上）",
+      "unit": "ratio",
+      "observations": [
+        {
+          "period": "2015",
+          "value": 1.25,
+          "status": "derived",
+          "source": "LBI: <=34 / 55+"
+        },
+        {
+          "period": "2016",
+          "value": 0.83,
+          "status": "derived",
+          "source": "LBI: <=34 / 55+"
+        },
+        {
+          "period": "2017",
+          "value": 1.0,
+          "status": "derived",
+          "source": "LBI: <=34 / 55+"
+        },
+        {
+          "period": "2018",
+          "value": 1.2,
+          "status": "derived",
+          "source": "LBI: <=34 / 55+"
+        },
+        {
+          "period": "2019",
+          "value": 1.17,
+          "status": "derived",
+          "source": "LBI: <=34 / 55+"
+        },
+        {
+          "period": "2020",
+          "value": 0.86,
+          "status": "derived",
+          "source": "LBI: <=34 / 55+"
+        },
+        {
+          "period": "2021",
+          "value": 0.86,
+          "status": "derived",
+          "source": "LBI: <=34 / 55+"
+        },
+        {
+          "period": "2022",
+          "value": 0.86,
+          "status": "derived",
+          "source": "LBI: <=34 / 55+"
+        },
+        {
+          "period": "2023",
+          "value": 0.71,
+          "status": "derived",
+          "source": "LBI: <=34 / 55+"
+        },
+        {
+          "period": "2024",
+          "value": 0.71,
+          "status": "derived",
+          "source": "LBI: <=34 / 55+"
+        },
+        {
+          "period": "2025",
+          "value": 0.56,
+          "status": "derived",
+          "source": "LBI: <=34 / 55+"
+        }
+      ]
+    },
+    {
+      "metric_id": "warehousing_female_share",
+      "name_ja": "倉庫業 女性比率",
+      "unit": "pct",
+      "observations": [
+        {
+          "period": "2015",
+          "value": 40.91,
+          "status": "derived",
+          "source": "LBI: female / total"
+        },
+        {
+          "period": "2016",
+          "value": 39.13,
+          "status": "derived",
+          "source": "LBI: female / total"
+        },
+        {
+          "period": "2017",
+          "value": 44.0,
+          "status": "derived",
+          "source": "LBI: female / total"
+        },
+        {
+          "period": "2018",
+          "value": 40.0,
+          "status": "derived",
+          "source": "LBI: female / total"
+        },
+        {
+          "period": "2019",
+          "value": 42.31,
+          "status": "derived",
+          "source": "LBI: female / total"
+        },
+        {
+          "period": "2020",
+          "value": 42.31,
+          "status": "derived",
+          "source": "LBI: female / total"
+        },
+        {
+          "period": "2021",
+          "value": 44.0,
+          "status": "derived",
+          "source": "LBI: female / total"
+        },
+        {
+          "period": "2022",
+          "value": 44.44,
+          "status": "derived",
+          "source": "LBI: female / total"
+        },
+        {
+          "period": "2023",
+          "value": 39.29,
+          "status": "derived",
+          "source": "LBI: female / total"
+        },
+        {
+          "period": "2024",
+          "value": 41.38,
+          "status": "derived",
+          "source": "LBI: female / total"
+        },
+        {
+          "period": "2025",
+          "value": 39.29,
+          "status": "derived",
+          "source": "LBI: female / total"
+        }
+      ]
+    }
+  ]
+}

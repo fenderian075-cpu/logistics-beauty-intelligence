@@ -11,6 +11,7 @@ on:
       - "scripts/validate-report.py"
       - "scripts/validate_public_schema_integrity.py"
       - "scripts/validate-customs-taxonomy.py"
+      - "scripts/validate_logistics_structure.py"
       - ".github/workflows/frontend-regression.yml"
   push:
     branches: [main]
@@ -23,6 +24,7 @@ on:
       - "scripts/validate-report.py"
       - "scripts/validate_public_schema_integrity.py"
       - "scripts/validate-customs-taxonomy.py"
+      - "scripts/validate_logistics_structure.py"
       - ".github/workflows/frontend-regression.yml"
 
 jobs:
@@ -46,3 +48,5 @@ jobs:
         run: python scripts/validate_public_schema_integrity.py
       - name: Customs taxonomy integrity
         run: python scripts/validate-customs-taxonomy.py
+      - name: Logistics demand-capacity integrity
+        run: python scripts/validate_logistics_structure.py

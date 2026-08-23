@@ -1,0 +1,476 @@
+{
+  "schema_version": "1.0",
+  "dataset": "trucking-physical-capacity",
+  "title_ja": "トラック物理キャパシティ",
+  "frequency": "annual",
+  "status": "populated_from_mlit_files",
+  "sources": [
+    {
+      "name": "国土交通省 数字でみる自動車2025 - トラック事業者数の推移",
+      "url": "https://www.mlit.go.jp/jidosha/content/001894861.xls"
+    },
+    {
+      "name": "国土交通省 数字でみる自動車2025 - トラック車両数の推移",
+      "url": "https://www.mlit.go.jp/jidosha/content/001894863.xlsx"
+    },
+    {
+      "name": "国土交通省 自動車輸送統計",
+      "url": "https://www.mlit.go.jp/k-toukei/jidousya.html"
+    }
+  ],
+  "notes": [
+    "事業者数・車両数は国土交通省のトラック事業長期系列を使用し、推計・補間は行わない。",
+    "営業用トラックton-kmは自動車輸送統計の接続済み年次系列を使用する。",
+    "ton-km/vehicleは営業用輸送需要を車両ストックで割る物理capacity utilization proxyであり、実働率や積載率そのものではない。"
+  ],
+  "series": [
+    {
+      "metric_id": "truck_operators",
+      "name_ja": "トラック事業者数",
+      "unit": "operators",
+      "observations": [
+        {
+          "period": "2010",
+          "value": 62989.0,
+          "status": "official_file",
+          "source": "MLIT 数字でみる自動車 トラック事業者数の推移"
+        },
+        {
+          "period": "2011",
+          "value": 63082.0,
+          "status": "official_file",
+          "source": "MLIT 数字でみる自動車 トラック事業者数の推移",
+          "yoy": 0.15
+        },
+        {
+          "period": "2012",
+          "value": 62936.0,
+          "status": "official_file",
+          "source": "MLIT 数字でみる自動車 トラック事業者数の推移",
+          "yoy": -0.23
+        },
+        {
+          "period": "2013",
+          "value": 62905.0,
+          "status": "official_file",
+          "source": "MLIT 数字でみる自動車 トラック事業者数の推移",
+          "yoy": -0.05
+        },
+        {
+          "period": "2014",
+          "value": 62637.0,
+          "status": "official_file",
+          "source": "MLIT 数字でみる自動車 トラック事業者数の推移",
+          "yoy": -0.43
+        },
+        {
+          "period": "2015",
+          "value": 62176.0,
+          "status": "official_file",
+          "source": "MLIT 数字でみる自動車 トラック事業者数の推移",
+          "yoy": -0.74
+        },
+        {
+          "period": "2016",
+          "value": 62276.0,
+          "status": "official_file",
+          "source": "MLIT 数字でみる自動車 トラック事業者数の推移",
+          "yoy": 0.16
+        },
+        {
+          "period": "2017",
+          "value": 62461.0,
+          "status": "official_file",
+          "source": "MLIT 数字でみる自動車 トラック事業者数の推移",
+          "yoy": 0.3
+        },
+        {
+          "period": "2018",
+          "value": 62068.0,
+          "status": "official_file",
+          "source": "MLIT 数字でみる自動車 トラック事業者数の推移",
+          "yoy": -0.63
+        },
+        {
+          "period": "2019",
+          "value": 62551.0,
+          "status": "official_file",
+          "source": "MLIT 数字でみる自動車 トラック事業者数の推移",
+          "yoy": 0.78
+        },
+        {
+          "period": "2020",
+          "value": 62844.0,
+          "status": "official_file",
+          "source": "MLIT 数字でみる自動車 トラック事業者数の推移",
+          "yoy": 0.47
+        },
+        {
+          "period": "2021",
+          "value": 63252.0,
+          "status": "official_file",
+          "source": "MLIT 数字でみる自動車 トラック事業者数の推移",
+          "yoy": 0.65
+        },
+        {
+          "period": "2022",
+          "value": 63140.0,
+          "status": "official_file",
+          "source": "MLIT 数字でみる自動車 トラック事業者数の推移",
+          "yoy": -0.18
+        },
+        {
+          "period": "2023",
+          "value": 62848.0,
+          "status": "official_file",
+          "source": "MLIT 数字でみる自動車 トラック事業者数の推移",
+          "yoy": -0.46
+        }
+      ]
+    },
+    {
+      "metric_id": "commercial_truck_vehicles",
+      "name_ja": "営業用トラック車両数",
+      "unit": "vehicles",
+      "observations": [
+        {
+          "period": "2010",
+          "value": 1339716.0,
+          "status": "official_file",
+          "source": "MLIT 数字でみる自動車 トラック車両数の推移"
+        },
+        {
+          "period": "2011",
+          "value": 1333780.0,
+          "status": "official_file",
+          "source": "MLIT 数字でみる自動車 トラック車両数の推移",
+          "yoy": -0.44
+        },
+        {
+          "period": "2012",
+          "value": 1339523.0,
+          "status": "official_file",
+          "source": "MLIT 数字でみる自動車 トラック車両数の推移",
+          "yoy": 0.43
+        },
+        {
+          "period": "2013",
+          "value": 1351749.0,
+          "status": "official_file",
+          "source": "MLIT 数字でみる自動車 トラック車両数の推移",
+          "yoy": 0.91
+        },
+        {
+          "period": "2014",
+          "value": 1358228.0,
+          "status": "official_file",
+          "source": "MLIT 数字でみる自動車 トラック車両数の推移",
+          "yoy": 0.48
+        },
+        {
+          "period": "2015",
+          "value": 1373776.0,
+          "status": "official_file",
+          "source": "MLIT 数字でみる自動車 トラック車両数の推移",
+          "yoy": 1.14
+        },
+        {
+          "period": "2016",
+          "value": 1349682.0,
+          "status": "official_file",
+          "source": "MLIT 数字でみる自動車 トラック車両数の推移",
+          "yoy": -1.75
+        },
+        {
+          "period": "2017",
+          "value": 1368064.0,
+          "status": "official_file",
+          "source": "MLIT 数字でみる自動車 トラック車両数の推移",
+          "yoy": 1.36
+        },
+        {
+          "period": "2018",
+          "value": 1417248.0,
+          "status": "official_file",
+          "source": "MLIT 数字でみる自動車 トラック車両数の推移",
+          "yoy": 3.6
+        },
+        {
+          "period": "2019",
+          "value": 1456155.0,
+          "status": "official_file",
+          "source": "MLIT 数字でみる自動車 トラック車両数の推移",
+          "yoy": 2.75
+        },
+        {
+          "period": "2020",
+          "value": 1458419.0,
+          "status": "official_file",
+          "source": "MLIT 数字でみる自動車 トラック車両数の推移",
+          "yoy": 0.16
+        },
+        {
+          "period": "2021",
+          "value": 1467884.0,
+          "status": "official_file",
+          "source": "MLIT 数字でみる自動車 トラック車両数の推移",
+          "yoy": 0.65
+        },
+        {
+          "period": "2022",
+          "value": 1454186.0,
+          "status": "official_file",
+          "source": "MLIT 数字でみる自動車 トラック車両数の推移",
+          "yoy": -0.93
+        },
+        {
+          "period": "2023",
+          "value": 1487672.0,
+          "status": "official_file",
+          "source": "MLIT 数字でみる自動車 トラック車両数の推移",
+          "yoy": 2.3
+        }
+      ]
+    },
+    {
+      "metric_id": "vehicles_per_operator",
+      "name_ja": "1事業者あたり車両数",
+      "unit": "vehicles_per_operator",
+      "observations": [
+        {
+          "period": "2010",
+          "value": 21.27,
+          "status": "derived",
+          "source": "commercial_truck_vehicles / truck_operators"
+        },
+        {
+          "period": "2011",
+          "value": 21.14,
+          "status": "derived",
+          "source": "commercial_truck_vehicles / truck_operators"
+        },
+        {
+          "period": "2012",
+          "value": 21.28,
+          "status": "derived",
+          "source": "commercial_truck_vehicles / truck_operators"
+        },
+        {
+          "period": "2013",
+          "value": 21.49,
+          "status": "derived",
+          "source": "commercial_truck_vehicles / truck_operators"
+        },
+        {
+          "period": "2014",
+          "value": 21.68,
+          "status": "derived",
+          "source": "commercial_truck_vehicles / truck_operators"
+        },
+        {
+          "period": "2015",
+          "value": 22.09,
+          "status": "derived",
+          "source": "commercial_truck_vehicles / truck_operators"
+        },
+        {
+          "period": "2016",
+          "value": 21.67,
+          "status": "derived",
+          "source": "commercial_truck_vehicles / truck_operators"
+        },
+        {
+          "period": "2017",
+          "value": 21.9,
+          "status": "derived",
+          "source": "commercial_truck_vehicles / truck_operators"
+        },
+        {
+          "period": "2018",
+          "value": 22.83,
+          "status": "derived",
+          "source": "commercial_truck_vehicles / truck_operators"
+        },
+        {
+          "period": "2019",
+          "value": 23.28,
+          "status": "derived",
+          "source": "commercial_truck_vehicles / truck_operators"
+        },
+        {
+          "period": "2020",
+          "value": 23.21,
+          "status": "derived",
+          "source": "commercial_truck_vehicles / truck_operators"
+        },
+        {
+          "period": "2021",
+          "value": 23.21,
+          "status": "derived",
+          "source": "commercial_truck_vehicles / truck_operators"
+        },
+        {
+          "period": "2022",
+          "value": 23.03,
+          "status": "derived",
+          "source": "commercial_truck_vehicles / truck_operators"
+        },
+        {
+          "period": "2023",
+          "value": 23.67,
+          "status": "derived",
+          "source": "commercial_truck_vehicles / truck_operators"
+        }
+      ]
+    },
+    {
+      "metric_id": "ton_km_per_vehicle",
+      "name_ja": "営業用トラック1台あたりton-km",
+      "unit": "thousand_tonne_km_per_vehicle_year",
+      "observations": [
+        {
+          "period": "2015",
+          "value": 154.2,
+          "status": "derived_proxy",
+          "source": "commercial_truck_ton_km_annual / commercial_truck_vehicles"
+        },
+        {
+          "period": "2016",
+          "value": 161.1,
+          "status": "derived_proxy",
+          "source": "commercial_truck_ton_km_annual / commercial_truck_vehicles"
+        },
+        {
+          "period": "2017",
+          "value": 160.4,
+          "status": "derived_proxy",
+          "source": "commercial_truck_ton_km_annual / commercial_truck_vehicles"
+        },
+        {
+          "period": "2018",
+          "value": 154.8,
+          "status": "derived_proxy",
+          "source": "commercial_truck_ton_km_annual / commercial_truck_vehicles"
+        },
+        {
+          "period": "2019",
+          "value": 153.8,
+          "status": "derived_proxy",
+          "source": "commercial_truck_ton_km_annual / commercial_truck_vehicles"
+        },
+        {
+          "period": "2020",
+          "value": 128.2,
+          "status": "derived_proxy",
+          "source": "commercial_truck_ton_km_annual / commercial_truck_vehicles"
+        },
+        {
+          "period": "2021",
+          "value": 133.8,
+          "status": "derived_proxy",
+          "source": "commercial_truck_ton_km_annual / commercial_truck_vehicles"
+        },
+        {
+          "period": "2022",
+          "value": 136.9,
+          "status": "derived_proxy",
+          "source": "commercial_truck_ton_km_annual / commercial_truck_vehicles"
+        },
+        {
+          "period": "2023",
+          "value": 135.9,
+          "status": "derived_proxy",
+          "source": "commercial_truck_ton_km_annual / commercial_truck_vehicles"
+        }
+      ]
+    }
+  ],
+  "parser_contract": {
+    "operators": {
+      "layout": "vertical_japanese_era",
+      "sheet": "事業者数の推移",
+      "matched_header": "特積|一般|霊柩|特定|合計",
+      "official_block_years": [
+        1975,
+        2023
+      ],
+      "last_rows": [
+        [
+          51,
+          "令和",
+          1,
+          62551.0
+        ],
+        [
+          52,
+          "令和",
+          2,
+          62844.0
+        ],
+        [
+          53,
+          "令和",
+          3,
+          63252.0
+        ],
+        [
+          54,
+          "令和",
+          4,
+          63140.0
+        ],
+        [
+          55,
+          "令和",
+          5,
+          62848.0
+        ]
+      ]
+    },
+    "vehicles": {
+      "layout": "vertical_japanese_era",
+      "sheet": "トラック車両数",
+      "matched_header": "年度|特積（運行車のみ）|一般（特積（運行車）・霊柩を除く）|霊柩|特定トラック車両数|計",
+      "official_block_years": [
+        1993,
+        2023
+      ],
+      "last_rows": [
+        [
+          32,
+          "令和",
+          1,
+          1456155.0
+        ],
+        [
+          33,
+          "令和",
+          2,
+          1458419.0
+        ],
+        [
+          34,
+          "令和",
+          3,
+          1467884.0
+        ],
+        [
+          35,
+          "令和",
+          4,
+          1454186.0
+        ],
+        [
+          36,
+          "令和",
+          5,
+          1487672.0
+        ]
+      ]
+    },
+    "urls": {
+      "operators": "https://www.mlit.go.jp/jidosha/content/001894861.xls",
+      "vehicles": "https://www.mlit.go.jp/jidosha/content/001894863.xlsx"
+    }
+  }
+}

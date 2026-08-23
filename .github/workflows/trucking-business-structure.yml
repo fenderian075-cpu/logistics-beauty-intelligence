@@ -1,0 +1,69 @@
+name: Refresh trucking business structure
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "55 3 5 * *"
+  push:
+    paths:
+      - "scripts/update_trucking_business_structure.py"
+      - "scripts/validate_trucking_business_structure.py"
+      - "data/economy/trucking-business-structure.json"
+      - ".github/workflows/trucking-business-structure.yml"
+  pull_request:
+    paths:
+      - "scripts/update_trucking_business_structure.py"
+      - "scripts/validate_trucking_business_structure.py"
+      - "data/economy/trucking-business-structure.json"
+      - ".github/workflows/trucking-business-structure.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    env:
+      ESTAT_APP_ID: ${{ secrets.ESTAT_APP_ID }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Compile
+        run: python -m py_compile scripts/update_trucking_business_structure.py scripts/validate_trucking_business_structure.py
+      - name: Refresh post-2020 commercial vs own-account structure
+        shell: bash
+        run: |
+          if [ -z "$ESTAT_APP_ID" ]; then
+            echo "ESTAT_APP_ID is not configured; keeping last validated data."
+          else
+            python scripts/update_trucking_business_structure.py
+          fi
+      - name: Validate
+        run: python scripts/validate_trucking_business_structure.py
+      - name: Report
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open('data/economy/trucking-business-structure.json',encoding='utf-8'))
+          for mid in ('commercial_tonnage_share_post2020','commercial_ton_km_share_post2020'):
+              s=next(x for x in d['series'] if x['metric_id']==mid)
+              print(mid, s['observations'][-1] if s.get('observations') else None)
+          PY
+      - name: Commit refreshed data on source branch
+        if: github.event_name != 'pull_request'
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/economy/trucking-business-structure.json
+          if git diff --cached --quiet; then
+            echo "No business-structure data change."
+            exit 0
+          fi
+          git commit -m "data: refresh trucking business structure"
+          git pull --rebase origin "${GITHUB_REF_NAME}"
+          git push origin HEAD:"${GITHUB_REF_NAME}"

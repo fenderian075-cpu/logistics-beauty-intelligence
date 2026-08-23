@@ -1,0 +1,119 @@
+{
+  "schema_version": "1.0",
+  "dataset": "logistics-foreign-capacity-pipeline",
+  "title_ja": "物流外国人材の供給パイプライン",
+  "status": "official_half_year_auto_refresh_plus_policy_capacity",
+  "sources": [
+    {
+      "name": "出入国在留管理庁 特定技能1号在留外国人数 第3表",
+      "url": "https://www.moj.go.jp/isa/content/001459471.pdf",
+      "note": "最新の半期公表はcollectorが固定ランディングページから第3表PDFを自動発見する。令和7年12月末は速報値。"
+    },
+    {
+      "name": "国土交通省 特定技能制度における自動車運送業分野の制度概要",
+      "url": "https://wwwtb.mlit.go.jp/kanto/content/000370255.pdf",
+      "note": "令和7年6月末時点の自動車運送業分野の在留資格取得者は10人。"
+    },
+    {
+      "name": "国土交通省 特定技能制度（自動車運送業分野）自動車運送業分野の現状",
+      "url": "https://www.mlit.go.jp/jidosha/content/002002768.pdf",
+      "note": "令和11年3月末までの受入れ見込数。自動車運送業22,100人、物流倉庫11,400人。実績値ではない。"
+    }
+  ],
+  "notes": [
+    "このデータセットはMHLW『外国人雇用状況』の運輸業・郵便業総数とは別定義であり、両者を加算しない。",
+    "自動車運送業の特定技能1号はトラック・タクシー・バスを含む。業務区分別公表がある半期は各区分を保持する。",
+    "2025年6月末10人は自動車運送業分野全体の在留資格取得者であり、トラックのみの人数ではない。",
+    "受入れ見込数は政策上の受入れ容量・上限として使う。実際の在留者数や採用確約数ではない。",
+    "物流倉庫11,400人は制度上の将来供給余地を示す政策値であり、現在の倉庫業外国人労働者数として扱わない。",
+    "半期実績の自動更新はISA固定公表ページから最新第3表PDFを発見し、PDF内の公表時点と業務区分値を検証後にupsertする。"
+  ],
+  "series": [
+    {
+      "metric_id": "ssw_auto_transport_residents",
+      "name_ja": "特定技能 自動車運送業 在留者数",
+      "unit": "persons",
+      "observations": [
+        {
+          "period": "2025-06",
+          "value": 10,
+          "status": "official_preliminary",
+          "source": "MLIT / Immigration Services Agency"
+        },
+        {
+          "period": "2025-12",
+          "value": 151,
+          "status": "official_preliminary",
+          "source": "Immigration Services Agency SSW Table 3 (2025-12); https://www.moj.go.jp/isa/content/001459471.pdf"
+        }
+      ]
+    },
+    {
+      "metric_id": "ssw_auto_transport_truck_drivers",
+      "name_ja": "特定技能 自動車運送業 トラック運転者",
+      "unit": "persons",
+      "observations": [
+        {
+          "period": "2025-12",
+          "value": 123,
+          "status": "official_preliminary",
+          "source": "Immigration Services Agency SSW Table 3 (2025-12); https://www.moj.go.jp/isa/content/001459471.pdf"
+        }
+      ]
+    },
+    {
+      "metric_id": "ssw_auto_transport_taxi_drivers",
+      "name_ja": "特定技能 自動車運送業 タクシー運転者",
+      "unit": "persons",
+      "observations": [
+        {
+          "period": "2025-12",
+          "value": 16,
+          "status": "official_preliminary",
+          "source": "Immigration Services Agency SSW Table 3 (2025-12); https://www.moj.go.jp/isa/content/001459471.pdf"
+        }
+      ]
+    },
+    {
+      "metric_id": "ssw_auto_transport_bus_drivers",
+      "name_ja": "特定技能 自動車運送業 バス運転者",
+      "unit": "persons",
+      "observations": [
+        {
+          "period": "2025-12",
+          "value": 12,
+          "status": "official_preliminary",
+          "source": "Immigration Services Agency SSW Table 3 (2025-12); https://www.moj.go.jp/isa/content/001459471.pdf"
+        }
+      ]
+    },
+    {
+      "metric_id": "ssw_auto_transport_intake_capacity_to_2029_03",
+      "name_ja": "特定技能 自動車運送業 受入れ見込数",
+      "unit": "persons",
+      "observations": [
+        {
+          "period": "2029-03",
+          "value": 22100,
+          "status": "official_policy_capacity",
+          "source": "MLIT revised field intake outlook"
+        }
+      ]
+    },
+    {
+      "metric_id": "ssw_logistics_warehouse_intake_capacity_to_2029_03",
+      "name_ja": "特定技能 物流倉庫 受入れ見込数",
+      "unit": "persons",
+      "observations": [
+        {
+          "period": "2029-03",
+          "value": 11400,
+          "status": "official_policy_capacity",
+          "source": "MLIT revised field intake outlook"
+        }
+      ]
+    }
+  ],
+  "latest_snapshot": "2025-12",
+  "latest_source_url": "https://www.moj.go.jp/isa/content/001459471.pdf"
+}
