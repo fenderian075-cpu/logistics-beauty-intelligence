@@ -1,0 +1,113 @@
+{
+  "schema_version": "1.0",
+  "dataset": "logistics-labor-market",
+  "title_ja": "物流人材需給・賃金",
+  "frequency": "annual+fiscal",
+  "sources": [
+    {
+      "name": "厚生労働省 職業情報提供サイト job tag - トラックドライバー",
+      "url": "https://shigoto.mhlw.go.jp/User/Occupation/Detail/477",
+      "underlying_sources": ["令和7年賃金構造基本統計調査", "ハローワーク求人統計"]
+    },
+    {
+      "name": "国土交通省 地域の担い手不足 交通・物流",
+      "url": "https://www.mlit.go.jp/policy/shingikai/content/001618218.pdf",
+      "underlying_source": "厚生労働省 一般職業紹介状況"
+    }
+  ],
+  "notes": [
+    "job tagのトラックドライバー統計は関連職業をまとめた職業情報で、道路貨物運送業という産業統計とは定義が異なる。",
+    "有効求人倍率は労働供給の逼迫度を表す。高いほど求人に対する求職者が少ない。",
+    "2025年度の求人賃金は求人票ベース、年収・年齢・労働時間は2025年賃金構造基本統計調査を加工した就業者統計であり、同一概念ではない。"
+  ],
+  "series": [
+    {
+      "metric_id": "truck_driver_average_age_2025",
+      "name_ja": "トラックドライバー 平均年齢",
+      "unit": "years",
+      "observations": [
+        {"period":"2025","value":51.5,"status":"official_processed","source":"厚生労働省 job tag / 令和7年賃金構造基本統計調査"}
+      ]
+    },
+    {
+      "metric_id": "truck_driver_annual_income",
+      "name_ja": "トラックドライバー 年収",
+      "unit": "ten_thousand_jpy_year",
+      "observations": [
+        {"period":"2025","value":507.2,"status":"official_processed","source":"厚生労働省 job tag / 令和7年賃金構造基本統計調査"}
+      ]
+    },
+    {
+      "metric_id": "truck_driver_monthly_work_hours",
+      "name_ja": "トラックドライバー 月間労働時間",
+      "unit": "hours_month",
+      "observations": [
+        {"period":"2025","value":175,"status":"official_processed","source":"厚生労働省 job tag / 令和7年賃金構造基本統計調査"}
+      ]
+    },
+    {
+      "metric_id": "truck_driver_job_openings_ratio",
+      "name_ja": "トラックドライバー 有効求人倍率",
+      "unit": "ratio",
+      "observations": [
+        {"period":"2025FY","value":2.94,"status":"official_processed","source":"厚生労働省 job tag / ハローワーク求人統計"}
+      ]
+    },
+    {
+      "metric_id": "truck_driver_offered_monthly_wage",
+      "name_ja": "トラックドライバー 求人賃金",
+      "unit": "ten_thousand_jpy_month",
+      "observations": [
+        {"period":"2025FY","value":29.5,"status":"official_processed","source":"厚生労働省 job tag / ハローワーク求人統計"}
+      ]
+    },
+    {
+      "metric_id": "automobile_driver_job_openings_ratio_history",
+      "name_ja": "自動車運転の職業 有効求人倍率（長期）",
+      "unit": "ratio",
+      "observations": [
+        {"period":"2006","value":1.52,"status":"official_secondary","source":"国土交通省（一般職業紹介状況より作成）"},
+        {"period":"2007","value":1.57,"status":"official_secondary","source":"国土交通省（一般職業紹介状況より作成）"},
+        {"period":"2008","value":1.38,"status":"official_secondary","source":"国土交通省（一般職業紹介状況より作成）"},
+        {"period":"2009","value":0.76,"status":"official_secondary","source":"国土交通省（一般職業紹介状況より作成）"},
+        {"period":"2010","value":0.80,"status":"official_secondary","source":"国土交通省（一般職業紹介状況より作成）"},
+        {"period":"2011","value":1.00,"status":"official_secondary","source":"国土交通省（一般職業紹介状況より作成）"},
+        {"period":"2012","value":1.38,"status":"official_secondary","source":"国土交通省（一般職業紹介状況より作成）"},
+        {"period":"2013","value":1.58,"status":"official_secondary","source":"国土交通省（一般職業紹介状況より作成）"},
+        {"period":"2014","value":1.90,"status":"official_secondary","source":"国土交通省（一般職業紹介状況より作成）"},
+        {"period":"2015","value":2.05,"status":"official_secondary","source":"国土交通省（一般職業紹介状況より作成）"},
+        {"period":"2016","value":2.32,"status":"official_secondary","source":"国土交通省（一般職業紹介状況より作成）"},
+        {"period":"2017","value":2.70,"status":"official_secondary","source":"国土交通省（一般職業紹介状況より作成）"},
+        {"period":"2018","value":3.00,"status":"official_secondary","source":"国土交通省（一般職業紹介状況より作成）"},
+        {"period":"2019","value":3.10,"status":"official_secondary","source":"国土交通省（一般職業紹介状況より作成）"},
+        {"period":"2020","value":2.25,"status":"official_secondary","source":"国土交通省（一般職業紹介状況より作成）"},
+        {"period":"2021","value":2.10,"status":"official_secondary","source":"国土交通省（一般職業紹介状況より作成）"},
+        {"period":"2022","value":2.30,"status":"official_secondary","source":"国土交通省（一般職業紹介状況より作成）"}
+      ]
+    },
+    {
+      "metric_id": "all_occupations_job_openings_ratio_history",
+      "name_ja": "全職業 有効求人倍率（長期）",
+      "unit": "ratio",
+      "observations": [
+        {"period":"2006","value":1.02,"status":"official_secondary","source":"国土交通省（一般職業紹介状況より作成）"},
+        {"period":"2007","value":1.00,"status":"official_secondary","source":"国土交通省（一般職業紹介状況より作成）"},
+        {"period":"2008","value":0.85,"status":"official_secondary","source":"国土交通省（一般職業紹介状況より作成）"},
+        {"period":"2009","value":0.44,"status":"official_secondary","source":"国土交通省（一般職業紹介状況より作成）"},
+        {"period":"2010","value":0.48,"status":"official_secondary","source":"国土交通省（一般職業紹介状況より作成）"},
+        {"period":"2011","value":0.58,"status":"official_secondary","source":"国土交通省（一般職業紹介状況より作成）"},
+        {"period":"2012","value":0.68,"status":"official_secondary","source":"国土交通省（一般職業紹介状況より作成）"},
+        {"period":"2013","value":0.82,"status":"official_secondary","source":"国土交通省（一般職業紹介状況より作成）"},
+        {"period":"2014","value":0.98,"status":"official_secondary","source":"国土交通省（一般職業紹介状況より作成）"},
+        {"period":"2015","value":1.08,"status":"official_secondary","source":"国土交通省（一般職業紹介状況より作成）"},
+        {"period":"2016","value":1.22,"status":"official_secondary","source":"国土交通省（一般職業紹介状況より作成）"},
+        {"period":"2017","value":1.35,"status":"official_secondary","source":"国土交通省（一般職業紹介状況より作成）"},
+        {"period":"2018","value":1.45,"status":"official_secondary","source":"国土交通省（一般職業紹介状況より作成）"},
+        {"period":"2019","value":1.45,"status":"official_secondary","source":"国土交通省（一般職業紹介状況より作成）"},
+        {"period":"2020","value":1.06,"status":"official_secondary","source":"国土交通省（一般職業紹介状況より作成）"},
+        {"period":"2021","value":1.02,"status":"official_secondary","source":"国土交通省（一般職業紹介状況より作成）"},
+        {"period":"2022","value":1.16,"status":"official_secondary","source":"国土交通省（一般職業紹介状況より作成）"}
+      ]
+    }
+  ]
+}
