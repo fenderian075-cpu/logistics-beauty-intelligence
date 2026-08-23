@@ -69,12 +69,38 @@ Codex's step list ending in validation and PR creation. Fail-safe ordering (10)
 is reframed around the atomic PR, with the HTML-first rule kept for split
 commits.
 
+## Logistics Demand × Capacity extension (PR #71)
+
+This branch also adds the structural logistics layer built after PR #70:
+
+- official parcel / mail demand history and parcel intensity
+- Japan total employment, transport/postal employment and employment share
+- parcel-per-worker and 2015=100 demand/capacity load proxy
+- driver aging, wage, working-time and vacancy pressure data
+- Japan total / male / female / working-age / 65+ population history
+- e-Stat API contract for transport/postal, road freight and warehousing age structure
+- 15–24 / 25–34 / 35–44 / 45–54 / 55–64 / 65+ bands for all three industries
+- derived 55+ share, <=34 share and <=34/55+ replacement ratio
+- conditional UI: age/industry cards and charts appear automatically once official API observations are populated
+- strict validation recomputes all derived ratios and checks age-band totals against published employment totals
+
+The official e-Stat API requires an application ID. `ESTAT_APP_ID` is therefore a
+repository secret consumed only by `.github/workflows/logistics-workforce-structure.yml`.
+Without the secret the workflow compiles the collector, validates the last committed
+dataset and exits without fabricating data. With the secret it refreshes the official
+2015–2025 observations and commits only verified changes on `main`.
+
 ## Not done
 
 No intelligence data was invented to populate the new UI. The dashboard therefore
 currently shows "シグナル未登録" for all five lenses, which is the correct empty
 state for the data that exists. It fills in as soon as a brief carries an
 `intelligence` block.
+
+For the logistics extension, road-freight / warehousing age observations remain
+empty until the authenticated e-Stat collector runs. Freight labor productivity and
+warehouse labor productivity intentionally wait for those official employment
+series rather than using an estimated denominator.
 
 ## Validation
 
@@ -89,35 +115,3 @@ derivation, change ordering, key-signal ranking, history with two observations,
 beauty badges, EN switching, all three archive filters, a v2.1 report page and a
 legacy report page. A fault-seeded run of the validator produced 9 errors and
 2 warnings across every new rule.
-
----
-
-## Demand × Capacity structural layer (PR #71)
-
-The Economic Flow page now begins to connect logistics demand with labor supply rather than treating freight volume in isolation.
-
-Current scope:
-- MLIT parcel-delivery history as a last-mile / B2C-demand proxy
-- Labour Force Survey transport/postal employment history
-- latest male/female transport/postal snapshot and female share
-- derived parcel-per-worker demand/capacity proxy and 2015=100 load index
-- regression validation that recomputes derived indicators from source stores
-
-Data semantics:
-- parcel volume is not labelled as pure B2C because the official series includes some business deliveries
-- annual employment and monthly sex snapshots are not mixed into a single time series
-- no age-band interpolation or pseudo average age is permitted
-- average age may only be shown when directly published by an official source
-- the formal Labor Capacity Stress index is deferred until age structure, wages and job-openings data are all connected
-
-Pinned official workforce tables:
-- e-Stat Labour Force Survey 2-2-1: age × industry × sex, annual history from 2007
-- e-Stat detailed 2-1-1: industry × employment type × age, annual history from 2007
-- Labour Force Survey detailed source tables include road freight transport and warehousing for finer industry cuts
-
-Next implementation targets:
-1. age bands and 55+ / young-worker ratios
-2. road-freight and warehousing employment, age and sex structure
-3. transport/postal wage history
-4. transport-driver job-openings ratio
-5. composite Labor Capacity Stress after all component series pass coverage validation
