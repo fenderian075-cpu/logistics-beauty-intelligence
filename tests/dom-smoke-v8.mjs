@@ -45,7 +45,7 @@ async function dashboard(){console.log("\n[v8 dashboard]");const r=await render(
   ["daily","weekly","monthly"].forEach(type=>{const a=d.getElementById(`nav-latest-${type}`),target=latest(type);ok(`${type} navigation resolves to an existing report`,!!a&&!!target&&a.getAttribute("href").endsWith(target.path),`${a?.getAttribute("href")} / ${target?.path}`);});
   r.release();}
 
-async function economy(){console.log("\n[v8 economic flow]");const r=await render("economic-flow.html",{readySelector:"#cost .chart, #cost .value-row"}),d=r.document;
+async function economy(){console.log("\n[v8 economic flow]");const r=await render("economic-flow.html",{readySelector:"#history-analysis"}),d=r.document;
   ok("renders without console errors",r.errors.length===0,r.errors[0]);
   ok("KPI strip rendered",d.querySelectorAll("#flow-kpi .kpi-card").length>=6,String(d.querySelectorAll("#flow-kpi .kpi-card").length));
   ["demand","trade","volume","cost","macro"].forEach(id=>ok(`${id} analytical block exists`,!!d.getElementById(id)));
@@ -56,6 +56,19 @@ async function economy(){console.log("\n[v8 economic flow]");const r=await rende
   ok("chart numeric tables are retained as drill-downs",d.querySelectorAll("details.chart-data").length>=1);
   ok("raw dataset tables are drill-downs",d.querySelectorAll("details.flow-table").length>=1);
   ok("no single-observation fake line is advertised",!Array.from(d.querySelectorAll(".chart-absent")).some(n=>!n.textContent.includes("1時点")&&!n.textContent.includes("系列")));
+  ok("history drilldowns are exposed on KPI and dataset rows",d.querySelectorAll("[data-history-metric].history-trigger").length>=6,String(d.querySelectorAll("[data-history-metric].history-trigger").length));
+  const road=d.querySelector('[data-history-metric="road_freight"]');
+  ok("long-run road freight series is clickable",!!road);
+  if(road){road.dispatchEvent(new r.window.MouseEvent("click",{bubbles:true,cancelable:true}));await sleep(10);}
+  const panel=d.getElementById("history-analysis");
+  ok("history panel opens for a selected metric",!!panel&&!panel.hidden);
+  ok("history panel renders summary statistics",d.querySelectorAll("#history-analysis .history-stat").length===6,String(d.querySelectorAll("#history-analysis .history-stat").length));
+  ok("history panel renders long-run chart",!!d.querySelector("#history-analysis .history-chart .chart__svg"));
+  ok("history panel exposes period windows",d.querySelectorAll("#history-analysis [data-history-window]").length===5);
+  ok("history panel exposes observation table",!!d.querySelector("#history-analysis .history-table"));
+  ok("selected metric is reflected in URL",r.window.location.search.includes("metric=road_freight"),r.window.location.search);
+  const ten=d.querySelector('#history-analysis [data-history-window="10y"]');if(ten){ten.dispatchEvent(new r.window.MouseEvent("click",{bubbles:true,cancelable:true}));await sleep(5);}
+  ok("history window can be changed",d.querySelector('#history-analysis [data-history-window="10y"]')?.getAttribute("aria-pressed")==="true");
   r.release();}
 
 async function archive(){console.log("\n[v8 archive]");const r=await render("archive.html",{readySelector:"#archive-list .archive-item"}),d=r.document;
