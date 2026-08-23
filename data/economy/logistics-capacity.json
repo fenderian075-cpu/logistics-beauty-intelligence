@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0",
+  "dataset": "logistics-capacity",
+  "title_ja": "物流需給・処理負荷",
+  "frequency": "annual",
+  "sources": [
+    {"name":"国土交通省 宅配便等取扱個数の調査","url":"https://www.mlit.go.jp/statistics/details/jidosha_list.html"},
+    {"name":"総務省統計局 労働力調査","url":"https://www.stat.go.jp/data/roudou/"}
+  ],
+  "notes": [
+    "宅配便個数を運輸業・郵便業就業者数で除した構造指標。宅配便には法人向けを一部含み、就業者には宅配以外の運輸・郵便従事者も含むため、生産性そのものではなく需要/労働供給の方向を見るproxyとして扱う。",
+    "Labor Capacity Stressの正式指数ではない。年齢構成、賃金、求人倍率が揃った後に複合指数を別系列として構築する。"
+  ],
+  "series": [
+    {
+      "metric_id": "parcel_per_transport_worker",
+      "name_ja": "運輸就業者1人あたり宅配便個数（proxy）",
+      "unit": "parcels_per_worker_year",
+      "observations": [
+        {"period":"2015","value":1114.6,"status":"derived","source":"MLIT宅配便個数 ÷ 総務省 労働力調査 運輸業・郵便業就業者"},
+        {"period":"2016","value":1185.5,"status":"derived","source":"同上","yoy":6.36},
+        {"period":"2017","value":1250.3,"status":"derived","source":"同上","yoy":5.47},
+        {"period":"2018","value":1259.4,"status":"derived","source":"同上","yoy":0.73},
+        {"period":"2019","value":1242.2,"status":"derived","source":"同上","yoy":-1.37},
+        {"period":"2020","value":1385.7,"status":"derived","source":"同上","yoy":11.55},
+        {"period":"2021","value":1407.1,"status":"derived","source":"同上","yoy":1.54},
+        {"period":"2022","value":1426.2,"status":"derived","source":"同上","yoy":1.36},
+        {"period":"2023","value":1434.7,"status":"derived","source":"同上","yoy":0.6},
+        {"period":"2024","value":1458.3,"status":"derived","source":"同上","yoy":1.65}
+      ]
+    },
+    {
+      "metric_id": "parcel_load_index_2015",
+      "name_ja": "宅配需要/物流労働力 指数（2015=100）",
+      "unit": "index_2015_100",
+      "observations": [
+        {"period":"2015","value":100.0,"status":"derived","source":"parcel_per_transport_workerを2015年=100に指数化"},
+        {"period":"2016","value":106.4,"status":"derived","source":"同上"},
+        {"period":"2017","value":112.2,"status":"derived","source":"同上"},
+        {"period":"2018","value":113.0,"status":"derived","source":"同上"},
+        {"period":"2019","value":111.4,"status":"derived","source":"同上"},
+        {"period":"2020","value":124.3,"status":"derived","source":"同上"},
+        {"period":"2021","value":126.2,"status":"derived","source":"同上"},
+        {"period":"2022","value":128.0,"status":"derived","source":"同上"},
+        {"period":"2023","value":128.7,"status":"derived","source":"同上"},
+        {"period":"2024","value":130.8,"status":"derived","source":"同上"}
+      ]
+    }
+  ]
+}
