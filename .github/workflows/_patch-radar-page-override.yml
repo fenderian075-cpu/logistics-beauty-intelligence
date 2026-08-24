@@ -1,0 +1,35 @@
+name: Patch radar dashboard override
+on:
+  push:
+    branches: [fix/radar-mobile-overlap-v2]
+    paths: ['.github/workflows/_patch-radar-page-override.yml']
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/radar-mobile-overlap-v2
+      - name: Patch dashboard override
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('assets/css/pages.css')
+          s=p.read_text()
+          old='''  .section--radar .radar-row__head {\n    grid-template-columns: minmax(64px, max-content) 50px minmax(0, 1fr);\n    column-gap: 10px;\n    row-gap: 3px;\n  }\n  .section--radar .radar-row__state {\n    min-width: 64px;\n    overflow: visible;\n    white-space: nowrap;\n  }\n  .section--radar .radar-row__date {\n    white-space: nowrap;\n  }'''
+          new='''  .section--radar .radar-row__head {\n    grid-template-columns: 72px 52px minmax(0, 1fr);\n    column-gap: 10px;\n    row-gap: 3px;\n  }\n  .section--radar .radar-row__state {\n    width: 72px;\n    min-width: 72px;\n    justify-self: start;\n    text-align: left;\n    overflow: visible;\n    white-space: nowrap;\n  }\n  .section--radar .radar-row__date {\n    width: 52px;\n    min-width: 52px;\n    justify-self: start;\n    text-align: left;\n    white-space: nowrap;\n  }'''
+          if old not in s:
+              raise SystemExit('dashboard radar override target not found')
+          p.write_text(s.replace(old,new,1))
+          PY
+      - name: Remove one-shot workflow
+        run: rm .github/workflows/_patch-radar-page-override.yml
+      - name: Commit patch
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add assets/css/pages.css .github/workflows/_patch-radar-page-override.yml
+          git commit -m "fix: align dashboard radar mobile columns"
+          git push origin HEAD:fix/radar-mobile-overlap-v2
