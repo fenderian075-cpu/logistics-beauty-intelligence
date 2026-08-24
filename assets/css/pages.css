@@ -150,16 +150,23 @@
      state column is too narrow for the Japanese label 「実影響」. Reserve the
      actual content width so the state can never overlap the date column. */
   .section--radar .radar-row__head {
-    grid-template-columns: minmax(64px, max-content) 50px minmax(0, 1fr);
+    grid-template-columns: 72px 52px minmax(0, 1fr);
     column-gap: 10px;
     row-gap: 3px;
   }
   .section--radar .radar-row__state {
-    min-width: 64px;
+    width: 72px;
+    min-width: 72px;
+    justify-self: start;
+    text-align: left;
     overflow: visible;
     white-space: nowrap;
   }
   .section--radar .radar-row__date {
+    width: 52px;
+    min-width: 52px;
+    justify-self: start;
+    text-align: left;
     white-space: nowrap;
   }
   .section--radar .radar-row__domain {
