@@ -1,17 +1,111 @@
 {
-  "schema_version":"1.4","dataset":"retail-beauty","title_ja":"Beauty実需・小売","frequency":"monthly+annual","baseline_updated_at":"2026-08-31T08:00:00+09:00",
-  "sources":[{"name":"日本百貨店協会 百貨店売上高","url":"https://www.depart.or.jp/store_sale/"},{"name":"経済産業省 商業動態統計 / ドラッグストア販売","url":"https://www.meti.go.jp/statistics/tyo/syoudou/"},{"name":"日本化粧品工業会 化粧品統計","url":"https://www.jcia.org/user/statistics/"},{"name":"財務省 貿易統計","url":"https://www.customs.go.jp/toukei/info/"}],
-  "series":[
-    {"metric_id":"department_store_total_sales","unit":"JPY","basis":"calendar_month","observations":[{"period":"2026-01","value":491589346000,"published_at":"2026-02-25","status":"official","source":"日本百貨店協会 全国百貨店売上高概況"},{"period":"2026-02","value":432015384000,"yoy_store_adjusted_pct":1.6,"published_at":"2026-03-24","status":"official","source":"日本百貨店協会 全国百貨店売上高概況"},{"period":"2026-03","value":507118173000,"yoy_store_adjusted_pct":3.2,"published_at":"2026-04-24","status":"official","source":"日本百貨店協会 全国百貨店売上高概況"},{"period":"2026-04","value":442155456000,"yoy_store_adjusted_pct":5.2,"published_at":"2026-05-25","status":"official","source":"日本百貨店協会 全国百貨店売上高概況"},{"period":"2026-05","value":468390357000,"yoy_store_adjusted_pct":8.3,"published_at":"2026-06-25","status":"official","source":"日本百貨店協会 全国百貨店売上高概況"},{"period":"2026-06","value":468771750000,"yoy_store_adjusted_pct":2.3,"published_at":"2026-07-24","status":"official","source":"日本百貨店協会 全国百貨店売上高概況"},{"period":"2026-07","value":488901000000,"yoy_store_adjusted_pct":5.1,"comparison":{"type":"yoy","base_period":"2025-07"},"published_at":"2026-08-25","status":"official","source":"日本百貨店協会 全国百貨店売上高概況"}]},
-    {"metric_id":"department_store_cosmetics_sales","unit":"JPY","basis":"calendar_month","observations":[{"period":"2026-01","value":40638228000,"share_of_department_store_sales_pct":8.3,"yoy_store_adjusted_pct":0.2,"published_at":"2026-02-25","status":"official","source":"日本百貨店協会 全国百貨店売上高概況"},{"period":"2026-02","value":36981883000,"share_of_department_store_sales_pct":8.6,"yoy_store_adjusted_pct":-10.0,"published_at":"2026-03-24","status":"official","source":"日本百貨店協会 全国百貨店売上高概況"},{"period":"2026-03","value":49837606000,"share_of_department_store_sales_pct":9.8,"yoy_store_adjusted_pct":-3.6,"published_at":"2026-04-24","status":"official","source":"日本百貨店協会 全国百貨店売上高概況"},{"period":"2026-04","value":39530694000,"share_of_department_store_sales_pct":8.9,"yoy_store_adjusted_pct":2.3,"published_at":"2026-05-25","status":"official","source":"日本百貨店協会 全国百貨店売上高概況"},{"period":"2026-05","value":42924133000,"share_of_department_store_sales_pct":9.2,"yoy_store_adjusted_pct":6.9,"published_at":"2026-06-25","status":"official","source":"日本百貨店協会 全国百貨店売上高概況"},{"period":"2026-06","value":39744028000,"share_of_department_store_sales_pct":8.5,"yoy_store_adjusted_pct":1.8,"comparison":{"type":"yoy","base_period":"2025-06"},"published_at":"2026-07-24","status":"official","source":"日本百貨店協会 全国百貨店売上高概況"}]},
-    {"metric_id":"department_store_inbound_sales","unit":"JPY","basis":"calendar_month","observations":[{"period":"2026-07","value":50620000000,"yoy_pct":25.5,"share_of_department_store_sales_pct":10.4,"comparison":{"type":"yoy","base_period":"2025-07"},"published_at":"2026-08-25","status":"official","source":"日本百貨店協会 免税売上高・来店動向"}]},
-    {"metric_id":"department_store_domestic_sales_growth","unit":"pct","basis":"store_adjusted_yoy","observations":[{"period":"2026-07","value":3.2,"comparison":{"type":"yoy","base_period":"2025-07"},"published_at":"2026-08-25","status":"official","source":"日本百貨店協会 全国百貨店売上高概況"}]},
-    {"metric_id":"drugstore_beauty_sales","unit":"JPY","basis":"calendar_year_METI_drugstore_beauty_care_cosmetics_and_accessories","observations":[{"period":"2022","value":961900000000,"yoy_pct":6.2,"status":"official","source":"経済産業省 商業動態統計"},{"period":"2023","value":1052600000000,"yoy_pct":9.4,"status":"official","source":"経済産業省 商業動態統計"},{"period":"2024","value":1166700000000,"yoy_pct":10.8,"status":"official","source":"経済産業省 商業動態統計"},{"period":"2025","value":1239900000000,"yoy_pct":6.3,"status":"official","source":"経済産業省 商業動態統計"}]},
-    {"metric_id":"beauty_import_value","unit":"JPY","observations":[]},{"metric_id":"beauty_import_volume","unit":"quantity","observations":[]},{"metric_id":"cosmetics_domestic_shipments","unit":"JPY","observations":[{"period":"2024","value":1374500000000,"yoy_pct":5.5,"status":"official_summary","source":"日本化粧品工業会 / 経済産業省 生産動態統計"}]},{"metric_id":"cosmetics_household_spend_two_plus_person_household","unit":"JPY_per_household_year","observations":[{"period":"2024","value":38436,"status":"official_summary","source":"日本化粧品工業会 / 総務省 家計調査"}]}
+  "schema_version":"1.3",
+  "dataset":"retail-beauty",
+  "title_ja":"Beauty実需・小売",
+  "frequency":"monthly+annual",
+  "baseline_updated_at":"2026-08-23T11:36:00+09:00",
+  "sources":[
+    {"name":"日本百貨店協会 百貨店売上高","url":"https://www.depart.or.jp/store_sale/"},
+    {"name":"日本百貨店協会 最近の百貨店売上高の推移","url":"https://www.depart.or.jp/store_sale/files/suii22606e.pdf","vintage":"2026-07-27"},
+    {"name":"経済産業省 商業動態統計 / ドラッグストア販売","url":"https://www.meti.go.jp/statistics/tyo/syoudou/"},
+    {"name":"日本化粧品工業会 化粧品統計","url":"https://www.jcia.org/user/statistics/"},
+    {"name":"財務省 貿易統計","url":"https://www.customs.go.jp/toukei/info/"}
   ],
-  "category_structure":[{"period":"2024","category":"skincare","share_pct":44.5,"basis":"domestic_shipment_value","source":"日本化粧品工業会"},{"period":"2024","category":"haircare","share_pct":26.9,"basis":"domestic_shipment_value","source":"日本化粧品工業会"},{"period":"2024","category":"makeup","share_pct":20.9,"basis":"domestic_shipment_value","source":"日本化粧品工業会"},{"period":"2024","category":"special_purpose","share_pct":7.1,"basis":"domestic_shipment_value","source":"日本化粧品工業会"},{"period":"2024","category":"fragrance","share_pct":0.7,"basis":"domestic_shipment_value","source":"日本化粧品工業会"}],
+  "series":[
+    {
+      "metric_id":"department_store_total_sales",
+      "unit":"JPY",
+      "basis":"calendar_month",
+      "observations":[
+        {"period":"2026-01","value":491589346000,"published_at":"2026-02-25","status":"official","source":"日本百貨店協会 全国百貨店売上高概況"},
+        {"period":"2026-02","value":432015384000,"yoy_store_adjusted_pct":1.6,"published_at":"2026-03-24","status":"official","source":"日本百貨店協会 全国百貨店売上高概況"},
+        {"period":"2026-03","value":507118173000,"yoy_store_adjusted_pct":3.2,"published_at":"2026-04-24","status":"official","source":"日本百貨店協会 全国百貨店売上高概況"},
+        {"period":"2026-04","value":442155456000,"yoy_store_adjusted_pct":5.2,"published_at":"2026-05-25","status":"official","source":"日本百貨店協会 全国百貨店売上高概況"},
+        {"period":"2026-05","value":468390357000,"yoy_store_adjusted_pct":8.3,"published_at":"2026-06-25","status":"official","source":"日本百貨店協会 全国百貨店売上高概況"},
+        {"period":"2026-06","value":468771750000,"yoy_store_adjusted_pct":2.3,"published_at":"2026-07-24","status":"official","source":"日本百貨店協会 全国百貨店売上高概況"}
+      ]
+    },
+    {
+      "metric_id":"department_store_cosmetics_sales",
+      "unit":"JPY",
+      "basis":"calendar_month",
+      "observations":[
+        {"period":"2026-01","value":40638228000,"share_of_department_store_sales_pct":8.3,"yoy_store_adjusted_pct":0.2,"published_at":"2026-02-25","status":"official","source":"日本百貨店協会 全国百貨店売上高概況"},
+        {"period":"2026-02","value":36981883000,"share_of_department_store_sales_pct":8.6,"yoy_store_adjusted_pct":-10.0,"published_at":"2026-03-24","status":"official","source":"日本百貨店協会 全国百貨店売上高概況"},
+        {"period":"2026-03","value":49837606000,"share_of_department_store_sales_pct":9.8,"yoy_store_adjusted_pct":-3.6,"published_at":"2026-04-24","status":"official","source":"日本百貨店協会 全国百貨店売上高概況"},
+        {"period":"2026-04","value":39530694000,"share_of_department_store_sales_pct":8.9,"yoy_store_adjusted_pct":2.3,"published_at":"2026-05-25","status":"official","source":"日本百貨店協会 全国百貨店売上高概況"},
+        {"period":"2026-05","value":42924133000,"share_of_department_store_sales_pct":9.2,"yoy_store_adjusted_pct":6.9,"published_at":"2026-06-25","status":"official","source":"日本百貨店協会 全国百貨店売上高概況"},
+        {"period":"2026-06","value":39744028000,"share_of_department_store_sales_pct":8.5,"yoy_store_adjusted_pct":1.8,"published_at":"2026-07-24","status":"official","source":"日本百貨店協会 全国百貨店売上高概況"}
+      ]
+    },
+    {
+      "metric_id":"department_store_total_sales_annual",
+      "unit":"JPY",
+      "basis":"calendar_year",
+      "observations":[
+        {"period":"2021","value":4418298830000,"status":"official","source":"日本百貨店協会 最近の百貨店売上高の推移"},
+        {"period":"2022","value":4981230097000,"status":"official","source":"日本百貨店協会 最近の百貨店売上高の推移"},
+        {"period":"2023","value":5421133689000,"yoy_store_adjusted_pct":9.2,"status":"official","source":"日本百貨店協会 年間売上高"},
+        {"period":"2024","value":5772206843000,"yoy_store_adjusted_pct":6.8,"status":"official","source":"日本百貨店協会 年間売上高"},
+        {"period":"2025","value":5675452736000,"yoy_store_adjusted_pct":-1.5,"status":"official","source":"日本百貨店協会 年間売上高"}
+      ]
+    },
+    {
+      "metric_id":"department_store_cosmetics_sales_annual",
+      "unit":"JPY",
+      "basis":"calendar_year",
+      "observations":[
+        {"period":"2021","value":348242463000,"status":"official","source":"日本百貨店協会 最近の百貨店売上高の推移"},
+        {"period":"2022","value":379538899000,"status":"official","source":"日本百貨店協会 最近の百貨店売上高の推移"},
+        {"period":"2023","value":441598214000,"yoy_store_adjusted_pct":16.7,"status":"official","source":"日本百貨店協会 年間売上高"},
+        {"period":"2024","value":502710488000,"yoy_store_adjusted_pct":14.1,"status":"official","source":"日本百貨店協会 年間売上高"},
+        {"period":"2025","value":508512470000,"yoy_store_adjusted_pct":1.3,"status":"official","source":"日本百貨店協会 年間売上高"}
+      ]
+    },
+    {
+      "metric_id":"drugstore_beauty_sales",
+      "unit":"JPY",
+      "basis":"calendar_year_METI_drugstore_beauty_care_cosmetics_and_accessories",
+      "observations":[
+        {"period":"2022","value":961900000000,"yoy_pct":6.2,"status":"official","source":"経済産業省 商業動態統計"},
+        {"period":"2023","value":1052600000000,"yoy_pct":9.4,"status":"official","source":"経済産業省 商業動態統計"},
+        {"period":"2024","value":1166700000000,"yoy_pct":10.8,"status":"official","source":"経済産業省 商業動態統計"},
+        {"period":"2025","value":1239900000000,"yoy_pct":6.3,"status":"official","source":"経済産業省 商業動態統計"}
+      ]
+    },
+    {
+      "metric_id":"drugstore_total_sales",
+      "unit":"JPY",
+      "basis":"calendar_year",
+      "observations":[
+        {"period":"2022","value":7708700000000,"yoy_pct":5.5,"status":"official","source":"経済産業省 商業動態統計"},
+        {"period":"2023","value":8343800000000,"yoy_pct":8.2,"status":"official","source":"経済産業省 商業動態統計"},
+        {"period":"2024","value":8919900000000,"yoy_pct":6.9,"status":"official","source":"経済産業省 商業動態統計"},
+        {"period":"2025","value":9412900000000,"yoy_pct":5.5,"status":"official","source":"経済産業省 商業動態統計"}
+      ]
+    },
+    {"metric_id":"beauty_import_value","unit":"JPY","observations":[]},
+    {"metric_id":"beauty_import_volume","unit":"quantity","observations":[]},
+    {
+      "metric_id":"cosmetics_domestic_shipments",
+      "unit":"JPY",
+      "observations":[{"period":"2024","value":1374500000000,"yoy_pct":5.5,"status":"official_summary","source":"日本化粧品工業会 / 経済産業省 生産動態統計"}]
+    },
+    {
+      "metric_id":"cosmetics_household_spend_two_plus_person_household",
+      "unit":"JPY_per_household_year",
+      "observations":[{"period":"2024","value":38436,"status":"official_summary","source":"日本化粧品工業会 / 総務省 家計調査"}]
+    }
+  ],
+  "category_structure":[
+    {"period":"2024","category":"skincare","share_pct":44.5,"basis":"domestic_shipment_value","source":"日本化粧品工業会"},
+    {"period":"2024","category":"haircare","share_pct":26.9,"basis":"domestic_shipment_value","source":"日本化粧品工業会"},
+    {"period":"2024","category":"makeup","share_pct":20.9,"basis":"domestic_shipment_value","source":"日本化粧品工業会"},
+    {"period":"2024","category":"special_purpose","share_pct":7.1,"basis":"domestic_shipment_value","source":"日本化粧品工業会"},
+    {"period":"2024","category":"fragrance","share_pct":0.7,"basis":"domestic_shipment_value","source":"日本化粧品工業会"}
+  ],
   "priority_dimensions":["makeup","skincare","fragrance","department_store","drugstore","EC","priority_import_flow"],
-  "comparison_policy":"Every comparison must state type and base period. JDSA headline YoY is store-count adjusted and must not be mixed with raw ratios from unadjusted sales values.",
+  "comparison_policy":"JDSA headline YoY is store-count adjusted. It is stored as yoy_store_adjusted_pct and must not be mixed with a raw ratio computed from unadjusted sales values. METI drugstore annual YoY is stored as yoy_pct under its published statistical basis.",
   "privacy_note":"Specific priority origin countries, ports and routes are intentionally not stored in this public dataset. They are evaluated only during the private intelligence run and public output is generalized.",
   "interpretation":"Brand.com promotion and Google Trends are leading/attention signals; department-store, retail, shipment and trade statistics are economic confirmation. Never treat promotion as organic demand."
 }
