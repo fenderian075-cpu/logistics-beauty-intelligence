@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "dataset": "historical-backfill-status",
-  "updated_at": "2026-08-23T18:45:43+09:00",
+  "updated_at": "2026-09-02T17:00:27+09:00",
   "status": "success",
   "stages": {
     "trade": {
@@ -9,7 +9,7 @@
       "annual_rows": 75,
       "annual_start": "1950",
       "annual_end": "2024",
-      "monthly_rows": 570
+      "monthly_rows": 571
     },
     "gdp": {
       "status": "success",

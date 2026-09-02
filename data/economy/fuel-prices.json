@@ -7,7 +7,7 @@
     "name": "資源エネルギー庁 石油製品価格調査",
     "url": "https://www.enecho.meti.go.jp/statistics/petroleum_and_lpgas/pl007/results.html",
     "publication_rule_ja": "給油所小売価格は原則毎週月曜日調査・水曜日公表。全国平均と都道府県別を公表。",
-    "weekly_workbook_url": "https://www.enecho.meti.go.jp/statistics/petroleum_and_lpgas/pl007/xlsx/260826s5.xlsx"
+    "weekly_workbook_url": "https://www.enecho.meti.go.jp/statistics/petroleum_and_lpgas/pl007/xlsx/260902s5.xlsx"
   },
   "verification_source": {
     "name": "oil-stat.com",
@@ -9195,6 +9195,11 @@
           "period": "2026-08-24",
           "value": 169.9,
           "status": "official"
+        },
+        {
+          "period": "2026-08-31",
+          "value": 170.0,
+          "status": "official"
         }
       ]
     },
@@ -18376,6 +18381,11 @@
         {
           "period": "2026-08-24",
           "value": 159.3,
+          "status": "official"
+        },
+        {
+          "period": "2026-08-31",
+          "value": 159.4,
           "status": "official"
         }
       ]
@@ -27559,11 +27569,16 @@
           "period": "2026-08-24",
           "value": 2534.0,
           "status": "official"
+        },
+        {
+          "period": "2026-08-31",
+          "value": 2534.0,
+          "status": "official"
         }
       ]
     }
   ],
   "collection_status": "official_weekly_history_ingested",
   "collection_note_ja": "直近週次は資源エネルギー庁公表値を転載する公開時系列で照合して初期投入。正式な長期履歴は公式週次Excel collectorをprimaryとして取り込む。欠損値は推測で補完しない。",
-  "last_collected_at": "2026-08-26T06:02:42.821782+00:00"
+  "last_collected_at": "2026-09-02T08:00:08.341327+00:00"
 }

@@ -1,14 +1,14 @@
 {
   "schema_version": "1.0",
   "dataset": "historical-coverage",
-  "updated_at": "2026-08-23T18:45:43+09:00",
+  "updated_at": "2026-09-02T17:00:28+09:00",
   "stages": {
     "trade": {
       "status": "success",
       "annual_rows": 75,
       "annual_start": "1950",
       "annual_end": "2024",
-      "monthly_rows": 570
+      "monthly_rows": 571
     },
     "gdp": {
       "status": "success",
@@ -162,6 +162,156 @@
       "end": "2025"
     },
     {
+      "file": "data/economy/driver-demography.json",
+      "dataset": "driver-demography",
+      "metric_id": "all_industries_average_age",
+      "name_ja": "全産業 平均年齢",
+      "unit": "years",
+      "observations": 11,
+      "start": "2010",
+      "end": "2020"
+    },
+    {
+      "file": "data/economy/driver-demography.json",
+      "dataset": "driver-demography",
+      "metric_id": "commercial_large_truck_driver_average_age",
+      "name_ja": "営業用大型トラック運転者 平均年齢",
+      "unit": "years",
+      "observations": 11,
+      "start": "2010",
+      "end": "2020"
+    },
+    {
+      "file": "data/economy/driver-demography.json",
+      "dataset": "driver-demography",
+      "metric_id": "commercial_small_truck_driver_average_age",
+      "name_ja": "営業用普通・小型トラック運転者 平均年齢",
+      "unit": "years",
+      "observations": 11,
+      "start": "2010",
+      "end": "2020"
+    },
+    {
+      "file": "data/economy/driver-labor-history.json",
+      "dataset": "driver-labor-history",
+      "metric_id": "large_truck_driver_annual_work_hours",
+      "name_ja": "大型トラック運転者 年間労働時間",
+      "unit": "hours_year",
+      "observations": 9,
+      "start": "2016",
+      "end": "2024"
+    },
+    {
+      "file": "data/economy/driver-labor-history.json",
+      "dataset": "driver-labor-history",
+      "metric_id": "small_medium_truck_driver_annual_work_hours",
+      "name_ja": "中小型トラック運転者 年間労働時間",
+      "unit": "hours_year",
+      "observations": 9,
+      "start": "2016",
+      "end": "2024"
+    },
+    {
+      "file": "data/economy/driver-labor-history.json",
+      "dataset": "driver-labor-history",
+      "metric_id": "all_industries_annual_work_hours",
+      "name_ja": "全産業平均 年間労働時間",
+      "unit": "hours_year",
+      "observations": 9,
+      "start": "2016",
+      "end": "2024"
+    },
+    {
+      "file": "data/economy/driver-labor-history.json",
+      "dataset": "driver-labor-history",
+      "metric_id": "large_truck_work_hours_premium_vs_all",
+      "name_ja": "大型トラック労働時間プレミアム（全産業比）",
+      "unit": "pct",
+      "observations": 9,
+      "start": "2016",
+      "end": "2024"
+    },
+    {
+      "file": "data/economy/driver-labor-history.json",
+      "dataset": "driver-labor-history",
+      "metric_id": "large_truck_driver_annual_income",
+      "name_ja": "大型トラック運転者 年間所得額",
+      "unit": "ten_thousand_jpy_year",
+      "observations": 9,
+      "start": "2016",
+      "end": "2024"
+    },
+    {
+      "file": "data/economy/driver-labor-history.json",
+      "dataset": "driver-labor-history",
+      "metric_id": "small_medium_truck_driver_annual_income",
+      "name_ja": "中小型トラック運転者 年間所得額",
+      "unit": "ten_thousand_jpy_year",
+      "observations": 9,
+      "start": "2016",
+      "end": "2024"
+    },
+    {
+      "file": "data/economy/driver-labor-history.json",
+      "dataset": "driver-labor-history",
+      "metric_id": "all_industries_annual_income",
+      "name_ja": "全産業平均 年間所得額",
+      "unit": "ten_thousand_jpy_year",
+      "observations": 9,
+      "start": "2016",
+      "end": "2024"
+    },
+    {
+      "file": "data/economy/driver-labor-history.json",
+      "dataset": "driver-labor-history",
+      "metric_id": "large_truck_income_gap_vs_all",
+      "name_ja": "大型トラック所得格差（全産業比）",
+      "unit": "pct",
+      "observations": 9,
+      "start": "2016",
+      "end": "2024"
+    },
+    {
+      "file": "data/economy/driver-labor-history.json",
+      "dataset": "driver-labor-history",
+      "metric_id": "small_medium_truck_income_gap_vs_all",
+      "name_ja": "中小型トラック所得格差（全産業比）",
+      "unit": "pct",
+      "observations": 9,
+      "start": "2016",
+      "end": "2024"
+    },
+    {
+      "file": "data/economy/ec-demand.json",
+      "dataset": "ec-demand",
+      "metric_id": "physical_btoc_ec_market",
+      "name_ja": "物販系BtoC-EC市場規模",
+      "unit": "trillion_jpy",
+      "observations": 10,
+      "start": "2015",
+      "end": "2024"
+    },
+    {
+      "file": "data/economy/ec-demand.json",
+      "dataset": "ec-demand",
+      "metric_id": "physical_btoc_ec_rate",
+      "name_ja": "物販系BtoC-EC化率",
+      "unit": "pct",
+      "observations": 10,
+      "start": "2015",
+      "end": "2024"
+    },
+    {
+      "file": "data/economy/ec-demand.json",
+      "dataset": "ec-demand",
+      "metric_id": "physical_btoc_ec_index_2015",
+      "name_ja": "物販系BtoC-EC市場規模指数（2015=100）",
+      "unit": "index_2015_100",
+      "observations": 10,
+      "start": "2015",
+      "end": "2024"
+    },
+    {
       "file": "data/economy/freight-cost.json",
       "dataset": "freight-cost",
       "metric_id": "road_freight",
@@ -232,14 +382,44 @@
       "end": "2026-06"
     },
     {
+      "file": "data/economy/freight-driver-vacancy-history.json",
+      "dataset": "freight-driver-vacancy-history",
+      "metric_id": "freight_driver_job_openings_ratio",
+      "name_ja": "貨物自動車運転者 有効求人倍率",
+      "unit": "ratio",
+      "observations": 7,
+      "start": "2018",
+      "end": "2024"
+    },
+    {
+      "file": "data/economy/freight-driver-vacancy-history.json",
+      "dataset": "freight-driver-vacancy-history",
+      "metric_id": "all_occupations_job_openings_ratio_comparable",
+      "name_ja": "全職業 有効求人倍率（貨物比較用）",
+      "unit": "ratio",
+      "observations": 7,
+      "start": "2018",
+      "end": "2024"
+    },
+    {
+      "file": "data/economy/freight-driver-vacancy-history.json",
+      "dataset": "freight-driver-vacancy-history",
+      "metric_id": "freight_driver_vacancy_multiple_vs_all",
+      "name_ja": "貨物自動車運転者 求人倍率倍率差",
+      "unit": "multiple",
+      "observations": 7,
+      "start": "2018",
+      "end": "2024"
+    },
+    {
       "file": "data/economy/fuel-prices.json",
       "dataset": "fuel-prices",
       "metric_id": "regular_gasoline_national",
       "name_ja": "レギュラーガソリン 全国平均",
       "unit": "円/L",
-      "observations": 1834,
+      "observations": 1836,
       "start": "1990-08-27",
-      "end": "2026-08-17"
+      "end": "2026-08-31"
     },
     {
       "file": "data/economy/fuel-prices.json",
@@ -247,9 +427,9 @@
       "metric_id": "diesel_national",
       "name_ja": "軽油 全国平均",
       "unit": "円/L",
-      "observations": 1834,
+      "observations": 1836,
       "start": "1990-08-27",
-      "end": "2026-08-17"
+      "end": "2026-08-31"
     },
     {
       "file": "data/economy/fuel-prices.json",
@@ -257,9 +437,159 @@
       "metric_id": "kerosene_national",
       "name_ja": "灯油 全国平均（店頭）",
       "unit": "円/18L",
-      "observations": 1834,
+      "observations": 1836,
       "start": "1990-08-27",
-      "end": "2026-08-17"
+      "end": "2026-08-31"
+    },
+    {
+      "file": "data/economy/household-demand.json",
+      "dataset": "household-demand",
+      "metric_id": "resident_register_households",
+      "name_ja": "住民基本台帳 世帯数（総計）",
+      "unit": "million_households",
+      "observations": 12,
+      "start": "2015",
+      "end": "2026"
+    },
+    {
+      "file": "data/economy/household-demand.json",
+      "dataset": "household-demand",
+      "metric_id": "parcel_per_household",
+      "name_ja": "1世帯あたり宅配便個数",
+      "unit": "parcels_per_household_year",
+      "observations": 10,
+      "start": "2015",
+      "end": "2024"
+    },
+    {
+      "file": "data/economy/japan-demography.json",
+      "dataset": "japan-demography",
+      "metric_id": "population_total_census_preliminary",
+      "name_ja": "総人口（国勢調査速報）",
+      "unit": "million_persons",
+      "observations": 1,
+      "start": "2025-10-01",
+      "end": "2025-10-01"
+    },
+    {
+      "file": "data/economy/japan-demography.json",
+      "dataset": "japan-demography",
+      "metric_id": "population_total",
+      "name_ja": "総人口（各年10月1日）",
+      "unit": "million_persons",
+      "observations": 11,
+      "start": "2015",
+      "end": "2025"
+    },
+    {
+      "file": "data/economy/japan-demography.json",
+      "dataset": "japan-demography",
+      "metric_id": "population_male",
+      "name_ja": "男性人口（各年10月1日）",
+      "unit": "million_persons",
+      "observations": 11,
+      "start": "2015",
+      "end": "2025"
+    },
+    {
+      "file": "data/economy/japan-demography.json",
+      "dataset": "japan-demography",
+      "metric_id": "population_female",
+      "name_ja": "女性人口（各年10月1日）",
+      "unit": "million_persons",
+      "observations": 11,
+      "start": "2015",
+      "end": "2025"
+    },
+    {
+      "file": "data/economy/japan-demography.json",
+      "dataset": "japan-demography",
+      "metric_id": "population_age_0_14",
+      "name_ja": "0-14歳人口",
+      "unit": "million_persons",
+      "observations": 11,
+      "start": "2015",
+      "end": "2025"
+    },
+    {
+      "file": "data/economy/japan-demography.json",
+      "dataset": "japan-demography",
+      "metric_id": "working_age_population_15_64",
+      "name_ja": "生産年齢人口（15-64歳）",
+      "unit": "million_persons",
+      "observations": 11,
+      "start": "2015",
+      "end": "2025"
+    },
+    {
+      "file": "data/economy/japan-demography.json",
+      "dataset": "japan-demography",
+      "metric_id": "population_age_65_plus",
+      "name_ja": "65歳以上人口",
+      "unit": "million_persons",
+      "observations": 11,
+      "start": "2015",
+      "end": "2025"
+    },
+    {
+      "file": "data/economy/japan-demography.json",
+      "dataset": "japan-demography",
+      "metric_id": "working_age_share",
+      "name_ja": "生産年齢人口比率",
+      "unit": "pct",
+      "observations": 11,
+      "start": "2015",
+      "end": "2025"
+    },
+    {
+      "file": "data/economy/japan-demography.json",
+      "dataset": "japan-demography",
+      "metric_id": "foreign_population",
+      "name_ja": "外国人人口",
+      "unit": "million_persons",
+      "observations": 3,
+      "start": "2024-10-01",
+      "end": "2026-01-01"
+    },
+    {
+      "file": "data/economy/japan-demography.json",
+      "dataset": "japan-demography",
+      "metric_id": "population_snapshot_2026_01_total",
+      "name_ja": "総人口（2026年1月確定値）",
+      "unit": "million_persons",
+      "observations": 1,
+      "start": "2026-01-01",
+      "end": "2026-01-01"
+    },
+    {
+      "file": "data/economy/japan-demography.json",
+      "dataset": "japan-demography",
+      "metric_id": "population_snapshot_2026_01_male",
+      "name_ja": "男性人口（2026年1月確定値）",
+      "unit": "million_persons",
+      "observations": 1,
+      "start": "2026-01-01",
+      "end": "2026-01-01"
+    },
+    {
+      "file": "data/economy/japan-demography.json",
+      "dataset": "japan-demography",
+      "metric_id": "population_snapshot_2026_01_female",
+      "name_ja": "女性人口（2026年1月確定値）",
+      "unit": "million_persons",
+      "observations": 1,
+      "start": "2026-01-01",
+      "end": "2026-01-01"
+    },
+    {
+      "file": "data/economy/japan-demography.json",
+      "dataset": "japan-demography",
+      "metric_id": "working_age_population_snapshot_2026_01",
+      "name_ja": "生産年齢人口（2026年1月確定値）",
+      "unit": "million_persons",
+      "observations": 1,
+      "start": "2026-01-01",
+      "end": "2026-01-01"
     },
     {
       "file": "data/economy/japan-trade.json",
@@ -267,9 +597,9 @@
       "metric_id": "exports_total",
       "name_ja": "輸出額",
       "unit": "JPY_trillion",
-      "observations": 570,
+      "observations": 571,
       "start": "1979-01",
-      "end": "2026-06"
+      "end": "2026-07"
     },
     {
       "file": "data/economy/japan-trade.json",
@@ -277,9 +607,9 @@
       "metric_id": "imports_total",
       "name_ja": "輸入額",
       "unit": "JPY_trillion",
-      "observations": 570,
+      "observations": 571,
       "start": "1979-01",
-      "end": "2026-06"
+      "end": "2026-07"
     },
     {
       "file": "data/economy/japan-trade.json",
@@ -287,9 +617,9 @@
       "metric_id": "trade_balance",
       "name_ja": "貿易収支",
       "unit": "JPY_trillion",
-      "observations": 570,
+      "observations": 571,
       "start": "1979-01",
-      "end": "2026-06"
+      "end": "2026-07"
     },
     {
       "file": "data/economy/japan-trade.json",
@@ -340,6 +670,806 @@
       "observations": 75,
       "start": "1950",
       "end": "2024"
+    },
+    {
+      "file": "data/economy/labor-capacity-stress-sensitivity.json",
+      "dataset": "labor-capacity-stress-sensitivity",
+      "metric_id": "stress_without_parcel_load",
+      "name_ja": "宅配需要圧力を除外",
+      "unit": "index_2018_100",
+      "observations": 7,
+      "start": "2018",
+      "end": "2024"
+    },
+    {
+      "file": "data/economy/labor-capacity-stress-sensitivity.json",
+      "dataset": "labor-capacity-stress-sensitivity",
+      "metric_id": "stress_without_freight_vacancy",
+      "name_ja": "貨物求人圧力を除外",
+      "unit": "index_2018_100",
+      "observations": 7,
+      "start": "2018",
+      "end": "2024"
+    },
+    {
+      "file": "data/economy/labor-capacity-stress-sensitivity.json",
+      "dataset": "labor-capacity-stress-sensitivity",
+      "metric_id": "stress_without_aging",
+      "name_ja": "高齢化圧力を除外",
+      "unit": "index_2018_100",
+      "observations": 7,
+      "start": "2018",
+      "end": "2024"
+    },
+    {
+      "file": "data/economy/labor-capacity-stress-sensitivity.json",
+      "dataset": "labor-capacity-stress-sensitivity",
+      "metric_id": "stress_without_replacement",
+      "name_ja": "世代交代圧力を除外",
+      "unit": "index_2018_100",
+      "observations": 7,
+      "start": "2018",
+      "end": "2024"
+    },
+    {
+      "file": "data/economy/labor-capacity-stress-sensitivity.json",
+      "dataset": "labor-capacity-stress-sensitivity",
+      "metric_id": "stress_without_working_age",
+      "name_ja": "生産年齢人口圧力を除外",
+      "unit": "index_2018_100",
+      "observations": 7,
+      "start": "2018",
+      "end": "2024"
+    },
+    {
+      "file": "data/economy/labor-capacity-stress-sensitivity.json",
+      "dataset": "labor-capacity-stress-sensitivity",
+      "metric_id": "stress_leave_one_out_min",
+      "name_ja": "leave-one-out 最小値",
+      "unit": "index_2018_100",
+      "observations": 7,
+      "start": "2018",
+      "end": "2024"
+    },
+    {
+      "file": "data/economy/labor-capacity-stress-sensitivity.json",
+      "dataset": "labor-capacity-stress-sensitivity",
+      "metric_id": "stress_leave_one_out_max",
+      "name_ja": "leave-one-out 最大値",
+      "unit": "index_2018_100",
+      "observations": 7,
+      "start": "2018",
+      "end": "2024"
+    },
+    {
+      "file": "data/economy/labor-capacity-stress-sensitivity.json",
+      "dataset": "labor-capacity-stress-sensitivity",
+      "metric_id": "stress_leave_one_out_range",
+      "name_ja": "leave-one-out レンジ",
+      "unit": "index_points",
+      "observations": 7,
+      "start": "2018",
+      "end": "2024"
+    },
+    {
+      "file": "data/economy/labor-capacity-stress-v1.json",
+      "dataset": "labor-capacity-stress-v1",
+      "metric_id": "parcel_labor_load_pressure_v1",
+      "name_ja": "宅配需要/物流労働力圧力 v1",
+      "unit": "index_2018_100",
+      "observations": 7,
+      "start": "2018",
+      "end": "2024"
+    },
+    {
+      "file": "data/economy/labor-capacity-stress-v1.json",
+      "dataset": "labor-capacity-stress-v1",
+      "metric_id": "freight_driver_vacancy_pressure_v1",
+      "name_ja": "貨物自動車運転者 求人需給圧力 v1",
+      "unit": "index_2018_100",
+      "observations": 7,
+      "start": "2018",
+      "end": "2024"
+    },
+    {
+      "file": "data/economy/labor-capacity-stress-v1.json",
+      "dataset": "labor-capacity-stress-v1",
+      "metric_id": "road_freight_aging_pressure_v1",
+      "name_ja": "道路貨物 高齢化圧力 v1",
+      "unit": "index_2018_100",
+      "observations": 7,
+      "start": "2018",
+      "end": "2024"
+    },
+    {
+      "file": "data/economy/labor-capacity-stress-v1.json",
+      "dataset": "labor-capacity-stress-v1",
+      "metric_id": "road_freight_replacement_pressure_v1",
+      "name_ja": "道路貨物 世代交代圧力 v1",
+      "unit": "index_2018_100",
+      "observations": 7,
+      "start": "2018",
+      "end": "2024"
+    },
+    {
+      "file": "data/economy/labor-capacity-stress-v1.json",
+      "dataset": "labor-capacity-stress-v1",
+      "metric_id": "working_age_supply_pressure_v1",
+      "name_ja": "生産年齢人口供給圧力 v1",
+      "unit": "index_2018_100",
+      "observations": 7,
+      "start": "2018",
+      "end": "2024"
+    },
+    {
+      "file": "data/economy/labor-capacity-stress-v1.json",
+      "dataset": "labor-capacity-stress-v1",
+      "metric_id": "labor_capacity_stress_v1",
+      "name_ja": "物流労働キャパシティ・ストレス v1",
+      "unit": "index_2018_100",
+      "observations": 7,
+      "start": "2018",
+      "end": "2024"
+    },
+    {
+      "file": "data/economy/labor-capacity-stress.json",
+      "dataset": "labor-capacity-stress",
+      "metric_id": "parcel_labor_load_index",
+      "name_ja": "宅配需要/物流労働力圧力",
+      "unit": "index_2015_100",
+      "observations": 8,
+      "start": "2015",
+      "end": "2022"
+    },
+    {
+      "file": "data/economy/labor-capacity-stress.json",
+      "dataset": "labor-capacity-stress",
+      "metric_id": "vacancy_pressure_index",
+      "name_ja": "求人需給圧力",
+      "unit": "index_2015_100",
+      "observations": 8,
+      "start": "2015",
+      "end": "2022"
+    },
+    {
+      "file": "data/economy/labor-capacity-stress.json",
+      "dataset": "labor-capacity-stress",
+      "metric_id": "road_freight_aging_pressure_index",
+      "name_ja": "道路貨物 高齢化圧力",
+      "unit": "index_2015_100",
+      "observations": 8,
+      "start": "2015",
+      "end": "2022"
+    },
+    {
+      "file": "data/economy/labor-capacity-stress.json",
+      "dataset": "labor-capacity-stress",
+      "metric_id": "road_freight_replacement_pressure_index",
+      "name_ja": "道路貨物 世代交代圧力",
+      "unit": "index_2015_100",
+      "observations": 8,
+      "start": "2015",
+      "end": "2022"
+    },
+    {
+      "file": "data/economy/labor-capacity-stress.json",
+      "dataset": "labor-capacity-stress",
+      "metric_id": "working_age_supply_pressure_index",
+      "name_ja": "生産年齢人口供給圧力",
+      "unit": "index_2015_100",
+      "observations": 8,
+      "start": "2015",
+      "end": "2022"
+    },
+    {
+      "file": "data/economy/labor-capacity-stress.json",
+      "dataset": "labor-capacity-stress",
+      "metric_id": "labor_capacity_stress_equal_weight",
+      "name_ja": "物流労働キャパシティ・ストレス v0",
+      "unit": "index_2015_100",
+      "observations": 8,
+      "start": "2015",
+      "end": "2022"
+    },
+    {
+      "file": "data/economy/logistics-capacity.json",
+      "dataset": "logistics-capacity",
+      "metric_id": "parcel_per_capita",
+      "name_ja": "1人あたり宅配便個数（Parcel intensity）",
+      "unit": "parcels_per_person_year",
+      "observations": 10,
+      "start": "2015",
+      "end": "2024"
+    },
+    {
+      "file": "data/economy/logistics-capacity.json",
+      "dataset": "logistics-capacity",
+      "metric_id": "parcel_per_transport_worker",
+      "name_ja": "運輸就業者1人あたり宅配便個数（proxy）",
+      "unit": "parcels_per_worker_year",
+      "observations": 10,
+      "start": "2015",
+      "end": "2024"
+    },
+    {
+      "file": "data/economy/logistics-capacity.json",
+      "dataset": "logistics-capacity",
+      "metric_id": "parcel_load_index_2015",
+      "name_ja": "宅配需要/物流労働力 指数（2015=100）",
+      "unit": "index_2015_100",
+      "observations": 10,
+      "start": "2015",
+      "end": "2024"
+    },
+    {
+      "file": "data/economy/logistics-capacity.json",
+      "dataset": "logistics-capacity",
+      "metric_id": "freight_labor_productivity",
+      "name_ja": "道路貨物就業者あたり営業用トラックton-km",
+      "unit": "thousand_tonne_km_per_worker_year",
+      "observations": 10,
+      "start": "2015",
+      "end": "2024"
+    },
+    {
+      "file": "data/economy/logistics-capacity.json",
+      "dataset": "logistics-capacity",
+      "metric_id": "warehouse_labor_productivity",
+      "name_ja": "倉庫業就業者あたり倉庫入出庫量",
+      "unit": "tonnes_per_worker_year",
+      "observations": 10,
+      "start": "2016",
+      "end": "2025"
+    },
+    {
+      "file": "data/economy/logistics-foreign-capacity-pipeline.json",
+      "dataset": "logistics-foreign-capacity-pipeline",
+      "metric_id": "ssw_auto_transport_residents",
+      "name_ja": "特定技能 自動車運送業 在留者数",
+      "unit": "persons",
+      "observations": 2,
+      "start": "2025-06",
+      "end": "2025-12"
+    },
+    {
+      "file": "data/economy/logistics-foreign-capacity-pipeline.json",
+      "dataset": "logistics-foreign-capacity-pipeline",
+      "metric_id": "ssw_auto_transport_truck_drivers",
+      "name_ja": "特定技能 自動車運送業 トラック運転者",
+      "unit": "persons",
+      "observations": 1,
+      "start": "2025-12",
+      "end": "2025-12"
+    },
+    {
+      "file": "data/economy/logistics-foreign-capacity-pipeline.json",
+      "dataset": "logistics-foreign-capacity-pipeline",
+      "metric_id": "ssw_auto_transport_taxi_drivers",
+      "name_ja": "特定技能 自動車運送業 タクシー運転者",
+      "unit": "persons",
+      "observations": 1,
+      "start": "2025-12",
+      "end": "2025-12"
+    },
+    {
+      "file": "data/economy/logistics-foreign-capacity-pipeline.json",
+      "dataset": "logistics-foreign-capacity-pipeline",
+      "metric_id": "ssw_auto_transport_bus_drivers",
+      "name_ja": "特定技能 自動車運送業 バス運転者",
+      "unit": "persons",
+      "observations": 1,
+      "start": "2025-12",
+      "end": "2025-12"
+    },
+    {
+      "file": "data/economy/logistics-foreign-capacity-pipeline.json",
+      "dataset": "logistics-foreign-capacity-pipeline",
+      "metric_id": "ssw_auto_transport_intake_capacity_to_2029_03",
+      "name_ja": "特定技能 自動車運送業 受入れ見込数",
+      "unit": "persons",
+      "observations": 1,
+      "start": "2029-03",
+      "end": "2029-03"
+    },
+    {
+      "file": "data/economy/logistics-foreign-capacity-pipeline.json",
+      "dataset": "logistics-foreign-capacity-pipeline",
+      "metric_id": "ssw_logistics_warehouse_intake_capacity_to_2029_03",
+      "name_ja": "特定技能 物流倉庫 受入れ見込数",
+      "unit": "persons",
+      "observations": 1,
+      "start": "2029-03",
+      "end": "2029-03"
+    },
+    {
+      "file": "data/economy/logistics-foreign-workforce.json",
+      "dataset": "logistics-foreign-workforce",
+      "metric_id": "foreign_workers_all_industries",
+      "name_ja": "外国人労働者数 全産業",
+      "unit": "persons",
+      "observations": 3,
+      "start": "2023-10",
+      "end": "2025-10"
+    },
+    {
+      "file": "data/economy/logistics-foreign-workforce.json",
+      "dataset": "logistics-foreign-workforce",
+      "metric_id": "transport_postal_foreign_workers",
+      "name_ja": "運輸業・郵便業 外国人労働者数",
+      "unit": "persons",
+      "observations": 3,
+      "start": "2023-10",
+      "end": "2025-10"
+    },
+    {
+      "file": "data/economy/logistics-foreign-workforce.json",
+      "dataset": "logistics-foreign-workforce",
+      "metric_id": "transport_postal_foreign_share_of_all_foreign",
+      "name_ja": "外国人労働者全体に占める運輸業・郵便業比率",
+      "unit": "pct",
+      "observations": 3,
+      "start": "2023-10",
+      "end": "2025-10"
+    },
+    {
+      "file": "data/economy/logistics-foreign-workforce.json",
+      "dataset": "logistics-foreign-workforce",
+      "metric_id": "transport_postal_foreign_worker_index_2023",
+      "name_ja": "運輸業・郵便業 外国人労働者指数（2023=100）",
+      "unit": "index_2023_100",
+      "observations": 3,
+      "start": "2023-10",
+      "end": "2025-10"
+    },
+    {
+      "file": "data/economy/logistics-labor-market.json",
+      "dataset": "logistics-labor-market",
+      "metric_id": "truck_driver_average_age_2025",
+      "name_ja": "トラックドライバー 平均年齢",
+      "unit": "years",
+      "observations": 1,
+      "start": "2025",
+      "end": "2025"
+    },
+    {
+      "file": "data/economy/logistics-labor-market.json",
+      "dataset": "logistics-labor-market",
+      "metric_id": "truck_driver_annual_income",
+      "name_ja": "トラックドライバー 年収",
+      "unit": "ten_thousand_jpy_year",
+      "observations": 1,
+      "start": "2025",
+      "end": "2025"
+    },
+    {
+      "file": "data/economy/logistics-labor-market.json",
+      "dataset": "logistics-labor-market",
+      "metric_id": "truck_driver_monthly_work_hours",
+      "name_ja": "トラックドライバー 月間労働時間",
+      "unit": "hours_month",
+      "observations": 1,
+      "start": "2025",
+      "end": "2025"
+    },
+    {
+      "file": "data/economy/logistics-labor-market.json",
+      "dataset": "logistics-labor-market",
+      "metric_id": "truck_driver_job_openings_ratio",
+      "name_ja": "トラックドライバー 有効求人倍率",
+      "unit": "ratio",
+      "observations": 1,
+      "start": "2025FY",
+      "end": "2025FY"
+    },
+    {
+      "file": "data/economy/logistics-labor-market.json",
+      "dataset": "logistics-labor-market",
+      "metric_id": "truck_driver_offered_monthly_wage",
+      "name_ja": "トラックドライバー 求人賃金",
+      "unit": "ten_thousand_jpy_month",
+      "observations": 1,
+      "start": "2025FY",
+      "end": "2025FY"
+    },
+    {
+      "file": "data/economy/logistics-labor-market.json",
+      "dataset": "logistics-labor-market",
+      "metric_id": "automobile_driver_job_openings_ratio_history",
+      "name_ja": "自動車運転の職業 有効求人倍率（長期）",
+      "unit": "ratio",
+      "observations": 17,
+      "start": "2006",
+      "end": "2022"
+    },
+    {
+      "file": "data/economy/logistics-labor-market.json",
+      "dataset": "logistics-labor-market",
+      "metric_id": "all_occupations_job_openings_ratio_history",
+      "name_ja": "全職業 有効求人倍率（長期）",
+      "unit": "ratio",
+      "observations": 17,
+      "start": "2006",
+      "end": "2022"
+    },
+    {
+      "file": "data/economy/logistics-workforce-age.json",
+      "dataset": "logistics-workforce-age",
+      "metric_id": "transport_postal_age_15_24",
+      "name_ja": "運輸業・郵便業 15-24歳就業者数",
+      "unit": "ten_thousand_persons",
+      "observations": 11,
+      "start": "2015",
+      "end": "2025"
+    },
+    {
+      "file": "data/economy/logistics-workforce-age.json",
+      "dataset": "logistics-workforce-age",
+      "metric_id": "transport_postal_age_25_34",
+      "name_ja": "運輸業・郵便業 25-34歳就業者数",
+      "unit": "ten_thousand_persons",
+      "observations": 11,
+      "start": "2015",
+      "end": "2025"
+    },
+    {
+      "file": "data/economy/logistics-workforce-age.json",
+      "dataset": "logistics-workforce-age",
+      "metric_id": "transport_postal_age_35_44",
+      "name_ja": "運輸業・郵便業 35-44歳就業者数",
+      "unit": "ten_thousand_persons",
+      "observations": 11,
+      "start": "2015",
+      "end": "2025"
+    },
+    {
+      "file": "data/economy/logistics-workforce-age.json",
+      "dataset": "logistics-workforce-age",
+      "metric_id": "transport_postal_age_45_54",
+      "name_ja": "運輸業・郵便業 45-54歳就業者数",
+      "unit": "ten_thousand_persons",
+      "observations": 11,
+      "start": "2015",
+      "end": "2025"
+    },
+    {
+      "file": "data/economy/logistics-workforce-age.json",
+      "dataset": "logistics-workforce-age",
+      "metric_id": "transport_postal_age_55_64",
+      "name_ja": "運輸業・郵便業 55-64歳就業者数",
+      "unit": "ten_thousand_persons",
+      "observations": 11,
+      "start": "2015",
+      "end": "2025"
+    },
+    {
+      "file": "data/economy/logistics-workforce-age.json",
+      "dataset": "logistics-workforce-age",
+      "metric_id": "transport_postal_age_65_plus",
+      "name_ja": "運輸業・郵便業 65歳以上就業者数",
+      "unit": "ten_thousand_persons",
+      "observations": 11,
+      "start": "2015",
+      "end": "2025"
+    },
+    {
+      "file": "data/economy/logistics-workforce-age.json",
+      "dataset": "logistics-workforce-age",
+      "metric_id": "transport_postal_age_55_plus_share",
+      "name_ja": "運輸業・郵便業 55歳以上比率",
+      "unit": "pct",
+      "observations": 11,
+      "start": "2015",
+      "end": "2025"
+    },
+    {
+      "file": "data/economy/logistics-workforce-age.json",
+      "dataset": "logistics-workforce-age",
+      "metric_id": "transport_postal_young_share",
+      "name_ja": "運輸業・郵便業 34歳以下比率",
+      "unit": "pct",
+      "observations": 11,
+      "start": "2015",
+      "end": "2025"
+    },
+    {
+      "file": "data/economy/logistics-workforce-age.json",
+      "dataset": "logistics-workforce-age",
+      "metric_id": "transport_postal_replacement_ratio",
+      "name_ja": "運輸業・郵便業 世代交代比率（34歳以下/55歳以上）",
+      "unit": "ratio",
+      "observations": 11,
+      "start": "2015",
+      "end": "2025"
+    },
+    {
+      "file": "data/economy/logistics-workforce-age.json",
+      "dataset": "logistics-workforce-age",
+      "metric_id": "road_freight_employment",
+      "name_ja": "道路貨物運送業 就業者数",
+      "unit": "ten_thousand_persons",
+      "observations": 11,
+      "start": "2015",
+      "end": "2025"
+    },
+    {
+      "file": "data/economy/logistics-workforce-age.json",
+      "dataset": "logistics-workforce-age",
+      "metric_id": "road_freight_age_15_24",
+      "name_ja": "道路貨物運送業 15-24歳就業者数",
+      "unit": "ten_thousand_persons",
+      "observations": 11,
+      "start": "2015",
+      "end": "2025"
+    },
+    {
+      "file": "data/economy/logistics-workforce-age.json",
+      "dataset": "logistics-workforce-age",
+      "metric_id": "road_freight_age_25_34",
+      "name_ja": "道路貨物運送業 25-34歳就業者数",
+      "unit": "ten_thousand_persons",
+      "observations": 11,
+      "start": "2015",
+      "end": "2025"
+    },
+    {
+      "file": "data/economy/logistics-workforce-age.json",
+      "dataset": "logistics-workforce-age",
+      "metric_id": "road_freight_age_35_44",
+      "name_ja": "道路貨物運送業 35-44歳就業者数",
+      "unit": "ten_thousand_persons",
+      "observations": 11,
+      "start": "2015",
+      "end": "2025"
+    },
+    {
+      "file": "data/economy/logistics-workforce-age.json",
+      "dataset": "logistics-workforce-age",
+      "metric_id": "road_freight_age_45_54",
+      "name_ja": "道路貨物運送業 45-54歳就業者数",
+      "unit": "ten_thousand_persons",
+      "observations": 11,
+      "start": "2015",
+      "end": "2025"
+    },
+    {
+      "file": "data/economy/logistics-workforce-age.json",
+      "dataset": "logistics-workforce-age",
+      "metric_id": "road_freight_age_55_64",
+      "name_ja": "道路貨物運送業 55-64歳就業者数",
+      "unit": "ten_thousand_persons",
+      "observations": 11,
+      "start": "2015",
+      "end": "2025"
+    },
+    {
+      "file": "data/economy/logistics-workforce-age.json",
+      "dataset": "logistics-workforce-age",
+      "metric_id": "road_freight_age_65_plus",
+      "name_ja": "道路貨物運送業 65歳以上就業者数",
+      "unit": "ten_thousand_persons",
+      "observations": 11,
+      "start": "2015",
+      "end": "2025"
+    },
+    {
+      "file": "data/economy/logistics-workforce-age.json",
+      "dataset": "logistics-workforce-age",
+      "metric_id": "road_freight_age_55_plus_share",
+      "name_ja": "道路貨物運送業 55歳以上比率",
+      "unit": "pct",
+      "observations": 11,
+      "start": "2015",
+      "end": "2025"
+    },
+    {
+      "file": "data/economy/logistics-workforce-age.json",
+      "dataset": "logistics-workforce-age",
+      "metric_id": "road_freight_young_share",
+      "name_ja": "道路貨物運送業 34歳以下比率",
+      "unit": "pct",
+      "observations": 11,
+      "start": "2015",
+      "end": "2025"
+    },
+    {
+      "file": "data/economy/logistics-workforce-age.json",
+      "dataset": "logistics-workforce-age",
+      "metric_id": "road_freight_replacement_ratio",
+      "name_ja": "道路貨物運送業 世代交代比率（34歳以下/55歳以上）",
+      "unit": "ratio",
+      "observations": 11,
+      "start": "2015",
+      "end": "2025"
+    },
+    {
+      "file": "data/economy/logistics-workforce-age.json",
+      "dataset": "logistics-workforce-age",
+      "metric_id": "road_freight_female_share",
+      "name_ja": "道路貨物運送業 女性比率",
+      "unit": "pct",
+      "observations": 11,
+      "start": "2015",
+      "end": "2025"
+    },
+    {
+      "file": "data/economy/logistics-workforce-age.json",
+      "dataset": "logistics-workforce-age",
+      "metric_id": "warehousing_employment",
+      "name_ja": "倉庫業 就業者数",
+      "unit": "ten_thousand_persons",
+      "observations": 11,
+      "start": "2015",
+      "end": "2025"
+    },
+    {
+      "file": "data/economy/logistics-workforce-age.json",
+      "dataset": "logistics-workforce-age",
+      "metric_id": "warehousing_age_15_24",
+      "name_ja": "倉庫業 15-24歳就業者数",
+      "unit": "ten_thousand_persons",
+      "observations": 11,
+      "start": "2015",
+      "end": "2025"
+    },
+    {
+      "file": "data/economy/logistics-workforce-age.json",
+      "dataset": "logistics-workforce-age",
+      "metric_id": "warehousing_age_25_34",
+      "name_ja": "倉庫業 25-34歳就業者数",
+      "unit": "ten_thousand_persons",
+      "observations": 11,
+      "start": "2015",
+      "end": "2025"
+    },
+    {
+      "file": "data/economy/logistics-workforce-age.json",
+      "dataset": "logistics-workforce-age",
+      "metric_id": "warehousing_age_35_44",
+      "name_ja": "倉庫業 35-44歳就業者数",
+      "unit": "ten_thousand_persons",
+      "observations": 11,
+      "start": "2015",
+      "end": "2025"
+    },
+    {
+      "file": "data/economy/logistics-workforce-age.json",
+      "dataset": "logistics-workforce-age",
+      "metric_id": "warehousing_age_45_54",
+      "name_ja": "倉庫業 45-54歳就業者数",
+      "unit": "ten_thousand_persons",
+      "observations": 11,
+      "start": "2015",
+      "end": "2025"
+    },
+    {
+      "file": "data/economy/logistics-workforce-age.json",
+      "dataset": "logistics-workforce-age",
+      "metric_id": "warehousing_age_55_64",
+      "name_ja": "倉庫業 55-64歳就業者数",
+      "unit": "ten_thousand_persons",
+      "observations": 11,
+      "start": "2015",
+      "end": "2025"
+    },
+    {
+      "file": "data/economy/logistics-workforce-age.json",
+      "dataset": "logistics-workforce-age",
+      "metric_id": "warehousing_age_65_plus",
+      "name_ja": "倉庫業 65歳以上就業者数",
+      "unit": "ten_thousand_persons",
+      "observations": 11,
+      "start": "2015",
+      "end": "2025"
+    },
+    {
+      "file": "data/economy/logistics-workforce-age.json",
+      "dataset": "logistics-workforce-age",
+      "metric_id": "warehousing_age_55_plus_share",
+      "name_ja": "倉庫業 55歳以上比率",
+      "unit": "pct",
+      "observations": 11,
+      "start": "2015",
+      "end": "2025"
+    },
+    {
+      "file": "data/economy/logistics-workforce-age.json",
+      "dataset": "logistics-workforce-age",
+      "metric_id": "warehousing_young_share",
+      "name_ja": "倉庫業 34歳以下比率",
+      "unit": "pct",
+      "observations": 11,
+      "start": "2015",
+      "end": "2025"
+    },
+    {
+      "file": "data/economy/logistics-workforce-age.json",
+      "dataset": "logistics-workforce-age",
+      "metric_id": "warehousing_replacement_ratio",
+      "name_ja": "倉庫業 世代交代比率（34歳以下/55歳以上）",
+      "unit": "ratio",
+      "observations": 11,
+      "start": "2015",
+      "end": "2025"
+    },
+    {
+      "file": "data/economy/logistics-workforce-age.json",
+      "dataset": "logistics-workforce-age",
+      "metric_id": "warehousing_female_share",
+      "name_ja": "倉庫業 女性比率",
+      "unit": "pct",
+      "observations": 11,
+      "start": "2015",
+      "end": "2025"
+    },
+    {
+      "file": "data/economy/logistics-workforce.json",
+      "dataset": "logistics-workforce",
+      "metric_id": "all_industries_employment",
+      "name_ja": "日本総就業者数（年平均）",
+      "unit": "ten_thousand_persons",
+      "observations": 11,
+      "start": "2015",
+      "end": "2025"
+    },
+    {
+      "file": "data/economy/logistics-workforce.json",
+      "dataset": "logistics-workforce",
+      "metric_id": "transport_postal_employment",
+      "name_ja": "運輸業・郵便業 就業者数（年平均）",
+      "unit": "ten_thousand_persons",
+      "observations": 11,
+      "start": "2015",
+      "end": "2025"
+    },
+    {
+      "file": "data/economy/logistics-workforce.json",
+      "dataset": "logistics-workforce",
+      "metric_id": "transport_postal_employment_share",
+      "name_ja": "総就業者に占める運輸業・郵便業比率",
+      "unit": "pct",
+      "observations": 11,
+      "start": "2015",
+      "end": "2025"
+    },
+    {
+      "file": "data/economy/logistics-workforce.json",
+      "dataset": "logistics-workforce",
+      "metric_id": "transport_postal_employees",
+      "name_ja": "運輸業・郵便業 雇用者数（年平均）",
+      "unit": "ten_thousand_persons",
+      "observations": 11,
+      "start": "2015",
+      "end": "2025"
+    },
+    {
+      "file": "data/economy/logistics-workforce.json",
+      "dataset": "logistics-workforce",
+      "metric_id": "transport_postal_employment_male",
+      "name_ja": "運輸業・郵便業 男性就業者数（月次）",
+      "unit": "ten_thousand_persons",
+      "observations": 1,
+      "start": "2026-03",
+      "end": "2026-03"
+    },
+    {
+      "file": "data/economy/logistics-workforce.json",
+      "dataset": "logistics-workforce",
+      "metric_id": "transport_postal_employment_female",
+      "name_ja": "運輸業・郵便業 女性就業者数（月次）",
+      "unit": "ten_thousand_persons",
+      "observations": 1,
+      "start": "2026-03",
+      "end": "2026-03"
+    },
+    {
+      "file": "data/economy/logistics-workforce.json",
+      "dataset": "logistics-workforce",
+      "metric_id": "transport_postal_female_share",
+      "name_ja": "運輸業・郵便業 女性比率（月次）",
+      "unit": "pct",
+      "observations": 1,
+      "start": "2026-03",
+      "end": "2026-03"
     },
     {
       "file": "data/economy/macro.json",
@@ -510,6 +1640,26 @@
       "observations": 4,
       "start": "2026-07-23",
       "end": "2026-08-20"
+    },
+    {
+      "file": "data/economy/parcel-demand.json",
+      "dataset": "parcel-demand",
+      "metric_id": "parcel_delivery_volume",
+      "name_ja": "宅配便取扱個数",
+      "unit": "million parcels",
+      "observations": 15,
+      "start": "2010",
+      "end": "2024"
+    },
+    {
+      "file": "data/economy/parcel-demand.json",
+      "dataset": "parcel-demand",
+      "metric_id": "mail_delivery_volume",
+      "name_ja": "メール便取扱冊数",
+      "unit": "million items",
+      "observations": 5,
+      "start": "2020",
+      "end": "2024"
     },
     {
       "file": "data/economy/port-throughput.json",
@@ -882,6 +2032,166 @@
       "end": "2024"
     },
     {
+      "file": "data/economy/road-freight-driver-capacity.json",
+      "dataset": "road-freight-driver-capacity",
+      "metric_id": "road_freight_transport_machine_workers",
+      "name_ja": "道路貨物 輸送・機械運転従事者",
+      "unit": "ten_thousand_persons",
+      "observations": 16,
+      "start": "2009",
+      "end": "2025"
+    },
+    {
+      "file": "data/economy/road-freight-driver-capacity.json",
+      "dataset": "road-freight-driver-capacity",
+      "metric_id": "road_freight_transport_machine_male",
+      "name_ja": "道路貨物 輸送・機械運転従事者 男性",
+      "unit": "ten_thousand_persons",
+      "observations": 16,
+      "start": "2009",
+      "end": "2025"
+    },
+    {
+      "file": "data/economy/road-freight-driver-capacity.json",
+      "dataset": "road-freight-driver-capacity",
+      "metric_id": "road_freight_transport_machine_female",
+      "name_ja": "道路貨物 輸送・機械運転従事者 女性",
+      "unit": "ten_thousand_persons",
+      "observations": 16,
+      "start": "2009",
+      "end": "2025"
+    },
+    {
+      "file": "data/economy/road-freight-driver-capacity.json",
+      "dataset": "road-freight-driver-capacity",
+      "metric_id": "road_freight_transport_machine_share",
+      "name_ja": "道路貨物就業者に占める輸送・機械運転従事者比率",
+      "unit": "pct",
+      "observations": 16,
+      "start": "2009",
+      "end": "2025"
+    },
+    {
+      "file": "data/economy/road-freight-driver-capacity.json",
+      "dataset": "road-freight-driver-capacity",
+      "metric_id": "road_freight_transport_machine_female_share",
+      "name_ja": "道路貨物 輸送・機械運転従事者 女性比率",
+      "unit": "pct",
+      "observations": 16,
+      "start": "2009",
+      "end": "2025"
+    },
+    {
+      "file": "data/economy/road-freight-driver-capacity.json",
+      "dataset": "road-freight-driver-capacity",
+      "metric_id": "commercial_truck_vehicles_per_transport_machine_worker",
+      "name_ja": "輸送・機械運転従事者1人あたり営業用トラック車両",
+      "unit": "vehicles_per_worker",
+      "observations": 13,
+      "start": "2010",
+      "end": "2023"
+    },
+    {
+      "file": "data/economy/trucking-business-structure.json",
+      "dataset": "trucking-business-structure",
+      "metric_id": "commercial_tonnage_post2020",
+      "name_ja": "営業用 輸送トン数",
+      "unit": "million_tonnes",
+      "observations": 5,
+      "start": "2020",
+      "end": "2024"
+    },
+    {
+      "file": "data/economy/trucking-business-structure.json",
+      "dataset": "trucking-business-structure",
+      "metric_id": "own_account_tonnage_post2020",
+      "name_ja": "自家用 輸送トン数",
+      "unit": "million_tonnes",
+      "observations": 5,
+      "start": "2020",
+      "end": "2024"
+    },
+    {
+      "file": "data/economy/trucking-business-structure.json",
+      "dataset": "trucking-business-structure",
+      "metric_id": "commercial_tonnage_share_post2020",
+      "name_ja": "営業用 輸送トン数シェア",
+      "unit": "pct",
+      "observations": 5,
+      "start": "2020",
+      "end": "2024"
+    },
+    {
+      "file": "data/economy/trucking-business-structure.json",
+      "dataset": "trucking-business-structure",
+      "metric_id": "commercial_ton_km_post2020",
+      "name_ja": "営業用 輸送トンキロ",
+      "unit": "billion_tonne_km",
+      "observations": 5,
+      "start": "2020",
+      "end": "2024"
+    },
+    {
+      "file": "data/economy/trucking-business-structure.json",
+      "dataset": "trucking-business-structure",
+      "metric_id": "own_account_ton_km_post2020",
+      "name_ja": "自家用 輸送トンキロ",
+      "unit": "billion_tonne_km",
+      "observations": 5,
+      "start": "2020",
+      "end": "2024"
+    },
+    {
+      "file": "data/economy/trucking-business-structure.json",
+      "dataset": "trucking-business-structure",
+      "metric_id": "commercial_ton_km_share_post2020",
+      "name_ja": "営業用 輸送トンキロシェア",
+      "unit": "pct",
+      "observations": 5,
+      "start": "2020",
+      "end": "2024"
+    },
+    {
+      "file": "data/economy/trucking-physical-capacity.json",
+      "dataset": "trucking-physical-capacity",
+      "metric_id": "truck_operators",
+      "name_ja": "トラック事業者数",
+      "unit": "operators",
+      "observations": 14,
+      "start": "2010",
+      "end": "2023"
+    },
+    {
+      "file": "data/economy/trucking-physical-capacity.json",
+      "dataset": "trucking-physical-capacity",
+      "metric_id": "commercial_truck_vehicles",
+      "name_ja": "営業用トラック車両数",
+      "unit": "vehicles",
+      "observations": 14,
+      "start": "2010",
+      "end": "2023"
+    },
+    {
+      "file": "data/economy/trucking-physical-capacity.json",
+      "dataset": "trucking-physical-capacity",
+      "metric_id": "vehicles_per_operator",
+      "name_ja": "1事業者あたり車両数",
+      "unit": "vehicles_per_operator",
+      "observations": 14,
+      "start": "2010",
+      "end": "2023"
+    },
+    {
+      "file": "data/economy/trucking-physical-capacity.json",
+      "dataset": "trucking-physical-capacity",
+      "metric_id": "ton_km_per_vehicle",
+      "name_ja": "営業用トラック1台あたりton-km",
+      "unit": "thousand_tonne_km_per_vehicle_year",
+      "observations": 9,
+      "start": "2015",
+      "end": "2023"
+    },
+    {
       "file": "data/economy/trucking.json",
       "dataset": "trucking",
       "metric_id": "average_duty_time_per_run",
@@ -965,41 +2275,61 @@
       "file": "data/economy/warehouse-flow.json",
       "dataset": "warehouse-flow",
       "metric_id": "inbound_volume",
-      "name_ja": null,
+      "name_ja": "入庫量",
       "unit": "tonnes",
-      "observations": 0,
-      "start": null,
-      "end": null
+      "observations": 132,
+      "start": "2015-01",
+      "end": "2025-12"
     },
     {
       "file": "data/economy/warehouse-flow.json",
       "dataset": "warehouse-flow",
       "metric_id": "outbound_volume",
-      "name_ja": null,
+      "name_ja": "出庫量（回転率からの推計）",
       "unit": "tonnes",
-      "observations": 0,
-      "start": null,
-      "end": null
+      "observations": 131,
+      "start": "2015-02",
+      "end": "2025-12"
     },
     {
       "file": "data/economy/warehouse-flow.json",
       "dataset": "warehouse-flow",
       "metric_id": "inventory_balance",
-      "name_ja": null,
+      "name_ja": "保管残高",
       "unit": "tonnes",
-      "observations": 0,
-      "start": null,
-      "end": null
+      "observations": 132,
+      "start": "2015-01",
+      "end": "2025-12"
     },
     {
       "file": "data/economy/warehouse-flow.json",
       "dataset": "warehouse-flow",
       "metric_id": "warehouse_turnover",
-      "name_ja": null,
-      "unit": "index",
-      "observations": 0,
-      "start": null,
-      "end": null
+      "name_ja": "貨物回転率",
+      "unit": "pct",
+      "observations": 132,
+      "start": "2015-01",
+      "end": "2025-12"
+    },
+    {
+      "file": "data/economy/warehouse-flow.json",
+      "dataset": "warehouse-flow",
+      "metric_id": "warehouse_utilization",
+      "name_ja": "倉庫利用率",
+      "unit": "pct",
+      "observations": 132,
+      "start": "2015-01",
+      "end": "2025-12"
+    },
+    {
+      "file": "data/economy/warehouse-flow.json",
+      "dataset": "warehouse-flow",
+      "metric_id": "inventory_value",
+      "name_ja": "保管残高金額",
+      "unit": "JPY",
+      "observations": 132,
+      "start": "2015-01",
+      "end": "2025-12"
     },
     {
       "file": "data/economy/warehouse-flow.json",

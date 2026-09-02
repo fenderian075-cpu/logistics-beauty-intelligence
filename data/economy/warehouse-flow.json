@@ -1057,6 +1057,14 @@
           "source": "国土交通省 営業普通倉庫の実績（主要21社）",
           "mom": 15.2,
           "yoy": 2.63
+        },
+        {
+          "period": "2026-01",
+          "value": 2129200.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -16.0,
+          "yoy": -3.92
         }
       ],
       "name_ja": "入庫量"
@@ -2361,6 +2369,16 @@
           "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
           "mom": 17.28,
           "yoy": 1.73
+        },
+        {
+          "period": "2026-01",
+          "value": 2073480.5,
+          "status": "derived_from_official_turnover_formula",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "derivation": "(turnover_pct/100)*(previous_inventory+current_inventory)-inbound",
+          "note_ja": "国交省公表の貨物回転率算式から逆算。公表回転率が丸め値のため概算。",
+          "mom": -20.44,
+          "yoy": -3.86
         }
       ],
       "name_ja": "出庫量（回転率からの推計）"
@@ -3411,6 +3429,14 @@
           "source": "国土交通省 営業普通倉庫の実績（主要21社）",
           "mom": -0.9,
           "yoy": 2.9
+        },
+        {
+          "period": "2026-01",
+          "value": 5138400.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 1.01,
+          "yoy": 1.96
         }
       ],
       "name_ja": "保管残高"
@@ -4461,6 +4487,14 @@
           "source": "国土交通省 営業普通倉庫の実績（主要21社）",
           "mom": 16.98,
           "yoy": -0.79
+        },
+        {
+          "period": "2026-01",
+          "value": 41.1,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": -18.29,
+          "yoy": -6.16
         }
       ],
       "name_ja": "貨物回転率"
@@ -5512,6 +5546,14 @@
           "source": "国土交通省 営業普通倉庫の実績（主要21社）",
           "mom": 0.99,
           "yoy": 0.49
+        },
+        {
+          "period": "2026-01",
+          "value": 82.8,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 0.98,
+          "yoy": 2.22
         }
       ]
     },
@@ -6562,6 +6604,14 @@
           "source": "国土交通省 営業普通倉庫の実績（主要21社）",
           "mom": 1.17,
           "yoy": 20.31
+        },
+        {
+          "period": "2026-01",
+          "value": 3562565200000.0,
+          "status": "official",
+          "source": "国土交通省 営業普通倉庫の実績（主要21社）",
+          "mom": 1.05,
+          "yoy": 19.97
         }
       ]
     },
@@ -6592,9 +6642,9 @@
   },
   "coverage": {
     "start": "2015-01",
-    "end": "2025-12",
-    "observations": 132,
-    "workbook": "https://www.mlit.go.jp/seisakutokatsu/freight/content/002011937.xls"
+    "end": "2026-01",
+    "observations": 133,
+    "workbook": "https://www.mlit.go.jp/seisakutokatsu/freight/content/002019215.xls"
   },
   "method_note_ja": "入庫・保管残高・利用率・貨物回転率・保管残高金額は公式推移表。出庫量のみ公表回転率算式からの概算派生値。"
 }
