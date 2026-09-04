@@ -1,6 +1,6 @@
 {
   "schema_version": "1.1",
-  "updated_at": "2026-09-03T21:01:12.345158Z",
+  "updated_at": "2026-09-04T04:29:32.730528Z",
   "collector_status": "ok",
   "source": {
     "name": "Google Trends",
@@ -12,19 +12,6 @@
   },
   "anchor": "化粧品",
   "observations": [
-    {
-      "term": "韓国コスメ",
-      "category": "market",
-      "brand": null,
-      "interest_7d": 0.0,
-      "interest_prev21d": 0.0,
-      "change_ratio": 1.0,
-      "change_pct": 0.0,
-      "anchor_normalized": 0.0,
-      "source": "Google Trends",
-      "geo": "JP",
-      "confidence": "medium"
-    },
     {
       "term": "チャーム コスメ",
       "category": "promotion",
@@ -104,14 +91,27 @@
       "confidence": "medium"
     },
     {
+      "term": "香水",
+      "category": "fragrance",
+      "brand": null,
+      "interest_7d": 1.0,
+      "interest_prev21d": 5.7,
+      "change_ratio": 0.17,
+      "change_pct": -82.5,
+      "anchor_normalized": 2.35,
+      "source": "Google Trends",
+      "geo": "JP",
+      "confidence": "medium"
+    },
+    {
       "term": "リップ",
       "category": "makeup",
       "brand": null,
-      "interest_7d": 1.1,
+      "interest_7d": 1.0,
       "interest_prev21d": 5.7,
-      "change_ratio": 0.2,
-      "change_pct": -80.0,
-      "anchor_normalized": 1.49,
+      "change_ratio": 0.17,
+      "change_pct": -82.5,
+      "anchor_normalized": 2.7,
       "source": "Google Trends",
       "geo": "JP",
       "confidence": "medium"
@@ -122,35 +122,9 @@
       "brand": null,
       "interest_7d": 1.0,
       "interest_prev21d": 5.7,
-      "change_ratio": 0.18,
-      "change_pct": -82.4,
-      "anchor_normalized": 0.99,
-      "source": "Google Trends",
-      "geo": "JP",
-      "confidence": "medium"
-    },
-    {
-      "term": "日焼け止め",
-      "category": "skincare",
-      "brand": null,
-      "interest_7d": 1.0,
-      "interest_prev21d": 5.4,
-      "change_ratio": 0.18,
-      "change_pct": -81.6,
-      "anchor_normalized": 0.95,
-      "source": "Google Trends",
-      "geo": "JP",
-      "confidence": "medium"
-    },
-    {
-      "term": "香水",
-      "category": "fragrance",
-      "brand": null,
-      "interest_7d": 1.0,
-      "interest_prev21d": 5.7,
       "change_ratio": 0.17,
       "change_pct": -82.5,
-      "anchor_normalized": 1.57,
+      "anchor_normalized": 1.02,
       "source": "Google Trends",
       "geo": "JP",
       "confidence": "medium"
@@ -169,14 +143,40 @@
       "confidence": "medium"
     },
     {
+      "term": "日焼け止め",
+      "category": "skincare",
+      "brand": null,
+      "interest_7d": 0.9,
+      "interest_prev21d": 5.7,
+      "change_ratio": 0.15,
+      "change_pct": -85.0,
+      "anchor_normalized": 1.03,
+      "source": "Google Trends",
+      "geo": "JP",
+      "confidence": "medium"
+    },
+    {
       "term": "クッションファンデ",
       "category": "makeup",
       "brand": null,
       "interest_7d": 0.0,
-      "interest_prev21d": 1.5,
+      "interest_prev21d": 1.3,
       "change_ratio": 0.0,
       "change_pct": -100.0,
-      "anchor_normalized": 0.24,
+      "anchor_normalized": 0.21,
+      "source": "Google Trends",
+      "geo": "JP",
+      "confidence": "medium"
+    },
+    {
+      "term": "韓国コスメ",
+      "category": "market",
+      "brand": null,
+      "interest_7d": 0.0,
+      "interest_prev21d": 0.5,
+      "change_ratio": 0.0,
+      "change_pct": -100.0,
+      "anchor_normalized": 0.09,
       "source": "Google Trends",
       "geo": "JP",
       "confidence": "medium"
