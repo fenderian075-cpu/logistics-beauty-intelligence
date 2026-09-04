@@ -1,7 +1,7 @@
 {
   "schema_version": "1.1",
-  "updated_at": "2026-09-04T11:16:13.877100Z",
-  "collector_status": "partial",
+  "updated_at": "2026-09-04T16:21:11.559060Z",
+  "collector_status": "ok",
   "source": {
     "name": "Google Trends",
     "method": "pytrends",
@@ -91,14 +91,27 @@
       "confidence": "medium"
     },
     {
+      "term": "香水",
+      "category": "fragrance",
+      "brand": null,
+      "interest_7d": 0.3,
+      "interest_prev21d": 4.8,
+      "change_ratio": 0.06,
+      "change_pct": -94.1,
+      "anchor_normalized": 3.68,
+      "source": "Google Trends",
+      "geo": "JP",
+      "confidence": "medium"
+    },
+    {
       "term": "美容液",
       "category": "skincare",
       "brand": null,
-      "interest_7d": 1.0,
-      "interest_prev21d": 5.3,
-      "change_ratio": 0.19,
-      "change_pct": -81.1,
-      "anchor_normalized": 2.36,
+      "interest_7d": 0.3,
+      "interest_prev21d": 4.8,
+      "change_ratio": 0.06,
+      "change_pct": -94.0,
+      "anchor_normalized": 2.76,
       "source": "Google Trends",
       "geo": "JP",
       "confidence": "medium"
@@ -107,11 +120,11 @@
       "term": "リップ",
       "category": "makeup",
       "brand": null,
-      "interest_7d": 1.0,
-      "interest_prev21d": 5.6,
-      "change_ratio": 0.18,
-      "change_pct": -82.2,
-      "anchor_normalized": 4.31,
+      "interest_7d": 0.1,
+      "interest_prev21d": 4.8,
+      "change_ratio": 0.03,
+      "change_pct": -97.0,
+      "anchor_normalized": 3.61,
       "source": "Google Trends",
       "geo": "JP",
       "confidence": "medium"
@@ -120,24 +133,11 @@
       "term": "ファンデーション",
       "category": "makeup",
       "brand": null,
-      "interest_7d": 0.9,
-      "interest_prev21d": 5.5,
-      "change_ratio": 0.16,
-      "change_pct": -84.5,
-      "anchor_normalized": 1.36,
-      "source": "Google Trends",
-      "geo": "JP",
-      "confidence": "medium"
-    },
-    {
-      "term": "香水",
-      "category": "fragrance",
-      "brand": null,
-      "interest_7d": 0.9,
-      "interest_prev21d": 5.6,
-      "change_ratio": 0.15,
-      "change_pct": -84.7,
-      "anchor_normalized": 4.43,
+      "interest_7d": 0.0,
+      "interest_prev21d": 4.8,
+      "change_ratio": 0.0,
+      "change_pct": -100.0,
+      "anchor_normalized": 1.94,
       "source": "Google Trends",
       "geo": "JP",
       "confidence": "medium"
@@ -147,10 +147,23 @@
       "category": "makeup",
       "brand": null,
       "interest_7d": 0.0,
-      "interest_prev21d": 2.1,
+      "interest_prev21d": 2.9,
       "change_ratio": 0.0,
       "change_pct": -100.0,
-      "anchor_normalized": 0.35,
+      "anchor_normalized": 0.47,
+      "source": "Google Trends",
+      "geo": "JP",
+      "confidence": "medium"
+    },
+    {
+      "term": "日焼け止め",
+      "category": "skincare",
+      "brand": null,
+      "interest_7d": 0.0,
+      "interest_prev21d": 4.9,
+      "change_ratio": 0.0,
+      "change_pct": -100.0,
+      "anchor_normalized": 2.1,
       "source": "Google Trends",
       "geo": "JP",
       "confidence": "medium"
@@ -160,20 +173,15 @@
       "category": "market",
       "brand": null,
       "interest_7d": 0.0,
-      "interest_prev21d": 0.8,
+      "interest_prev21d": 1.1,
       "change_ratio": 0.0,
       "change_pct": -100.0,
-      "anchor_normalized": 0.13,
+      "anchor_normalized": 0.18,
       "source": "Google Trends",
       "geo": "JP",
       "confidence": "medium"
     }
   ],
   "signals": [],
-  "collector_errors": [
-    {
-      "term": "日焼け止め",
-      "error": "TooManyRequestsError: The request failed: Google returned a response with code 429"
-    }
-  ]
+  "collector_errors": []
 }
