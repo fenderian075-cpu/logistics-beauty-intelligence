@@ -22,6 +22,8 @@
     {"id":"kline","name":"川崎汽船","metrics":["revenue","operating_profit","container_exposure","shipping_market","stock_reaction"]}
   ],
   "events":[
+    {"date":"2026-09-07","company_id":"nx-hd","type":"volume","headline":"NX日本発航空輸出は2026年7月21,439t、YoY +25.2%（2026年7月 vs 2025年7月）","source":{"name":"NIPPON EXPRESS HOLDINGS 月次航空フォワーディング実績","url":"https://www.nipponexpress-holdings.com/ja/ir/finance/sky/"},"interpretation":"日本発航空輸出の物理重量は強い。一方、日本着航空輸入の通関件数は32,849件、YoY +1.9%（2026年7月 vs 2025年7月）で、輸出重量の伸びを日本向け輸入需要へ一般化しない。"},
+    {"date":"2026-09-07","company_id":"nx-hd","type":"volume","headline":"NX日本発海上輸出は2026年7月19,522TEU、YoY +4.6%（2026年7月 vs 2025年7月）","source":{"name":"NIPPON EXPRESS HOLDINGS 月次海上輸送実績","url":"https://www.nipponexpress-holdings.com/en/ir/finance/marine/"},"interpretation":"日本発海上輸出の物理量は前年同月を上回るが、単一企業の取扱量で日本全体の港湾需要を代替しない。"},
     {"date":"2026-08-03","company_id":"yamato-hd","type":"earnings","headline":"2027年3月期 第1四半期決算を公表","source":{"name":"ヤマトホールディングス IR","url":"https://www.yamato-hd.co.jp/investors/information/2027.html"},"interpretation":"収益と小口貨物volumeを分離して継続評価する起点。"},
     {"date":"2026-08-06","company_id":"yamato-hd","type":"volume","headline":"2026年7月の小口貨物取扱実績を公表","source":{"name":"ヤマトホールディングス IR","url":"https://www.yamato-hd.co.jp/investors/information/2027.html"},"interpretation":"決算の売上・利益変化を実物volumeと接続する。"},
     {"date":"2026-04-24","company_id":"seino-hd","related_company_ids":["azcom-maruwa"],"type":"business_alliance","headline":"AZ-COM丸和ホールディングスとの業務提携に向け基本合意","source":{"name":"セイノーホールディングス","url":"https://www.seino.co.jp/seino/shd/"},"interpretation":"個社capacityから共同ネットワークへ供給構造が変わる可能性。"},
