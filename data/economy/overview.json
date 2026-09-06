@@ -1,18 +1,19 @@
 {
   "schema_version":"1.2",
-  "updated_at":"2026-08-31T08:00:00+09:00",
+  "updated_at":"2026-09-07T08:25:00+09:00",
   "title_ja":"実体経済と物流",
-  "thesis":"需要・貿易・物量・倉庫・輸送コストを分けて追い、物流ニュースを実体経済へ接続する。Beautyは小売・出荷・市場推計をBrand.com/Buzzから分離して確認する。",
+  "thesis":"需要・貿易・物量・倉庫・輸送コスト・定時性を分けて追い、物流ニュースを実体経済へ接続する。Beautyは小売・出荷・市場推計をBrand.com/Buzzから分離して確認する。",
   "cards":[
     {"id":"trade","label":"貿易","headline":"名目金額は大幅増、数量増は相対的に小さい","value":"輸出額 YoY +23.2% / 輸入額 YoY +27.8%","period":"2026-07 vs 2025-07","direction":"rising","source":"財務省 貿易統計","url":"https://www.customs.go.jp/toukei/shinbun/happyou.htm","detail":"2026年7月の輸出11.512兆円、輸入12.146兆円、貿易差額▲0.635兆円。数量指数は輸出112.2（YoY +5.2%、2026-07 vs 2025-07）、輸入106.6（YoY +1.2%、同）。名目額の伸びを物量増と同一視しない。"},
-    {"id":"beauty","label":"Beauty実需","headline":"百貨店全体は7月に加速、化粧品単独は6月値を維持","value":"百貨店総売上 YoY +5.1%","period":"2026-07 vs 2025-07","direction":"rising","source":"日本百貨店協会","url":"https://www.depart.or.jp/store_sale/","detail":"全国百貨店総売上4,889億円、店数調整後YoY +5.1%（2026-07 vs 2025-07）、国内YoY +3.2%、免税YoY +25.5%（同）。化粧品単独の最新検証済み値は2026年6月397.4億円、店数調整後YoY +1.8%（2026-06 vs 2025-06）。7月化粧品値は推測しない。"},
+    {"id":"beauty","label":"Beauty実需","headline":"百貨店化粧品は7月に再加速","value":"412.4億円 / YoY +7.0%","period":"2026-07 vs 2025-07","direction":"rising","source":"日本百貨店協会","url":"https://www.depart.or.jp/store_sale/","detail":"全国百貨店化粧品41,240.5百万円、構成比8.4%、店舗数調整後YoY +7.0%（2026-07 vs 2025-07）。YoY伸び率は2026年6月+1.8%から2026年7月+7.0%へ5.2 percentage points加速。百貨店総売上も488,901.1百万円、YoY +5.1%（2026-07 vs 2025-07）。"},
     {"id":"port","label":"港湾","headline":"国内コンテナ取扱は増加","value":"2,236万TEU / YoY +1.8%","period":"2025 vs 2024","direction":"rising","source":"国土交通省 港湾局","url":"https://www.mlit.go.jp/report/press/port03_hh_000140.html","detail":"2025年の外貿1,780万TEU（YoY +1.8%、2025 vs 2024）、内貿456万TEU（YoY +1.9%、同）。"},
-    {"id":"warehouse","label":"倉庫","headline":"2026月次値は取得待ち","value":"未確認","period":"latest source page","direction":"unknown","source":"国土交通省 主要21社倉庫","url":"https://www.mlit.go.jp/seisakutokatsu/freight/seisakutokatsu_freight_mn2_000009.html","detail":"入庫・出庫・保管残高・回転率を月次保存する。取得できない値は推測しない。現時点ではinventory build / destockingを確定できない。"},
-    {"id":"truck","label":"トラック","headline":"荷待ち・荷役は改善","value":"2時間02分 / -1時間16分 vs 2024年度調査","period":"2025年度調査 vs 2024年度調査","direction":"improving","source":"国土交通省","url":"https://www.mlit.go.jp/report/press/tokatsu02_hh_000084.html","detail":"1運行平均拘束時間10時間13分。物流効率化法の2時間以内目標に接近。"},
-    {"id":"cost","label":"物流コスト","headline":"外航貨物価格が一段上昇","value":"外航貨物 SPPI 259.5 / YoY +67.4%","period":"2026-07 vs 2025-07","direction":"rising","source":"日本銀行 SPPI","url":"https://www.boj.or.jp/statistics/pi/sppi_2020/","detail":"2026年7月SPPI総平均115.1、YoY +3.6%（2026-07 vs 2025-07）。外航貨物輸送259.5、YoY +67.4%（同）。価格指数でありphysical demandやcontainer space不足と同一視しない。"},
-    {"id":"air","label":"航空貨物","headline":"国際貨物量は増加継続","value":"141,409t / YoY +9.0%","period":"2026-05 vs 2025-05","direction":"rising","source":"国土交通省 航空輸送統計","url":"https://www.mlit.go.jp/report/press/joho05_hh_000913.html","detail":"国際貨物トンキロ799,412千トンキロ（YoY +11.1%、2026-05 vs 2025-05）、重量利用率72.0%。国内航空貨物45,461t（YoY -7.2%、同）。"}
+    {"id":"warehouse","label":"倉庫","headline":"最新の主要21社月次を未検証","value":"未確認","period":"latest primary release","direction":"unknown","source":"国土交通省 主要21社倉庫","url":"https://www.mlit.go.jp/seisakutokatsu/freight/seisakutokatsu_freight_mn2_000009.html","detail":"入庫・出庫・保管残高・回転率を月次保存する。今回、最新値を確実に検証できないためinventory build / destockingを確定しない。"},
+    {"id":"truck","label":"トラック","headline":"荷待ち・荷役は改善","value":"2時間02分 / 1時間16分短縮","period":"2025年度調査 vs 2024年度調査","direction":"improving","source":"国土交通省","url":"https://www.mlit.go.jp/report/press/tokatsu02_hh_000084.html","detail":"1運行平均拘束時間10時間13分。物流効率化法の2時間以内目標に接近。短期の輸送例外と構造KPIを分ける。"},
+    {"id":"cost","label":"物流コスト","headline":"外航価格圧力が突出、道路・倉庫も上昇","value":"外航貨物 SPPI 259.5 / YoY +67.4%","period":"2026-07 vs 2025-07","direction":"rising","source":"日本銀行 SPPI","url":"https://www.boj.or.jp/statistics/pi/sppi_2020/","detail":"2026年7月は道路貨物112.9（YoY +4.5%、2026-07 vs 2025-07）、倉庫105.6（YoY +2.1%、同）、3PL 110.9（YoY +1.9%、同）。外航貨物はMoM +11.4%（2026-07 vs 2026-06）。いずれも価格指数でありphysical demandやspace不足と同一視しない。"},
+    {"id":"air","label":"航空貨物","headline":"国際貨物量は増加幅が鈍化","value":"140,199t / YoY +2.7%","period":"2026-06 vs 2025-06","direction":"rising","source":"国土交通省 航空輸送統計","url":"https://www.mlit.go.jp/k-toukei/koukuu.html","detail":"国際貨物トンキロはYoY +1.7%（2026-06 vs 2025-06）、重量利用率72.4%。国内航空貨物45,614t、YoY -5.7%（同）。"},
+    {"id":"reliability","label":"海上定時性","headline":"アジア港湾混雑で2026年最低へ悪化","value":"56.4% / MoM -6.1pp","period":"2026-07 vs 2026-06","direction":"deteriorating","source":"Sea-Intelligence","url":"https://sea-intelligence.com/press-room/404-july-global-schedule-reliability-drops-to-lowest-2026-level","detail":"平均遅延は6.06日、MoM +0.59日（2026-07 vs 2026-06）、YoY +1.34日（2026-07 vs 2025-07）。主要アジア港の混雑がglobal reliabilityを押し下げ、nominal supplyとは別にeffective supplyを圧迫する。"}
   ],
-  "transmission_chain":["消費・Beauty需要","輸出入","港湾・航空・トラック物量","倉庫入出庫・在庫","物流コスト・キャパシティ","物流企業収益・投資","オペレーション判断"],
+  "transmission_chain":["消費・Beauty需要","輸出入","港湾・航空・トラック物量","倉庫入出庫・在庫","物流コスト・名目キャパシティ","定時性・実効キャパシティ","物流企業収益・投資","オペレーション判断"],
   "privacy":"Priority sourcing geographies and routes are evaluated privately and are not named or persisted in public datasets.",
-  "interpretation":"単一指標で景気や物流逼迫を判断しない。需要、Trade、Physical Flow、Inventory、Cost、Corporateをつないで因果を評価する。比較値はYoY/MoM/WoW/YTD等と比較対象期間を必ず明示する。"
+  "interpretation":"単一指標で景気や物流逼迫を判断しない。Demand、Trade、Physical Flow、Inventory、Cost、nominal Supply、Reliability、effective Supply、Corporateをつないで因果を評価する。比較値はYoY/MoM/WoW/YTD等と比較対象期間を必ず明示する。"
 }
