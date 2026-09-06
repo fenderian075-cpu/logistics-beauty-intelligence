@@ -1,0 +1,14 @@
+{
+  "schema_version":"1.0",
+  "dataset":"port-throughput-release",
+  "period":"2026-06",
+  "published_at":"2026-08-27",
+  "status":"official",
+  "source":{"name":"国土交通省 港湾統計速報","url":"https://www.mlit.go.jp/report/press/joho05_hh_000916.html"},
+  "observations":[
+    {"metric_id":"major_six_ports_foreign_trade_container_total","value":1195224,"unit":"TEU","yoy_pct":1.0,"comparison":{"type":"yoy","base_period":"2025-06"}},
+    {"metric_id":"major_six_ports_foreign_trade_container_export","value":597388,"unit":"TEU","yoy_pct":0.0,"comparison":{"type":"yoy","base_period":"2025-06"}},
+    {"metric_id":"major_six_ports_foreign_trade_container_import","value":597836,"unit":"TEU","yoy_pct":2.0,"comparison":{"type":"yoy","base_period":"2025-06"}}
+  ],
+  "interpretation":"Physical container flow increased only modestly; do not equate nominal import-value growth with container-volume growth."
+}
