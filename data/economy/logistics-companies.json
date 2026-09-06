@@ -22,6 +22,8 @@
     {"id":"kline","name":"川崎汽船","metrics":["revenue","operating_profit","container_exposure","shipping_market","stock_reaction"]}
   ],
   "events":[
+    {"date":"2026-09-04","company_id":"yamato-hd","type":"volume","headline":"2026年8月の小口貨物取扱実績を公表","source":{"name":"ヤマトホールディングス","url":"https://www.yamato-hd.co.jp/news/2026/newsrelease_20260904_1.html"},"interpretation":"宅急便等は1億4,179.7万個、YoY -3.9%（2026年8月 vs 2025年8月）に対し、ネコポス・クロネコゆうパケットは3,916.6万個、YoY +15.7%（同）。2026年4-8月累計でも宅急便等はYoY -3.6%（2026年4-8月 vs 2025年4-8月）、小型投函系はYoY +17.2%（同）で、国内小口物量は一律増減ではなく商品ミックス変化として評価する。"},
+    {"date":"2026-09-07","company_id":"nx-hd","type":"volume","headline":"最新IRページで2026年7月の国際フォワーディング取扱実績を確認","source":{"name":"NIPPON EXPRESSホールディングス IR","url":"https://www.nipponexpress-holdings.com/en/ir/finance/"},"interpretation":"NX Groupの日本発海上貨物は19,916TEU、YoY +4.6%（2026年7月 vs 2025年7月）に対し、日本発航空貨物は28,000t、YoY +24.6%（同）。モード別の伸びは大きく異なり、国際物流需要を単一のvolume trendとして扱わない。"},
     {"date":"2026-08-03","company_id":"yamato-hd","type":"earnings","headline":"2027年3月期 第1四半期決算を公表","source":{"name":"ヤマトホールディングス IR","url":"https://www.yamato-hd.co.jp/investors/information/2027.html"},"interpretation":"収益と小口貨物volumeを分離して継続評価する起点。"},
     {"date":"2026-08-06","company_id":"yamato-hd","type":"volume","headline":"2026年7月の小口貨物取扱実績を公表","source":{"name":"ヤマトホールディングス IR","url":"https://www.yamato-hd.co.jp/investors/information/2027.html"},"interpretation":"決算の売上・利益変化を実物volumeと接続する。"},
     {"date":"2026-04-24","company_id":"seino-hd","related_company_ids":["azcom-maruwa"],"type":"business_alliance","headline":"AZ-COM丸和ホールディングスとの業務提携に向け基本合意","source":{"name":"セイノーホールディングス","url":"https://www.seino.co.jp/seino/shd/"},"interpretation":"個社capacityから共同ネットワークへ供給構造が変わる可能性。"},

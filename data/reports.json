@@ -17,6 +17,52 @@
   },
   "reports": [
     {
+      "date":"2026-09-07",
+      "status":"watch",
+      "as_of":"2026年9月7日 08:30 JST",
+      "sample":false,
+      "id":"2026-09-07-monthly",
+      "type":"monthly",
+      "period":"2026-09",
+      "title":"物流・化粧品インテリジェンス・ブリーフ — MONTHLY",
+      "summary":"前回月次からの構造変化は、海上定時性の悪化、アジア域内運賃の上昇、Beauty実需の再加速、物流volumeのモード・商品ミックス分化。世界コンテナ定時性は2026年7月56.4%、MoM -6.1 percentage points（2026年7月 vs 2026年6月）へ悪化し、平均遅延は6.06日、MoM +0.59日（同）。一方、日本の2026年7月輸入額はYoY +27.8%でも輸入数量指数はYoY +1.2%（2026年7月 vs 2025年7月）にとどまり、physical demand急増とは判定しない。百貨店化粧品は412.4億円、店舗数調整後YoY +7.0%（2026年7月 vs 2025年7月）へ再加速した。",
+      "bottom_line":"在庫を一律に積み増す局面ではなく、定時性・接続・モード別需要を織り込んで選択的にbufferを置く。海上はWCIの横ばいよりIACI上昇と定時性悪化を重視し、重点輸入レーンは主要T/S接続・ETA varianceをサービス単位で確認する。Beautyは7月百貨店化粧品の実需改善を前向きに評価する一方、最新の国内出荷quantity・倉庫残高で裏付けるまで補充前提を全面変更しない。",
+      "key_issues":[
+        "世界コンテナ定時性 56.4%、MoM -6.1pp（2026年7月 vs 2026年6月）；平均遅延6.06日、MoM +0.59日（同）",
+        "WCI 4,465米ドル/40ft、WoW横ばい（2026-09-03 vs 2026-08-27）；IACI 1,312米ドル/40ft、WoW +9%（同）",
+        "輸入額 YoY +27.8%に対し輸入数量指数 YoY +1.2%（2026年7月 vs 2025年7月）",
+        "百貨店化粧品 412.4億円、店舗数調整後 YoY +7.0%（2026年7月 vs 2025年7月）、構成比8.4%",
+        "国内小口貨物は宅急便等 YoY -3.9% と小型投函系 YoY +15.7%（2026年8月 vs 2025年8月）で商品ミックス分化"
+      ],
+      "tags":["Schedule Reliability","Effective Capacity","Trade","Beauty","物流企業"],
+      "status_board":{"domestic":"watch","weather":"unconfirmed","customs":"normal","ocean":"watch","air":"watch","global":"watch"},
+      "signals":{"wci":{"value":4465,"unit":"USD/40ft","data_date":"2026-09-03","source":"https://www.drewry.co.uk/supply-chain-advisors/supply-chain-expertise/world-container-index-assessed-by-drewry"},"scfi":{"value":null,"unit":null,"data_date":null,"source":null}},
+      "cost_snapshot":{"as_of":"2026-09-07T08:30:00+09:00","metrics":{"regular_gasoline_national":{"value":null,"unit":"JPY/L","data_date":null,"source":"資源エネルギー庁 石油製品価格調査 / data/economy/fuel-prices.json"},"diesel_national":{"value":null,"unit":"JPY/L","data_date":null,"source":"資源エネルギー庁 石油製品価格調査 / data/economy/fuel-prices.json"},"drewry_wci":{"value":4465,"unit":"USD/40ft","data_date":"2026-09-03","source":"Drewry World Container Index"},"drewry_iaci":{"value":1312,"unit":"USD/40ft","data_date":"2026-09-03","source":"Drewry Intra-Asia Container Index"},"road_freight":{"value":112.9,"unit":"index 2020=100","data_date":"2026-07-01","source":"日本銀行 企業向けサービス価格指数 / data/economy/freight-cost.json"},"ocean_freight":{"value":259.5,"unit":"index 2020=100","data_date":"2026-07-01","source":"日本銀行 企業向けサービス価格指数 / data/economy/freight-cost.json"}},"interpretation_ja":"WCIは2026年9月3日4,465米ドル/40ftでWoW横ばい（2026-09-03 vs 2026-08-27）、IACIは1,312米ドル/40ftでWoW +9%（同）。日銀SPPIは2026年7月の道路貨物112.9、YoY +4.5%、外航貨物259.5、YoY +67.4%（いずれも2026年7月 vs 2025年7月）。価格・指数をphysical demandやspace不足と同一視しない。"},
+      "intelligence":{
+        "disruption":[],
+        "cost_capacity":[
+          {"id":"ocean-global-price","signal":"WCIは2026年9月3日4,465米ドル/40ftでWoW横ばい（2026-09-03 vs 2026-08-27）。global average rateの横ばいをphysical capacity正常化とはみなさない。","lens":"cost_capacity","direction":"stable","impact":"medium","change_status":"unchanged","confidence":"high","evidence":[{"source":"Drewry","date":"2026-09-03","url":"https://www.drewry.co.uk/supply-chain-advisors/supply-chain-expertise/world-container-index-assessed-by-drewry"}],"operational_implication":"global average priceよりlane別rate・space・connectionを分けて確認する。","action_direction":"WCIだけでinventoryやbooking policyを変更しない。"},
+          {"id":"ocean-intra-asia-capacity","signal":"IACIは2026年9月3日1,312米ドル/40ft、WoW +9%（2026-09-03 vs 2026-08-27）で5週連続上昇。域内のprice pressureと一時的なcapacity tighteningを監視する。","lens":"cost_capacity","direction":"rising","impact":"high","change_status":"deteriorating","confidence":"high","evidence":[{"source":"Drewry","date":"2026-09-03","url":"https://www.drewry.co.uk/supply-chain-advisors/supply-chain-expertise/intra-asia-container-index"}],"operational_implication":"アジア域内の補充はpriceとspace availability、主要T/S接続を同時確認する。","action_direction":"重要貨物はbooking lead timeと代替モードを事前評価する。"}
+        ],
+        "reliability":[
+          {"id":"ocean-schedule-reliability","signal":"世界コンテナ定時性は2026年7月56.4%、MoM -6.1pp（2026年7月 vs 2026年6月）へ悪化し、平均遅延は6.06日、MoM +0.59日（同）。主要アジア港の混雑がeffective supplyを圧迫する。","lens":"reliability","direction":"falling","impact":"high","change_status":"deteriorating","confidence":"high","evidence":[{"source":"Sea-Intelligence","date":"2026-09-02","url":"https://sea-intelligence.com/press-room/404-july-global-schedule-reliability-drops-to-lowest-2026-level"}],"operational_implication":"nominal fleet・spaceだけでなくconnection reliabilityとETA varianceをcapacity KPIに含める。","action_direction":"重点輸入レーンは主要T/S接続とlead-time bufferをサービス単位で管理する。"}
+        ],
+        "demand_commerce":[
+          {"id":"beauty-japan-ec-promotion","signal":"百貨店化粧品は2026年7月412.4億円、店舗数調整後YoY +7.0%（2026年7月 vs 2025年7月）へ再加速したが、Brand.com・EC promotionは引き続きattention driverとしてorganic demandから分離する。","lens":"demand_commerce","direction":"rising","impact":"medium","change_status":"improving","confidence":"high","demand_driver":"promotion","duration":"temporary","evidence":[{"source":"日本百貨店協会","date":"2026-08-25","url":"https://www.depart.or.jp/store_sale/"},{"source":"ブランド公式サイト監視群","date":"2026-09-07","url":null}],"operational_implication":"小売sell-through改善を評価しつつ、promotion終了後の持続性と国内出荷・輸入・在庫の裏付けを確認する。","action_direction":"カテゴリ別allocationを選択的に調整し、全面的な補充増はまだ行わない。"}
+        ],
+        "regulatory_structural":[
+          {"id":"japan-logistics-regulation","signal":"2025年度調査の荷待ち・荷役等時間2時間02分、2024年度調査比1時間16分短縮という改善KPIを維持。物流効率化法は指定事業者の中長期計画・定期報告を含む実装局面。","lens":"regulatory_structural","direction":"stable","impact":"high","change_status":"unchanged","confidence":"high","evidence":[{"source":"国土交通省","date":"2026-07-10","url":"https://www.mlit.go.jp/report/press/tokatsu02_hh_000084.html"}],"operational_implication":"短期の配送例外と構造capacityを分け、荷待ち・荷役・幹線・港湾/ドレージ生産性をKPI化する。","action_direction":"時間削減の持続性と事業者実装を継続確認する。"}
+        ]
+      },
+      "market_intelligence":[
+        {"id":"global-container-effective-supply","scope":"グローバルコンテナ 実効供給力","rate":{"direction":"mixed","evidence":["WCI 4,465 USD/40ft、WoW横ばい（2026-09-03 vs 2026-08-27）","IACI 1,312 USD/40ft、WoW +9%（2026-09-03 vs 2026-08-27）"]},"supply":{"direction":"stable","evidence":["global average rateの横ばいだけではnominal Supply tighteningを確認できない","主要アジア港の混雑・遅延が利用可能なeffective Supplyを圧迫"]},"demand":{"direction":"mixed","evidence":["日本の輸入額はYoY +27.8%に対し輸入数量指数はYoY +1.2%（2026年7月 vs 2025年7月）","主要倉庫の最新月次残高は未確認"]},"reliability":{"direction":"deteriorating","evidence":["世界定時性56.4%、MoM -6.1pp（2026年7月 vs 2026年6月）","平均遅延6.06日、MoM +0.59日（同）"]},"risk":"high","operational_events":{"reported":["主要アジア港の混雑"],"observed_impact":["定時性低下によるeffective capacity pressure"]},"structural_drivers":["port congestion","connection reliability","名目金額と物理量の乖離","航路別rate分化"],"japan_implication":"日本発着はglobal rateより主要T/S接続・ETA variance・モード別需要を重視。","operational_implication":"Rate・nominal Supply・effective Supply・Demand・Reliabilityを分離し、Inventoryは最新倉庫値を確認できるまで未判定とする。","outlook_30d":"アジア域内の価格圧力と低いreliabilityがlead timeを押し上げる可能性。","outlook_90d":"港湾混雑が解消しない場合、名目船腹増加の効果が実効供給力へ十分転化しない。","risk_scenario":"接続失敗・遅延が続けば安全在庫と輸送モード選択への圧力が増す。","confidence":"high"},
+        {"id":"japan-beauty-demand","scope":"日本Beauty実需","rate":{"direction":"unknown","evidence":[]},"supply":{"direction":"unknown","evidence":["最新の国内化粧品出荷quantityと主要倉庫残高の接続は未確認"]},"demand":{"direction":"rising","evidence":["百貨店化粧品412.4億円、店舗数調整後YoY +7.0%（2026年7月 vs 2025年7月）、構成比8.4%","YoY伸び率は2026年6月+1.8%から2026年7月+7.0%へ5.2pp加速"]},"reliability":{"direction":"unknown","evidence":[]},"risk":"medium","operational_events":{"reported":["Brand.com・EC promotion継続"],"observed_impact":["百貨店化粧品sell-throughの再加速"]},"structural_drivers":["sell-through","promotion","価格/数量未分解","カテゴリ別需要"],"japan_implication":"Beautyはチャネル・カテゴリ別に改善している可能性があるが、promotionと上流受注をorganic demandから分離する。","operational_implication":"小売・国内出荷・輸入・在庫を順に確認してからreplenishment assumptionを変更する。","outlook_30d":"7月の改善が8月以降も持続するかを確認。","outlook_90d":"小売改善と出荷・輸入・在庫が整合すれば選択的な需要上方修正が可能。","risk_scenario":"promotionやOEM受注をorganic demandと誤認すると過剰補充につながる。","confidence":"medium"},
+        {"id":"japan-logistics-volume-mix","scope":"日本物流 volume mix","rate":{"direction":"unknown","evidence":[]},"supply":{"direction":"stable","evidence":["国内トラック構造KPIは改善方向だがモード別供給は個別確認が必要"]},"demand":{"direction":"mixed","evidence":["宅急便等 YoY -3.9%に対し小型投函系 YoY +15.7%（2026年8月 vs 2025年8月）","NX日本発は海上 YoY +4.6%、航空 YoY +24.6%（2026年7月 vs 2025年7月）"]},"reliability":{"direction":"unknown","evidence":[]},"risk":"medium","operational_events":{"reported":[],"observed_impact":["商品・モード別volumeの分化"]},"structural_drivers":["parcel product mix","air/ocean mode mix","e-commerce fulfillment"],"japan_implication":"物流需要を総量一括で見ず、商品・モード別にcapacity planningする。","operational_implication":"volume、unit price/mix、profitを分離して物流企業の業績・capacityを評価する。","outlook_30d":"商品・モード別の分化継続を確認。","outlook_90d":"mix shiftがネットワーク投資・unit economicsへ波及するか評価。","risk_scenario":"aggregate volumeだけを見ると局所capacity pressureを見落とす。","confidence":"medium"}
+      ],
+      "change_summary":{"comparison_base":"2026-08-23-monthly","new":[],"deteriorating":["ocean-schedule-reliability","ocean-intra-asia-capacity"],"improving":["beauty-japan-ec-promotion"],"resolved":[],"unchanged_high_risk":[]},
+      "path":"reports/2026/09/2026-09-07-monthly.html"
+    },
+    {
       "date": "2026-08-24",
       "status": "watch",
       "as_of": "2026年8月24日 08:30 JST",
