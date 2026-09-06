@@ -1,0 +1,14 @@
+{
+  "schema_version":"1.0",
+  "dataset":"air-cargo-release",
+  "period":"2026-06",
+  "published_at":"2026-08-27",
+  "status":"official",
+  "source":{"name":"国土交通省 航空輸送統計速報","url":"https://www.mlit.go.jp/report/press/joho05_hh_000918.html"},
+  "observations":[
+    {"metric_id":"international_air_cargo_tonnes","value":140199,"unit":"tonnes","yoy_pct":2.7,"comparison":{"type":"yoy","base_period":"2025-06"}},
+    {"metric_id":"international_air_cargo_weight_load_factor","value":72.4,"unit":"percent","comparison":null},
+    {"metric_id":"domestic_air_cargo_tonnes","value":45614,"unit":"tonnes","yoy_pct":-5.7,"comparison":{"type":"yoy","base_period":"2025-06"}}
+  ],
+  "interpretation":"International and domestic air-cargo directions diverged. Treat physical tonnes separately from freight-price indices and corporate forwarding volumes."
+}

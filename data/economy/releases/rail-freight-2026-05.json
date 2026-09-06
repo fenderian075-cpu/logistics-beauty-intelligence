@@ -1,0 +1,14 @@
+{
+  "schema_version":"1.0",
+  "dataset":"rail-freight-release",
+  "period":"2026-05",
+  "published_at":"2026-08-31",
+  "status":"official",
+  "source":{"name":"国土交通省 鉄道輸送統計","url":"https://www.mlit.go.jp/report/press/joho05_hh_000917.html"},
+  "observations":[
+    {"metric_id":"rail_freight_total_tonnes","value":2704135,"unit":"tonnes","yoy_pct":-5.2,"comparison":{"type":"yoy","base_period":"2025-05"}},
+    {"metric_id":"rail_freight_container_tonnes","value":1556474,"unit":"tonnes","yoy_pct":-7.9,"comparison":{"type":"yoy","base_period":"2025-05"}},
+    {"metric_id":"rail_freight_carload_tonnes","value":1147661,"unit":"tonnes","yoy_pct":-1.2,"comparison":{"type":"yoy","base_period":"2025-05"}}
+  ],
+  "interpretation":"Monthly rail physical volume was weaker year on year before the current operational disruption; do not generalize current rail delays into nationwide trucking shortage."
+}
