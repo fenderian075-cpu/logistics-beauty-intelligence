@@ -10,7 +10,7 @@
     },
     {
       "name": "Drewry アジア域内コンテナ運賃指数（IACI）",
-      "url": "https://www.drewry.co.uk/trackers-and-indices"
+      "url": "https://www.drewry.co.uk/maritime-research-opinion-browser/intra-asia-container-index"
     }
   ],
   "interpretation_ja": "運賃は価格指標であり、船腹量・需要・定時性とは分けて評価する。WCIは世界主要航路のスポット運賃、IACIはアジア域内の運賃圧力を見る補助指標として扱う。",
@@ -20,47 +20,13 @@
       "name_ja": "Drewry 世界コンテナ運賃指数（WCI）",
       "unit": "USD/40ft",
       "observations": [
-        {
-          "period": "2025-12-18",
-          "value": 2182,
-          "status": "official_published_snapshot",
-          "source_note": "Drewry OnDemand公開資料"
-        },
-        {
-          "period": "2026-07-23",
-          "value": 4374,
-          "wow_pct": -4.0,
-          "status": "official",
-          "source_note": "Drewry WCI 23 Jul 2026"
-        },
-        {
-          "period": "2026-07-30",
-          "value": 4255,
-          "wow_pct": -3.0,
-          "status": "official",
-          "source_note": "Drewry WCI 30 Jul 2026"
-        },
-        {
-          "period": "2026-08-13",
-          "value": 4339,
-          "wow_pct": 1.0,
-          "status": "official",
-          "source_note": "Drewry WCI 13 Aug 2026"
-        },
-        {
-          "period": "2026-08-20",
-          "value": 4526.0,
-          "wow_pct": 4.0,
-          "status": "official",
-          "source_note": "Drewry public tracker"
-        },
-        {
-          "period": "2026-08-27",
-          "value": 1199.0,
-          "wow_pct": 2.2,
-          "status": "official",
-          "source_note": "Drewry public tracker"
-        }
+        {"period":"2025-12-18","value":2182,"status":"official_published_snapshot","source_note":"Drewry OnDemand公開資料"},
+        {"period":"2026-07-23","value":4374,"wow_pct":-4.0,"comparison":{"type":"wow","base_period":"2026-07-16"},"status":"official","source_note":"Drewry WCI 23 Jul 2026"},
+        {"period":"2026-07-30","value":4255,"wow_pct":-3.0,"comparison":{"type":"wow","base_period":"2026-07-23"},"status":"official","source_note":"Drewry WCI 30 Jul 2026"},
+        {"period":"2026-08-13","value":4339,"wow_pct":1.0,"comparison":{"type":"wow","base_period":"2026-08-06"},"status":"official","source_note":"Drewry WCI 13 Aug 2026"},
+        {"period":"2026-08-20","value":4526.0,"wow_pct":4.0,"comparison":{"type":"wow","base_period":"2026-08-13"},"status":"official","source_note":"Drewry public tracker"},
+        {"period":"2026-08-27","value":4473.0,"wow_pct":-1.0,"comparison":{"type":"wow","base_period":"2026-08-20"},"status":"official_corrected","source_note":"Drewry WCI 27 Aug 2026; corrected prior accidental IACI value"},
+        {"period":"2026-09-03","value":4465.0,"wow_pct":0.0,"comparison":{"type":"wow","base_period":"2026-08-27"},"published_at":"2026-09-03","status":"official","source_note":"Drewry WCI 03 Sep 2026"}
       ]
     },
     {
@@ -68,44 +34,15 @@
       "name_ja": "Drewry アジア域内コンテナ運賃指数（IACI）",
       "unit": "USD/40ft",
       "observations": [
-        {
-          "period": "2026-07-23",
-          "value": 960,
-          "wow_pct": -2.0,
-          "status": "official",
-          "source_note": "Drewry IACI 23 Jul 2026"
-        },
-        {
-          "period": "2026-07-30",
-          "value": 956,
-          "wow_pct": 0.0,
-          "status": "official",
-          "source_note": "Drewry IACI 30 Jul 2026"
-        },
-        {
-          "period": "2026-08-13",
-          "value": 1028,
-          "wow_pct": 6.0,
-          "status": "official",
-          "source_note": "Drewry IACI 13 Aug 2026"
-        },
-        {
-          "period": "2026-08-20",
-          "value": 1091.0,
-          "wow_pct": 6.0,
-          "status": "official",
-          "source_note": "Drewry public tracker"
-        },
-        {
-          "period": "2026-08-27",
-          "value": 1199.0,
-          "wow_pct": 10.0,
-          "status": "official",
-          "source_note": "Drewry public tracker"
-        }
+        {"period":"2026-07-23","value":960,"wow_pct":-2.0,"comparison":{"type":"wow","base_period":"2026-07-16"},"status":"official","source_note":"Drewry IACI 23 Jul 2026"},
+        {"period":"2026-07-30","value":956,"wow_pct":0.0,"comparison":{"type":"wow","base_period":"2026-07-23"},"status":"official","source_note":"Drewry IACI 30 Jul 2026"},
+        {"period":"2026-08-13","value":1028,"wow_pct":6.0,"comparison":{"type":"wow","base_period":"2026-08-06"},"status":"official","source_note":"Drewry IACI 13 Aug 2026"},
+        {"period":"2026-08-20","value":1091.0,"wow_pct":6.0,"comparison":{"type":"wow","base_period":"2026-08-13"},"status":"official","source_note":"Drewry public tracker"},
+        {"period":"2026-08-27","value":1199.0,"wow_pct":10.0,"comparison":{"type":"wow","base_period":"2026-08-20"},"status":"official","source_note":"Drewry IACI 27 Aug 2026"},
+        {"period":"2026-09-03","value":1312.0,"wow_pct":9.0,"comparison":{"type":"wow","base_period":"2026-08-27"},"published_at":"2026-09-03","status":"official","source_note":"Drewry IACI 03 Sep 2026"}
       ]
     }
   ],
   "collection_status": "official_recent_history_seeded_append_weekly_snapshots",
-  "last_collected_at": "2026-09-02T09:52:11.399786+00:00"
+  "last_collected_at": "2026-09-07T08:00:00+09:00"
 }
