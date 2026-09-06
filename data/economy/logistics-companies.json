@@ -1,8 +1,9 @@
 {
-  "schema_version":"1.0",
+  "schema_version":"1.1",
   "dataset":"logistics-companies",
   "title_ja":"物流企業・資本市場",
   "frequency":"daily+quarterly",
+  "updated_at":"2026-09-07T08:30:00+09:00",
   "primary_source":{"name":"JPX TDnet","url":"https://www.jpx.co.jp/equities/listing/disclosure/tdnet/"},
   "companies":[
     {"id":"yamato-hd","name":"ヤマトホールディングス","metrics":["revenue","operating_profit","parcel_volume","unit_price","capex","mna","restructuring","stock_reaction"]},
@@ -24,10 +25,12 @@
   "events":[
     {"date":"2026-08-03","company_id":"yamato-hd","type":"earnings","headline":"2027年3月期 第1四半期決算を公表","source":{"name":"ヤマトホールディングス IR","url":"https://www.yamato-hd.co.jp/investors/information/2027.html"},"interpretation":"収益と小口貨物volumeを分離して継続評価する起点。"},
     {"date":"2026-08-06","company_id":"yamato-hd","type":"volume","headline":"2026年7月の小口貨物取扱実績を公表","source":{"name":"ヤマトホールディングス IR","url":"https://www.yamato-hd.co.jp/investors/information/2027.html"},"interpretation":"決算の売上・利益変化を実物volumeと接続する。"},
+    {"date":"2026-09-04","company_id":"yamato-hd","type":"volume","headline":"2026年8月の小口貨物取扱実績を公表","metrics":{"takkyubin_compact_eazy":{"period":"2026-08","value":141796942,"unit":"parcels","change_pct":-3.9,"comparison":{"type":"yoy","base_period":"2025-08","published_ratio_pct":96.1}},"takkyubin_compact_eazy_fytd":{"period":"2026-04/2026-08","value":773034675,"unit":"parcels","change_pct":-3.6,"comparison":{"type":"ytd","base_period":"2025-04/2025-08","published_ratio_pct":96.4}},"small_packet_services":{"period":"2026-08","value":39165598,"unit":"parcels","change_pct":15.7,"comparison":{"type":"yoy","base_period":"2025-08","published_ratio_pct":115.7}},"small_packet_services_fytd":{"period":"2026-04/2026-08","value":209967479,"unit":"parcels","change_pct":17.2,"comparison":{"type":"ytd","base_period":"2025-04/2025-08","published_ratio_pct":117.2}}},"source":{"name":"ヤマトホールディングス 小口貨物取扱実績","url":"https://www.yamato-hd.co.jp/news/2026/newsrelease_20260904_1.html"},"interpretation":"主力宅配系と小型荷物系でvolume方向が分かれており、国内小口貨物需要を一律の増減として扱わない。"},
     {"date":"2026-04-24","company_id":"seino-hd","related_company_ids":["azcom-maruwa"],"type":"business_alliance","headline":"AZ-COM丸和ホールディングスとの業務提携に向け基本合意","source":{"name":"セイノーホールディングス","url":"https://www.seino.co.jp/seino/shd/"},"interpretation":"個社capacityから共同ネットワークへ供給構造が変わる可能性。"},
     {"date":"2026-07-14","company_id":"seino-hd","related_company_ids":["azcom-maruwa"],"type":"business_alliance","headline":"物流業界BCPネットワーク構想を公表","source":{"name":"セイノーホールディングス","url":"https://www.seino.co.jp/seino/shd/"},"interpretation":"災害時の相互補完・network resilienceを構造監視対象にする。"},
     {"date":"2026-07-22","company_id":"seino-hd","type":"capex","headline":"100億円規模のSEINO Alliance Fundを公表","source":{"name":"セイノーホールディングス","url":"https://www.seino.co.jp/seino/shd/"},"interpretation":"物流capacity・DX・提携拡張の投資余力を先行指標として扱う。"}
   ],
   "event_types":["earnings","guidance","volume","mna","tob","capital_alliance","business_alliance","restructuring","divestiture","capex","automation","insolvency","credit_stress","stock_repricing"],
+  "comparison_policy":"Volume changes must identify YoY/YTD and the exact base period. Service-mix divergence is interpreted before any statement about aggregate parcel demand.",
   "stock_rule":"Do not store routine noise as intelligence. Record material/unusual or clearly news-driven repricing and preserve the causal disclosure/news evidence."
 }
