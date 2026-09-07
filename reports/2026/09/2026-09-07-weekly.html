@@ -17,13 +17,47 @@
 <a class="skip-link" href="#main">本文へスキップ</a>
 <div class="app-shell">
 <nav class="app-rail" aria-label="メインナビゲーション">
-  <a class="brand" href="../../../index.html"><span class="brand__mark">LBI</span><span class="brand__sub">物流・化粧品インテリジェンス</span></a>
-  <div class="rail-group"><p class="rail-group__label">現況</p><a class="rail-link" data-nav="home" href="../../../index.html">ダッシュボード</a><a class="rail-link" data-nav="radar" href="../../../radar.html">オペレーションレーダー<span class="rail-link__count" id="rail-count-radar"></span></a><a class="rail-link" data-nav="topic" href="../../../topic.html">トピック<span class="rail-link__count" id="rail-count-topic"></span></a></div>
-  <div class="rail-group"><p class="rail-group__label">実体経済と物流</p><a class="rail-link" data-nav="economy" href="../../../economic-flow.html">経済と物流コスト</a><a class="rail-link" data-nav="demand" href="../../../logistics-demand.html">物流需要</a><a class="rail-link" data-nav="capacity" href="../../../logistics-capacity.html">輸送キャパシティ</a><a class="rail-link" data-nav="workforce" href="../../../logistics-workforce.html">物流労働力</a><a class="rail-link" data-nav="risk" href="../../../structural-risk.html">構造リスク</a></div>
-  <div class="rail-group"><p class="rail-group__label">レポート</p><a class="rail-link" id="nav-latest-daily" data-nav="daily" href="../../../archive.html?type=daily">日次</a><a class="rail-link" id="nav-latest-weekly" data-nav="weekly" href="../../../archive.html?type=weekly">週次</a><a class="rail-link" id="nav-latest-monthly" data-nav="monthly" href="../../../archive.html?type=monthly">月次</a><a class="rail-link" data-nav="archive" href="../../../archive.html">過去のレポート</a></div>
-  <div class="rail-group"><p class="rail-group__label">ビューティー</p><a class="rail-link" data-nav="commerce" href="../../../commerce-calendar.html">EC予定</a><a class="rail-link" data-nav="buzz" href="../../../buzz.html">バズ</a></div>
-  <div class="rail-group"><p class="rail-group__label">参照</p><a class="rail-link" data-nav="sources" href="../../../source-matrix.html">情報源</a><a class="rail-link" data-nav="status-history" href="../../../status-history.html">ステータス履歴</a><a class="rail-link" data-nav="lens-history" href="../../../lens-history.html">シグナル履歴</a></div>
-  <div class="shell-tools"><button type="button" class="tool-btn" id="tool-theme" aria-pressed="false">自動</button><button type="button" class="tool-btn" id="tool-density" aria-pressed="false">標準</button><button type="button" class="tool-btn" id="tool-help" title="キーボードショートカット">?</button></div>
+  <a class="brand" href="../../../index.html">
+    <span class="brand__mark">LBI</span>
+    <span class="brand__sub">物流・化粧品インテリジェンス</span>
+  </a>
+  <div class="rail-group">
+    <p class="rail-group__label">現況</p>
+    <a class="rail-link" data-nav="home" href="../../../index.html">ダッシュボード</a>
+    <a class="rail-link" data-nav="radar" href="../../../radar.html">オペレーションレーダー<span class="rail-link__count" id="rail-count-radar"></span></a>
+    <a class="rail-link" data-nav="topic" href="../../../topic.html">トピック<span class="rail-link__count" id="rail-count-topic"></span></a>
+  </div>
+  <div class="rail-group">
+    <p class="rail-group__label">実体経済と物流</p>
+    <a class="rail-link" data-nav="economy" href="../../../economic-flow.html">経済と物流コスト</a>
+    <a class="rail-link" data-nav="demand" href="../../../logistics-demand.html">物流需要</a>
+    <a class="rail-link" data-nav="capacity" href="../../../logistics-capacity.html">輸送キャパシティ</a>
+    <a class="rail-link" data-nav="workforce" href="../../../logistics-workforce.html">物流労働力</a>
+    <a class="rail-link" data-nav="risk" href="../../../structural-risk.html">構造リスク</a>
+  </div>
+  <div class="rail-group">
+    <p class="rail-group__label">レポート</p>
+    <a class="rail-link" id="nav-latest-daily" data-nav="daily" href="../../../archive.html?type=daily">日次</a>
+    <a class="rail-link" id="nav-latest-weekly" data-nav="weekly" href="../../../archive.html?type=weekly">週次</a>
+    <a class="rail-link" id="nav-latest-monthly" data-nav="monthly" href="../../../archive.html?type=monthly">月次</a>
+    <a class="rail-link" data-nav="archive" href="../../../archive.html">過去のレポート</a>
+  </div>
+  <div class="rail-group">
+    <p class="rail-group__label">ビューティー</p>
+    <a class="rail-link" data-nav="commerce" href="../../../commerce-calendar.html">EC予定</a>
+    <a class="rail-link" data-nav="buzz" href="../../../buzz.html">バズ</a>
+  </div>
+  <div class="rail-group">
+    <p class="rail-group__label">参照</p>
+    <a class="rail-link" data-nav="sources" href="../../../source-matrix.html">情報源</a>
+    <a class="rail-link" data-nav="status-history" href="../../../status-history.html">ステータス履歴</a>
+    <a class="rail-link" data-nav="lens-history" href="../../../lens-history.html">シグナル履歴</a>
+  </div>
+  <div class="shell-tools">
+    <button type="button" class="tool-btn" id="tool-theme" aria-pressed="false">自動</button>
+    <button type="button" class="tool-btn" id="tool-density" aria-pressed="false">標準</button>
+    <button type="button" class="tool-btn" id="tool-help" title="キーボードショートカット">?</button>
+  </div>
 </nav>
 <div class="app-frame"><div class="app-ribbon" id="app-ribbon" aria-label="現在のステータス" role="status"></div>
 <main class="app-main" id="main"><div class="wrap report">
@@ -32,7 +66,7 @@
 <header class="report-head" data-status="watch"><p class="eyebrow">ウィークリー</p><h1>2026年9月7日（月） Market Intelligence Weekly</h1><div class="chip-row"><span class="status-pill" data-status="watch"><span class="dot"></span><span>総合ステータス</span>: <span>Watch</span></span></div><div class="report-head__meta"><span><time datetime="2026-09-07">2026年9月7日（月）</time></span><span>対象: 2026-09-01〜2026-09-07</span><span>基準時点: 2026年9月7日 09:20 JST</span><span>出典: 公開情報のみ</span><span><a href="#" data-print>印刷・PDF</a></span></div></header>
 <section aria-labelledby="board-h"><h2 id="board-h">物流ステータス</h2><div class="status-board"><div class="status-cell" data-status="watch"><div class="status-cell__name">国内配送</div><div class="status-cell__value"><span class="dot"></span><span>監視</span></div><p class="status-cell__note">JR貨物で複数地区の運休・遅延。全国トラック不足とは一般化しない。</p></div><div class="status-cell" data-status="watch"><div class="status-cell__name">気象・災害</div><div class="status-cell__value"><span class="dot"></span><span>監視</span></div><p class="status-cell__note">関東・東海の大雨等が鉄道貨物へ実影響。</p></div><div class="status-cell" data-status="normal"><div class="status-cell__name">通関・法令</div><div class="status-cell__value"><span class="dot"></span><span>平常</span></div><p class="status-cell__note">重大なNACCS停止・全国一律の新規運用変更は確認せず。</p></div><div class="status-cell" data-status="watch"><div class="status-cell__name">海上輸送</div><div class="status-cell__value"><span class="dot"></span><span>監視</span></div><p class="status-cell__note">WCIは横ばい圏だがIACIと定時性が悪化。</p></div><div class="status-cell" data-status="normal"><div class="status-cell__name">航空貨物</div><div class="status-cell__value"><span class="dot"></span><span>平常</span></div><p class="status-cell__note">6月国際貨物量はYoY +2.7%（2026-06 vs 2025-06）。</p></div><div class="status-cell" data-status="watch"><div class="status-cell__name">グローバルサプライチェーン</div><div class="status-cell__value"><span class="dot"></span><span>監視</span></div><p class="status-cell__note">主要アジア港の混雑が接続・ETA varianceへ波及。</p></div></div></section>
 <section><h2>概要</h2><p>今週の重要点は、<strong>Rateが横ばいでもeffective SupplyとReliabilityは悪化し得る</strong>ことだ。Drewry WCIは2026年9月3日4,465米ドル/40ftで、前週4,473米ドルから計算したWoW -0.2%（2026-09-03 vs 2026-08-27、Drewryはstableと表現）。一方、IACIは1,312米ドル/40ft、WoW +9.0%（2026-09-03 vs 2026-08-27）で5週連続上昇した。Sea-Intelligenceの世界コンテナ船定時性は2026年7月56.4%、MoM -6.1 percentage points（2026-07 vs 2026-06）、YoY -8.8 pp（2026-07 vs 2025-07）。日本のphysical flowは主要6港輸入コンテナYoY +2.0%（2026-06 vs 2025-06）、国際航空貨物YoY +2.7%（2026-06 vs 2025-06）、鉄道貨物YoY -5.2%（2026-05 vs 2025-05）と分化しており、全国一律の物量急増を示していない。</p></section>
-<section><h2>前回からの変化</h2><div class="changes"><p class="changes__meta"><span>比較対象: <a href="../../08/2026-08-31-weekly.html">2026年8月31日 ウィークリー</a></span><span>全ての比較値にYoY/MoM/WoW等と基準期間を付記。</span></p><div class="change-groups"><div class="change-group"><p class="eyebrow">悪化</p><ul><li>IACIは1,312米ドル/40ft、WoW +9.0%（2026-09-03 vs 2026-08-27）。</li><li>世界コンテナ船定時性は56.4%、MoM -6.1 percentage points（2026-07 vs 2026-06）、遅着船平均遅延は6.06日、MoM +0.59日（2026-07 vs 2026-06）。</li><li>JR貨物は2026年9月7日7時時点で複数地区の遅延・運休を掲示し、一部列車で12時間超の遅延見込み。</li></ul></div><div class="change-group"><p class="eyebrow">改善 / 横ばい</p><ul><li>WCIは4,465米ドル/40ft、WoW -0.2%（2026-09-03 vs 2026-08-27）。グローバルrateは少なくとも上昇加速していない。</li></ul></div><div class="change-group"><p class="eyebrow">新規データ</p><ul><li>化粧品出荷額は2026年6月1,208.9億円、YoY +6.3%（2026-06 vs 2025-06）。百貨店化粧品の店数調整後YoY +1.8%（2026-06 vs 2025-06）との乖離を確認。</li><li>鉄道貨物は2026年5月270.4万t、YoY -5.2%（2026-05 vs 2025-05）。</li></ul></div></div></div></section>
+<section><h2>前回からの変化</h2><div class="changes"><p class="changes__meta"><span>比較対象: <a href="../08/2026-08-31-weekly.html">2026年8月31日 ウィークリー</a></span><span>全ての比較値にYoY/MoM/WoW等と基準期間を付記。</span></p><div class="change-groups"><div class="change-group"><p class="eyebrow">悪化</p><ul><li>IACIは1,312米ドル/40ft、WoW +9.0%（2026-09-03 vs 2026-08-27）。</li><li>世界コンテナ船定時性は56.4%、MoM -6.1 percentage points（2026-07 vs 2026-06）、遅着船平均遅延は6.06日、MoM +0.59日（2026-07 vs 2026-06）。</li><li>JR貨物は2026年9月7日7時時点で複数地区の遅延・運休を掲示し、一部列車で12時間超の遅延見込み。</li></ul></div><div class="change-group"><p class="eyebrow">改善 / 横ばい</p><ul><li>WCIは4,465米ドル/40ft、WoW -0.2%（2026-09-03 vs 2026-08-27）。グローバルrateは少なくとも上昇加速していない。</li></ul></div><div class="change-group"><p class="eyebrow">新規データ</p><ul><li>化粧品出荷額は2026年6月1,208.9億円、YoY +6.3%（2026-06 vs 2025-06）。百貨店化粧品の店数調整後YoY +1.8%（2026-06 vs 2025-06）との乖離を確認。</li><li>鉄道貨物は2026年5月270.4万t、YoY -5.2%（2026-05 vs 2025-05）。</li></ul></div></div></div></section>
 <section aria-labelledby="sig-list-h"><h2 id="sig-list-h">構造化シグナル</h2><div id="report-signals"></div></section><div id="market-regime-host"></div>
 <section><h2>結論</h2><div class="callout callout--bottom-line"><p class="eyebrow">今週とるべき対応</p><p><strong>在庫を全国一律に積み増さず、接続成功率と国内鉄道例外を先に吸収する。</strong> 重点輸入レーンは主要T/S接続・ETA variance・booking lead timeを前倒しで確認し、air conversionはSLA別に限定する。国内はJR貨物のdispatch前確認を徹底し、SLA-critical貨物だけtruck代替を準備する。Beautyは生産側出荷と検索関心が上向いても、百貨店化粧品sell-throughが追随するまでorganic demandと断定しない。</p></div></section>
 <section><h2>1. Demand / Beauty</h2><p class="fact"><span class="fact__label">Fact</span>公開記事が引用する経済産業省生産動態統計では、2026年6月の化粧品出荷額は1,208.9億円、YoY +6.3%（2026-06 vs 2025-06）で10カ月連続プラス。日本百貨店協会の最新検証済み化粧品単独値は同月397.4億円、店数調整後YoY +1.8%（2026-06 vs 2025-06）、構成比8.5%。全国百貨店総売上は2026年7月4,889億円、店数調整後YoY +5.1%（2026-07 vs 2025-07）だが、7月化粧品単独値はこの実行では検証できていない。</p><div class="analysis"><p><span class="analysis__label">分析</span>Producer shipment YoY +6.3%（2026-06 vs 2025-06）に対しdepartment-store cosmetics sell-through 店数調整後YoY +1.8%（2026-06 vs 2025-06）で、生産側のモメンタムが小売確認を上回る。これは成長余地にもinventory buildにもなり得るため、現時点では補充増の根拠にしない。Google Trendsでは美容液の直近7日平均が直前21日平均比+21.1%、クッションファンデ+10.9%、香水+4.5%だが、検索指数は販売数量ではない。Brand.com / promotion / buzzはattention signalとして扱い、百貨店・EC実売・出荷・輸入で確認する。</p></div><p class="source-note">出典: <a href="https://form.syogyo.jp/news/2026/09/post_044632">週刊粧業（経済産業省生産動態統計を引用）</a>（2026-09-01）、<a href="https://www.depart.or.jp/store_sale/">日本百貨店協会</a>、Google Trends collector（2026-09-06）</p></section>
