@@ -1,0 +1,146 @@
+name: Temporary Cost Snapshot Repair
+on:
+  push:
+    branches:
+      - content/weekly-20260907
+    paths:
+      - .github/workflows/tmp-cost-snapshot-20260907.yml
+permissions:
+  contents: write
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/weekly-20260907
+      - name: Populate required Weekly cost snapshots
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          from datetime import date
+
+          reports_path = Path('data/reports.json')
+          reports = json.loads(reports_path.read_text(encoding='utf-8'))
+          fuel = json.loads(Path('data/economy/fuel-prices.json').read_text(encoding='utf-8'))
+          freight = json.loads(Path('data/economy/freight-cost.json').read_text(encoding='utf-8'))
+
+          def series(ds, mid):
+              return next(s for s in ds['series'] if s.get('metric_id') == mid)
+
+          def latest_before(s, cutoff=None):
+              obs = [o for o in s.get('observations', []) if o.get('value') is not None]
+              if cutoff:
+                  obs = [o for o in obs if str(o.get('period','')) <= cutoff]
+              return obs[-1] if obs else None
+
+          def previous_before(s, period):
+              obs = [o for o in s.get('observations', []) if o.get('value') is not None and str(o.get('period','')) < period]
+              return obs[-1] if obs else None
+
+          def fuel_metric(mid, cutoff=None):
+              s = series(fuel, mid)
+              cur = latest_before(s, cutoff)
+              if not cur:
+                  return {'value':None,'unit':'JPY/L','data_date':None,'source':'資源エネルギー庁 石油製品価格調査 / data/economy/fuel-prices.json'}
+              prev = previous_before(s, cur['period'])
+              out = {'value':cur['value'],'unit':'JPY/L','data_date':cur['period'],'source':'資源エネルギー庁 石油製品価格調査 / data/economy/fuel-prices.json'}
+              if prev and prev.get('value'):
+                  out.update({'comparison_type':'WoW','base_period':prev['period'],'comparison_pct':round((cur['value']/prev['value']-1)*100,1)})
+              return out
+
+          def freight_metric(mid):
+              s = series(freight, mid)
+              cur = latest_before(s)
+              if not cur:
+                  return {'value':None,'unit':'index 2020=100','data_date':None,'source':'日本銀行 企業向けサービス価格指数 / data/economy/freight-cost.json'}
+              period = cur['period']
+              out = {'value':cur['value'],'unit':'index 2020=100','data_date':period + '-01' if len(period)==7 else period,'source':'日本銀行 企業向けサービス価格指数 / data/economy/freight-cost.json'}
+              if cur.get('yoy') is not None and len(period)==7:
+                  y,m = period.split('-')
+                  out.update({'comparison_type':'YoY','base_period':f'{int(y)-1:04d}-{m}','comparison_pct':cur['yoy']})
+              elif cur.get('mom') is not None:
+                  out.update({'comparison_type':'MoM','comparison_pct':cur['mom']})
+              return out
+
+          road = freight_metric('road_freight')
+          ocean = freight_metric('ocean_freight')
+
+          def snap_0907():
+              return {
+                  'as_of':'2026-09-07T09:20:00+09:00',
+                  'metrics':{
+                      'regular_gasoline_national':fuel_metric('regular_gasoline_national'),
+                      'diesel_national':fuel_metric('diesel_national'),
+                      'drewry_wci':{'value':4465,'unit':'USD/40ft','data_date':'2026-09-03','source':'Drewry World Container Index','comparison_type':'WoW','base_period':'2026-08-27','comparison_pct':-0.2},
+                      'drewry_iaci':{'value':1312,'unit':'USD/40ft','data_date':'2026-09-03','source':'Drewry Intra-Asia Container Index','comparison_type':'WoW','base_period':'2026-08-27','comparison_pct':9.0},
+                      'road_freight':road,
+                      'ocean_freight':ocean,
+                  },
+                  'interpretation_ja':'燃料は資源エネルギー庁の最新保存観測、道路貨物・外航貨物は日銀SPPI、WCI/IACIはspot-rate。価格・指数をphysical demand、nominal capacity、effective capacityと同一視しない。'
+              }
+
+          def snap_0831():
+              return {
+                  'as_of':'2026-08-31T08:00:00+09:00',
+                  'metrics':{
+                      'regular_gasoline_national':fuel_metric('regular_gasoline_national','2026-08-24'),
+                      'diesel_national':fuel_metric('diesel_national','2026-08-24'),
+                      'drewry_wci':{'value':4473,'unit':'USD/40ft','data_date':'2026-08-27','source':'Drewry World Container Index','comparison_type':'WoW','base_period':'2026-08-20','comparison_pct':-1.0},
+                      'drewry_iaci':{'value':1199,'unit':'USD/40ft','data_date':'2026-08-27','source':'Drewry Intra-Asia Container Index','comparison_type':'WoW','base_period':'2026-08-20','comparison_pct':10.0},
+                      'road_freight':road,
+                      'ocean_freight':ocean,
+                  },
+                  'interpretation_ja':'2026-08-31時点で利用可能な燃料、spot-rate、日銀SPPIのスナップショット。価格・指数をphysical demandやspace不足と同一視しない。'
+              }
+
+          r0907 = next(r for r in reports['reports'] if r.get('id')=='2026-09-07-weekly')
+          r0831 = next(r for r in reports['reports'] if r.get('id')=='2026-08-31-weekly')
+          r0907['cost_snapshot'] = snap_0907()
+          r0831['cost_snapshot'] = snap_0831()
+          r0831['summary'] = r0831['summary'].replace('輸入数量指数はYoY +1.2%（同）','輸入数量指数はYoY +1.2%（2026年7月 vs 2025年7月）')
+
+          # Preserve all history content; reports.json is deliberately reserialized after adding mandatory structured snapshots.
+          reports_path.write_text(json.dumps(reports, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+
+          gas = r0907['cost_snapshot']['metrics']['regular_gasoline_national']
+          diesel = r0907['cost_snapshot']['metrics']['diesel_national']
+          def fuel_text(label, obs):
+              if obs['value'] is None:
+                  return f'{label}は最新値を再検証できず未確認。'
+              if obs.get('comparison_pct') is not None:
+                  sign = '+' if obs['comparison_pct'] > 0 else ''
+                  return f"{label}{obs['value']:.1f}円/L、WoW {sign}{obs['comparison_pct']:.1f}%（{obs['data_date']} vs {obs['base_period']}）。"
+              return f"{label}{obs['value']:.1f}円/L（{obs['data_date']}）。"
+          def freight_text(label, obs):
+              if obs['value'] is None: return f'{label}は未確認。'
+              if obs.get('comparison_pct') is not None and obs.get('base_period'):
+                  sign = '+' if obs['comparison_pct'] > 0 else ''
+                  period = obs['data_date'][:7]
+                  return f"{label}{obs['value']:.1f}、{obs['comparison_type']} {sign}{obs['comparison_pct']:.1f}%（{period} vs {obs['base_period']}）。"
+              return f"{label}{obs['value']:.1f}（{obs['data_date'][:7]}）。"
+
+          cost_html = '<section><h2>4.1 Logistics Cost Snapshot</h2><p class="fact"><span class="fact__label">Fact</span>' + fuel_text('レギュラーガソリン全国平均 ', gas) + ' ' + fuel_text('軽油全国平均 ', diesel) + ' ' + freight_text('道路貨物SPPI ', road) + ' ' + freight_text('外航貨物SPPI ', ocean) + '</p><div class="analysis"><p><span class="analysis__label">分析</span>燃料・国内道路運送価格・海上spot rate・外航貨物SPPIは別系列である。コスト上昇のみをcapacity shortageやphysical demand増と解釈しない。</p></div></section>\n'
+          report_path = Path('reports/2026/09/2026-09-07-weekly.html')
+          html = report_path.read_text(encoding='utf-8')
+          marker = '<section><h2>5. Japan Domestic Logistics</h2>'
+          if '4.1 Logistics Cost Snapshot' not in html:
+              if marker not in html: raise SystemExit('report marker not found')
+              html = html.replace(marker, cost_html + marker, 1)
+              report_path.write_text(html, encoding='utf-8')
+
+          # Validate required keys exactly as the repository policy expects.
+          policy = json.loads(Path('data/report-required-metrics.json').read_text(encoding='utf-8'))
+          for rid in ('2026-08-31-weekly','2026-09-07-weekly'):
+              r = next(x for x in reports['reports'] if x.get('id')==rid)
+              for mid in policy['weekly']['required']:
+                  assert mid in r['cost_snapshot']['metrics'], (rid, mid)
+          PY
+      - name: Commit cost snapshots
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add data/reports.json reports/2026/09/2026-09-07-weekly.html
+          git commit -m "fix: add mandatory Weekly cost snapshots [skip ci]"
+          git push origin HEAD:content/weekly-20260907
