@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0",
+  "dataset": "rail-freight",
+  "title_ja": "鉄道貨物輸送量",
+  "frequency": "monthly",
+  "updated_at": "2026-09-07T09:20:00+09:00",
+  "source": {
+    "name": "国土交通省 鉄道輸送統計",
+    "url": "https://www.mlit.go.jp/report/press/joho05_hh_000917.html"
+  },
+  "series": [
+    {"metric_id":"rail_freight_total_tonnes","name_ja":"鉄道貨物数量 合計","unit":"tonnes","observations":[{"period":"2026-05","value":2704135,"yoy_pct":-5.2,"comparison_type":"YoY","base_period":"2025-05","published_at":"2026-08-31","status":"official","source":"国土交通省 鉄道輸送統計月報"}]},
+    {"metric_id":"rail_freight_container_tonnes","name_ja":"鉄道コンテナ貨物数量","unit":"tonnes","observations":[{"period":"2026-05","value":1556474,"yoy_pct":-7.9,"comparison_type":"YoY","base_period":"2025-05","published_at":"2026-08-31","status":"official","source":"国土交通省 鉄道輸送統計月報"}]},
+    {"metric_id":"rail_freight_wagonload_tonnes","name_ja":"車扱貨物数量","unit":"tonnes","observations":[{"period":"2026-05","value":1147661,"yoy_pct":-1.2,"comparison_type":"YoY","base_period":"2025-05","published_at":"2026-08-31","status":"official","source":"国土交通省 鉄道輸送統計月報"}]},
+    {"metric_id":"rail_freight_total_ton_km","name_ja":"鉄道貨物トンキロ 合計","unit":"thousand ton-km","observations":[{"period":"2026-05","value":1296472,"yoy_pct":-4.1,"comparison_type":"YoY","base_period":"2025-05","published_at":"2026-08-31","status":"official","source":"国土交通省 鉄道輸送統計月報"}]}
+  ],
+  "interpretation": "鉄道貨物はphysical-flow evidence。売上・運賃・価格指標と混同しない。JR貨物の当日運行障害は別のoperational signalとして扱う。"
+}
