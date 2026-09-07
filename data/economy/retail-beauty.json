@@ -3,7 +3,7 @@
   "dataset":"retail-beauty",
   "title_ja":"Beauty実需・小売",
   "frequency":"monthly+annual",
-  "baseline_updated_at":"2026-08-23T11:36:00+09:00",
+  "baseline_updated_at":"2026-09-07T08:30:00+09:00",
   "sources":[
     {"name":"日本百貨店協会 百貨店売上高","url":"https://www.depart.or.jp/store_sale/"},
     {"name":"日本百貨店協会 最近の百貨店売上高の推移","url":"https://www.depart.or.jp/store_sale/files/suii22606e.pdf","vintage":"2026-07-27"},
@@ -22,7 +22,8 @@
         {"period":"2026-03","value":507118173000,"yoy_store_adjusted_pct":3.2,"published_at":"2026-04-24","status":"official","source":"日本百貨店協会 全国百貨店売上高概況"},
         {"period":"2026-04","value":442155456000,"yoy_store_adjusted_pct":5.2,"published_at":"2026-05-25","status":"official","source":"日本百貨店協会 全国百貨店売上高概況"},
         {"period":"2026-05","value":468390357000,"yoy_store_adjusted_pct":8.3,"published_at":"2026-06-25","status":"official","source":"日本百貨店協会 全国百貨店売上高概況"},
-        {"period":"2026-06","value":468771750000,"yoy_store_adjusted_pct":2.3,"published_at":"2026-07-24","status":"official","source":"日本百貨店協会 全国百貨店売上高概況"}
+        {"period":"2026-06","value":468771750000,"yoy_store_adjusted_pct":2.3,"published_at":"2026-07-24","status":"official","source":"日本百貨店協会 全国百貨店売上高概況"},
+        {"period":"2026-07","value":488901057000,"yoy_store_adjusted_pct":5.1,"comparison":{"type":"yoy","base_period":"2025-07"},"published_at":"2026-08-25","status":"official","source":"日本百貨店協会 全国百貨店売上高概況"}
       ]
     },
     {
@@ -35,7 +36,8 @@
         {"period":"2026-03","value":49837606000,"share_of_department_store_sales_pct":9.8,"yoy_store_adjusted_pct":-3.6,"published_at":"2026-04-24","status":"official","source":"日本百貨店協会 全国百貨店売上高概況"},
         {"period":"2026-04","value":39530694000,"share_of_department_store_sales_pct":8.9,"yoy_store_adjusted_pct":2.3,"published_at":"2026-05-25","status":"official","source":"日本百貨店協会 全国百貨店売上高概況"},
         {"period":"2026-05","value":42924133000,"share_of_department_store_sales_pct":9.2,"yoy_store_adjusted_pct":6.9,"published_at":"2026-06-25","status":"official","source":"日本百貨店協会 全国百貨店売上高概況"},
-        {"period":"2026-06","value":39744028000,"share_of_department_store_sales_pct":8.5,"yoy_store_adjusted_pct":1.8,"published_at":"2026-07-24","status":"official","source":"日本百貨店協会 全国百貨店売上高概況"}
+        {"period":"2026-06","value":39744028000,"share_of_department_store_sales_pct":8.5,"yoy_store_adjusted_pct":1.8,"published_at":"2026-07-24","status":"official","source":"日本百貨店協会 全国百貨店売上高概況"},
+        {"period":"2026-07","value":41240518000,"share_of_department_store_sales_pct":8.4,"yoy_store_adjusted_pct":7.0,"yoy_unadjusted_pct":6.6,"comparison":{"type":"yoy","base_period":"2025-07"},"published_at":"2026-08-25","status":"official","source":"日本百貨店協会 全国百貨店売上高概況"}
       ]
     },
     {
@@ -105,7 +107,7 @@
     {"period":"2024","category":"fragrance","share_pct":0.7,"basis":"domestic_shipment_value","source":"日本化粧品工業会"}
   ],
   "priority_dimensions":["makeup","skincare","fragrance","department_store","drugstore","EC","priority_import_flow"],
-  "comparison_policy":"JDSA headline YoY is store-count adjusted. It is stored as yoy_store_adjusted_pct and must not be mixed with a raw ratio computed from unadjusted sales values. METI drugstore annual YoY is stored as yoy_pct under its published statistical basis.",
+  "comparison_policy":"JDSA headline YoY is store-count adjusted. It is stored as yoy_store_adjusted_pct and must not be mixed with a raw ratio computed from unadjusted sales values. New observations store comparison.type and base_period where supported. METI drugstore annual YoY is stored as yoy_pct under its published statistical basis.",
   "privacy_note":"Specific priority origin countries, ports and routes are intentionally not stored in this public dataset. They are evaluated only during the private intelligence run and public output is generalized.",
-  "interpretation":"Brand.com promotion and Google Trends are leading/attention signals; department-store, retail, shipment and trade statistics are economic confirmation. Never treat promotion as organic demand."
+  "interpretation":"Brand.com promotion and Google Trends are leading/attention signals; department-store, retail, shipment and trade statistics are economic confirmation. Never treat promotion as organic demand, and never infer physical unit demand from nominal sales growth alone."
 }

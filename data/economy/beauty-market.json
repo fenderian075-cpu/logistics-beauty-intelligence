@@ -1,8 +1,9 @@
 {
-  "schema_version":"1.0",
+  "schema_version":"1.1",
   "dataset":"beauty-market",
   "title_ja":"化粧品市場・カテゴリ動向",
   "frequency":"mixed",
+  "updated_at":"2026-09-07T08:30:00+09:00",
   "purpose":"Public market-size, category-growth and disclosed-share observations used as secondary context alongside official retail, shipment and trade statistics.",
   "sources":[
     {"class":"industry_association","name":"日本化粧品工業会","url":"https://www.jcia.org/user/statistics/"},
@@ -16,8 +17,11 @@
     {"period":"2025","metric":"face_powder_color_market_forecast","value":29200000000,"unit":"JPY","yoy":12.7,"status":"research_estimate","source":"富士経済 化粧品マーケティング要覧2025 No.1 公開リリース"},
     {"period":"2024","metric":"fragrance_market","value":57500000000,"unit":"JPY","yoy":15.0,"status":"research_estimate","source":"富士経済 化粧品マーケティング要覧2025 No.1 公開リリース"},
     {"period":"2025FY","metric":"professional_beauty_market","value":161700000000,"unit":"JPY","yoy":0.4,"status":"research_estimate","source":"矢野経済研究所 理美容向け業務用化粧品市場 2026 公開リリース"},
-    {"period":"2025FY","metric":"cosmetics_contract_manufacturing_market","value":367500000000,"unit":"JPY","yoy":3.6,"status":"research_estimate","source":"矢野経済研究所 化粧品受託製造市場 2026 公開リリース"}
+    {"period":"2025FY","metric":"cosmetics_contract_manufacturing_market","value":367500000000,"unit":"JPY","yoy":3.6,"status":"research_estimate","source":"矢野経済研究所 化粧品受託製造市場 2026 公開リリース"},
+    {"period":"2026","metric":"makeup_market_forecast","value":651900000000,"unit":"JPY","change_pct":1.9,"comparison":{"type":"vs_previous_calendar_year","base_period":"2025","published_ratio_pct":101.9},"published_at":"2026-08-28","status":"research_estimate","source":"富士経済 化粧品マーケティング要覧2026 No.1 公開リリース"},
+    {"period":"2026","metric":"lip_color_market_forecast","value":95300000000,"unit":"JPY","change_pct":1.8,"comparison":{"type":"vs_previous_calendar_year","base_period":"2025","published_ratio_pct":101.8},"published_at":"2026-08-28","status":"research_estimate","source":"富士経済 化粧品マーケティング要覧2026 No.1 公開リリース"}
   ],
   "share_policy":"Store category shares or company/brand shares only when explicitly disclosed in a public source. Never infer or reconstruct paid-report market shares from snippets.",
+  "comparison_policy":"Every stored growth figure must identify its comparison basis when the public source supports it. Published market-size forecasts are nominal value estimates and must not be interpreted as physical unit demand.",
   "interpretation":"Official statistics remain the primary evidence for actual activity. Industry-research estimates are secondary context for category structure, growth expectations and published share information."
 }
