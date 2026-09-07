@@ -1,0 +1,45 @@
+name: Temporary Report Shell Alignment
+on:
+  push:
+    branches:
+      - content/weekly-20260907
+    paths:
+      - .github/workflows/tmp-report-shell-fix-20260907.yml
+permissions:
+  contents: write
+jobs:
+  align:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/weekly-20260907
+      - name: Align report shells to current canonical template
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          template = Path('templates/report-template.html').read_text(encoding='utf-8')
+          nav = re.search(r'<nav class="app-rail" aria-label="メインナビゲーション">.*?</nav>', template, re.S)
+          boot = re.search(r'<script>try\{var d=document\.documentElement.*?</script>', template, re.S)
+          if not nav or not boot:
+              raise SystemExit('canonical shell fragments not found')
+          for rel in ('reports/2026/08/2026-08-31-weekly.html','reports/2026/09/2026-09-07-weekly.html'):
+              p = Path(rel)
+              text = p.read_text(encoding='utf-8')
+              text, n = re.subn(r'<nav class="app-rail" aria-label="メインナビゲーション">.*?</nav>', lambda m: nav.group(0), text, count=1, flags=re.S)
+              if n != 1: raise SystemExit(f'nav not replaced: {rel}')
+              text, n = re.subn(r'<script>try\{var d=document\.documentElement.*?</script>', lambda m: boot.group(0), text, count=1, flags=re.S)
+              if n != 1: raise SystemExit(f'theme boot not replaced: {rel}')
+              if rel.endswith('2026-09-07-weekly.html'):
+                  text = text.replace('href="../../08/2026-08-31-weekly.html"','href="../08/2026-08-31-weekly.html"')
+              p.write_text(text, encoding='utf-8')
+          PY
+          node tests/static-audit.mjs
+      - name: Commit shell alignment
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add reports/2026/08/2026-08-31-weekly.html reports/2026/09/2026-09-07-weekly.html
+          git commit -m "fix: align Weekly reports to current shell [skip ci]"
+          git push origin HEAD:content/weekly-20260907
