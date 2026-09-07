@@ -1,18 +1,18 @@
 {
-  "schema_version":"1.2",
-  "updated_at":"2026-08-31T08:00:00+09:00",
-  "title_ja":"実体経済と物流",
-  "thesis":"需要・貿易・物量・倉庫・輸送コストを分けて追い、物流ニュースを実体経済へ接続する。Beautyは小売・出荷・市場推計をBrand.com/Buzzから分離して確認する。",
-  "cards":[
-    {"id":"trade","label":"貿易","headline":"名目金額は大幅増、数量増は相対的に小さい","value":"輸出額 YoY +23.2% / 輸入額 YoY +27.8%","period":"2026-07 vs 2025-07","direction":"rising","source":"財務省 貿易統計","url":"https://www.customs.go.jp/toukei/shinbun/happyou.htm","detail":"2026年7月の輸出11.512兆円、輸入12.146兆円、貿易差額▲0.635兆円。数量指数は輸出112.2（YoY +5.2%、2026-07 vs 2025-07）、輸入106.6（YoY +1.2%、同）。名目額の伸びを物量増と同一視しない。"},
-    {"id":"beauty","label":"Beauty実需","headline":"百貨店全体は7月に加速、化粧品単独は6月値を維持","value":"百貨店総売上 YoY +5.1%","period":"2026-07 vs 2025-07","direction":"rising","source":"日本百貨店協会","url":"https://www.depart.or.jp/store_sale/","detail":"全国百貨店総売上4,889億円、店数調整後YoY +5.1%（2026-07 vs 2025-07）、国内YoY +3.2%、免税YoY +25.5%（同）。化粧品単独の最新検証済み値は2026年6月397.4億円、店数調整後YoY +1.8%（2026-06 vs 2025-06）。7月化粧品値は推測しない。"},
-    {"id":"port","label":"港湾","headline":"国内コンテナ取扱は増加","value":"2,236万TEU / YoY +1.8%","period":"2025 vs 2024","direction":"rising","source":"国土交通省 港湾局","url":"https://www.mlit.go.jp/report/press/port03_hh_000140.html","detail":"2025年の外貿1,780万TEU（YoY +1.8%、2025 vs 2024）、内貿456万TEU（YoY +1.9%、同）。"},
-    {"id":"warehouse","label":"倉庫","headline":"2026月次値は取得待ち","value":"未確認","period":"latest source page","direction":"unknown","source":"国土交通省 主要21社倉庫","url":"https://www.mlit.go.jp/seisakutokatsu/freight/seisakutokatsu_freight_mn2_000009.html","detail":"入庫・出庫・保管残高・回転率を月次保存する。取得できない値は推測しない。現時点ではinventory build / destockingを確定できない。"},
-    {"id":"truck","label":"トラック","headline":"荷待ち・荷役は改善","value":"2時間02分 / -1時間16分 vs 2024年度調査","period":"2025年度調査 vs 2024年度調査","direction":"improving","source":"国土交通省","url":"https://www.mlit.go.jp/report/press/tokatsu02_hh_000084.html","detail":"1運行平均拘束時間10時間13分。物流効率化法の2時間以内目標に接近。"},
-    {"id":"cost","label":"物流コスト","headline":"外航貨物価格が一段上昇","value":"外航貨物 SPPI 259.5 / YoY +67.4%","period":"2026-07 vs 2025-07","direction":"rising","source":"日本銀行 SPPI","url":"https://www.boj.or.jp/statistics/pi/sppi_2020/","detail":"2026年7月SPPI総平均115.1、YoY +3.6%（2026-07 vs 2025-07）。外航貨物輸送259.5、YoY +67.4%（同）。価格指数でありphysical demandやcontainer space不足と同一視しない。"},
-    {"id":"air","label":"航空貨物","headline":"国際貨物量は増加継続","value":"141,409t / YoY +9.0%","period":"2026-05 vs 2025-05","direction":"rising","source":"国土交通省 航空輸送統計","url":"https://www.mlit.go.jp/report/press/joho05_hh_000913.html","detail":"国際貨物トンキロ799,412千トンキロ（YoY +11.1%、2026-05 vs 2025-05）、重量利用率72.0%。国内航空貨物45,461t（YoY -7.2%、同）。"}
+  "schema_version": "1.3",
+  "updated_at": "2026-09-07T09:20:00+09:00",
+  "title_ja": "実体経済と物流",
+  "thesis": "需要・貿易・物量・倉庫・輸送コストを分けて追い、物流ニュースを実体経済へ接続する。Beautyは小売・出荷・市場推計をBrand.com/Buzzから分離して確認する。",
+  "cards": [
+    {"id":"trade","label":"貿易","headline":"名目金額は大幅増、数量増は相対的に小さい","value":"輸出額 YoY +23.2% / 輸入額 YoY +27.8%","period":"2026-07 vs 2025-07","direction":"rising","source":"財務省 貿易統計","url":"https://www.customs.go.jp/toukei/shinbun/happyou.htm","detail":"2026年7月の輸出11.512兆円、輸入12.146兆円、貿易差額▲0.635兆円。数量指数は輸出112.2（YoY +5.2%、2026-07 vs 2025-07）、輸入106.6（YoY +1.2%、同）。2026年8月上旬速報は公表済みだが、本更新では一次表から比較値を再検証できないため月次系列は7月を維持する。名目額の伸びを物量増と同一視しない。"},
+    {"id":"beauty","label":"Beauty実需","headline":"生産側は堅調、百貨店化粧品の最新確認値は緩やか","value":"化粧品出荷額 YoY +6.3%","period":"2026-06 vs 2025-06","direction":"rising","source":"経済産業省 生産動態統計 / 週刊粧業公開記事","url":"https://form.syogyo.jp/news/2026/09/post_044632","detail":"2026年6月の化粧品出荷額は1,208.9億円、YoY +6.3%（2026-06 vs 2025-06）。百貨店化粧品は同月397.4億円、店数調整後YoY +1.8%、構成比8.5%。全国百貨店総売上は2026年7月4,889億円、店数調整後YoY +5.1%（2026-07 vs 2025-07）だが、7月の化粧品単独値は未検証のため推測しない。"},
+    {"id":"port","label":"港湾","headline":"主要6港の輸入コンテナは緩やかに増加","value":"119.5万TEU / YoY +1.0%","period":"2026-06 vs 2025-06","direction":"rising","source":"国土交通省 港湾統計速報","url":"https://www.mlit.go.jp/report/press/joho05_hh_000916.html","detail":"主要6港の外国貿易コンテナは1,195,224TEU、YoY +1.0%（2026-06 vs 2025-06）。輸入597,836TEU、YoY +2.0%、輸出597,388TEU、YoY 0.0%（同）。全国一律の急激なinbound volume増は示していない。"},
+    {"id":"warehouse","label":"倉庫","headline":"2026月次値は取得待ち","value":"未確認","period":"latest source page","direction":"unknown","source":"国土交通省 主要21社倉庫","url":"https://www.mlit.go.jp/seisakutokatsu/freight/seisakutatsu_freight_mn2_000009.html","detail":"入庫量・出庫量・保管残高・回転率を月次保存する。今回も新しい比較可能な月次残高を検証できず、inventory build / destockingは確定しない。"},
+    {"id":"truck","label":"トラック","headline":"構造KPIは改善、短期例外は別管理","value":"荷待ち・荷役等 2時間02分","period":"2025年度調査 vs 2024年度調査","direction":"improving","source":"国土交通省","url":"https://www.mlit.go.jp/report/press/tokatsu02_hh_000084.html","detail":"2025年度調査は2024年度調査比1時間16分短縮。短期の道路・鉄道障害と構造的なトラックcapacityを混同しない。"},
+    {"id":"cost","label":"物流コスト","headline":"外航貨物価格は高水準","value":"外航貨物 SPPI 259.5 / YoY +67.4%","period":"2026-07 vs 2025-07","direction":"rising","source":"日本銀行 SPPI","url":"https://www.boj.or.jp/statistics/pi/sppi_2020/","detail":"2026年7月SPPI総平均115.1、YoY +3.6%（2026-07 vs 2025-07）。外航貨物輸送259.5、YoY +67.4%（同）。価格指数でありphysical demandやcontainer space不足と同一視しない。"},
+    {"id":"air","label":"航空貨物","headline":"国際貨物量はプラス維持、伸びは緩やか","value":"140,199t / YoY +2.7%","period":"2026-06 vs 2025-06","direction":"rising","source":"国土交通省 航空輸送統計","url":"https://www.mlit.go.jp/report/press/joho05_hh_000918.html","detail":"国際貨物トンキロ778,460千トンキロ、YoY +1.7%（2026-06 vs 2025-06）、重量利用率72.4%。国内航空貨物45,614t、YoY -5.7%（同）。"}
   ],
-  "transmission_chain":["消費・Beauty需要","輸出入","港湾・航空・トラック物量","倉庫入出庫・在庫","物流コスト・キャパシティ","物流企業収益・投資","オペレーション判断"],
-  "privacy":"Priority sourcing geographies and routes are evaluated privately and are not named or persisted in public datasets.",
-  "interpretation":"単一指標で景気や物流逼迫を判断しない。需要、Trade、Physical Flow、Inventory、Cost、Corporateをつないで因果を評価する。比較値はYoY/MoM/WoW/YTD等と比較対象期間を必ず明示する。"
+  "transmission_chain": ["消費・Beauty需要","輸出入","港湾・航空・鉄道・トラック物量","倉庫入出庫・在庫","物流コスト・キャパシティ","物流企業収益・投資","オペレーション判断"],
+  "privacy": "Priority sourcing geographies and routes are evaluated privately and are not named or persisted in public datasets.",
+  "interpretation": "単一指標で景気や物流逼迫を判断しない。需要、Trade、Physical Flow、Inventory、Cost、Corporateをつないで因果を評価する。比較値はYoY/MoM/WoW/YTD等と比較対象期間を必ず明示する。"
 }
