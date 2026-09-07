@@ -1,0 +1,52 @@
+name: Temporary Weekly Index Registration
+on:
+  push:
+    branches:
+      - content/weekly-20260907
+    paths:
+      - .github/workflows/tmp-register-weekly-20260907.yml
+permissions:
+  contents: write
+jobs:
+  register:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/weekly-20260907
+      - name: Insert report index entries without reformatting history
+        env:
+          NEW_Z: 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
+          PREV_Z: eNqlVVtvGkcU/iurlfpUg4EYjPPWSq7Uy4MlW6qsqkLDMsDKe0F7ASErErPYGMe4TusYxy5Sk9SuCYnS1LlBTMh/6TC78JS/0DMs2CRpqlZ92p3DOd93zplvP9bFFLKweF2MhCKxQCgeuBYWZ0TTQpZtQrSALCkLAWQm9PQ4i3Wexd1G9VrYPTwVQvHroZDw1fIKr0JqTgGsNFJMPCPKqXdgAwWM15Qi5FnFHGe8POewIevTyZHo7DvtWLLFcUVv+4H7nNDyBavVvfMztk+oc0LLT2m5Qsst6rSpc8aPTgdyaLnOg+UuLR8If5ZuC98uLn79zSrv01ZVZBQBkG022c+vvaPe4LzJXh2yX8/77ZuU/D4ecx7GnJuJxxfYxgarVGiJQJJ78GTQeuMePGO92qq+KnwaDYY/edutTtUIeVOAY3R8fNvdpqTt3u6w+gYtOf12ya13ONhJfVBtATXMtby09CUnji4Eo/DTCDg2H5z7F8hN6Nm9s0XJISW/UFKD8kG3zTZPodPh1p5b24IXwB5hhoMRDslu1Ua1Z5Q41LkJJf3ePfdudwzl/JTLFk1ZQoqQwirSUm7plN0H/CbguNt/UGePkhYlfBxYIKtsQny4vTEk+/44lDzu93ZgQO/xPe9WBQC9F0fei2NKjqizA1VwDUndsnQ1ocgav1vWgBt4CInDRmnwGxlvi9yl5EdoE3bGejuUPPQe7FLyZtTLASXH/qzDEgjBv/Yq9KhglApYsoqFpJ1OYwNAWWXXczruSeOygeEWj/iLouVHI508hSn67QugX5lddn845Q2XLxZXPhPyyJCRJmGAos7zUfI+8LHdO/3X0NCZd//VoLU7Pd0aLiZk07QxfEbfvS807+WerzXhP8krEJqfCABe4QKB530RCR+V0N9VfygUYVomHyWdfH+wAG/nEdy22wBRP4EFD5pdt13ld1Q6ufqSYtwwFqCZfxw1HIxfscauWGOc9XvwAZQZbfNzjGyLOwcfGB4rBkpheC5NRPuFohd4myNpsk7He3nM631bSyR1ZIDdrIspXcWmJUtTRlfAyMpiYyoi2SbIlJuhphsqUiCkSxhp0+4oTxdkFD0JaZPADeCVMxp4IqcsSDJ/5JFig+o1W1FmRFuTrck7uDFK+JbsB0zdNqTxiUNJ6f8DAAhSFmkZnLg0wXVR0tUc6NvUtUQSmdN/BpG5K9fWcAF2D1tMYYsbtoEsWcv4IVnNGXr+8mhgU1fyOOWfbM2nTCWyciabAKI1/gO0koNdA5uBc7phmSPPnw3FZz/4zwhmLVURb/wF/6ge7w==
+        run: |
+          python - <<'PY'
+          import os, json, zlib, base64
+          from pathlib import Path
+          p = Path('data/reports.json')
+          text = p.read_text(encoding='utf-8')
+          def unpack(name):
+              return json.loads(zlib.decompress(base64.b64decode(os.environ[name])).decode('utf-8'))
+          new = unpack('NEW_Z')
+          prev = unpack('PREV_Z')
+          entries = []
+          if '"id":"2026-09-07-weekly"' not in text and '"id": "2026-09-07-weekly"' not in text:
+              entries.append(new)
+          if '"id":"2026-08-31-weekly"' not in text and '"id": "2026-08-31-weekly"' not in text:
+              entries.append(prev)
+          if entries:
+              payload = ',\n'.join('    ' + json.dumps(e, ensure_ascii=False, separators=(',', ':')) for e in entries)
+              needle = '  "reports": [\n'
+              if needle not in text:
+                  raise SystemExit('reports array marker not found')
+              text = text.replace(needle, needle + payload + ',\n', 1)
+              p.write_text(text, encoding='utf-8')
+              json.loads(text)
+          PY
+      - name: Commit index update
+        run: |
+          if git diff --quiet -- data/reports.json; then exit 0; fi
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add data/reports.json
+          git commit -m "data: register 2026-09-07 weekly [skip ci]"
+          git push origin HEAD:content/weekly-20260907
