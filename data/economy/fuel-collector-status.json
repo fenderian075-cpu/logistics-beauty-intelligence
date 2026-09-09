@@ -3,32 +3,32 @@
   "dataset": "fuel-collector-status",
   "status": "success",
   "stage": "success",
-  "updated_at": "2026-09-02T09:52:10.562288+00:00",
-  "weekly_workbook_url": "https://www.enecho.meti.go.jp/statistics/petroleum_and_lpgas/pl007/xlsx/260902s5.xlsx",
+  "updated_at": "2026-09-09T10:03:55.793822+00:00",
+  "weekly_workbook_url": "https://www.enecho.meti.go.jp/statistics/petroleum_and_lpgas/pl007/xlsx/260909s5.xlsx",
   "workbook_format": "xlsx",
   "parsed_sheets": [
     {
       "sheet": "レギュラー",
       "metric_id": "regular_gasoline_national",
       "layout": "vertical",
-      "rows": 1836
+      "rows": 1837
     },
     {
       "sheet": "軽油",
       "metric_id": "diesel_national",
       "layout": "vertical",
-      "rows": 1836
+      "rows": 1837
     },
     {
       "sheet": "灯油店頭",
       "metric_id": "kerosene_national",
       "layout": "vertical",
-      "rows": 1836
+      "rows": 1837
     }
   ],
   "row_counts": {
-    "regular_gasoline_national": 1836,
-    "diesel_national": 1836,
-    "kerosene_national": 1836
+    "regular_gasoline_national": 1837,
+    "diesel_national": 1837,
+    "kerosene_national": 1837
   }
 }
