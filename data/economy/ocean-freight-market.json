@@ -4,41 +4,222 @@
   "title_ja": "海上運賃・需給",
   "frequency": "weekly",
   "sources": [
-    {"name":"Drewry 世界コンテナ運賃指数（WCI）","url":"https://www.drewry.co.uk/trackers-and-indices/latest-trackers-and-indices/world-container-index-assessed-by-drewry"},
-    {"name":"Drewry アジア域内コンテナ運賃指数（IACI）","url":"https://www.drewry.co.uk/trackers-and-indices"},
-    {"name":"Drewry Cancelled Sailings Tracker","url":"https://www.drewry.co.uk/trackers-and-indices/latest-trackers-and-indices/cancelled-sailings-tracker"}
+    {
+      "name": "Drewry 世界コンテナ運賃指数（WCI）",
+      "url": "https://www.drewry.co.uk/trackers-and-indices/latest-trackers-and-indices/world-container-index-assessed-by-drewry"
+    },
+    {
+      "name": "Drewry アジア域内コンテナ運賃指数（IACI）",
+      "url": "https://www.drewry.co.uk/trackers-and-indices"
+    },
+    {
+      "name": "Drewry Cancelled Sailings Tracker",
+      "url": "https://www.drewry.co.uk/trackers-and-indices/latest-trackers-and-indices/cancelled-sailings-tracker"
+    }
   ],
   "interpretation_ja": "運賃は価格指標であり、船腹量・需要・定時性とは分けて評価する。WCIは世界主要航路のスポット運賃、IACIはアジア域内の運賃圧力を見る補助指標として扱う。blank sailing shareは予定便の供給調整であり、実際の日本向けspace不足を直接意味しない。比較値はWoWと観測日を必ず併記する。",
   "series": [
     {
-      "metric_id":"drewry_wci","name_ja":"Drewry 世界コンテナ運賃指数（WCI）","unit":"USD/40ft","observations":[
-        {"period":"2025-12-18","value":2182,"status":"official_published_snapshot","source_note":"Drewry OnDemand公開資料"},
-        {"period":"2026-07-23","value":4374,"wow_pct":-4.0,"comparison":{"type":"wow","base_period":"2026-07-16"},"status":"official","source_note":"Drewry WCI 23 Jul 2026"},
-        {"period":"2026-07-30","value":4255,"wow_pct":-3.0,"comparison":{"type":"wow","base_period":"2026-07-23"},"status":"official","source_note":"Drewry WCI 30 Jul 2026"},
-        {"period":"2026-08-13","value":4339,"wow_pct":1.0,"comparison":{"type":"wow","base_period":"2026-08-06"},"status":"official","source_note":"Drewry WCI 13 Aug 2026"},
-        {"period":"2026-08-20","value":4526,"wow_pct":4.0,"comparison":{"type":"wow","base_period":"2026-08-13"},"status":"official","source_note":"Drewry public tracker"},
-        {"period":"2026-08-27","value":4473,"wow_pct":-1.2,"comparison":{"type":"wow","base_period":"2026-08-20"},"status":"official_level_calculated_wow","source_note":"Drewry public tracker; WoW calculated from published levels"},
-        {"period":"2026-09-03","value":4465,"wow_pct":-0.2,"comparison":{"type":"wow","base_period":"2026-08-27"},"status":"official_level_calculated_wow","source_note":"Drewry public tracker; Drewry described the weekly move as stable"},
-        {"period":"2026-09-10","value":4476,"wow_pct":0.2,"comparison":{"type":"wow","base_period":"2026-09-03"},"published_at":"2026-09-10","status":"official_level_calculated_wow","source_note":"Drewry public tracker; Drewry described WCI as stable for a second consecutive week"}
+      "metric_id": "drewry_wci",
+      "name_ja": "Drewry 世界コンテナ運賃指数（WCI）",
+      "unit": "USD/40ft",
+      "observations": [
+        {
+          "period": "2025-12-18",
+          "value": 2182,
+          "status": "official_published_snapshot",
+          "source_note": "Drewry OnDemand公開資料"
+        },
+        {
+          "period": "2026-07-23",
+          "value": 4374,
+          "wow_pct": -4.0,
+          "comparison": {
+            "type": "wow",
+            "base_period": "2026-07-16"
+          },
+          "status": "official",
+          "source_note": "Drewry WCI 23 Jul 2026"
+        },
+        {
+          "period": "2026-07-30",
+          "value": 4255,
+          "wow_pct": -3.0,
+          "comparison": {
+            "type": "wow",
+            "base_period": "2026-07-23"
+          },
+          "status": "official",
+          "source_note": "Drewry WCI 30 Jul 2026"
+        },
+        {
+          "period": "2026-08-13",
+          "value": 4339,
+          "wow_pct": 1.0,
+          "comparison": {
+            "type": "wow",
+            "base_period": "2026-08-06"
+          },
+          "status": "official",
+          "source_note": "Drewry WCI 13 Aug 2026"
+        },
+        {
+          "period": "2026-08-20",
+          "value": 4526,
+          "wow_pct": 4.0,
+          "comparison": {
+            "type": "wow",
+            "base_period": "2026-08-13"
+          },
+          "status": "official",
+          "source_note": "Drewry public tracker"
+        },
+        {
+          "period": "2026-08-26",
+          "value": 1323.0,
+          "wow_pct": 2.2,
+          "status": "official",
+          "source_note": "Drewry public tracker"
+        },
+        {
+          "period": "2026-08-27",
+          "value": 4473,
+          "wow_pct": -1.2,
+          "comparison": {
+            "type": "wow",
+            "base_period": "2026-08-20"
+          },
+          "status": "official_level_calculated_wow",
+          "source_note": "Drewry public tracker; WoW calculated from published levels"
+        },
+        {
+          "period": "2026-09-03",
+          "value": 4465,
+          "wow_pct": -0.2,
+          "comparison": {
+            "type": "wow",
+            "base_period": "2026-08-27"
+          },
+          "status": "official_level_calculated_wow",
+          "source_note": "Drewry public tracker; Drewry described the weekly move as stable"
+        },
+        {
+          "period": "2026-09-10",
+          "value": 4476,
+          "wow_pct": 0.2,
+          "comparison": {
+            "type": "wow",
+            "base_period": "2026-09-03"
+          },
+          "published_at": "2026-09-10",
+          "status": "official_level_calculated_wow",
+          "source_note": "Drewry public tracker; Drewry described WCI as stable for a second consecutive week"
+        }
       ]
     },
     {
-      "metric_id":"drewry_iaci","name_ja":"Drewry アジア域内コンテナ運賃指数（IACI）","unit":"USD/40ft","observations":[
-        {"period":"2026-07-23","value":960,"wow_pct":-2.0,"comparison":{"type":"wow","base_period":"2026-07-16"},"status":"official","source_note":"Drewry IACI 23 Jul 2026"},
-        {"period":"2026-07-30","value":956,"wow_pct":0.0,"comparison":{"type":"wow","base_period":"2026-07-23"},"status":"official","source_note":"Drewry IACI 30 Jul 2026"},
-        {"period":"2026-08-13","value":1028,"wow_pct":6.0,"comparison":{"type":"wow","base_period":"2026-08-06"},"status":"official","source_note":"Drewry IACI 13 Aug 2026"},
-        {"period":"2026-08-20","value":1091,"wow_pct":6.0,"comparison":{"type":"wow","base_period":"2026-08-13"},"status":"official","source_note":"Drewry public tracker"},
-        {"period":"2026-08-27","value":1199,"wow_pct":10.0,"comparison":{"type":"wow","base_period":"2026-08-20"},"status":"official","source_note":"Drewry public tracker"},
-        {"period":"2026-09-03","value":1312,"wow_pct":9.0,"comparison":{"type":"wow","base_period":"2026-08-27"},"status":"official","source_note":"Drewry public tracker"},
-        {"period":"2026-09-10","value":1323,"wow_pct":1.0,"comparison":{"type":"wow","base_period":"2026-09-03"},"published_at":"2026-09-10","status":"official","source_note":"Drewry public tracker"}
+      "metric_id": "drewry_iaci",
+      "name_ja": "Drewry アジア域内コンテナ運賃指数（IACI）",
+      "unit": "USD/40ft",
+      "observations": [
+        {
+          "period": "2026-07-23",
+          "value": 960,
+          "wow_pct": -2.0,
+          "comparison": {
+            "type": "wow",
+            "base_period": "2026-07-16"
+          },
+          "status": "official",
+          "source_note": "Drewry IACI 23 Jul 2026"
+        },
+        {
+          "period": "2026-07-30",
+          "value": 956,
+          "wow_pct": 0.0,
+          "comparison": {
+            "type": "wow",
+            "base_period": "2026-07-23"
+          },
+          "status": "official",
+          "source_note": "Drewry IACI 30 Jul 2026"
+        },
+        {
+          "period": "2026-08-13",
+          "value": 1028,
+          "wow_pct": 6.0,
+          "comparison": {
+            "type": "wow",
+            "base_period": "2026-08-06"
+          },
+          "status": "official",
+          "source_note": "Drewry IACI 13 Aug 2026"
+        },
+        {
+          "period": "2026-08-20",
+          "value": 1091,
+          "wow_pct": 6.0,
+          "comparison": {
+            "type": "wow",
+            "base_period": "2026-08-13"
+          },
+          "status": "official",
+          "source_note": "Drewry public tracker"
+        },
+        {
+          "period": "2026-08-27",
+          "value": 1199,
+          "wow_pct": 10.0,
+          "comparison": {
+            "type": "wow",
+            "base_period": "2026-08-20"
+          },
+          "status": "official",
+          "source_note": "Drewry public tracker"
+        },
+        {
+          "period": "2026-09-03",
+          "value": 1312,
+          "wow_pct": 9.0,
+          "comparison": {
+            "type": "wow",
+            "base_period": "2026-08-27"
+          },
+          "status": "official",
+          "source_note": "Drewry public tracker"
+        },
+        {
+          "period": "2026-09-10",
+          "value": 1323,
+          "wow_pct": 1.0,
+          "comparison": {
+            "type": "wow",
+            "base_period": "2026-09-03"
+          },
+          "published_at": "2026-09-10",
+          "status": "official",
+          "source_note": "Drewry public tracker"
+        }
       ]
     },
     {
-      "metric_id":"planned_blank_sailing_share","name_ja":"主要East-West予定便のblank sailing比率","unit":"percent_of_planned_sailings","observations":[
-        {"period":"2026-W38-W42","value":11.0,"planned_sailings":721,"cancelled_sailings":79,"window":"2026-09-14/2026-10-18","published_at":"2026-09-11","status":"official_forward_snapshot","source_note":"Drewry Cancelled Sailings Tracker"}
+      "metric_id": "planned_blank_sailing_share",
+      "name_ja": "主要East-West予定便のblank sailing比率",
+      "unit": "percent_of_planned_sailings",
+      "observations": [
+        {
+          "period": "2026-W38-W42",
+          "value": 11.0,
+          "planned_sailings": 721,
+          "cancelled_sailings": 79,
+          "window": "2026-09-14/2026-10-18",
+          "published_at": "2026-09-11",
+          "status": "official_forward_snapshot",
+          "source_note": "Drewry Cancelled Sailings Tracker"
+        }
       ]
     }
   ],
-  "collection_status":"official_recent_history_seeded_append_weekly_snapshots",
-  "last_collected_at":"2026-09-14T08:00:00+09:00"
+  "collection_status": "official_recent_history_seeded_append_weekly_snapshots",
+  "last_collected_at": "2026-09-13T23:23:33.578439+00:00"
 }
