@@ -3,7 +3,7 @@
   "dataset": "beauty-market",
   "title_ja": "化粧品市場・カテゴリ動向",
   "frequency": "mixed",
-  "updated_at": "2026-09-07T09:20:00+09:00",
+  "updated_at": "2026-09-14T08:00:00+09:00",
   "purpose": "Public market-size, category-growth and disclosed-share observations used as secondary context alongside official retail, shipment and trade statistics.",
   "sources": [
     {"class":"industry_association","name":"日本化粧品工業会","url":"https://www.jcia.org/user/statistics/"},
@@ -13,6 +13,7 @@
   ],
   "observations": [
     {"period":"2025FY","metric":"domestic_cosmetics_market_forecast","value":2650000000000,"unit":"JPY","yoy":2.7,"status":"research_estimate","source":"矢野経済研究所 2025年版 化粧品市場調査 公開リリース"},
+    {"period":"2025FY","metric":"domestic_cosmetics_market_estimate","value":2643000000000,"unit":"JPY","yoy":2.4,"comparison_type":"YoY","base_period":"2024FY","published_at":"2026-09-10","status":"research_estimate_public","source":"矢野経済研究所 2026年版 化粧品マーケティング総鑑 公開ページ","source_url":"https://www.yano.co.jp/market_reports/C68102600"},
     {"period":"2025","metric":"skincare_market_forecast","value":1462400000000,"unit":"JPY","yoy":3.5,"status":"research_estimate","source":"富士経済 化粧品マーケティング要覧2025 No.2 公開リリース"},
     {"period":"2025","metric":"lip_color_market_forecast","value":96200000000,"unit":"JPY","yoy":8.0,"status":"research_estimate","source":"富士経済 化粧品マーケティング要覧2025 No.1 公開リリース"},
     {"period":"2025","metric":"face_powder_color_market_forecast","value":29200000000,"unit":"JPY","yoy":12.7,"status":"research_estimate","source":"富士経済 化粧品マーケティング要覧2025 No.1 公開リリース"},
