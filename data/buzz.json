@@ -1,7 +1,7 @@
 {
   "schema_version": "1.1",
-  "updated_at": "2026-09-14T04:52:56.933062Z",
-  "collector_status": "ok",
+  "updated_at": "2026-09-14T12:44:21.847277Z",
+  "collector_status": "partial",
   "source": {
     "name": "Google Trends",
     "method": "pytrends",
@@ -13,53 +13,14 @@
   "anchor": "化粧品",
   "observations": [
     {
-      "term": "限定 コスメ",
-      "category": "promotion",
-      "brand": null,
-      "interest_7d": 0.9,
-      "interest_prev21d": 0.4,
-      "change_ratio": 2.25,
-      "change_pct": 125.0,
-      "anchor_normalized": 0.01,
-      "source": "Google Trends",
-      "geo": "JP",
-      "confidence": "medium"
-    },
-    {
-      "term": "ギフト コスメ",
-      "category": "promotion",
-      "brand": null,
-      "interest_7d": 1.1,
-      "interest_prev21d": 0.6,
-      "change_ratio": 1.85,
-      "change_pct": 84.6,
-      "anchor_normalized": 0.01,
-      "source": "Google Trends",
-      "geo": "JP",
-      "confidence": "medium"
-    },
-    {
       "term": "リップ",
       "category": "makeup",
       "brand": null,
-      "interest_7d": 82.7,
-      "interest_prev21d": 82.5,
-      "change_ratio": 1.0,
-      "change_pct": 0.3,
-      "anchor_normalized": 2.22,
-      "source": "Google Trends",
-      "geo": "JP",
-      "confidence": "medium"
-    },
-    {
-      "term": "チャーム コスメ",
-      "category": "promotion",
-      "brand": null,
-      "interest_7d": 0.0,
-      "interest_prev21d": 0.0,
-      "change_ratio": 1.0,
-      "change_pct": 0.0,
-      "anchor_normalized": 0.0,
+      "interest_7d": 84.9,
+      "interest_prev21d": 82.0,
+      "change_ratio": 1.03,
+      "change_pct": 3.4,
+      "anchor_normalized": 2.24,
       "source": "Google Trends",
       "geo": "JP",
       "confidence": "medium"
@@ -94,24 +55,11 @@
       "term": "香水",
       "category": "fragrance",
       "brand": null,
-      "interest_7d": 81.1,
-      "interest_prev21d": 84.9,
-      "change_ratio": 0.96,
-      "change_pct": -4.4,
-      "anchor_normalized": 2.12,
-      "source": "Google Trends",
-      "geo": "JP",
-      "confidence": "medium"
-    },
-    {
-      "term": "ポーチ コスメ",
-      "category": "promotion",
-      "brand": null,
-      "interest_7d": 1.1,
-      "interest_prev21d": 1.2,
-      "change_ratio": 0.96,
-      "change_pct": -4.0,
-      "anchor_normalized": 0.01,
+      "interest_7d": 80.7,
+      "interest_prev21d": 81.7,
+      "change_ratio": 0.99,
+      "change_pct": -1.2,
+      "anchor_normalized": 2.14,
       "source": "Google Trends",
       "geo": "JP",
       "confidence": "medium"
@@ -120,24 +68,11 @@
       "term": "ファンデーション",
       "category": "makeup",
       "brand": null,
-      "interest_7d": 69.9,
-      "interest_prev21d": 73.8,
-      "change_ratio": 0.95,
-      "change_pct": -5.3,
-      "anchor_normalized": 0.9,
-      "source": "Google Trends",
-      "geo": "JP",
-      "confidence": "medium"
-    },
-    {
-      "term": "韓国コスメ",
-      "category": "market",
-      "brand": null,
-      "interest_7d": 8.4,
-      "interest_prev21d": 9.1,
-      "change_ratio": 0.92,
-      "change_pct": -7.8,
-      "anchor_normalized": 0.11,
+      "interest_7d": 68.6,
+      "interest_prev21d": 71.1,
+      "change_ratio": 0.96,
+      "change_pct": -3.5,
+      "anchor_normalized": 0.91,
       "source": "Google Trends",
       "geo": "JP",
       "confidence": "medium"
@@ -146,10 +81,10 @@
       "term": "美容液",
       "category": "skincare",
       "brand": null,
-      "interest_7d": 75.6,
-      "interest_prev21d": 83.4,
-      "change_ratio": 0.91,
-      "change_pct": -9.4,
+      "interest_7d": 76.3,
+      "interest_prev21d": 82.6,
+      "change_ratio": 0.92,
+      "change_pct": -7.6,
       "anchor_normalized": 1.22,
       "source": "Google Trends",
       "geo": "JP",
@@ -159,10 +94,10 @@
       "term": "クッションファンデ",
       "category": "makeup",
       "brand": null,
-      "interest_7d": 21.7,
-      "interest_prev21d": 24.5,
-      "change_ratio": 0.89,
-      "change_pct": -11.3,
+      "interest_7d": 21.0,
+      "interest_prev21d": 23.2,
+      "change_ratio": 0.91,
+      "change_pct": -9.4,
       "anchor_normalized": 0.29,
       "source": "Google Trends",
       "geo": "JP",
@@ -172,16 +107,37 @@
       "term": "日焼け止め",
       "category": "skincare",
       "brand": null,
-      "interest_7d": 38.9,
-      "interest_prev21d": 61.5,
+      "interest_7d": 37.1,
+      "interest_prev21d": 58.6,
       "change_ratio": 0.63,
-      "change_pct": -36.8,
-      "anchor_normalized": 0.69,
+      "change_pct": -36.6,
+      "anchor_normalized": 0.68,
       "source": "Google Trends",
       "geo": "JP",
       "confidence": "medium"
     }
   ],
   "signals": [],
-  "collector_errors": []
+  "collector_errors": [
+    {
+      "term": "韓国コスメ",
+      "error": "TooManyRequestsError: The request failed: Google returned a response with code 429"
+    },
+    {
+      "term": "チャーム コスメ",
+      "error": "TooManyRequestsError: The request failed: Google returned a response with code 429"
+    },
+    {
+      "term": "ポーチ コスメ",
+      "error": "TooManyRequestsError: The request failed: Google returned a response with code 429"
+    },
+    {
+      "term": "ギフト コスメ",
+      "error": "TooManyRequestsError: The request failed: Google returned a response with code 429"
+    },
+    {
+      "term": "限定 コスメ",
+      "error": "TooManyRequestsError: The request failed: Google returned a response with code 429"
+    }
+  ]
 }
