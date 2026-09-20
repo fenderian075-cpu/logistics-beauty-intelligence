@@ -61,6 +61,58 @@
   },
   "reports": [
     {
+      "date": "2026-09-21",
+      "status": "watch",
+      "as_of": "2026年9月21日 07:50 JST",
+      "sample": false,
+      "id": "2026-09-21-daily",
+      "type": "daily",
+      "period": "2026-09-21",
+      "title": "物流・化粧品インテリジェンス・ブリーフ — DAILY",
+      "summary": "台風25号により関東、とくに千葉方面の道路・航空・島しょ輸送に実影響。複数高速道路の通行止め、八丈島・青ヶ島向け配送遅延、成田発着便への影響対応を確認。NACCSは正常運転中。",
+      "bottom_line": "千葉・房総方面および成田空港経由貨物はdispatch前に道路・便・carrier状況を個別確認。八丈島・青ヶ島向けは遅延前提。全国一律の出荷停止は不要。",
+      "key_issues": [
+        "NEXCO東日本: 9月21日6:30時点で千葉県内の複数高速道路区間が通行止め",
+        "ヤマト運輸: 八丈島・青ヶ島向け全商品に海上シケ由来の遅延",
+        "Jetstar Japan: 9月21日の成田発着便を台風25号の影響対象として特別対応",
+        "NACCSは正常運転中"
+      ],
+      "tags": [
+        "Daily",
+        "Typhoon 25",
+        "Kanto",
+        "Road",
+        "Air",
+        "Domestic Delivery"
+      ],
+      "status_board": {
+        "domestic": "watch",
+        "weather": "watch",
+        "customs": "normal",
+        "ocean": "watch",
+        "air": "watch",
+        "global": "watch"
+      },
+      "signals": {
+        "wci": {
+          "value": null,
+          "unit": null,
+          "data_date": null,
+          "source": null
+        },
+        "scfi": {
+          "value": null,
+          "unit": null,
+          "data_date": null,
+          "source": null
+        }
+      },
+      "change_summary": {
+        "previous_report_id": "2026-08-26-daily",
+        "summary": "Daily停止期間を挟み、台風25号による関東道路・航空・島しょ輸送のobserved impactを新規反映。"
+      }
+    },
+    {
       "date": "2026-09-14",
       "status": "watch",
       "as_of": "2026年9月14日 08:00 JST",
