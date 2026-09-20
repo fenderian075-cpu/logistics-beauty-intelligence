@@ -1,19 +1,42 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-08-23T08:12:00+09:00",
+  "updated_at": "2026-09-21T08:20:00+09:00",
   "topics": [
     {
       "topic_id": "japan-weather-disruption",
       "title_ja": "気象・災害による輸送障害",
       "current_state": "disruption",
       "confidence": "high",
-      "summary": "台風18号の影響が奄美群島の輸送に実際に波及。ヤマト運輸は8月23日7時時点で奄美市・大島郡宛ての全商品を荷受停止としており、鹿児島～奄美～沖縄航路では8月23日便の経路変更に加え、8月25日那覇発上り便の欠航も決定している。",
-      "japan_implication": "奄美群島向けは通常の宅配・補充リードタイムを前提にできず、沖縄・奄美向け輸送は船便の運航状況と滞留解消ペースに強く依存する。",
-      "operational_implication": "奄美市・大島郡向け出荷はヤマトで保留。受付再開または代替輸送を確認し、沖縄・奄美向け着日指定は少なくとも8月25日まで船便接続を個別確認する。",
-      "outlook_7d": "台風通過後の輸送会社受付再開、8月25日欠航後の船便正常化、滞留貨物の解消を日次確認する。",
+      "summary": "台風25号の影響が関東の航空・道路・鉄道に実際に波及。9月21日は羽田発着便を中心に欠航が発生し、関東の一部道路・鉄道でも通行止め・運休・遅延が確認されている。",
+      "japan_implication": "関東発着・経由の時限貨物、羽田・成田を利用する航空貨物、島しょ向け輸送では通常cutoffと一点ETAを前提にできない。",
+      "operational_implication": "SLA-critical貨物はdispatch前に道路・鉄道・航空便をshipment単位で確認し、必要に応じてcutoff前倒し、hold、rebookを行う。全国一律の出荷停止には一般化しない。",
+      "outlook_7d": "台風通過後の航空便復便、道路規制解除、滞留貨物の解消を日次確認する。",
       "outlook_30d": null,
       "outlook_90d": null,
       "developments": [
+        {
+          "date": "2026-09-21",
+          "type": "observed_impact",
+          "headline": "台風25号で関東の航空・道路・鉄道に実運航影響",
+          "summary": "ANAは9月21日に羽田発着中心の53便欠航を決定。JALでも羽田発着便の欠航が発生し、関東の一部道路・鉄道でも台風に伴う通行止め・運休が確認されている。",
+          "evidence": [
+            {
+              "class": "primary_operational",
+              "source": "ANA",
+              "url": "https://www.ana.co.jp/fs/dom/jp/"
+            },
+            {
+              "class": "primary_operational",
+              "source": "JAL",
+              "url": "https://www.jal.co.jp/jp/ja/other/weather_info_dom/"
+            },
+            {
+              "class": "professional_media",
+              "source": "テレビ朝日",
+              "url": "https://news.tv-asahi.co.jp/news_society/articles/000534828.html"
+            }
+          ]
+        },
         {
           "date": "2026-08-23",
           "type": "observed_impact",
@@ -29,17 +52,13 @@
               "class": "primary_operational",
               "source": "マリックスライン 運航状況",
               "url": "https://marixline.com/service/2025/12/"
-            },
-            {
-              "class": "professional_media",
-              "source": "九州のりものinfo / マリックスライン",
-              "url": "https://pop.kkb.co.jp/norimonoinfo/traffic.php?category_id=3"
             }
           ]
         }
       ],
       "data_points": [],
       "related_report_ids": [
+        "2026-09-21-daily",
         "2026-08-23-daily"
       ]
     },
@@ -48,13 +67,36 @@
       "title_ja": "国内配送オペレーション",
       "current_state": "watch",
       "confidence": "high",
-      "summary": "8月23日朝、台風18号で奄美市・大島郡宛てにヤマトの全商品荷受停止が発生し、鹿児島～奄美～沖縄航路では23日便の経路変更と25日那覇発便の欠航が決定。能登の一部荷受停止・局地遅延も継続する。一方、名神集中工事は継続中だが、今朝7時のヤマト現況では工事由来の全国的な実遅延はまだ確認できない。",
-      "japan_implication": "国内配送は全国一律の停止ではなく、奄美・沖縄方面の船便影響、能登の停止地域、名神を通る東西幹線の予防的リードタイム管理を分ける必要がある。",
-      "operational_implication": "奄美市・大島郡向けは出荷保留。沖縄・奄美向けは8月25日まで船便接続を確認。能登の停止地域は輸送会社確認。9月12日まで東西幹線は着日余裕を持たせる。",
-      "outlook_7d": "台風18号後の奄美受付再開、8月25日欠航後の船便正常化、名神工事初週の実際の遅延発生状況を確認。",
-      "outlook_30d": "名神集中工事は9月12日6時まで予定。",
+      "summary": "9月21日は台風25号による関東の道路・航空・鉄道影響に加え、JR貨物が九州・近畿・中部地区の輸送障害による遅延・運休を掲示。宅配では八丈島・青ヶ島、能登、南西諸島等に局地的な遅延・停止が残る。",
+      "japan_implication": "全国一律の停止ではなく、関東の時限貨物、鉄道・インターモーダル、島しょ・災害影響地域を分けた例外管理が必要。",
+      "operational_implication": "鉄道利用貨物はdispatch前に列車・terminal単位、関東発着・経由は道路・航空便単位、局地配送はcarrier受付状況を個別確認する。",
+      "outlook_7d": "台風25号後の関東交通正常化とJR貨物の遅延収束、局地配送の受付再開を確認する。",
+      "outlook_30d": null,
       "outlook_90d": null,
       "developments": [
+        {
+          "date": "2026-09-21",
+          "type": "observed_impact",
+          "headline": "関東の台風影響とJR貨物の複数地区遅延を同時監視",
+          "summary": "関東では台風25号による道路・航空・鉄道影響が発生。JR貨物は7時時点で九州・近畿・中部地区の輸送障害に伴う遅延・運休を掲示し、一部列車に数時間規模の遅延がある。",
+          "evidence": [
+            {
+              "class": "primary_operational",
+              "source": "JR貨物",
+              "url": "https://www.jrfreight.co.jp/i_daiya.html"
+            },
+            {
+              "class": "primary_operational",
+              "source": "ヤマト運輸",
+              "url": "https://www.kuronekoyamato.co.jp/ytc/chien/chien_hp.html"
+            },
+            {
+              "class": "professional_media",
+              "source": "テレビ朝日",
+              "url": "https://news.tv-asahi.co.jp/news_society/articles/000534828.html"
+            }
+          ]
+        },
         {
           "date": "2026-08-23",
           "type": "observed_impact",
@@ -70,11 +112,6 @@
               "class": "primary_operational",
               "source": "マリックスライン 運航状況",
               "url": "https://marixline.com/service/2025/12/"
-            },
-            {
-              "class": "professional_media",
-              "source": "九州のりものinfo / マリックスライン",
-              "url": "https://pop.kkb.co.jp/norimonoinfo/traffic.php?category_id=3"
             }
           ]
         },
@@ -105,17 +142,9 @@
           ]
         }
       ],
-      "data_points": [
-        {
-          "date": "2026-08-22",
-          "metric": "名神集中工事期間",
-          "value": 21,
-          "unit": "days approx.",
-          "period": "2026-08-22 00:00 to 2026-09-12 06:00",
-          "source": "NEXCO中日本 / NEXCO西日本"
-        }
-      ],
+      "data_points": [],
       "related_report_ids": [
+        "2026-09-21-daily",
         "2026-08-23-daily",
         "2026-08-22-daily"
       ]
@@ -125,13 +154,26 @@
       "title_ja": "中東海域の航行リスク",
       "current_state": "watch",
       "confidence": "high",
-      "summary": "ホルムズ海峡の通航は通常水準を大きく下回り、Red Sea/Suezでは一部サービスが段階的に戻る一方、中東港湾混雑とサービス調整が続く。全面正常化ではなく、routeごとの分断された回復局面。",
-      "japan_implication": "日本向け全体の一律停止ではないが、燃料・保険・船腹配分・中東接続・T/Sの不確実性が残る。",
-      "operational_implication": "Middle East/Europe関連貨物は輸送会社・サービス単位でrouting・寄港・surcharge・輸送日数を確認する。",
-      "outlook_7d": "高い変動性が継続。個別通航許可や部分的Suez復帰を全面正常化と解釈しない。",
-      "outlook_30d": "安全保障条件次第でTrans-Suez復帰と再迂回が混在する可能性。",
+      "summary": "一部コンテナサービスでSuez経由への復帰が進む一方、追加の運航判断は中東情勢の安定を条件としており、全面正常化ではない。routing短縮という改善材料と安全保障・燃料・保険リスクを併存して評価する。",
+      "japan_implication": "日本向け全体の一律停止ではないが、重点輸入レーンでは主要T/S接続、実際のrouting、寄港、ETA varianceをvoyage単位で確認する必要がある。",
+      "operational_implication": "Suez復帰の発表を全service正常化とみなさず、輸送会社・service単位でrouting、寄港、surcharge、輸送日数を確認する。",
+      "outlook_7d": "追加serviceのSuez復帰または再迂回を確認する。",
+      "outlook_30d": "安全保障条件次第でSuez復帰とCape迂回が混在する可能性。",
       "outlook_90d": null,
       "developments": [
+        {
+          "date": "2026-09-14",
+          "type": "reported_event",
+          "headline": "共同運航4サービスが追加でSuez経由へ復帰",
+          "summary": "主要船社2社は共同運航の4サービスを追加でSuez Canal経由へ戻すと発表。短いtransit timeへの改善材料だが、両社は今後の判断が中東情勢の安定に依存するとしている。",
+          "evidence": [
+            {
+              "class": "professional_media",
+              "source": "Reuters",
+              "url": "https://www.reuters.com/business/maersk-hapag-lloyd-resume-further-services-through-suez-canal-2026-09-14/"
+            }
+          ]
+        },
         {
           "date": "2026-08-22",
           "type": "reported_event",
@@ -216,6 +258,7 @@
         }
       ],
       "related_report_ids": [
+        "2026-09-21-daily",
         "2026-08-23-daily",
         "2026-08-22-daily",
         "2026-08-22-weekly",
@@ -365,18 +408,31 @@
       "title_ja": "日本Beauty EC・プロモーション需要",
       "current_state": "watch",
       "confidence": "high",
-      "summary": "Qoo10メガ割が8月28日17時から9月9日23:59まで予定。楽天LUXURY BEAUTYのポイント施策に加え、個別ブランド公式オンラインでは8月25日まで購入特典施策を実施中。短期EC波動はorganic需要と分けて見る必要がある。",
-      "japan_implication": "8月末〜9月上旬はBeauty ECのpromotion-driven volume増加が重なりやすい。",
-      "operational_implication": "order volume、gift material、梱包資材、CS/cancel波動をpromotion起因として別管理する。",
-      "outlook_7d": "個別ブランド施策終了とQoo10開始前後のorder/search movementを監視。",
-      "outlook_30d": "9月上旬は複数EC施策の重なりによる短期波動を想定。",
+      "summary": "ブランド公式サイト監視群では9月中旬の新製品投入・送料無料等の販促が継続し、一部公式ECでは連休中の受注分を9月24日以降順次出荷する一時的なlead-time延長も確認。これらはpromotion/launch/fulfillment要因であり、organic demandの増加とは扱わない。",
+      "japan_implication": "連休前後は一部公式ECで出荷日のずれとCS問い合わせ波動が発生し得るが、市場全体の需要増を示すものではない。",
+      "operational_implication": "Brand.com起因の出荷波動はcampaign/launch/holiday fulfillmentとして別管理し、在庫を一律に積み増さない。",
+      "outlook_7d": "9月24日以降の出荷再開と新製品・販促の短期order波動を確認する。",
+      "outlook_30d": "秋冬launch/promotionと小売sell-throughの一致を確認する。",
       "outlook_90d": null,
       "developments": [
         {
+          "date": "2026-09-21",
+          "type": "commerce_event",
+          "headline": "一部ブランド公式ECで連休中の出荷リードタイム延長",
+          "summary": "全登録Brand.com監視の結果、Makeup/Skincare/Fragranceで新製品・販促が続く中、一部公式ECは9月19〜23日の受注について9月24日以降順次出荷と案内。temporary fulfillment eventとして扱う。",
+          "evidence": [
+            {
+              "class": "brand_official",
+              "source": "ブランド公式サイト監視群",
+              "url": null
+            }
+          ]
+        },
+        {
           "date": "2026-08-23",
           "type": "commerce_event",
-          "headline": "個別ブランド公式オンラインでL’Art & La Matière購入特典を8/25まで実施",
-          "summary": "プロモコード利用の購入でネロリ ウートルノワ2mLを進呈。promotion-driven / temporaryとして扱い、売上実績とは区別する。",
+          "headline": "個別ブランド公式オンラインで購入特典を8/25まで実施",
+          "summary": "購入特典をpromotion-driven / temporaryとして扱い、売上実績とは区別する。",
           "evidence": [
             {
               "class": "brand_official",
@@ -397,23 +453,11 @@
               "url": "https://www.qoo10.jp/gmkt.inc/Mobile/Special/Special.aspx?sid=220713"
             }
           ]
-        },
-        {
-          "date": "2026-08-22",
-          "type": "commerce_event",
-          "headline": "楽天LUXURY BEAUTYポイント施策は9/1 09:59まで、次回9/1 10:00開始予定",
-          "summary": "対象ショップで1注文10,000円以上に300ポイント、最大3ショップ。",
-          "evidence": [
-            {
-              "class": "commerce_platform",
-              "source": "楽天市場 LUXURY BEAUTY",
-              "url": "https://event.rakuten.co.jp/beauty/brand/luxe/luxurybeauty/campaign/"
-            }
-          ]
         }
       ],
       "data_points": [],
       "related_report_ids": [
+        "2026-09-21-daily",
         "2026-08-23-daily",
         "2026-08-22-weekly",
         "2026-08-22-monthly"
