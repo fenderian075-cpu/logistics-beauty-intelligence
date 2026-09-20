@@ -1,7 +1,51 @@
 {
   "schema_version": "1.2",
-  "updated_at": "2026-08-23T11:13:00+09:00",
+  "updated_at": "2026-09-21T08:20:00+09:00",
   "items": [
+    {
+      "id": "2026-09-21-typhoon25-kanto-multimodal-disruption",
+      "date": "2026-09-21",
+      "event_date": "2026-09-21",
+      "headline": "台風25号で関東の航空・道路・鉄道に実運航影響、shipment単位の例外対応へ",
+      "domain": "domestic_delivery",
+      "importance": "high",
+      "japan_relevance": "high",
+      "operational_scope": "network",
+      "status": "observed",
+      "market_dimension": "risk",
+      "market_materiality": "material",
+      "market_change": "deterioration",
+      "time_horizon": "immediate",
+      "confidence": "high",
+      "summary": "台風25号の影響で9月21日は羽田発着便を中心に航空便の欠航が発生し、関東では道路通行止めや鉄道の運休・遅延も確認されている。全国一律の物流停止ではないが、関東発着・経由の時限貨物は通常フローを前提にできない。",
+      "observed_impact": "ANAは9月21日に羽田発着中心の53便欠航を決定し、約9,700人への影響を公表。JALでも羽田発着便の欠航が発生。関東の一部高速道路・鉄道でも台風に伴う通行止め・運休が確認され、旅客ネットワークの実運航影響が発生している。",
+      "japan_implication": "羽田・成田を利用する航空貨物、関東の集配・幹線接続、島しょ向け輸送ではcutoff・feeder・代替便・着日余裕をshipment単位で確認する必要がある。",
+      "operational_implication": "関東発着・経由のSLA-critical貨物はdispatch前に道路、鉄道、航空便を個別確認し、必要に応じてcutoff前倒し、hold、rebookを行う。全国トラック輸送の一律停止・迂回には一般化しない。",
+      "topic_ids": [
+        "japan-weather-disruption",
+        "japan-domestic-delivery"
+      ],
+      "evidence": [
+        {
+          "class": "primary_operational",
+          "source": "ANA",
+          "date": "2026-09-21",
+          "url": "https://www.ana.co.jp/fs/dom/jp/"
+        },
+        {
+          "class": "primary_operational",
+          "source": "JAL",
+          "date": "2026-09-21",
+          "url": "https://www.jal.co.jp/jp/ja/other/weather_info_dom/"
+        },
+        {
+          "class": "professional_media",
+          "source": "テレビ朝日",
+          "date": "2026-09-21",
+          "url": "https://news.tv-asahi.co.jp/news_society/articles/000534828.html"
+        }
+      ]
+    },
     {
       "id": "2026-08-23-typhoon18-amami-delivery-stop",
       "date": "2026-08-23",
