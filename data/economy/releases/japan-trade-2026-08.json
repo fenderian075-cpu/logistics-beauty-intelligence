@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0",
+  "dataset": "japan-trade-release",
+  "period": "2026-08",
+  "published_at": "2026-09-16",
+  "status": "provisional",
+  "source": {
+    "name": "財務省 貿易統計 令和8年8月分速報",
+    "url": "https://www.customs.go.jp/toukei/shinbun/trade-st_e/2026/2026084e.pdf"
+  },
+  "observations": [
+    {"metric_id":"exports_total","value":10.048375,"unit":"JPY_trillion","yoy_pct":19.3,"comparison":{"type":"yoy","base_period":"2025-08"}},
+    {"metric_id":"imports_total","value":11.153982,"unit":"JPY_trillion","yoy_pct":28.0,"comparison":{"type":"yoy","base_period":"2025-08"}},
+    {"metric_id":"exports_quantity_index","value":94.5,"unit":"index","yoy_pct":2.5,"comparison":{"type":"yoy","base_period":"2025-08"}},
+    {"metric_id":"imports_quantity_index","value":97.2,"unit":"index","yoy_pct":2.7,"comparison":{"type":"yoy","base_period":"2025-08"}},
+    {"metric_id":"exports_unit_value_index","value":186.5,"unit":"index","yoy_pct":16.4,"comparison":{"type":"yoy","base_period":"2025-08"}},
+    {"metric_id":"imports_unit_value_index","value":202.4,"unit":"index","yoy_pct":24.7,"comparison":{"type":"yoy","base_period":"2025-08"}},
+    {"metric_id":"trade_balance","value":-1.105607,"unit":"JPY_trillion"}
+  ],
+  "interpretation": "2026年8月は名目輸入額がYoY +28.0%（2026-08 vs 2025-08）でも、輸入数量指数はYoY +2.7%にとどまる。名目金額の伸びを物理的な貨物需要の伸びとして扱わない。",
+  "privacy": "Public release stores national aggregates only. Priority sourcing geographies, ports and lanes are evaluated privately and are not persisted here."
+}
