@@ -108,8 +108,61 @@
         }
       },
       "change_summary": {
-        "previous_report_id": "2026-08-26-daily",
-        "summary": "Daily停止期間を挟み、台風25号による関東道路・航空・島しょ輸送のobserved impactを新規反映。"
+        "compared_with": "2026-08-26-daily",
+        "overall": "changed",
+        "changed_categories": [
+          "domestic",
+          "weather",
+          "air"
+        ],
+        "new_risks": [
+          "台風25号による関東道路・航空・島しょ輸送のobserved impact"
+        ],
+        "improved_risks": [],
+        "resolved_risks": []
+      },
+      "path": "reports/2026/09/2026-09-21-daily.html",
+      "cost_snapshot": {
+        "as_of": "2026-09-21T07:50:00+09:00",
+        "metrics": {
+          "regular_gasoline_national": {
+            "value": 170,
+            "unit": "JPY/L",
+            "data_date": "2026-09-07",
+            "source": "資源エネルギー庁 石油製品価格調査 / data/economy/fuel-prices.json",
+            "comparison_type": "WoW",
+            "base_period": "2026-08-31",
+            "comparison_pct": 0
+          },
+          "diesel_national": {
+            "value": 159.5,
+            "unit": "JPY/L",
+            "data_date": "2026-09-07",
+            "source": "資源エネルギー庁 石油製品価格調査 / data/economy/fuel-prices.json",
+            "comparison_type": "WoW",
+            "base_period": "2026-08-31",
+            "comparison_pct": 0.1
+          },
+          "drewry_wci": {
+            "value": 4476,
+            "unit": "USD/40ft",
+            "data_date": "2026-09-10",
+            "source": "Drewry World Container Index",
+            "comparison_type": "WoW",
+            "base_period": "2026-09-03",
+            "comparison_pct": 0.2
+          },
+          "drewry_iaci": {
+            "value": 1323,
+            "unit": "USD/40ft",
+            "data_date": "2026-09-10",
+            "source": "Drewry Intra-Asia Container Index",
+            "comparison_type": "WoW",
+            "base_period": "2026-09-03",
+            "comparison_pct": 1
+          }
+        },
+        "interpretation_ja": "Daily作成時点で確認可能な直近公表値。燃料・spot海上運賃はphysical demandや本日の実輸送capacityと同一視せず、運用判断は道路・航空・carrierのobserved impactを優先する。"
       }
     },
     {
