@@ -3,7 +3,7 @@
   "dataset": "retail-beauty",
   "title_ja": "Beauty実需・小売",
   "frequency": "monthly+annual",
-  "baseline_updated_at": "2026-09-14T08:00:00+09:00",
+  "baseline_updated_at": "2026-09-21T08:30:00+09:00",
   "sources": [
     {"name":"日本百貨店協会 百貨店売上高","url":"https://www.depart.or.jp/store_sale/"},
     {"name":"日本百貨店協会 最近の百貨店売上高の推移","url":"https://www.depart.or.jp/store_sale/","vintage":"2026-08-28"},
@@ -73,21 +73,33 @@
     {"metric_id":"beauty_import_volume","unit":"quantity","observations":[]},
     {
       "metric_id":"cosmetics_domestic_shipments","unit":"JPY","observations":[
-        {"period":"2024","value":1374500000000,"yoy_pct":5.5,"status":"official_summary","source":"日本化粧品工業会 / 経済産業省 生産動態統計"},
+        {"period":"2024","value":1374500000000,"yoy_pct":5.5,"status":"legacy_pre_revision_summary","source":"日本化粧品工業会 / 経済産業省 生産動態統計","revision_note":"2026-09-17のJCIA更新で2020年以降が遡及修正されたため、完全なrevised-history再取込までlegacy vintageとして扱う。"},
+        {"period":"2025","value":1390700000000,"yoy_pct":1.2,"comparison_type":"YoY","base_period":"2024","published_at":"2026-09-17","status":"official_revised_series","source":"日本化粧品工業会 / 経済産業省 生産動態統計","source_url":"https://www.jcia.org/user/statistics/shipment"},
         {"period":"2026-06","value":120890000000,"yoy_pct":6.3,"comparison_type":"YoY","base_period":"2025-06","published_at":"2026-09-01","status":"verified_public_release","source":"週刊粧業（経済産業省 生産動態統計を引用）","source_url":"https://form.syogyo.jp/news/2026/09/post_044632"}
+      ]
+    },
+    {
+      "metric_id":"cosmetics_serum_shipments","unit":"JPY","observations":[
+        {"period":"2025","value":121900000000,"published_at":"2026-09-17","status":"official_revised_series","source":"日本化粧品工業会 / 経済産業省 生産動態統計","source_url":"https://www.jcia.org/user/statistics/shipment","note":"2025年の品目別出荷額で美容液が化粧水を上回り1位。比較率は公表要約から確定できないため保存しない。"}
       ]
     },
     {"metric_id":"cosmetics_household_spend_two_plus_person_household","unit":"JPY_per_household_year","observations":[{"period":"2024","value":38436,"status":"official_summary","source":"日本化粧品工業会 / 総務省 家計調査"}]}
   ],
   "category_structure":[
-    {"period":"2024","category":"skincare","share_pct":44.5,"basis":"domestic_shipment_value","source":"日本化粧品工業会"},
-    {"period":"2024","category":"haircare","share_pct":26.9,"basis":"domestic_shipment_value","source":"日本化粧品工業会"},
-    {"period":"2024","category":"makeup","share_pct":20.9,"basis":"domestic_shipment_value","source":"日本化粧品工業会"},
-    {"period":"2024","category":"special_purpose","share_pct":7.1,"basis":"domestic_shipment_value","source":"日本化粧品工業会"},
-    {"period":"2024","category":"fragrance","share_pct":0.7,"basis":"domestic_shipment_value","source":"日本化粧品工業会"}
+    {"period":"2024","category":"skincare","share_pct":44.5,"basis":"domestic_shipment_value","source":"日本化粧品工業会","status":"legacy_pre_revision_summary"},
+    {"period":"2024","category":"haircare","share_pct":26.9,"basis":"domestic_shipment_value","source":"日本化粧品工業会","status":"legacy_pre_revision_summary"},
+    {"period":"2024","category":"makeup","share_pct":20.9,"basis":"domestic_shipment_value","source":"日本化粧品工業会","status":"legacy_pre_revision_summary"},
+    {"period":"2024","category":"special_purpose","share_pct":7.1,"basis":"domestic_shipment_value","source":"日本化粧品工業会","status":"legacy_pre_revision_summary"},
+    {"period":"2024","category":"fragrance","share_pct":0.7,"basis":"domestic_shipment_value","source":"日本化粧品工業会","status":"legacy_pre_revision_summary"},
+    {"period":"2025","category":"skincare","share_pct":45.2,"basis":"domestic_shipment_value","published_at":"2026-09-17","status":"official_revised_series","source":"日本化粧品工業会"},
+    {"period":"2025","category":"haircare","share_pct":26.9,"basis":"domestic_shipment_value","published_at":"2026-09-17","status":"official_revised_series","source":"日本化粧品工業会"},
+    {"period":"2025","category":"makeup","share_pct":20.2,"basis":"domestic_shipment_value","published_at":"2026-09-17","status":"official_revised_series","source":"日本化粧品工業会"},
+    {"period":"2025","category":"special_purpose","share_pct":7.0,"basis":"domestic_shipment_value","published_at":"2026-09-17","status":"official_revised_series","source":"日本化粧品工業会"},
+    {"period":"2025","category":"fragrance","share_pct":0.7,"basis":"domestic_shipment_value","published_at":"2026-09-17","status":"official_revised_series","source":"日本化粧品工業会"}
   ],
   "priority_dimensions":["makeup","skincare","fragrance","department_store","drugstore","EC","priority_import_flow"],
   "comparison_policy":"JDSA headline YoY is store-count adjusted. It is stored as yoy_store_adjusted_pct and must not be mixed with a raw ratio computed from unadjusted sales values. METI drugstore annual YoY is stored as yoy_pct under its published statistical basis. Every new comparison should include comparison_type and base_period where supported.",
+  "revision_note":"JCIAの2026-09-17更新は、一部事業所の誤報告を受け2020年以降の化粧品出荷統計を遡及修正した。2025年値・構成比はrevised seriesとして保存し、完全な過去系列再取込までは旧2024年観測値をvintage違いとして直接比較計算しない。",
   "privacy_note":"Specific priority origin countries, ports and routes are intentionally not stored in this public dataset. They are evaluated only during the private intelligence run and public output is generalized.",
   "interpretation":"Brand.com promotion and Google Trends are leading/attention signals; department-store, retail, shipment and trade statistics are economic confirmation. Never treat promotion as organic demand."
 }
