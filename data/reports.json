@@ -163,6 +163,36 @@
           }
         },
         "interpretation_ja": "Daily作成時点で確認可能な直近公表値。燃料・spot海上運賃はphysical demandや本日の実輸送capacityと同一視せず、運用判断は道路・航空・carrierのobserved impactを優先する。"
+      },
+      "intelligence": {
+        "disruption": [
+          {
+            "id": "japan-domestic-delivery",
+            "signal": "台風25号により関東、とくに千葉方面の道路・航空・島しょ輸送に実影響。複数高速道路の通行止めと八丈島・青ヶ島向け配送遅延を確認。",
+            "lens": "disruption",
+            "direction": "rising",
+            "impact": "high",
+            "change_status": "new",
+            "confidence": "high",
+            "evidence": [
+              {
+                "source": "NEXCO東日本",
+                "date": "2026-09-21",
+                "url": "https://www.e-nexco.co.jp/pressroom/"
+              },
+              {
+                "source": "ヤマト運輸",
+                "date": "2026-09-21",
+                "url": "https://www.kuronekoyamato.co.jp/ytc/chien/chien_hp.html"
+              }
+            ],
+            "operational_implication": "千葉・房総方面、成田空港経由、島しょ向けは標準lead timeを前提にせずshipment単位で確認する。"
+          }
+        ],
+        "cost_capacity": [],
+        "reliability": [],
+        "demand_commerce": [],
+        "regulatory_structural": []
       }
     },
     {
