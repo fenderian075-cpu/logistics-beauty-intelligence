@@ -1,0 +1,81 @@
+name: Temporary publish Daily 2026-09-22
+
+on:
+  push:
+    branches:
+      - content/daily-20260922-auto
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Generate Daily from current canonical template
+        run: python scripts/_publish_daily_20260922.py
+      - name: Install DOM test dependency
+        run: npm install --no-audit --no-fund
+      - name: Static and DOM regression tests
+        run: npm test
+      - name: Report validation
+        run: python scripts/validate-report.py
+      - name: Report cost snapshot policy
+        run: python scripts/validate-report-cost-snapshot.py
+      - name: Public schema integrity
+        run: python scripts/validate_public_schema_integrity.py
+      - name: Customs taxonomy integrity
+        run: python scripts/validate-customs-taxonomy.py
+      - name: Logistics demand-capacity integrity
+        run: python scripts/validate_logistics_structure.py
+      - name: JSON and scope sanity
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          files = [
+              'data/reports.json',
+              'data/critical-news.json',
+              'data/topic-intelligence.json',
+              'data/economy/ocean-freight-market.json',
+              'data/economy/beauty-market.json',
+          ]
+          for name in files:
+              json.loads(Path(name).read_text(encoding='utf-8'))
+          p = Path('reports/2026/09/2026-09-22-daily.html')
+          assert p.exists(), p
+          html = p.read_text(encoding='utf-8')
+          assert 'data-report-date="2026-09-22"' in html
+          assert 'data-report-type="daily"' in html
+          assert 'id="tool-help" title="キーボードショートカット"' in html
+          assert '{{' not in html
+          print('JSON/path/canonical-shell sanity passed')
+          PY
+      - name: Commit generated content
+        shell: bash
+        run: |
+          set -euo pipefail
+          expected='data/critical-news.json data/economy/beauty-market.json data/economy/ocean-freight-market.json data/reports.json data/topic-intelligence.json reports/2026/09/2026-09-22-daily.html'
+          git add data/critical-news.json data/economy/beauty-market.json data/economy/ocean-freight-market.json data/reports.json data/topic-intelligence.json reports/2026/09/2026-09-22-daily.html
+          actual="$(git diff --cached --name-only | sort | tr '\n' ' ' | sed 's/ $//')"
+          if [ "$actual" != "$expected" ]; then
+            echo "Unexpected generated file scope"
+            echo "Expected: $expected"
+            echo "Actual:   $actual"
+            exit 1
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'publish: 2026-09-22 Daily Exception Intelligence'
+          git push
