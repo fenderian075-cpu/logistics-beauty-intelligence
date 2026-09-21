@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "dataset": "fuel-prices-release",
+  "period": "2026-09-14",
+  "published_at": "2026-09-16",
+  "status": "official",
+  "source": {
+    "name": "資源エネルギー庁 石油製品価格調査",
+    "url": "https://www.enecho.meti.go.jp/statistics/petroleum_and_lpgas/pl007/results.html",
+    "workbook": "https://www.enecho.meti.go.jp/statistics/petroleum_and_lpgas/pl007/xlsx/260916s5.xlsx"
+  },
+  "observations": [
+    {"metric_id":"regular_gasoline_national","value":169.9,"unit":"JPY/L","comparison":{"type":"wow","base_period":"2026-09-07","delta":-0.1,"delta_unit":"JPY/L"}},
+    {"metric_id":"diesel_national","value":159.3,"unit":"JPY/L","comparison":{"type":"wow","base_period":"2026-09-07","delta":-0.2,"delta_unit":"JPY/L"}}
+  ],
+  "interpretation": "全国平均は前週から小幅低下。燃料価格の変化はコスト入力であり、輸送能力や貨物需要の変化とは分けて評価する。"
+}
