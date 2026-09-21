@@ -19,7 +19,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.x'
-      - name: Repair stale topic assertion and missing Daily intelligence
+      - name: Repair stale assertions and missing Daily intelligence
         shell: bash
         run: |
           python - <<'PY'
@@ -36,6 +36,16 @@ jobs:
           elif '(topic.developments || []).length' not in s:
               raise SystemExit('topic chronology assertion is neither old nor repaired')
           test.write_text(s, encoding='utf-8')
+
+          validator = Path('scripts/validate-report.py')
+          v = validator.read_text(encoding='utf-8')
+          old_v = '''        has_full = 'class="changes"' in html\n        has_none = 'changes--none' in html'''
+          new_v = '''        class_tokens = [token for value in re.findall(r'class="([^"]*)"', html) for token in value.split()]\n        has_full = "changes" in class_tokens\n        has_none = "changes--none" in class_tokens'''
+          if old_v in v:
+              v = v.replace(old_v, new_v)
+          elif 'class_tokens = [token for value in re.findall' not in v:
+              raise SystemExit('report change-component validator target not found')
+          validator.write_text(v, encoding='utf-8')
 
           p = Path('data/reports.json')
           data = json.loads(p.read_text(encoding='utf-8'))
@@ -81,6 +91,6 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git rm .github/workflows/one-shot-fix-topic-test.yml
-          git add tests/dom-smoke.mjs data/reports.json
-          git commit -m "fix: repair frontend regression baseline"
+          git add tests/dom-smoke.mjs scripts/validate-report.py data/reports.json
+          git commit -m "fix: repair regression and report validation baseline"
           git push
