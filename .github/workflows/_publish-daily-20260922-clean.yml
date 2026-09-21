@@ -29,6 +29,20 @@ jobs:
           git show origin/content/daily-20260922-auto:scripts/_publish_daily_20260922.py > scripts/_runtime_publish_daily_20260922.py
           python scripts/_runtime_publish_daily_20260922.py
           rm scripts/_runtime_publish_daily_20260922.py
+      - name: Normalize customs taxonomy fields
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path('data/reports.json')
+          data = json.loads(p.read_text(encoding='utf-8'))
+          row = next(r for r in data['reports'] if r.get('id') == '2026-09-22-daily')
+          for signal in row.get('intelligence', {}).get('regulatory_structural', []):
+              if signal.get('id') == 'japan-customs-naccs':
+                  signal['customs_subtype'] = 'operational'
+          p.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          PY
       - name: Install DOM test dependency
         run: npm install --no-audit --no-fund
       - name: Static and DOM regression tests
@@ -65,6 +79,8 @@ jobs:
           assert '2026-09-22-daily' in ids, 'new Daily missing'
           row = next(r for r in reports if r.get('id') == '2026-09-22-daily')
           assert row['path'] == 'reports/2026/09/2026-09-22-daily.html'
+          customs = [s for s in row.get('intelligence', {}).get('regulatory_structural', []) if s.get('id') == 'japan-customs-naccs']
+          assert customs and customs[0].get('customs_subtype') == 'operational'
           p = Path(row['path'])
           assert p.exists(), p
           html = p.read_text(encoding='utf-8')
