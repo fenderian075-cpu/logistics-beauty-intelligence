@@ -1,7 +1,39 @@
 {
   "schema_version": "1.2",
-  "updated_at": "2026-09-21T08:20:00+09:00",
+  "updated_at": "2026-09-22T08:30:00+09:00",
   "items": [
+    {
+      "id": "2026-09-22-typhoon25-kanto-hokkaido-delivery-delay",
+      "date": "2026-09-22",
+      "event_date": "2026-09-22",
+      "headline": "台風25号の残留影響で関東発→北海道向け全商品に配送遅延",
+      "domain": "domestic_delivery",
+      "importance": "high",
+      "japan_relevance": "high",
+      "operational_scope": "network",
+      "status": "observed",
+      "market_dimension": "risk",
+      "market_materiality": "material",
+      "market_change": "deterioration",
+      "time_horizon": "immediate",
+      "confidence": "high",
+      "summary": "ヤマト運輸は9月22日08:00時点で、関東地域発から北海道行きの全商品に台風25号の影響によるお届け遅延を掲示。遅延了承のうえ荷受けは継続している。",
+      "observed_impact": "carrierの実運用として関東→北海道の広域レーンに全商品遅延が残存。全国一律の荷受停止ではなく、対象レーンのlead time悪化として確認された。",
+      "japan_implication": "関東から北海道へ向かう店舗補充・EC・時限貨物は通常lead timeを固定前提にできない。",
+      "operational_implication": "SLA-critical貨物はdispatch前にcarrierの到着見込みを確認し、必要時のみcutoff前倒し・代替手段を検討する。全国一律停止へ一般化しない。",
+      "topic_ids": [
+        "japan-weather-disruption",
+        "japan-domestic-delivery"
+      ],
+      "evidence": [
+        {
+          "class": "primary_operational",
+          "source": "ヤマト運輸",
+          "date": "2026-09-22",
+          "url": "https://www.kuronekoyamato.co.jp/ytc/chien/chien_hp.html"
+        }
+      ]
+    },
     {
       "id": "2026-09-21-typhoon25-kanto-multimodal-disruption",
       "date": "2026-09-21",

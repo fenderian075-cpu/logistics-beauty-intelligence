@@ -1,19 +1,32 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-09-21T08:20:00+09:00",
+  "updated_at": "2026-09-22T08:30:00+09:00",
   "topics": [
     {
       "topic_id": "japan-weather-disruption",
       "title_ja": "気象・災害による輸送障害",
-      "current_state": "disruption",
+      "current_state": "watch",
       "confidence": "high",
-      "summary": "台風25号の影響が関東の航空・道路・鉄道に実際に波及。9月21日は羽田発着便を中心に欠航が発生し、関東の一部道路・鉄道でも通行止め・運休・遅延が確認されている。",
-      "japan_implication": "関東発着・経由の時限貨物、羽田・成田を利用する航空貨物、島しょ向け輸送では通常cutoffと一点ETAを前提にできない。",
-      "operational_implication": "SLA-critical貨物はdispatch前に道路・鉄道・航空便をshipment単位で確認し、必要に応じてcutoff前倒し、hold、rebookを行う。全国一律の出荷停止には一般化しない。",
-      "outlook_7d": "台風通過後の航空便復便、道路規制解除、滞留貨物の解消を日次確認する。",
+      "summary": "台風25号の通過後も残留影響があり、9月22日08:00時点で関東発→北海道向け宅配の全商品遅延が確認される。全国一律の停止ではなく、対象レーンと島しょ等を例外管理する局面。",
+      "japan_implication": "関東→北海道の時限貨物と、島しょ・南西諸島の配送では通常lead timeを固定前提にできない。",
+      "operational_implication": "carrierのobserved impactを基準に対象レーンのみdispatch前確認し、全国一律の出荷停止には一般化しない。",
+      "outlook_7d": "関東→北海道の遅延解消と、島しょ・南西諸島の海空輸送正常化を日次確認する。",
       "outlook_30d": null,
       "outlook_90d": null,
       "developments": [
+        {
+          "date": "2026-09-22",
+          "type": "observed_impact",
+          "headline": "関東発→北海道向け全商品に台風25号由来の遅延が残存",
+          "summary": "ヤマト運輸は9月22日08:00時点で関東地域発→北海道行きの全商品に遅延を掲示。荷受けは遅延了承のうえ継続。",
+          "evidence": [
+            {
+              "class": "primary_operational",
+              "source": "ヤマト運輸",
+              "url": "https://www.kuronekoyamato.co.jp/ytc/chien/chien_hp.html"
+            }
+          ]
+        },
         {
           "date": "2026-09-21",
           "type": "observed_impact",
@@ -58,6 +71,7 @@
       ],
       "data_points": [],
       "related_report_ids": [
+        "2026-09-22-daily",
         "2026-09-21-daily",
         "2026-08-23-daily"
       ]
@@ -67,13 +81,26 @@
       "title_ja": "国内配送オペレーション",
       "current_state": "watch",
       "confidence": "high",
-      "summary": "9月21日は台風25号による関東の道路・航空・鉄道影響に加え、JR貨物が九州・近畿・中部地区の輸送障害による遅延・運休を掲示。宅配では八丈島・青ヶ島、能登、南西諸島等に局地的な遅延・停止が残る。",
-      "japan_implication": "全国一律の停止ではなく、関東の時限貨物、鉄道・インターモーダル、島しょ・災害影響地域を分けた例外管理が必要。",
-      "operational_implication": "鉄道利用貨物はdispatch前に列車・terminal単位、関東発着・経由は道路・航空便単位、局地配送はcarrier受付状況を個別確認する。",
-      "outlook_7d": "台風25号後の関東交通正常化とJR貨物の遅延収束、局地配送の受付再開を確認する。",
+      "summary": "9月22日は台風25号の残留影響として関東発→北海道向け全商品遅延が確認され、八丈島・青ヶ島、能登、南西諸島等の局地例外も残る。全国一律停止ではなくレーン別例外管理が必要。",
+      "japan_implication": "関東→北海道の時限貨物、島しょ・災害影響地域を分け、通常lead timeを固定前提にしない。",
+      "operational_implication": "carrier受付・到着見込みを対象shipmentごとに確認し、SLA-criticalのみ代替手段を準備する。",
+      "outlook_7d": "関東→北海道の遅延収束と局地配送の受付・輸送正常化を確認する。",
       "outlook_30d": null,
       "outlook_90d": null,
       "developments": [
+        {
+          "date": "2026-09-22",
+          "type": "observed_impact",
+          "headline": "関東発→北海道の宅配遅延を新たな広域例外として確認",
+          "summary": "ヤマト運輸は関東地域発→北海道行きの全商品に台風25号由来の遅延を掲示。全国一律停止ではなく対象レーンのlead time悪化。",
+          "evidence": [
+            {
+              "class": "primary_operational",
+              "source": "ヤマト運輸",
+              "url": "https://www.kuronekoyamato.co.jp/ytc/chien/chien_hp.html"
+            }
+          ]
+        },
         {
           "date": "2026-09-21",
           "type": "observed_impact",
@@ -144,6 +171,7 @@
       ],
       "data_points": [],
       "related_report_ids": [
+        "2026-09-22-daily",
         "2026-09-21-daily",
         "2026-08-23-daily",
         "2026-08-22-daily"
@@ -154,13 +182,26 @@
       "title_ja": "中東海域の航行リスク",
       "current_state": "watch",
       "confidence": "high",
-      "summary": "一部コンテナサービスでSuez経由への復帰が進む一方、追加の運航判断は中東情勢の安定を条件としており、全面正常化ではない。routing短縮という改善材料と安全保障・燃料・保険リスクを併存して評価する。",
+      "summary": "一部Gemini serviceのRed Sea/Suez復帰が進み、NE4 eastboundは9月22日から移行。一方でserviceごとの実施時期が異なり、安全保障条件も残るため全面正常化とは扱わない。",
       "japan_implication": "日本向け全体の一律停止ではないが、重点輸入レーンでは主要T/S接続、実際のrouting、寄港、ETA varianceをvoyage単位で確認する必要がある。",
-      "operational_implication": "Suez復帰の発表を全service正常化とみなさず、輸送会社・service単位でrouting、寄港、surcharge、輸送日数を確認する。",
+      "operational_implication": "Suez復帰を一括適用せず、輸送会社・service・voyage単位でrouting、寄港、ETA、surchargeを確認する。",
       "outlook_7d": "追加serviceのSuez復帰または再迂回を確認する。",
       "outlook_30d": "安全保障条件次第でSuez復帰とCape迂回が混在する可能性。",
       "outlook_90d": null,
       "developments": [
+        {
+          "date": "2026-09-22",
+          "type": "reported_event",
+          "headline": "NE4 eastboundがRed Sea/Suez routingへ移行",
+          "summary": "Hapag-LloydはNE4 eastboundのMaastricht Maersk 637Eについて、Algeciras ETD 9月22日からRed Sea/Suez routingへ移行すると案内。SE2/IEX等は別日程で、service単位の変更。",
+          "evidence": [
+            {
+              "class": "primary_operational",
+              "source": "Hapag-Lloyd",
+              "url": "https://www.hapag-lloyd.com/en/services-information/news/2026/09/routing-update-for-our-ne4--se1--se2-and-iex-services.html"
+            }
+          ]
+        },
         {
           "date": "2026-09-14",
           "type": "reported_event",
@@ -258,6 +299,7 @@
         }
       ],
       "related_report_ids": [
+        "2026-09-22-daily",
         "2026-09-21-daily",
         "2026-08-23-daily",
         "2026-08-22-daily",
@@ -408,13 +450,31 @@
       "title_ja": "日本Beauty EC・プロモーション需要",
       "current_state": "watch",
       "confidence": "high",
-      "summary": "ブランド公式サイト監視群では9月中旬の新製品投入・送料無料等の販促が継続し、一部公式ECでは連休中の受注分を9月24日以降順次出荷する一時的なlead-time延長も確認。これらはpromotion/launch/fulfillment要因であり、organic demandの増加とは扱わない。",
+      "summary": "Brand.com巡回では9月22日のDiptyque発送・CS休業と、9月21日開始の資生堂INOUI限定色予約など短期calendar/launch要因を確認。organic demand上振れとは分離する。",
       "japan_implication": "連休前後は一部公式ECで出荷日のずれとCS問い合わせ波動が発生し得るが、市場全体の需要増を示すものではない。",
-      "operational_implication": "Brand.com起因の出荷波動はcampaign/launch/holiday fulfillmentとして別管理し、在庫を一律に積み増さない。",
+      "operational_implication": "Brand×Category×Channelでcutoff・予約・GWP/同梱を確認し、短期波動を基礎需要予測から分離する。",
       "outlook_7d": "9月24日以降の出荷再開と新製品・販促の短期order波動を確認する。",
       "outlook_30d": "秋冬launch/promotionと小売sell-throughの一致を確認する。",
       "outlook_90d": null,
       "developments": [
+        {
+          "date": "2026-09-22",
+          "type": "observed_impact",
+          "headline": "Brand.com発送休業と予約施策が短期波動要因",
+          "summary": "Diptyqueは9月22日にオンライン発送・カスタマーサービスを休業。資生堂INOUI限定色は9月21日から予約受付。いずれもorganic demandの新証拠ではない。",
+          "evidence": [
+            {
+              "class": "primary_operational",
+              "source": "Diptyque Japan",
+              "url": "https://jp.diptyqueparis.com/ja-jp/pages/information"
+            },
+            {
+              "class": "primary_operational",
+              "source": "資生堂オンラインストア",
+              "url": "https://www.shiseido.co.jp/sw/onlinestore/campaign/inoui/261021/"
+            }
+          ]
+        },
         {
           "date": "2026-09-21",
           "type": "commerce_event",
@@ -457,6 +517,7 @@
       ],
       "data_points": [],
       "related_report_ids": [
+        "2026-09-22-daily",
         "2026-09-21-daily",
         "2026-08-23-daily",
         "2026-08-22-weekly",
