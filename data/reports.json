@@ -1010,8 +1010,48 @@
         }
       },
       "change_summary": {
-        "previous_report_id": "2026-08-25-daily",
-        "summary": "国内鉄道貨物が広域・長時間遅延へ悪化。"
+        "compared_with": "2026-08-25-daily",
+        "overall": "changed",
+        "changed_categories": [
+          "domestic",
+          "weather"
+        ],
+        "new_risks": [
+          "JR貨物の広域・長時間遅延"
+        ],
+        "improved_risks": [],
+        "resolved_risks": []
+      },
+      "path": "reports/2026/08/2026-08-26-daily.html",
+      "cost_snapshot": {
+        "as_of": "2026-08-26T08:00:00+09:00",
+        "metrics": {
+          "regular_gasoline_national": {
+            "value": null,
+            "unit": "JPY/L",
+            "data_date": null,
+            "source": "資源エネルギー庁 石油製品価格調査 / data/economy/fuel-prices.json"
+          },
+          "diesel_national": {
+            "value": null,
+            "unit": "JPY/L",
+            "data_date": null,
+            "source": "資源エネルギー庁 石油製品価格調査 / data/economy/fuel-prices.json"
+          },
+          "drewry_wci": {
+            "value": 4526,
+            "unit": "USD/40ft",
+            "data_date": "2026-08-20",
+            "source": "Drewry World Container Index"
+          },
+          "drewry_iaci": {
+            "value": 1091,
+            "unit": "USD/40ft",
+            "data_date": "2026-08-20",
+            "source": "Drewry Intra-Asia Container Index"
+          }
+        },
+        "interpretation_ja": "復元Dailyの必須コストsnapshot。レポート作成時点で利用可能だった直近の検証済み公表値を保持し、価格指標をphysical demandや実輸送capacityと同一視しない。"
       }
     },
     {
@@ -1059,8 +1099,48 @@
         }
       },
       "change_summary": {
-        "previous_report_id": "2026-08-24-daily",
-        "summary": "台風影響が局地遅延から対象地域の集配停止へ悪化。"
+        "compared_with": "2026-08-24-daily",
+        "overall": "changed",
+        "changed_categories": [
+          "domestic",
+          "weather"
+        ],
+        "new_risks": [
+          "台風18号対象地域の集配停止"
+        ],
+        "improved_risks": [],
+        "resolved_risks": []
+      },
+      "path": "reports/2026/08/2026-08-25-daily.html",
+      "cost_snapshot": {
+        "as_of": "2026-08-25T08:00:00+09:00",
+        "metrics": {
+          "regular_gasoline_national": {
+            "value": null,
+            "unit": "JPY/L",
+            "data_date": null,
+            "source": "資源エネルギー庁 石油製品価格調査 / data/economy/fuel-prices.json"
+          },
+          "diesel_national": {
+            "value": null,
+            "unit": "JPY/L",
+            "data_date": null,
+            "source": "資源エネルギー庁 石油製品価格調査 / data/economy/fuel-prices.json"
+          },
+          "drewry_wci": {
+            "value": 4526,
+            "unit": "USD/40ft",
+            "data_date": "2026-08-20",
+            "source": "Drewry World Container Index"
+          },
+          "drewry_iaci": {
+            "value": 1091,
+            "unit": "USD/40ft",
+            "data_date": "2026-08-20",
+            "source": "Drewry Intra-Asia Container Index"
+          }
+        },
+        "interpretation_ja": "復元Dailyの必須コストsnapshot。レポート作成時点で利用可能だった直近の検証済み公表値を保持し、価格指標をphysical demandや実輸送capacityと同一視しない。"
       }
     },
     {
