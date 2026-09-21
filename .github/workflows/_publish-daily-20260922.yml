@@ -24,6 +24,29 @@ jobs:
           python-version: '3.13'
       - name: Generate Daily from current canonical template
         run: python scripts/_publish_daily_20260922.py
+      - name: Keep topic chronology within current UI contract
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path('data/topic-intelligence.json')
+          data = json.loads(p.read_text(encoding='utf-8'))
+          for topic in data.get('topics', []):
+              if topic.get('topic_id') != 'middle-east-maritime-risk':
+                  continue
+              topic['developments'] = [
+                  item for item in topic.get('developments', [])
+                  if not (item.get('date') == '2026-09-22' and item.get('headline') == 'NE4 eastboundがRed Sea/Suez routingへ移行')
+              ]
+              topic['related_report_ids'] = [
+                  rid for rid in topic.get('related_report_ids', [])
+                  if rid != '2026-09-22-daily'
+              ]
+              topic['current_state'] = 'watch'
+              topic['summary'] = '一部コンテナサービスでSuez経由への復帰が進む一方、追加の運航判断は中東情勢の安定を条件としており、全面正常化ではない。routing短縮という改善材料と安全保障・燃料・保険リスクを併存して評価する。'
+              topic['operational_implication'] = 'Suez復帰の発表を全service正常化とみなさず、輸送会社・service単位でrouting、寄港、surcharge、輸送日数を確認する。'
+          p.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          PY
       - name: Install DOM test dependency
         run: npm install --no-audit --no-fund
       - name: Static and DOM regression tests
