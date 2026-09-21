@@ -3,7 +3,7 @@
   "dataset": "beauty-market",
   "title_ja": "化粧品市場・カテゴリ動向",
   "frequency": "mixed",
-  "updated_at": "2026-09-14T08:00:00+09:00",
+  "updated_at": "2026-09-22T08:10:00+09:00",
   "purpose": "Public market-size, category-growth and disclosed-share observations used as secondary context alongside official retail, shipment and trade statistics.",
   "sources": [
     {"class":"industry_association","name":"日本化粧品工業会","url":"https://www.jcia.org/user/statistics/"},
@@ -21,7 +21,13 @@
     {"period":"2025FY","metric":"professional_beauty_market","value":161700000000,"unit":"JPY","yoy":0.4,"status":"research_estimate","source":"矢野経済研究所 理美容向け業務用化粧品市場 2026 公開リリース"},
     {"period":"2025FY","metric":"cosmetics_contract_manufacturing_market","value":367500000000,"unit":"JPY","yoy":3.6,"status":"research_estimate","source":"矢野経済研究所 化粧品受託製造市場 2026 公開リリース"},
     {"period":"2025","metric":"white_skincare_market","value":288300000000,"unit":"JPY","yoy":0.7,"comparison_type":"YoY","base_period":"2024","published_at":"2026-09-01","status":"research_estimate_public","source":"週刊粧業（TPCマーケティングリサーチ調査紹介）"},
-    {"period":"2026F","metric":"white_skincare_market_forecast","value":296400000000,"unit":"JPY","yoy":2.8,"comparison_type":"YoY forecast","base_period":"2025","published_at":"2026-09-01","status":"research_estimate_public","source":"週刊粧業（TPCマーケティングリサーチ調査紹介）"}
+    {"period":"2026F","metric":"white_skincare_market_forecast","value":296400000000,"unit":"JPY","yoy":2.8,"comparison_type":"YoY forecast","base_period":"2025","published_at":"2026-09-01","status":"research_estimate_public","source":"週刊粧業（TPCマーケティングリサーチ調査紹介）"},
+    {"period":"2025","metric":"domestic_cosmetics_shipment_value","value":1390700000000,"unit":"JPY","yoy":1.2,"comparison_type":"YoY","base_period":"2024","published_at":"2026-09-17","status":"official_industry_association_from_meti","source":"日本化粧品工業会（経済産業省 生産動態統計）","source_url":"https://www.jcia.org/user/statistics/shipment"},
+    {"period":"2025","metric":"skincare_shipment_value_share","value":45.2,"unit":"percent_share","published_at":"2026-09-17","status":"official_industry_association_from_meti","source":"日本化粧品工業会（経済産業省 生産動態統計）","source_url":"https://www.jcia.org/user/statistics/shipment"},
+    {"period":"2025","metric":"haircare_shipment_value_share","value":26.9,"unit":"percent_share","published_at":"2026-09-17","status":"official_industry_association_from_meti","source":"日本化粧品工業会（経済産業省 生産動態統計）","source_url":"https://www.jcia.org/user/statistics/shipment"},
+    {"period":"2025","metric":"makeup_shipment_value_share","value":20.2,"unit":"percent_share","published_at":"2026-09-17","status":"official_industry_association_from_meti","source":"日本化粧品工業会（経済産業省 生産動態統計）","source_url":"https://www.jcia.org/user/statistics/shipment"},
+    {"period":"2025","metric":"special_purpose_shipment_value_share","value":7.0,"unit":"percent_share","published_at":"2026-09-17","status":"official_industry_association_from_meti","source":"日本化粧品工業会（経済産業省 生産動態統計）","source_url":"https://www.jcia.org/user/statistics/shipment"},
+    {"period":"2025","metric":"fragrance_cologne_shipment_value_share","value":0.7,"unit":"percent_share","published_at":"2026-09-17","status":"official_industry_association_from_meti","source":"日本化粧品工業会（経済産業省 生産動態統計）","source_url":"https://www.jcia.org/user/statistics/shipment"}
   ],
   "share_policy": "Store category shares or company/brand shares only when explicitly disclosed in a public source. Never infer or reconstruct paid-report market shares from snippets. If comparing share, use percentage-point change rather than percent growth.",
   "comparison_policy": "Every public comparative value must identify comparison type and base period where practical. Market-size forecasts remain secondary evidence and must not be mixed with official retail or shipment observations.",
