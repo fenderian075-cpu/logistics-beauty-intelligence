@@ -224,8 +224,6 @@
             "impact": "medium",
             "change_status": "new",
             "confidence": "high",
-            "demand_driver": "mixed",
-            "duration": "structural",
             "evidence": [
               {
                 "source": "日本百貨店協会",
