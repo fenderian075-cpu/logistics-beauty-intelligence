@@ -1,0 +1,80 @@
+name: Temporary weekly cost snapshot completion
+
+on:
+  push:
+    branches:
+      - content/weekly-2026-09-21-v2
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/weekly-2026-09-21-v2
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Complete required cost snapshots
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('data/reports.json')
+          d=json.loads(p.read_text(encoding='utf-8'))
+          reports={r.get('id'):r for r in d.get('reports',[])}
+
+          w=reports['2026-09-21-weekly']
+          m=w['cost_snapshot']['metrics']
+          m['regular_gasoline_national']={
+              'value':169.9,'unit':'JPY/L','data_date':'2026-09-14',
+              'source':'資源エネルギー庁 石油製品価格調査 / data/economy/releases/fuel-prices-2026-09-14.json',
+              'comparison_type':'WoW','base_period':'2026-09-07','comparison_delta':-0.1,'comparison_delta_unit':'JPY/L'
+          }
+          m['diesel_national']={
+              'value':159.3,'unit':'JPY/L','data_date':'2026-09-14',
+              'source':'資源エネルギー庁 石油製品価格調査 / data/economy/releases/fuel-prices-2026-09-14.json',
+              'comparison_type':'WoW','base_period':'2026-09-07','comparison_delta':-0.2,'comparison_delta_unit':'JPY/L'
+          }
+
+          for rid in ('2026-08-25-daily','2026-08-26-daily'):
+              r=reports.get(rid)
+              if not r or isinstance(r.get('cost_snapshot'),dict):
+                  continue
+              r['cost_snapshot']={
+                'as_of': r.get('as_of'),
+                'metrics': {
+                  'regular_gasoline_national': {
+                    'value': None,'unit':'JPY/L','data_date':None,
+                    'source':'資源エネルギー庁 石油製品価格調査 — contemporaneous value was not captured in the historical report; left null rather than backfilled from a later release'
+                  },
+                  'diesel_national': {
+                    'value': None,'unit':'JPY/L','data_date':None,
+                    'source':'資源エネルギー庁 石油製品価格調査 — contemporaneous value was not captured in the historical report; left null rather than backfilled from a later release'
+                  },
+                  'drewry_wci': {
+                    'value':4526,'unit':'USD/40ft','data_date':'2026-08-20','source':'Drewry World Container Index / persistent historical store',
+                    'comparison_type':'WoW','base_period':'2026-08-13','comparison_pct':4.0
+                  },
+                  'drewry_iaci': {
+                    'value':1091,'unit':'USD/40ft','data_date':'2026-08-20','source':'Drewry Intra-Asia Container Index / persistent historical store',
+                    'comparison_type':'WoW','base_period':'2026-08-13','comparison_pct':6.0
+                  }
+                },
+                'interpretation_ja':'必須コストスナップショット制度導入時の履歴補完。燃料は当時のレポートに固定保存されていなかったため後日の値で上書きせずnullを維持。海上spot rateは既存の公開済み永続履歴から当時利用可能だった2026-08-20観測値を記録する。価格指標をphysical demandやcapacityと同一視しない。'
+              }
+          p.write_text(json.dumps(d,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          PY
+      - name: Validate cost policy
+        run: python scripts/validate-report-cost-snapshot.py
+      - name: Commit
+        run: |
+          if git diff --quiet -- data/reports.json; then exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/reports.json
+          git commit -m "data: complete mandatory cost snapshots [skip ci]"
+          git push origin HEAD:content/weekly-2026-09-21-v2
