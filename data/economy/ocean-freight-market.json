@@ -114,6 +114,18 @@
           "published_at": "2026-09-10",
           "status": "official_level_calculated_wow",
           "source_note": "Drewry public tracker; Drewry described WCI as stable for a second consecutive week"
+        },
+        {
+          "period": "2026-09-17",
+          "value": 4500,
+          "wow_pct": 1.0,
+          "comparison": {
+            "type": "wow",
+            "base_period": "2026-09-10"
+          },
+          "published_at": "2026-09-17",
+          "status": "official",
+          "source_note": "Drewry World Container Index public tracker"
         }
       ]
     },
@@ -199,6 +211,18 @@
           "published_at": "2026-09-10",
           "status": "official",
           "source_note": "Drewry public tracker"
+        },
+        {
+          "period": "2026-09-17",
+          "value": 1402,
+          "wow_pct": 6.0,
+          "comparison": {
+            "type": "wow",
+            "base_period": "2026-09-10"
+          },
+          "published_at": "2026-09-17",
+          "status": "official",
+          "source_note": "Drewry Intra-Asia Container Index public tracker"
         }
       ]
     },
@@ -216,10 +240,20 @@
           "published_at": "2026-09-11",
           "status": "official_forward_snapshot",
           "source_note": "Drewry Cancelled Sailings Tracker"
+        },
+        {
+          "period": "2026-W39-W43",
+          "value": 11.0,
+          "planned_sailings": 720,
+          "cancelled_sailings": 77,
+          "window": "2026-09-21/2026-10-25",
+          "published_at": "2026-09-18",
+          "status": "official_forward_snapshot",
+          "source_note": "Drewry Cancelled Sailings Tracker 18 Sep 2026"
         }
       ]
     }
   ],
   "collection_status": "official_recent_history_seeded_append_weekly_snapshots",
-  "last_collected_at": "2026-09-16T10:15:32.313860+00:00"
+  "last_collected_at": "2026-09-21T23:30:00+00:00"
 }

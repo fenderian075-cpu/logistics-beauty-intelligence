@@ -61,6 +61,211 @@
   },
   "reports": [
     {
+      "date": "2026-09-22",
+      "status": "watch",
+      "as_of": "2026年9月22日 08:30 JST",
+      "sample": false,
+      "id": "2026-09-22-daily",
+      "type": "daily",
+      "period": "2026-09-22",
+      "title": "物流・化粧品インテリジェンス・ブリーフ — DAILY",
+      "summary": "台風25号後も関東発→北海道向け宅配に全商品遅延が残る一方、全国一律停止は不要。NACCS関連では一部手数料の電子納付が9月24日08:30まで計画停止中。海上はSuez復帰がservice単位で進むが、域内運賃とblank sailingを含む実効供給制約は継続。",
+      "bottom_line": "関東発→北海道のSLA-critical貨物はdispatch前にcarrier lead timeを確認し、必要時のみcutoff前倒し・代替手段を検討する。NACCSの対象手数料業務は電子納付を前提にせず代替手続を確認。海上はSuez復帰を全面正常化とみなさず、重点輸入レーンはservice routing・ETA・接続を個別確認する。Beautyは短期promotion/launchと発送休業をorganic demandから分離する。",
+      "key_issues": [
+        "ヤマト運輸: 2026-09-22 08:00時点で関東地域発→北海道行きの全商品に台風25号由来の遅延",
+        "NACCS関連: RPC/RPE/AEC/CPC/WCPの手数料電子納付等が2026-09-18 19:00〜09-24 08:30に計画停止",
+        "Drewry WCI 4,500 USD/40ft、WoW +1.0%（2026-09-17 vs 2026-09-10）; IACI 1,402 USD/40ft、WoW +6.0%（同）",
+        "Drewry: 2026-W39〜W43の主要East-West予定720便中77便がcancel予定、blank sailing share 11%",
+        "Hapag-Lloyd: NE4東航は2026-09-22からRed Sea/Suez routingへ移行。service単位の復帰であり全面正常化ではない",
+        "Brand.com: Diptyqueオンライン発送・CSは9月22日休業。資生堂INOUI限定色は9月21日から予約開始。短期波動をorganic demandと分離"
+      ],
+      "tags": [
+        "Daily",
+        "Typhoon 25",
+        "Domestic Delivery",
+        "NACCS",
+        "Suez",
+        "IACI",
+        "Beauty promotion"
+      ],
+      "status_board": {
+        "domestic": "watch",
+        "weather": "watch",
+        "customs": "watch",
+        "ocean": "watch",
+        "air": "unconfirmed",
+        "global": "watch"
+      },
+      "signals": {
+        "wci": {
+          "value": 4500,
+          "unit": "USD/40ft",
+          "data_date": "2026-09-17",
+          "source": "https://www.drewry.co.uk/trackers-and-indices/latest-trackers-and-indices/world-container-index-assessed-by-drewry"
+        },
+        "scfi": {
+          "value": null,
+          "unit": null,
+          "data_date": null,
+          "source": null
+        }
+      },
+      "cost_snapshot": {
+        "as_of": "2026-09-22T08:30:00+09:00",
+        "metrics": {
+          "regular_gasoline_national": {
+            "value": 169.9,
+            "unit": "JPY/L",
+            "data_date": "2026-09-14",
+            "source": "資源エネルギー庁 石油製品価格調査 / data/economy/fuel-prices.json"
+          },
+          "diesel_national": {
+            "value": 159.3,
+            "unit": "JPY/L",
+            "data_date": "2026-09-14",
+            "source": "資源エネルギー庁 石油製品価格調査 / data/economy/fuel-prices.json"
+          },
+          "drewry_wci": {
+            "value": 4500,
+            "unit": "USD/40ft",
+            "data_date": "2026-09-17",
+            "source": "Drewry World Container Index / data/economy/ocean-freight-market.json"
+          },
+          "drewry_iaci": {
+            "value": 1402,
+            "unit": "USD/40ft",
+            "data_date": "2026-09-17",
+            "source": "Drewry Intra-Asia Container Index / data/economy/ocean-freight-market.json"
+          }
+        },
+        "interpretation_ja": "Daily作成時点の直近検証済み公表値。燃料・spot海上運賃はphysical demandや本日の実輸送capacityと同一視しない。IACI上昇とblank sailingは供給制約の補助材料だが、運用変更はcarrierのobserved impactとservice別routingを優先する。"
+      },
+      "intelligence": {
+        "disruption": [
+          {
+            "id": "japan-domestic-delivery",
+            "signal": "ヤマト運輸は2026年9月22日08:00時点で、関東地域発→北海道行きの全商品に台風25号の影響による遅延を掲示。八丈島・青ヶ島、南西諸島等の局地例外も継続している。",
+            "lens": "disruption",
+            "direction": "rising",
+            "impact": "high",
+            "change_status": "deteriorating",
+            "confidence": "high",
+            "evidence": [
+              {
+                "source": "ヤマト運輸",
+                "date": "2026-09-22",
+                "url": "https://www.kuronekoyamato.co.jp/ytc/chien/chien_hp.html"
+              }
+            ],
+            "operational_implication": "関東発→北海道の時限貨物は通常lead timeを固定前提にせず、carrier受託・到着見込みをdispatch前に確認する。",
+            "action_direction": "SLA-critical貨物のみcutoff前倒し・代替輸送を検討し、全国一律の出荷停止へ一般化しない。"
+          },
+          {
+            "id": "japan-weather-disruption",
+            "signal": "台風25号の通過後も国内配送ネットワークに残留影響があり、関東→北海道および島しょ・南西諸島で遅延が確認される。",
+            "lens": "disruption",
+            "direction": "stable",
+            "impact": "medium",
+            "change_status": "unchanged",
+            "confidence": "high",
+            "evidence": [
+              {
+                "source": "ヤマト運輸",
+                "date": "2026-09-22",
+                "url": "https://www.kuronekoyamato.co.jp/ytc/chien/chien_hp.html"
+              }
+            ],
+            "operational_implication": "予報ではなく実際のcarrier制限を基準に、対象レーンのみ例外管理する。",
+            "action_direction": "遅延対象外の国内出荷は通常運用を維持する。"
+          },
+          {
+            "id": "middle-east-maritime-risk",
+            "signal": "Hapag-Lloyd/MaerskはNE4など一部serviceをRed Sea/Suez routingへ戻し、NE4 eastboundは2026年9月22日から移行。一方、安全保障条件と他serviceの移行時期には不確実性が残り、全面正常化ではない。",
+            "lens": "disruption",
+            "direction": "volatile",
+            "impact": "high",
+            "change_status": "unchanged_high_risk",
+            "confidence": "high",
+            "evidence": [
+              {
+                "source": "Hapag-Lloyd",
+                "date": "2026-09-21",
+                "url": "https://www.hapag-lloyd.com/en/services-information/news/2026/09/routing-update-for-our-ne4--se1--se2-and-iex-services.html"
+              }
+            ],
+            "operational_implication": "Suez復帰の一般論ではなく、booking対象serviceの実routing・接続・ETAを確認する。",
+            "action_direction": "重点輸入レーンは主要T/S接続とETA varianceをshipment単位で確認する。"
+          }
+        ],
+        "cost_capacity": [],
+        "reliability": [],
+        "demand_commerce": [
+          {
+            "id": "beauty-japan-ec-promotion",
+            "signal": "設定済みBrand.com群を巡回し、9月22日はDiptyqueオンラインストアの発送・カスタマーサービス休業を確認。資生堂INOUI限定色は9月21日から予約開始しており、launch/promotion起因の短期波動はあるがorganic demand上振れの新証拠ではない。",
+            "lens": "demand_commerce",
+            "direction": "volatile",
+            "impact": "medium",
+            "change_status": "new",
+            "confidence": "high",
+            "demand_driver": "promotion",
+            "duration": "temporary",
+            "evidence": [
+              {
+                "source": "Diptyque Japan",
+                "date": "2026-09-14",
+                "url": "https://jp.diptyqueparis.com/ja-jp/pages/information"
+              },
+              {
+                "source": "資生堂オンラインストア INOUI",
+                "date": "2026-09-21",
+                "url": "https://www.shiseido.co.jp/sw/onlinestore/campaign/inoui/261021/"
+              }
+            ],
+            "operational_implication": "発送休業・予約施策をEC/倉庫の短期波動として扱い、基礎需要予測から分離する。",
+            "action_direction": "Brand×Category×Channelでcutoff・GWP/同梱・予約出荷を確認し、在庫を一律に積み増さない。"
+          }
+        ],
+        "regulatory_structural": [
+          {
+            "id": "japan-customs-naccs",
+            "signal": "NACCS連携の歳入金電子納付システムは、2026年9月18日19:00〜9月24日08:30にRPC/RPE/AEC/CPC/WCP関連の手数料電子納付等を計画停止中。NACCS全体停止ではない。",
+            "lens": "regulatory_structural",
+            "direction": "volatile",
+            "impact": "medium",
+            "change_status": "new",
+            "confidence": "high",
+            "evidence": [
+              {
+                "source": "NACCS掲示板",
+                "date": "2026-09-07",
+                "url": "https://bbs.naccscenter.com/docs/2026090700017/"
+              }
+            ],
+            "operational_implication": "対象手続を本日行う場合、電子納付を前提にせず書面・印紙等の代替手順を事前確認する。",
+            "action_direction": "該当業務のみ手順切替を行い、通関全体の停止とは扱わない。",
+            "customs_subtype": "operational"
+          }
+        ]
+      },
+      "change_summary": {
+        "comparison_base": "2026-09-21-daily",
+        "new": [
+          "japan-customs-naccs",
+          "beauty-japan-ec-promotion"
+        ],
+        "deteriorating": [
+          "japan-domestic-delivery"
+        ],
+        "improving": [],
+        "resolved": [],
+        "unchanged_high_risk": [
+          "middle-east-maritime-risk"
+        ]
+      },
+      "path": "reports/2026/09/2026-09-22-daily.html"
+    },
+    {
       "date": "2026-09-21",
       "status": "watch",
       "as_of": "2026年9月21日 07:50 JST",
