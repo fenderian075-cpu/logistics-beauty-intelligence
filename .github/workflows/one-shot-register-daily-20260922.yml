@@ -1,0 +1,180 @@
+name: One-shot register 2026-09-22 Daily
+
+on:
+  push:
+    branches:
+      - content/daily-20260922
+
+permissions:
+  contents: write
+
+jobs:
+  register-validate-cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Register Daily without dropping history
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          p = Path('data/reports.json')
+          data = json.loads(p.read_text(encoding='utf-8'))
+          reports = data['reports']
+          before_ids = {r['id'] for r in reports}
+          rid = '2026-09-22-daily'
+          if rid in before_ids:
+              raise SystemExit(f'{rid} already exists')
+
+          new_report = {
+            'date': '2026-09-22',
+            'status': 'disruption',
+            'as_of': '2026年9月22日 08:10 JST',
+            'sample': False,
+            'id': rid,
+            'type': 'daily',
+            'period': '2026-09-22',
+            'title': '物流・化粧品インテリジェンス・ブリーフ — DAILY',
+            'summary': '台風25号通過後も千葉・房総・成田周辺で高速道路の損傷・通行止めが継続し、ヤマト運輸は関東発→北海道向け全商品に遅延を案内。NACCSは正常。全国一律停止は不要だが対象フローは迂回・cutoff・着日調整が必要。',
+            'bottom_line': '千葉・房総・成田方面を発着・通過する貨物はdispatch前に道路・空港・carrier状況を再確認し、閉鎖区間を避けてcutoff・着日を個別調整する。関東発→北海道のヤマト便は遅延前提。その他地域は全国一律停止不要。',
+            'key_issues': [
+              'NEXCO東日本: 9月22日5:00時点で千葉・房総・成田周辺の複数高速道路区間が通行止め、一部は損傷復旧中',
+              'ヤマト運輸: 9月22日7:00時点で関東発→北海道向け全商品に台風25号由来の遅延',
+              '成田国際空港: 台風に伴う一部便の欠航・遅延と地上交通影響を案内',
+              'NACCSは正常運転中',
+              'WCI 4,500米ドル/40ft、WoW +1.0%（2026-09-17 vs 2026-09-10）；IACI 1,402米ドル/40ft、WoW +6.0%（同）',
+              '2025年国内化粧品出荷額1兆3,907億円、YoY +1.2%（2025 vs 2024）。年次供給側統計であり本日のorganic demand増とは扱わない'
+            ],
+            'tags': ['Daily', 'Typhoon 25', 'Kanto', 'Chiba', 'Narita', 'Domestic Delivery', 'IACI', 'Beauty'],
+            'status_board': {
+              'domestic': 'disruption',
+              'weather': 'watch',
+              'customs': 'normal',
+              'ocean': 'watch',
+              'air': 'watch',
+              'global': 'watch'
+            },
+            'signals': {
+              'wci': {
+                'value': 4500,
+                'unit': 'USD/40ft',
+                'data_date': '2026-09-17',
+                'source': 'https://www.drewry.co.uk/trackers-and-indices/latest-trackers-and-indices/world-container-index-assessed-by-drewry'
+              },
+              'scfi': {'value': None, 'unit': None, 'data_date': None, 'source': None}
+            },
+            'change_summary': {
+              'compared_with': '2026-09-21-daily',
+              'overall': 'changed',
+              'changed_categories': ['domestic'],
+              'new_risks': [
+                '千葉・房総・成田周辺で損傷確認を伴う高速道路通行止めが9月22日朝も継続',
+                'ヤマト運輸で関東発→北海道向け全商品に台風25号由来の遅延'
+              ],
+              'improved_risks': [
+                '一部高速道路区間は9月21日夜から22日未明に順次解除'
+              ],
+              'resolved_risks': []
+            },
+            'path': 'reports/2026/09/2026-09-22-daily.html',
+            'cost_snapshot': {
+              'as_of': '2026-09-22T08:10:00+09:00',
+              'metrics': {
+                'regular_gasoline_national': {
+                  'value': 169.9,
+                  'unit': 'JPY/L',
+                  'data_date': '2026-09-14',
+                  'source': '資源エネルギー庁 石油製品価格調査 / data/economy/fuel-prices.json',
+                  'comparison_type': 'WoW',
+                  'base_period': '2026-09-07',
+                  'comparison_pct': -0.1
+                },
+                'diesel_national': {
+                  'value': 159.3,
+                  'unit': 'JPY/L',
+                  'data_date': '2026-09-14',
+                  'source': '資源エネルギー庁 石油製品価格調査 / data/economy/fuel-prices.json',
+                  'comparison_type': 'WoW',
+                  'base_period': '2026-09-07',
+                  'comparison_pct': -0.1
+                },
+                'drewry_wci': {
+                  'value': 4500,
+                  'unit': 'USD/40ft',
+                  'data_date': '2026-09-17',
+                  'source': 'Drewry World Container Index / data/economy/ocean-freight-market.json',
+                  'comparison_type': 'WoW',
+                  'base_period': '2026-09-10',
+                  'comparison_pct': 1.0
+                },
+                'drewry_iaci': {
+                  'value': 1402,
+                  'unit': 'USD/40ft',
+                  'data_date': '2026-09-17',
+                  'source': 'Drewry Intra-Asia Container Index / data/economy/ocean-freight-market.json',
+                  'comparison_type': 'WoW',
+                  'base_period': '2026-09-10',
+                  'comparison_pct': 6.0
+                }
+              },
+              'interpretation_ja': '燃料は2026-09-14の最新保存観測でWoW微低下。WCIはWoW +1.0%、IACIはWoW +6.0%（2026-09-17 vs 2026-09-10）だが、priceをphysical capacityと同一視しない。本日の運用変更は道路損傷・宅配遅延・空港アクセスのobserved impactを優先する。'
+            }
+          }
+
+          reports.insert(0, new_report)
+          after_ids = {r['id'] for r in reports}
+          if before_ids - after_ids:
+              raise SystemExit(f'existing report IDs disappeared: {sorted(before_ids-after_ids)}')
+          if len(after_ids) != len(before_ids) + 1:
+              raise SystemExit('report ID cardinality mismatch after insertion')
+          p.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          json.loads(p.read_text(encoding='utf-8'))
+          print(f'preserved {len(before_ids)} existing report IDs and added {rid}')
+          PY
+      - name: Install DOM test dependency
+        run: npm install --no-audit --no-fund
+      - name: Exact pre-merge validation
+        shell: bash
+        run: |
+          npm test
+          python scripts/validate-report.py
+          python scripts/validate-report-cost-snapshot.py
+          python scripts/validate_public_schema_integrity.py
+          python scripts/validate-customs-taxonomy.py
+          python scripts/validate_logistics_structure.py
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          for p in [Path('data/reports.json'), Path('data/economy/ocean-freight-market.json'), Path('data/economy/beauty-market.json')]:
+              json.loads(p.read_text(encoding='utf-8'))
+          report = Path('reports/2026/09/2026-09-22-daily.html')
+          assert report.is_file()
+          html = report.read_text(encoding='utf-8')
+          assert 'data-report-date="2026-09-22"' in html
+          assert 'data-report-type="daily"' in html
+          assert 'id="tool-help" title="キーボードショートカット"' in html
+          assert '{{' not in html and '}}' not in html
+          data = json.loads(Path('data/reports.json').read_text(encoding='utf-8'))
+          entry = next(r for r in data['reports'] if r['id'] == '2026-09-22-daily')
+          assert entry['path'] == str(report)
+          print('JSON, report path, placeholder and canonical-shell checks passed')
+          PY
+      - name: Commit registry and remove one-shot workflow
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/one-shot-register-daily-20260922.yml
+          git add data/reports.json
+          git commit -m "report: register 2026-09-22 Daily"
+          git push
