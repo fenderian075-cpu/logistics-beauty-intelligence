@@ -1,0 +1,51 @@
+name: One-shot fix dynamic topic test
+
+on:
+  push:
+    branches:
+      - fix/dynamic-topic-regression-count
+
+permissions:
+  contents: write
+
+jobs:
+  fix-validate-cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Make topic chronology assertion data-driven
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('tests/dom-smoke.mjs')
+          s = p.read_text(encoding='utf-8')
+          old = '''  console.log("\\n[topic] middle-east-maritime-risk (4 developments, 4 data points)");'''
+          s = s.replace(old, '''  console.log("\\n[topic] middle-east-maritime-risk");''')
+          old2 = '''  ok("developments rendered as a chronology", d.querySelectorAll(".development").length === 4);'''
+          new2 = '''  {
+    const topic = DATA.topics.find((t) => t.topic_id === "middle-east-maritime-risk") || {};
+    ok("developments rendered as a chronology",
+      d.querySelectorAll(".development").length === (topic.developments || []).length,
+      `${d.querySelectorAll(".development").length} vs ${(topic.developments || []).length}`);
+  }'''
+          if old2 not in s:
+              raise SystemExit('target assertion not found')
+          p.write_text(s.replace(old2, new2), encoding='utf-8')
+          PY
+      - name: Validate frontend regression suite
+        run: |
+          npm install --no-audit --no-fund
+          npm test
+      - name: Commit fix and remove one-shot workflow
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/one-shot-fix-topic-test.yml
+          git add tests/dom-smoke.mjs
+          git commit -m "test: derive topic chronology count from data"
+          git push
