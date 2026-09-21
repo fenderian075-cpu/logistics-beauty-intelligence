@@ -1,0 +1,40 @@
+name: Weekly publication validation
+
+on:
+  pull_request:
+    paths:
+      - "reports/**weekly.html"
+      - "data/reports.json"
+      - "data/economy/**"
+      - "data/critical-news.json"
+      - "data/topic-intelligence.json"
+      - "data/commerce*.json"
+      - "data/source-matrix*.json"
+      - "scripts/validate-weekly-publication.py"
+
+jobs:
+  weekly-publication:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install regression dependencies
+        run: npm install --no-audit --no-fund
+      - name: Weekly content-only guard
+        run: python scripts/validate-weekly-publication.py origin/${{ github.base_ref }}
+      - name: Full repository validation
+        run: |
+          npm test
+          python scripts/validate-report.py
+          python scripts/validate_public_schema_integrity.py
+          python scripts/validate-customs-taxonomy.py
+          python scripts/validate_logistics_structure.py
+          python scripts/validate-report-cost-snapshot.py
+          python scripts/audit_public_content.py

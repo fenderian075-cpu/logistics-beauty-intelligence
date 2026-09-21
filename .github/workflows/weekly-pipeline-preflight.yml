@@ -1,0 +1,103 @@
+name: Weekly pipeline guard and data preflight
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Sunday 22:10 UTC = Monday 07:10 JST. Data collectors run independently;
+    # this job verifies that the repository is ready for the Weekly publisher.
+    - cron: "10 22 * * 0"
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: lbi-weekly-preflight
+  cancel-in-progress: false
+
+jobs:
+  preflight:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Refresh machine-collectable economy data
+        run: |
+          pip install requests beautifulsoup4 openpyxl xlrd
+          python scripts/update_japan_fuel_prices_v2.py || true
+          python scripts/update_economy_timeseries.py
+
+      - name: Validate persistent JSON
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          for p in sorted(Path("data/economy").glob("*.json")):
+              json.loads(p.read_text(encoding="utf-8"))
+              print("valid", p)
+          for p in (
+              Path("data/reports.json"),
+              Path("data/critical-news.json"),
+              Path("data/topic-intelligence.json"),
+          ):
+              json.loads(p.read_text(encoding="utf-8"))
+              print("valid", p)
+          PY
+
+      - name: Install regression dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Run repository contracts
+        run: |
+          npm test
+          python scripts/validate-report.py
+          python scripts/validate_public_schema_integrity.py
+          python scripts/validate-customs-taxonomy.py
+          python scripts/validate_logistics_structure.py
+          python scripts/validate-report-cost-snapshot.py
+
+      - name: Audit privacy boundary
+        run: python scripts/audit_public_content.py
+
+      - name: Commit refreshed preflight data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/economy data/report-required-metrics.json 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "No preflight data change."
+            exit 0
+          fi
+          git commit -m "data: weekly preflight refresh"
+          git pull --rebase origin main
+          git push origin HEAD:main
+
+      - name: Record successful Weekly preflight
+        if: success()
+        run: |
+          mkdir -p data/automation
+          python - <<'PY'
+          import json
+          from datetime import datetime, timezone
+          from pathlib import Path
+          p=Path("data/automation/weekly-preflight.json")
+          p.write_text(json.dumps({
+            "schema_version":"1.0",
+            "status":"ready",
+            "updated_at":datetime.now(timezone.utc).isoformat(),
+            "purpose":"Machine-readable handoff: collectors and repository contracts passed; AI Weekly publisher may research newly published primary sources, update persistent stores, render the current shell, open a PR and auto-merge only when content guardrails pass."
+          }, ensure_ascii=False, indent=2)+"\n", encoding="utf-8")
+          PY
+          git add data/automation/weekly-preflight.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "chore: record weekly preflight readiness"
+          git pull --rebase origin main
+          git push origin HEAD:main
