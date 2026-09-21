@@ -520,7 +520,7 @@ async function testTopicIndex() {
 }
 
 async function testTopicDigest() {
-  console.log("\n[topic] middle-east-maritime-risk (4 developments, 4 data points)");
+  console.log("\n[topic] middle-east-maritime-risk");
   const r = await renderPage({
     html: "topic.html", pageModule: "pages/topic.js",
     url: "https://example.test/topic.html?id=middle-east-maritime-risk"
@@ -536,7 +536,12 @@ async function testTopicDigest() {
     order.indexOf("changed") < order.indexOf("developments") &&
     order.indexOf("developments") < order.indexOf("implication"),
     order.join(" > "));
-  ok("developments rendered as a chronology", d.querySelectorAll(".development").length === 4);
+  {
+    const topic = DATA.topics.find((t) => t.topic_id === "middle-east-maritime-risk") || {};
+    ok("developments rendered as a chronology",
+      d.querySelectorAll(".development").length === (topic.developments || []).length,
+      String(d.querySelectorAll(".development").length) + " vs " + String((topic.developments || []).length));
+  }
   ok("reported and observed types are labelled differently",
     new Set(Array.from(d.querySelectorAll(".development__type")).map((n) => n.textContent)).size > 1);
   ok("data points rendered", d.querySelectorAll(".metric-block").length === 4);

@@ -437,8 +437,9 @@ def check_html(entry: dict) -> None:
     if 'id="chg-h"' not in html:
         warn(eid, "no 前回からの変化 section (id=\"chg-h\")")
     else:
-        has_full = 'class="changes"' in html
-        has_none = 'changes--none' in html
+        class_tokens = [token for value in re.findall(r'class="([^"]*)"', html) for token in value.split()]
+        has_full = "changes" in class_tokens
+        has_none = "changes--none" in class_tokens
         if has_full and has_none:
             err(eid, "both .changes and .changes--none present — keep exactly one")
         if not has_full and not has_none:
