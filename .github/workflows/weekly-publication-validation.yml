@@ -14,6 +14,7 @@ on:
 
 jobs:
   weekly-publication:
+    if: startsWith(github.head_ref, 'content/weekly-')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
