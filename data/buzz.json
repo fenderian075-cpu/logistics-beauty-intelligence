@@ -1,7 +1,7 @@
 {
   "schema_version": "1.1",
-  "updated_at": "2026-09-22T11:35:04.980574Z",
-  "collector_status": "error",
+  "updated_at": "2026-09-22T21:17:08.635293Z",
+  "collector_status": "ok",
   "source": {
     "name": "Google Trends",
     "method": "pytrends",
@@ -16,10 +16,10 @@
       "term": "限定 コスメ",
       "category": "promotion",
       "brand": null,
-      "interest_7d": 1.0,
-      "interest_prev21d": 0.4,
-      "change_ratio": 2.62,
-      "change_pct": 162.5,
+      "interest_7d": 0.9,
+      "interest_prev21d": 0.5,
+      "change_ratio": 1.8,
+      "change_pct": 80.0,
       "anchor_normalized": 0.01,
       "source": "Google Trends",
       "geo": "JP",
@@ -29,10 +29,23 @@
       "term": "ポーチ コスメ",
       "category": "promotion",
       "brand": null,
+      "interest_7d": 1.3,
+      "interest_prev21d": 0.8,
+      "change_ratio": 1.59,
+      "change_pct": 58.8,
+      "anchor_normalized": 0.01,
+      "source": "Google Trends",
+      "geo": "JP",
+      "confidence": "medium"
+    },
+    {
+      "term": "ギフト コスメ",
+      "category": "promotion",
+      "brand": null,
       "interest_7d": 1.1,
-      "interest_prev21d": 0.7,
-      "change_ratio": 1.6,
-      "change_pct": 60.0,
+      "interest_prev21d": 1.0,
+      "change_ratio": 1.14,
+      "change_pct": 14.3,
       "anchor_normalized": 0.01,
       "source": "Google Trends",
       "geo": "JP",
@@ -42,37 +55,11 @@
       "term": "香水",
       "category": "fragrance",
       "brand": null,
-      "interest_7d": 89.0,
-      "interest_prev21d": 81.9,
-      "change_ratio": 1.09,
-      "change_pct": 8.7,
-      "anchor_normalized": 2.22,
-      "source": "Google Trends",
-      "geo": "JP",
-      "confidence": "medium"
-    },
-    {
-      "term": "リップ",
-      "category": "makeup",
-      "brand": null,
-      "interest_7d": 83.4,
-      "interest_prev21d": 78.8,
-      "change_ratio": 1.06,
-      "change_pct": 5.9,
-      "anchor_normalized": 2.3,
-      "source": "Google Trends",
-      "geo": "JP",
-      "confidence": "medium"
-    },
-    {
-      "term": "ギフト コスメ",
-      "category": "promotion",
-      "brand": null,
-      "interest_7d": 1.0,
-      "interest_prev21d": 1.0,
-      "change_ratio": 1.05,
-      "change_pct": 5.0,
-      "anchor_normalized": 0.01,
+      "interest_7d": 87.0,
+      "interest_prev21d": 80.6,
+      "change_ratio": 1.08,
+      "change_pct": 8.0,
+      "anchor_normalized": 2.23,
       "source": "Google Trends",
       "geo": "JP",
       "confidence": "medium"
@@ -81,11 +68,24 @@
       "term": "ファンデーション",
       "category": "makeup",
       "brand": null,
-      "interest_7d": 73.6,
-      "interest_prev21d": 71.9,
-      "change_ratio": 1.02,
-      "change_pct": 2.3,
+      "interest_7d": 74.6,
+      "interest_prev21d": 72.0,
+      "change_ratio": 1.04,
+      "change_pct": 3.5,
       "anchor_normalized": 0.9,
+      "source": "Google Trends",
+      "geo": "JP",
+      "confidence": "medium"
+    },
+    {
+      "term": "リップ",
+      "category": "makeup",
+      "brand": null,
+      "interest_7d": 79.6,
+      "interest_prev21d": 77.0,
+      "change_ratio": 1.03,
+      "change_pct": 3.4,
+      "anchor_normalized": 2.29,
       "source": "Google Trends",
       "geo": "JP",
       "confidence": "medium"
@@ -133,11 +133,11 @@
       "term": "美容液",
       "category": "skincare",
       "brand": null,
-      "interest_7d": 77.6,
-      "interest_prev21d": 85.7,
+      "interest_7d": 77.1,
+      "interest_prev21d": 84.6,
       "change_ratio": 0.91,
-      "change_pct": -9.4,
-      "anchor_normalized": 1.21,
+      "change_pct": -8.8,
+      "anchor_normalized": 1.22,
       "source": "Google Trends",
       "geo": "JP",
       "confidence": "medium"
@@ -146,10 +146,10 @@
       "term": "クッションファンデ",
       "category": "makeup",
       "brand": null,
-      "interest_7d": 22.0,
-      "interest_prev21d": 24.4,
-      "change_ratio": 0.9,
-      "change_pct": -9.8,
+      "interest_7d": 21.6,
+      "interest_prev21d": 24.7,
+      "change_ratio": 0.87,
+      "change_pct": -12.7,
       "anchor_normalized": 0.3,
       "source": "Google Trends",
       "geo": "JP",
@@ -159,11 +159,11 @@
       "term": "日焼け止め",
       "category": "skincare",
       "brand": null,
-      "interest_7d": 41.9,
-      "interest_prev21d": 48.3,
-      "change_ratio": 0.87,
-      "change_pct": -13.4,
-      "anchor_normalized": 0.58,
+      "interest_7d": 41.3,
+      "interest_prev21d": 49.0,
+      "change_ratio": 0.84,
+      "change_pct": -15.8,
+      "anchor_normalized": 0.59,
       "source": "Google Trends",
       "geo": "JP",
       "confidence": "medium"
@@ -172,10 +172,10 @@
       "term": "韓国コスメ",
       "category": "market",
       "brand": null,
-      "interest_7d": 7.6,
-      "interest_prev21d": 8.9,
-      "change_ratio": 0.85,
-      "change_pct": -14.5,
+      "interest_7d": 7.4,
+      "interest_prev21d": 9.0,
+      "change_ratio": 0.82,
+      "change_pct": -17.9,
       "anchor_normalized": 0.11,
       "source": "Google Trends",
       "geo": "JP",
@@ -183,59 +183,5 @@
     }
   ],
   "signals": [],
-  "collector_errors": [
-    {
-      "term": "香水",
-      "error": "TooManyRequestsError: The request failed: Google returned a response with code 429"
-    },
-    {
-      "term": "リップ",
-      "error": "TooManyRequestsError: The request failed: Google returned a response with code 429"
-    },
-    {
-      "term": "ファンデーション",
-      "error": "TooManyRequestsError: The request failed: Google returned a response with code 429"
-    },
-    {
-      "term": "クッションファンデ",
-      "error": "TooManyRequestsError: The request failed: Google returned a response with code 429"
-    },
-    {
-      "term": "美容液",
-      "error": "TooManyRequestsError: The request failed: Google returned a response with code 429"
-    },
-    {
-      "term": "日焼け止め",
-      "error": "TooManyRequestsError: The request failed: Google returned a response with code 429"
-    },
-    {
-      "term": "韓国コスメ",
-      "error": "TooManyRequestsError: The request failed: Google returned a response with code 429"
-    },
-    {
-      "term": "チャーム コスメ",
-      "error": "TooManyRequestsError: The request failed: Google returned a response with code 429"
-    },
-    {
-      "term": "ポーチ コスメ",
-      "error": "TooManyRequestsError: The request failed: Google returned a response with code 429"
-    },
-    {
-      "term": "ギフト コスメ",
-      "error": "TooManyRequestsError: The request failed: Google returned a response with code 429"
-    },
-    {
-      "term": "限定 コスメ",
-      "error": "TooManyRequestsError: The request failed: Google returned a response with code 429"
-    },
-    {
-      "term": "GWP コスメ",
-      "error": "TooManyRequestsError: The request failed: Google returned a response with code 429"
-    },
-    {
-      "term": "PWP コスメ",
-      "error": "TooManyRequestsError: The request failed: Google returned a response with code 429"
-    }
-  ],
-  "last_attempt": "2026-09-22T17:00:20.836574Z"
+  "collector_errors": []
 }
