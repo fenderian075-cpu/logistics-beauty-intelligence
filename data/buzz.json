@@ -1,7 +1,7 @@
 {
   "schema_version": "1.1",
   "updated_at": "2026-09-22T11:35:04.980574Z",
-  "collector_status": "ok",
+  "collector_status": "error",
   "source": {
     "name": "Google Trends",
     "method": "pytrends",
@@ -183,5 +183,59 @@
     }
   ],
   "signals": [],
-  "collector_errors": []
+  "collector_errors": [
+    {
+      "term": "香水",
+      "error": "TooManyRequestsError: The request failed: Google returned a response with code 429"
+    },
+    {
+      "term": "リップ",
+      "error": "TooManyRequestsError: The request failed: Google returned a response with code 429"
+    },
+    {
+      "term": "ファンデーション",
+      "error": "TooManyRequestsError: The request failed: Google returned a response with code 429"
+    },
+    {
+      "term": "クッションファンデ",
+      "error": "TooManyRequestsError: The request failed: Google returned a response with code 429"
+    },
+    {
+      "term": "美容液",
+      "error": "TooManyRequestsError: The request failed: Google returned a response with code 429"
+    },
+    {
+      "term": "日焼け止め",
+      "error": "TooManyRequestsError: The request failed: Google returned a response with code 429"
+    },
+    {
+      "term": "韓国コスメ",
+      "error": "TooManyRequestsError: The request failed: Google returned a response with code 429"
+    },
+    {
+      "term": "チャーム コスメ",
+      "error": "TooManyRequestsError: The request failed: Google returned a response with code 429"
+    },
+    {
+      "term": "ポーチ コスメ",
+      "error": "TooManyRequestsError: The request failed: Google returned a response with code 429"
+    },
+    {
+      "term": "ギフト コスメ",
+      "error": "TooManyRequestsError: The request failed: Google returned a response with code 429"
+    },
+    {
+      "term": "限定 コスメ",
+      "error": "TooManyRequestsError: The request failed: Google returned a response with code 429"
+    },
+    {
+      "term": "GWP コスメ",
+      "error": "TooManyRequestsError: The request failed: Google returned a response with code 429"
+    },
+    {
+      "term": "PWP コスメ",
+      "error": "TooManyRequestsError: The request failed: Google returned a response with code 429"
+    }
+  ],
+  "last_attempt": "2026-09-22T17:00:20.836574Z"
 }
