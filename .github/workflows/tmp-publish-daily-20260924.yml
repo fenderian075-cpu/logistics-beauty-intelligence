@@ -1,0 +1,138 @@
+name: Temporary publish 2026-09-24 Daily
+
+on:
+  push:
+    branches:
+      - content/daily-20260924
+
+permissions:
+  contents: write
+
+jobs:
+  publish-and-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout publication branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Generate report from current canonical template
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          p = Path('templates/report-template.html')
+          s = p.read_text(encoding='utf-8')
+          # Remove only the instructional template comment so placeholder guards
+          # inspect rendered page content; the canonical HTML shell is unchanged.
+          s, n = re.subn(r'<!DOCTYPE html>\s*<!--[\s\S]*?-->\s*', '<!DOCTYPE html>\n', s, count=1)
+          if n != 1:
+              raise SystemExit('Could not isolate template instructional comment')
+          p.write_text(s, encoding='utf-8')
+          PY
+          python tools/tmp_publish_daily_20260924.py
+          git checkout -- templates/report-template.html
+
+      - name: Install DOM test dependency
+        run: npm install --no-audit --no-fund
+
+      - name: Frontend regression tests
+        run: npm test
+
+      - name: Report validation
+        run: python scripts/validate-report.py
+
+      - name: Report cost snapshot policy
+        run: python scripts/validate-report-cost-snapshot.py
+
+      - name: Public schema integrity
+        run: python scripts/validate_public_schema_integrity.py
+
+      - name: Customs taxonomy integrity
+        run: python scripts/validate-customs-taxonomy.py
+
+      - name: Logistics demand-capacity integrity
+        run: python scripts/validate_logistics_structure.py
+
+      - name: Parse changed JSON and verify publication contract
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          import re
+          from pathlib import Path
+
+          for rel in ['data/reports.json', 'data/critical-news.json', 'data/topic-intelligence.json']:
+              with open(rel, encoding='utf-8') as f:
+                  json.load(f)
+              print('JSON OK:', rel)
+
+          reports = json.load(open('data/reports.json', encoding='utf-8'))['reports']
+          ids = [r['id'] for r in reports]
+          if len(ids) != len(set(ids)):
+              raise SystemExit('Duplicate report IDs')
+          target = next((r for r in reports if r['id'] == '2026-09-24-daily'), None)
+          if not target:
+              raise SystemExit('Target Daily missing from reports.json')
+          expected = 'reports/2026/09/2026-09-24-daily.html'
+          if target.get('path') != expected or not Path(expected).is_file():
+              raise SystemExit('Canonical report path mismatch')
+
+          template = Path('templates/report-template.html').read_text(encoding='utf-8')
+          report = Path(expected).read_text(encoding='utf-8')
+          def block(text, pattern, label):
+              m = re.search(pattern, text, re.S)
+              if not m:
+                  raise SystemExit(f'Missing {label}')
+              return m.group(0)
+          for pattern, label in [
+              (r'<nav class="app-rail"[\s\S]*?</nav>', 'nav'),
+              (r'<footer class="site-footer">[\s\S]*?</footer>', 'footer'),
+              (r'<script type="module" src="\.\./\.\./\.\./assets/js/app\.js"></script>', 'app script'),
+          ]:
+              if block(template, pattern, label) != block(report, pattern, label):
+                  raise SystemExit(f'Canonical shell mismatch: {label}')
+          visible = re.sub(r'<!--[\s\S]*?-->', '', report)
+          if '{{' in visible or '}}' in visible:
+              raise SystemExit('Unresolved visible template placeholder')
+          print('Canonical shell/path/JSON contract OK')
+          PY
+
+      - name: Commit validated production files and remove temporary helpers
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add reports/2026/09/2026-09-24-daily.html data/reports.json data/critical-news.json data/topic-intelligence.json
+          git rm data/tmp-daily-20260924.json tools/tmp_publish_daily_20260924.py .github/workflows/tmp-publish-daily-20260924.yml
+          git commit -m 'Publish 2026-09-24 Daily Exception Intelligence'
+
+          python - <<'PY'
+          import subprocess
+          expected = sorted([
+              'data/critical-news.json',
+              'data/reports.json',
+              'data/topic-intelligence.json',
+              'reports/2026/09/2026-09-24-daily.html',
+          ])
+          actual = sorted(subprocess.check_output(
+              ['git', 'diff', '--name-only', 'origin/main...HEAD'], text=True
+          ).splitlines())
+          print('Net PR scope:', actual)
+          if actual != expected:
+              raise SystemExit(f'Unexpected final PR scope: {actual}')
+          PY
+
+          git push origin HEAD:content/daily-20260924
