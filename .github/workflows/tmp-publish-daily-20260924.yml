@@ -33,14 +33,26 @@ jobs:
           python - <<'PY'
           from pathlib import Path
           import re
-          p = Path('templates/report-template.html')
-          s = p.read_text(encoding='utf-8')
+
+          template = Path('templates/report-template.html')
+          s = template.read_text(encoding='utf-8')
           # Remove only the instructional template comment so placeholder guards
           # inspect rendered page content; the canonical HTML shell is unchanged.
           s, n = re.subn(r'<!DOCTYPE html>\s*<!--[\s\S]*?-->\s*', '<!DOCTYPE html>\n', s, count=1)
           if n != 1:
               raise SystemExit('Could not isolate template instructional comment')
-          p.write_text(s, encoding='utf-8')
+          template.write_text(s, encoding='utf-8')
+
+          # Today is a continuation of the existing 2026-09-23 critical radar
+          # condition, not a separate additional radar card. Persist the changed
+          # evidence in the Daily report and topic chronology instead. This keeps
+          # the bounded radar contract intact without rewriting historical items.
+          helper = Path('tools/tmp_publish_daily_20260924.py')
+          h = helper.read_text(encoding='utf-8')
+          old = '    update_critical(spec)\n'
+          if h.count(old) != 1:
+              raise SystemExit('Could not isolate critical-news update call')
+          helper.write_text(h.replace(old, '    # Critical radar unchanged; continuation is persisted in topic intelligence.\n', 1), encoding='utf-8')
           PY
           python tools/tmp_publish_daily_20260924.py
           git checkout -- templates/report-template.html
@@ -115,14 +127,13 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add reports/2026/09/2026-09-24-daily.html data/reports.json data/critical-news.json data/topic-intelligence.json
+          git add reports/2026/09/2026-09-24-daily.html data/reports.json data/topic-intelligence.json
           git rm data/tmp-daily-20260924.json tools/tmp_publish_daily_20260924.py .github/workflows/tmp-publish-daily-20260924.yml
           git commit -m 'Publish 2026-09-24 Daily Exception Intelligence'
 
           python - <<'PY'
           import subprocess
           expected = sorted([
-              'data/critical-news.json',
               'data/reports.json',
               'data/topic-intelligence.json',
               'reports/2026/09/2026-09-24-daily.html',
