@@ -33,7 +33,7 @@
         {
           "period": "2026-07-23",
           "value": 4374,
-          "wow_pct": -4.0,
+          "wow_pct": -4,
           "comparison": {
             "type": "wow",
             "base_period": "2026-07-16"
@@ -44,7 +44,7 @@
         {
           "period": "2026-07-30",
           "value": 4255,
-          "wow_pct": -3.0,
+          "wow_pct": -3,
           "comparison": {
             "type": "wow",
             "base_period": "2026-07-23"
@@ -55,7 +55,7 @@
         {
           "period": "2026-08-13",
           "value": 4339,
-          "wow_pct": 1.0,
+          "wow_pct": 1,
           "comparison": {
             "type": "wow",
             "base_period": "2026-08-06"
@@ -66,7 +66,7 @@
         {
           "period": "2026-08-20",
           "value": 4526,
-          "wow_pct": 4.0,
+          "wow_pct": 4,
           "comparison": {
             "type": "wow",
             "base_period": "2026-08-13"
@@ -76,8 +76,8 @@
         },
         {
           "period": "2026-08-26",
-          "value": 4500.0,
-          "wow_pct": 1.0,
+          "value": 4500,
+          "wow_pct": 1,
           "status": "official",
           "source_note": "Drewry public tracker"
         },
@@ -118,12 +118,24 @@
         {
           "period": "2026-09-17",
           "value": 4500,
-          "wow_pct": 1.0,
+          "wow_pct": 1,
           "comparison": {
             "type": "wow",
             "base_period": "2026-09-10"
           },
           "published_at": "2026-09-17",
+          "status": "official",
+          "source_note": "Drewry World Container Index public tracker"
+        },
+        {
+          "period": "2026-09-24",
+          "value": 4468,
+          "wow_pct": -1,
+          "comparison": {
+            "type": "wow",
+            "base_period": "2026-09-17"
+          },
+          "published_at": "2026-09-24",
           "status": "official",
           "source_note": "Drewry World Container Index public tracker"
         }
@@ -137,7 +149,7 @@
         {
           "period": "2026-07-23",
           "value": 960,
-          "wow_pct": -2.0,
+          "wow_pct": -2,
           "comparison": {
             "type": "wow",
             "base_period": "2026-07-16"
@@ -148,7 +160,7 @@
         {
           "period": "2026-07-30",
           "value": 956,
-          "wow_pct": 0.0,
+          "wow_pct": 0,
           "comparison": {
             "type": "wow",
             "base_period": "2026-07-23"
@@ -159,7 +171,7 @@
         {
           "period": "2026-08-13",
           "value": 1028,
-          "wow_pct": 6.0,
+          "wow_pct": 6,
           "comparison": {
             "type": "wow",
             "base_period": "2026-08-06"
@@ -170,7 +182,7 @@
         {
           "period": "2026-08-20",
           "value": 1091,
-          "wow_pct": 6.0,
+          "wow_pct": 6,
           "comparison": {
             "type": "wow",
             "base_period": "2026-08-13"
@@ -181,7 +193,7 @@
         {
           "period": "2026-08-27",
           "value": 1199,
-          "wow_pct": 10.0,
+          "wow_pct": 10,
           "comparison": {
             "type": "wow",
             "base_period": "2026-08-20"
@@ -192,7 +204,7 @@
         {
           "period": "2026-09-03",
           "value": 1312,
-          "wow_pct": 9.0,
+          "wow_pct": 9,
           "comparison": {
             "type": "wow",
             "base_period": "2026-08-27"
@@ -203,7 +215,7 @@
         {
           "period": "2026-09-10",
           "value": 1323,
-          "wow_pct": 1.0,
+          "wow_pct": 1,
           "comparison": {
             "type": "wow",
             "base_period": "2026-09-03"
@@ -215,12 +227,24 @@
         {
           "period": "2026-09-17",
           "value": 1402,
-          "wow_pct": 6.0,
+          "wow_pct": 6,
           "comparison": {
             "type": "wow",
             "base_period": "2026-09-10"
           },
           "published_at": "2026-09-17",
+          "status": "official",
+          "source_note": "Drewry Intra-Asia Container Index public tracker"
+        },
+        {
+          "period": "2026-09-24",
+          "value": 1491,
+          "wow_pct": 6,
+          "comparison": {
+            "type": "wow",
+            "base_period": "2026-09-17"
+          },
+          "published_at": "2026-09-24",
           "status": "official",
           "source_note": "Drewry Intra-Asia Container Index public tracker"
         }
@@ -233,7 +257,7 @@
       "observations": [
         {
           "period": "2026-W38-W42",
-          "value": 11.0,
+          "value": 11,
           "planned_sailings": 721,
           "cancelled_sailings": 79,
           "window": "2026-09-14/2026-10-18",
@@ -243,7 +267,7 @@
         },
         {
           "period": "2026-W39-W43",
-          "value": 11.0,
+          "value": 11,
           "planned_sailings": 720,
           "cancelled_sailings": 77,
           "window": "2026-09-21/2026-10-25",
