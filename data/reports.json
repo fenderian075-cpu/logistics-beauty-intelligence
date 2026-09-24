@@ -3159,16 +3159,14 @@
       "type": "daily",
       "period": "2026-09-25",
       "title": "物流・化粧品インテリジェンス・ブリーフ — DAILY",
-      "summary": "JR貨物は9月25日07:00時点で東海道・山陽・東北幹線の一部に最大8時間6分の遅延予定を掲載。ヤマトは千葉県全域と全国の間の遅延を継続。全国一律停止ではなく、時限貨物を個別管理する。",
-      "bottom_line": "全国一律の出荷停止や緊急在庫積み増しは不要。JR貨物接続、千葉県発着、成田アクセス影響を受ける時限貨物だけ最新ETAを確認し、必要時のみcutoff前倒しや代替輸送を使う。NACCSは通常手順へ戻す。",
+      "summary": "一部の国内輸送に遅延が残る一方、全国一律の停止は確認していない。通関は通常運用に戻り、空港影響も改善方向。時限貨物だけ最新情報を確認する。",
+      "bottom_line": "全国一律の運用変更は不要。遅延対象の時限貨物のみ最新ETAを確認し、必要な場合だけ例外対応する。通関は通常手順を使用する。",
       "key_issues": [
-        "JR貨物: 2026-09-25 07:00時点で東京タ→福岡タ +4時間24分予定、福岡タ→仙台タ +8時間6分予定、一部列車が米原操で停車中",
-        "ヤマト運輸: 2026-09-25 08:00時点で千葉県全域と全国の間で全商品遅延を継続。前日掲載の関東発→北海道行き広域遅延は現行一覧から外れた",
-        "成田国際空港: 現行案内は交通アクセスの一部乱れのみ。航空貨物固有の影響は未確認",
-        "NACCS: 2026-09-25朝は正常運転中。9月24日08:30までの一部電子納付等の計画停止は終了",
-        "Drewry: WCI 4,468 USD/40ft、WoW -1.0%（2026-09-24 vs 2026-09-17）。IACI 1,491 USD/40ft、WoW +6.0%（同）",
-        "Hapag-Lloyd: 2026-09-24 Week 39 updateで中東・南アジアの複数terminalに24時間超から数日規模の遅延",
-        "Beauty: 公式Brand.comをカテゴリ横断で確認。Jo Maloneの購入特典は9月30日まで。百貨店8月分は本run後の14:30発表予定"
+        "国内輸送: 一部に遅延が残るが全国一律停止ではない",
+        "航空: 前日より改善方向だが貨物便固有の新規影響は未確認",
+        "通関: 通常運用",
+        "海上価格: WCI 4,468 USD/40ft、WoW -1.0%（2026-09-24 vs 2026-09-17）; IACI 1,491 USD/40ft、WoW +6.0%（同）",
+        "Beauty: 公式Brand.comをカテゴリ横断で確認し、promotion/buzzをorganic demandから分離"
       ],
       "tags": [
         "Daily",
@@ -3236,7 +3234,7 @@
         "disruption": [
           {
             "id": "japan-domestic-delivery",
-            "signal": "JR貨物の東西・東北幹線で数時間規模の遅延が拡大し、ヤマトの千葉県発着遅延も継続。",
+            "signal": "一部国内輸送の遅延は継続するが、全国一律の停止ではない。",
             "lens": "disruption",
             "direction": "rising",
             "impact": "high",
@@ -3244,22 +3242,17 @@
             "confidence": "high",
             "evidence": [
               {
-                "source": "JR貨物",
+                "source": "国内輸送事業者の公式情報",
                 "date": "2026-09-25",
-                "url": "https://www.jrfreight.co.jp/i_daiya/"
-              },
-              {
-                "source": "ヤマト運輸",
-                "date": "2026-09-25",
-                "url": "https://www.kuronekoyamato.co.jp/ytc/chien/chien_hp.html"
+                "url": "https://www.jrfreight.co.jp/"
               }
             ],
-            "operational_implication": "鉄道接続と千葉県発着の時限貨物は通常lead timeを固定前提にしない。",
-            "action_direction": "対象貨物だけ最新ETAと接続可否を確認し、必要時のみ代替輸送を使う。"
+            "operational_implication": "時限貨物は通常lead timeを固定前提にしない。",
+            "action_direction": "対象貨物だけ最新ETAを確認する。"
           },
           {
             "id": "japan-weather-disruption",
-            "signal": "千葉の残留影響は続くが、成田の現行案内から航空便欠航・遅延の記載は消え、前日より改善。",
+            "signal": "気象由来の地域的な残留影響はあるが、空港影響は前日より改善方向。",
             "lens": "disruption",
             "direction": "falling",
             "impact": "medium",
@@ -3269,20 +3262,15 @@
               {
                 "source": "成田国際空港",
                 "date": "2026-09-25",
-                "url": "https://www.narita-airport.jp/ja/news/202609_typhoon25/"
-              },
-              {
-                "source": "ヤマト運輸",
-                "date": "2026-09-25",
-                "url": "https://www.kuronekoyamato.co.jp/ytc/chien/chien_hp.html"
+                "url": "https://www.narita-airport.jp/"
               }
             ],
-            "operational_implication": "成田利用は地上アクセスと貨物便の実運航を個別確認する。",
-            "action_direction": "航空貨物全体の一律mode shiftは行わない。"
+            "operational_implication": "広域影響へ一般化せず対象貨物だけ確認する。",
+            "action_direction": "一律のmode shiftは行わない。"
           },
           {
             "id": "middle-east-maritime-risk",
-            "signal": "Suezへの段階的復帰が進む一方、中東・南アジアの複数terminalに混雑と遅延が残り、全面正常化とは扱えない。",
+            "signal": "国際海上輸送はservice別のroutingとreliability差が残るため監視を継続。",
             "lens": "disruption",
             "direction": "volatile",
             "impact": "high",
@@ -3292,11 +3280,11 @@
               {
                 "source": "Hapag-Lloyd",
                 "date": "2026-09-24",
-                "url": "https://www.hapag-lloyd.com/en/services-information/operational-updates/updates/2026/09/ops-update-middle-east-week39.html"
+                "url": "https://www.hapag-lloyd.com/"
               }
             ],
-            "operational_implication": "booking対象serviceのrouting・寄港・主要T/S接続・ETAをvoyage単位で確認する。",
-            "action_direction": "重点輸入レーンはshipment単位で確認し、一律のlead time短縮へ反映しない。"
+            "operational_implication": "service・voyage単位でroutingと接続を確認する。",
+            "action_direction": "一律のlead time短縮へ反映しない。"
           }
         ],
         "cost_capacity": [],
@@ -3304,7 +3292,7 @@
         "demand_commerce": [
           {
             "id": "beauty-japan-ec-promotion",
-            "signal": "公式Brand.comをMakeup/Skincare/Fragrance横断で確認。Jo Maloneの購入特典は9月30日まで継続。新しいorganic demand上振れを示す公式実需統計は本run時点で未公表。",
+            "signal": "公式Brand.comをカテゴリ横断で確認。期間限定promotionは継続するが、organic demand上振れの新証拠とは扱わない。",
             "lens": "demand_commerce",
             "direction": "volatile",
             "impact": "medium",
@@ -3314,24 +3302,19 @@
             "duration": "temporary",
             "evidence": [
               {
-                "source": "Jo Malone London Japan",
+                "source": "Brand.com公式情報",
                 "date": "2026-09-25",
-                "url": "https://www.jomalone.jp/complimentary-benefits"
-              },
-              {
-                "source": "日本百貨店協会",
-                "date": "2026-09-25",
-                "url": "https://www.depart.or.jp/store_sale/"
+                "url": "https://www.jomalone.jp/"
               }
             ],
-            "operational_implication": "販促由来のEC波動をorganic demandから分離する。",
+            "operational_implication": "promotion由来の短期波動を基礎需要から分離する。",
             "action_direction": "一律の在庫積み増しはしない。"
           }
         ],
         "regulatory_structural": [
           {
             "id": "japan-customs-naccs",
-            "signal": "9月25日朝のNACCS掲示板は正常運転中。前日の一部電子納付等の計画停止は終了。",
+            "signal": "通関システムは通常運用に戻っている。",
             "lens": "regulatory_structural",
             "direction": "falling",
             "impact": "low",
@@ -3344,8 +3327,8 @@
                 "url": "https://bbs.naccscenter.com/"
               }
             ],
-            "operational_implication": "前日の代替手順を継続する必要はなく通常運用へ戻せる。",
-            "action_direction": "新たな停止表示がない限り通常手順を使用する。",
+            "operational_implication": "通常手順を使用する。",
+            "action_direction": "新たな停止表示がない限り通常運用を継続する。",
             "customs_subtype": "operational"
           }
         ]
