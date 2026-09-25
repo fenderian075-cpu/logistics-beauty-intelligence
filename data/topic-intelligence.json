@@ -1,1 +1,703 @@
-{"schema_version":"1.0","updated_at":"2026-09-24T08:00:00+09:00","topics":[{"topic_id":"japan-weather-disruption","title_ja":"気象・災害による輸送障害","current_state":"watch","confidence":"high","summary":"台風25号の残留影響が9月24日07:00時点で千葉県全域⇔全国・関東→北海道のヤマト遅延として残り、成田空港でも一部便欠航・遅延とアクセス乱れが確認されている。全国一律停止ではない。","japan_implication":"千葉県発着、関東→北海道、成田利用の時限貨物では通常lead timeを固定前提にしない。","operational_implication":"carrier/airportのobserved impactを基準に対象shipmentだけ確認し、全国一律の出荷停止・mode shiftには一般化しない。","outlook_7d":"千葉県の道路・宅配遅延、関東→北海道のフェリー影響、成田空港の実運航正常化を日次確認する。","outlook_30d":null,"outlook_90d":null,"developments":[{"date":"2026-09-24","type":"observed_impact","headline":"千葉・北海道宅配に加え成田空港でも台風25号の運航影響を確認","summary":"ヤマトは関東発→北海道と千葉県全域⇔全国の全商品遅延を継続。成田空港も一部便欠航・遅延と交通アクセス乱れを案内。","evidence":[{"class":"primary_operational","source":"ヤマト運輸","url":"https://www.kuronekoyamato.co.jp/ytc/chien/chien_hp.html"},{"class":"primary_operational","source":"成田国際空港","url":"https://www.narita-airport.jp/ja/news/202609_typhoon25/"}]},{"date":"2026-09-23","type":"observed_impact","headline":"千葉県全域⇔全国の全商品に台風25号由来の遅延","summary":"ヤマト運輸は9月23日07:00時点で台風25号と周辺道路通行止めの影響による遅延を掲示し、一部地域は大幅遅延。","evidence":[{"class":"primary_operational","source":"ヤマト運輸","url":"https://www.kuronekoyamato.co.jp/ytc/chien/chien_hp.html"}]},{"date":"2026-09-22","type":"observed_impact","headline":"関東発→北海道向け全商品に台風25号由来の遅延が残存","summary":"ヤマト運輸は9月22日08:00時点で関東地域発→北海道行きの全商品に遅延を掲示。荷受けは遅延了承のうえ継続。","evidence":[{"class":"primary_operational","source":"ヤマト運輸","url":"https://www.kuronekoyamato.co.jp/ytc/chien/chien_hp.html"}]},{"date":"2026-09-21","type":"observed_impact","headline":"台風25号で関東の航空・道路・鉄道に実運航影響","summary":"ANAは9月21日に羽田発着中心の53便欠航を決定。JALでも羽田発着便の欠航が発生し、関東の一部道路・鉄道でも台風に伴う通行止め・運休が確認されている。","evidence":[{"class":"primary_operational","source":"ANA","url":"https://www.ana.co.jp/fs/dom/jp/"},{"class":"primary_operational","source":"JAL","url":"https://www.jal.co.jp/jp/ja/other/weather_info_dom/"},{"class":"professional_media","source":"テレビ朝日","url":"https://news.tv-asahi.co.jp/news_society/articles/000534828.html"}]},{"date":"2026-08-23","type":"observed_impact","headline":"台風18号で奄美向け全商品荷受停止、フェリーは8月25日便も欠航","summary":"ヤマト運輸は奄美市・大島郡宛ての全商品の預かりを停止。マリックスラインの8月23日鹿児島発便は名瀬までに運航経路を短縮し徳之島以南を抜港、8月25日那覇発上り便も欠航予定となった。","evidence":[{"class":"primary_operational","source":"ヤマト運輸","url":"https://www.kuronekoyamato.co.jp/ytc/chien/chien_hp.html"},{"class":"primary_operational","source":"マリックスライン 運航状況","url":"https://marixline.com/service/2025/12/"}]}],"data_points":[],"related_report_ids":["2026-09-24-daily","2026-09-23-daily","2026-09-22-daily","2026-09-21-daily","2026-08-23-daily"]},{"topic_id":"japan-domestic-delivery","title_ja":"国内配送オペレーション","current_state":"watch","confidence":"high","summary":"9月24日はヤマトで千葉県全域⇔全国と関東発→北海道の全商品遅延が継続し、JR貨物は一部列車に最大+5時間38分予定を掲示。全国一律停止ではなくshipment単位の例外管理を継続する。","japan_implication":"千葉県発着、関東→北海道、貨物鉄道接続の時限貨物では通常lead timeを固定前提にしない。","operational_implication":"SLA-critical shipmentだけcarrierのobserved impactと最新ETAを確認・調整する。","outlook_7d":"千葉・北海道の宅配遅延とJR貨物の列車遅延収束を日次確認する。","outlook_30d":null,"outlook_90d":null,"developments":[{"date":"2026-09-24","type":"observed_impact","headline":"千葉・北海道宅配遅延とJR貨物の一部5時間超遅延が継続","summary":"ヤマトは千葉県全域⇔全国と関東発→北海道の全商品遅延を継続。JR貨物は東青森→東京タの一部列車に+5時間38分予定を掲載。","evidence":[{"class":"primary_operational","source":"ヤマト運輸","url":"https://www.kuronekoyamato.co.jp/ytc/chien/chien_hp.html"},{"class":"primary_operational","source":"JR貨物","url":"https://www.jrfreight.co.jp/i_daiya/"}]},{"date":"2026-09-23","type":"observed_impact","headline":"千葉宅配・日本郵便・JR貨物で国内輸送例外が重なる","summary":"ヤマトは千葉県全域⇔全国の全商品遅延、JR貨物は東西幹線等で最大約3時間の遅れ。日本郵便は9月23日引受分まで全国的な半日〜1日程度の遅延可能性を案内。","evidence":[{"class":"primary_operational","source":"ヤマト運輸","url":"https://www.kuronekoyamato.co.jp/ytc/chien/chien_hp.html"},{"class":"primary_operational","source":"日本郵便","url":"https://www.post.japanpost.jp/newsrelease/pressrelease/457419024.html"},{"class":"primary_operational","source":"JR貨物","url":"https://www.jrfreight.co.jp/i_daiya"}]},{"date":"2026-09-22","type":"observed_impact","headline":"関東発→北海道の宅配遅延を新たな広域例外として確認","summary":"ヤマト運輸は関東地域発→北海道行きの全商品に台風25号由来の遅延を掲示。全国一律停止ではなく対象レーンのlead time悪化。","evidence":[{"class":"primary_operational","source":"ヤマト運輸","url":"https://www.kuronekoyamato.co.jp/ytc/chien/chien_hp.html"}]},{"date":"2026-09-21","type":"observed_impact","headline":"関東の台風影響とJR貨物の複数地区遅延を同時監視","summary":"関東では台風25号による道路・航空・鉄道影響が発生。JR貨物は7時時点で九州・近畿・中部地区の輸送障害に伴う遅延・運休を掲示し、一部列車に数時間規模の遅延がある。","evidence":[{"class":"primary_operational","source":"JR貨物","url":"https://www.jrfreight.co.jp/i_daiya.html"},{"class":"primary_operational","source":"ヤマト運輸","url":"https://www.kuronekoyamato.co.jp/ytc/chien/chien_hp.html"},{"class":"professional_media","source":"テレビ朝日","url":"https://news.tv-asahi.co.jp/news_society/articles/000534828.html"}]},{"date":"2026-08-23","type":"observed_impact","headline":"台風18号で奄美向けヤマト荷受停止、沖縄・奄美フェリーにも実運航影響","summary":"奄美市・大島郡宛て全商品の荷受停止を確認。フェリーは8月23日鹿児島発便が名瀬までに短縮され、8月25日那覇発上り便も欠航予定。国内配送signalは前日より悪化。","evidence":[{"class":"primary_operational","source":"ヤマト運輸","url":"https://www.kuronekoyamato.co.jp/ytc/chien/chien_hp.html"},{"class":"primary_operational","source":"マリックスライン 運航状況","url":"https://marixline.com/service/2025/12/"}]},{"date":"2026-08-22","type":"reported_event","headline":"名神集中工事が8月22日0時に開始","summary":"吹田IC～一宮JCTなどで昼夜連続車線規制、夜間通行止め、IC/JCT等の閉鎖を実施。NEXCOは早朝から深夜の渋滞を予測している。","evidence":[{"class":"primary_operational","source":"NEXCO中日本 / NEXCO西日本","url":"https://www.c-nexco.co.jp/corporate/pressroom/news_release/6617.html"}]},{"date":"2026-08-17","type":"reported_event","headline":"ヤマト運輸が全国的な配送遅延の可能性を案内","summary":"東京・関東から関西を発着する荷物を中心に、全国的にお届け遅延が発生する可能性があるとして余裕を持った出荷を案内。","evidence":[{"class":"primary_operational","source":"ヤマト運輸","url":"https://www.yamato-hd.co.jp/important/info_260817_1.html"}]}],"data_points":[],"related_report_ids":["2026-09-24-daily","2026-09-23-daily","2026-09-22-daily","2026-09-21-daily","2026-08-23-daily","2026-08-22-daily"]},{"topic_id":"middle-east-maritime-risk","title_ja":"中東海域の航行リスク","current_state":"watch","confidence":"high","summary":"一部Gemini serviceのRed Sea/Suez復帰が進み、NE4 eastboundは9月22日から移行。一方でserviceごとの実施時期が異なり、安全保障条件も残るため全面正常化とは扱わない。","japan_implication":"日本向け全体の一律停止ではないが、重点輸入レーンでは主要T/S接続、実際のrouting、寄港、ETA varianceをvoyage単位で確認する必要がある。","operational_implication":"Suez復帰を一括適用せず、輸送会社・service・voyage単位でrouting、寄港、ETA、surchargeを確認する。","outlook_7d":"追加serviceのSuez復帰または再迂回を確認する。","outlook_30d":"安全保障条件次第でSuez復帰とCape迂回が混在する可能性。","outlook_90d":null,"developments":[{"date":"2026-09-22","type":"reported_event","headline":"NE4 eastboundがRed Sea/Suez routingへ移行","summary":"Hapag-LloydはNE4 eastboundのMaastricht Maersk 637Eについて、Algeciras ETD 9月22日からRed Sea/Suez routingへ移行すると案内。SE2/IEX等は別日程で、service単位の変更。","evidence":[{"class":"primary_operational","source":"Hapag-Lloyd","url":"https://www.hapag-lloyd.com/en/services-information/news/2026/09/routing-update-for-our-ne4--se1--se2-and-iex-services.html"}]},{"date":"2026-09-14","type":"reported_event","headline":"共同運航4サービスが追加でSuez経由へ復帰","summary":"主要船社2社は共同運航の4サービスを追加でSuez Canal経由へ戻すと発表。短いtransit timeへの改善材料だが、両社は今後の判断が中東情勢の安定に依存するとしている。","evidence":[{"class":"professional_media","source":"Reuters","url":"https://www.reuters.com/business/maersk-hapag-lloyd-resume-further-services-through-suez-canal-2026-09-14/"}]},{"date":"2026-08-22","type":"reported_event","headline":"イランが一部イラク石油タンカーのHormuz通航を許可","summary":"個別の通航緩和は確認されたが、海峡全体の正常化を示すものではない。","evidence":[{"class":"professional_media","source":"Reuters","url":"https://www.reuters.com/business/energy/iran-grants-permission-number-iraqi-oil-tankers-pass-through-hormuz-2026-08-22/"}]},{"date":"2026-08-18","type":"observed_impact","headline":"Hormuz commodity vessel crossings remain in single digits","summary":"Kplerベースの報道では通航隻数は低水準で、VLCC/LNGの動きも限定的。","evidence":[{"class":"professional_media","source":"Reuters","url":"https://www.reuters.com/world/middle-east/hormuz-crossings-rise-slightly-weekend-remain-single-digits-data-shows-2026-08-18/"}]},{"date":"2026-08-17","type":"observed_impact","headline":"Jeddah / Salalah congestion and SE4 サービス調整","summary":"Hapag-LloydはJeddah 71%、Salalah 79% yard density、Salalahで最大36時間のberthing delay、一部Jeddah omissionを公表。","evidence":[{"class":"primary_operational","source":"Hapag-Lloyd","url":"https://www.hapag-lloyd.com/en/services-information/operational-updates/updates/2026/08/ops-update-middle-east-week34.html"}]},{"date":"2026-08-10","type":"reported_event","headline":"Gemini AE19 shifts structurally to Trans-Suez","summary":"Maersk/Hapag-LloydはAE19をCape経由からTrans-Suezへ変更。段階的復帰の一部。","evidence":[{"class":"primary_operational","source":"Maersk","url":"https://www.maersk.com/news/articles/2026/08/10/maersk-ae19-trans-suez-service-structural-change"}]}],"data_points":[{"date":"2026-08-18","metric":"Hormuz commodity vessel crossings","value":6,"unit":"vessels/day","source":"Reuters / Kpler"},{"date":"2026-08-17","metric":"Jeddah yard density","value":71,"unit":"%","source":"Hapag-Lloyd"},{"date":"2026-08-17","metric":"Salalah yard density","value":79,"unit":"%","source":"Hapag-Lloyd"},{"date":"2026-08-17","metric":"Salalah berthing delay","value":36,"unit":"hours max","source":"Hapag-Lloyd"}],"related_report_ids":["2026-09-22-daily","2026-09-21-daily","2026-08-23-daily","2026-08-22-daily","2026-08-22-weekly","2026-08-22-monthly"]},{"topic_id":"ocean-global-price","title_ja":"海上運賃（グローバル）","current_state":"watch","confidence":"high","summary":"Drewry WCIは8月20日に4%上昇しUSD 4,526/40ft。3週連続上昇だが、上昇は太平洋横断航路主導で、アジア―欧州・地中海航路は軟調。","japan_implication":"日本発着契約への影響はlane・契約条件別。世界運賃指数上昇だけで一律cost escalationとはしない。","operational_implication":"spot/renewal条件はWCIだけでなく対象航路とcapacity/reliabilityを分けて確認する。","outlook_7d":"太平洋横断航路主導の上昇が他laneへ波及するかを確認。","outlook_30d":"capacity adjustmentと需要差によりlane別分化が続く可能性。","outlook_90d":null,"developments":[{"date":"2026-08-20","type":"market_data","headline":"WCI rises 4% to USD 4,526/40ft","summary":"3週連続上昇。太平洋横断航路が主因。","evidence":[{"class":"market_data","source":"Drewry","url":"https://www.drewry.co.uk/maritime-research-opinion-browser/world-container-index-assessed-by-drewry"}]}],"data_points":[{"date":"2026-08-20","metric":"WCI","value":4526,"unit":"USD/40ft","change":"+4% WoW","source":"Drewry"}],"related_report_ids":["2026-08-22-weekly","2026-08-22-monthly"]},{"topic_id":"ocean-blank-sailing-pressure","title_ja":"Blank Sailing 圧力","current_state":"watch","confidence":"high","summary":"Drewryはweek35〜39の主要East-Westで49 欠便s、6% cancellation rateを予測。94%は運航予定で、全面的なcapacity withdrawalではなく選択的調整。","japan_implication":"日本接続の欠便・port omissionリスクはglobal cancel rateより個別service確認が重要。","operational_implication":"booking時に該当service/voyageの欠便・T/S接続を確認する。","outlook_7d":"week35開始に伴う実際のcancellation/omissionを確認。","outlook_30d":"需要差に応じたselective 欠便が継続する可能性。","outlook_90d":null,"developments":[{"date":"2026-08-21","type":"market_data","headline":"49 欠便s expected across major East-West trades","summary":"week35〜39、cancellation rate 6%、94% scheduled sailings expected to operate。","evidence":[{"class":"market_data","source":"Drewry Cancelled Sailings Tracker","url":"https://www.drewry.co.uk/supply-chain-advisors/supply-chain-expertise/cancelled-sailings-tracker"}]}],"data_points":[{"date":"2026-08-21","metric":"Blank sailings","value":49,"unit":"sailings","period":"week35-week39","source":"Drewry"},{"date":"2026-08-21","metric":"Cancellation rate","value":6,"unit":"%","source":"Drewry"}],"related_report_ids":["2026-08-22-weekly","2026-08-22-monthly"]},{"topic_id":"ocean-schedule-reliability","title_ja":"海上スケジュール定時性","current_state":"watch","confidence":"high","summary":"Sea-Intelligenceの最新公開値では2026年6月のglobal 定時性は62.6%、前月比-1.9pp。late vessel average delayは5.31日で前月比0.34日改善。","japan_implication":"RateとReliabilityは別の計画変数。ETA confidenceは輸送会社・航路単位の確認が必要。","operational_implication":"launchや在庫補充では平均輸送日数だけでなくarrival varianceを織り込む。","outlook_7d":null,"outlook_30d":"次回公表でJuneの悪化が一時的か確認。","outlook_90d":null,"developments":[{"date":"2026-07-27","type":"market_data","headline":"Global 定時性 falls to 62.6%","summary":"前月比-1.9pp、前年比-4.7pp。一方late vessel平均遅延は5.31日に改善。","evidence":[{"class":"market_data","source":"Sea-Intelligence","url":"https://sea-intelligence.com/press-room/400-global-schedule-reliability-drops-to-62-6-in-june-2026"}]}],"data_points":[{"date":"2026-06","metric":"Global schedule reliability","value":62.6,"unit":"%","change":"-1.9pp MoM","source":"Sea-Intelligence"},{"date":"2026-06","metric":"Average delay for late vessel arrivals","value":5.31,"unit":"days","change":"-0.34 day MoM","source":"Sea-Intelligence"}],"related_report_ids":["2026-08-22-weekly","2026-08-22-monthly"]},{"topic_id":"beauty-japan-ec-promotion","title_ja":"日本Beauty EC・プロモーション需要","current_state":"watch","confidence":"high","summary":"Brand.com巡回では9月23日のDiptyque発送・CS休業と、Jo Malone等の期間限定購入特典を確認。calendar/promotion起因の短期波動でありorganic demand上振れとは分離する。","japan_implication":"連休最終日は一部公式ECで出荷日ずれが発生し得るが、市場全体の需要増を示すものではない。","operational_implication":"Brand×Category×Channelでcutoff・GWP/同梱を確認し、promotion/launchを基礎需要予測から分離する。","outlook_7d":"9月24日以降の出荷再開と秋冬launch/promotionの短期order波動を確認する。","outlook_30d":"秋冬launch/promotionと小売sell-throughの一致を確認する。","outlook_90d":null,"developments":[{"date":"2026-09-23","type":"observed_impact","headline":"Diptyqueの連休休業継続、他ブランドGWPはpromotion要因","summary":"Diptyque公式ECは9月23日も発送・CS休業。Jo Maloneは9月30日まで購入特典を実施中。organic demandの新証拠ではない。","evidence":[{"class":"primary_operational","source":"Diptyque Japan","url":"https://jp.diptyqueparis.com/ja-jp/pages/information"},{"class":"brand_official","source":"Jo Malone London Japan","url":"https://www.jomalone.jp/complimentary-benefits"}]},{"date":"2026-09-22","type":"observed_impact","headline":"Brand.com発送休業と予約施策が短期波動要因","summary":"Diptyqueは9月22日にオンライン発送・カスタマーサービスを休業。資生堂INOUI限定色は9月21日から予約受付。いずれもorganic demandの新証拠ではない。","evidence":[{"class":"primary_operational","source":"Diptyque Japan","url":"https://jp.diptyqueparis.com/ja-jp/pages/information"},{"class":"primary_operational","source":"資生堂オンラインストア","url":"https://www.shiseido.co.jp/sw/onlinestore/campaign/inoui/261021/"}]},{"date":"2026-09-21","type":"commerce_event","headline":"一部ブランド公式ECで連休中の出荷リードタイム延長","summary":"全登録Brand.com監視の結果、Makeup/Skincare/Fragranceで新製品・販促が続く中、一部公式ECは9月19〜23日の受注について9月24日以降順次出荷と案内。temporary fulfillment eventとして扱う。","evidence":[{"class":"brand_official","source":"ブランド公式サイト監視群","url":null}]},{"date":"2026-08-23","type":"commerce_event","headline":"個別ブランド公式オンラインで購入特典を8/25まで実施","summary":"購入特典をpromotion-driven / temporaryとして扱い、売上実績とは区別する。","evidence":[{"class":"brand_official","source":"ブランド公式サイト監視群","url":null}]},{"date":"2026-08-22","type":"commerce_event","headline":"Qoo10 Q3メガ割 8/28 17:00開始予定","summary":"イベント期間は8/28 17:00〜9/9 23:59。","evidence":[{"class":"commerce_platform","source":"Qoo10","url":"https://www.qoo10.jp/gmkt.inc/Mobile/Special/Special.aspx?sid=220713"}]}],"data_points":[],"related_report_ids":["2026-09-23-daily","2026-09-22-daily","2026-09-21-daily","2026-08-23-daily","2026-08-22-weekly","2026-08-22-monthly"]},{"topic_id":"beauty-luxury-fragrance","title_ja":"ラグジュアリー化粧品需要","current_state":"watch","confidence":"medium","summary":"直近企業開示ではLuxury Fragranceが強く、Skincareも回復を示す一方、Makeupは相対的に緩やか。単一カテゴリではなくPrestige Beauty内のカテゴリ差として追跡する。","japan_implication":"日本の需要を直接示すものではないが、global allocation・launch priority・category mixの先行材料になる。","operational_implication":"Fragrance偏重で予測せず、Skincare/Makeupを含むカテゴリ別allocationとJapan sell-outを照合する。","outlook_7d":null,"outlook_30d":"企業IR、ブランド公式サイト launch、EC rankingの複数チャネル一致を確認。","outlook_90d":null,"developments":[{"date":"2026-08-19","type":"corporate_update","headline":"個別ブランド Q4でFragranceが成長を牽引","summary":"ReutersはLuxury Fragranceの強い需要と中国市場改善を報道。Skincareも好調。","evidence":[{"class":"corporate_ir","source":"個別ブランド / Reuters","url":"https://www.reuters.com/business/retail-consumer/estee-lauder-forecasts-annual-profit-above-estimates-strong-china-demand-2026-08-19/"}]},{"date":"2026-04-20","type":"corporate_update","headline":"個別ブランド North Asiaは中国Selective回復を報告","summary":"中国はmid-to-high single digit growth、Luxeはskincareを含む全カテゴリでstrong momentumと説明。","evidence":[{"class":"corporate_ir","source":"個別ブランド","url":"https://www.loreal.com/-/media/project/loreal/brand-sites/corp/master/lcorp/press-releases/finance/2026/first-quarter-2026-sales/first-quarter-2026-sales.pdf"}]}],"data_points":[],"related_report_ids":["2026-08-22-weekly","2026-08-22-monthly"]}]}
+{
+  "schema_version": "1.0",
+  "updated_at": "2026-09-26T08:00:00+09:00",
+  "topics": [
+    {
+      "topic_id": "japan-weather-disruption",
+      "title_ja": "気象・災害による輸送障害",
+      "current_state": "watch",
+      "confidence": "high",
+      "summary": "台風26号接近が9月26日に鹿児島県の一部離島のフェリー欠航・荷受停止として実運用へ波及。関東の大雨リスクも継続監視する。",
+      "japan_implication": "予報だけで全国運用を変えず、carrierの実際の集配停止・遅延・荷受制限を基準に対象レーンだけ例外管理する。",
+      "operational_implication": "対象離島は荷受停止に従い、関東はcarrier制限が出た場合のみ追加対応する。",
+      "outlook_7d": "台風26号の進路とcarrier acceptance再開、関東の大雨による道路・集配実影響を確認する。",
+      "outlook_30d": null,
+      "outlook_90d": null,
+      "developments": [
+        {
+          "date": "2026-09-26",
+          "type": "observed_impact",
+          "headline": "台風26号接近が離島配送の荷受停止へ波及",
+          "summary": "台風26号接近に伴うフェリー欠航を理由に、ヤマトは鹿児島県の一部離島向け全商品の荷受けを停止。",
+          "evidence": [
+            {
+              "class": "primary_operational",
+              "source": "ヤマト運輸",
+              "url": "https://www.kuronekoyamato.co.jp/ytc/chien/chien_hp.html"
+            }
+          ]
+        },
+        {
+          "date": "2026-09-24",
+          "type": "observed_impact",
+          "headline": "千葉・北海道宅配に加え成田空港でも台風25号の運航影響を確認",
+          "summary": "ヤマトは関東発→北海道と千葉県全域⇔全国の全商品遅延を継続。成田空港も一部便欠航・遅延と交通アクセス乱れを案内。",
+          "evidence": [
+            {
+              "class": "primary_operational",
+              "source": "ヤマト運輸",
+              "url": "https://www.kuronekoyamato.co.jp/ytc/chien/chien_hp.html"
+            },
+            {
+              "class": "primary_operational",
+              "source": "成田国際空港",
+              "url": "https://www.narita-airport.jp/ja/news/202609_typhoon25/"
+            }
+          ]
+        },
+        {
+          "date": "2026-09-23",
+          "type": "observed_impact",
+          "headline": "千葉県全域⇔全国の全商品に台風25号由来の遅延",
+          "summary": "ヤマト運輸は9月23日07:00時点で台風25号と周辺道路通行止めの影響による遅延を掲示し、一部地域は大幅遅延。",
+          "evidence": [
+            {
+              "class": "primary_operational",
+              "source": "ヤマト運輸",
+              "url": "https://www.kuronekoyamato.co.jp/ytc/chien/chien_hp.html"
+            }
+          ]
+        },
+        {
+          "date": "2026-09-22",
+          "type": "observed_impact",
+          "headline": "関東発→北海道向け全商品に台風25号由来の遅延が残存",
+          "summary": "ヤマト運輸は9月22日08:00時点で関東地域発→北海道行きの全商品に遅延を掲示。荷受けは遅延了承のうえ継続。",
+          "evidence": [
+            {
+              "class": "primary_operational",
+              "source": "ヤマト運輸",
+              "url": "https://www.kuronekoyamato.co.jp/ytc/chien/chien_hp.html"
+            }
+          ]
+        },
+        {
+          "date": "2026-09-21",
+          "type": "observed_impact",
+          "headline": "台風25号で関東の航空・道路・鉄道に実運航影響",
+          "summary": "ANAは9月21日に羽田発着中心の53便欠航を決定。JALでも羽田発着便の欠航が発生し、関東の一部道路・鉄道でも台風に伴う通行止め・運休が確認されている。",
+          "evidence": [
+            {
+              "class": "primary_operational",
+              "source": "ANA",
+              "url": "https://www.ana.co.jp/fs/dom/jp/"
+            },
+            {
+              "class": "primary_operational",
+              "source": "JAL",
+              "url": "https://www.jal.co.jp/jp/ja/other/weather_info_dom/"
+            },
+            {
+              "class": "professional_media",
+              "source": "テレビ朝日",
+              "url": "https://news.tv-asahi.co.jp/news_society/articles/000534828.html"
+            }
+          ]
+        },
+        {
+          "date": "2026-08-23",
+          "type": "observed_impact",
+          "headline": "台風18号で奄美向け全商品荷受停止、フェリーは8月25日便も欠航",
+          "summary": "ヤマト運輸は奄美市・大島郡宛ての全商品の預かりを停止。マリックスラインの8月23日鹿児島発便は名瀬までに運航経路を短縮し徳之島以南を抜港、8月25日那覇発上り便も欠航予定となった。",
+          "evidence": [
+            {
+              "class": "primary_operational",
+              "source": "ヤマト運輸",
+              "url": "https://www.kuronekoyamato.co.jp/ytc/chien/chien_hp.html"
+            },
+            {
+              "class": "primary_operational",
+              "source": "マリックスライン 運航状況",
+              "url": "https://marixline.com/service/2025/12/"
+            }
+          ]
+        }
+      ],
+      "data_points": [],
+      "related_report_ids": [
+        "2026-09-26-daily",
+        "2026-09-24-daily",
+        "2026-09-23-daily",
+        "2026-09-22-daily",
+        "2026-09-21-daily",
+        "2026-08-23-daily"
+      ]
+    },
+    {
+      "topic_id": "japan-domestic-delivery",
+      "title_ja": "国内配送オペレーション",
+      "current_state": "watch",
+      "confidence": "high",
+      "summary": "9月26日は台風26号接近で鹿児島県の一部離島向けに全商品荷受停止が発生。千葉の一部配送遅延とJR貨物の幹線遅延も残るが、全国一律停止ではない。",
+      "japan_implication": "対象地域向けと貨物鉄道接続の時限貨物では通常lead timeを固定前提にしない。",
+      "operational_implication": "荷受停止対象は保留・代替確認、その他のSLA-critical shipmentだけcarrier受託可否と最新ETAを確認する。",
+      "outlook_7d": "台風26号に伴う荷受停止の解除、千葉の道路影響、JR貨物の幹線遅延収束を日次確認する。",
+      "outlook_30d": null,
+      "outlook_90d": null,
+      "developments": [
+        {
+          "date": "2026-09-26",
+          "type": "observed_impact",
+          "headline": "台風26号で一部離島配送に荷受停止、JR貨物の幹線遅延も継続",
+          "summary": "ヤマトは鹿児島県の一部離島向け全商品の荷受けを停止。千葉の一部遅延も残り、JR貨物も複数列車の遅延を掲示。",
+          "evidence": [
+            {
+              "class": "primary_operational",
+              "source": "ヤマト運輸",
+              "url": "https://www.kuronekoyamato.co.jp/ytc/chien/chien_hp.html"
+            },
+            {
+              "class": "primary_operational",
+              "source": "JR貨物",
+              "url": "https://www.jrfreight.co.jp/i_daiya"
+            }
+          ]
+        },
+        {
+          "date": "2026-09-24",
+          "type": "observed_impact",
+          "headline": "千葉・北海道宅配遅延とJR貨物の一部5時間超遅延が継続",
+          "summary": "ヤマトは千葉県全域⇔全国と関東発→北海道の全商品遅延を継続。JR貨物は東青森→東京タの一部列車に+5時間38分予定を掲載。",
+          "evidence": [
+            {
+              "class": "primary_operational",
+              "source": "ヤマト運輸",
+              "url": "https://www.kuronekoyamato.co.jp/ytc/chien/chien_hp.html"
+            },
+            {
+              "class": "primary_operational",
+              "source": "JR貨物",
+              "url": "https://www.jrfreight.co.jp/i_daiya/"
+            }
+          ]
+        },
+        {
+          "date": "2026-09-23",
+          "type": "observed_impact",
+          "headline": "千葉宅配・日本郵便・JR貨物で国内輸送例外が重なる",
+          "summary": "ヤマトは千葉県全域⇔全国の全商品遅延、JR貨物は東西幹線等で最大約3時間の遅れ。日本郵便は9月23日引受分まで全国的な半日〜1日程度の遅延可能性を案内。",
+          "evidence": [
+            {
+              "class": "primary_operational",
+              "source": "ヤマト運輸",
+              "url": "https://www.kuronekoyamato.co.jp/ytc/chien/chien_hp.html"
+            },
+            {
+              "class": "primary_operational",
+              "source": "日本郵便",
+              "url": "https://www.post.japanpost.jp/newsrelease/pressrelease/457419024.html"
+            },
+            {
+              "class": "primary_operational",
+              "source": "JR貨物",
+              "url": "https://www.jrfreight.co.jp/i_daiya"
+            }
+          ]
+        },
+        {
+          "date": "2026-09-22",
+          "type": "observed_impact",
+          "headline": "関東発→北海道の宅配遅延を新たな広域例外として確認",
+          "summary": "ヤマト運輸は関東地域発→北海道行きの全商品に台風25号由来の遅延を掲示。全国一律停止ではなく対象レーンのlead time悪化。",
+          "evidence": [
+            {
+              "class": "primary_operational",
+              "source": "ヤマト運輸",
+              "url": "https://www.kuronekoyamato.co.jp/ytc/chien/chien_hp.html"
+            }
+          ]
+        },
+        {
+          "date": "2026-09-21",
+          "type": "observed_impact",
+          "headline": "関東の台風影響とJR貨物の複数地区遅延を同時監視",
+          "summary": "関東では台風25号による道路・航空・鉄道影響が発生。JR貨物は7時時点で九州・近畿・中部地区の輸送障害に伴う遅延・運休を掲示し、一部列車に数時間規模の遅延がある。",
+          "evidence": [
+            {
+              "class": "primary_operational",
+              "source": "JR貨物",
+              "url": "https://www.jrfreight.co.jp/i_daiya.html"
+            },
+            {
+              "class": "primary_operational",
+              "source": "ヤマト運輸",
+              "url": "https://www.kuronekoyamato.co.jp/ytc/chien/chien_hp.html"
+            },
+            {
+              "class": "professional_media",
+              "source": "テレビ朝日",
+              "url": "https://news.tv-asahi.co.jp/news_society/articles/000534828.html"
+            }
+          ]
+        },
+        {
+          "date": "2026-08-23",
+          "type": "observed_impact",
+          "headline": "台風18号で奄美向けヤマト荷受停止、沖縄・奄美フェリーにも実運航影響",
+          "summary": "奄美市・大島郡宛て全商品の荷受停止を確認。フェリーは8月23日鹿児島発便が名瀬までに短縮され、8月25日那覇発上り便も欠航予定。国内配送signalは前日より悪化。",
+          "evidence": [
+            {
+              "class": "primary_operational",
+              "source": "ヤマト運輸",
+              "url": "https://www.kuronekoyamato.co.jp/ytc/chien/chien_hp.html"
+            },
+            {
+              "class": "primary_operational",
+              "source": "マリックスライン 運航状況",
+              "url": "https://marixline.com/service/2025/12/"
+            }
+          ]
+        },
+        {
+          "date": "2026-08-22",
+          "type": "reported_event",
+          "headline": "名神集中工事が8月22日0時に開始",
+          "summary": "吹田IC～一宮JCTなどで昼夜連続車線規制、夜間通行止め、IC/JCT等の閉鎖を実施。NEXCOは早朝から深夜の渋滞を予測している。",
+          "evidence": [
+            {
+              "class": "primary_operational",
+              "source": "NEXCO中日本 / NEXCO西日本",
+              "url": "https://www.c-nexco.co.jp/corporate/pressroom/news_release/6617.html"
+            }
+          ]
+        },
+        {
+          "date": "2026-08-17",
+          "type": "reported_event",
+          "headline": "ヤマト運輸が全国的な配送遅延の可能性を案内",
+          "summary": "東京・関東から関西を発着する荷物を中心に、全国的にお届け遅延が発生する可能性があるとして余裕を持った出荷を案内。",
+          "evidence": [
+            {
+              "class": "primary_operational",
+              "source": "ヤマト運輸",
+              "url": "https://www.yamato-hd.co.jp/important/info_260817_1.html"
+            }
+          ]
+        }
+      ],
+      "data_points": [],
+      "related_report_ids": [
+        "2026-09-26-daily",
+        "2026-09-24-daily",
+        "2026-09-23-daily",
+        "2026-09-22-daily",
+        "2026-09-21-daily",
+        "2026-08-23-daily",
+        "2026-08-22-daily"
+      ]
+    },
+    {
+      "topic_id": "middle-east-maritime-risk",
+      "title_ja": "中東海域の航行リスク",
+      "current_state": "watch",
+      "confidence": "high",
+      "summary": "一部Gemini serviceのRed Sea/Suez復帰が進み、NE4 eastboundは9月22日から移行。一方でserviceごとの実施時期が異なり、安全保障条件も残るため全面正常化とは扱わない。",
+      "japan_implication": "日本向け全体の一律停止ではないが、重点輸入レーンでは主要T/S接続、実際のrouting、寄港、ETA varianceをvoyage単位で確認する必要がある。",
+      "operational_implication": "Suez復帰を一括適用せず、輸送会社・service・voyage単位でrouting、寄港、ETA、surchargeを確認する。",
+      "outlook_7d": "追加serviceのSuez復帰または再迂回を確認する。",
+      "outlook_30d": "安全保障条件次第でSuez復帰とCape迂回が混在する可能性。",
+      "outlook_90d": null,
+      "developments": [
+        {
+          "date": "2026-09-22",
+          "type": "reported_event",
+          "headline": "NE4 eastboundがRed Sea/Suez routingへ移行",
+          "summary": "Hapag-LloydはNE4 eastboundのMaastricht Maersk 637Eについて、Algeciras ETD 9月22日からRed Sea/Suez routingへ移行すると案内。SE2/IEX等は別日程で、service単位の変更。",
+          "evidence": [
+            {
+              "class": "primary_operational",
+              "source": "Hapag-Lloyd",
+              "url": "https://www.hapag-lloyd.com/en/services-information/news/2026/09/routing-update-for-our-ne4--se1--se2-and-iex-services.html"
+            }
+          ]
+        },
+        {
+          "date": "2026-09-14",
+          "type": "reported_event",
+          "headline": "共同運航4サービスが追加でSuez経由へ復帰",
+          "summary": "主要船社2社は共同運航の4サービスを追加でSuez Canal経由へ戻すと発表。短いtransit timeへの改善材料だが、両社は今後の判断が中東情勢の安定に依存するとしている。",
+          "evidence": [
+            {
+              "class": "professional_media",
+              "source": "Reuters",
+              "url": "https://www.reuters.com/business/maersk-hapag-lloyd-resume-further-services-through-suez-canal-2026-09-14/"
+            }
+          ]
+        },
+        {
+          "date": "2026-08-22",
+          "type": "reported_event",
+          "headline": "イランが一部イラク石油タンカーのHormuz通航を許可",
+          "summary": "個別の通航緩和は確認されたが、海峡全体の正常化を示すものではない。",
+          "evidence": [
+            {
+              "class": "professional_media",
+              "source": "Reuters",
+              "url": "https://www.reuters.com/business/energy/iran-grants-permission-number-iraqi-oil-tankers-pass-through-hormuz-2026-08-22/"
+            }
+          ]
+        },
+        {
+          "date": "2026-08-18",
+          "type": "observed_impact",
+          "headline": "Hormuz commodity vessel crossings remain in single digits",
+          "summary": "Kplerベースの報道では通航隻数は低水準で、VLCC/LNGの動きも限定的。",
+          "evidence": [
+            {
+              "class": "professional_media",
+              "source": "Reuters",
+              "url": "https://www.reuters.com/world/middle-east/hormuz-crossings-rise-slightly-weekend-remain-single-digits-data-shows-2026-08-18/"
+            }
+          ]
+        },
+        {
+          "date": "2026-08-17",
+          "type": "observed_impact",
+          "headline": "Jeddah / Salalah congestion and SE4 サービス調整",
+          "summary": "Hapag-LloydはJeddah 71%、Salalah 79% yard density、Salalahで最大36時間のberthing delay、一部Jeddah omissionを公表。",
+          "evidence": [
+            {
+              "class": "primary_operational",
+              "source": "Hapag-Lloyd",
+              "url": "https://www.hapag-lloyd.com/en/services-information/operational-updates/updates/2026/08/ops-update-middle-east-week34.html"
+            }
+          ]
+        },
+        {
+          "date": "2026-08-10",
+          "type": "reported_event",
+          "headline": "Gemini AE19 shifts structurally to Trans-Suez",
+          "summary": "Maersk/Hapag-LloydはAE19をCape経由からTrans-Suezへ変更。段階的復帰の一部。",
+          "evidence": [
+            {
+              "class": "primary_operational",
+              "source": "Maersk",
+              "url": "https://www.maersk.com/news/articles/2026/08/10/maersk-ae19-trans-suez-service-structural-change"
+            }
+          ]
+        }
+      ],
+      "data_points": [
+        {
+          "date": "2026-08-18",
+          "metric": "Hormuz commodity vessel crossings",
+          "value": 6,
+          "unit": "vessels/day",
+          "source": "Reuters / Kpler"
+        },
+        {
+          "date": "2026-08-17",
+          "metric": "Jeddah yard density",
+          "value": 71,
+          "unit": "%",
+          "source": "Hapag-Lloyd"
+        },
+        {
+          "date": "2026-08-17",
+          "metric": "Salalah yard density",
+          "value": 79,
+          "unit": "%",
+          "source": "Hapag-Lloyd"
+        },
+        {
+          "date": "2026-08-17",
+          "metric": "Salalah berthing delay",
+          "value": 36,
+          "unit": "hours max",
+          "source": "Hapag-Lloyd"
+        }
+      ],
+      "related_report_ids": [
+        "2026-09-26-daily",
+        "2026-09-22-daily",
+        "2026-09-21-daily",
+        "2026-08-23-daily",
+        "2026-08-22-daily",
+        "2026-08-22-weekly",
+        "2026-08-22-monthly"
+      ]
+    },
+    {
+      "topic_id": "ocean-global-price",
+      "title_ja": "海上運賃（グローバル）",
+      "current_state": "watch",
+      "confidence": "high",
+      "summary": "Drewry WCIは8月20日に4%上昇しUSD 4,526/40ft。3週連続上昇だが、上昇は太平洋横断航路主導で、アジア―欧州・地中海航路は軟調。",
+      "japan_implication": "日本発着契約への影響はlane・契約条件別。世界運賃指数上昇だけで一律cost escalationとはしない。",
+      "operational_implication": "spot/renewal条件はWCIだけでなく対象航路とcapacity/reliabilityを分けて確認する。",
+      "outlook_7d": "太平洋横断航路主導の上昇が他laneへ波及するかを確認。",
+      "outlook_30d": "capacity adjustmentと需要差によりlane別分化が続く可能性。",
+      "outlook_90d": null,
+      "developments": [
+        {
+          "date": "2026-08-20",
+          "type": "market_data",
+          "headline": "WCI rises 4% to USD 4,526/40ft",
+          "summary": "3週連続上昇。太平洋横断航路が主因。",
+          "evidence": [
+            {
+              "class": "market_data",
+              "source": "Drewry",
+              "url": "https://www.drewry.co.uk/maritime-research-opinion-browser/world-container-index-assessed-by-drewry"
+            }
+          ]
+        }
+      ],
+      "data_points": [
+        {
+          "date": "2026-08-20",
+          "metric": "WCI",
+          "value": 4526,
+          "unit": "USD/40ft",
+          "change": "+4% WoW",
+          "source": "Drewry"
+        }
+      ],
+      "related_report_ids": [
+        "2026-08-22-weekly",
+        "2026-08-22-monthly"
+      ]
+    },
+    {
+      "topic_id": "ocean-blank-sailing-pressure",
+      "title_ja": "Blank Sailing 圧力",
+      "current_state": "watch",
+      "confidence": "high",
+      "summary": "Drewryはweek35〜39の主要East-Westで49 欠便s、6% cancellation rateを予測。94%は運航予定で、全面的なcapacity withdrawalではなく選択的調整。",
+      "japan_implication": "日本接続の欠便・port omissionリスクはglobal cancel rateより個別service確認が重要。",
+      "operational_implication": "booking時に該当service/voyageの欠便・T/S接続を確認する。",
+      "outlook_7d": "week35開始に伴う実際のcancellation/omissionを確認。",
+      "outlook_30d": "需要差に応じたselective 欠便が継続する可能性。",
+      "outlook_90d": null,
+      "developments": [
+        {
+          "date": "2026-08-21",
+          "type": "market_data",
+          "headline": "49 欠便s expected across major East-West trades",
+          "summary": "week35〜39、cancellation rate 6%、94% scheduled sailings expected to operate。",
+          "evidence": [
+            {
+              "class": "market_data",
+              "source": "Drewry Cancelled Sailings Tracker",
+              "url": "https://www.drewry.co.uk/supply-chain-advisors/supply-chain-expertise/cancelled-sailings-tracker"
+            }
+          ]
+        }
+      ],
+      "data_points": [
+        {
+          "date": "2026-08-21",
+          "metric": "Blank sailings",
+          "value": 49,
+          "unit": "sailings",
+          "period": "week35-week39",
+          "source": "Drewry"
+        },
+        {
+          "date": "2026-08-21",
+          "metric": "Cancellation rate",
+          "value": 6,
+          "unit": "%",
+          "source": "Drewry"
+        }
+      ],
+      "related_report_ids": [
+        "2026-08-22-weekly",
+        "2026-08-22-monthly"
+      ]
+    },
+    {
+      "topic_id": "ocean-schedule-reliability",
+      "title_ja": "海上スケジュール定時性",
+      "current_state": "watch",
+      "confidence": "high",
+      "summary": "Sea-Intelligenceの最新公開値では2026年6月のglobal 定時性は62.6%、前月比-1.9pp。late vessel average delayは5.31日で前月比0.34日改善。",
+      "japan_implication": "RateとReliabilityは別の計画変数。ETA confidenceは輸送会社・航路単位の確認が必要。",
+      "operational_implication": "launchや在庫補充では平均輸送日数だけでなくarrival varianceを織り込む。",
+      "outlook_7d": null,
+      "outlook_30d": "次回公表でJuneの悪化が一時的か確認。",
+      "outlook_90d": null,
+      "developments": [
+        {
+          "date": "2026-07-27",
+          "type": "market_data",
+          "headline": "Global 定時性 falls to 62.6%",
+          "summary": "前月比-1.9pp、前年比-4.7pp。一方late vessel平均遅延は5.31日に改善。",
+          "evidence": [
+            {
+              "class": "market_data",
+              "source": "Sea-Intelligence",
+              "url": "https://sea-intelligence.com/press-room/400-global-schedule-reliability-drops-to-62-6-in-june-2026"
+            }
+          ]
+        }
+      ],
+      "data_points": [
+        {
+          "date": "2026-06",
+          "metric": "Global schedule reliability",
+          "value": 62.6,
+          "unit": "%",
+          "change": "-1.9pp MoM",
+          "source": "Sea-Intelligence"
+        },
+        {
+          "date": "2026-06",
+          "metric": "Average delay for late vessel arrivals",
+          "value": 5.31,
+          "unit": "days",
+          "change": "-0.34 day MoM",
+          "source": "Sea-Intelligence"
+        }
+      ],
+      "related_report_ids": [
+        "2026-08-22-weekly",
+        "2026-08-22-monthly"
+      ]
+    },
+    {
+      "topic_id": "beauty-japan-ec-promotion",
+      "title_ja": "日本Beauty EC・プロモーション需要",
+      "current_state": "watch",
+      "confidence": "high",
+      "summary": "Brand.com巡回では9月23日のDiptyque発送・CS休業と、Jo Malone等の期間限定購入特典を確認。calendar/promotion起因の短期波動でありorganic demand上振れとは分離する。",
+      "japan_implication": "連休最終日は一部公式ECで出荷日ずれが発生し得るが、市場全体の需要増を示すものではない。",
+      "operational_implication": "Brand×Category×Channelでcutoff・GWP/同梱を確認し、promotion/launchを基礎需要予測から分離する。",
+      "outlook_7d": "9月24日以降の出荷再開と秋冬launch/promotionの短期order波動を確認する。",
+      "outlook_30d": "秋冬launch/promotionと小売sell-throughの一致を確認する。",
+      "outlook_90d": null,
+      "developments": [
+        {
+          "date": "2026-09-23",
+          "type": "observed_impact",
+          "headline": "Diptyqueの連休休業継続、他ブランドGWPはpromotion要因",
+          "summary": "Diptyque公式ECは9月23日も発送・CS休業。Jo Maloneは9月30日まで購入特典を実施中。organic demandの新証拠ではない。",
+          "evidence": [
+            {
+              "class": "primary_operational",
+              "source": "Diptyque Japan",
+              "url": "https://jp.diptyqueparis.com/ja-jp/pages/information"
+            },
+            {
+              "class": "brand_official",
+              "source": "Jo Malone London Japan",
+              "url": "https://www.jomalone.jp/complimentary-benefits"
+            }
+          ]
+        },
+        {
+          "date": "2026-09-22",
+          "type": "observed_impact",
+          "headline": "Brand.com発送休業と予約施策が短期波動要因",
+          "summary": "Diptyqueは9月22日にオンライン発送・カスタマーサービスを休業。資生堂INOUI限定色は9月21日から予約受付。いずれもorganic demandの新証拠ではない。",
+          "evidence": [
+            {
+              "class": "primary_operational",
+              "source": "Diptyque Japan",
+              "url": "https://jp.diptyqueparis.com/ja-jp/pages/information"
+            },
+            {
+              "class": "primary_operational",
+              "source": "資生堂オンラインストア",
+              "url": "https://www.shiseido.co.jp/sw/onlinestore/campaign/inoui/261021/"
+            }
+          ]
+        },
+        {
+          "date": "2026-09-21",
+          "type": "commerce_event",
+          "headline": "一部ブランド公式ECで連休中の出荷リードタイム延長",
+          "summary": "全登録Brand.com監視の結果、Makeup/Skincare/Fragranceで新製品・販促が続く中、一部公式ECは9月19〜23日の受注について9月24日以降順次出荷と案内。temporary fulfillment eventとして扱う。",
+          "evidence": [
+            {
+              "class": "brand_official",
+              "source": "ブランド公式サイト監視群",
+              "url": null
+            }
+          ]
+        },
+        {
+          "date": "2026-08-23",
+          "type": "commerce_event",
+          "headline": "個別ブランド公式オンラインで購入特典を8/25まで実施",
+          "summary": "購入特典をpromotion-driven / temporaryとして扱い、売上実績とは区別する。",
+          "evidence": [
+            {
+              "class": "brand_official",
+              "source": "ブランド公式サイト監視群",
+              "url": null
+            }
+          ]
+        },
+        {
+          "date": "2026-08-22",
+          "type": "commerce_event",
+          "headline": "Qoo10 Q3メガ割 8/28 17:00開始予定",
+          "summary": "イベント期間は8/28 17:00〜9/9 23:59。",
+          "evidence": [
+            {
+              "class": "commerce_platform",
+              "source": "Qoo10",
+              "url": "https://www.qoo10.jp/gmkt.inc/Mobile/Special/Special.aspx?sid=220713"
+            }
+          ]
+        }
+      ],
+      "data_points": [],
+      "related_report_ids": [
+        "2026-09-26-daily",
+        "2026-09-23-daily",
+        "2026-09-22-daily",
+        "2026-09-21-daily",
+        "2026-08-23-daily",
+        "2026-08-22-weekly",
+        "2026-08-22-monthly"
+      ]
+    },
+    {
+      "topic_id": "beauty-luxury-fragrance",
+      "title_ja": "ラグジュアリー化粧品需要",
+      "current_state": "watch",
+      "confidence": "medium",
+      "summary": "直近企業開示ではLuxury Fragranceが強く、Skincareも回復を示す一方、Makeupは相対的に緩やか。単一カテゴリではなくPrestige Beauty内のカテゴリ差として追跡する。",
+      "japan_implication": "日本の需要を直接示すものではないが、global allocation・launch priority・category mixの先行材料になる。",
+      "operational_implication": "Fragrance偏重で予測せず、Skincare/Makeupを含むカテゴリ別allocationとJapan sell-outを照合する。",
+      "outlook_7d": null,
+      "outlook_30d": "企業IR、ブランド公式サイト launch、EC rankingの複数チャネル一致を確認。",
+      "outlook_90d": null,
+      "developments": [
+        {
+          "date": "2026-08-19",
+          "type": "corporate_update",
+          "headline": "個別ブランド Q4でFragranceが成長を牽引",
+          "summary": "ReutersはLuxury Fragranceの強い需要と中国市場改善を報道。Skincareも好調。",
+          "evidence": [
+            {
+              "class": "corporate_ir",
+              "source": "個別ブランド / Reuters",
+              "url": "https://www.reuters.com/business/retail-consumer/estee-lauder-forecasts-annual-profit-above-estimates-strong-china-demand-2026-08-19/"
+            }
+          ]
+        },
+        {
+          "date": "2026-04-20",
+          "type": "corporate_update",
+          "headline": "個別ブランド North Asiaは中国Selective回復を報告",
+          "summary": "中国はmid-to-high single digit growth、Luxeはskincareを含む全カテゴリでstrong momentumと説明。",
+          "evidence": [
+            {
+              "class": "corporate_ir",
+              "source": "個別ブランド",
+              "url": "https://www.loreal.com/-/media/project/loreal/brand-sites/corp/master/lcorp/press-releases/finance/2026/first-quarter-2026-sales/first-quarter-2026-sales.pdf"
+            }
+          ]
+        }
+      ],
+      "data_points": [],
+      "related_report_ids": [
+        "2026-08-22-weekly",
+        "2026-08-22-monthly"
+      ]
+    }
+  ]
+}

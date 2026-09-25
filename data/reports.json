@@ -3350,6 +3350,226 @@
         ]
       },
       "path": "reports/2026/09/2026-09-25-daily.html"
+    },
+    {
+      "date": "2026-09-26",
+      "status": "watch",
+      "as_of": "2026年9月26日 08:00 JST",
+      "sample": false,
+      "id": "2026-09-26-daily",
+      "type": "daily",
+      "period": "2026-09-26",
+      "title": "物流・化粧品インテリジェンス・ブリーフ — DAILY",
+      "summary": "台風26号接近で鹿児島離島の一部に全商品荷受停止が発生。千葉の一部配送遅延とJR貨物の幹線遅延も残るが、全国一律の運用変更は不要。対象貨物のみ例外管理する。",
+      "bottom_line": "鹿児島県大島郡の荷受停止対象向けは出荷保留または代替手段を確認。千葉発着とJR貨物接続の時限貨物は最新ETAを確認する。その他は通常運用を維持し、関東の大雨影響はcarrierの実運用変化が出た場合のみ追加対応する。NACCSは通常手順を使用する。",
+      "key_issues": [
+        "ヤマト運輸: 2026-09-26 07:00時点で台風26号接近・フェリー欠航により鹿児島県大島郡の一部向け全商品の荷受けを停止",
+        "国内輸送: 千葉県の一部配送遅延が継続し、JR貨物は一部幹線列車に最大+6時間04分予定などの遅延を掲示",
+        "NACCS: 正常運転中。通関は通常運用",
+        "海上価格: WCI 4,468 USD/40ft、WoW -1.0%（2026-09-24 vs 2026-09-17）; IACI 1,491 USD/40ft、WoW +6.0%（同）",
+        "Beauty実需: 2026年8月百貨店化粧品売上399.50億円、店数調整後YoY +3.4%（2026年8月 vs 2025年8月）、構成比9.5%",
+        "Beauty Brand.com: Makeup/Skincare/Fragrance横断で販促を確認。GWP・購入特典はpromotionとしてorganic demandから分離"
+      ],
+      "tags": [
+        "Daily",
+        "Typhoon 26",
+        "Domestic Delivery",
+        "JR Freight",
+        "Chiba",
+        "NACCS",
+        "Ocean rates",
+        "Department store cosmetics",
+        "Beauty promotion"
+      ],
+      "status_board": {
+        "domestic": "watch",
+        "weather": "watch",
+        "customs": "normal",
+        "ocean": "watch",
+        "air": "unconfirmed",
+        "global": "watch"
+      },
+      "signals": {
+        "wci": {
+          "value": 4468,
+          "unit": "USD/40ft",
+          "data_date": "2026-09-24",
+          "source": "https://www.drewry.co.uk/trackers-and-indices/latest-trackers-and-indices/world-container-index-assessed-by-drewry"
+        },
+        "scfi": {
+          "value": null,
+          "unit": null,
+          "data_date": null,
+          "source": null
+        }
+      },
+      "cost_snapshot": {
+        "as_of": "2026-09-26T08:00:00+09:00",
+        "metrics": {
+          "regular_gasoline_national": {
+            "value": 169.9,
+            "unit": "JPY/L",
+            "data_date": "2026-09-14",
+            "source": "資源エネルギー庁 石油製品価格調査 / data/economy/fuel-prices.json"
+          },
+          "diesel_national": {
+            "value": 159.3,
+            "unit": "JPY/L",
+            "data_date": "2026-09-14",
+            "source": "資源エネルギー庁 石油製品価格調査 / data/economy/fuel-prices.json"
+          },
+          "drewry_wci": {
+            "value": 4468,
+            "unit": "USD/40ft",
+            "data_date": "2026-09-24",
+            "source": "Drewry World Container Index / data/economy/ocean-freight-market.json"
+          },
+          "drewry_iaci": {
+            "value": 1491,
+            "unit": "USD/40ft",
+            "data_date": "2026-09-24",
+            "source": "Drewry Intra-Asia Container Index / data/economy/ocean-freight-market.json"
+          }
+        },
+        "interpretation_ja": "直近の検証済み公表値。WCIは2026年9月17日比WoW -1.0%、IACIは同基準WoW +6.0%。価格と物量・実輸送capacityを同一視しない。"
+      },
+      "intelligence": {
+        "disruption": [
+          {
+            "id": "japan-domestic-delivery",
+            "signal": "台風26号接近で鹿児島県大島郡の一部に全商品荷受停止が発生。千葉の一部配送遅延とJR貨物の幹線遅延も継続している。",
+            "lens": "disruption",
+            "direction": "rising",
+            "impact": "high",
+            "change_status": "deteriorating",
+            "confidence": "high",
+            "evidence": [
+              {
+                "source": "ヤマト運輸",
+                "date": "2026-09-26",
+                "url": "https://www.kuronekoyamato.co.jp/ytc/chien/chien_hp.html"
+              },
+              {
+                "source": "JR貨物",
+                "date": "2026-09-26",
+                "url": "https://www.jrfreight.co.jp/i_daiya"
+              }
+            ],
+            "operational_implication": "荷受停止対象と鉄道接続の時限貨物は通常lead timeを固定前提にしない。",
+            "action_direction": "対象貨物だけcarrier受託可否・最新ETAを確認し、全国一律の出荷停止には一般化しない。"
+          },
+          {
+            "id": "japan-weather-disruption",
+            "signal": "台風26号接近に伴うフェリー欠航が鹿児島離島の荷受停止へ波及。関東も大雨リスクを継続監視する。",
+            "lens": "disruption",
+            "direction": "rising",
+            "impact": "medium",
+            "change_status": "deteriorating",
+            "confidence": "high",
+            "evidence": [
+              {
+                "source": "ヤマト運輸",
+                "date": "2026-09-26",
+                "url": "https://www.kuronekoyamato.co.jp/ytc/chien/chien_hp.html"
+              },
+              {
+                "source": "気象庁 防災情報",
+                "date": "2026-09-26",
+                "url": "https://www.jma.go.jp/bosai/"
+              }
+            ],
+            "operational_implication": "予報だけで全国運用を変えず、carrierのobserved impactを基準に対象レーンを例外管理する。",
+            "action_direction": "鹿児島離島は荷受停止に従い、関東は実際の集配・幹線制限が出た場合にのみ追加対応する。"
+          },
+          {
+            "id": "middle-east-maritime-risk",
+            "signal": "一部serviceのSuez復帰が進む一方、service別routingとschedule reliabilityの差が残るため全面正常化とは扱わない。",
+            "lens": "disruption",
+            "direction": "volatile",
+            "impact": "high",
+            "change_status": "unchanged_high_risk",
+            "confidence": "high",
+            "evidence": [
+              {
+                "source": "Hapag-Lloyd",
+                "date": "2026-09-22",
+                "url": "https://www.hapag-lloyd.com/en/services-information/news/2026/09/routing-update-for-our-ne4--se1--se2-and-iex-services.html"
+              }
+            ],
+            "operational_implication": "Suez復帰の一般論ではなくbooking対象service・voyageの実routing・接続・ETAを確認する。",
+            "action_direction": "一律のlead time短縮へ反映しない。"
+          }
+        ],
+        "cost_capacity": [],
+        "reliability": [],
+        "demand_commerce": [
+          {
+            "id": "beauty-japan-ec-promotion",
+            "signal": "設定済みBrand.com群をMakeup/Skincare/Fragrance横断で確認。MAQuillAGE、Diptyque、Jo Malone等の購入特典は継続するが、organic demand上振れとは分離する。",
+            "lens": "demand_commerce",
+            "direction": "volatile",
+            "impact": "medium",
+            "change_status": "unchanged",
+            "confidence": "high",
+            "demand_driver": "promotion",
+            "duration": "temporary",
+            "evidence": [
+              {
+                "source": "MAQuillAGE",
+                "date": "2026-09-21",
+                "url": "https://maquillage.shiseido.co.jp/"
+              },
+              {
+                "source": "Diptyque Japan",
+                "date": "2026-09-26",
+                "url": "https://jp.diptyqueparis.com/ja-jp/pages/information"
+              },
+              {
+                "source": "Jo Malone London Japan",
+                "date": "2026-09-26",
+                "url": "https://www.jomalone.jp/complimentary-benefits"
+              }
+            ],
+            "operational_implication": "GWP・購入特典による短期order/packing波動を基礎需要から分離する。",
+            "action_direction": "Brand×Category×Channelで施策を確認し、一律の在庫積み増しはしない。"
+          }
+        ],
+        "regulatory_structural": [
+          {
+            "id": "japan-customs-naccs",
+            "signal": "NACCSは正常運転中で、通関は通常運用を継続できる。",
+            "lens": "regulatory_structural",
+            "direction": "stable",
+            "impact": "low",
+            "change_status": "unchanged",
+            "confidence": "high",
+            "evidence": [
+              {
+                "source": "NACCS掲示板",
+                "date": "2026-09-26",
+                "url": "https://bbs.naccscenter.com/"
+              }
+            ],
+            "operational_implication": "通常手順を使用する。",
+            "action_direction": "新たな障害・計画停止表示がない限り通常運用を継続する。",
+            "customs_subtype": "operational"
+          }
+        ]
+      },
+      "change_summary": {
+        "comparison_base": "2026-09-25-daily",
+        "new": [],
+        "deteriorating": [
+          "japan-domestic-delivery",
+          "japan-weather-disruption"
+        ],
+        "improving": [],
+        "resolved": [],
+        "unchanged_high_risk": [
+          "middle-east-maritime-risk"
+        ]
+      },
+      "path": "reports/2026/09/2026-09-26-daily.html"
     }
   ]
 }
