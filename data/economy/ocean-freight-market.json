@@ -76,8 +76,8 @@
         },
         {
           "period": "2026-08-26",
-          "value": 4500,
-          "wow_pct": 1,
+          "value": 1491.0,
+          "wow_pct": 2.2,
           "status": "official",
           "source_note": "Drewry public tracker"
         },
@@ -279,5 +279,5 @@
     }
   ],
   "collection_status": "official_recent_history_seeded_append_weekly_snapshots",
-  "last_collected_at": "2026-09-24T23:25:57Z"
+  "last_collected_at": "2026-09-25T00:00:43.339020+00:00"
 }
