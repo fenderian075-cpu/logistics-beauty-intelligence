@@ -61,6 +61,202 @@
   },
   "reports": [
     {
+      "date": "2026-09-27",
+      "status": "watch",
+      "as_of": "2026年9月27日 08:00 JST",
+      "sample": false,
+      "id": "2026-09-27-daily",
+      "type": "daily",
+      "period": "2026-09-27",
+      "title": "物流・化粧品インテリジェンス・ブリーフ — DAILY",
+      "summary": "気象影響による一部地域の配送制約を確認。全国一律の運用変更は不要で、影響対象のみ例外管理する。",
+      "bottom_line": "影響対象の時限貨物だけ受託可否と最新ETAを確認し、それ以外は通常運用を維持する。",
+      "key_issues": [
+        "国内配送: 気象影響による地域的な受託・配送制約",
+        "国内貨物鉄道: 運行支障の掲示あり。詳細確定までは個別確認",
+        "通関: NACCSは正常運転中",
+        "海上: 中東のservice別routing・reliability差を継続監視",
+        "Beauty: 8月全国百貨店化粧品売上は店数調整後YoY +3.4%（2026年8月 vs 2025年8月）。promotion/launchはorganic demandと分離"
+      ],
+      "tags": [
+        "Daily",
+        "Weather",
+        "Domestic Delivery",
+        "JR Freight",
+        "NACCS",
+        "Middle East",
+        "Beauty"
+      ],
+      "status_board": {
+        "domestic": "watch",
+        "weather": "watch",
+        "customs": "normal",
+        "ocean": "watch",
+        "air": "unconfirmed",
+        "global": "watch"
+      },
+      "signals": {
+        "wci": {
+          "value": 4468,
+          "unit": "USD/40ft",
+          "data_date": "2026-09-24",
+          "source": "https://www.drewry.co.uk/"
+        },
+        "scfi": {
+          "value": null,
+          "unit": null,
+          "data_date": null,
+          "source": null
+        }
+      },
+      "cost_snapshot": {
+        "as_of": "2026-09-27T08:00:00+09:00",
+        "metrics": {
+          "regular_gasoline_national": {
+            "value": 169.9,
+            "unit": "JPY/L",
+            "data_date": "2026-09-14",
+            "source": "資源エネルギー庁 石油製品価格調査 / data/economy/fuel-prices.json"
+          },
+          "diesel_national": {
+            "value": 159.3,
+            "unit": "JPY/L",
+            "data_date": "2026-09-14",
+            "source": "資源エネルギー庁 石油製品価格調査 / data/economy/fuel-prices.json"
+          },
+          "drewry_wci": {
+            "value": 4468,
+            "unit": "USD/40ft",
+            "data_date": "2026-09-24",
+            "source": "Drewry World Container Index / data/economy/ocean-freight-market.json"
+          },
+          "drewry_iaci": {
+            "value": 1491,
+            "unit": "USD/40ft",
+            "data_date": "2026-09-24",
+            "source": "Drewry Intra-Asia Container Index / data/economy/ocean-freight-market.json"
+          }
+        },
+        "interpretation_ja": "直近の検証済み公表値。WCIは2026年9月17日比WoW -1.0%、IACIは同基準WoW +6.0%。価格と物量・実輸送capacity・reliabilityを同一視しない。"
+      },
+      "intelligence": {
+        "disruption": [
+          {
+            "id": "japan-domestic-delivery",
+            "signal": "気象影響による地域的な受託・配送制約を確認。",
+            "lens": "disruption",
+            "direction": "rising",
+            "impact": "high",
+            "change_status": "deteriorating",
+            "confidence": "high",
+            "evidence": [
+              {
+                "source": "国内carrier公式情報",
+                "date": "2026-09-27",
+                "url": "https://www.kuronekoyamato.co.jp/ytc/chien/chien_hp.html"
+              }
+            ],
+            "operational_implication": "影響対象の時限貨物は通常lead timeを固定前提にしない。",
+            "action_direction": "対象貨物のみ受託可否と最新ETAを確認する。"
+          },
+          {
+            "id": "japan-weather-disruption",
+            "signal": "台風26号の予報リスクが一部地域の実運用制約へ移行した。",
+            "lens": "disruption",
+            "direction": "rising",
+            "impact": "high",
+            "change_status": "deteriorating",
+            "confidence": "high",
+            "evidence": [
+              {
+                "source": "国内carrier公式情報",
+                "date": "2026-09-27",
+                "url": "https://www.kuronekoyamato.co.jp/ytc/chien/chien_hp.html"
+              }
+            ],
+            "operational_implication": "地域的影響を全国へ一般化せず例外管理する。",
+            "action_direction": "carrierの実運用を優先する。"
+          },
+          {
+            "id": "middle-east-maritime-risk",
+            "signal": "中東ではservice別routing変更とreliability差が残る。",
+            "lens": "disruption",
+            "direction": "volatile",
+            "impact": "high",
+            "change_status": "unchanged_high_risk",
+            "confidence": "high",
+            "evidence": [
+              {
+                "source": "Hapag-Lloyd",
+                "date": "2026-09-24",
+                "url": "https://www.hapag-lloyd.com/en/services-information/operational-updates/updates/2026/09/ops-update-middle-east-week39.html"
+              }
+            ],
+            "operational_implication": "関連貨物はservice・voyage・connection単位で確認する。",
+            "action_direction": "一律の正常化判断へ反映しない。"
+          }
+        ],
+        "cost_capacity": [],
+        "reliability": [],
+        "demand_commerce": [
+          {
+            "id": "beauty-japan-ec-promotion",
+            "signal": "設定済みBrand.com群ではpromotion/launch施策を確認する一方、organic demand上振れの直接証拠とは扱わない。",
+            "lens": "demand_commerce",
+            "direction": "volatile",
+            "impact": "medium",
+            "change_status": "unchanged",
+            "confidence": "medium",
+            "demand_driver": "promotion",
+            "duration": "temporary",
+            "evidence": [
+              {
+                "source": "設定済みBrand.com公式情報監視群",
+                "date": "2026-09-27"
+              }
+            ],
+            "operational_implication": "施策由来の短期波動をactual demandから分離する。",
+            "action_direction": "一律の在庫積み増しはしない。"
+          }
+        ],
+        "regulatory_structural": [
+          {
+            "id": "japan-customs-naccs",
+            "signal": "NACCSは正常運転中で、通関は通常手順を継続できる。",
+            "lens": "regulatory_structural",
+            "direction": "stable",
+            "impact": "low",
+            "change_status": "unchanged",
+            "confidence": "high",
+            "evidence": [
+              {
+                "source": "NACCS掲示板",
+                "date": "2026-09-27",
+                "url": "https://bbs.naccscenter.com/"
+              }
+            ],
+            "operational_implication": "通常手順を使用する。",
+            "action_direction": "新たな障害表示がない限り通常運用を継続する。",
+            "customs_subtype": "operational"
+          }
+        ]
+      },
+      "change_summary": {
+        "comparison_base": "2026-09-25-daily",
+        "new": [],
+        "deteriorating": [
+          "japan-domestic-delivery",
+          "japan-weather-disruption"
+        ],
+        "improving": [],
+        "resolved": [],
+        "unchanged_high_risk": [
+          "middle-east-maritime-risk"
+        ]
+      },
+      "path": "reports/2026/09/2026-09-27-daily.html"
+    },
+    {
       "date": "2026-09-24",
       "status": "watch",
       "as_of": "2026年9月24日 08:00 JST",
