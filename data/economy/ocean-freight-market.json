@@ -76,7 +76,7 @@
         },
         {
           "period": "2026-08-26",
-          "value": 1491.0,
+          "value": 1491,
           "wow_pct": 2.2,
           "status": "official",
           "source_note": "Drewry public tracker"
@@ -274,10 +274,25 @@
           "published_at": "2026-09-18",
           "status": "official_forward_snapshot",
           "source_note": "Drewry Cancelled Sailings Tracker 18 Sep 2026"
+        },
+        {
+          "period": "2026-W40-W44",
+          "value": 8,
+          "planned_sailings": 712,
+          "cancelled_sailings": 58,
+          "window": "2026-09-28/2026-11-01",
+          "comparison": {
+            "type": "vs_previous_release",
+            "base_period": "2026-W39-W43"
+          },
+          "share_change_pp_vs_previous_release": -3,
+          "published_at": "2026-09-25",
+          "status": "official_forward_snapshot",
+          "source_note": "Drewry Cancelled Sailings Tracker 25 Sep 2026"
         }
       ]
     }
   ],
   "collection_status": "official_recent_history_seeded_append_weekly_snapshots",
-  "last_collected_at": "2026-09-25T00:00:43.339020+00:00"
+  "last_collected_at": "2026-09-28T08:30:00+09:00"
 }
