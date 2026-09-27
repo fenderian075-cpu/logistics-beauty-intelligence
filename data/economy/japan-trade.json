@@ -13012,15 +13012,6 @@
       "name_ja": "貿易収支（年次）"
     }
   ],
-  "priority_drilldowns": [
-    "France→Japan",
-    "Italy→Japan",
-    "China→Japan",
-    "Korea→Japan",
-    "cosmetics-related HS",
-    "fragrance-related HS",
-    "ocean-container vs air"
-  ],
   "public_privacy_rule": "Public history stores national aggregates. Priority origin-country, port and lane interpretation remains generalized in public output.",
   "next_release_watch": {
     "latest_monthly_available": "2026-08 preliminary",
