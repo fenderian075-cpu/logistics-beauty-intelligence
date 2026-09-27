@@ -3350,6 +3350,336 @@
         ]
       },
       "path": "reports/2026/09/2026-09-25-daily.html"
+    },
+    {
+      "date": "2026-09-27",
+      "status": "watch",
+      "as_of": "2026年9月27日 13:00 JST",
+      "sample": false,
+      "id": "2026-09-27-weekly",
+      "type": "weekly",
+      "period": "2026-09-15/2026-09-27",
+      "title": "物流・化粧品インテリジェンス・ブリーフ — WEEKLY",
+      "summary": "Beauty実需は2026年8月も前年超えだがYoY成長率は7月から鈍化。8月名目輸入額は大幅増だがphysical volumeの同率増加を示さない。海上はWCI低下とIACI上昇が併存し、blank sailing 11%と低いschedule reliabilityがeffective Supplyの不確実性を残すため、全国一律の在庫積み増しではなくCategory×Channelとshipment単位の判断を優先する。",
+      "bottom_line": "全国一律の在庫積み増しはしない。BeautyはCategory×Channelでsell-through・既存在庫・launch/promotionを確認。海上はRate、nominal Supply、effective Supply、Reliabilityを分け、重点輸入レーンでは主要T/S接続・実運航便・ETA variance・booking lead timeを確認する。国内は実際に影響のあるshipmentだけ前倒し・代替を判断する。",
+      "key_issues": [
+        "百貨店化粧品399.5億円、店数調整後YoY +3.4%（2026-08 vs 2025-08）、構成比9.5%",
+        "日本の名目輸入額11.154兆円、YoY +28.0%；輸出額10.048兆円、YoY +19.3%（2026-08 vs 2025-08）",
+        "WCI 4,468米ドル/40ft、WoW -1.0%；IACI 1,491米ドル/40ft、WoW +6.0%（2026-09-24 vs 2026-09-17）",
+        "2026-W39〜W43の主要East-West予定720便中77便cancel予定、blank sailing share 11%",
+        "JR貨物2026年8月総輸送量185.8万t、YoY -6.8%（2026-08 vs 2025-08）"
+      ],
+      "tags": [
+        "Beauty",
+        "Trade",
+        "WCI",
+        "IACI",
+        "Effective Capacity",
+        "Physical Flow",
+        "Rail"
+      ],
+      "status_board": {
+        "domestic": "watch",
+        "weather": "watch",
+        "customs": "normal",
+        "ocean": "watch",
+        "air": "normal",
+        "global": "watch"
+      },
+      "signals": {
+        "wci": {
+          "value": 4468,
+          "unit": "USD/40ft",
+          "data_date": "2026-09-24",
+          "source": "https://www.drewry.co.uk/trackers-and-indices/latest-trackers-and-indices/world-container-index-assessed-by-drewry"
+        },
+        "scfi": {
+          "value": null,
+          "unit": null,
+          "data_date": null,
+          "source": null
+        }
+      },
+      "cost_snapshot": {
+        "as_of": "2026-09-27T13:00:00+09:00",
+        "metrics": {
+          "regular_gasoline_national": {
+            "value": 169.9,
+            "unit": "JPY/L",
+            "data_date": "2026-09-14",
+            "source": "資源エネルギー庁 石油製品価格調査 / data/economy/fuel-prices.json",
+            "comparison_type": "WoW",
+            "base_period": "2026-09-07",
+            "comparison_pct": -0.06
+          },
+          "diesel_national": {
+            "value": 159.3,
+            "unit": "JPY/L",
+            "data_date": "2026-09-14",
+            "source": "資源エネルギー庁 石油製品価格調査 / data/economy/fuel-prices.json",
+            "comparison_type": "WoW",
+            "base_period": "2026-09-07",
+            "comparison_pct": -0.13
+          },
+          "drewry_wci": {
+            "value": 4468,
+            "unit": "USD/40ft",
+            "data_date": "2026-09-24",
+            "source": "Drewry World Container Index",
+            "comparison_type": "WoW",
+            "base_period": "2026-09-17",
+            "comparison_pct": -1
+          },
+          "drewry_iaci": {
+            "value": 1491,
+            "unit": "USD/40ft",
+            "data_date": "2026-09-24",
+            "source": "Drewry Intra-Asia Container Index",
+            "comparison_type": "WoW",
+            "base_period": "2026-09-17",
+            "comparison_pct": 6
+          },
+          "road_freight": {
+            "value": 112.9,
+            "unit": "index 2020=100",
+            "data_date": "2026-07-01",
+            "source": "日本銀行 企業向けサービス価格指数 / data/economy/freight-cost.json",
+            "comparison_type": "YoY",
+            "base_period": "2025-07",
+            "comparison_pct": 4.5
+          },
+          "ocean_freight": {
+            "value": 259.5,
+            "unit": "index 2020=100",
+            "data_date": "2026-07-01",
+            "source": "日本銀行 企業向けサービス価格指数 / data/economy/freight-cost.json",
+            "comparison_type": "YoY",
+            "base_period": "2025-07",
+            "comparison_pct": 67.4
+          }
+        },
+        "interpretation_ja": "燃料、spot-rate、日銀SPPIを別系列で固定保存。価格・指数をphysical demand、nominal Supply、effective Supply、Reliabilityと同一視しない。"
+      },
+      "intelligence": {
+        "disruption": [
+          {
+            "id": "japan-domestic-delivery",
+            "signal": "JR貨物の2026年8月総輸送量は1,858千t、YoY -6.8%（2026-08 vs 2025-08）。コンテナはYoY -7.8%、車扱はYoY -4.7%（同）。局地的な輸送遅延もあるため国内SLAはshipment単位で確認する。",
+            "lens": "disruption",
+            "direction": "volatile",
+            "impact": "medium",
+            "change_status": "deteriorating",
+            "confidence": "high",
+            "evidence": [
+              {
+                "source": "JR貨物",
+                "date": "2026-09-16",
+                "url": "https://www.jrfreight.co.jp/info/2026/files/20260916_01.pdf"
+              }
+            ],
+            "operational_implication": "鉄道・離島向けなど実際に影響が出たshipmentだけ代替・前倒しを検討する。",
+            "action_direction": "全国トラックcapacity不足へ一般化しない。"
+          }
+        ],
+        "cost_capacity": [
+          {
+            "id": "ocean-global-price",
+            "signal": "Drewry WCIは4,468米ドル/40ft、WoW -1.0%（2026-09-24 vs 2026-09-17）。",
+            "lens": "cost_capacity",
+            "direction": "falling",
+            "impact": "medium",
+            "change_status": "improving",
+            "confidence": "high",
+            "evidence": [
+              {
+                "source": "Drewry",
+                "date": "2026-09-24",
+                "url": "https://www.drewry.co.uk/trackers-and-indices/latest-trackers-and-indices/world-container-index-assessed-by-drewry"
+              }
+            ],
+            "operational_implication": "global spot rate低下を個別laneのspace・Reliability改善とみなさない。",
+            "action_direction": "Rateとspace availabilityを別管理する。"
+          },
+          {
+            "id": "ocean-intra-asia-capacity",
+            "signal": "Drewry IACIは1,491米ドル/40ft、WoW +6.0%（2026-09-24 vs 2026-09-17）。これはRate観測でありphysical capacityの直接計測ではない。",
+            "lens": "cost_capacity",
+            "direction": "unknown",
+            "impact": "medium",
+            "change_status": "unchanged",
+            "confidence": "high",
+            "evidence": [
+              {
+                "source": "Drewry",
+                "date": "2026-09-24",
+                "url": "https://www.drewry.co.uk/trackers-and-indices"
+              }
+            ],
+            "operational_implication": "域内rate上昇をcapacity減と断定せず、実際のbooking availabilityを確認する。",
+            "action_direction": "主要T/S接続とrollover riskをshipment単位で確認する。"
+          },
+          {
+            "id": "ocean-blank-sailing-pressure",
+            "signal": "2026-W39〜W43（2026-09-21〜2026-10-25）の主要East-West予定720便中77便がcancel予定、blank sailing share 11%。前回W38〜W42の11%からshareは横ばい。",
+            "lens": "cost_capacity",
+            "direction": "stable",
+            "impact": "high",
+            "change_status": "unchanged_high_risk",
+            "confidence": "high",
+            "evidence": [
+              {
+                "source": "Drewry Cancelled Sailings Tracker",
+                "date": "2026-09-18",
+                "url": "https://www.drewry.co.uk/supply-chain-advisors/supply-chain-expertise/cancelled-sailings-tracker"
+              }
+            ],
+            "operational_implication": "nominal fleetより実運航便をeffective Supplyとして確認する。",
+            "action_direction": "該当service/voyageのcancel・omission・connectionをbooking前に確認する。"
+          }
+        ],
+        "reliability": [
+          {
+            "id": "ocean-schedule-reliability",
+            "signal": "世界schedule reliabilityの最新公開値は2026年7月56.4%、MoM -6.1 percentage points（2026-07 vs 2026-06）、YoY -8.8 percentage points（2026-07 vs 2025-07）。late vessel平均遅延は6.06日、MoM +0.59日（2026-07 vs 2026-06）。",
+            "lens": "reliability",
+            "direction": "falling",
+            "impact": "high",
+            "change_status": "unchanged_high_risk",
+            "confidence": "high",
+            "evidence": [
+              {
+                "source": "Sea-Intelligence",
+                "date": "2026-08-26",
+                "url": "https://sea-intelligence.com/press-room/404-july-global-schedule-reliability-drops-to-lowest-2026-level"
+              }
+            ],
+            "operational_implication": "平均transit timeだけでなくarrival varianceとconnection bufferを織り込む。",
+            "action_direction": "重点輸入レーンのETA confidenceをservice単位で確認する。"
+          }
+        ],
+        "demand_commerce": [
+          {
+            "id": "beauty-japan-ec-promotion",
+            "signal": "百貨店化粧品は2026年8月399.5億円、店数調整後YoY +3.4%（2026-08 vs 2025-08）。Google Trendsでは香水・リップの直近7日平均が直前21日平均比+8.8%/+6.1%だが、search attentionはsalesではない。",
+            "lens": "demand_commerce",
+            "direction": "volatile",
+            "impact": "medium",
+            "change_status": "unchanged",
+            "confidence": "high",
+            "demand_driver": "promotion",
+            "duration": "temporary",
+            "evidence": [
+              {
+                "source": "日本百貨店協会",
+                "date": "2026-09-25",
+                "url": "https://www.depart.or.jp/press_release/files/NL2608.pdf"
+              },
+              {
+                "source": "Google Trends collector",
+                "date": "2026-09-27",
+                "url": null
+              }
+            ],
+            "operational_implication": "実売・出荷・promotion・検索attentionを分離してCategory×Channelで補充判断する。",
+            "action_direction": "検索上昇だけで在庫を積み増さない。"
+          }
+        ],
+        "regulatory_structural": []
+      },
+      "market_intelligence": [
+        {
+          "id": "global-container-effective-supply",
+          "scope": "グローバルコンテナ 実効供給力",
+          "rate": {
+            "direction": "mixed",
+            "evidence": [
+              "WCI WoW -1.0%（2026-09-24 vs 2026-09-17）",
+              "IACI WoW +6.0%（同）"
+            ]
+          },
+          "supply": {
+            "direction": "unknown",
+            "evidence": [
+              "aggregate nominal fleet減少を示す新しい検証済み証拠なし",
+              "W39〜W43 blank sailing share 11%はeffective Supply調整"
+            ]
+          },
+          "demand": {
+            "direction": "mixed",
+            "evidence": [
+              "モード別physical flowは航空・港湾・鉄道で分化"
+            ]
+          },
+          "reliability": {
+            "direction": "deteriorating",
+            "evidence": [
+              "世界schedule reliability 56.4%、MoM -6.1 percentage points（2026-07 vs 2026-06）"
+            ]
+          },
+          "inventory": {
+            "direction": "unknown",
+            "evidence": [
+              "比較可能な最新全国倉庫残高を今回検証できず"
+            ]
+          },
+          "risk": "high",
+          "japan_implication": "日本向けはRate水準より実運航便・接続成功率・ETA varianceを重視。",
+          "operational_implication": "Rate・nominal Supply・effective Supply・Demand・Reliability・Inventoryを分離する。",
+          "outlook_30d": "blank sailingと低いReliabilityがeffective Supplyの改善を妨げる可能性。",
+          "confidence": "high"
+        },
+        {
+          "id": "japan-beauty-demand",
+          "scope": "日本Beauty実需",
+          "rate": {
+            "direction": "unknown",
+            "evidence": []
+          },
+          "supply": {
+            "direction": "rising",
+            "evidence": [
+              "国内化粧品出荷額YoY +6.3%（2026-06 vs 2025-06）"
+            ]
+          },
+          "demand": {
+            "direction": "rising",
+            "evidence": [
+              "百貨店化粧品YoY +3.4%（2026-08 vs 2025-08）"
+            ]
+          },
+          "reliability": {
+            "direction": "unknown",
+            "evidence": []
+          },
+          "inventory": {
+            "direction": "unknown",
+            "evidence": [
+              "比較可能な最新全国倉庫残高を今回検証できず"
+            ]
+          },
+          "risk": "medium",
+          "japan_implication": "retail demandは前年超えだがYoY成長率は前月から鈍化し、検索attentionは実売ではない。",
+          "operational_implication": "Category×Channelで補充し、一律在庫積み増しを避ける。",
+          "outlook_30d": "秋冬launch/promotionのattentionがsell-throughとproducer shipmentに追随するか確認する。",
+          "confidence": "high"
+        }
+      ],
+      "change_summary": {
+        "comparison_base": "2026-09-14-weekly",
+        "new": [],
+        "deteriorating": [
+          "japan-domestic-delivery"
+        ],
+        "improving": [
+          "ocean-global-price"
+        ],
+        "resolved": [],
+        "unchanged_high_risk": [
+          "ocean-blank-sailing-pressure",
+          "ocean-schedule-reliability"
+        ]
+      },
+      "path": "reports/2026/09/2026-09-27-weekly.html"
     }
   ]
 }
