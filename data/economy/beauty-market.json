@@ -3,7 +3,7 @@
   "dataset": "beauty-market",
   "title_ja": "化粧品市場・カテゴリ動向",
   "frequency": "mixed",
-  "updated_at": "2026-09-22T08:30:00+09:00",
+  "updated_at": "2026-09-27T13:00:00+09:00",
   "purpose": "Public market-size, category-growth and disclosed-share observations used as secondary context alongside official retail, shipment and trade statistics.",
   "sources": [
     {
@@ -47,7 +47,7 @@
       "base_period": "2024FY",
       "published_at": "2026-09-10",
       "status": "research_estimate_public",
-      "source": "矢野経済研究所 2026年版 化粧品マーケティング総鑑 公開ページ",
+      "source": "矢野経済研究所 公開ページ",
       "source_url": "https://www.yano.co.jp/market_reports/C68102600"
     },
     {
@@ -64,7 +64,7 @@
       "metric": "lip_color_market_forecast",
       "value": 96200000000,
       "unit": "JPY",
-      "yoy": 8.0,
+      "yoy": 8,
       "status": "research_estimate",
       "source": "富士経済 化粧品マーケティング要覧2025 No.1 公開リリース"
     },
@@ -82,7 +82,7 @@
       "metric": "fragrance_market",
       "value": 57500000000,
       "unit": "JPY",
-      "yoy": 15.0,
+      "yoy": 15,
       "status": "research_estimate",
       "source": "富士経済 化粧品マーケティング要覧2025 No.1 公開リリース"
     },
@@ -177,7 +177,7 @@
     {
       "period": "2025",
       "metric": "special_use_shipment_value_share",
-      "value": 7.0,
+      "value": 7,
       "unit": "percent_share",
       "comparison_type": "share",
       "published_at": "2026-09-17",
@@ -195,6 +195,19 @@
       "status": "official_industry_association_from_meti",
       "source": "日本化粧品工業会（経済産業省 生産動態統計）",
       "source_url": "https://www.jcia.org/user/statistics/shipment"
+    },
+    {
+      "period": "2026F",
+      "metric": "makeup_market_forecast",
+      "value": 651900000000,
+      "unit": "JPY",
+      "yoy": 1.9,
+      "comparison_type": "YoY forecast",
+      "base_period": "2025",
+      "published_at": "2026-09-14",
+      "status": "research_estimate_public",
+      "source": "週刊粧業（富士経済調査紹介）",
+      "source_url": "https://form.syogyo.jp/news/2026/09/post_044656"
     }
   ],
   "share_policy": "Store category shares or company/brand shares only when explicitly disclosed in a public source. Never infer or reconstruct paid-report market shares from snippets. If comparing share, use percentage-point change rather than percent growth.",
