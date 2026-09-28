@@ -61,6 +61,239 @@
   },
   "reports": [
     {
+      "date": "2026-09-29",
+      "status": "watch",
+      "as_of": "2026年9月29日 08:00 JST",
+      "sample": false,
+      "id": "2026-09-29-daily",
+      "type": "daily",
+      "period": "2026-09-29",
+      "title": "物流・化粧品インテリジェンス・ブリーフ — DAILY",
+      "summary": "全国一律の運用変更は不要。千葉県の台風残留影響と貨物鉄道の例外だけshipment単位で確認し、通関は通常運用を継続する。",
+      "bottom_line": "千葉県発着・貨物鉄道接続のSLA-critical shipmentだけdispatch前に最新ETAを確認する。通関は通常手順を継続し、Suez復帰を理由に標準lead timeを一律短縮しない。Beautyはlaunch/promotion波動をorganic demandから分離する。",
+      "key_issues": [
+        "国内輸送: 千葉県の一部地域で台風25号残留遅延。JR貨物は列車別詳細の確認が必要",
+        "通関: NACCS正常運転",
+        "海上: GeminiのSuez経由へのservice別移行が進むが、日本発着の実績定時性改善は未確認",
+        "海上価格: WCI 4,468 USD/40ft、WoW -1.0%（2026-09-24 vs 2026-09-17）; IACI 1,491 USD/40ft、WoW +6.0%（2026-09-24 vs 2026-09-17）",
+        "Beauty: 2026年8月百貨店化粧品売上は店数調整後YoY +3.4%（2026-08 vs 2025-08）。Brand.comのlaunch/promotionとorganic demandを分離"
+      ],
+      "tags": [
+        "Daily",
+        "Domestic Delivery",
+        "JR Freight",
+        "Chiba",
+        "NACCS",
+        "Ocean routing",
+        "Ocean rates",
+        "Beauty demand",
+        "Beauty promotion"
+      ],
+      "status_board": {
+        "domestic": "watch",
+        "weather": "watch",
+        "customs": "normal",
+        "ocean": "watch",
+        "air": "unconfirmed",
+        "global": "watch"
+      },
+      "signals": {
+        "wci": {
+          "value": 4468,
+          "unit": "USD/40ft",
+          "data_date": "2026-09-24",
+          "source": "https://www.drewry.co.uk/logistics-executive-briefing-article-browser/logistics-executive-briefing-article-browser"
+        },
+        "scfi": {
+          "value": null,
+          "unit": null,
+          "data_date": null,
+          "source": null
+        }
+      },
+      "cost_snapshot": {
+        "as_of": "2026-09-29T08:00:00+09:00",
+        "metrics": {
+          "regular_gasoline_national": {
+            "value": 169.9,
+            "unit": "JPY/L",
+            "data_date": "2026-09-14",
+            "source": "資源エネルギー庁 石油製品価格調査 / data/economy/fuel-prices.json"
+          },
+          "diesel_national": {
+            "value": 159.3,
+            "unit": "JPY/L",
+            "data_date": "2026-09-14",
+            "source": "資源エネルギー庁 石油製品価格調査 / data/economy/fuel-prices.json"
+          },
+          "drewry_wci": {
+            "value": 4468,
+            "unit": "USD/40ft",
+            "data_date": "2026-09-24",
+            "source": "Drewry World Container Index / data/economy/ocean-freight-market.json"
+          },
+          "drewry_iaci": {
+            "value": 1491,
+            "unit": "USD/40ft",
+            "data_date": "2026-09-24",
+            "source": "Drewry Intra-Asia Container Index / data/economy/ocean-freight-market.json"
+          }
+        },
+        "interpretation_ja": "直近の検証済み公表値。WCIはWoW -1.0%（2026-09-24 vs 2026-09-17）、IACIはWoW +6.0%（2026-09-24 vs 2026-09-17）。価格と物量・実輸送capacityを同一視しない。"
+      },
+      "intelligence": {
+        "disruption": [
+          {
+            "id": "japan-domestic-delivery",
+            "signal": "台風25号由来の宅配遅延は千葉県の一部地域に残るが、直近の広域例外から局所化している。",
+            "lens": "disruption",
+            "direction": "falling",
+            "impact": "medium",
+            "change_status": "improving",
+            "confidence": "high",
+            "evidence": [
+              {
+                "source": "ヤマト運輸",
+                "date": "2026-09-29",
+                "url": "https://www.kuronekoyamato.co.jp/ytc/chien/chien_hp.html"
+              },
+              {
+                "source": "JR貨物",
+                "date": "2026-09-29",
+                "url": "https://www.jrfreight.co.jp/i_daiya/"
+              }
+            ],
+            "operational_implication": "千葉県発着・貨物鉄道接続の時限貨物だけ最新ETAを確認する。",
+            "action_direction": "全国一律の停止・mode shiftは行わない。"
+          },
+          {
+            "id": "japan-weather-disruption",
+            "signal": "台風25号の残留影響は千葉県の一部地域に局所化している。",
+            "lens": "disruption",
+            "direction": "falling",
+            "impact": "medium",
+            "change_status": "improving",
+            "confidence": "high",
+            "evidence": [
+              {
+                "source": "ヤマト運輸",
+                "date": "2026-09-29",
+                "url": "https://www.kuronekoyamato.co.jp/ytc/chien/chien_hp.html"
+              }
+            ],
+            "operational_implication": "影響地域だけ例外管理し、広域影響へ一般化しない。",
+            "action_direction": "一律のbuffer追加は行わない。"
+          },
+          {
+            "id": "middle-east-maritime-risk",
+            "signal": "Suez経由へのservice別復帰は進むが、中東海域の不確実性が残るため全面正常化とは扱わない。",
+            "lens": "disruption",
+            "direction": "volatile",
+            "impact": "high",
+            "change_status": "unchanged_high_risk",
+            "confidence": "high",
+            "evidence": [
+              {
+                "source": "Hapag-Lloyd",
+                "date": "2026-09-28",
+                "url": "https://www.hapag-lloyd.com/en/services-information/news/2026/09/routing-update-for-our-ne4--se1--se2-and-iex-services.html"
+              }
+            ],
+            "operational_implication": "service・voyage単位でrouting、ETA、主要T/S接続を確認する。",
+            "action_direction": "Suez復帰を理由に標準lead timeを一律短縮しない。"
+          }
+        ],
+        "cost_capacity": [],
+        "reliability": [
+          {
+            "id": "ocean-schedule-reliability",
+            "signal": "GeminiのSuez経由へのrouting変更は拡大したが、日本発着の実績定時性改善はまだ確認していない。",
+            "lens": "reliability",
+            "direction": "unknown",
+            "impact": "medium",
+            "change_status": "unchanged",
+            "confidence": "high",
+            "evidence": [
+              {
+                "source": "Hapag-Lloyd",
+                "date": "2026-09-28",
+                "url": "https://www.hapag-lloyd.com/en/services-information/news/2026/09/routing-update-for-our-ne4--se1--se2-and-iex-services.html"
+              }
+            ],
+            "operational_implication": "schedule実績が確認できるまでETA bufferをservice単位で維持する。",
+            "action_direction": "Reported EventをObserved Impactとして扱わない。"
+          }
+        ],
+        "demand_commerce": [
+          {
+            "id": "beauty-japan-ec-promotion",
+            "signal": "Brand.com横断確認ではlaunch/promotionが継続するが、organic demand上振れの新証拠とは扱わない。",
+            "lens": "demand_commerce",
+            "direction": "volatile",
+            "impact": "medium",
+            "change_status": "unchanged",
+            "confidence": "high",
+            "demand_driver": "promotion",
+            "duration": "temporary",
+            "evidence": [
+              {
+                "source": "SK-II",
+                "date": "2026-09-29",
+                "url": "https://www.sk-ii.jp/product/LXP-eye-cream"
+              },
+              {
+                "source": "YSL Beauty",
+                "date": "2026-09-29",
+                "url": "https://www.yslb.jp/libre-promotion.html"
+              },
+              {
+                "source": "Givenchy Beauty",
+                "date": "2026-09-29",
+                "url": "https://www.givenchybeauty.com/"
+              }
+            ],
+            "operational_implication": "launch/promotion由来の短期波動を基礎需要から分離する。",
+            "action_direction": "一律の在庫積み増しはしない。"
+          }
+        ],
+        "regulatory_structural": [
+          {
+            "id": "japan-customs-naccs",
+            "signal": "NACCSは正常運転中で、通関手順を変える新規システム障害は確認していない。",
+            "lens": "regulatory_structural",
+            "direction": "stable",
+            "impact": "low",
+            "change_status": "unchanged",
+            "confidence": "high",
+            "evidence": [
+              {
+                "source": "NACCS掲示板",
+                "date": "2026-09-29",
+                "url": "https://bbs.naccscenter.com/"
+              }
+            ],
+            "operational_implication": "通常手順を継続する。",
+            "action_direction": "新たな停止表示がない限り通常運用を継続する。",
+            "customs_subtype": "operational"
+          }
+        ]
+      },
+      "change_summary": {
+        "comparison_base": "2026-09-25-daily",
+        "new": [],
+        "deteriorating": [],
+        "improving": [
+          "japan-domestic-delivery",
+          "japan-weather-disruption"
+        ],
+        "resolved": [],
+        "unchanged_high_risk": [
+          "middle-east-maritime-risk"
+        ]
+      },
+      "path": "reports/2026/09/2026-09-29-daily.html"
+    },
+    {
       "date": "2026-09-24",
       "status": "watch",
       "as_of": "2026年9月24日 08:00 JST",
