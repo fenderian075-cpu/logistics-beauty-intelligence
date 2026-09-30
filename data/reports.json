@@ -3583,6 +3583,230 @@
         ]
       },
       "path": "reports/2026/09/2026-09-25-daily.html"
+    },
+    {
+      "date": "2026-10-01",
+      "status": "watch",
+      "as_of": "2026年10月1日 08:03 JST",
+      "sample": false,
+      "id": "2026-10-01-daily",
+      "type": "daily",
+      "period": "2026-10-01",
+      "title": "物流・化粧品インテリジェンス・ブリーフ — DAILY",
+      "summary": "全国一律の運用変更は不要。国内の地域別配送例外を確認し、通関は通常運用を継続する。国際海上はservice別routingを監視し、Beautyはlaunch波動をorganic demandから分離する。",
+      "bottom_line": "対象地域のSLA-critical shipmentだけ最新ETAを確認する。通関は通常手順を継続し、Suez経由への段階的復帰を理由に標準lead timeを一律短縮しない。",
+      "key_issues": [
+        "国内配送: 地域別の例外をshipment単位で確認",
+        "通関: NACCS正常運転",
+        "海上: service別Suez routing変更はReported Event、Japan observed impactは未確認",
+        "コスト: 燃料は2026-09-28公表値、WCI/IACIは2026-09-24公表値",
+        "Beauty: holiday予約・限定launchをorganic demandから分離"
+      ],
+      "tags": [
+        "Daily",
+        "Domestic Delivery",
+        "NACCS",
+        "Ocean routing",
+        "Ocean rates",
+        "Beauty launch"
+      ],
+      "status_board": {
+        "domestic": "watch",
+        "weather": "watch",
+        "customs": "normal",
+        "ocean": "watch",
+        "air": "unconfirmed",
+        "global": "watch"
+      },
+      "signals": {
+        "wci": {
+          "value": 4468,
+          "unit": "USD/40ft",
+          "data_date": "2026-09-24",
+          "source": "https://www.drewry.co.uk/trackers-and-indices/latest-trackers-and-indices/world-container-index-assessed-by-drewry"
+        },
+        "scfi": {
+          "value": null,
+          "unit": null,
+          "data_date": null,
+          "source": null
+        }
+      },
+      "cost_snapshot": {
+        "as_of": "2026-10-01T08:03:46+09:00",
+        "metrics": {
+          "regular_gasoline_national": {
+            "value": 170.2,
+            "unit": "JPY/L",
+            "data_date": "2026-09-28",
+            "source": "資源エネルギー庁 石油製品価格調査 / data/economy/fuel-prices.json"
+          },
+          "diesel_national": {
+            "value": 159.5,
+            "unit": "JPY/L",
+            "data_date": "2026-09-28",
+            "source": "資源エネルギー庁 石油製品価格調査 / data/economy/fuel-prices.json"
+          },
+          "drewry_wci": {
+            "value": 4468,
+            "unit": "USD/40ft",
+            "data_date": "2026-09-24",
+            "source": "Drewry World Container Index / data/economy/ocean-freight-market.json"
+          },
+          "drewry_iaci": {
+            "value": 1491,
+            "unit": "USD/40ft",
+            "data_date": "2026-09-24",
+            "source": "Drewry Intra-Asia Container Index / data/economy/ocean-freight-market.json"
+          }
+        },
+        "interpretation_ja": "燃料は前回公表観測（2026-09-14）比でガソリン+0.3円/L、軽油+0.2円/L。WCIはWoW -1.0%（2026-09-24 vs 2026-09-17）、IACIはWoW +6.0%（同）。価格と物量・実輸送capacityを同一視しない。"
+      },
+      "intelligence": {
+        "disruption": [
+          {
+            "id": "japan-domestic-delivery",
+            "signal": "国内配送には地域別の例外が残るが、全国一律停止ではない。",
+            "lens": "disruption",
+            "direction": "stable",
+            "impact": "medium",
+            "change_status": "unchanged",
+            "confidence": "high",
+            "evidence": [
+              {
+                "source": "ヤマト運輸",
+                "date": "2026-10-01",
+                "url": "https://www.kuronekoyamato.co.jp/ytc/chien/chien_hp.html"
+              }
+            ],
+            "operational_implication": "対象shipmentだけ最新ETAを確認する。",
+            "action_direction": "全国一律の停止・mode shiftは行わない。"
+          },
+          {
+            "id": "japan-weather-disruption",
+            "signal": "気象由来の残留影響は地域別に残るが、全国一律の気象障害ではない。",
+            "lens": "disruption",
+            "direction": "stable",
+            "impact": "medium",
+            "change_status": "unchanged",
+            "confidence": "high",
+            "evidence": [
+              {
+                "source": "ヤマト運輸",
+                "date": "2026-10-01",
+                "url": "https://www.kuronekoyamato.co.jp/ytc/chien/chien_hp.html"
+              }
+            ],
+            "operational_implication": "影響地域だけ例外管理する。",
+            "action_direction": "広域影響へ一般化しない。"
+          },
+          {
+            "id": "middle-east-maritime-risk",
+            "signal": "Suez経由へのservice別復帰は進むが、全面正常化とは扱わない。",
+            "lens": "disruption",
+            "direction": "volatile",
+            "impact": "high",
+            "change_status": "unchanged_high_risk",
+            "confidence": "high",
+            "evidence": [
+              {
+                "source": "Hapag-Lloyd",
+                "date": "2026-10-01",
+                "url": "https://www.hapag-lloyd.com/en/services-information/news/2026/09/routing-update-for-our-ne4--se1--se2-and-iex-services.html"
+              }
+            ],
+            "operational_implication": "service・voyage単位でroutingとETAを確認する。",
+            "action_direction": "標準lead timeを一律短縮しない。"
+          }
+        ],
+        "cost_capacity": [],
+        "reliability": [
+          {
+            "id": "ocean-schedule-reliability",
+            "signal": "routing変更は確認できるが、日本発着の実績定時性改善は未確認。",
+            "lens": "reliability",
+            "direction": "unknown",
+            "impact": "medium",
+            "change_status": "unchanged",
+            "confidence": "high",
+            "evidence": [
+              {
+                "source": "Hapag-Lloyd",
+                "date": "2026-10-01",
+                "url": "https://www.hapag-lloyd.com/en/services-information/news/2026/09/routing-update-for-our-ne4--se1--se2-and-iex-services.html"
+              }
+            ],
+            "operational_implication": "Observed Impactが確認できるまでservice別ETA bufferを維持する。",
+            "action_direction": "Reported EventをObserved Impactとして扱わない。"
+          }
+        ],
+        "demand_commerce": [
+          {
+            "id": "beauty-japan-ec-promotion",
+            "signal": "Holiday予約・限定launchが10月初頭の短期波動要因。organic demand上振れの新証拠ではない。",
+            "lens": "demand_commerce",
+            "direction": "volatile",
+            "impact": "medium",
+            "change_status": "new",
+            "confidence": "high",
+            "demand_driver": "launch",
+            "duration": "temporary",
+            "evidence": [
+              {
+                "source": "YSL BEAUTY / 日本ロレアル",
+                "date": "2026-09-30",
+                "url": "https://prtimes.jp/main/html/rd/p/000000454.000032072.html"
+              },
+              {
+                "source": "Givenchy Beauty Japan",
+                "date": "2026-09-30",
+                "url": "https://www.givenchybeauty.com/jp/p/%E3%82%B8%E3%83%90%E3%83%B3%E3%82%B7%E3%82%A4-%E3%83%9E%E3%82%B9%E3%83%88%E3%83%8F%E3%83%96-%E3%82%AE%E3%83%95%E3%83%88-%E3%82%BB%E3%83%83%E3%83%88-F70000407.html"
+              }
+            ],
+            "operational_implication": "launch calendar由来の出荷波動を基礎需要から分離する。",
+            "action_direction": "一律の在庫積み増しはしない。"
+          }
+        ],
+        "regulatory_structural": [
+          {
+            "id": "japan-customs-naccs",
+            "signal": "NACCSは正常運転中。税関は9月30日にNACCS利用業務の取扱い通知を公表したが、システム障害は確認していない。",
+            "lens": "regulatory_structural",
+            "direction": "stable",
+            "impact": "low",
+            "change_status": "unchanged",
+            "confidence": "high",
+            "evidence": [
+              {
+                "source": "NACCS掲示板",
+                "date": "2026-10-01",
+                "url": "https://bbs.naccscenter.com/"
+              },
+              {
+                "source": "税関",
+                "date": "2026-09-30",
+                "url": "https://www.customs.go.jp/kaisei/tsutatsu/2026tsutatsu/2026tsutatsu982/2026tsutatsu1125.html"
+              }
+            ],
+            "operational_implication": "通常通関を継続し、通知対象業務だけ内容を確認する。",
+            "action_direction": "Observed outageとして扱わない。",
+            "customs_subtype": "mixed"
+          }
+        ]
+      },
+      "change_summary": {
+        "comparison_base": "2026-09-29-daily",
+        "new": [
+          "beauty-japan-ec-promotion"
+        ],
+        "deteriorating": [],
+        "improving": [],
+        "resolved": [],
+        "unchanged_high_risk": [
+          "middle-east-maritime-risk"
+        ]
+      },
+      "path": "reports/2026/10/2026-10-01-daily.html"
     }
   ]
 }
