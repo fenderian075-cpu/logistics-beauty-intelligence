@@ -1,14 +1,14 @@
 {
   "schema_version": "1.0",
   "dataset": "historical-coverage",
-  "updated_at": "2026-09-02T17:00:28+09:00",
+  "updated_at": "2026-10-02T18:53:47+09:00",
   "stages": {
     "trade": {
       "status": "success",
       "annual_rows": 75,
       "annual_start": "1950",
       "annual_end": "2024",
-      "monthly_rows": 571
+      "monthly_rows": 572
     },
     "gdp": {
       "status": "success",
@@ -21,29 +21,29 @@
         "nominal_gdp_fy_level": 32
       },
       "urls": {
-        "real_gdp_qoq_pct": "https://www.esri.cao.go.jp/jp/sna/data/data_list/sokuhou/files/2026/qe262/tables/ritu-jk2621.csv",
-        "nominal_gdp_qoq_pct": "https://www.esri.cao.go.jp/jp/sna/data/data_list/sokuhou/files/2026/qe262/tables/ritu-mk2621.csv",
-        "real_gdp_quarterly_level_saar": "https://www.esri.cao.go.jp/jp/sna/data/data_list/sokuhou/files/2026/qe262/tables/gaku-jk2621.csv",
-        "nominal_gdp_quarterly_level_saar": "https://www.esri.cao.go.jp/jp/sna/data/data_list/sokuhou/files/2026/qe262/tables/gaku-mk2621.csv",
-        "real_gdp_fy_level": "https://www.esri.cao.go.jp/jp/sna/data/data_list/sokuhou/files/2026/qe262/tables/gaku-jfy2621.csv",
-        "nominal_gdp_fy_level": "https://www.esri.cao.go.jp/jp/sna/data/data_list/sokuhou/files/2026/qe262/tables/gaku-mfy2621.csv"
+        "real_gdp_qoq_pct": "https://www.esri.cao.go.jp/jp/sna/data/data_list/sokuhou/files/2026/qe262_2/tables/ritu-jk2622.csv",
+        "nominal_gdp_qoq_pct": "https://www.esri.cao.go.jp/jp/sna/data/data_list/sokuhou/files/2026/qe262_2/tables/ritu-mk2622.csv",
+        "real_gdp_quarterly_level_saar": "https://www.esri.cao.go.jp/jp/sna/data/data_list/sokuhou/files/2026/qe262_2/tables/gaku-jk2622.csv",
+        "nominal_gdp_quarterly_level_saar": "https://www.esri.cao.go.jp/jp/sna/data/data_list/sokuhou/files/2026/qe262_2/tables/gaku-mk2622.csv",
+        "real_gdp_fy_level": "https://www.esri.cao.go.jp/jp/sna/data/data_list/sokuhou/files/2026/qe262_2/tables/gaku-jfy2622.csv",
+        "nominal_gdp_fy_level": "https://www.esri.cao.go.jp/jp/sna/data/data_list/sokuhou/files/2026/qe262_2/tables/gaku-mfy2622.csv"
       }
     },
     "cpi": {
       "status": "success",
       "series": {
-        "cpi_all_items": 679,
-        "cpi_food": 679,
-        "cpi_housing": 679,
-        "cpi_fuel_light_water": 679,
-        "cpi_furniture_household": 679,
-        "cpi_clothes_footwear": 679,
-        "cpi_medical": 679,
-        "cpi_transport_communication": 679,
-        "cpi_education": 635,
-        "cpi_culture_recreation": 679,
-        "cpi_miscellaneous": 679,
-        "cpi_cosmetics": 679
+        "cpi_all_items": 680,
+        "cpi_food": 680,
+        "cpi_housing": 680,
+        "cpi_fuel_light_water": 680,
+        "cpi_furniture_household": 680,
+        "cpi_clothes_footwear": 680,
+        "cpi_medical": 680,
+        "cpi_transport_communication": 680,
+        "cpi_education": 636,
+        "cpi_culture_recreation": 680,
+        "cpi_miscellaneous": 680,
+        "cpi_cosmetics": 680
       },
       "middle_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=1&statInfId=000032103842",
       "item_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=1&statInfId=000032103844"
@@ -51,10 +51,10 @@
     "iip": {
       "status": "success",
       "series": {
-        "industrial_production": 102,
-        "manufacturing_shipments": 102,
-        "industrial_inventories": 102,
-        "industrial_inventory_ratio": 102
+        "industrial_production": 103,
+        "manufacturing_shipments": 103,
+        "industrial_inventories": 103,
+        "industrial_inventory_ratio": 103
       },
       "current_source": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000040172363",
       "current_official_start": "2018-01",
@@ -417,9 +417,9 @@
       "metric_id": "regular_gasoline_national",
       "name_ja": "レギュラーガソリン 全国平均",
       "unit": "円/L",
-      "observations": 1836,
+      "observations": 1839,
       "start": "1990-08-27",
-      "end": "2026-08-31"
+      "end": "2026-09-28"
     },
     {
       "file": "data/economy/fuel-prices.json",
@@ -427,9 +427,9 @@
       "metric_id": "diesel_national",
       "name_ja": "軽油 全国平均",
       "unit": "円/L",
-      "observations": 1836,
+      "observations": 1839,
       "start": "1990-08-27",
-      "end": "2026-08-31"
+      "end": "2026-09-28"
     },
     {
       "file": "data/economy/fuel-prices.json",
@@ -437,9 +437,9 @@
       "metric_id": "kerosene_national",
       "name_ja": "灯油 全国平均（店頭）",
       "unit": "円/18L",
-      "observations": 1836,
+      "observations": 1839,
       "start": "1990-08-27",
-      "end": "2026-08-31"
+      "end": "2026-09-28"
     },
     {
       "file": "data/economy/household-demand.json",
@@ -597,9 +597,9 @@
       "metric_id": "exports_total",
       "name_ja": "輸出額",
       "unit": "JPY_trillion",
-      "observations": 571,
+      "observations": 572,
       "start": "1979-01",
-      "end": "2026-07"
+      "end": "2026-08"
     },
     {
       "file": "data/economy/japan-trade.json",
@@ -607,9 +607,9 @@
       "metric_id": "imports_total",
       "name_ja": "輸入額",
       "unit": "JPY_trillion",
-      "observations": 571,
+      "observations": 572,
       "start": "1979-01",
-      "end": "2026-07"
+      "end": "2026-08"
     },
     {
       "file": "data/economy/japan-trade.json",
@@ -617,9 +617,9 @@
       "metric_id": "trade_balance",
       "name_ja": "貿易収支",
       "unit": "JPY_trillion",
-      "observations": 571,
+      "observations": 572,
       "start": "1979-01",
-      "end": "2026-07"
+      "end": "2026-08"
     },
     {
       "file": "data/economy/japan-trade.json",
@@ -1557,9 +1557,9 @@
       "metric_id": "industrial_production",
       "name_ja": "鉱工業生産指数",
       "unit": "2020=100",
-      "observations": 102,
+      "observations": 103,
       "start": "2018-01",
-      "end": "2026-06"
+      "end": "2026-07"
     },
     {
       "file": "data/economy/macro.json",
@@ -1567,9 +1567,9 @@
       "metric_id": "manufacturing_shipments",
       "name_ja": "製造工業出荷指数",
       "unit": "2020=100",
-      "observations": 102,
+      "observations": 103,
       "start": "2018-01",
-      "end": "2026-06"
+      "end": "2026-07"
     },
     {
       "file": "data/economy/macro.json",
@@ -1607,9 +1607,9 @@
       "metric_id": "industrial_inventories",
       "name_ja": "鉱工業在庫指数",
       "unit": "2020=100",
-      "observations": 102,
+      "observations": 103,
       "start": "2018-01",
-      "end": "2026-06"
+      "end": "2026-07"
     },
     {
       "file": "data/economy/macro.json",
@@ -1617,9 +1617,9 @@
       "metric_id": "industrial_inventory_ratio",
       "name_ja": "鉱工業在庫率指数",
       "unit": "2020=100",
-      "observations": 102,
+      "observations": 103,
       "start": "2018-01",
-      "end": "2026-06"
+      "end": "2026-07"
     },
     {
       "file": "data/economy/ocean-freight-market.json",
@@ -1627,9 +1627,9 @@
       "metric_id": "drewry_wci",
       "name_ja": "Drewry 世界コンテナ運賃指数（WCI）",
       "unit": "USD/40ft",
-      "observations": 5,
+      "observations": 11,
       "start": "2025-12-18",
-      "end": "2026-08-20"
+      "end": "2026-09-24"
     },
     {
       "file": "data/economy/ocean-freight-market.json",
@@ -1637,9 +1637,59 @@
       "metric_id": "drewry_iaci",
       "name_ja": "Drewry アジア域内コンテナ運賃指数（IACI）",
       "unit": "USD/40ft",
-      "observations": 4,
+      "observations": 9,
       "start": "2026-07-23",
-      "end": "2026-08-20"
+      "end": "2026-09-24"
+    },
+    {
+      "file": "data/economy/ocean-freight-market.json",
+      "dataset": "ocean-freight-market",
+      "metric_id": "planned_blank_sailing_share",
+      "name_ja": "主要East-West予定便のblank sailing比率",
+      "unit": "percent_of_planned_sailings",
+      "observations": 2,
+      "start": "2026-W38-W42",
+      "end": "2026-W39-W43"
+    },
+    {
+      "file": "data/economy/ocean-market.json",
+      "dataset": "ocean-market",
+      "metric_id": "drewry_wci",
+      "name_ja": "Drewry WCI",
+      "unit": "USD/40ft",
+      "observations": 3,
+      "start": "2026-08-20",
+      "end": "2026-09-03"
+    },
+    {
+      "file": "data/economy/ocean-market.json",
+      "dataset": "ocean-market",
+      "metric_id": "drewry_iaci",
+      "name_ja": "Drewry IACI",
+      "unit": "USD/40ft",
+      "observations": 3,
+      "start": "2026-08-20",
+      "end": "2026-09-03"
+    },
+    {
+      "file": "data/economy/ocean-market.json",
+      "dataset": "ocean-market",
+      "metric_id": "global_schedule_reliability",
+      "name_ja": "世界コンテナ船定時性",
+      "unit": "percent",
+      "observations": 1,
+      "start": "2026-07",
+      "end": "2026-07"
+    },
+    {
+      "file": "data/economy/ocean-market.json",
+      "dataset": "ocean-market",
+      "metric_id": "late_vessel_average_delay",
+      "name_ja": "遅着船平均遅延",
+      "unit": "days",
+      "observations": 1,
+      "start": "2026-07",
+      "end": "2026-07"
     },
     {
       "file": "data/economy/parcel-demand.json",
@@ -1747,9 +1797,9 @@
       "metric_id": "cpi_all_items",
       "name_ja": "CPI 総合",
       "unit": "2020=100",
-      "observations": 681,
+      "observations": 682,
       "start": "1970-01",
-      "end": "2026-07"
+      "end": "2026-08"
     },
     {
       "file": "data/economy/prices.json",
@@ -1757,9 +1807,9 @@
       "metric_id": "cpi_food",
       "name_ja": "CPI 食料",
       "unit": "2020=100",
-      "observations": 681,
+      "observations": 682,
       "start": "1970-01",
-      "end": "2026-07"
+      "end": "2026-08"
     },
     {
       "file": "data/economy/prices.json",
@@ -1767,9 +1817,9 @@
       "metric_id": "cpi_housing",
       "name_ja": "CPI 住居",
       "unit": "2020=100",
-      "observations": 681,
+      "observations": 682,
       "start": "1970-01",
-      "end": "2026-07"
+      "end": "2026-08"
     },
     {
       "file": "data/economy/prices.json",
@@ -1777,9 +1827,9 @@
       "metric_id": "cpi_fuel_light_water",
       "name_ja": "CPI 光熱・水道",
       "unit": "2020=100",
-      "observations": 681,
+      "observations": 682,
       "start": "1970-01",
-      "end": "2026-07"
+      "end": "2026-08"
     },
     {
       "file": "data/economy/prices.json",
@@ -1787,9 +1837,9 @@
       "metric_id": "cpi_furniture_household",
       "name_ja": "CPI 家具・家事用品",
       "unit": "2020=100",
-      "observations": 681,
+      "observations": 682,
       "start": "1970-01",
-      "end": "2026-07"
+      "end": "2026-08"
     },
     {
       "file": "data/economy/prices.json",
@@ -1797,9 +1847,9 @@
       "metric_id": "cpi_clothes_footwear",
       "name_ja": "CPI 被服・履物",
       "unit": "2020=100",
-      "observations": 681,
+      "observations": 682,
       "start": "1970-01",
-      "end": "2026-07"
+      "end": "2026-08"
     },
     {
       "file": "data/economy/prices.json",
@@ -1807,9 +1857,9 @@
       "metric_id": "cpi_medical",
       "name_ja": "CPI 保健医療",
       "unit": "2020=100",
-      "observations": 681,
+      "observations": 682,
       "start": "1970-01",
-      "end": "2026-07"
+      "end": "2026-08"
     },
     {
       "file": "data/economy/prices.json",
@@ -1817,9 +1867,9 @@
       "metric_id": "cpi_transport_communication",
       "name_ja": "CPI 交通・通信",
       "unit": "2020=100",
-      "observations": 681,
+      "observations": 682,
       "start": "1970-01",
-      "end": "2026-07"
+      "end": "2026-08"
     },
     {
       "file": "data/economy/prices.json",
@@ -1827,9 +1877,9 @@
       "metric_id": "cpi_education",
       "name_ja": "CPI 教育",
       "unit": "2020=100",
-      "observations": 637,
+      "observations": 638,
       "start": "1973-09",
-      "end": "2026-07"
+      "end": "2026-08"
     },
     {
       "file": "data/economy/prices.json",
@@ -1837,9 +1887,9 @@
       "metric_id": "cpi_culture_recreation",
       "name_ja": "CPI 教養娯楽",
       "unit": "2020=100",
-      "observations": 681,
+      "observations": 682,
       "start": "1970-01",
-      "end": "2026-07"
+      "end": "2026-08"
     },
     {
       "file": "data/economy/prices.json",
@@ -1847,9 +1897,9 @@
       "metric_id": "cpi_miscellaneous",
       "name_ja": "CPI 諸雑費",
       "unit": "2020=100",
-      "observations": 681,
+      "observations": 682,
       "start": "1970-01",
-      "end": "2026-07"
+      "end": "2026-08"
     },
     {
       "file": "data/economy/prices.json",
@@ -1857,9 +1907,9 @@
       "metric_id": "cpi_cosmetics",
       "name_ja": "CPI 化粧品",
       "unit": "2020=100",
-      "observations": 679,
+      "observations": 680,
       "start": "1970-01",
-      "end": "2026-07"
+      "end": "2026-08"
     },
     {
       "file": "data/economy/prices.json",
@@ -1932,14 +1982,54 @@
       "end": "2026-01"
     },
     {
+      "file": "data/economy/rail-freight.json",
+      "dataset": "rail-freight",
+      "metric_id": "rail_freight_total_tonnes",
+      "name_ja": "鉄道貨物数量 合計",
+      "unit": "tonnes",
+      "observations": 1,
+      "start": "2026-05",
+      "end": "2026-05"
+    },
+    {
+      "file": "data/economy/rail-freight.json",
+      "dataset": "rail-freight",
+      "metric_id": "rail_freight_container_tonnes",
+      "name_ja": "鉄道コンテナ貨物数量",
+      "unit": "tonnes",
+      "observations": 1,
+      "start": "2026-05",
+      "end": "2026-05"
+    },
+    {
+      "file": "data/economy/rail-freight.json",
+      "dataset": "rail-freight",
+      "metric_id": "rail_freight_wagonload_tonnes",
+      "name_ja": "車扱貨物数量",
+      "unit": "tonnes",
+      "observations": 1,
+      "start": "2026-05",
+      "end": "2026-05"
+    },
+    {
+      "file": "data/economy/rail-freight.json",
+      "dataset": "rail-freight",
+      "metric_id": "rail_freight_total_ton_km",
+      "name_ja": "鉄道貨物トンキロ 合計",
+      "unit": "thousand ton-km",
+      "observations": 1,
+      "start": "2026-05",
+      "end": "2026-05"
+    },
+    {
       "file": "data/economy/retail-beauty.json",
       "dataset": "retail-beauty",
       "metric_id": "department_store_total_sales",
       "name_ja": null,
       "unit": "JPY",
-      "observations": 6,
+      "observations": 8,
       "start": "2026-01",
-      "end": "2026-06"
+      "end": "2026-08"
     },
     {
       "file": "data/economy/retail-beauty.json",
@@ -1947,9 +2037,9 @@
       "metric_id": "department_store_cosmetics_sales",
       "name_ja": null,
       "unit": "JPY",
-      "observations": 6,
+      "observations": 8,
       "start": "2026-01",
-      "end": "2026-06"
+      "end": "2026-08"
     },
     {
       "file": "data/economy/retail-beauty.json",
@@ -2017,9 +2107,9 @@
       "metric_id": "cosmetics_domestic_shipments",
       "name_ja": null,
       "unit": "JPY",
-      "observations": 1,
+      "observations": 2,
       "start": "2024",
-      "end": "2024"
+      "end": "2026-06"
     },
     {
       "file": "data/economy/retail-beauty.json",
@@ -2277,9 +2367,9 @@
       "metric_id": "inbound_volume",
       "name_ja": "入庫量",
       "unit": "tonnes",
-      "observations": 132,
+      "observations": 133,
       "start": "2015-01",
-      "end": "2025-12"
+      "end": "2026-01"
     },
     {
       "file": "data/economy/warehouse-flow.json",
@@ -2287,9 +2377,9 @@
       "metric_id": "outbound_volume",
       "name_ja": "出庫量（回転率からの推計）",
       "unit": "tonnes",
-      "observations": 131,
+      "observations": 132,
       "start": "2015-02",
-      "end": "2025-12"
+      "end": "2026-01"
     },
     {
       "file": "data/economy/warehouse-flow.json",
@@ -2297,9 +2387,9 @@
       "metric_id": "inventory_balance",
       "name_ja": "保管残高",
       "unit": "tonnes",
-      "observations": 132,
+      "observations": 133,
       "start": "2015-01",
-      "end": "2025-12"
+      "end": "2026-01"
     },
     {
       "file": "data/economy/warehouse-flow.json",
@@ -2307,9 +2397,9 @@
       "metric_id": "warehouse_turnover",
       "name_ja": "貨物回転率",
       "unit": "pct",
-      "observations": 132,
+      "observations": 133,
       "start": "2015-01",
-      "end": "2025-12"
+      "end": "2026-01"
     },
     {
       "file": "data/economy/warehouse-flow.json",
@@ -2317,9 +2407,9 @@
       "metric_id": "warehouse_utilization",
       "name_ja": "倉庫利用率",
       "unit": "pct",
-      "observations": 132,
+      "observations": 133,
       "start": "2015-01",
-      "end": "2025-12"
+      "end": "2026-01"
     },
     {
       "file": "data/economy/warehouse-flow.json",
@@ -2327,9 +2417,9 @@
       "metric_id": "inventory_value",
       "name_ja": "保管残高金額",
       "unit": "JPY",
-      "observations": 132,
+      "observations": 133,
       "start": "2015-01",
-      "end": "2025-12"
+      "end": "2026-01"
     },
     {
       "file": "data/economy/warehouse-flow.json",

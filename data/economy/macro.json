@@ -330,7 +330,7 @@
         },
         {
           "period": "2024-04",
-          "value": 645.0277,
+          "value": 645.0278,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
@@ -342,7 +342,7 @@
         },
         {
           "period": "2025-04",
-          "value": 673.5328,
+          "value": 673.5558,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
@@ -355,7 +355,7 @@
         }
       ],
       "name_ja": "名目GDP（年度）",
-      "source_url": "https://www.esri.cao.go.jp/jp/sna/data/data_list/sokuhou/files/2026/qe262/tables/gaku-mfy2621.csv"
+      "source_url": "https://www.esri.cao.go.jp/jp/sna/data/data_list/sokuhou/files/2026/qe262_2/tables/gaku-mfy2622.csv"
     },
     {
       "metric_id": "nominal_gdp_fy_growth_pct",
@@ -763,25 +763,25 @@
         },
         {
           "period": "2022-04",
-          "value": 582.5348,
+          "value": 582.5298,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "2023-04",
-          "value": 586.4315,
+          "value": 586.4379,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "2024-04",
-          "value": 589.5233,
+          "value": 589.5216,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "2025-04",
-          "value": 595.4549,
+          "value": 595.4322,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
@@ -794,7 +794,7 @@
         }
       ],
       "name_ja": "実質GDP（年度）",
-      "source_url": "https://www.esri.cao.go.jp/jp/sna/data/data_list/sokuhou/files/2026/qe262/tables/gaku-jfy2621.csv"
+      "source_url": "https://www.esri.cao.go.jp/jp/sna/data/data_list/sokuhou/files/2026/qe262_2/tables/gaku-jfy2622.csv"
     },
     {
       "metric_id": "real_gdp_qoq_pct",
@@ -959,13 +959,13 @@
         },
         {
           "period": "2021-01",
-          "value": 0.5,
+          "value": 0.4,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "2022-01",
-          "value": -0.5,
+          "value": -0.6,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
@@ -989,7 +989,7 @@
         },
         {
           "period": "2026-01",
-          "value": 0.6,
+          "value": 0.5,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
@@ -1002,7 +1002,7 @@
         }
       ],
       "name_ja": "実質GDP 前期比",
-      "source_url": "https://www.esri.cao.go.jp/jp/sna/data/data_list/sokuhou/files/2026/qe262/tables/ritu-jk2621.csv"
+      "source_url": "https://www.esri.cao.go.jp/jp/sna/data/data_list/sokuhou/files/2026/qe262_2/tables/ritu-jk2622.csv"
     },
     {
       "metric_id": "nominal_gdp_qoq_pct",
@@ -1210,7 +1210,7 @@
         }
       ],
       "name_ja": "名目GDP 前期比",
-      "source_url": "https://www.esri.cao.go.jp/jp/sna/data/data_list/sokuhou/files/2026/qe262/tables/ritu-mk2621.csv"
+      "source_url": "https://www.esri.cao.go.jp/jp/sna/data/data_list/sokuhou/files/2026/qe262_2/tables/ritu-mk2622.csv"
     },
     {
       "metric_id": "real_gdp_quarterly_level_saar",
@@ -1219,199 +1219,199 @@
       "observations": [
         {
           "period": "1994-01",
-          "value": 460.9942,
+          "value": 460.9925,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "1995-01",
-          "value": 466.4057,
+          "value": 466.404,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "1996-01",
-          "value": 481.5315,
+          "value": 481.5326,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "1997-01",
-          "value": 498.5695,
+          "value": 498.5679,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "1998-01",
-          "value": 483.9371,
+          "value": 483.9357,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "1999-01",
-          "value": 486.3493,
+          "value": 486.3481,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "2000-01",
-          "value": 498.4071,
+          "value": 498.409,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "2001-01",
-          "value": 505.5157,
+          "value": 505.5149,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "2002-01",
-          "value": 501.2057,
+          "value": 501.2049,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "2003-01",
-          "value": 504.1225,
+          "value": 504.1218,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "2004-01",
-          "value": 516.8103,
+          "value": 516.8125,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "2005-01",
-          "value": 521.8068,
+          "value": 521.8058,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "2006-01",
-          "value": 534.2439,
+          "value": 534.2426,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "2007-01",
-          "value": 544.4371,
+          "value": 544.4356,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "2008-01",
-          "value": 546.4987,
+          "value": 546.5001,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "2009-01",
-          "value": 507.6288,
+          "value": 507.6267,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "2010-01",
-          "value": 524.2423,
+          "value": 524.2403,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "2011-01",
-          "value": 523.9121,
+          "value": 523.9106,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "2012-01",
-          "value": 538.1144,
+          "value": 538.1161,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "2013-01",
-          "value": 541.5905,
+          "value": 541.5886,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "2014-01",
-          "value": 559.898,
+          "value": 559.8963,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "2015-01",
-          "value": 562.1509,
+          "value": 562.1527,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "2016-01",
-          "value": 565.9495,
+          "value": 565.9373,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "2017-01",
-          "value": 571.542,
+          "value": 571.5003,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "2018-01",
-          "value": 577.9913,
+          "value": 577.9198,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "2019-01",
-          "value": 580.1416,
+          "value": 580.0723,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "2020-01",
-          "value": 569.5906,
+          "value": 569.5204,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "2021-01",
-          "value": 570.0345,
+          "value": 569.9387,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "2022-01",
-          "value": 574.0257,
+          "value": 573.9008,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "2023-01",
-          "value": 588.3288,
+          "value": 588.1842,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "2024-01",
-          "value": 585.8513,
+          "value": 585.7079,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "2025-01",
-          "value": 591.4362,
+          "value": 591.2872,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "2026-01",
-          "value": 599.3966,
+          "value": 599.3656,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
@@ -1424,7 +1424,7 @@
         }
       ],
       "name_ja": "実質GDP 季節調整済年率",
-      "source_url": "https://www.esri.cao.go.jp/jp/sna/data/data_list/sokuhou/files/2026/qe262/tables/gaku-jk2621.csv"
+      "source_url": "https://www.esri.cao.go.jp/jp/sna/data/data_list/sokuhou/files/2026/qe262_2/tables/gaku-jk2622.csv"
     },
     {
       "metric_id": "nominal_gdp_quarterly_level_saar",
@@ -1433,199 +1433,199 @@
       "observations": [
         {
           "period": "1994-01",
-          "value": 518.6042,
+          "value": 518.6053,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "1995-01",
-          "value": 522.3352,
+          "value": 522.3367,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "1996-01",
-          "value": 538.3777,
+          "value": 538.3772,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "1997-01",
-          "value": 553.6482,
+          "value": 553.6504,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "1998-01",
-          "value": 541.7185,
+          "value": 541.7203,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "1999-01",
-          "value": 538.6028,
+          "value": 538.6043,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "2000-01",
-          "value": 544.2295,
+          "value": 544.2284,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "2001-01",
-          "value": 548.0249,
+          "value": 548.026,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "2002-01",
-          "value": 537.2895,
+          "value": 537.2904,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "2003-01",
-          "value": 527.1053,
+          "value": 527.1061,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "2004-01",
-          "value": 532.7491,
+          "value": 532.7476,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "2005-01",
-          "value": 533.3388,
+          "value": 533.3397,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "2006-01",
-          "value": 538.6607,
+          "value": 538.6619,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "2007-01",
-          "value": 544.3135,
+          "value": 544.315,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "2008-01",
-          "value": 540.7379,
+          "value": 540.7373,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "2009-01",
-          "value": 504.9369,
+          "value": 504.9386,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "2010-01",
-          "value": 508.787,
+          "value": 508.7888,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "2011-01",
-          "value": 500.5537,
+          "value": 500.5553,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "2012-01",
-          "value": 508.1449,
+          "value": 508.1447,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "2013-01",
-          "value": 508.3115,
+          "value": 508.3141,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "2014-01",
-          "value": 526.6208,
+          "value": 526.6239,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "2015-01",
-          "value": 545.4501,
+          "value": 545.4523,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "2016-01",
-          "value": 555.9313,
+          "value": 555.9301,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "2017-01",
-          "value": 559.7504,
+          "value": 559.7509,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "2018-01",
-          "value": 568.2644,
+          "value": 568.2647,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "2019-01",
-          "value": 571.4795,
+          "value": 571.4787,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "2020-01",
-          "value": 567.8602,
+          "value": 567.8571,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "2021-01",
-          "value": 569.1791,
+          "value": 569.1874,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "2022-01",
-          "value": 576.0735,
+          "value": 576.1013,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "2023-01",
-          "value": 605.3503,
+          "value": 605.4028,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "2024-01",
-          "value": 623.5132,
+          "value": 623.5785,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "2025-01",
-          "value": 652.6745,
+          "value": 652.7521,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
         {
           "period": "2026-01",
-          "value": 683.7169,
+          "value": 683.9041,
           "status": "official",
           "source": "内閣府 国民経済計算"
         },
@@ -1638,7 +1638,7 @@
         }
       ],
       "name_ja": "名目GDP 季節調整済年率",
-      "source_url": "https://www.esri.cao.go.jp/jp/sna/data/data_list/sokuhou/files/2026/qe262/tables/gaku-mk2621.csv"
+      "source_url": "https://www.esri.cao.go.jp/jp/sna/data/data_list/sokuhou/files/2026/qe262_2/tables/gaku-mk2622.csv"
     },
     {
       "metric_id": "industrial_production",
@@ -2345,6 +2345,13 @@
           "status": "official",
           "source": "経済産業省/e-Stat 鉱工業指数",
           "yoy": 3.05
+        },
+        {
+          "period": "2026-07",
+          "value": 104.4,
+          "status": "official",
+          "source": "経済産業省/e-Stat 鉱工業指数",
+          "yoy": 3.88
         }
       ],
       "name_ja": "鉱工業生産指数",
@@ -3055,6 +3062,13 @@
           "status": "official",
           "source": "経済産業省/e-Stat 鉱工業指数",
           "yoy": 1.0
+        },
+        {
+          "period": "2026-07",
+          "value": 103.4,
+          "status": "official",
+          "source": "経済産業省/e-Stat 鉱工業指数",
+          "yoy": 4.66
         }
       ],
       "name_ja": "製造工業出荷指数",
@@ -3785,6 +3799,13 @@
           "status": "official",
           "source": "経済産業省/e-Stat 鉱工業指数",
           "yoy": -2.11
+        },
+        {
+          "period": "2026-07",
+          "value": 98.1,
+          "status": "official",
+          "source": "経済産業省/e-Stat 鉱工業指数",
+          "yoy": -2.0
         }
       ]
     },
@@ -4495,6 +4516,13 @@
           "status": "official",
           "source": "経済産業省/e-Stat 鉱工業指数",
           "yoy": 0.0
+        },
+        {
+          "period": "2026-07",
+          "value": 104.5,
+          "status": "official",
+          "source": "経済産業省/e-Stat 鉱工業指数",
+          "yoy": -2.15
         }
       ]
     }
@@ -4504,5 +4532,5 @@
   "frequency_ja": "月次・四半期・年次",
   "revision_policy_ja": "GDPは改定されるため、速報値は最新公表値へ更新し、過去年次は出典vintageを保持する。vintage差を景気変化として扱わない。",
   "rule_ja": "マクロ経済は単独で物流シグナルに昇格させず、貿易・物量・コスト・需要への伝播経路が確認できる場合に使う。",
-  "historical_backfill_at": "2026-09-02T17:00:27+09:00"
+  "historical_backfill_at": "2026-10-02T18:53:47+09:00"
 }

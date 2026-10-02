@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "dataset": "historical-backfill-status",
-  "updated_at": "2026-09-02T17:00:27+09:00",
+  "updated_at": "2026-10-02T18:53:47+09:00",
   "status": "success",
   "stages": {
     "trade": {
@@ -9,7 +9,7 @@
       "annual_rows": 75,
       "annual_start": "1950",
       "annual_end": "2024",
-      "monthly_rows": 571
+      "monthly_rows": 572
     },
     "gdp": {
       "status": "success",
@@ -22,29 +22,29 @@
         "nominal_gdp_fy_level": 32
       },
       "urls": {
-        "real_gdp_qoq_pct": "https://www.esri.cao.go.jp/jp/sna/data/data_list/sokuhou/files/2026/qe262/tables/ritu-jk2621.csv",
-        "nominal_gdp_qoq_pct": "https://www.esri.cao.go.jp/jp/sna/data/data_list/sokuhou/files/2026/qe262/tables/ritu-mk2621.csv",
-        "real_gdp_quarterly_level_saar": "https://www.esri.cao.go.jp/jp/sna/data/data_list/sokuhou/files/2026/qe262/tables/gaku-jk2621.csv",
-        "nominal_gdp_quarterly_level_saar": "https://www.esri.cao.go.jp/jp/sna/data/data_list/sokuhou/files/2026/qe262/tables/gaku-mk2621.csv",
-        "real_gdp_fy_level": "https://www.esri.cao.go.jp/jp/sna/data/data_list/sokuhou/files/2026/qe262/tables/gaku-jfy2621.csv",
-        "nominal_gdp_fy_level": "https://www.esri.cao.go.jp/jp/sna/data/data_list/sokuhou/files/2026/qe262/tables/gaku-mfy2621.csv"
+        "real_gdp_qoq_pct": "https://www.esri.cao.go.jp/jp/sna/data/data_list/sokuhou/files/2026/qe262_2/tables/ritu-jk2622.csv",
+        "nominal_gdp_qoq_pct": "https://www.esri.cao.go.jp/jp/sna/data/data_list/sokuhou/files/2026/qe262_2/tables/ritu-mk2622.csv",
+        "real_gdp_quarterly_level_saar": "https://www.esri.cao.go.jp/jp/sna/data/data_list/sokuhou/files/2026/qe262_2/tables/gaku-jk2622.csv",
+        "nominal_gdp_quarterly_level_saar": "https://www.esri.cao.go.jp/jp/sna/data/data_list/sokuhou/files/2026/qe262_2/tables/gaku-mk2622.csv",
+        "real_gdp_fy_level": "https://www.esri.cao.go.jp/jp/sna/data/data_list/sokuhou/files/2026/qe262_2/tables/gaku-jfy2622.csv",
+        "nominal_gdp_fy_level": "https://www.esri.cao.go.jp/jp/sna/data/data_list/sokuhou/files/2026/qe262_2/tables/gaku-mfy2622.csv"
       }
     },
     "cpi": {
       "status": "success",
       "series": {
-        "cpi_all_items": 679,
-        "cpi_food": 679,
-        "cpi_housing": 679,
-        "cpi_fuel_light_water": 679,
-        "cpi_furniture_household": 679,
-        "cpi_clothes_footwear": 679,
-        "cpi_medical": 679,
-        "cpi_transport_communication": 679,
-        "cpi_education": 635,
-        "cpi_culture_recreation": 679,
-        "cpi_miscellaneous": 679,
-        "cpi_cosmetics": 679
+        "cpi_all_items": 680,
+        "cpi_food": 680,
+        "cpi_housing": 680,
+        "cpi_fuel_light_water": 680,
+        "cpi_furniture_household": 680,
+        "cpi_clothes_footwear": 680,
+        "cpi_medical": 680,
+        "cpi_transport_communication": 680,
+        "cpi_education": 636,
+        "cpi_culture_recreation": 680,
+        "cpi_miscellaneous": 680,
+        "cpi_cosmetics": 680
       },
       "middle_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=1&statInfId=000032103842",
       "item_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=1&statInfId=000032103844"
@@ -52,10 +52,10 @@
     "iip": {
       "status": "success",
       "series": {
-        "industrial_production": 102,
-        "manufacturing_shipments": 102,
-        "industrial_inventories": 102,
-        "industrial_inventory_ratio": 102
+        "industrial_production": 103,
+        "manufacturing_shipments": 103,
+        "industrial_inventories": 103,
+        "industrial_inventory_ratio": 103
       },
       "current_source": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000040172363",
       "current_official_start": "2018-01",

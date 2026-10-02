@@ -3998,10 +3998,17 @@
         },
         {
           "period": "2026-07",
-          "value": 12.14772,
+          "value": 12.15429,
           "status": "official",
           "source": "財務省貿易統計",
-          "yoy": 27.86
+          "yoy": 27.93
+        },
+        {
+          "period": "2026-08",
+          "value": 11.15518,
+          "status": "official",
+          "source": "財務省貿易統計",
+          "yoy": 28.01
         }
       ],
       "name_ja": "輸出額",
@@ -7995,6 +8002,13 @@
           "status": "official",
           "source": "財務省貿易統計",
           "yoy": 23.16
+        },
+        {
+          "period": "2026-08",
+          "value": 10.04327,
+          "status": "official",
+          "source": "財務省貿易統計",
+          "yoy": 19.28
         }
       ],
       "name_ja": "輸入額",
@@ -11426,7 +11440,13 @@
         },
         {
           "period": "2026-07",
-          "value": 0.63834,
+          "value": 0.64492,
+          "status": "derived_from_official_totals",
+          "source": "財務省貿易統計"
+        },
+        {
+          "period": "2026-08",
+          "value": 1.11191,
           "status": "derived_from_official_totals",
           "source": "財務省貿易統計"
         }
@@ -12997,5 +13017,5 @@
     "latest_interim_available": "2026-07 first 20 days",
     "published_at": "2026-08-07"
   },
-  "historical_backfill_at": "2026-09-02T17:00:10+09:00"
+  "historical_backfill_at": "2026-10-02T18:53:30+09:00"
 }
