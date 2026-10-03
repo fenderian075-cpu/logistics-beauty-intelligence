@@ -76,7 +76,7 @@
         },
         {
           "period": "2026-08-26",
-          "value": 1491.0,
+          "value": 1491,
           "wow_pct": 2.2,
           "status": "official",
           "source_note": "Drewry public tracker"
@@ -138,6 +138,18 @@
           "published_at": "2026-09-24",
           "status": "official",
           "source_note": "Drewry World Container Index public listing, 24 Sep 2026"
+        },
+        {
+          "period": "2026-10-01",
+          "value": 4434,
+          "wow_pct": -1,
+          "comparison": {
+            "type": "wow",
+            "base_period": "2026-09-24"
+          },
+          "published_at": "2026-10-01",
+          "status": "official",
+          "source_note": "Drewry World Container Index public tracker, 01 Oct 2026"
         }
       ]
     },
@@ -247,6 +259,18 @@
           "published_at": "2026-09-24",
           "status": "official",
           "source_note": "Drewry Intra-Asia Container Index public listing, 24 Sep 2026"
+        },
+        {
+          "period": "2026-10-01",
+          "value": 1518,
+          "wow_pct": 2,
+          "comparison": {
+            "type": "wow",
+            "base_period": "2026-09-24"
+          },
+          "published_at": "2026-10-01",
+          "status": "official",
+          "source_note": "Drewry Intra-Asia Container Index public tracker, 01 Oct 2026"
         }
       ]
     },
@@ -274,10 +298,20 @@
           "published_at": "2026-09-18",
           "status": "official_forward_snapshot",
           "source_note": "Drewry Cancelled Sailings Tracker 18 Sep 2026"
+        },
+        {
+          "period": "2026-W41-W45",
+          "value": 5,
+          "planned_sailings": 710,
+          "cancelled_sailings": 39,
+          "window": "2026-10-05/2026-11-08",
+          "published_at": "2026-10-02",
+          "status": "official_forward_snapshot",
+          "source_note": "Drewry Cancelled Sailings Tracker, 02 Oct 2026"
         }
       ]
     }
   ],
   "collection_status": "official_recent_history_seeded_append_weekly_snapshots",
-  "last_collected_at": "2026-09-30T11:19:42.464969+00:00"
+  "last_collected_at": "2026-10-04T08:03:00+09:00"
 }

@@ -61,6 +61,319 @@
   },
   "reports": [
     {
+      "date": "2026-10-04",
+      "status": "watch",
+      "as_of": "2026年10月4日 08:03 JST",
+      "sample": false,
+      "id": "2026-10-04-daily",
+      "type": "daily",
+      "period": "2026-10-04",
+      "title": "物流・化粧品インテリジェンス・ブリーフ — DAILY",
+      "summary": "全国一律の運用変更は不要。国内は千葉・島しょ等の地域例外、海上はアジア域内のcapacity/reliabilityと中東リスクをshipment単位で確認する。通関は通常運用を継続する。",
+      "bottom_line": "国内は遅延対象地域だけ最新ETAを確認する。海上はIACI上昇・港湾待機と中東リスクをWCI低下と分けて管理し、航空の新規747F capacityは実効spaceをbooking実績で確認する。BeautyはHoliday launch/promotionをorganic demandから分離する。",
+      "key_issues": [
+        "国内輸送: ヤマトは2026-10-04 07:00時点で千葉県一部・島しょ・能登・沖縄等に地域別の遅延・一部受付停止を掲示。全国一律停止ではない",
+        "通関: NACCSは正常運転中。通常手順を継続",
+        "海上価格: WCI 4,434 USD/40ft、WoW -1.0%（2026-10-01 vs 2026-09-24）; IACI 1,518 USD/40ft、WoW +2.0%（同）",
+        "海上capacity/reliability: week41-45 blank sailingは39/710、5%。一方、Week39の上海・寧波平均待機は82時間・56時間で、価格・capacity・reliabilityを分離",
+        "航空: JAL/NXの747F LAX-NRT-TPE-SIN-NRT-LAXは10月3日初便予定として開始。capacity追加はreported eventで、実効space改善は未確認",
+        "Beauty: Holiday限定品の予約・先行発売とポイント施策が重なるが、launch/promotionでありorganic demand上振れの新証拠ではない"
+      ],
+      "tags": [
+        "Daily",
+        "Domestic Delivery",
+        "NACCS",
+        "Ocean rates",
+        "Intra-Asia",
+        "Blank sailings",
+        "Air cargo",
+        "Middle East maritime risk",
+        "Beauty launch",
+        "Beauty promotion"
+      ],
+      "status_board": {
+        "domestic": "watch",
+        "weather": "watch",
+        "customs": "normal",
+        "ocean": "watch",
+        "air": "normal",
+        "global": "watch"
+      },
+      "signals": {
+        "wci": {
+          "value": 4434,
+          "unit": "USD/40ft",
+          "data_date": "2026-10-01",
+          "source": "https://www.drewry.co.uk/trackers-and-indices/latest-trackers-and-indices/world-container-index-assessed-by-drewry"
+        },
+        "scfi": {
+          "value": null,
+          "unit": null,
+          "data_date": null,
+          "source": null
+        }
+      },
+      "cost_snapshot": {
+        "as_of": "2026-10-04T08:03:00+09:00",
+        "metrics": {
+          "regular_gasoline_national": {
+            "value": 170.2,
+            "unit": "JPY/L",
+            "data_date": "2026-09-28",
+            "source": "資源エネルギー庁 石油製品価格調査 / data/economy/fuel-prices.json"
+          },
+          "diesel_national": {
+            "value": 159.5,
+            "unit": "JPY/L",
+            "data_date": "2026-09-28",
+            "source": "資源エネルギー庁 石油製品価格調査 / data/economy/fuel-prices.json"
+          },
+          "drewry_wci": {
+            "value": 4434,
+            "unit": "USD/40ft",
+            "data_date": "2026-10-01",
+            "source": "Drewry World Container Index / data/economy/ocean-freight-market.json"
+          },
+          "drewry_iaci": {
+            "value": 1518,
+            "unit": "USD/40ft",
+            "data_date": "2026-10-01",
+            "source": "Drewry Intra-Asia Container Index / data/economy/ocean-freight-market.json"
+          }
+        },
+        "interpretation_ja": "直近の検証済み公表値。燃料は2026-09-28、WCI/IACIは2026-10-01。WCI -1.0%とIACI +2.0%はともに2026-09-24比。価格指標をphysical capacityや実輸送reliabilityと同一視しない。"
+      },
+      "intelligence": {
+        "disruption": [
+          {
+            "id": "japan-domestic-delivery",
+            "signal": "千葉県一部の台風残留遅延に加え、島しょ・能登・沖縄等で地域別の遅延・一部受付停止が残るが、全国一律停止ではない。",
+            "lens": "disruption",
+            "direction": "rising",
+            "impact": "medium",
+            "change_status": "deteriorating",
+            "confidence": "high",
+            "evidence": [
+              {
+                "source": "ヤマト運輸",
+                "date": "2026-10-04",
+                "url": "https://www.kuronekoyamato.co.jp/ytc/chien/chien_hp.html"
+              }
+            ],
+            "operational_implication": "対象地域のSLA-critical shipmentだけ最新ETA・受付可否を確認する。",
+            "action_direction": "全国一律の停止やmode shiftへ一般化しない。"
+          },
+          {
+            "id": "japan-weather-disruption",
+            "signal": "台風25号後の道路規制等による遅延が千葉県一部に残るが、全国的な気象停止とはなっていない。",
+            "lens": "disruption",
+            "direction": "stable",
+            "impact": "medium",
+            "change_status": "unchanged",
+            "confidence": "high",
+            "evidence": [
+              {
+                "source": "ヤマト運輸",
+                "date": "2026-10-04",
+                "url": "https://www.kuronekoyamato.co.jp/ytc/chien/chien_hp.html"
+              }
+            ],
+            "operational_implication": "影響地域だけ例外管理する。",
+            "action_direction": "一律buffer追加は行わない。"
+          },
+          {
+            "id": "middle-east-maritime-risk",
+            "signal": "中東海域では安全保障インシデントと軍事的緊張が続く一方、Hormuz LNG通航やYanbu積出しは部分回復しており、全面正常化とは扱えない。",
+            "lens": "disruption",
+            "direction": "volatile",
+            "impact": "high",
+            "change_status": "unchanged_high_risk",
+            "confidence": "high",
+            "evidence": [
+              {
+                "source": "Reuters",
+                "date": "2026-10-02",
+                "url": "https://www.reuters.com/business/energy/september-lng-shipments-through-hormuz-hit-highest-since-start-us-iran-war-2026-10-02/"
+              },
+              {
+                "source": "Hapag-Lloyd",
+                "date": "2026-09-29",
+                "url": "https://www.hapag-lloyd.com/pt/services-information/operational-updates/updates/2026/09/ops-update-middle-east-week40.html"
+              }
+            ],
+            "operational_implication": "service/voyageごとにrouting・port call・ETAを確認する。",
+            "action_direction": "partial flow recoveryを標準lead time短縮へ一般化しない。"
+          }
+        ],
+        "cost_capacity": [
+          {
+            "id": "ocean-global-price",
+            "signal": "WCIは4,434 USD/40ftへ前週比1.0%低下（2026-10-01 vs 2026-09-24）。",
+            "lens": "cost_capacity",
+            "direction": "falling",
+            "impact": "low",
+            "change_status": "improving",
+            "confidence": "high",
+            "evidence": [
+              {
+                "source": "Drewry WCI",
+                "date": "2026-10-01",
+                "url": "https://www.drewry.co.uk/trackers-and-indices/latest-trackers-and-indices/world-container-index-assessed-by-drewry"
+              }
+            ],
+            "operational_implication": "global index低下を日本発着laneの一律cost低下とみなさない。",
+            "action_direction": "lane別実rateを別確認する。"
+          },
+          {
+            "id": "ocean-intra-asia-capacity",
+            "signal": "IACIは1,518 USD/40ftへ前週比2.0%上昇し6週連続最高値。typhoon disruption・port congestion・capacity adjustmentが背景。",
+            "lens": "cost_capacity",
+            "direction": "falling",
+            "impact": "medium",
+            "change_status": "deteriorating",
+            "confidence": "high",
+            "evidence": [
+              {
+                "source": "Drewry IACI",
+                "date": "2026-10-01",
+                "url": "https://www.drewry.co.uk/maritime-research-opinion-browser/intra-asia-container-index"
+              }
+            ],
+            "operational_implication": "アジア域内補充はpriceだけでなくspaceと港湾待機をcarrier/lane別に確認する。",
+            "action_direction": "IACI上昇だけで全laneのspace shortageと断定しない。"
+          },
+          {
+            "id": "ocean-blank-sailing-pressure",
+            "signal": "week41-45は39 blank sailings / 710 planned、5% cancellationで、95%は運航予定。",
+            "lens": "cost_capacity",
+            "direction": "falling",
+            "impact": "low",
+            "change_status": "improving",
+            "confidence": "high",
+            "evidence": [
+              {
+                "source": "Drewry Cancelled Sailings Tracker",
+                "date": "2026-10-02",
+                "url": "https://www.drewry.co.uk/maritime-research-opinion-browser/cancelled-sailings-tracker"
+              }
+            ],
+            "operational_implication": "global cancellation率より対象service/voyageの欠便・T/S接続を確認する。",
+            "action_direction": "全面的capacity shortageへ一般化しない。"
+          },
+          {
+            "id": "air-global-capacity",
+            "signal": "JAL/NXは747FによるLAX-NRT-TPE-SIN-NRT-LAXを開始し、2026年は週1便の新capacityを公表。",
+            "lens": "cost_capacity",
+            "direction": "rising",
+            "impact": "medium",
+            "change_status": "improving",
+            "confidence": "high",
+            "evidence": [
+              {
+                "source": "JAL",
+                "date": "2026-10-01",
+                "url": "https://press.jal.co.jp/en/release/202610/009746.html"
+              }
+            ],
+            "operational_implication": "北米―成田・アジア接続の追加capacity材料だが、実効spaceはbooking実績で確認する。",
+            "action_direction": "公表capacityだけでlead timeを短縮しない。"
+          }
+        ],
+        "reliability": [
+          {
+            "id": "ocean-schedule-reliability",
+            "signal": "Week39の平均船待ちは上海82時間、寧波56時間。Middle East servicesでもport omission・adhoc callが続く。",
+            "lens": "reliability",
+            "direction": "falling",
+            "impact": "medium",
+            "change_status": "deteriorating",
+            "confidence": "high",
+            "evidence": [
+              {
+                "source": "Drewry IACI",
+                "date": "2026-10-01",
+                "url": "https://www.drewry.co.uk/maritime-research-opinion-browser/intra-asia-container-index"
+              },
+              {
+                "source": "Hapag-Lloyd",
+                "date": "2026-09-29",
+                "url": "https://www.hapag-lloyd.com/pt/services-information/operational-updates/updates/2026/09/ops-update-middle-east-week40.html"
+              }
+            ],
+            "operational_implication": "重要貨物はarrival varianceとconnection riskをservice単位で織り込む。",
+            "action_direction": "rate変化とschedule reliabilityを別管理する。"
+          }
+        ],
+        "demand_commerce": [
+          {
+            "id": "beauty-japan-ec-promotion",
+            "signal": "Holiday限定品の予約・先行発売とポイント施策が重なるが、launch/promotion起因でありorganic demand上振れの新証拠ではない。",
+            "lens": "demand_commerce",
+            "direction": "volatile",
+            "impact": "medium",
+            "change_status": "unchanged",
+            "confidence": "high",
+            "demand_driver": "launch",
+            "duration": "temporary",
+            "evidence": [
+              {
+                "source": "YSL Beauty Japan",
+                "date": "2026-10-04",
+                "url": "https://www.yslb.jp/product/collection.html"
+              },
+              {
+                "source": "Clé de Peau Beauté Japan",
+                "date": "2026-10-04",
+                "url": "https://www.cledepeau-beaute.com/jp/news/news.html"
+              }
+            ],
+            "operational_implication": "予約・限定SKU・ポイント施策の短期波動をbaseline demandから分離する。",
+            "action_direction": "organic demandの恒常上方修正は行わない。"
+          }
+        ],
+        "regulatory_structural": [
+          {
+            "id": "japan-customs-naccs",
+            "signal": "NACCSは正常運転中で、通関手順を変える新規システム障害は確認していない。",
+            "lens": "regulatory_structural",
+            "direction": "stable",
+            "impact": "low",
+            "change_status": "unchanged",
+            "confidence": "high",
+            "evidence": [
+              {
+                "source": "NACCS掲示板",
+                "date": "2026-10-04",
+                "url": "https://bbs.naccscenter.com/"
+              }
+            ],
+            "operational_implication": "通常手順を継続する。",
+            "action_direction": "新たな停止表示がない限り通常運用を継続する。",
+            "customs_subtype": "operational"
+          }
+        ]
+      },
+      "change_summary": {
+        "comparison_base": "2026-09-29-daily",
+        "new": [],
+        "deteriorating": [
+          "japan-domestic-delivery",
+          "ocean-intra-asia-capacity",
+          "ocean-schedule-reliability"
+        ],
+        "improving": [
+          "ocean-global-price",
+          "ocean-blank-sailing-pressure",
+          "air-global-capacity"
+        ],
+        "resolved": [],
+        "unchanged_high_risk": [
+          "middle-east-maritime-risk"
+        ]
+      },
+      "path": "reports/2026/10/2026-10-04-daily.html"
+    },
+    {
       "date": "2026-09-29",
       "status": "watch",
       "as_of": "2026年9月29日 08:00 JST",
